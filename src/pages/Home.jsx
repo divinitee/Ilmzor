@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BookOpen, Trophy, LogOut, Play, Settings, Trash2, X } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
+import BottomTabBar from "@/components/BottomTabBar";
+import UnitDrawer from "@/components/UnitDrawer";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -19,15 +21,20 @@ export default function Home() {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
   const [loading, setLoading] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
+  const [activeTab, setActiveTab] = useState("home");
+  const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // Pull-to-refresh state
+  const [refreshing, setRefreshing] = useState(false);
+  const pullStartY = useRef(0);
+  const scrollRef = useRef(null);
 
-  const loadData = async () => {
+  useEffect(() => { loadData(); }, []);
+
+  const loadData = async (isRefresh = false) => {
+    if (!isRefresh) setLoading(true);
     try {
       const me = await base44.auth.me();
       setUser(me);
@@ -38,13 +45,26 @@ export default function Home() {
       words.forEach(w => { if (!unitMap[w.unit_key]) unitMap[w.unit_key] = w.unit_name; });
       const unitList = Object.entries(unitMap).map(([key, name]) => ({ key, name }));
       setUnits(unitList);
-      if (unitList.length > 0) setSelectedUnit(unitList[0].key);
+      if (unitList.length > 0 && !selectedUnit) setSelectedUnit(unitList[0].key);
       const myResults = await base44.entities.QuizResult.filter({ student_phone: me.email }, '-created_date');
       setResults(myResults);
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
+      setRefreshing(false);
+    }
+  };
+
+  // Pull-to-refresh handlers
+  const handleTouchStart = (e) => { pullStartY.current = e.touches[0].clientY; };
+  const handleTouchEnd = (e) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const delta = e.changedTouches[0].clientY - pullStartY.current;
+    if (delta > 80 && el.scrollTop === 0 && !refreshing) {
+      setRefreshing(true);
+      loadData(true);
     }
   };
 
@@ -54,7 +74,7 @@ export default function Home() {
     setDeleting(true);
     try {
       if (subscription) await base44.entities.StudentSubscription.delete(subscription.id);
-      await base44.entities.QuizResult.deleteMany({ student_phone: user.email });
+      await base44.entities.QuizResult.deleteMany({ student_phone: user?.email });
       await base44.auth.logout("/register");
     } catch (err) {
       console.error(err);
@@ -72,119 +92,123 @@ export default function Home() {
 
   const isAdmin = user?.role === "admin";
   const isActive = subscription?.status === "active";
+  const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
   return (
-    <motion.div className="min-h-screen bg-muted/40" variants={pageVariants} initial="initial" animate="animate" exit="exit">
-      <AppHeader user={user} onLogout={handleLogout} role={isAdmin ? "O'qituvchi" : "O'quvchi"} onSettings={() => setShowSettings(true)} />
-
-      {isAdmin ? (
-        <div className="max-w-lg mx-auto px-4 py-10 text-center">
-          <h2 className="text-2xl font-bold text-foreground mb-4">O'qituvchi Paneli</h2>
-          <Link to="/teacher">
-            <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
-          </Link>
+    <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
+      {/* Header */}
+      <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
+        <div className="flex items-center gap-2 select-none">
+          <BookOpen className="w-5 h-5 text-primary" />
+          <span className="font-bold text-foreground">Destination B1 Quiz</span>
         </div>
-      ) : !isActive ? (
-        <PaywallScreen user={user} subscription={subscription} onSubmitted={loadData} />
-      ) : (
-        <StudentDashboard user={user} results={results} units={units} selectedUnit={selectedUnit} setSelectedUnit={setSelectedUnit} />
-      )}
+        <div className="flex items-center gap-2">
+          <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
+            {isAdmin ? "O'qituvchi" : "O'quvchi"}
+          </span>
+          <button onClick={handleLogout} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
+            <LogOut className="w-4 h-4" />
+          </button>
+        </div>
+      </header>
 
-      <Footer />
-
-      {/* Settings Panel */}
-      <AnimatePresence>
-        {showSettings && (
-          <>
+      {/* Main content */}
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto"
+        style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 4.5rem)" }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
+        {/* Pull-to-refresh indicator */}
+        <AnimatePresence>
+          {refreshing && (
             <motion.div
-              className="fixed inset-0 bg-black/40 z-40"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              onClick={() => setShowSettings(false)}
-            />
-            <motion.div
-              className="fixed bottom-0 left-0 right-0 z-50 bg-background rounded-t-2xl p-6 shadow-2xl"
-              initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 1.5rem)" }}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 40, opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="flex items-center justify-center overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold text-foreground">Sozlamalar</h3>
-                <button onClick={() => setShowSettings(false)} className="text-muted-foreground hover:text-foreground select-none">
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <button
-                onClick={() => { setShowSettings(false); setShowDeleteConfirm(true); }}
-                className="w-full flex items-center gap-3 p-4 rounded-xl bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors font-semibold select-none"
-              >
-                <Trash2 className="w-5 h-5" />
-                Hisobni o'chirish
-              </button>
+              <RefreshCw className="w-4 h-4 text-primary animate-spin" />
             </motion.div>
-          </>
+          )}
+        </AnimatePresence>
+
+        {activeTab === "home" && (
+          isAdmin ? (
+            <div className="max-w-lg mx-auto px-4 py-10 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-4">O'qituvchi Paneli</h2>
+              <Link to="/teacher">
+                <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
+              </Link>
+            </div>
+          ) : !isActive ? (
+            <PaywallScreen user={user} subscription={subscription} onSubmitted={() => loadData(true)} />
+          ) : (
+            <StudentDashboard
+              results={results}
+              units={units}
+              selectedUnit={selectedUnit}
+              selectedUnitName={selectedUnitName}
+              onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
+            />
+          )
         )}
-      </AnimatePresence>
+
+        {activeTab === "settings" && (
+          <SettingsTab
+            user={user}
+            onLogout={handleLogout}
+            onDeleteRequest={() => setShowDeleteConfirm(true)}
+          />
+        )}
+      </div>
+
+      {/* Bottom Tab Bar */}
+      <BottomTabBar activeTab={activeTab} onTabChange={setActiveTab} />
+
+      {/* Unit Drawer */}
+      <UnitDrawer
+        open={unitDrawerOpen}
+        onClose={() => setUnitDrawerOpen(false)}
+        units={units}
+        selectedUnit={selectedUnit}
+        onSelect={setSelectedUnit}
+      />
 
       {/* Delete Confirm Dialog */}
       <AnimatePresence>
         {showDeleteConfirm && (
-          <>
+          <motion.div
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          >
             <motion.div
-              className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="bg-background rounded-2xl p-6 w-full max-w-sm shadow-xl"
+              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
             >
-              <motion.div
-                className="bg-background rounded-2xl p-6 w-full max-w-sm shadow-xl"
-                initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              >
-                <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-4">
-                  <Trash2 className="w-6 h-6 text-destructive" />
-                </div>
-                <h3 className="text-lg font-bold text-foreground text-center mb-2">Hisobni o'chirish</h3>
-                <p className="text-sm text-muted-foreground text-center mb-6">Bu amalni qaytarib bo'lmaydi. Barcha ma'lumotlaringiz o'chib ketadi.</p>
-                <div className="flex gap-3">
-                  <Button variant="outline" className="flex-1 select-none" onClick={() => setShowDeleteConfirm(false)}>
-                    Bekor qilish
-                  </Button>
-                  <Button
-                    className="flex-1 bg-destructive hover:bg-destructive/90 select-none"
-                    onClick={handleDeleteAccount}
-                    disabled={deleting}
-                  >
-                    {deleting ? "O'chirilmoqda..." : "O'chirish"}
-                  </Button>
-                </div>
-              </motion.div>
+              <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-4">
+                <Trash2 className="w-6 h-6 text-destructive" />
+              </div>
+              <h3 className="text-lg font-bold text-foreground text-center mb-2">Hisobni o'chirish</h3>
+              <p className="text-sm text-muted-foreground text-center mb-6">Bu amalni qaytarib bo'lmaydi. Barcha ma'lumotlaringiz o'chib ketadi.</p>
+              <div className="flex gap-3">
+                <Button variant="outline" className="flex-1 select-none" onClick={() => setShowDeleteConfirm(false)}>
+                  Bekor qilish
+                </Button>
+                <Button className="flex-1 bg-destructive hover:bg-destructive/90 select-none" onClick={handleDeleteAccount} disabled={deleting}>
+                  {deleting ? "O'chirilmoqda..." : "O'chirish"}
+                </Button>
+              </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
   );
 }
 
-function AppHeader({ user, onLogout, role, onSettings }) {
-  return (
-    <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
-      <div className="flex items-center gap-2 select-none">
-        <BookOpen className="w-5 h-5 text-primary" />
-        <span className="font-bold text-foreground">Destination B1 Quiz</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">{role}</span>
-        <span className="text-sm text-muted-foreground hidden sm:inline">{user?.full_name || user?.email}</span>
-        <button onClick={onSettings} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
-          <Settings className="w-4 h-4" />
-        </button>
-        <button onClick={onLogout} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
-          <LogOut className="w-4 h-4" />
-        </button>
-      </div>
-    </header>
-  );
-}
-
-function StudentDashboard({ results, units, selectedUnit, setSelectedUnit }) {
+function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer }) {
   const totalQuizzes = results.length;
   const totalCorrect = results.reduce((sum, r) => sum + (r.score || 0), 0);
 
@@ -202,19 +226,19 @@ function StudentDashboard({ results, units, selectedUnit, setSelectedUnit }) {
             <p className="text-xs text-muted-foreground mt-1">To'g'ri javoblar</p>
           </div>
         </div>
+
+        {/* Native-style unit picker button */}
         <div className="mb-5">
           <label className="block text-sm font-semibold text-foreground mb-2">Vocabulary Unitni tanlang:</label>
-          <Select value={selectedUnit} onValueChange={setSelectedUnit}>
-            <SelectTrigger className="h-12">
-              <SelectValue placeholder="Unit tanlang" />
-            </SelectTrigger>
-            <SelectContent>
-              {units.map(u => (
-                <SelectItem key={u.key} value={u.key}>{u.name}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <button
+            onClick={onOpenUnitDrawer}
+            className="w-full h-12 px-4 flex items-center justify-between border-2 border-input rounded-xl bg-background text-foreground text-sm font-medium hover:border-primary transition-colors select-none"
+          >
+            <span>{selectedUnitName || "Unit tanlang"}</span>
+            <ChevronDown className="w-4 h-4 text-muted-foreground" />
+          </button>
         </div>
+
         <Link to={`/quiz/${selectedUnit}`}>
           <Button className="w-full h-12 text-base font-semibold gap-2 select-none">
             <Play className="w-5 h-5" />
@@ -243,6 +267,72 @@ function StudentDashboard({ results, units, selectedUnit, setSelectedUnit }) {
           </div>
         </div>
       )}
+
+      <footer className="mt-8 text-center text-xs text-muted-foreground">
+        Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
+      </footer>
+    </div>
+  );
+}
+
+function SettingsTab({ user, onLogout, onDeleteRequest }) {
+  const { theme, setTheme } = useTheme();
+
+  const themeOptions = [
+    { value: "system", label: "Tizim", icon: Monitor },
+    { value: "light", label: "Yorug'", icon: Sun },
+    { value: "dark", label: "Qorong'i", icon: Moon },
+  ];
+
+  return (
+    <div className="max-w-lg mx-auto px-4 py-8 space-y-4">
+      <h2 className="text-xl font-bold text-foreground">Sozlamalar</h2>
+
+      {/* User info */}
+      <div className="bg-background rounded-2xl border border-border p-5">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Hisob</p>
+        <p className="text-sm font-medium text-foreground">{user?.full_name || "—"}</p>
+        <p className="text-sm text-muted-foreground">{user?.email}</p>
+      </div>
+
+      {/* Theme */}
+      <div className="bg-background rounded-2xl border border-border p-5">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Ko'rinish rejimi</p>
+        <div className="grid grid-cols-3 gap-2">
+          {themeOptions.map(({ value, label, icon: Icon }) => (
+            <button
+              key={value}
+              onClick={() => setTheme(value)}
+              className={`flex flex-col items-center gap-2 py-3 rounded-xl border-2 transition-colors select-none ${
+                theme === value
+                  ? "border-primary bg-primary/5 text-primary"
+                  : "border-border text-muted-foreground hover:border-primary/50"
+              }`}
+            >
+              <Icon className="w-5 h-5" />
+              <span className="text-xs font-medium">{label}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="bg-background rounded-2xl border border-border overflow-hidden">
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors border-b border-border select-none"
+        >
+          <LogOut className="w-5 h-5 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">Chiqish</span>
+        </button>
+        <button
+          onClick={onDeleteRequest}
+          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-destructive/5 transition-colors select-none"
+        >
+          <Trash2 className="w-5 h-5 text-destructive" />
+          <span className="text-sm font-medium text-destructive">Hisobni o'chirish</span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -315,13 +405,5 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
         )}
       </div>
     </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="mt-auto py-6 text-center text-xs text-muted-foreground">
-      Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
-    </footer>
   );
 }
