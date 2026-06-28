@@ -1,0 +1,32 @@
+{
+  "name": "TeacherReferral",
+  "type": "object",
+  "properties": {
+    "teacher_id": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string",
+      "description": "The unique referral code"
+    },
+    "label": {
+      "type": "string",
+      "description": "Optional label for this code e.g. 'Group A Morning'"
+    },
+    "uses": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of students who used this code"
+    }
+  },
+  "required": [
+    "teacher_id",
+    "code"
+  ]
+}

@@ -19,6 +19,18 @@
     },
     "payment_ref": {
       "type": "string"
+    },
+    "referral_code": {
+      "type": "string",
+      "description": "Teacher's referral code used at registration"
+    },
+    "teacher_id": {
+      "type": "string",
+      "description": "ID of the teacher who owns this referral code"
+    },
+    "teacher_name": {
+      "type": "string",
+      "description": "Display name of the teacher"
     }
   },
   "required": [
