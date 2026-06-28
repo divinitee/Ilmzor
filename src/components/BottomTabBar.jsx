@@ -1,10 +1,11 @@
 import React from "react";
-import { Home, BookOpen, Settings } from "lucide-react";
+import { Home, BookOpen, Settings, Gamepad2 } from "lucide-react";
 
 export default function BottomTabBar({ activeTab, onTabChange }) {
   const tabs = [
     { id: "home", label: "Bosh sahifa", icon: Home },
     { id: "vocab", label: "So'zlar", icon: BookOpen },
+    { id: "games", label: "O'yinlar", icon: Gamepad2 },
     { id: "settings", label: "Sozlamalar", icon: Settings },
   ];
 

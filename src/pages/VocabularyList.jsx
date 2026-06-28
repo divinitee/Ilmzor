@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { BookOpen, ChevronDown, Search } from "lucide-react";
+import { BookOpen, ChevronDown, Search, LayoutGrid, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import FlashCard from "@/components/FlashCard";
 
 
 export default function VocabularyList() {
@@ -11,6 +12,7 @@ export default function VocabularyList() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [openUnit, setOpenUnit] = useState(null);
+  const [flashcardUnit, setFlashcardUnit] = useState(null);
 
   useEffect(() => { loadWords(); }, []);
 
@@ -52,6 +54,13 @@ export default function VocabularyList() {
   return (
     <div className="relative">
     <div className="relative z-10 max-w-lg mx-auto px-4 py-6">
+      {flashcardUnit && (
+        <FlashCard
+          words={words.filter(w => w.unit_key === flashcardUnit.key)}
+          unitName={flashcardUnit.name}
+          onClose={() => setFlashcardUnit(null)}
+        />
+      )}
       <div className="flex items-center gap-2 mb-5">
         <BookOpen className="w-5 h-5 text-primary" />
         <h2 className="text-lg font-bold text-foreground">So'zlar ro'yxati</h2>
@@ -84,16 +93,25 @@ export default function VocabularyList() {
               transition={{ delay: idx * 0.04, duration: 0.3 }}
               className="bg-background rounded-2xl border border-border overflow-hidden"
             >
-              <button
-                onClick={() => setOpenUnit(isOpen && !search ? null : unit.key)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left select-none hover:bg-muted/30 transition-colors"
-              >
-                <div>
-                  <p className="font-semibold text-foreground text-sm">{displayName}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">{unitWords.length} ta so'z</p>
-                </div>
-                <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
-              </button>
+              <div className="flex items-center">
+                <button
+                  onClick={() => setOpenUnit(isOpen && !search ? null : unit.key)}
+                  className="flex-1 flex items-center justify-between px-5 py-4 text-left select-none hover:bg-muted/30 transition-colors"
+                >
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">{displayName}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{unitWords.length} ta so'z</p>
+                  </div>
+                  <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                </button>
+                <button
+                  onClick={() => setFlashcardUnit({ key: unit.key, name: displayName })}
+                  className="px-3 py-4 text-primary hover:text-primary/70 transition-colors border-l border-border select-none"
+                  title="Flashcard rejimi"
+                >
+                  <Layers className="w-4 h-4" />
+                </button>
+              </div>
 
               <AnimatePresence>
                 {isOpen && (

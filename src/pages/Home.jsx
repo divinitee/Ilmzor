@@ -9,6 +9,7 @@ import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
 import VocabularyList from "@/pages/VocabularyList";
 import ParticleBackground from "@/components/ParticleBackground";
+import Games from "@/pages/Games";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -163,6 +164,8 @@ export default function Home() {
         )}
 
         {activeTab === "vocab" && <VocabularyList />}
+
+        {activeTab === "games" && <Games />}
 
         {activeTab === "settings" && (
           <SettingsTab
