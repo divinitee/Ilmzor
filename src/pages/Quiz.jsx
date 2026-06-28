@@ -190,6 +190,9 @@ export default function Quiz() {
           <div className="text-center mb-8 select-none">
             <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">O'zbekcha so'z</p>
             <p className="text-3xl font-bold text-foreground">{word.uzbek}</p>
+            {word.russian && (
+              <p className="text-sm text-muted-foreground mt-1 italic">{word.russian}</p>
+            )}
           </div>
 
           <input

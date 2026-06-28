@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
+import VocabularyList from "@/pages/VocabularyList";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -43,7 +44,9 @@ export default function Home() {
       const words = await base44.entities.VocabularyWord.list();
       const unitMap = {};
       words.forEach(w => { if (!unitMap[w.unit_key]) unitMap[w.unit_key] = w.unit_name; });
-      const unitList = Object.entries(unitMap).map(([key, name]) => ({ key, name }));
+      const unitList = Object.entries(unitMap)
+        .map(([key, name]) => ({ key, name, num: words.find(w => w.unit_key === key)?.unit_number || 99 }))
+        .sort((a, b) => a.num - b.num);
       setUnits(unitList);
       if (unitList.length > 0 && !selectedUnit) setSelectedUnit(unitList[0].key);
       const myResults = await base44.entities.QuizResult.filter({ student_phone: me.email }, '-created_date');
@@ -100,7 +103,7 @@ export default function Home() {
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
         <div className="flex items-center gap-2 select-none">
           <BookOpen className="w-5 h-5 text-primary" />
-          <span className="font-bold text-foreground">Destination B1 Quiz</span>
+          <span className="font-bold text-foreground">Vocabulary A2·B1·B2</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
@@ -142,8 +145,6 @@ export default function Home() {
                 <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
               </Link>
             </div>
-          ) : !isActive ? (
-            <PaywallScreen user={user} subscription={subscription} onSubmitted={() => loadData(true)} />
           ) : (
             <StudentDashboard
               results={results}
@@ -151,9 +152,15 @@ export default function Home() {
               selectedUnit={selectedUnit}
               selectedUnitName={selectedUnitName}
               onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
+              isActive={isActive}
+              user={user}
+              subscription={subscription}
+              onSubmitted={() => loadData(true)}
             />
           )
         )}
+
+        {activeTab === "vocab" && <VocabularyList />}
 
         {activeTab === "settings" && (
           <SettingsTab
@@ -208,46 +215,52 @@ export default function Home() {
   );
 }
 
-function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer }) {
+function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted }) {
   const totalQuizzes = results.length;
   const totalCorrect = results.reduce((sum, r) => sum + (r.score || 0), 0);
 
   return (
     <div className="max-w-lg mx-auto px-4 py-8">
-      <div className="bg-background rounded-2xl shadow-sm border border-border p-6 mb-6">
-        <h2 className="text-xl font-bold text-primary text-center mb-6">O'quvchi paneli</h2>
-        <div className="flex gap-4 mb-6">
-          <div className="flex-1 bg-primary/5 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-primary">{totalQuizzes}</p>
-            <p className="text-xs text-muted-foreground mt-1">Jami testlar</p>
+      {/* Paid: Quiz section */}
+      {isActive ? (
+        <div className="bg-background rounded-2xl shadow-sm border border-border p-6 mb-6">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full">Premium</span>
+            <h2 className="text-base font-bold text-foreground">Test va Reading</h2>
           </div>
-          <div className="flex-1 bg-emerald-500/10 rounded-xl p-4 text-center">
-            <p className="text-2xl font-bold text-emerald-600">{totalCorrect}</p>
-            <p className="text-xs text-muted-foreground mt-1">To'g'ri javoblar</p>
+          <div className="flex gap-4 mb-6">
+            <div className="flex-1 bg-primary/5 rounded-xl p-4 text-center">
+              <p className="text-2xl font-bold text-primary">{totalQuizzes}</p>
+              <p className="text-xs text-muted-foreground mt-1">Jami testlar</p>
+            </div>
+            <div className="flex-1 bg-emerald-500/10 rounded-xl p-4 text-center">
+              <p className="text-2xl font-bold text-emerald-600">{totalCorrect}</p>
+              <p className="text-xs text-muted-foreground mt-1">To'g'ri javoblar</p>
+            </div>
           </div>
+          <div className="mb-5">
+            <label className="block text-sm font-semibold text-foreground mb-2">Unitni tanlang:</label>
+            <button
+              onClick={onOpenUnitDrawer}
+              className="w-full h-12 px-4 flex items-center justify-between border-2 border-input rounded-xl bg-background text-foreground text-sm font-medium hover:border-primary transition-colors select-none"
+            >
+              <span>{selectedUnitName || "Unit tanlang"}</span>
+              <ChevronDown className="w-4 h-4 text-muted-foreground" />
+            </button>
+          </div>
+          <Link to={`/quiz/${selectedUnit}`}>
+            <Button className="w-full h-12 text-base font-semibold gap-2 select-none">
+              <Play className="w-5 h-5" />
+              Testni Boshlash (30 ta random)
+            </Button>
+          </Link>
         </div>
+      ) : (
+        <PaywallScreen user={user} subscription={subscription} onSubmitted={onSubmitted} />
+      )}
 
-        {/* Native-style unit picker button */}
-        <div className="mb-5">
-          <label className="block text-sm font-semibold text-foreground mb-2">Vocabulary Unitni tanlang:</label>
-          <button
-            onClick={onOpenUnitDrawer}
-            className="w-full h-12 px-4 flex items-center justify-between border-2 border-input rounded-xl bg-background text-foreground text-sm font-medium hover:border-primary transition-colors select-none"
-          >
-            <span>{selectedUnitName || "Unit tanlang"}</span>
-            <ChevronDown className="w-4 h-4 text-muted-foreground" />
-          </button>
-        </div>
 
-        <Link to={`/quiz/${selectedUnit}`}>
-          <Button className="w-full h-12 text-base font-semibold gap-2 select-none">
-            <Play className="w-5 h-5" />
-            Testni Boshlash (30 ta random)
-          </Button>
-        </Link>
-      </div>
-
-      {results.length > 0 && (
+      {isActive && results.length > 0 && (
         <div className="bg-background rounded-2xl shadow-sm border border-border p-6">
           <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Oxirgi natijalar</h3>
           <div className="space-y-3">
@@ -375,7 +388,7 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
         </p>
         <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-xl p-5 text-white mb-4">
           <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">To'lov kartasi (Uzcard/Humo)</p>
-          <p className="text-lg font-mono font-bold tracking-wider mb-3 select-all">8888 0133 9870 3481</p>
+          <p className="text-lg font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
           <p className="text-sm opacity-90">Egasi: <strong>Temur Normatov Ulugbekovich</strong></p>
         </div>
         <div className="text-center mb-6">

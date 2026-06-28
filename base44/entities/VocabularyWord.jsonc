@@ -4,17 +4,29 @@
   "properties": {
     "unit_key": {
       "type": "string",
-      "description": "Unit identifier e.g. unit3, unit6"
+      "description": "Unit identifier e.g. unit1, unit2"
     },
     "unit_name": {
       "type": "string",
-      "description": "Display name e.g. Unit 3: Fun and Games"
+      "description": "Display name e.g. Unit 1: People and Places"
+    },
+    "unit_number": {
+      "type": "number",
+      "description": "Numeric order for sorting"
     },
     "uzbek": {
       "type": "string"
     },
+    "russian": {
+      "type": "string",
+      "description": "Russian translation"
+    },
     "english": {
       "type": "string"
+    },
+    "pronunciation": {
+      "type": "string",
+      "description": "Phonetic pronunciation e.g. /\u02c8pi\u02d0pl/"
     }
   },
   "required": [
