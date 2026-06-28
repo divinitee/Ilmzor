@@ -2,7 +2,14 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, CheckCircle, XCircle, ArrowRight, Trophy } from "lucide-react";
+import { BookOpen, CheckCircle, XCircle, ArrowRight, Trophy, ChevronLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const pageVariants = {
+  initial: { x: "100%", opacity: 0 },
+  animate: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 30 } },
+  exit: { x: "-100%", opacity: 0, transition: { duration: 0.2 } },
+};
 
 export default function Quiz() {
   const { unitKey } = useParams();
@@ -14,8 +21,8 @@ export default function Quiz() {
   const [answer, setAnswer] = useState("");
   const [correctCount, setCorrectCount] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
-  const [phase, setPhase] = useState("loading"); // loading, quiz, result
-  const [lastResult, setLastResult] = useState(null); // "correct" | "wrong" | null
+  const [phase, setPhase] = useState("loading");
+  const [lastResult, setLastResult] = useState(null);
   const timerRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -39,10 +46,7 @@ export default function Quiz() {
     setTimeLeft(30);
     timerRef.current = setInterval(() => {
       setTimeLeft(prev => {
-        if (prev <= 1) {
-          clearInterval(timerRef.current);
-          return 0;
-        }
+        if (prev <= 1) { clearInterval(timerRef.current); return 0; }
         return prev - 1;
       });
     }, 1000);
@@ -56,26 +60,18 @@ export default function Quiz() {
   }, [phase, currentIndex, words.length, startTimer]);
 
   useEffect(() => {
-    if (timeLeft === 0 && phase === "quiz") {
-      handleNext(true);
-    }
+    if (timeLeft === 0 && phase === "quiz") handleNext(true);
   }, [timeLeft, phase]);
 
   const handleNext = async (timeout = false) => {
     clearInterval(timerRef.current);
-
     if (!timeout) {
       const correct = answer.trim().toLowerCase() === words[currentIndex].english.toLowerCase();
-      if (correct) {
-        setCorrectCount(prev => prev + 1);
-        setLastResult("correct");
-      } else {
-        setLastResult("wrong");
-      }
+      if (correct) { setCorrectCount(prev => prev + 1); setLastResult("correct"); }
+      else setLastResult("wrong");
     } else {
       setLastResult("wrong");
     }
-
     setTimeout(() => {
       setLastResult(null);
       setAnswer("");
@@ -103,120 +99,122 @@ export default function Quiz() {
     });
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleNext(false);
-  };
-
   if (phase === "loading") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-slate-100">
-        <div className="w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin" />
       </div>
     );
   }
 
   if (phase === "result") {
-    const finalCorrect = correctCount;
-    const percentage = words.length > 0 ? Math.round((finalCorrect / words.length) * 100) : 0;
+    const percentage = words.length > 0 ? Math.round((correctCount / words.length) * 100) : 0;
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-slate-100 flex flex-col">
-        <header className="bg-white border-b border-slate-100 px-4 py-3 flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-indigo-600" />
-          <span className="font-bold text-slate-800">Destination B1 Quiz</span>
+      <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
+        <header className="bg-background border-b border-border px-4 pb-3 flex items-center gap-2 safe-header sticky top-0 z-30">
+          <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground mr-1 select-none p-1">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <BookOpen className="w-5 h-5 text-primary select-none" />
+          <span className="font-bold text-foreground">Destination B1 Quiz</span>
         </header>
         <div className="flex-1 flex items-center justify-center px-4">
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 max-w-md w-full text-center">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-4">
-              <Trophy className="w-8 h-8 text-emerald-600" />
+          <div className="bg-background rounded-2xl shadow-sm border border-border p-8 max-w-md w-full text-center">
+            <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-4">
+              <Trophy className="w-8 h-8 text-emerald-600 select-none" />
             </div>
-            <h2 className="text-xl font-bold text-slate-800 mb-2">Test Yakunlandi!</h2>
-            <p className="text-slate-500 text-sm mb-6">{unitName}</p>
-            <div className="bg-gradient-to-r from-indigo-50 to-emerald-50 rounded-xl p-6 mb-6">
-              <p className="text-4xl font-bold text-indigo-700">{finalCorrect}<span className="text-slate-400 text-lg"> / {words.length}</span></p>
-              <p className="text-sm text-slate-500 mt-1">{percentage}% to'g'ri</p>
+            <h2 className="text-xl font-bold text-foreground mb-2">Test Yakunlandi!</h2>
+            <p className="text-muted-foreground text-sm mb-6">{unitName}</p>
+            <div className="bg-muted/40 rounded-xl p-6 mb-6">
+              <p className="text-4xl font-bold text-primary">{correctCount}<span className="text-muted-foreground text-lg"> / {words.length}</span></p>
+              <p className="text-sm text-muted-foreground mt-1">{percentage}% to'g'ri</p>
             </div>
-            <Button onClick={() => navigate("/")} className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 font-semibold">
+            <Button onClick={() => navigate("/")} className="w-full h-12 font-semibold select-none">
               Dashboardga qaytish
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   const word = words[currentIndex];
-  const progress = ((currentIndex) / words.length) * 100;
+  const progress = (currentIndex / words.length) * 100;
   const timerPercent = (timeLeft / 30) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-slate-100 flex flex-col">
-      <header className="bg-white border-b border-slate-100 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-indigo-600" />
-          <span className="font-bold text-slate-800 text-sm">{unitName}</span>
+    <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
+      <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
+        <div className="flex items-center gap-1">
+          <button onClick={() => { clearInterval(timerRef.current); navigate("/"); }} className="text-muted-foreground hover:text-foreground p-1 select-none">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <BookOpen className="w-4 h-4 text-primary select-none" />
+          <span className="font-bold text-foreground text-sm">{unitName}</span>
         </div>
-        <span className="text-sm font-medium text-slate-500">
+        <span className="text-sm font-medium text-muted-foreground select-none">
           {currentIndex + 1} / {words.length}
         </span>
       </header>
 
-      {/* Progress bar */}
-      <div className="h-1 bg-slate-200">
-        <div className="h-full bg-indigo-600 transition-all duration-300" style={{ width: `${progress}%` }} />
+      <div className="h-1 bg-muted">
+        <div className="h-full bg-primary transition-all duration-300" style={{ width: `${progress}%` }} />
       </div>
 
       <div className="flex-1 flex items-center justify-center px-4">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8 max-w-md w-full">
-          {/* Timer */}
+        <div className="bg-background rounded-2xl shadow-sm border border-border p-8 max-w-md w-full">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-slate-400">Vaqt</span>
-            <span className={`text-xs font-bold ${timeLeft <= 5 ? 'text-red-500' : 'text-slate-500'}`}>{timeLeft}s</span>
+            <span className="text-xs text-muted-foreground select-none">Vaqt</span>
+            <span className={`text-xs font-bold select-none ${timeLeft <= 5 ? 'text-destructive' : 'text-muted-foreground'}`}>{timeLeft}s</span>
           </div>
-          <div className="h-1.5 bg-slate-100 rounded-full mb-8 overflow-hidden">
+          <div className="h-1.5 bg-muted rounded-full mb-8 overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all duration-1000 ${timeLeft <= 5 ? 'bg-red-500' : timeLeft <= 10 ? 'bg-amber-500' : 'bg-emerald-500'}`}
+              className={`h-full rounded-full transition-all duration-1000 ${timeLeft <= 5 ? 'bg-destructive' : timeLeft <= 10 ? 'bg-amber-500' : 'bg-emerald-500'}`}
               style={{ width: `${timerPercent}%` }}
             />
           </div>
 
-          {/* Feedback flash */}
-          {lastResult && (
-            <div className={`flex items-center justify-center gap-2 mb-4 py-2 rounded-lg text-sm font-semibold ${lastResult === "correct" ? "bg-emerald-50 text-emerald-700" : "bg-red-50 text-red-600"}`}>
-              {lastResult === "correct" ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
-              {lastResult === "correct" ? "To'g'ri!" : `Noto'g'ri. Javob: ${words[currentIndex]?.english}`}
-            </div>
-          )}
+          <AnimatePresence>
+            {lastResult && (
+              <motion.div
+                key={lastResult}
+                initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                className={`flex items-center justify-center gap-2 mb-4 py-2 rounded-lg text-sm font-semibold select-none ${lastResult === "correct" ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}
+              >
+                {lastResult === "correct" ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
+                {lastResult === "correct" ? "To'g'ri!" : `Noto'g'ri. Javob: ${words[currentIndex]?.english}`}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* Word display */}
-          <div className="text-center mb-8">
-            <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">O'zbekcha so'z</p>
-            <p className="text-3xl font-bold text-slate-800">{word.uzbek}</p>
+          <div className="text-center mb-8 select-none">
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">O'zbekcha so'z</p>
+            <p className="text-3xl font-bold text-foreground">{word.uzbek}</p>
           </div>
 
-          {/* Input */}
           <input
             ref={inputRef}
             type="text"
             value={answer}
             onChange={e => setAnswer(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={e => { if (e.key === "Enter") handleNext(false); }}
             placeholder="Inglizcha javobni yozing..."
             autoComplete="off"
-            className="w-full h-12 px-4 border-2 border-slate-200 rounded-xl text-base focus:border-indigo-500 focus:outline-none transition-colors mb-4"
+            className="w-full h-12 px-4 border-2 border-input rounded-xl text-base bg-background text-foreground focus:border-primary focus:outline-none transition-colors mb-4"
           />
 
-          <Button onClick={() => handleNext(false)} className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 font-semibold gap-2">
+          <Button onClick={() => handleNext(false)} className="w-full h-12 font-semibold gap-2 select-none">
             Keyingisi
             <ArrowRight className="w-4 h-4" />
           </Button>
 
-          <div className="flex items-center justify-center gap-4 mt-4 text-sm">
+          <div className="flex items-center justify-center gap-4 mt-4 text-sm select-none">
             <span className="text-emerald-600 font-semibold">✓ {correctCount}</span>
-            <span className="text-slate-300">|</span>
-            <span className="text-red-400 font-semibold">✗ {currentIndex - correctCount}</span>
+            <span className="text-muted-foreground">|</span>
+            <span className="text-destructive font-semibold">✗ {currentIndex - correctCount}</span>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

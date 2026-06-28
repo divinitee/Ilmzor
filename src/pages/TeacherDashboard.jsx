@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, LogOut, CheckCircle, Clock, Users, Trophy } from "lucide-react";
+import { BookOpen, LogOut, CheckCircle, Clock, Users, ChevronLeft } from "lucide-react";
+import { motion } from "framer-motion";
+
+const pageVariants = {
+  initial: { x: "100%", opacity: 0 },
+  animate: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 30 } },
+  exit: { x: "-100%", opacity: 0, transition: { duration: 0.2 } },
+};
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
@@ -12,18 +19,13 @@ export default function TeacherDashboard() {
   const [loading, setLoading] = useState(true);
   const [notification, setNotification] = useState("");
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  useEffect(() => { loadData(); }, []);
 
   const loadData = async () => {
     try {
       const me = await base44.auth.me();
       setUser(me);
-      if (me.role !== "admin") {
-        navigate("/");
-        return;
-      }
+      if (me.role !== "admin") { navigate("/"); return; }
       const subs = await base44.entities.StudentSubscription.list('-created_date', 50);
       setSubscriptions(subs);
       const res = await base44.entities.QuizResult.list('-created_date', 50);
@@ -37,18 +39,16 @@ export default function TeacherDashboard() {
 
   const handleAccept = async (sub) => {
     await base44.entities.StudentSubscription.update(sub.id, { status: "active" });
-    setNotification(`O'quvchi "${sub.student_name}" (${sub.phone}) obunasi tasdiqlandi!`);
+    setNotification(`O'quvchi "${sub.student_name}" obunasi tasdiqlandi!`);
     loadData();
   };
 
-  const handleLogout = () => {
-    base44.auth.logout("/login");
-  };
+  const handleLogout = () => base44.auth.logout("/login");
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-slate-100">
-        <div className="w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin" />
       </div>
     );
   }
@@ -57,98 +57,96 @@ export default function TeacherDashboard() {
   const pendingCount = subscriptions.filter(s => s.status === "pending").length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-slate-100">
-      <header className="bg-white border-b border-slate-100 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-indigo-600" />
-          <span className="font-bold text-slate-800">Destination B1 Quiz</span>
+    <motion.div className="min-h-screen bg-muted/40" variants={pageVariants} initial="initial" animate="animate">
+      <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
+        <div className="flex items-center gap-1">
+          <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground p-1 select-none">
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <BookOpen className="w-5 h-5 text-primary select-none" />
+          <span className="font-bold text-foreground">Destination B1 Quiz</span>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-xs bg-indigo-100 text-indigo-700 font-semibold px-2.5 py-1 rounded-full">O'qituvchi</span>
-          <span className="text-sm text-slate-600 hidden sm:inline">{user?.email}</span>
-          <button onClick={handleLogout} className="text-slate-400 hover:text-slate-600 transition-colors">
+        <div className="flex items-center gap-2">
+          <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">O'qituvchi</span>
+          <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
+          <button onClick={handleLogout} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
             <LogOut className="w-4 h-4" />
           </button>
         </div>
       </header>
 
       <div className="max-w-3xl mx-auto px-4 py-8 space-y-6">
-        <h2 className="text-xl font-bold text-slate-800">O'qituvchi Nazorat Paneli</h2>
+        <h2 className="text-xl font-bold text-foreground">O'qituvchi Nazorat Paneli</h2>
 
-        {/* Stats */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="bg-white rounded-xl p-4 border border-slate-100 text-center">
-            <Users className="w-5 h-5 text-indigo-500 mx-auto mb-1" />
-            <p className="text-xl font-bold text-slate-800">{subscriptions.length}</p>
-            <p className="text-xs text-slate-400">Jami o'quvchi</p>
+          <div className="bg-background rounded-xl p-4 border border-border text-center">
+            <Users className="w-5 h-5 text-primary mx-auto mb-1 select-none" />
+            <p className="text-xl font-bold text-foreground">{subscriptions.length}</p>
+            <p className="text-xs text-muted-foreground">Jami o'quvchi</p>
           </div>
-          <div className="bg-white rounded-xl p-4 border border-slate-100 text-center">
-            <CheckCircle className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
+          <div className="bg-background rounded-xl p-4 border border-border text-center">
+            <CheckCircle className="w-5 h-5 text-emerald-500 mx-auto mb-1 select-none" />
             <p className="text-xl font-bold text-emerald-600">{activeCount}</p>
-            <p className="text-xs text-slate-400">Faol</p>
+            <p className="text-xs text-muted-foreground">Faol</p>
           </div>
-          <div className="bg-white rounded-xl p-4 border border-slate-100 text-center">
-            <Clock className="w-5 h-5 text-amber-500 mx-auto mb-1" />
+          <div className="bg-background rounded-xl p-4 border border-border text-center">
+            <Clock className="w-5 h-5 text-amber-500 mx-auto mb-1 select-none" />
             <p className="text-xl font-bold text-amber-600">{pendingCount}</p>
-            <p className="text-xs text-slate-400">Kutilmoqda</p>
+            <p className="text-xs text-muted-foreground">Kutilmoqda</p>
           </div>
         </div>
 
         {notification && (
-          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-sm text-emerald-800 font-medium">
+          <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 text-sm text-emerald-700 dark:text-emerald-400 font-medium">
             {notification}
           </div>
         )}
 
-        {/* Subscriptions */}
-        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-          <div className="px-5 py-4 border-b border-slate-50">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">Obuna va To'lovlar</h3>
+        {/* Subscriptions Table */}
+        <div className="bg-background rounded-2xl border border-border overflow-hidden">
+          <div className="px-5 py-4 border-b border-border">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Obuna va To'lovlar</h3>
           </div>
           {subscriptions.length === 0 ? (
-            <p className="p-5 text-sm text-slate-400 text-center">Hozircha o'quvchi yo'q</p>
+            <p className="p-5 text-sm text-muted-foreground text-center">Hozircha o'quvchi yo'q</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-50">
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">O'quvchi</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Email</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Chek ID</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Status</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Harakat</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">O'quvchi</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Email</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Chek ID</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Status</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Harakat</th>
                   </tr>
                 </thead>
                 <tbody>
                   {subscriptions.map(sub => (
-                    <tr key={sub.id} className="border-b border-slate-50 last:border-0">
-                      <td className="px-5 py-3 font-medium text-slate-800">{sub.student_name}</td>
-                      <td className="px-5 py-3 text-slate-500">{sub.phone}</td>
-                      <td className="px-5 py-3 text-slate-500 font-mono text-xs">{sub.payment_ref || "—"}</td>
+                    <tr key={sub.id} className="border-b border-border last:border-0">
+                      <td className="px-5 py-3 font-medium text-foreground">{sub.student_name}</td>
+                      <td className="px-5 py-3 text-muted-foreground">{sub.phone}</td>
+                      <td className="px-5 py-3 text-muted-foreground font-mono text-xs">{sub.payment_ref || "—"}</td>
                       <td className="px-5 py-3">
                         {sub.status === "active" ? (
-                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full">
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full select-none">
                             <CheckCircle className="w-3 h-3" /> Faol
                           </span>
                         ) : sub.status === "pending" ? (
-                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-1 rounded-full">
+                          <span className="inline-flex items-center gap-1 text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full select-none">
                             <Clock className="w-3 h-3" /> Kutilmoqda
                           </span>
                         ) : (
-                          <span className="text-xs text-slate-400">Faol emas</span>
+                          <span className="text-xs text-muted-foreground select-none">Faol emas</span>
                         )}
                       </td>
                       <td className="px-5 py-3">
                         {sub.status !== "active" ? (
-                          <Button
-                            size="sm"
-                            onClick={() => handleAccept(sub)}
-                            className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8"
-                          >
+                          <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
                             Tasdiqlash
                           </Button>
                         ) : (
-                          <span className="text-emerald-500 text-xs font-medium">✓ Tasdiqlangan</span>
+                          <span className="text-emerald-500 text-xs font-medium select-none">✓ Tasdiqlangan</span>
                         )}
                       </td>
                     </tr>
@@ -159,36 +157,36 @@ export default function TeacherDashboard() {
           )}
         </div>
 
-        {/* Results */}
-        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-          <div className="px-5 py-4 border-b border-slate-50">
-            <h3 className="text-sm font-semibold text-slate-500 uppercase tracking-wider">O'quvchilar Test Natijalari</h3>
+        {/* Results Table */}
+        <div className="bg-background rounded-2xl border border-border overflow-hidden">
+          <div className="px-5 py-4 border-b border-border">
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">O'quvchilar Test Natijalari</h3>
           </div>
           {results.length === 0 ? (
-            <p className="p-5 text-sm text-slate-400 text-center">Natijalar topilmadi</p>
+            <p className="p-5 text-sm text-muted-foreground text-center">Natijalar topilmadi</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-50">
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">O'quvchi</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Email</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Unit</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Natija</th>
-                    <th className="text-left px-5 py-3 text-xs font-semibold text-slate-400 uppercase">Sana</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">O'quvchi</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Email</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Unit</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Natija</th>
+                    <th className="text-left px-5 py-3 text-xs font-semibold text-muted-foreground uppercase">Sana</th>
                   </tr>
                 </thead>
                 <tbody>
                   {results.map(r => (
-                    <tr key={r.id} className="border-b border-slate-50 last:border-0">
-                      <td className="px-5 py-3 font-medium text-slate-800">{r.student_name}</td>
-                      <td className="px-5 py-3 text-slate-500">{r.student_phone}</td>
-                      <td className="px-5 py-3 text-slate-600">{r.unit_name}</td>
+                    <tr key={r.id} className="border-b border-border last:border-0">
+                      <td className="px-5 py-3 font-medium text-foreground">{r.student_name}</td>
+                      <td className="px-5 py-3 text-muted-foreground">{r.student_phone}</td>
+                      <td className="px-5 py-3 text-foreground">{r.unit_name}</td>
                       <td className="px-5 py-3">
                         <span className="font-bold text-emerald-600">{r.score}</span>
-                        <span className="text-slate-400"> / {r.total_questions || 30}</span>
+                        <span className="text-muted-foreground"> / {r.total_questions || 30}</span>
                       </td>
-                      <td className="px-5 py-3 text-slate-400 text-xs">{r.date}</td>
+                      <td className="px-5 py-3 text-muted-foreground text-xs">{r.date}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -197,14 +195,14 @@ export default function TeacherDashboard() {
           )}
         </div>
 
-        <Button onClick={handleLogout} variant="outline" className="w-full h-10">
+        <Button onClick={handleLogout} variant="outline" className="w-full h-10 select-none">
           Chiqish
         </Button>
       </div>
 
-      <footer className="py-6 text-center text-xs text-slate-400">
-        Created by <strong className="text-slate-600">Salohiddin Nurullaev & Temur Normatov</strong>
+      <footer className="py-6 text-center text-xs text-muted-foreground">
+        Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
       </footer>
-    </div>
+    </motion.div>
   );
 }
