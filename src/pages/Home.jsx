@@ -373,10 +373,18 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
           Platformadan to'liq foydalanish uchun oylik to'lovni amalga oshiring.<br />
           <strong className="text-foreground">Oylik obuna narxi: 18,999 so'm</strong>
         </p>
-        <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-xl p-5 text-white mb-6">
+        <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-xl p-5 text-white mb-4">
           <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">To'lov kartasi (Uzcard/Humo)</p>
           <p className="text-lg font-mono font-bold tracking-wider mb-3 select-all">8888 0133 9870 3481</p>
           <p className="text-sm opacity-90">Egasi: <strong>Temur Normatov Ulugbekovich</strong></p>
+        </div>
+        <div className="text-center mb-6">
+          <p className="text-xs text-muted-foreground mb-2 font-medium">Yoki QR-kod orqali tezkor to'lang:</p>
+          <img
+            src="https://media.base44.com/images/public/6a40f974860993eff3634df0/4ef59e6e7_paymentqr.jpg"
+            alt="To'lov QR Kodi"
+            className="w-44 h-44 mx-auto rounded-xl border-4 border-white shadow-md object-contain bg-white"
+          />
         </div>
         {submitted ? (
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
