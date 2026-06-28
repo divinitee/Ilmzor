@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
 import VocabularyList from "@/pages/VocabularyList";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -99,6 +100,7 @@ export default function Home() {
 
   return (
     <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
+      <ParticleBackground />
       {/* Header */}
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
         <div className="flex items-center gap-2 select-none">

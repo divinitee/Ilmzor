@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { BookOpen, ChevronDown, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import ParticleBackground from "@/components/ParticleBackground";
+
 
 export default function VocabularyList() {
   const [words, setWords] = useState([]);
@@ -51,7 +51,6 @@ export default function VocabularyList() {
 
   return (
     <div className="relative">
-    <ParticleBackground />
     <div className="relative z-10 max-w-lg mx-auto px-4 py-6">
       <div className="flex items-center gap-2 mb-5">
         <BookOpen className="w-5 h-5 text-primary" />
