@@ -1,0 +1,28 @@
+{
+  "name": "StudentSubscription",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "inactive",
+        "pending",
+        "active"
+      ],
+      "default": "inactive"
+    },
+    "payment_ref": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "student_name",
+    "phone"
+  ]
+}

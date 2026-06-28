@@ -1,0 +1,26 @@
+{
+  "name": "VocabularyWord",
+  "type": "object",
+  "properties": {
+    "unit_key": {
+      "type": "string",
+      "description": "Unit identifier e.g. unit3, unit6"
+    },
+    "unit_name": {
+      "type": "string",
+      "description": "Display name e.g. Unit 3: Fun and Games"
+    },
+    "uzbek": {
+      "type": "string"
+    },
+    "english": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "unit_key",
+    "unit_name",
+    "uzbek",
+    "english"
+  ]
+}

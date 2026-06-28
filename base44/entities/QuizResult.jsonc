@@ -1,0 +1,31 @@
+{
+  "name": "QuizResult",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string"
+    },
+    "student_phone": {
+      "type": "string"
+    },
+    "unit_name": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number"
+    },
+    "total_questions": {
+      "type": "number",
+      "default": 30
+    },
+    "date": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "student_name",
+    "student_phone",
+    "unit_name",
+    "score"
+  ]
+}
