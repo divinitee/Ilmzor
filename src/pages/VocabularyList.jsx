@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { BookOpen, ChevronDown, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ParticleBackground from "@/components/ParticleBackground";
 
 export default function VocabularyList() {
   const [words, setWords] = useState([]);
@@ -49,7 +50,9 @@ export default function VocabularyList() {
   }
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-6">
+    <div className="relative">
+    <ParticleBackground />
+    <div className="relative z-10 max-w-lg mx-auto px-4 py-6">
       <div className="flex items-center gap-2 mb-5">
         <BookOpen className="w-5 h-5 text-primary" />
         <h2 className="text-lg font-bold text-foreground">So'zlar ro'yxati</h2>
@@ -70,17 +73,24 @@ export default function VocabularyList() {
 
       {/* Unit accordions */}
       <div className="space-y-3">
-        {units.map(unit => {
+        {units.map((unit, idx) => {
           const unitWords = filteredWords(unit.key);
           const isOpen = openUnit === unit.key || !!search;
+          const displayName = unit.name.replace(/^Unit \d+/, `Unit ${idx + 1}`);
           return (
-            <div key={unit.key} className="bg-background rounded-2xl border border-border overflow-hidden">
+            <motion.div
+              key={unit.key}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.04, duration: 0.3 }}
+              className="bg-background rounded-2xl border border-border overflow-hidden"
+            >
               <button
                 onClick={() => setOpenUnit(isOpen && !search ? null : unit.key)}
                 className="w-full flex items-center justify-between px-5 py-4 text-left select-none hover:bg-muted/30 transition-colors"
               >
                 <div>
-                  <p className="font-semibold text-foreground text-sm">{unit.name}</p>
+                  <p className="font-semibold text-foreground text-sm">{displayName}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{unitWords.length} ta so'z</p>
                 </div>
                 <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
@@ -120,7 +130,7 @@ export default function VocabularyList() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -128,6 +138,7 @@ export default function VocabularyList() {
       <footer className="mt-8 text-center text-xs text-muted-foreground pb-4">
         Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
       </footer>
+    </div>
     </div>
   );
 }
