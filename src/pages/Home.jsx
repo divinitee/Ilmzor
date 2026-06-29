@@ -173,7 +173,7 @@ export default function Home() {
 
         {activeTab === "vocab" && <VocabularyList isActive={isActive} />}
 
-        {activeTab === "games" && <Games isActive={isActive} />}
+        {activeTab === "games" && <Games isActive={isActive} user={user} />}
 
         {activeTab === "settings" && (
           <SettingsTab

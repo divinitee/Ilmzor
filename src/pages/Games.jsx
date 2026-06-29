@@ -10,7 +10,7 @@ import UnitDrawer from "@/components/UnitDrawer";
 const TRIAL_KEY = "vocab_trial_rounds";
 const MAX_TRIAL_ROUNDS = 5;
 
-export default function Games({ isActive = false }) {
+export default function Games({ isActive = false, user = null }) {
   const [words, setWords] = useState([]);
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(null);
@@ -62,6 +62,7 @@ export default function Games({ isActive = false }) {
         words={unitWords}
         unitName={selectedUnit?.name || ""}
         onBack={handleBack}
+        user={user}
       />
     );
   }

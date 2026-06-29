@@ -41,7 +41,7 @@ async function aiSimilarity(userInput, word) {
   }
 }
 
-export default function VocabQuizGame({ words, unitName, onBack }) {
+export default function VocabQuizGame({ words, unitName, onBack, user }) {
   const [questions, setQuestions] = useState([]);
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -143,6 +143,20 @@ export default function VocabQuizGame({ words, unitName, onBack }) {
   if (done) {
     const total = scores.reduce((a, b) => a + b, 0);
     const avg = Math.round(total / scores.length);
+    const correctCount = scores.filter(s => s >= 50).length;
+    // Save result to QuizResult entity
+    if (user) {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
+      base44.entities.QuizResult.create({
+        student_name: user.full_name || user.email,
+        student_phone: user.email,
+        unit_name: unitName,
+        score: correctCount,
+        total_questions: scores.length,
+        date: dateStr
+      }).catch(() => {});
+    }
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
