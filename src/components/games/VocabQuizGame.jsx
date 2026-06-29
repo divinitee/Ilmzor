@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const QUESTION_TYPES = ["multiple_choice", "translation", "define"];
 const TIME_PER_Q = 20;
+const TOTAL_QUESTIONS = 10;
 
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -58,7 +59,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
   }, [words]);
 
   const buildQuestions = () => {
-    const TARGET = 30;
+    const TARGET = TOTAL_QUESTIONS;
     let expanded = shuffle(words);
     while (expanded.length < TARGET && words.length > 0) {
       expanded = [...expanded, ...shuffle(words)];

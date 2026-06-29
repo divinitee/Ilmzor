@@ -150,6 +150,7 @@ export default function Games({ isActive = false, user = null }) {
               <p className="text-sm text-muted-foreground">Ko'p tanlovli savollar, tarjima va so'zni inglizcha izohlash (AI baholash bilan)</p>
               <div className="flex gap-2 mt-3">
                 <span className="text-xs bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-2 py-0.5 rounded-full font-medium">10 savol</span>
+
                 <span className="text-xs bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-2 py-0.5 rounded-full font-medium">20s / savol</span>
                 <span className="text-xs bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 px-2 py-0.5 rounded-full font-medium">AI baholash</span>
               </div>
