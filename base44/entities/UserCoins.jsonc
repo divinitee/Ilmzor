@@ -1,0 +1,31 @@
+{
+  "name": "UserCoins",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "classroom_code": {
+      "type": "string"
+    },
+    "coins": {
+      "type": "number",
+      "default": 0
+    },
+    "total_correct": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "user_id",
+    "email",
+    "coins"
+  ]
+}

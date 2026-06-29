@@ -42,7 +42,7 @@ async function aiSimilarity(userInput, word) {
   }
 }
 
-export default function VocabQuizGame({ words, unitName, onBack, user }) {
+export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned }) {
   const [questions, setQuestions] = useState([]);
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -52,6 +52,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
   const [timeLeft, setTimeLeft] = useState(TIME_PER_Q);
   const [scores, setScores] = useState([]);
   const [done, setDone] = useState(false);
+  const [coinAnimation, setCoinAnimation] = useState(null); // "+N 🪙"
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -107,6 +108,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
   useEffect(() => {
     if (!done || !user || scores.length === 0) return;
     const correctCount = scores.filter(s => s >= 50).length;
+    const coinsEarned = correctCount * 10; // 10 coins per correct answer
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     base44.entities.QuizResult.create({
@@ -117,6 +119,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
       total_questions: scores.length,
       date: dateStr
     }).catch(() => {});
+    if (coinsEarned > 0 && onCoinsEarned) onCoinsEarned(coinsEarned, correctCount);
   }, [done]);
 
   const advance = (correct) => {
@@ -138,6 +141,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
     const q = questions[qIndex];
     const correct = q.type === "multiple_choice" ? opt === q.word.uzbek : opt === q.word.english;
     setScores(s => [...s, correct ? 100 : 0]);
+    if (correct) { setCoinAnimation("+10 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
     advance(correct);
   };
 
@@ -160,12 +164,26 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
     const total = scores.reduce((a, b) => a + b, 0);
     const avg = Math.round(total / scores.length);
     const correctCount = scores.filter(s => s >= 50).length;
+    const coinsEarned = correctCount * 10;
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
         <h2 className="text-2xl font-bold text-foreground mb-2">Quiz tugadi!</h2>
-        <p className="text-muted-foreground mb-6">{unitName}</p>
-        <div className="bg-primary/10 rounded-2xl p-6 mb-6">
+        <p className="text-muted-foreground mb-4">{unitName}</p>
+
+        {/* Coins earned */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
+          className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3"
+        >
+          <span className="text-3xl">🪙</span>
+          <div>
+            <p className="text-2xl font-bold text-amber-600">+{coinsEarned}</p>
+            <p className="text-xs text-muted-foreground">tanga qo'shildi ({correctCount} × 10)</p>
+          </div>
+        </motion.div>
+
+        <div className="bg-primary/10 rounded-2xl p-5 mb-5">
           <p className="text-4xl font-bold text-primary">{avg}%</p>
           <p className="text-sm text-muted-foreground mt-1">O'rtacha ball</p>
         </div>
@@ -173,7 +191,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
           {scores.map((s, i) => (
             <div key={i} className="flex items-center justify-between text-sm px-2">
               <span className="text-muted-foreground">Savol {i + 1}</span>
-              <span className={`font-semibold ${s >= 70 ? "text-emerald-600" : s >= 40 ? "text-amber-500" : "text-destructive"}`}>{s}%</span>
+              <div className="flex items-center gap-2">
+                {s >= 50 && <span className="text-xs text-amber-600 font-semibold">+10 🪙</span>}
+                <span className={`font-semibold ${s >= 70 ? "text-emerald-600" : s >= 40 ? "text-amber-500" : "text-destructive"}`}>{s}%</span>
+              </div>
             </div>
           ))}
         </div>
@@ -187,7 +208,22 @@ export default function VocabQuizGame({ words, unitName, onBack, user }) {
   const timerPct = (timeLeft / TIME_PER_Q) * 100;
 
   return (
-    <div className="max-w-sm mx-auto px-4 py-6">
+    <div className="max-w-sm mx-auto px-4 py-6 relative">
+      {/* Coin animation */}
+      <AnimatePresence>
+        {coinAnimation && (
+          <motion.div
+            initial={{ opacity: 1, y: 0, scale: 1 }}
+            animate={{ opacity: 0, y: -60, scale: 1.4 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9 }}
+            className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-xl font-bold text-amber-500 pointer-events-none"
+          >
+            {coinAnimation}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground">← Orqaga</button>
