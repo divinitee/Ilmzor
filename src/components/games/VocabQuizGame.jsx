@@ -4,9 +4,9 @@ import { base44 } from "@/api/base44Client";
 import { Timer, CheckCircle2, XCircle, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const QUESTION_TYPES = ["multiple_choice", "translation", "define"];
-const TIME_PER_Q = 20;
-const TOTAL_QUESTIONS = 10;
+const QUESTION_TYPES = ["multiple_choice", "define"];
+const TIME_PER_Q = 30;
+const TOTAL_QUESTIONS = 30;
 
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -33,7 +33,7 @@ function similarityScore(userInput, target) {
 async function aiSimilarity(userInput, word) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
-      prompt: `The English vocabulary word is "${word.english}" (Uzbek: "${word.uzbek}", Russian: "${word.russian || ""}"). A student wrote this definition: "${userInput}". Score how close this definition is to the word's meaning from 0 to 100. Only reply with a single integer number.`,
+      prompt: `The correct English translation of the Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}") is "${word.english}". A student wrote: "${userInput}". Score how correct this English translation is from 0 to 100. Consider typos leniently. Only reply with a single integer number.`,
       response_json_schema: { type: "object", properties: { score: { type: "number" } } }
     });
     return Math.min(100, Math.max(0, Math.round(res.score || 0)));
@@ -263,10 +263,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             {q.type === "define" && (
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">
-                  <Lightbulb className="inline w-3.5 h-3.5 mr-1" />So'zni inglizcha izohlang
+                  <Lightbulb className="inline w-3.5 h-3.5 mr-1" />Inglizcha tarjimasini yozing
                 </p>
-                <p className="text-2xl font-bold text-foreground">{q.word.english}</p>
-                <p className="text-sm text-muted-foreground mt-1">{q.word.uzbek} · {q.word.russian}</p>
+                <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
+                {q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
           </div>
@@ -296,7 +296,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
               <textarea
                 value={defineInput}
                 onChange={e => setDefineInput(e.target.value)}
-                placeholder="Bu so'zni inglizcha izohlang..."
+                placeholder="Inglizcha tarjimasini yozing..."
                 className="w-full h-28 px-4 py-3 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                 disabled={checking || defineScore !== null}
               />
