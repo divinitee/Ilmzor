@@ -38,7 +38,7 @@ async function evaluateSentence(sentence, theme) {
   }
 }
 
-export default function SentenceBuilderGame({ words, onBack }) {
+export default function SentenceBuilderGame({ words, onBack, onNewRound, trialExhausted }) {
   const [groupIdx, setGroupIdx] = useState(null);
   const [sentence, setSentence] = useState("");
   const [result, setResult] = useState(null);
@@ -78,6 +78,11 @@ export default function SentenceBuilderGame({ words, onBack }) {
   };
 
   const nextRound = () => {
+    if (trialExhausted) {
+      onBack();
+      return;
+    }
+    if (onNewRound) onNewRound();
     setRound(r => r + 1);
     startRound();
   };

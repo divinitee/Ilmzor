@@ -71,6 +71,14 @@ export default function Games({ isActive = false }) {
       <SentenceBuilderGame
         words={words}
         onBack={handleBack}
+        trialExhausted={!isActive && trialRounds >= MAX_TRIAL_ROUNDS}
+        onNewRound={() => {
+          if (!isActive) {
+            const next = trialRounds + 1;
+            localStorage.setItem(TRIAL_KEY, String(next));
+            setTrialRounds(next);
+          }
+        }}
       />
     );
   }
