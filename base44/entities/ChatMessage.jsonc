@@ -1,0 +1,37 @@
+{
+  "name": "ChatMessage",
+  "type": "object",
+  "properties": {
+    "room_id": {
+      "type": "string",
+      "description": "Unique chat room ID e.g. teacher_id:student_email"
+    },
+    "sender_id": {
+      "type": "string"
+    },
+    "sender_name": {
+      "type": "string"
+    },
+    "sender_role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "user"
+      ]
+    },
+    "text": {
+      "type": "string"
+    },
+    "student_email": {
+      "type": "string"
+    },
+    "teacher_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "room_id",
+    "sender_id",
+    "text"
+  ]
+}

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { BookOpen, LogOut, CheckCircle, Clock, Users, ChevronLeft, RefreshCw, Plus, Copy, Hash, ChevronDown } from "lucide-react";
+import { BookOpen, LogOut, CheckCircle, Clock, Users, ChevronLeft, RefreshCw, Plus, Copy, Hash, ChevronDown, MessageCircle } from "lucide-react";
+import ChatWindow from "@/components/ChatWindow";
 import { motion, AnimatePresence } from "framer-motion";
 
 const pageVariants = {
@@ -29,6 +30,7 @@ export default function TeacherDashboard() {
   const [creatingCode, setCreatingCode] = useState(false);
   const [newCodeLabel, setNewCodeLabel] = useState("");
   const [expandedReferral, setExpandedReferral] = useState(null);
+  const [chatStudent, setChatStudent] = useState(null); // { email, name }
   const pullStartY = useRef(0);
   const scrollRef = useRef(null);
 
@@ -110,6 +112,14 @@ export default function TeacherDashboard() {
 
   const activeCount = subscriptions.filter(s => s.status === "active").length;
   const pendingCount = subscriptions.filter(s => s.status === "pending").length;
+
+  const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
+
+  const StatusBadge = ({ sub }) => {
+    if (sub.status === "active") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ To'langan</span>;
+    if (sub.status === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Kutilmoqda</span>;
+    return <span className="text-xs font-semibold text-destructive bg-destructive/10 px-2 py-1 rounded-full">❌ To'lanmagan</span>;
+  };
 
   // Group subscriptions by referral code
   const myStudents = subscriptions.filter(s => s.teacher_id === user?.id || referrals.some(r => r.code === s.referral_code));
@@ -201,11 +211,14 @@ export default function TeacherDashboard() {
                         <p className="text-xs text-muted-foreground">{sub.phone}</p>
                         {sub.referral_code && <p className="text-xs text-primary font-mono mt-0.5">{sub.referral_code}</p>}
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground font-mono">{sub.payment_ref || "—"}</span>
                         <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
                           Tasdiqlash
                         </Button>
+                        <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
+                          <MessageCircle className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -242,15 +255,15 @@ export default function TeacherDashboard() {
                                   <p className="text-xs text-muted-foreground">{sub.phone}</p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                  {sub.status === "active" ? (
-                                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">Faol</span>
-                                  ) : sub.status === "pending" ? (
+                                  <StatusBadge sub={sub} />
+                                  {sub.status === "pending" && (
                                     <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
                                       Tasdiqlash
                                     </Button>
-                                  ) : (
-                                    <span className="text-xs text-muted-foreground">Faol emas</span>
                                   )}
+                                  <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
+                                    <MessageCircle className="w-4 h-4" />
+                                  </button>
                                 </div>
                               </div>
                             ))}
@@ -275,15 +288,15 @@ export default function TeacherDashboard() {
                         <p className="text-xs text-muted-foreground">{sub.phone}</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        {sub.status === "active" ? (
-                          <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">Faol</span>
-                        ) : sub.status === "pending" ? (
+                        <StatusBadge sub={sub} />
+                        {sub.status === "pending" && (
                           <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
                             Tasdiqlash
                           </Button>
-                        ) : (
-                          <span className="text-xs text-muted-foreground">Faol emas</span>
                         )}
+                        <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
+                          <MessageCircle className="w-4 h-4" />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -391,6 +404,18 @@ export default function TeacherDashboard() {
           </footer>
         </div>
       </div>
+
+      {/* Chat overlay */}
+      <AnimatePresence>
+        {chatStudent && user && (
+          <ChatWindow
+            user={user}
+            roomId={chatStudent.roomId}
+            partnerName={chatStudent.name}
+            onClose={() => setChatStudent(null)}
+          />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
