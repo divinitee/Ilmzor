@@ -18,10 +18,75 @@ const WORD_GROUPS = [
   ["friend", "companion", "buddy", "pal", "colleague"],
 ];
 
+function tokenise(s) {
+  return s.trim().toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean);
+}
+
+// Catch word-list / random spam before we spend an LLM call.
+// Returns a hard-fail result object, or null to proceed to LLM grading.
+function quickFail(sentence, theme) {
+  const words = tokenise(sentence);
+  if (words.length === 0) {
+    return { grammar: 0, relevance: 0, creativity: 0, tip: "Iltimos, kamida bitta jumla yozing." };
+  }
+
+  const themeWords = tokenise(theme);
+  const themeMatchCount = words.filter(w => themeWords.some(tw => w === tw || w.startsWith(tw) || tw.startsWith(w))).length;
+
+  // Word salad: almost every word is the theme/its synonyms, and there's no verb-like structure.
+  const hasVerbish = /\b(is|are|was|were|be|been|being|am|go|goes|went|gone|come|came|make|made|see|saw|seen|do|did|done|have|has|had|want|wanted|like|liked|travel|travels|travelled|work|works|worked|talk|talks|talked|say|said|tell|told)\b/i.test(sentence);
+  if (themeMatchCount >= 3 && !hasVerbish && words.length <= 12) {
+    return {
+      grammar: 0,
+      relevance: Math.round((themeMatchCount / Math.max(words.length, 1)) * 40),
+      creativity: 0,
+      tip: "So'zlarni ketma-ket yozish jumla emas. To'liq fikr bildiruvchi gap tuzing."
+    };
+  }
+
+  // All duplicates / repetition of one word
+  const unique = new Set(words);
+  if (words.length >= 4 && unique.size <= 2) {
+    return { grammar: 0, relevance: 5, creativity: 0, tip: "So'zni qaytarib yozish jumla emas. Sub'ekt + fe'l ishlatib yangi gap tuzing." };
+  }
+
+  // Way too short to be a sentence
+  if (words.length < 2) {
+    return { grammar: 0, relevance: 0, creativity: 0, tip: "Juda qisqa. To'liq jumla yozing (sub'ekt + fe'l)." };
+  }
+
+  return null;
+}
+
 async function evaluateSentence(sentence, theme) {
+  const fail = quickFail(sentence, theme);
+  if (fail) return fail;
+
   try {
     const res = await base44.integrations.Core.InvokeLLM({
-      prompt: `A student wrote this English sentence using words related to the theme "${theme}": "${sentence}". Evaluate it on three criteria: 1) Grammar (0-100), 2) Relevance to theme (0-100), 3) Creativity (0-100). Also give one short encouraging tip (max 15 words). Reply in JSON only.`,
+      prompt: [
+        `You are a strict, calibrated English-language examiner for B1 learners.`,
+        `A student was asked to write ONE meaningful English sentence using words about the theme "${theme}".`,
+        `The student submitted: "${sentence}".`,
+        ``,
+        `Grade STRICTLY. These are NOT sentences and must score very low on grammar and creativity (0-15):`,
+        `- a bare list of words or synonyms with no verb or structure (e.g. "angry furious upset irritated")`,
+        `- a string of words repeated back`,
+        `- words unrelated to the theme`,
+        `- gibberish or a single word repeated`,
+        ``,
+        `Grammar rubric (be strict, not generous):`,
+        `- 90-100 = flawless complete sentence, correct tense, word order, agreement`,
+        `- 70-89 = minor error(s) but clear and complete sentence`,
+        `- 40-69 = understandable but several grammar mistakes`,
+        `- 15-39 = fragment, missing key verb, or badly broken`,
+        `- 0-14 = not a sentence at all`,
+        ``,
+        `Relevance rubric: how many words genuinely fit the theme "${theme}". Listing theme synonyms without a sentence still counts as relevant to theme.`,
+        `Creativity rubric: originality and variety of the sentence. A word list or a trivial statement scores 0-15.`,
+        ``,
+        `Each score must be a whole number 0-100. Then give ONE short, specific, encouraging tip in English (max 15 words) on how to improve. Reply in JSON only.`,
+      ].join("\n"),
       response_json_schema: {
         type: "object",
         properties: {
@@ -32,9 +97,16 @@ async function evaluateSentence(sentence, theme) {
         }
       }
     });
-    return res;
+    // Clamp to valid range in case the model returns odd values.
+    const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
+    return {
+      grammar: clamp(res.grammar),
+      relevance: clamp(res.relevance),
+      creativity: clamp(res.creativity),
+      tip: res.tip || "Keep practising!"
+    };
   } catch {
-    return { grammar: 70, relevance: 70, creativity: 70, tip: "Great effort! Keep practising." };
+    return { grammar: 0, relevance: 0, creativity: 0, tip: "Baholashda xatolik. Iltimos, qaytadan urinib ko'ring." };
   }
 }
 
