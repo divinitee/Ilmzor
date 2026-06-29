@@ -58,7 +58,12 @@ export default function VocabQuizGame({ words, unitName, onBack }) {
   }, [words]);
 
   const buildQuestions = () => {
-    const pool = shuffle(words).slice(0, 10);
+    const TARGET = 30;
+    let expanded = shuffle(words);
+    while (expanded.length < TARGET && words.length > 0) {
+      expanded = [...expanded, ...shuffle(words)];
+    }
+    const pool = expanded.slice(0, Math.min(TARGET, expanded.length));
     const qs = pool.map(word => {
       const type = QUESTION_TYPES[Math.floor(Math.random() * QUESTION_TYPES.length)];
       let options = [];

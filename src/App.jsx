@@ -53,6 +53,7 @@ const AuthenticatedApp = () => {
         <Route path="/quiz/:unitKey" element={<Quiz />} />
         <Route path="/teacher" element={<TeacherDashboard />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
