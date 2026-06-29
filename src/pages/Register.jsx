@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash } from "lucide-react";
+import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import GoogleIcon from "@/components/GoogleIcon";
 import { toast } from "@/components/ui/use-toast";
@@ -14,6 +14,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [referralCode, setReferralCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,6 +46,11 @@ export default function Register() {
       const result = await base44.auth.verifyOtp({ email, otpCode });
       if (result?.access_token) {
         base44.auth.setToken(result.access_token);
+      }
+
+      // Save username
+      if (username.trim()) {
+        try { await base44.auth.updateMe({ full_name: username.trim() }); } catch {}
       }
 
       // If student with referral code, link them to the teacher
@@ -181,6 +187,14 @@ export default function Register() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
+              <Label htmlFor="username">Ism familiya</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input id="username" type="text" autoComplete="name" placeholder="Ism Familiya"
+                  value={username} onChange={(e) => setUsername(e.target.value)} className="pl-10 h-11" required />
+              </div>
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -205,11 +219,11 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Referral code — students only */}
+            {/* Classroom code — students only */}
             {role === "student" && (
               <div className="space-y-2">
                 <Label htmlFor="referral">
-                  O'qituvchi kodi <span className="text-muted-foreground font-normal">(ixtiyoriy)</span>
+                  Sinf kodi <span className="text-muted-foreground font-normal">(ixtiyoriy)</span>
                 </Label>
                 <div className="relative">
                   <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -217,7 +231,7 @@ export default function Register() {
                     value={referralCode} onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
                     className="pl-10 h-11 font-mono uppercase tracking-widest" maxLength={10} />
                 </div>
-                <p className="text-xs text-muted-foreground">O'qituvchingiz bergan kodni kiriting — u sizni kuzatib boradi</p>
+                <p className="text-xs text-muted-foreground">O'qituvchingiz bergan sinf kodini kiriting</p>
               </div>
             )}
 

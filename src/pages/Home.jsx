@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor } from "lucide-react";
+import ProfileEditor from "@/components/ProfileEditor";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -184,6 +185,7 @@ export default function Home() {
             user={user}
             onLogout={handleLogout}
             onDeleteRequest={() => setShowDeleteConfirm(true)}
+            onProfileSaved={() => loadData(true)}
           />
         )}
       </div>
@@ -305,7 +307,7 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
   );
 }
 
-function SettingsTab({ user, onLogout, onDeleteRequest }) {
+function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
   const { theme, setTheme } = useTheme();
 
   const themeOptions = [
@@ -318,11 +320,11 @@ function SettingsTab({ user, onLogout, onDeleteRequest }) {
     <div className="max-w-lg mx-auto px-4 py-8 space-y-4">
       <h2 className="text-xl font-bold text-foreground">Sozlamalar</h2>
 
-      {/* User info */}
+      {/* Profile editor */}
       <div className="bg-background rounded-2xl border border-border p-5">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Hisob</p>
-        <p className="text-sm font-medium text-foreground">{user?.full_name || "—"}</p>
-        <p className="text-sm text-muted-foreground">{user?.email}</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Profil</p>
+        <ProfileEditor user={user} onSaved={onProfileSaved} />
+        <p className="text-sm text-muted-foreground mt-3 text-center">{user?.email}</p>
       </div>
 
       {/* Theme */}
