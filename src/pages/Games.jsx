@@ -21,11 +21,11 @@ export default function Games({ isActive = false, user = null }) {
   const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
 
   useEffect(() => {
-    base44.entities.VocabularyWord.list().then(all => {
+    base44.entities.VocabularyWord.list('unit_number').then(all => {
       setWords(all);
       const unitMap = {};
       all.forEach(w => {
-        if (!unitMap[w.unit_key]) unitMap[w.unit_key] = { key: w.unit_key, name: w.unit_name, num: w.unit_number || 99 };
+        if (!unitMap[w.unit_key]) unitMap[w.unit_key] = { key: w.unit_key, name: w.unit_name, num: w.unit_number ?? 99 };
       });
       const unitList = Object.values(unitMap).sort((a, b) => a.num - b.num);
       setUnits(unitList);
