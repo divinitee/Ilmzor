@@ -1,7 +1,7 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 
 const SPREADSHEET_ID = Deno.env.get("GOOGLE_SHEETS_SPREADSHEET_ID");
-const SHEET_NAME = "Quiz Results";
+const SHEET_NAME = "Sheet1";
 
 Deno.serve(async (req) => {
   try {
