@@ -65,6 +65,8 @@ export default function Pricing() {
   const [selectedPlan, setSelectedPlan] = useState("learner");
   const [step, setStep] = useState("plans"); // "plans" | "payment"
   const [paymentRef, setPaymentRef] = useState("");
+  const [studentName, setStudentName] = useState("");
+  const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -73,7 +75,7 @@ export default function Pricing() {
   const handleContinue = () => setStep("payment");
 
   const handleSubmit = async () => {
-    if (!paymentRef.trim()) return;
+    if (!paymentRef.trim() || !studentName.trim() || !phone.trim()) return;
     setSubmitting(true);
     try {
       const me = await base44.auth.me();
@@ -81,13 +83,14 @@ export default function Pricing() {
       const planName = plan.name;
       if (existing.length > 0) {
         await base44.entities.StudentSubscription.update(existing[0].id, {
+          student_name: studentName,
           payment_ref: paymentRef,
           status: "pending",
           plan: planName,
         });
       } else {
         await base44.entities.StudentSubscription.create({
-          student_name: me.full_name || me.email,
+          student_name: studentName,
           phone: me.email,
           payment_ref: paymentRef,
           status: "pending",
@@ -154,21 +157,43 @@ export default function Pricing() {
               />
             </div>
 
-            {/* Ref input */}
-            <div>
-              <label className="block text-sm font-semibold text-foreground mb-2">Tranzaksiya ID / Chek raqami:</label>
-              <input
-                type="text"
-                value={paymentRef}
-                onChange={e => setPaymentRef(e.target.value)}
-                placeholder="Masalan: 45781223"
-                className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-              />
+            {/* Name & Phone inputs */}
+            <div className="space-y-3">
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Ism Familiya:</label>
+                <input
+                  type="text"
+                  value={studentName}
+                  onChange={e => setStudentName(e.target.value)}
+                  placeholder="Masalan: Alibek Karimov"
+                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Telefon raqam:</label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={e => setPhone(e.target.value)}
+                  placeholder="+998 90 123 45 67"
+                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-foreground mb-2">Tranzaksiya ID / Chek raqami:</label>
+                <input
+                  type="text"
+                  value={paymentRef}
+                  onChange={e => setPaymentRef(e.target.value)}
+                  placeholder="Masalan: 45781223"
+                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
+                />
+              </div>
             </div>
 
             <Button
               onClick={handleSubmit}
-              disabled={submitting || !paymentRef.trim()}
+              disabled={submitting || !paymentRef.trim() || !studentName.trim() || !phone.trim()}
               className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-base font-semibold select-none"
             >
               {submitting ? "Yuborilmoqda..." : "To'lovni tasdiqlashga yuborish"}
