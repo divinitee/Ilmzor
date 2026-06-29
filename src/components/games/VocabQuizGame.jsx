@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Timer, CheckCircle2, XCircle, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const QUESTION_TYPES = ["multiple_choice", "define"];
+const QUESTION_TYPES = ["define"];
 const TIME_PER_Q = 30;
 const TOTAL_QUESTIONS = 30;
 
