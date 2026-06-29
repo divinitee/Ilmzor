@@ -219,21 +219,25 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Classroom code — students only */}
-            {role === "student" && (
-              <div className="space-y-2">
-                <Label htmlFor="referral">
-                  Sinf kodi <span className="text-muted-foreground font-normal">(ixtiyoriy)</span>
-                </Label>
-                <div className="relative">
-                  <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input id="referral" type="text" placeholder="Masalan: ABC123"
-                    value={referralCode} onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
-                    className="pl-10 h-11 font-mono uppercase tracking-widest" maxLength={10} />
-                </div>
-                <p className="text-xs text-muted-foreground">O'qituvchingiz bergan sinf kodini kiriting</p>
+            {/* Classroom / room code — both roles */}
+            <div className="space-y-2">
+              <Label htmlFor="referral">
+                {role === "teacher" ? "Sinf xona kodi" : "Sinf kodi"}{" "}
+                <span className="text-muted-foreground font-normal">(ixtiyoriy)</span>
+              </Label>
+              <div className="relative">
+                <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input id="referral" type="text"
+                  placeholder={role === "teacher" ? "Xona kodi (masalan: ROOM1)" : "Masalan: ABC123"}
+                  value={referralCode} onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
+                  className="pl-10 h-11 font-mono uppercase tracking-widest" maxLength={10} />
               </div>
-            )}
+              <p className="text-xs text-muted-foreground">
+                {role === "teacher"
+                  ? "O'quvchilar siz bilan bog'lanish uchun ishlatiladigan kod"
+                  : "O'qituvchingiz bergan sinf kodini kiriting"}
+              </p>
+            </div>
 
             <Button type="submit" className="w-full h-11 font-semibold" disabled={loading}>
               {loading ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Yaratilmoqda...</> : "Hisob yaratish"}
