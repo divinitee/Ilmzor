@@ -36,8 +36,15 @@ export default function Quiz() {
     setUser(me);
     const allWords = await base44.entities.VocabularyWord.filter({ unit_key: unitKey });
     if (allWords.length > 0) setUnitName(allWords[0].unit_name);
+    const TARGET = 30;
     const shuffled = [...allWords].sort(() => 0.5 - Math.random());
-    setWords(shuffled.slice(0, Math.min(30, shuffled.length)));
+    let questions = [...shuffled];
+    // If fewer than TARGET words, repeat/cycle to fill up to TARGET questions
+    while (questions.length < TARGET && allWords.length > 0) {
+      const extra = [...allWords].sort(() => 0.5 - Math.random());
+      questions = [...questions, ...extra];
+    }
+    setWords(questions.slice(0, Math.min(TARGET, questions.length)));
     setPhase("quiz");
   };
 

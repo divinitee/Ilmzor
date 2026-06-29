@@ -8,7 +8,7 @@ import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
 import UnitDrawer from "@/components/UnitDrawer";
 
 const TRIAL_KEY = "vocab_trial_rounds";
-const MAX_TRIAL_ROUNDS = 2;
+const MAX_TRIAL_ROUNDS = 5;
 
 export default function Games({ isActive = false }) {
   const [words, setWords] = useState([]);
