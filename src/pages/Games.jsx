@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Gamepad2, Zap, MessageSquare, ChevronRight } from "lucide-react";
+import { Gamepad2, Zap, MessageSquare, ChevronRight, Lock } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
 import UnitDrawer from "@/components/UnitDrawer";
 
-export default function Games() {
+const TRIAL_KEY = "vocab_trial_rounds";
+const MAX_TRIAL_ROUNDS = 2;
+
+export default function Games({ isActive = false }) {
   const [words, setWords] = useState([]);
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [activeGame, setActiveGame] = useState(null); // "quiz" | "sentence"
   const [loading, setLoading] = useState(true);
+  const [trialRounds, setTrialRounds] = useState(() => parseInt(localStorage.getItem(TRIAL_KEY) || "0", 10));
+  const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
 
   useEffect(() => {
     base44.entities.VocabularyWord.list().then(all => {
@@ -37,12 +43,25 @@ export default function Games() {
     );
   }
 
+  const startGame = (game) => {
+    if (!isActive) {
+      const next = trialRounds + 1;
+      localStorage.setItem(TRIAL_KEY, String(next));
+      setTrialRounds(next);
+    }
+    setActiveGame(game);
+  };
+
+  const handleBack = () => {
+    setActiveGame(null);
+  };
+
   if (activeGame === "quiz") {
     return (
       <VocabQuizGame
         words={unitWords}
         unitName={selectedUnit?.name || ""}
-        onBack={() => setActiveGame(null)}
+        onBack={handleBack}
       />
     );
   }
@@ -51,8 +70,29 @@ export default function Games() {
     return (
       <SentenceBuilderGame
         words={words}
-        onBack={() => setActiveGame(null)}
+        onBack={handleBack}
       />
+    );
+  }
+
+  if (trialExhausted) {
+    return (
+      <div className="max-w-lg mx-auto px-4 py-16 text-center space-y-5">
+        <div className="w-16 h-16 bg-indigo-500/10 rounded-2xl flex items-center justify-center mx-auto">
+          <Lock className="w-8 h-8 text-indigo-600" />
+        </div>
+        <div>
+          <h2 className="text-xl font-bold text-foreground mb-2">Bepul sinov tugadi</h2>
+          <p className="text-sm text-muted-foreground">
+            {MAX_TRIAL_ROUNDS} ta bepul o'yin o'ynab bo'ldingiz. Davom etish uchun obuna kerak.
+          </p>
+        </div>
+        <Link to="/pricing">
+          <button className="bg-primary text-primary-foreground text-base font-semibold px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors select-none w-full">
+            Obuna rejalarini ko'rish →
+          </button>
+        </Link>
+      </div>
     );
   }
 
@@ -75,11 +115,21 @@ export default function Games() {
         </button>
       </div>
 
+      {/* Trial indicator */}
+      {!isActive && (
+        <div className="mb-4 bg-amber-500/10 border border-amber-400/30 rounded-xl px-4 py-3 flex items-center justify-between">
+          <p className="text-xs font-medium text-amber-700 dark:text-amber-400">
+            Bepul sinov: {trialRounds}/{MAX_TRIAL_ROUNDS} o'yin ishlatildi
+          </p>
+          <Link to="/pricing" className="text-xs font-bold text-primary hover:underline select-none">Obuna →</Link>
+        </div>
+      )}
+
       {/* Game cards */}
       <div className="space-y-4">
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
-          onClick={() => setActiveGame("quiz")}
+          onClick={() => startGame("quiz")}
           className="bg-gradient-to-br from-indigo-500/10 to-violet-500/10 border border-indigo-200 dark:border-indigo-800 rounded-2xl p-5 cursor-pointer hover:shadow-md transition-shadow select-none"
         >
           <div className="flex items-start gap-4">
@@ -100,7 +150,7 @@ export default function Games() {
 
         <motion.div
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          onClick={() => setActiveGame("sentence")}
+          onClick={() => startGame("sentence")}
           className="bg-gradient-to-br from-violet-500/10 to-pink-500/10 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 cursor-pointer hover:shadow-md transition-shadow select-none"
         >
           <div className="flex items-start gap-4">

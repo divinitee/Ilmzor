@@ -99,6 +99,10 @@ export default function Home() {
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
+  // Everyone needs an active subscription — admins are not exempt
+  // They get a free trial (limited vocab + 2 game rounds tracked in localStorage)
+  // After trial they're redirected to /pricing from within the tabs
+
   return (
     <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
       <ParticleBackground />
@@ -141,31 +145,35 @@ export default function Home() {
         </AnimatePresence>
 
         {activeTab === "home" && (
-          isAdmin ? (
-            <div className="max-w-lg mx-auto px-4 py-10 text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-4">O'qituvchi Paneli</h2>
-              <Link to="/teacher">
-                <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
-              </Link>
-            </div>
+          isActive ? (
+            isAdmin ? (
+              <div className="max-w-lg mx-auto px-4 py-10 text-center">
+                <h2 className="text-2xl font-bold text-foreground mb-4">O'qituvchi Paneli</h2>
+                <Link to="/teacher">
+                  <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
+                </Link>
+              </div>
+            ) : (
+              <StudentDashboard
+                results={results}
+                units={units}
+                selectedUnit={selectedUnit}
+                selectedUnitName={selectedUnitName}
+                onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
+                isActive={isActive}
+                user={user}
+                subscription={subscription}
+                onSubmitted={() => loadData(true)}
+              />
+            )
           ) : (
-            <StudentDashboard
-              results={results}
-              units={units}
-              selectedUnit={selectedUnit}
-              selectedUnitName={selectedUnitName}
-              onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
-              isActive={isActive}
-              user={user}
-              subscription={subscription}
-              onSubmitted={() => loadData(true)}
-            />
+            <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />
           )
         )}
 
-        {activeTab === "vocab" && <VocabularyList />}
+        {activeTab === "vocab" && <VocabularyList isActive={isActive} />}
 
-        {activeTab === "games" && <Games />}
+        {activeTab === "games" && <Games isActive={isActive} />}
 
         {activeTab === "settings" && (
           <SettingsTab
@@ -351,6 +359,38 @@ function SettingsTab({ user, onLogout, onDeleteRequest }) {
           <span className="text-sm font-medium text-destructive">Hisobni o'chirish</span>
         </button>
       </div>
+    </div>
+  );
+}
+
+function TrialHomeScreen({ isAdmin, subscription }) {
+  const isPending = subscription?.status === "pending";
+  return (
+    <div className="max-w-lg mx-auto px-4 py-10 text-center space-y-5">
+      <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto">
+        <BookOpen className="w-8 h-8 text-primary" />
+      </div>
+      <div>
+        <h2 className="text-xl font-bold text-foreground mb-2">
+          {isAdmin ? "O'qituvchi obunasi kerak" : "Bepul sinov tugadi"}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {isAdmin
+            ? "O'qituvchi sifatida platformadan to'liq foydalanish uchun obuna kerak."
+            : "So'zlar ro'yxati va o'yinlarning bepul sinov versiyasini ko'rdingiz."}
+        </p>
+      </div>
+      {isPending ? (
+        <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 text-sm text-amber-700 dark:text-amber-400 font-medium">
+          ⏳ To'lovingiz ko'rib chiqilmoqda. Tez orada faollashadi.
+        </div>
+      ) : (
+        <Link to="/pricing">
+          <Button className="w-full h-12 text-base font-semibold select-none">
+            Obuna rejalarini ko'rish →
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }

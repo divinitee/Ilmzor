@@ -20,6 +20,10 @@
     "payment_ref": {
       "type": "string"
     },
+    "plan": {
+      "type": "string",
+      "description": "Chosen plan name e.g. VIP Plan, Learner Plan, Starter Plan"
+    },
     "referral_code": {
       "type": "string",
       "description": "Teacher's referral code used at registration"

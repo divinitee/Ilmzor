@@ -3,9 +3,10 @@ import { base44 } from "@/api/base44Client";
 import { BookOpen, ChevronDown, Search, LayoutGrid, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FlashCard from "@/components/FlashCard";
+import { Link } from "react-router-dom";
 
 
-export default function VocabularyList() {
+export default function VocabularyList({ isActive = false }) {
   const [words, setWords] = useState([]);
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
@@ -34,13 +35,15 @@ export default function VocabularyList() {
   };
 
   const filteredWords = (unitKey) => {
-    return words
+    const all = words
       .filter(w => w.unit_key === unitKey)
       .filter(w => {
         if (!search) return true;
         const s = search.toLowerCase();
         return w.english.toLowerCase().includes(s) || w.uzbek.toLowerCase().includes(s) || (w.russian || "").toLowerCase().includes(s);
       });
+    // Trial: only first 5 words visible
+    return isActive ? all : all.slice(0, 5);
   };
 
   if (loading) {
@@ -151,6 +154,18 @@ export default function VocabularyList() {
           );
         })}
       </div>
+
+      {!isActive && (
+        <div className="mt-6 bg-gradient-to-br from-indigo-500/10 to-violet-500/10 border border-indigo-300 dark:border-indigo-700 rounded-2xl p-5 text-center">
+          <p className="text-sm font-bold text-foreground mb-1">🔒 Bepul sinov: har bir unitdan 5 ta so'z</p>
+          <p className="text-xs text-muted-foreground mb-4">Barcha so'zlarni ko'rish uchun obuna kerak</p>
+          <Link to="/pricing">
+            <button className="bg-primary text-primary-foreground text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-colors select-none">
+              Obuna rejalarini ko'rish →
+            </button>
+          </Link>
+        </div>
+      )}
 
       <footer className="mt-8 text-center text-xs text-muted-foreground pb-4">
         Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>

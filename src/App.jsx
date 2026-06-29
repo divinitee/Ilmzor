@@ -16,6 +16,7 @@ import ResetPassword from '@/pages/ResetPassword';
 import Home from '@/pages/Home';
 import Quiz from '@/pages/Quiz';
 import TeacherDashboard from '@/pages/TeacherDashboard';
+import Pricing from '@/pages/Pricing';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -51,6 +52,7 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/quiz/:unitKey" element={<Quiz />} />
         <Route path="/teacher" element={<TeacherDashboard />} />
+        <Route path="/pricing" element={<Pricing />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
