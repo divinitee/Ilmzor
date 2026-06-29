@@ -41,7 +41,11 @@ export default function Home() {
     try {
       const me = await base44.auth.me();
       setUser(me);
-      const subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
+      let subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
+      if (subs.length === 0) {
+        // fallback: find subscription created by this user
+        subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
+      }
       if (subs.length > 0) setSubscription(subs[0]);
       const words = await base44.entities.VocabularyWord.list();
       const unitMap = {};
