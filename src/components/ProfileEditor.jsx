@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { Camera, Loader2, Check, Pencil } from "lucide-react";
+import { Camera, Loader2, Check, Pencil, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +9,7 @@ export default function ProfileEditor({ user, onSaved }) {
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(user?.full_name || "");
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
+  const [roomCode, setRoomCode] = useState(user?.classroom_code || "");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -30,7 +31,7 @@ export default function ProfileEditor({ user, onSaved }) {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await base44.auth.updateMe({ full_name: username, avatar_url: avatarUrl });
+      await base44.auth.updateMe({ full_name: username, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
       setSaved(true);
       setEditing(false);
       setTimeout(() => setSaved(false), 2000);
@@ -45,6 +46,7 @@ export default function ProfileEditor({ user, onSaved }) {
   const handleCancel = () => {
     setUsername(user?.full_name || "");
     setAvatarUrl(user?.avatar_url || "");
+    setRoomCode(user?.classroom_code || "");
     setEditing(false);
   };
 
@@ -82,6 +84,23 @@ export default function ProfileEditor({ user, onSaved }) {
               autoFocus
             />
           </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="roomcode">Sinf xona kodi</Label>
+            <div className="relative">
+              <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                id="roomcode"
+                value={roomCode}
+                onChange={e => setRoomCode(e.target.value.toUpperCase())}
+                placeholder="Masalan: ABC123"
+                className="pl-10 h-11 font-mono uppercase tracking-widest"
+                maxLength={10}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground">O'qituvchingiz bergan sinf kodini kiriting</p>
+          </div>
+
           <div className="flex gap-2">
             <Button variant="outline" onClick={handleCancel} className="flex-1 h-10 font-semibold select-none">
               Bekor qilish
@@ -94,10 +113,18 @@ export default function ProfileEditor({ user, onSaved }) {
       ) : (
         <div className="text-center space-y-2">
           <p className="text-base font-semibold text-foreground">{username || "—"}</p>
-          <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="gap-2 select-none">
-            <Pencil className="w-3.5 h-3.5" />
-            Tahrirlash
-          </Button>
+          {roomCode ? (
+            <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1 rounded-full">
+              <Hash className="w-3 h-3" />
+              <span className="font-mono font-medium">{roomCode}</span>
+            </div>
+          ) : null}
+          <div>
+            <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="gap-2 select-none">
+              <Pencil className="w-3.5 h-3.5" />
+              Tahrirlash
+            </Button>
+          </div>
         </div>
       )}
     </div>
