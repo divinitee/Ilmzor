@@ -87,7 +87,7 @@ export default function VocabularyList({ isActive = false }) {
         {units.map((unit, idx) => {
           const unitWords = filteredWords(unit.key);
           const isOpen = openUnit === unit.key || !!search;
-          const displayName = unit.name.replace(/^Unit \d+/, `Unit ${idx + 1}`);
+          const displayName = unit.name;
           return (
             <motion.div
               key={unit.key}
@@ -103,7 +103,7 @@ export default function VocabularyList({ isActive = false }) {
                 >
                   <div>
                     <p className="font-semibold text-foreground text-sm">{displayName}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{unitWords.length} ta so'z</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{words.filter(w => w.unit_key === unit.key).length} ta so'z</p>
                   </div>
                   <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
                 </button>
