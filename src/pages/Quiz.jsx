@@ -34,7 +34,7 @@ export default function Quiz() {
   const loadQuiz = async () => {
     const me = await base44.auth.me();
     setUser(me);
-    const allWords = await base44.entities.VocabularyWord.filter({ unit_key: unitKey });
+    const allWords = await base44.entities.VocabularyWord.filter({ unit_key: unitKey }, 'unit_number', 500);
     if (allWords.length > 0) setUnitName(allWords[0].unit_name);
     const TARGET = 30;
     const shuffled = [...allWords].sort(() => 0.5 - Math.random());
