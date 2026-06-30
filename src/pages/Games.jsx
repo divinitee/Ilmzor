@@ -50,7 +50,7 @@ export default function Games({ isActive = false, user = null }) {
   const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
 
   useEffect(() => {
-    base44.entities.VocabularyWord.list('unit_number').then(all => {
+    base44.entities.VocabularyWord.list('unit_number', 2000).then(all => {
       setWords(all);
       const unitMap = {};
       all.forEach(w => {

@@ -19,7 +19,7 @@ export default function VocabularyList({ isActive = false }) {
 
   const loadWords = async () => {
     try {
-      const all = await base44.entities.VocabularyWord.list();
+      const all = await base44.entities.VocabularyWord.list('unit_number', 2000);
       setWords(all);
       // Build ordered unit list
       const unitMap = {};
