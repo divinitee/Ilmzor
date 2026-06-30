@@ -33,12 +33,13 @@ function similarityScore(userInput, target) {
 async function aiSimilarity(userInput, word) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
-      prompt: `The correct English translation of the Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}") is "${word.english}". A student wrote: "${userInput}". Score how correct this English translation is from 0 to 100. Consider typos leniently. Only reply with a single integer number.`,
-      response_json_schema: { type: "object", properties: { score: { type: "number" } } }
+      prompt: `The correct English translation of the Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}") is "${word.english}". A student wrote: "${userInput}". Is this translation correct? Consider minor typos (1-2 chars) as correct. Reply with JSON: { "correct": true } or { "correct": false }. Do NOT give partial credit.`,
+      response_json_schema: { type: "object", properties: { correct: { type: "boolean" } } }
     });
-    return Math.min(100, Math.max(0, Math.round(res.score || 0)));
+    return res.correct ? 100 : 0;
   } catch {
-    return similarityScore(userInput, word.english);
+    const sim = similarityScore(userInput, word.english);
+    return sim >= 80 ? 100 : 0;
   }
 }
 
@@ -107,8 +108,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
 
   useEffect(() => {
     if (!done || !user || scores.length === 0) return;
-    const correctCount = scores.filter(s => s >= 50).length;
-    const coinsEarned = correctCount * 10; // 10 coins per correct answer
+    const correctCount = scores.filter(s => s === 100).length;
+    const coinsEarned = correctCount * 1; // 1 coin per correct answer
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     base44.entities.QuizResult.create({
@@ -120,6 +121,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
       date: dateStr
     }).catch(() => {});
     if (coinsEarned > 0 && onCoinsEarned) onCoinsEarned(coinsEarned, correctCount);
+
   }, [done]);
 
   const advance = (correct) => {
@@ -141,7 +143,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const q = questions[qIndex];
     const correct = q.type === "multiple_choice" ? opt === q.word.uzbek : opt === q.word.english;
     setScores(s => [...s, correct ? 100 : 0]);
-    if (correct) { setCoinAnimation("+10 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
+    if (correct) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
     advance(correct);
   };
 
@@ -163,8 +165,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   if (done) {
     const total = scores.reduce((a, b) => a + b, 0);
     const avg = Math.round(total / scores.length);
-    const correctCount = scores.filter(s => s >= 50).length;
-    const coinsEarned = correctCount * 10;
+    const correctCount = scores.filter(s => s === 100).length;
+    const coinsEarned = correctCount * 1;
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
@@ -179,7 +181,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           <span className="text-3xl">🪙</span>
           <div>
             <p className="text-2xl font-bold text-amber-600">+{coinsEarned}</p>
-            <p className="text-xs text-muted-foreground">tanga qo'shildi ({correctCount} × 10)</p>
+            <p className="text-xs text-muted-foreground">tanga qo'shildi ({correctCount} × 1)</p>
           </div>
         </motion.div>
 
@@ -192,8 +194,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             <div key={i} className="flex items-center justify-between text-sm px-2">
               <span className="text-muted-foreground">Savol {i + 1}</span>
               <div className="flex items-center gap-2">
-                {s >= 50 && <span className="text-xs text-amber-600 font-semibold">+10 🪙</span>}
-                <span className={`font-semibold ${s >= 70 ? "text-emerald-600" : s >= 40 ? "text-amber-500" : "text-destructive"}`}>{s}%</span>
+                {s === 100 && <span className="text-xs text-amber-600 font-semibold">+1 🪙</span>}
+                <span className={`font-semibold ${s === 100 ? "text-emerald-600" : "text-destructive"}`}>{s === 100 ? "100%" : "0%"}</span>
               </div>
             </div>
           ))}
@@ -301,8 +303,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
                 disabled={checking || defineScore !== null}
               />
               {defineScore !== null && (
-                <div className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore >= 70 ? "bg-emerald-500/10 text-emerald-700" : defineScore >= 40 ? "bg-amber-500/10 text-amber-700" : "bg-destructive/10 text-destructive"}`}>
-                  {defineScore >= 70 ? "✅ Ajoyib!" : defineScore >= 40 ? "👍 Yaxshi urinish!" : "❌ Qayta urinib ko'ring"} — {defineScore}% to'g'ri
+                <div               className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore === 100 ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
+                  {defineScore === 100 ? "✅ Ajoyib! +1 🪙" : "❌ Noto'g'ri!"} — {defineScore === 100 ? "100%" : "0%"} to'g'ri
                   <p className="text-xs font-normal mt-1 text-muted-foreground">To'g'ri javob: {q.word.english} = {q.word.uzbek}</p>
                 </div>
               )}

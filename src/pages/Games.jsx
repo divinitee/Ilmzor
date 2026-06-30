@@ -20,7 +20,7 @@ const GAME_CARDS = [
     gradient: "from-indigo-500 to-violet-600",
     lightBg: "from-indigo-500/10 to-violet-500/10",
     border: "border-indigo-200 dark:border-indigo-800",
-    tags: ["10 savol", "20s / savol", "AI baholash"],
+    tags: ["30 savol", "30s / savol", "AI baholash"],
     tagColor: "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400",
     img: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=300&q=80",
   },
