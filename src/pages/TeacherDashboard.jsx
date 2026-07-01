@@ -70,7 +70,9 @@ export default function TeacherDashboard() {
   };
 
   const handleAccept = async (sub) => {
-    await base44.entities.StudentSubscription.update(sub.id, { status: "active" });
+    const expiresAt = new Date();
+    expiresAt.setMonth(expiresAt.getMonth() + 1);
+    await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAt.toISOString().split("T")[0] });
     setNotification(`"${sub.student_name}" obunasi tasdiqlandi!`);
     setTimeout(() => setNotification(""), 3000);
     loadData(true);

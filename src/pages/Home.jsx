@@ -50,7 +50,13 @@ export default function Home() {
         // fallback: find subscription created by this user
         subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
       }
-      if (subs.length > 0) setSubscription(subs[0]);
+      if (subs.length > 0) {
+        let sub = subs[0];
+        if (sub.status === "active" && sub.expires_at && new Date(sub.expires_at) < new Date()) {
+          sub = await base44.entities.StudentSubscription.update(sub.id, { status: "inactive" });
+        }
+        setSubscription(sub);
+      }
       const words = await base44.entities.VocabularyWord.list();
       const unitMap = {};
       words.forEach(w => { if (!unitMap[w.unit_key]) unitMap[w.unit_key] = w.unit_name; });

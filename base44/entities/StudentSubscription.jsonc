@@ -35,6 +35,11 @@
     "teacher_name": {
       "type": "string",
       "description": "Display name of the teacher"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the active subscription expires (1 month after approval)"
     }
   },
   "required": [
