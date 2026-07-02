@@ -13,6 +13,7 @@ import UnitDrawer from "@/components/UnitDrawer";
 import VocabularyList from "@/pages/VocabularyList";
 import ParticleBackground from "@/components/ParticleBackground";
 import Games from "@/pages/Games";
+import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -188,6 +189,8 @@ export default function Home() {
         {activeTab === "vocab" && <VocabularyList isActive={isActive} />}
 
         {activeTab === "games" && <Games isActive={isActive} user={user} />}
+
+        {activeTab === "tutor" && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
 
         {activeTab === "settings" && (
           <SettingsTab
