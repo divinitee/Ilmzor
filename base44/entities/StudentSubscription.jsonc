@@ -40,6 +40,11 @@
       "type": "string",
       "format": "date",
       "description": "Date the active subscription expires (1 month after approval)"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional additional description"
     }
   },
   "required": [

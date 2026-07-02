@@ -23,6 +23,11 @@
       "type": "number",
       "default": 0,
       "description": "Number of students who used this code"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional additional description"
     }
   },
   "required": [

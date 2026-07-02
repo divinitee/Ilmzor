@@ -21,6 +21,11 @@
     "total_correct": {
       "type": "number",
       "default": 0
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional additional description"
     }
   },
   "required": [

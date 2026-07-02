@@ -27,6 +27,11 @@
     "pronunciation": {
       "type": "string",
       "description": "Phonetic pronunciation e.g. /\u02c8pi\u02d0pl/"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional additional description"
     }
   },
   "required": [
