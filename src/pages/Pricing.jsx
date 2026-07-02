@@ -21,6 +21,7 @@ const plans = [
       "To'liq test va reading imkoniyati",
       "Barcha o'yinlar va flashcard",
       "O'qituvchi kuzatuvi",
+      "🤖 AI So'z Ustozi bilan mashq qilish",
       "Yangi kontentga erta kirish",
       "Ustuvor qo'llab-quvvatlash",
     ],
@@ -40,6 +41,7 @@ const plans = [
       "To'liq test va reading imkoniyati",
       "Barcha o'yinlar va flashcard",
       "O'qituvchi kuzatuvi",
+      "🤖 AI So'z Ustozi bilan mashq qilish",
     ],
   },
   {
