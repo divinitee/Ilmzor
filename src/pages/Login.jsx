@@ -160,6 +160,12 @@ export default function Login() {
             Ro'yxatdan o'ting
           </Link>
         </p>
+
+        <div className="flex items-center justify-center gap-4 mt-6 text-xs text-muted-foreground">
+          <Link to="/about" className="hover:text-foreground hover:underline">Ilova haqida</Link>
+          <span>·</span>
+          <Link to="/contact" className="hover:text-foreground hover:underline">Bog'lanish</Link>
+        </div>
       </div>
     </div>
   );
