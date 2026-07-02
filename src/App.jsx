@@ -19,6 +19,11 @@ import TeacherDashboard from '@/pages/TeacherDashboard';
 import Pricing from '@/pages/Pricing';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
+import Leaderboard from '@/pages/Leaderboard';
+import MyProgress from '@/pages/MyProgress';
+import Plans from '@/pages/Plans';
+import Settings from '@/pages/Settings';
+import StudyTips from '@/pages/StudyTips';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -57,6 +62,11 @@ const AuthenticatedApp = () => {
         <Route path="/quiz/:unitKey" element={<Quiz />} />
         <Route path="/teacher" element={<TeacherDashboard />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/my-progress" element={<MyProgress />} />
+        <Route path="/plans" element={<Plans />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/study-tips" element={<StudyTips />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />

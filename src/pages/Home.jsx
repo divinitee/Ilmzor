@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, MessageCircle } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, MessageCircle, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
 import { AnimatePresence as AP } from "framer-motion";
 import ChatWindow from "@/components/ChatWindow";
 import ProfileEditor from "@/components/ProfileEditor";
@@ -359,6 +359,27 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
         <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Profil</p>
         <ProfileEditor user={user} onSaved={onProfileSaved} />
         <p className="text-sm text-muted-foreground mt-3 text-center">{user?.email}</p>
+      </div>
+
+      {/* Quick links */}
+      <div className="bg-background rounded-2xl border border-border overflow-hidden">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold px-5 pt-4 pb-2">Ko'proq</p>
+        {[
+          { to: "/leaderboard", label: "Reyting jadvali", icon: Trophy },
+          { to: "/my-progress", label: "Mening natijalarim", icon: TrendingUp },
+          { to: "/plans", label: "Obuna rejalari", icon: Crown },
+          { to: "/study-tips", label: "O'rganish maslahatlari", icon: Lightbulb },
+          { to: "/settings", label: "To'liq sozlamalar", icon: SlidersHorizontal },
+        ].map(({ to, label, icon: Icon }) => (
+          <Link
+            key={to}
+            to={to}
+            className="flex items-center gap-3 px-5 py-4 hover:bg-muted/50 transition-colors border-b border-border last:border-0 select-none"
+          >
+            <Icon className="w-5 h-5 text-muted-foreground" />
+            <span className="text-sm font-medium text-foreground">{label}</span>
+          </Link>
+        ))}
       </div>
 
       {/* Theme */}
