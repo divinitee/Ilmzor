@@ -10,6 +10,8 @@ const plans = [
     id: "vip",
     name: "VIP Plan",
     price: "49,999",
+    originalPrice: "79,999",
+    discount: "38%",
     period: "so'm / yil",
     icon: Crown,
     color: "from-amber-500/20 to-orange-500/20",
@@ -30,6 +32,8 @@ const plans = [
     id: "learner",
     name: "Learner Plan",
     price: "24,888",
+    originalPrice: "39,999",
+    discount: "38%",
     period: "so'm / oy",
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
@@ -48,6 +52,8 @@ const plans = [
     id: "starter",
     name: "Starter Plan",
     price: "17,777",
+    originalPrice: "29,999",
+    discount: "41%",
     period: "so'm / oy",
     icon: Zap,
     color: "from-emerald-500/10 to-teal-500/10",
@@ -221,10 +227,10 @@ export default function Pricing() {
           </p>
         </div>
 
-        {/* Free trial banner */}
-        <div className="bg-primary/5 border border-primary/20 rounded-2xl p-4 mb-6 text-center">
-          <p className="text-sm text-primary font-medium">🎉 Bepul sinov davri tugadi</p>
-          <p className="text-xs text-muted-foreground mt-1">Davom etish uchun quyidagi rejalardan birini tanlang</p>
+        {/* Discount banner */}
+        <div className="bg-gradient-to-r from-rose-500/10 to-amber-500/10 border border-rose-300 dark:border-rose-700 rounded-2xl p-4 mb-6 text-center">
+          <p className="text-sm font-bold text-rose-600 dark:text-rose-400">🔥 Chegirmaning oxirgi kunlari! 41% gacha arzon</p>
+          <p className="text-xs text-muted-foreground mt-1">Chegirmalar cheklangan vaqt ichida amal qiladi</p>
         </div>
 
         {/* Plan cards */}
@@ -255,6 +261,11 @@ export default function Pricing() {
                       {p.badge && (
                         <span className="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-full">{p.badge}</span>
                       )}
+                      <span className="text-[10px] font-bold bg-rose-500 text-white px-2 py-0.5 rounded-full">−{p.discount}</span>
+                    </div>
+                    <div className="flex items-baseline gap-2 mb-0.5">
+                      <span className="text-sm text-muted-foreground line-through">{p.originalPrice}</span>
+                      <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">chegirma</span>
                     </div>
                     <p className="text-xl font-bold text-foreground">
                       {p.price} <span className="text-sm font-normal text-muted-foreground">{p.period}</span>

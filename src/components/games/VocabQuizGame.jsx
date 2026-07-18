@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Timer, CheckCircle2, XCircle, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslationLang } from "@/hooks/useTranslationLang";
 
 const QUESTION_TYPES = ["define"];
 const TIME_PER_Q = 30;
@@ -55,6 +56,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   const [done, setDone] = useState(false);
   const [coinAnimation, setCoinAnimation] = useState(null); // "+N 🪙"
   const timerRef = useRef(null);
+  const { showRu } = useTranslationLang();
 
   useEffect(() => {
     buildQuestions();
@@ -259,7 +261,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">Inglizchaga tarjima qiling</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
-                {q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
+                {showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
             {q.type === "define" && (
@@ -268,7 +270,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
                   <Lightbulb className="inline w-3.5 h-3.5 mr-1" />Inglizcha tarjimasini yozing
                 </p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
-                {q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
+                {showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
           </div>

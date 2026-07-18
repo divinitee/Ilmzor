@@ -3,6 +3,8 @@ import { base44 } from "@/api/base44Client";
 import { BookOpen, ChevronDown, Search, LayoutGrid, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import FlashCard from "@/components/FlashCard";
+import TranslationLangToggle from "@/components/TranslationLangToggle";
+import { useTranslationLang } from "@/hooks/useTranslationLang";
 import { Link } from "react-router-dom";
 
 
@@ -14,6 +16,7 @@ export default function VocabularyList({ isActive = false }) {
   const [search, setSearch] = useState("");
   const [openUnit, setOpenUnit] = useState(null);
   const [flashcardUnit, setFlashcardUnit] = useState(null);
+  const { lang } = useTranslationLang();
 
   useEffect(() => { loadWords(); }, []);
 
@@ -64,10 +67,14 @@ export default function VocabularyList({ isActive = false }) {
           onClose={() => setFlashcardUnit(null)}
         />
       )}
-      <div className="flex items-center gap-2 mb-5">
+      <div className="flex items-center gap-2 mb-3">
         <BookOpen className="w-5 h-5 text-primary" />
         <h2 className="text-lg font-bold text-foreground">So'zlar ro'yxati</h2>
         <span className="ml-auto text-xs bg-emerald-500/10 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Bepul</span>
+      </div>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs text-muted-foreground font-medium">Tarjima tili:</span>
+        <TranslationLangToggle compact />
       </div>
 
       {/* Search */}
@@ -124,10 +131,10 @@ export default function VocabularyList({ isActive = false }) {
                   >
                     <div className="border-t border-border">
                       {/* Header row */}
-                      <div className="grid grid-cols-3 px-4 py-2 bg-muted/30 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                      <div className={`px-4 py-2 bg-muted/30 text-xs font-semibold text-muted-foreground uppercase tracking-wider ${lang === "both" ? "grid grid-cols-3" : "grid grid-cols-2"}`}>
                         <span>English</span>
-                        <span>O'zbekcha</span>
-                        <span>Русский</span>
+                        {(lang === "both" || lang === "uz") && <span>O'zbekcha</span>}
+                        {(lang === "both" || lang === "ru") && <span>Русский</span>}
                       </div>
                       {unitWords.length === 0 ? (
                         <p className="px-4 py-3 text-sm text-muted-foreground">So'z topilmadi</p>
@@ -135,14 +142,14 @@ export default function VocabularyList({ isActive = false }) {
                         unitWords.map((w, i) => (
                           <div
                             key={w.id || i}
-                            className={`grid grid-cols-3 px-4 py-3 gap-2 text-sm ${i % 2 === 0 ? "" : "bg-muted/20"} border-b border-border last:border-0`}
+                            className={`px-4 py-3 gap-2 text-sm ${lang === "both" ? "grid grid-cols-3" : "grid grid-cols-2"} ${i % 2 === 0 ? "" : "bg-muted/20"} border-b border-border last:border-0`}
                           >
                             <div>
                               <p className="font-semibold text-foreground">{w.english}</p>
                               {w.pronunciation && <p className="text-xs text-muted-foreground mt-0.5">{w.pronunciation}</p>}
                             </div>
-                            <p className="text-foreground">{w.uzbek}</p>
-                            <p className="text-muted-foreground">{w.russian || "—"}</p>
+                            {(lang === "both" || lang === "uz") && <p className="text-foreground">{w.uzbek}</p>}
+                            {(lang === "both" || lang === "ru") && <p className="text-muted-foreground">{w.russian || "—"}</p>}
                           </div>
                         ))
                       )}

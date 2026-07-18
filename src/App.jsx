@@ -24,6 +24,7 @@ import MyProgress from '@/pages/MyProgress';
 import Plans from '@/pages/Plans';
 import Settings from '@/pages/Settings';
 import StudyTips from '@/pages/StudyTips';
+import Welcome from '@/pages/Welcome';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -57,7 +58,8 @@ const AuthenticatedApp = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
-      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+      <Route path="/welcome" element={<Welcome />} />
+      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/welcome" replace />} />}>
         <Route path="/" element={<Home />} />
         <Route path="/quiz/:unitKey" element={<Quiz />} />
         <Route path="/teacher" element={<TeacherDashboard />} />

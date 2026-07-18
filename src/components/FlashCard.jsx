@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw, ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
+import { useTranslationLang } from "@/hooks/useTranslationLang";
 
 export default function FlashCard({ words, unitName, onClose }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(1);
+  const { lang } = useTranslationLang();
 
   const word = words[index];
 
@@ -75,10 +77,12 @@ export default function FlashCard({ words, unitName, onClose }) {
                     <Volume2 className="w-4 h-4" />
                   </button>
                 </>
+              ) : lang === "ru" ? (
+                <p className="text-2xl font-bold text-foreground">{word.russian || "—"}</p>
               ) : (
                 <>
                   <p className="text-2xl font-bold text-foreground">{word.uzbek}</p>
-                  {word.russian && (
+                  {lang === "both" && word.russian && (
                     <p className="text-lg text-muted-foreground">{word.russian}</p>
                   )}
                 </>
