@@ -4,6 +4,14 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Shuffle, CheckCircle2 } from "lucide-react";
 
+// Difficulty drives sentence-complexity targets.
+const DIFFICULTY = {
+  beginner:     { minWords: 3,  label: "Beginner",     target: "one simple complete sentence (subject + verb)",     connectors: [], hint: "Oddiy jumla: sub'ekt + fe'l. Kamida bitta mavzu so'zidan foydalaning." },
+  intermediate: { minWords: 5,  label: "Intermediate",  target: "one complete sentence (5+ words)",                connectors: [], hint: "To'liq jumla tuzing (5+ so'z). Kamida ikkita mavzu so'zidan foydalaning." },
+  advanced:     { minWords: 7,  label: "Advanced",      target: "a compound or complex sentence (7+ words) using a linking word", connectors: ["and", "but", "because", "although", "while", "so", "however"], hint: "Murakkab jumla tuzing (7+ so'z). Bog'lovchi so'z ishlating: and / but / because / although / while / so." },
+  proficient:   { minWords: 9,  label: "Proficient",    target: "a complex / compound-complex sentence (9+ words) with a subordinate clause", connectors: ["because", "although", "while", "when", "if", "that", "which", "since", "unless"], hint: "Murakkab gap tuzing (9+ so'z). Ergash gap bosing: because / although / while / when / if / that / which." },
+};
+
 // Groups of semantically related words
 const WORD_GROUPS = [
   ["travel", "journey", "trip", "voyage", "expedition", "tour"],
@@ -23,7 +31,6 @@ function tokenise(s) {
 }
 
 // Catch word-list / random spam before we spend an LLM call.
-// Returns a hard-fail result object, or null to proceed to LLM grading.
 function quickFail(sentence, theme) {
   const words = tokenise(sentence);
   if (words.length === 0) {
@@ -33,7 +40,6 @@ function quickFail(sentence, theme) {
   const themeWords = tokenise(theme);
   const themeMatchCount = words.filter(w => themeWords.some(tw => w === tw || w.startsWith(tw) || tw.startsWith(w))).length;
 
-  // Word salad: almost every word is the theme/its synonyms, and there's no verb-like structure.
   const hasVerbish = /\b(is|are|was|were|be|been|being|am|go|goes|went|gone|come|came|make|made|see|saw|seen|do|did|done|have|has|had|want|wanted|like|liked|travel|travels|travelled|work|works|worked|talk|talks|talked|say|said|tell|told)\b/i.test(sentence);
   if (themeMatchCount >= 3 && !hasVerbish && words.length <= 12) {
     return {
@@ -44,13 +50,11 @@ function quickFail(sentence, theme) {
     };
   }
 
-  // All duplicates / repetition of one word
   const unique = new Set(words);
   if (words.length >= 4 && unique.size <= 2) {
     return { grammar: 0, relevance: 5, creativity: 0, tip: "So'zni qaytarib yozish jumla emas. Sub'ekt + fe'l ishlatib yangi gap tuzing." };
   }
 
-  // Way too short to be a sentence
   if (words.length < 2) {
     return { grammar: 0, relevance: 0, creativity: 0, tip: "Juda qisqa. To'liq jumla yozing (sub'ekt + fe'l)." };
   }
@@ -58,34 +62,36 @@ function quickFail(sentence, theme) {
   return null;
 }
 
-async function evaluateSentence(sentence, theme) {
+async function evaluateSentence(sentence, theme, themeWords, difficulty) {
   const fail = quickFail(sentence, theme);
   if (fail) return fail;
+
+  const cfg = DIFFICULTY[difficulty] || DIFFICULTY.intermediate;
 
   try {
     const res = await base44.integrations.Core.InvokeLLM({
       prompt: [
-        `You are a strict, calibrated English-language examiner for B1 learners.`,
-        `A student was asked to write ONE meaningful English sentence using words about the theme "${theme}".`,
+        `You are a strict, calibrated English-language examiner for ${cfg.label.toUpperCase()} learners.`,
+        `Theme words the student may use: ${themeWords.join(", ")}.`,
+        `Level target: the student must write ${cfg.target}. Minimum ${cfg.minWords} words.`,
         `The student submitted: "${sentence}".`,
         ``,
-        `Grade STRICTLY. These are NOT sentences and must score very low on grammar and creativity (0-15):`,
-        `- a bare list of words or synonyms with no verb or structure (e.g. "angry furious upset irritated")`,
-        `- a string of words repeated back`,
-        `- words unrelated to the theme`,
-        `- gibberish or a single word repeated`,
+        `Grade STRICTLY and calibrated to this level:`,
+        difficulty === "proficient"
+          ? `PROFICIENT: require a complex/compound-complex sentence with a subordinate clause (because/although/while/when/if/that/which). A simple sentence must score low on grammar and creativity even if correct.`
+          : difficulty === "advanced"
+            ? `ADVANCED: require a compound or complex sentence with a linking word. A correct but merely simple sentence caps grammar at ~55 and creativity at ~40.`
+            : difficulty === "intermediate"
+              ? `INTERMEDIATE: require a complete sentence of 5+ words. Shorter or fragmentary sentences score lower.`
+              : `BEGINNER: accept a simple correct sentence (3+ words). Be encouraging but still require a real verb.`,
         ``,
-        `Grammar rubric (be strict, not generous):`,
-        `- 90-100 = flawless complete sentence, correct tense, word order, agreement`,
-        `- 70-89 = minor error(s) but clear and complete sentence`,
-        `- 40-69 = understandable but several grammar mistakes`,
-        `- 15-39 = fragment, missing key verb, or badly broken`,
-        `- 0-14 = not a sentence at all`,
+        `Word-lists / synonyms with no verb, repeated words, or off-theme gibberish must score 0-15 on grammar and creativity.`,
         ``,
-        `Relevance rubric: how many words genuinely fit the theme "${theme}". Listing theme synonyms without a sentence still counts as relevant to theme.`,
-        `Creativity rubric: originality and variety of the sentence. A word list or a trivial statement scores 0-15.`,
+        `Grammar rubric (be strict): 90-100 flawless; 70-89 minor errors; 40-69 several mistakes; 15-39 fragment; 0-14 not a sentence.`,
+        `Relevance: how many words genuinely fit the theme "${theme}".`,
+        `Creativity: originality and variety. Word lists / trivial statements score 0-15.`,
         ``,
-        `Each score must be a whole number 0-100. Then give ONE short, specific, encouraging tip in English (max 15 words) on how to improve. Reply in JSON only.`,
+        `Each score is a whole number 0-100. Then give ONE short, specific, encouraging tip in English (max 15 words). Reply in JSON only.`,
       ].join("\n"),
       response_json_schema: {
         type: "object",
@@ -97,7 +103,6 @@ async function evaluateSentence(sentence, theme) {
         }
       }
     });
-    // Clamp to valid range in case the model returns odd values.
     const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
     return {
       grammar: clamp(res.grammar),
@@ -110,20 +115,16 @@ async function evaluateSentence(sentence, theme) {
   }
 }
 
-export default function SentenceBuilderGame({ words, onBack, onNewRound, trialExhausted }) {
+export default function SentenceBuilderGame({ words, onBack, onNewRound, trialExhausted, difficulty = "beginner" }) {
+  const cfg = DIFFICULTY[difficulty] || DIFFICULTY.beginner;
   const [groupIdx, setGroupIdx] = useState(null);
   const [sentence, setSentence] = useState("");
   const [result, setResult] = useState(null);
   const [checking, setChecking] = useState(false);
   const [round, setRound] = useState(0);
-  const [history, setHistory] = useState([]);
-
-  // Find matching groups from the vocabulary
-  const vocabEnglish = words.map(w => w.english.toLowerCase());
 
   const getGroup = (idx) => {
     const g = WORD_GROUPS[idx % WORD_GROUPS.length];
-    // Supplement with vocab words that match
     const extra = words.filter(w => g.some(gw => w.english.toLowerCase().includes(gw) || gw.includes(w.english.toLowerCase()))).map(w => w.english);
     return [...new Set([...g, ...extra])].slice(0, 7);
   };
@@ -143,35 +144,33 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
   const handleSubmit = async () => {
     if (!sentence.trim() || checking) return;
     setChecking(true);
-    const res = await evaluateSentence(sentence, theme);
+    const res = await evaluateSentence(sentence, theme, currentGroup, difficulty);
     setResult(res);
-    setHistory(h => [...h, { sentence, group: currentGroup, result: res }]);
     setChecking(false);
   };
 
   const nextRound = () => {
-    if (trialExhausted) {
-      onBack();
-      return;
-    }
+    if (trialExhausted) { onBack(); return; }
     if (onNewRound) onNewRound();
     setRound(r => r + 1);
     startRound();
   };
 
   const avg = result ? Math.round((result.grammar + result.relevance + result.creativity) / 3) : 0;
+  const wordCount = tokenise(sentence).length;
+  const meetsMin = wordCount >= cfg.minWords;
 
   return (
     <div className="max-w-sm mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
-        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground">← Orqaga</button>
-        <span className="text-xs bg-violet-500/10 text-violet-700 font-semibold px-2.5 py-1 rounded-full">Jumla yasash</span>
+        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← Orqaga</button>
+        <span className="text-xs bg-violet-500/10 text-violet-700 font-semibold px-2.5 py-1 rounded-full">{cfg.label}</span>
         <span className="text-xs text-muted-foreground">#{round + 1}</span>
       </div>
 
       {/* Word group display */}
-      <div className="bg-gradient-to-br from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 mb-5">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Quyidagi so'zlardan foydalanib jumla tuzing:</p>
+      <div className="bg-gradient-to-br from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 mb-4">
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Quyidagi so'zlardan foydalanib jumla tuzing:</p>
         <div className="flex flex-wrap gap-2">
           {currentGroup.map((w, i) => (
             <motion.span
@@ -187,6 +186,26 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
           ))}
         </div>
         <p className="text-xs text-muted-foreground mt-3">💡 So'zni bosib jumla ichiga qo'shing yoki o'zingiz yozing</p>
+      </div>
+
+      {/* Difficulty instruction */}
+      <div className="bg-amber-500/10 border border-amber-300 dark:border-amber-700 rounded-xl p-3 mb-4">
+        <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">🎯 {cfg.label} vazifasi</p>
+        <p className="text-xs text-foreground/80">{cfg.hint}</p>
+        {cfg.connectors.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {cfg.connectors.map(c => (
+              <button
+                key={c}
+                onClick={() => !result && setSentence(s => s ? s + " " + c : c)}
+                className="text-[11px] px-2 py-0.5 rounded-full bg-background border border-amber-300 dark:border-amber-700 text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950 transition-colors select-none"
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
+        <p className="text-[11px] text-muted-foreground mt-2">Minimum so'zlar: {cfg.minWords} · Hozir: {wordCount} {meetsMin ? "✓" : "✗"}</p>
       </div>
 
       {/* Text input */}
@@ -223,10 +242,7 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
                     <span>{label}</span><span className="font-semibold text-foreground">{val}%</span>
                   </div>
                   <div className="h-2 bg-muted rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }} animate={{ width: `${val}%` }}
-                      className="h-full rounded-full bg-primary"
-                    />
+                    <motion.div initial={{ width: 0 }} animate={{ width: `${val}%` }} className="h-full rounded-full bg-primary" />
                   </div>
                 </div>
               ))}
@@ -244,8 +260,8 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
         </Button>
       ) : (
         <div className="flex gap-3">
-          <Button variant="outline" onClick={onBack} className="flex-1">Chiqish</Button>
-          <Button onClick={nextRound} className="flex-1">
+          <Button variant="outline" onClick={onBack} className="flex-1 select-none">Chiqish</Button>
+          <Button onClick={nextRound} className="flex-1 select-none">
             <Shuffle className="w-4 h-4 mr-1" /> Yangi tur
           </Button>
         </div>

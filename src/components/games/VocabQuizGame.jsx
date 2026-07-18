@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
-import { Timer, CheckCircle2, XCircle, Lightbulb } from "lucide-react";
+import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslationLang } from "@/hooks/useTranslationLang";
 
-const QUESTION_TYPES = ["define"];
-const TIME_PER_Q = 30;
-const TOTAL_QUESTIONS = 30;
+const DIFF_CONFIG = {
+  beginner:     { count: 20, types: ["multiple_choice"], hints: true },
+  intermediate:  { count: 30, types: ["multiple_choice", "translation"], hints: true },
+  advanced:      { count: 30, types: ["translation", "define"], hints: false },
+  proficient:    { count: 40, types: ["define"], hints: false },
+};
 
-function shuffle(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
 function levenshtein(a, b) {
   const m = a.length, n = b.length;
@@ -44,33 +45,33 @@ async function aiSimilarity(userInput, word) {
   }
 }
 
-export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned }) {
+export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
+  const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
+  const timed = timePerQ && timePerQ > 0;
+
   const [questions, setQuestions] = useState([]);
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [defineInput, setDefineInput] = useState("");
   const [defineScore, setDefineScore] = useState(null);
   const [checking, setChecking] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(TIME_PER_Q);
+  const [timeLeft, setTimeLeft] = useState(timed ? timePerQ : 0);
   const [scores, setScores] = useState([]);
   const [done, setDone] = useState(false);
-  const [coinAnimation, setCoinAnimation] = useState(null); // "+N 🪙"
+  const [waitingNext, setWaitingNext] = useState(false);
+  const [coinAnimation, setCoinAnimation] = useState(null);
   const timerRef = useRef(null);
   const { showRu } = useTranslationLang();
 
-  useEffect(() => {
-    buildQuestions();
-  }, [words]);
-
   const buildQuestions = () => {
-    const TARGET = TOTAL_QUESTIONS;
+    const TARGET = Math.min(cfg.count, Math.max(words.length, 1));
     let expanded = shuffle(words);
     while (expanded.length < TARGET && words.length > 0) {
       expanded = [...expanded, ...shuffle(words)];
     }
-    const pool = expanded.slice(0, Math.min(TARGET, expanded.length));
+    const pool = expanded.slice(0, TARGET);
     const qs = pool.map(word => {
-      const type = QUESTION_TYPES[Math.floor(Math.random() * QUESTION_TYPES.length)];
+      const type = cfg.types[Math.floor(Math.random() * cfg.types.length)];
       let options = [];
       if (type === "multiple_choice") {
         const distractors = shuffle(words.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.uzbek);
@@ -86,12 +87,16 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     setQIndex(0);
     setScores([]);
     setDone(false);
+    setWaitingNext(false);
     startTimer();
   };
 
+  useEffect(() => { buildQuestions(); /* eslint-disable-next-line */ }, [words]);
+
   const startTimer = () => {
     clearInterval(timerRef.current);
-    setTimeLeft(TIME_PER_Q);
+    if (!timed) { setTimeLeft(0); return; }
+    setTimeLeft(timePerQ);
     timerRef.current = setInterval(() => {
       setTimeLeft(t => {
         if (t <= 1) { clearInterval(timerRef.current); handleTimeout(); return 0; }
@@ -103,7 +108,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   const handleTimeout = () => {
     setScores(s => [...s, 0]);
     setSelected("__timeout__");
-    setTimeout(() => advance(false), 1200);
+    afterAnswer();
   };
 
   useEffect(() => () => clearInterval(timerRef.current), []);
@@ -111,7 +116,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   useEffect(() => {
     if (!done || !user || scores.length === 0) return;
     const correctCount = scores.filter(s => s === 100).length;
-    const coinsEarned = correctCount * 1; // 1 coin per correct answer
+    const coinsEarned = correctCount * 1;
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     base44.entities.QuizResult.create({
@@ -123,19 +128,21 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
       date: dateStr
     }).catch(() => {});
     if (coinsEarned > 0 && onCoinsEarned) onCoinsEarned(coinsEarned, correctCount);
-
   }, [done]);
 
-  const advance = (correct) => {
-    clearInterval(timerRef.current);
-    setTimeout(() => {
-      setSelected(null);
-      setDefineInput("");
-      setDefineScore(null);
-      if (qIndex + 1 >= questions.length) { setDone(true); return; }
-      setQIndex(i => i + 1);
-      startTimer();
-    }, 1000);
+  const goNext = () => {
+    setSelected(null);
+    setDefineInput("");
+    setDefineScore(null);
+    setWaitingNext(false);
+    if (qIndex + 1 >= questions.length) { setDone(true); return; }
+    setQIndex(i => i + 1);
+    startTimer();
+  };
+
+  const afterAnswer = () => {
+    if (autoAdvance) setTimeout(goNext, 1000);
+    else setWaitingNext(true);
   };
 
   const handleOption = (opt) => {
@@ -146,7 +153,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const correct = q.type === "multiple_choice" ? opt === q.word.uzbek : opt === q.word.english;
     setScores(s => [...s, correct ? 100 : 0]);
     if (correct) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
-    advance(correct);
+    afterAnswer();
   };
 
   const handleDefineSubmit = async () => {
@@ -156,8 +163,9 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const score = await aiSimilarity(defineInput, questions[qIndex].word);
     setDefineScore(score);
     setScores(s => [...s, score]);
+    if (score === 100) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
     setChecking(false);
-    advance(score >= 50);
+    afterAnswer();
   };
 
   if (questions.length === 0) {
@@ -173,9 +181,9 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
         <h2 className="text-2xl font-bold text-foreground mb-2">Quiz tugadi!</h2>
-        <p className="text-muted-foreground mb-4">{unitName}</p>
+        <p className="text-muted-foreground mb-1">{unitName}</p>
+        <p className="text-xs text-muted-foreground mb-4 capitalize">{difficulty} daraja · {questions.length} ta savol</p>
 
-        {/* Coins earned */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3"
@@ -191,7 +199,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           <p className="text-4xl font-bold text-primary">{avg}%</p>
           <p className="text-sm text-muted-foreground mt-1">O'rtacha ball</p>
         </div>
-        <div className="space-y-2 mb-6">
+        <div className="space-y-2 mb-6 max-h-64 overflow-y-auto">
           {scores.map((s, i) => (
             <div key={i} className="flex items-center justify-between text-sm px-2">
               <span className="text-muted-foreground">Savol {i + 1}</span>
@@ -209,11 +217,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   }
 
   const q = questions[qIndex];
-  const timerPct = (timeLeft / TIME_PER_Q) * 100;
+  const timerPct = timed ? (timeLeft / timePerQ) * 100 : 0;
 
   return (
     <div className="max-w-sm mx-auto px-4 py-6 relative">
-      {/* Coin animation */}
       <AnimatePresence>
         {coinAnimation && (
           <motion.div
@@ -230,21 +237,23 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground">← Orqaga</button>
+        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← Orqaga</button>
         <span className="text-xs text-muted-foreground font-medium">{qIndex + 1} / {questions.length}</span>
         <div className="flex items-center gap-1 text-sm font-semibold text-primary">
-          <Timer className="w-4 h-4" />
-          <span>{timeLeft}s</span>
+          {timed ? (<><Timer className="w-4 h-4" /><span>{timeLeft}s</span></>) : <span className="text-xs">∞ Cheksiz</span>}
         </div>
       </div>
 
       {/* Timer bar */}
-      <div className="h-1.5 bg-muted rounded-full mb-6 overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-1000"
-          style={{ width: `${timerPct}%`, background: timerPct > 50 ? "#6366f1" : timerPct > 25 ? "#f59e0b" : "#ef4444" }}
-        />
-      </div>
+      {timed && (
+        <div className="h-1.5 bg-muted rounded-full mb-6 overflow-hidden">
+          <div
+            className="h-full rounded-full transition-all duration-1000"
+            style={{ width: `${timerPct}%`, background: timerPct > 50 ? "#6366f1" : timerPct > 25 ? "#f59e0b" : "#ef4444" }}
+          />
+        </div>
+      )}
+      {!timed && <div className="mb-6" />}
 
       {/* Question */}
       <AnimatePresence mode="wait">
@@ -254,14 +263,14 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">O'zbekchaga tarjima qiling</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.english}</p>
-                {q.word.pronunciation && <p className="text-sm text-muted-foreground mt-1">{q.word.pronunciation}</p>}
+                {cfg.hints && q.word.pronunciation && <p className="text-sm text-muted-foreground mt-1">{q.word.pronunciation}</p>}
               </>
             )}
             {q.type === "translation" && (
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">Inglizchaga tarjima qiling</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
-                {showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
+                {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
             {q.type === "define" && (
@@ -270,7 +279,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
                   <Lightbulb className="inline w-3.5 h-3.5 mr-1" />Inglizcha tarjimasini yozing
                 </p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
-                {showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
+                {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
           </div>
@@ -305,7 +314,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
                 disabled={checking || defineScore !== null}
               />
               {defineScore !== null && (
-                <div               className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore === 100 ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
+                <div className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore === 100 ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
                   {defineScore === 100 ? "✅ Ajoyib! +1 🪙" : "❌ Noto'g'ri!"} — {defineScore === 100 ? "100%" : "0%"} to'g'ri
                   <p className="text-xs font-normal mt-1 text-muted-foreground">To'g'ri javob: {q.word.english} = {q.word.uzbek}</p>
                 </div>
@@ -319,6 +328,15 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           )}
         </motion.div>
       </AnimatePresence>
+
+      {/* Manual next button (when auto-advance off) */}
+      {waitingNext && !autoAdvance && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+          <Button onClick={goNext} className="w-full mt-4 select-none">
+            {qIndex + 1 >= questions.length ? "Yakunlash" : "Keyingi savol"} <ArrowRight className="w-4 h-4 ml-1" />
+          </Button>
+        </motion.div>
+      )}
     </div>
   );
 }

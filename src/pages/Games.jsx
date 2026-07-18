@@ -7,6 +7,7 @@ import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
 import UnitDrawer from "@/components/UnitDrawer";
 import RoomLeaderboard from "@/components/games/RoomLeaderboard";
+import GameSetup from "@/components/games/GameSetup";
 
 const TRIAL_KEY = "vocab_trial_rounds";
 const MAX_TRIAL_ROUNDS = 5;
@@ -46,6 +47,8 @@ export default function Games({ isActive = false, user = null }) {
   const [activeGame, setActiveGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [trialRounds, setTrialRounds] = useState(() => parseInt(localStorage.getItem(TRIAL_KEY) || "0", 10));
+  const [setupGame, setSetupGame] = useState(null);
+  const [config, setConfig] = useState(null);
   const [userCoins, setUserCoins] = useState(null);
   const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
 
@@ -72,13 +75,17 @@ export default function Games({ isActive = false, user = null }) {
 
   const unitWords = words.filter(w => selectedUnit && w.unit_key === selectedUnit.key);
 
-  const startGame = (game) => {
+  const openSetup = (game) => setSetupGame(game);
+
+  const handleSetupStart = (cfg) => {
     if (!isActive) {
       const next = trialRounds + 1;
       localStorage.setItem(TRIAL_KEY, String(next));
       setTrialRounds(next);
     }
-    setActiveGame(game);
+    setConfig(cfg);
+    setActiveGame(setupGame);
+    setSetupGame(null);
   };
 
   const handleBack = () => setActiveGame(null);
@@ -115,6 +122,17 @@ export default function Games({ isActive = false, user = null }) {
     );
   }
 
+  if (setupGame) {
+    return (
+      <GameSetup
+        gameId={setupGame}
+        unitName={selectedUnit?.name || ""}
+        onStart={handleSetupStart}
+        onCancel={() => setSetupGame(null)}
+      />
+    );
+  }
+
   if (activeGame === "quiz") {
     return (
       <VocabQuizGame
@@ -123,6 +141,9 @@ export default function Games({ isActive = false, user = null }) {
         onBack={handleBack}
         user={user}
         onCoinsEarned={handleCoinsEarned}
+        difficulty={config?.difficulty || "intermediate"}
+        timePerQ={config?.timePerQ ?? 30}
+        autoAdvance={config?.autoAdvance ?? true}
       />
     );
   }
@@ -132,6 +153,7 @@ export default function Games({ isActive = false, user = null }) {
       <SentenceBuilderGame
         words={words}
         onBack={handleBack}
+        difficulty={config?.difficulty || "beginner"}
         trialExhausted={!isActive && trialRounds >= MAX_TRIAL_ROUNDS}
         onNewRound={() => {
           if (!isActive) {
@@ -226,7 +248,7 @@ export default function Games({ isActive = false, user = null }) {
           <motion.div
             key={card.id}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: idx * 0.08 }}
-            onClick={() => startGame(card.id)}
+            onClick={() => openSetup(card.id)}
             className={`relative overflow-hidden bg-gradient-to-br ${card.lightBg} border ${card.border} rounded-2xl cursor-pointer select-none group`}
             whileTap={{ scale: 0.98 }}
           >
