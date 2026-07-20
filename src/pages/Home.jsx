@@ -28,7 +28,7 @@ export default function Home() {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("vocab");
+  const [activeTab, setActiveTab] = useState("home");
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
