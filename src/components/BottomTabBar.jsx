@@ -1,13 +1,15 @@
 import React from "react";
 import { Home, BookOpen, Settings, Gamepad2, Sparkles } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function BottomTabBar({ activeTab, onTabChange }) {
+  const { t } = useAppLang();
   const tabs = [
-    { id: "home", label: "Bosh sahifa", icon: Home },
-    { id: "vocab", label: "So'zlar", icon: BookOpen },
-    { id: "games", label: "O'yinlar", icon: Gamepad2 },
-    { id: "tutor", label: "AI Ustoz", icon: Sparkles },
-    { id: "settings", label: "Sozlamalar", icon: Settings },
+    { id: "home", label: t("nav.home"), icon: Home },
+    { id: "vocab", label: t("nav.words"), icon: BookOpen },
+    { id: "games", label: t("nav.games"), icon: Gamepad2 },
+    { id: "tutor", label: t("nav.ai_teacher"), icon: Sparkles },
+    { id: "settings", label: t("nav.settings"), icon: Settings },
   ];
 
   return (

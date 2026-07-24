@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Bell, Check } from "lucide-react";
+import { ArrowLeft, Bell, Check, Globe } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Switch } from "@/components/ui/switch";
+import { useAppLang } from "@/hooks/useAppLang";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export default function Settings() {
+  const { t } = useAppLang();
   const [user, setUser] = useState(null);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -44,31 +47,42 @@ export default function Settings() {
         <Link to="/" className="text-muted-foreground hover:text-foreground p-1.5 select-none">
           <ArrowLeft className="w-5 h-5" />
         </Link>
-        <span className="font-bold text-foreground select-none">Hisob sozlamalari</span>
+        <span className="font-bold text-foreground select-none">{t("settings.title")}</span>
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-4">
         <div className="bg-background rounded-2xl border border-border p-5">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Profil</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">{t("settings.profile")}</p>
           <ProfileEditor user={user} onSaved={reloadUser} />
           <p className="text-sm text-muted-foreground mt-3 text-center">{user?.email}</p>
         </div>
 
         <div className="bg-background rounded-2xl border border-border p-5">
-          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Bildirishnomalar</p>
+          <div className="flex items-center gap-2 mb-4">
+            <Globe className="w-4 h-4 text-primary" />
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">{t("settings.language")}</p>
+              <p className="text-xs text-muted-foreground/80">{t("settings.language_desc")}</p>
+            </div>
+          </div>
+          <LanguageSelector />
+        </div>
+
+        <div className="bg-background rounded-2xl border border-border p-5">
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">{t("settings.notifications")}</p>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Bell className="w-5 h-5 text-muted-foreground" />
               <div>
-                <p className="text-sm font-medium text-foreground">Email bildirishnomalari</p>
-                <p className="text-xs text-muted-foreground">Obuna va yangiliklar haqida email olish</p>
+                <p className="text-sm font-medium text-foreground">{t("settings.email_notifications")}</p>
+                <p className="text-xs text-muted-foreground">{t("settings.email_notifications_desc")}</p>
               </div>
             </div>
             <Switch checked={notificationsEnabled} onCheckedChange={handleToggleNotifications} />
           </div>
           {saved && (
             <p className="flex items-center gap-1 text-xs text-emerald-600 font-medium mt-3">
-              <Check className="w-3.5 h-3.5" /> Saqlandi
+              <Check className="w-3.5 h-3.5" /> {t("settings.saved")}
             </p>
           )}
         </div>
