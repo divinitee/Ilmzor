@@ -3,8 +3,10 @@ import { base44 } from "@/api/base44Client";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function Leaderboard() {
+  const { t } = useAppLang();
   const [user, setUser] = useState(null);
   const [board, setBoard] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,7 +29,7 @@ export default function Leaderboard() {
         </Link>
         <div className="flex items-center gap-2 select-none">
           <Trophy className="w-5 h-5 text-amber-500" />
-          <span className="font-bold text-foreground">Reyting jadvali</span>
+          <span className="font-bold text-foreground">{t("leaderboard.title")}</span>
         </div>
       </header>
 
@@ -38,7 +40,7 @@ export default function Leaderboard() {
           </div>
         ) : board.length === 0 ? (
           <div className="bg-background border border-border rounded-2xl p-8 text-center">
-            <p className="text-sm text-muted-foreground">Hali hech kim tanga yig'magan. Birinchi bo'ling! 🎮</p>
+            <p className="text-sm text-muted-foreground">{t("leaderboard.empty")}</p>
           </div>
         ) : (
           <div className="bg-background border border-border rounded-2xl overflow-hidden">
@@ -57,9 +59,9 @@ export default function Leaderboard() {
                   <div className="flex-1 min-w-0">
                     <p className={`text-sm font-semibold truncate ${isMe ? "text-primary" : "text-foreground"}`}>
                       {entry.user_name || entry.email?.split("@")[0]}
-                      {isMe && <span className="ml-1 text-xs font-normal text-muted-foreground">(siz)</span>}
+                      {isMe && <span className="ml-1 text-xs font-normal text-muted-foreground">{t("leaderboard.you")}</span>}
                     </p>
-                    <p className="text-xs text-muted-foreground">{entry.total_correct || 0} to'g'ri javob</p>
+                    <p className="text-xs text-muted-foreground">{entry.total_correct || 0} {t("leaderboard.correct_answers")}</p>
                   </div>
                   <div className="flex items-center gap-1 flex-shrink-0">
                     <span className="text-sm font-bold text-amber-600">{entry.coins || 0}</span>

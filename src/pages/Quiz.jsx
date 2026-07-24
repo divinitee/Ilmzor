@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookOpen, CheckCircle, XCircle, ArrowRight, Trophy, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -14,6 +15,7 @@ const pageVariants = {
 export default function Quiz() {
   const { unitKey } = useParams();
   const navigate = useNavigate();
+  const { t } = useAppLang();
   const [user, setUser] = useState(null);
   const [words, setWords] = useState([]);
   const [unitName, setUnitName] = useState("");
@@ -123,21 +125,21 @@ export default function Quiz() {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <BookOpen className="w-5 h-5 text-primary select-none" />
-          <span className="font-bold text-foreground">Destination B1 Quiz</span>
+          <span className="font-bold text-foreground">{t("quiz.result_header")}</span>
         </header>
         <div className="flex-1 flex items-center justify-center px-4">
           <div className="bg-background rounded-2xl shadow-sm border border-border p-8 max-w-md w-full text-center">
             <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-4">
               <Trophy className="w-8 h-8 text-emerald-600 select-none" />
             </div>
-            <h2 className="text-xl font-bold text-foreground mb-2">Test Yakunlandi!</h2>
+            <h2 className="text-xl font-bold text-foreground mb-2">{t("quiz.finished_title")}</h2>
             <p className="text-muted-foreground text-sm mb-6">{unitName}</p>
             <div className="bg-muted/40 rounded-xl p-6 mb-6">
               <p className="text-4xl font-bold text-primary">{correctCount}<span className="text-muted-foreground text-lg"> / {words.length}</span></p>
-              <p className="text-sm text-muted-foreground mt-1">{percentage}% to'g'ri</p>
+              <p className="text-sm text-muted-foreground mt-1">{t("quiz.correct_pct", { n: percentage })}</p>
             </div>
             <Button onClick={() => navigate("/")} className="w-full h-12 font-semibold select-none">
-              Dashboardga qaytish
+              {t("quiz.back_to_dashboard")}
             </Button>
           </div>
         </div>
@@ -171,7 +173,7 @@ export default function Quiz() {
       <div className="flex-1 flex items-center justify-center px-4">
         <div className="bg-background rounded-2xl shadow-sm border border-border p-8 max-w-md w-full">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-muted-foreground select-none">Vaqt</span>
+            <span className="text-xs text-muted-foreground select-none">{t("quiz.time")}</span>
             <span className={`text-xs font-bold select-none ${timeLeft <= 5 ? 'text-destructive' : 'text-muted-foreground'}`}>{timeLeft}s</span>
           </div>
           <div className="h-1.5 bg-muted rounded-full mb-8 overflow-hidden">
@@ -189,13 +191,13 @@ export default function Quiz() {
                 className={`flex items-center justify-center gap-2 mb-4 py-2 rounded-lg text-sm font-semibold select-none ${lastResult === "correct" ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}
               >
                 {lastResult === "correct" ? <CheckCircle className="w-4 h-4" /> : <XCircle className="w-4 h-4" />}
-                {lastResult === "correct" ? "To'g'ri!" : `Noto'g'ri. Javob: ${words[currentIndex]?.english}`}
+                {lastResult === "correct" ? t("quiz.correct") : `${t("quiz.wrong")} ${words[currentIndex]?.english}`}
               </motion.div>
             )}
           </AnimatePresence>
 
           <div className="text-center mb-8 select-none">
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">O'zbekcha so'z</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">{t("quiz.uzbek_word")}</p>
             <p className="text-3xl font-bold text-foreground">{word.uzbek}</p>
             {word.russian && (
               <p className="text-sm text-muted-foreground mt-1 italic">{word.russian}</p>
@@ -208,13 +210,13 @@ export default function Quiz() {
             value={answer}
             onChange={e => setAnswer(e.target.value)}
             onKeyDown={e => { if (e.key === "Enter") handleNext(false); }}
-            placeholder="Inglizcha javobni yozing..."
+            placeholder={t("quiz.answer_placeholder")}
             autoComplete="off"
             className="w-full h-12 px-4 border-2 border-input rounded-xl text-base bg-background text-foreground focus:border-primary focus:outline-none transition-colors mb-4"
           />
 
           <Button onClick={() => handleNext(false)} className="w-full h-12 font-semibold gap-2 select-none">
-            Keyingisi
+            {t("quiz.next")}
             <ArrowRight className="w-4 h-4" />
           </Button>
 

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import FlashCard from "@/components/FlashCard";
 import TranslationLangToggle from "@/components/TranslationLangToggle";
 import { useTranslationLang } from "@/hooks/useTranslationLang";
+import { useAppLang } from "@/hooks/useAppLang";
 import { Link } from "react-router-dom";
 
 
@@ -17,6 +18,7 @@ export default function VocabularyList({ isActive = false }) {
   const [openUnit, setOpenUnit] = useState(null);
   const [flashcardUnit, setFlashcardUnit] = useState(null);
   const { lang } = useTranslationLang();
+  const { t } = useAppLang();
 
   useEffect(() => { loadWords(); }, []);
 
@@ -69,11 +71,11 @@ export default function VocabularyList({ isActive = false }) {
       )}
       <div className="flex items-center gap-2 mb-3">
         <BookOpen className="w-5 h-5 text-primary" />
-        <h2 className="text-lg font-bold text-foreground">So'zlar ro'yxati</h2>
-        <span className="ml-auto text-xs bg-emerald-500/10 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">Bepul</span>
+        <h2 className="text-lg font-bold text-foreground">{t("vocab.title")}</h2>
+        <span className="ml-auto text-xs bg-emerald-500/10 text-emerald-700 font-semibold px-2.5 py-1 rounded-full">{t("vocab.free_badge")}</span>
       </div>
       <div className="flex items-center justify-between mb-4">
-        <span className="text-xs text-muted-foreground font-medium">Tarjima tili:</span>
+        <span className="text-xs text-muted-foreground font-medium">{t("vocab.translation_lang")}</span>
         <TranslationLangToggle compact />
       </div>
 
@@ -82,7 +84,7 @@ export default function VocabularyList({ isActive = false }) {
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           type="text"
-          placeholder="So'z qidiring..."
+          placeholder={t("vocab.search_placeholder")}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full h-10 pl-9 pr-4 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
@@ -110,14 +112,14 @@ export default function VocabularyList({ isActive = false }) {
                 >
                   <div>
                     <p className="font-semibold text-foreground text-sm">{displayName}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{words.filter(w => w.unit_key === unit.key).length} ta so'z</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{t("vocab.words_count", { n: words.filter(w => w.unit_key === unit.key).length })}</p>
                   </div>
                   <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
                 </button>
                 <button
                   onClick={() => setFlashcardUnit({ key: unit.key, name: displayName })}
                   className="px-3 py-4 text-primary hover:text-primary/70 transition-colors border-l border-border select-none"
-                  title="Flashcard rejimi"
+                  title={t("vocab.flashcard_mode")}
                 >
                   <Layers className="w-4 h-4" />
                 </button>
@@ -132,12 +134,12 @@ export default function VocabularyList({ isActive = false }) {
                     <div className="border-t border-border">
                       {/* Header row */}
                       <div className={`px-4 py-2 bg-muted/30 text-xs font-semibold text-muted-foreground uppercase tracking-wider ${lang === "both" ? "grid grid-cols-3" : "grid grid-cols-2"}`}>
-                        <span>English</span>
-                        {(lang === "both" || lang === "uz") && <span>O'zbekcha</span>}
-                        {(lang === "both" || lang === "ru") && <span>Русский</span>}
+                        <span>{t("vocab.english")}</span>
+                        {(lang === "both" || lang === "uz") && <span>{t("vocab.uzbek")}</span>}
+                        {(lang === "both" || lang === "ru") && <span>{t("vocab.russian")}</span>}
                       </div>
                       {unitWords.length === 0 ? (
-                        <p className="px-4 py-3 text-sm text-muted-foreground">So'z topilmadi</p>
+                        <p className="px-4 py-3 text-sm text-muted-foreground">{t("vocab.no_words")}</p>
                       ) : (
                         unitWords.map((w, i) => (
                           <div
@@ -164,18 +166,18 @@ export default function VocabularyList({ isActive = false }) {
 
       {!isActive && (
         <div className="mt-6 bg-gradient-to-br from-indigo-500/10 to-violet-500/10 border border-indigo-300 dark:border-indigo-700 rounded-2xl p-5 text-center">
-          <p className="text-sm font-bold text-foreground mb-1">🔒 Bepul sinov: har bir unitdan 5 ta so'z</p>
-          <p className="text-xs text-muted-foreground mb-4">Barcha so'zlarni ko'rish uchun obuna kerak</p>
+          <p className="text-sm font-bold text-foreground mb-1">{t("vocab.trial_title")}</p>
+          <p className="text-xs text-muted-foreground mb-4">{t("vocab.trial_desc")}</p>
           <Link to="/pricing">
             <button className="bg-primary text-primary-foreground text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-colors select-none">
-              Obuna rejalarini ko'rish →
+              {t("vocab.view_plans")}
             </button>
           </Link>
         </div>
       )}
 
       <footer className="mt-8 text-center text-xs text-muted-foreground pb-4">
-        Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
+        {t("vocab.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
       </footer>
     </div>
     </div>

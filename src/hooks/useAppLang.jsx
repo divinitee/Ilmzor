@@ -37,12 +37,18 @@ export function useAppLang() {
     setLangState(next);
   }, []);
 
-  const t = useCallback((key) => {
+  const t = useCallback((key, vars) => {
     const dict = translations[lang] || translations[DEFAULT_LANG];
-    return resolveKey(dict, key) ?? resolveKey(translations[DEFAULT_LANG], key) ?? key;
+    let str = resolveKey(dict, key) ?? resolveKey(translations[DEFAULT_LANG], key) ?? key;
+    if (vars) {
+      for (const [k, v] of Object.entries(vars)) {
+        str = str.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+      }
+    }
+    return str;
   }, [lang]);
 
-  return { lang, setLang, t };
+  return { lang, setLang, t, translations };
 }
 
 // module-level accessor for non-hook contexts

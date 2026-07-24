@@ -3,8 +3,10 @@ import { base44 } from "@/api/base44Client";
 import { Link } from "react-router-dom";
 import { ArrowLeft, TrendingUp, Trophy, Target } from "lucide-react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function MyProgress() {
+  const { t } = useAppLang();
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +33,7 @@ export default function MyProgress() {
         </Link>
         <div className="flex items-center gap-2 select-none">
           <TrendingUp className="w-5 h-5 text-primary" />
-          <span className="font-bold text-foreground">Mening natijalarim</span>
+          <span className="font-bold text-foreground">{t("myprogress.title")}</span>
         </div>
       </header>
 
@@ -46,23 +48,23 @@ export default function MyProgress() {
               <div className="flex-1 bg-background border border-border rounded-2xl p-4 text-center">
                 <Target className="w-5 h-5 text-primary mx-auto mb-1" />
                 <p className="text-2xl font-bold text-foreground">{totalQuizzes}</p>
-                <p className="text-xs text-muted-foreground mt-1">Jami testlar</p>
+                <p className="text-xs text-muted-foreground mt-1">{t("myprogress.total_quizzes")}</p>
               </div>
               <div className="flex-1 bg-background border border-border rounded-2xl p-4 text-center">
                 <Trophy className="w-5 h-5 text-amber-500 mx-auto mb-1" />
                 <p className="text-2xl font-bold text-emerald-600">{avgScore}%</p>
-                <p className="text-xs text-muted-foreground mt-1">O'rtacha natija</p>
+                <p className="text-xs text-muted-foreground mt-1">{t("myprogress.avg_score")}</p>
               </div>
             </div>
 
             {chartData.length > 1 && (
               <div className="bg-background border border-border rounded-2xl p-4 mb-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Natijalar dinamikasi</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">{t("myprogress.dynamics")}</p>
                 <ResponsiveContainer width="100%" height={180}>
                   <LineChart data={chartData}>
                     <XAxis dataKey="name" tick={{ fontSize: 10 }} stroke="currentColor" opacity={0.5} />
                     <YAxis domain={[0, 100]} tick={{ fontSize: 10 }} stroke="currentColor" opacity={0.5} />
-                    <Tooltip formatter={(v) => [`${v}%`, "Natija"]} />
+                    <Tooltip formatter={(v) => [`${v}%`, t("myprogress.score_label")]} />
                     <Line type="monotone" dataKey="percent" stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 3 }} />
                   </LineChart>
                 </ResponsiveContainer>
@@ -70,9 +72,9 @@ export default function MyProgress() {
             )}
 
             <div className="bg-background border border-border rounded-2xl p-5">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Oxirgi testlar</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">{t("myprogress.recent_tests")}</p>
               {results.length === 0 ? (
-                <p className="text-sm text-muted-foreground text-center py-6">Hali test topshirmadingiz.</p>
+                <p className="text-sm text-muted-foreground text-center py-6">{t("myprogress.no_tests")}</p>
               ) : (
                 <div className="space-y-3">
                   {results.map((r, i) => (

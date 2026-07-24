@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, Check, Crown, Star, Zap, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const plans = [
   {
@@ -16,17 +17,10 @@ const plans = [
     icon: Crown,
     color: "from-amber-500/20 to-orange-500/20",
     border: "border-amber-400",
-    badge: null,
+    badgeKey: null,
     iconColor: "text-amber-600",
-    features: [
-      "Barcha unitlar — cheksiz kirish",
-      "To'liq test va reading imkoniyati",
-      "Barcha o'yinlar va flashcard",
-      "O'qituvchi kuzatuvi",
-      "🤖 AI So'z Ustozi bilan mashq qilish",
-      "Yangi kontentga erta kirish",
-      "Ustuvor qo'llab-quvvatlash",
-    ],
+    hasAI: true,
+    featureKeys: ["all_units", "full_test", "all_games", "teacher_track", "early_access", "priority_support"],
   },
   {
     id: "learner",
@@ -38,15 +32,10 @@ const plans = [
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
     border: "border-indigo-500",
-    badge: "Eng mashhur",
+    badgeKey: "learner",
     iconColor: "text-indigo-600",
-    features: [
-      "Barcha unitlar — cheksiz kirish",
-      "To'liq test va reading imkoniyati",
-      "Barcha o'yinlar va flashcard",
-      "O'qituvchi kuzatuvi",
-      "🤖 AI So'z Ustozi bilan mashq qilish",
-    ],
+    hasAI: true,
+    featureKeys: ["all_units", "full_test", "all_games", "teacher_track"],
   },
   {
     id: "starter",
@@ -58,18 +47,16 @@ const plans = [
     icon: Zap,
     color: "from-emerald-500/10 to-teal-500/10",
     border: "border-emerald-400",
-    badge: null,
+    badgeKey: null,
     iconColor: "text-emerald-600",
-    features: [
-      "Barcha unitlar — cheksiz kirish",
-      "To'liq test va reading imkoniyati",
-      "Flashcard rejimi",
-    ],
+    hasAI: false,
+    featureKeys: ["all_units", "full_test", "flashcard_only"],
   },
 ];
 
 export default function Pricing() {
   const navigate = useNavigate();
+  const { t } = useAppLang();
   const [selectedPlan, setSelectedPlan] = useState("learner");
   const [step, setStep] = useState("plans"); // "plans" | "payment"
   const [paymentRef, setPaymentRef] = useState("");
@@ -120,12 +107,12 @@ export default function Pricing() {
           <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
             <Check className="w-10 h-10 text-emerald-600" />
           </div>
-          <h2 className="text-2xl font-bold text-foreground mb-3">To'lov yuborildi!</h2>
+          <h2 className="text-2xl font-bold text-foreground mb-3">{t("pricing.submitted_title")}</h2>
           <p className="text-muted-foreground text-sm mb-6">
-            Tranzaksiya ID'ingiz qabul qilindi. O'qituvchi tasdiqlagan so'ng platformaga to'liq kirish ochiladi.
+            {t("pricing.submitted_desc")}
           </p>
           <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 text-sm text-amber-700 dark:text-amber-400 font-medium">
-            ⏳ Odatda 1–24 soat ichida tasdiqlanadi
+            {t("pricing.submitted_wait")}
           </div>
         </div>
       </div>
@@ -137,27 +124,27 @@ export default function Pricing() {
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 flex items-center justify-center px-4 py-12">
         <div className="max-w-md w-full">
           <button onClick={() => setStep("plans")} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 select-none">
-            <ArrowLeft className="w-4 h-4" /> Rejaga qaytish
+            <ArrowLeft className="w-4 h-4" /> {t("pricing.back_to_plan")}
           </button>
 
           <div className="bg-card border border-border rounded-3xl shadow-sm p-6 space-y-5">
             <div>
-              <h2 className="text-xl font-bold text-foreground">To'lovni amalga oshiring</h2>
+              <h2 className="text-xl font-bold text-foreground">{t("pricing.payment_title")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                Tanlangan reja: <strong className="text-foreground">{plan.name} — {plan.price} {plan.period}</strong>
+                {t("pricing.selected_plan")} <strong className="text-foreground">{plan.name} — {plan.price} {plan.period}</strong>
               </p>
             </div>
 
             {/* Card info */}
             <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-2xl p-5 text-white">
-              <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">To'lov kartasi (Uzcard/Humo)</p>
+              <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">{t("pricing.card_label")}</p>
               <p className="text-xl font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
-              <p className="text-sm opacity-90">Egasi: <strong>Temur Normatov Ulugbekovich</strong></p>
+              <p className="text-sm opacity-90">{t("pricing.card_owner")}: <strong>Temur Normatov Ulugbekovich</strong></p>
             </div>
 
             {/* QR */}
             <div className="text-center">
-              <p className="text-xs text-muted-foreground mb-2 font-medium">Yoki QR-kod orqali:</p>
+              <p className="text-xs text-muted-foreground mb-2 font-medium">{t("pricing.qr_via")}</p>
               <img
                 src="https://media.base44.com/images/public/6a40f974860993eff3634df0/4ef59e6e7_paymentqr.jpg"
                 alt="QR"
@@ -168,32 +155,32 @@ export default function Pricing() {
             {/* Name & Phone inputs */}
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Ism Familiya:</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.name_label")}</label>
                 <input
                   type="text"
                   value={studentName}
                   onChange={e => setStudentName(e.target.value)}
-                  placeholder="Masalan: Alibek Karimov"
+                  placeholder={t("pricing.name_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Telefon raqam:</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.phone_label")}</label>
                 <input
                   type="tel"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
-                  placeholder="+998 90 123 45 67"
+                  placeholder={t("pricing.phone_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">Tranzaksiya ID / Chek raqami:</label>
+                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.ref_label")}</label>
                 <input
                   type="text"
                   value={paymentRef}
                   onChange={e => setPaymentRef(e.target.value)}
-                  placeholder="Masalan: 45781223"
+                  placeholder={t("pricing.ref_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
               </div>
@@ -204,7 +191,7 @@ export default function Pricing() {
               disabled={submitting || !paymentRef.trim() || !studentName.trim() || !phone.trim()}
               className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-base font-semibold select-none"
             >
-              {submitting ? "Yuborilmoqda..." : "To'lovni tasdiqlashga yuborish"}
+              {submitting ? t("pricing.submitting") : t("pricing.submit_payment")}
             </Button>
           </div>
         </div>
@@ -221,16 +208,16 @@ export default function Pricing() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Obuna rejasini tanlang</h1>
+          <h1 className="text-2xl font-bold text-foreground">{t("pricing.header_title")}</h1>
           <p className="text-sm text-muted-foreground mt-2">
-            To'liq kirish uchun qulay rejani tanlang va ingliz tilini o'rganing
+            {t("pricing.header_sub")}
           </p>
         </div>
 
         {/* Discount banner */}
         <div className="bg-gradient-to-r from-rose-500/10 to-amber-500/10 border border-rose-300 dark:border-rose-700 rounded-2xl p-4 mb-6 text-center">
-          <p className="text-sm font-bold text-rose-600 dark:text-rose-400">🔥 Chegirmaning oxirgi kunlari! 41% gacha arzon</p>
-          <p className="text-xs text-muted-foreground mt-1">Chegirmalar cheklangan vaqt ichida amal qiladi</p>
+          <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{t("pricing.discount_title")}</p>
+          <p className="text-xs text-muted-foreground mt-1">{t("pricing.discount_sub")}</p>
         </div>
 
         {/* Plan cards */}
@@ -258,25 +245,31 @@ export default function Pricing() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-bold text-foreground">{p.name}</h3>
-                      {p.badge && (
-                        <span className="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-full">{p.badge}</span>
+                      {p.badgeKey && (
+                        <span className="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-full">{t(`plans.badges.${p.badgeKey}`)}</span>
                       )}
                       <span className="text-[10px] font-bold bg-rose-500 text-white px-2 py-0.5 rounded-full">−{p.discount}</span>
                     </div>
                     <div className="flex items-baseline gap-2 mb-0.5">
                       <span className="text-sm text-muted-foreground line-through">{p.originalPrice}</span>
-                      <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">chegirma</span>
+                      <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">{t("pricing.discount_word")}</span>
                     </div>
                     <p className="text-xl font-bold text-foreground">
                       {p.price} <span className="text-sm font-normal text-muted-foreground">{p.period}</span>
                     </p>
                     <ul className="mt-3 space-y-1.5">
-                      {p.features.map((f, fi) => (
+                      {p.featureKeys.map((f, fi) => (
                         <li key={fi} className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                          {f}
+                          {t(`plans.features.${f}`)}
                         </li>
                       ))}
+                      {p.hasAI && (
+                        <li className="flex items-center gap-2 text-xs font-semibold text-indigo-700 dark:text-indigo-400">
+                          <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
+                          {t("plans.ai_line")}
+                        </li>
+                      )}
                     </ul>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 mt-1 transition-all ${
@@ -291,11 +284,11 @@ export default function Pricing() {
         </div>
 
         <Button onClick={handleContinue} className="w-full h-12 text-base font-bold select-none">
-          {plan.name} — {plan.price} so'm — Davom etish
+          {plan.name} — {plan.price} so'm {t("pricing.continue_btn")}
         </Button>
 
         <p className="text-center text-xs text-muted-foreground mt-4">
-          To'lovni bank kartasi yoki QR orqali amalga oshirasiz
+          {t("pricing.payment_note")}
         </p>
       </div>
     </div>

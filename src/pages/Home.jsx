@@ -14,6 +14,7 @@ import VocabularyList from "@/pages/VocabularyList";
 import ParticleBackground from "@/components/ParticleBackground";
 import Games from "@/pages/Games";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -22,6 +23,7 @@ const pageVariants = {
 };
 
 export default function Home() {
+  const { t } = useAppLang();
   const [user, setUser] = useState(null);
   const [subscription, setSubscription] = useState(null);
   const [results, setResults] = useState([]);
@@ -125,11 +127,11 @@ export default function Home() {
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
         <div className="flex items-center gap-2 select-none">
           <BookOpen className="w-5 h-5 text-primary" />
-          <span className="font-bold text-foreground">Vocabulary A2·B1·B2</span>
+          <span className="font-bold text-foreground">{t("home.app_name")}</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
-            {isAdmin ? "O'qituvchi" : "O'quvchi"}
+            {isAdmin ? t("home.teacher_badge") : t("home.student_badge")}
           </span>
           <button onClick={handleLogout} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
             <LogOut className="w-4 h-4" />
@@ -163,9 +165,9 @@ export default function Home() {
           isActive ? (
             isAdmin ? (
               <div className="max-w-lg mx-auto px-4 py-10 text-center">
-                <h2 className="text-2xl font-bold text-foreground mb-4">O'qituvchi Paneli</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">{t("home.teacher_panel_title")}</h2>
                 <Link to="/teacher">
-                  <Button className="w-full h-12 text-base font-semibold select-none">Nazorat Paneliga o'tish</Button>
+                  <Button className="w-full h-12 text-base font-semibold select-none">{t("home.go_to_dashboard")}</Button>
                 </Link>
               </div>
             ) : (
@@ -250,14 +252,14 @@ export default function Home() {
               <div className="w-12 h-12 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-4">
                 <Trash2 className="w-6 h-6 text-destructive" />
               </div>
-              <h3 className="text-lg font-bold text-foreground text-center mb-2">Hisobni o'chirish</h3>
-              <p className="text-sm text-muted-foreground text-center mb-6">Bu amalni qaytarib bo'lmaydi. Barcha ma'lumotlaringiz o'chib ketadi.</p>
+              <h3 className="text-lg font-bold text-foreground text-center mb-2">{t("settings.delete_confirm_title")}</h3>
+              <p className="text-sm text-muted-foreground text-center mb-6">{t("settings.delete_confirm_desc")}</p>
               <div className="flex gap-3">
                 <Button variant="outline" className="flex-1 select-none" onClick={() => setShowDeleteConfirm(false)}>
-                  Bekor qilish
+                  {t("settings.delete_cancel")}
                 </Button>
                 <Button className="flex-1 bg-destructive hover:bg-destructive/90 select-none" onClick={handleDeleteAccount} disabled={deleting}>
-                  {deleting ? "O'chirilmoqda..." : "O'chirish"}
+                  {deleting ? t("settings.deleting") : t("settings.delete_confirm")}
                 </Button>
               </div>
             </motion.div>
@@ -269,6 +271,7 @@ export default function Home() {
 }
 
 function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted }) {
+  const { t } = useAppLang();
   const totalQuizzes = results.length;
   const totalCorrect = results.reduce((sum, r) => sum + (r.score || 0), 0);
 
@@ -278,33 +281,33 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
       {isActive ? (
         <div className="bg-background rounded-2xl shadow-sm border border-border p-6 mb-6">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full">Premium</span>
-            <h2 className="text-base font-bold text-foreground">Test va Reading</h2>
+            <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full">{t("home.premium_badge")}</span>
+            <h2 className="text-base font-bold text-foreground">{t("home.quiz_reading_title")}</h2>
           </div>
           <div className="flex gap-4 mb-6">
             <div className="flex-1 bg-primary/5 rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-primary">{totalQuizzes}</p>
-              <p className="text-xs text-muted-foreground mt-1">Jami testlar</p>
+              <p className="text-xs text-muted-foreground mt-1">{t("home.total_quizzes")}</p>
             </div>
             <div className="flex-1 bg-emerald-500/10 rounded-xl p-4 text-center">
               <p className="text-2xl font-bold text-emerald-600">{totalCorrect}</p>
-              <p className="text-xs text-muted-foreground mt-1">To'g'ri javoblar</p>
+              <p className="text-xs text-muted-foreground mt-1">{t("home.correct_answers")}</p>
             </div>
           </div>
           <div className="mb-5">
-            <label className="block text-sm font-semibold text-foreground mb-2">Unitni tanlang:</label>
+            <label className="block text-sm font-semibold text-foreground mb-2">{t("home.select_unit")}</label>
             <button
               onClick={onOpenUnitDrawer}
               className="w-full h-12 px-4 flex items-center justify-between border-2 border-input rounded-xl bg-background text-foreground text-sm font-medium hover:border-primary transition-colors select-none"
             >
-              <span>{selectedUnitName || "Unit tanlang"}</span>
+              <span>{selectedUnitName || t("home.unit_placeholder")}</span>
               <ChevronDown className="w-4 h-4 text-muted-foreground" />
             </button>
           </div>
           <Link to={`/quiz/${selectedUnit}`}>
             <Button className="w-full h-12 text-base font-semibold gap-2 select-none">
               <Play className="w-5 h-5" />
-              Testni Boshlash (30 ta random)
+              {t("home.start_quiz")}
             </Button>
           </Link>
         </div>
@@ -315,7 +318,7 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
 
       {isActive && results.length > 0 && (
         <div className="bg-background rounded-2xl shadow-sm border border-border p-6">
-          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Oxirgi natijalar</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">{t("home.recent_results")}</h3>
           <div className="space-y-3">
             {results.slice(0, 5).map((r, i) => (
               <div key={i} className="flex items-center justify-between py-2 border-b border-border last:border-0">
@@ -335,7 +338,7 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
       )}
 
       <footer className="mt-8 text-center text-xs text-muted-foreground">
-        Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
+        {t("home.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
       </footer>
     </div>
   );
@@ -343,33 +346,34 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
 
 function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
   const { theme, setTheme } = useTheme();
+  const { t } = useAppLang();
 
   const themeOptions = [
-    { value: "system", label: "Tizim", icon: Monitor },
-    { value: "light", label: "Yorug'", icon: Sun },
-    { value: "dark", label: "Qorong'i", icon: Moon },
+    { value: "system", label: t("settings.theme_system"), icon: Monitor },
+    { value: "light", label: t("settings.theme_light"), icon: Sun },
+    { value: "dark", label: t("settings.theme_dark"), icon: Moon },
   ];
 
   return (
     <div className="max-w-lg mx-auto px-4 py-8 space-y-4">
-      <h2 className="text-xl font-bold text-foreground">Sozlamalar</h2>
+      <h2 className="text-xl font-bold text-foreground">{t("settings.page_title")}</h2>
 
       {/* Profile editor */}
       <div className="bg-background rounded-2xl border border-border p-5">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">Profil</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">{t("settings.profile")}</p>
         <ProfileEditor user={user} onSaved={onProfileSaved} />
         <p className="text-sm text-muted-foreground mt-3 text-center">{user?.email}</p>
       </div>
 
       {/* Quick links */}
       <div className="bg-background rounded-2xl border border-border overflow-hidden">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold px-5 pt-4 pb-2">Ko'proq</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold px-5 pt-4 pb-2">{t("settings.more")}</p>
         {[
-          { to: "/leaderboard", label: "Reyting jadvali", icon: Trophy },
-          { to: "/my-progress", label: "Mening natijalarim", icon: TrendingUp },
-          { to: "/plans", label: "Obuna rejalari", icon: Crown },
-          { to: "/study-tips", label: "O'rganish maslahatlari", icon: Lightbulb },
-          { to: "/settings", label: "To'liq sozlamalar", icon: SlidersHorizontal },
+          { to: "/leaderboard", label: t("settings.leaderboard"), icon: Trophy },
+          { to: "/my-progress", label: t("settings.my_progress"), icon: TrendingUp },
+          { to: "/plans", label: t("settings.subscription_plans"), icon: Crown },
+          { to: "/study-tips", label: t("settings.study_tips"), icon: Lightbulb },
+          { to: "/settings", label: t("settings.full_settings"), icon: SlidersHorizontal },
         ].map(({ to, label, icon: Icon }) => (
           <Link
             key={to}
@@ -384,7 +388,7 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
 
       {/* Theme */}
       <div className="bg-background rounded-2xl border border-border p-5">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">Ko'rinish rejimi</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-3">{t("settings.appearance")}</p>
         <div className="grid grid-cols-3 gap-2">
           {themeOptions.map(({ value, label, icon: Icon }) => (
             <button
@@ -410,14 +414,14 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
           className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors border-b border-border select-none"
         >
           <LogOut className="w-5 h-5 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">Chiqish</span>
+          <span className="text-sm font-medium text-foreground">{t("settings.logout")}</span>
         </button>
         <button
           onClick={onDeleteRequest}
           className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-destructive/5 transition-colors select-none"
         >
           <Trash2 className="w-5 h-5 text-destructive" />
-          <span className="text-sm font-medium text-destructive">Hisobni o'chirish</span>
+          <span className="text-sm font-medium text-destructive">{t("settings.delete_account")}</span>
         </button>
       </div>
     </div>
@@ -425,6 +429,7 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
 }
 
 function TrialHomeScreen({ isAdmin, subscription }) {
+  const { t } = useAppLang();
   const isPending = subscription?.status === "pending";
   return (
     <div className="max-w-lg mx-auto px-4 py-10 text-center space-y-5">
@@ -433,22 +438,20 @@ function TrialHomeScreen({ isAdmin, subscription }) {
       </div>
       <div>
         <h2 className="text-xl font-bold text-foreground mb-2">
-          {isAdmin ? "O'qituvchi obunasi kerak" : "Bepul sinov tugadi"}
+          {isAdmin ? t("home.trial_teacher_title") : t("home.trial_student_title")}
         </h2>
         <p className="text-sm text-muted-foreground">
-          {isAdmin
-            ? "O'qituvchi sifatida platformadan to'liq foydalanish uchun obuna kerak."
-            : "So'zlar ro'yxati va o'yinlarning bepul sinov versiyasini ko'rdingiz."}
+          {isAdmin ? t("home.trial_teacher_desc") : t("home.trial_student_desc")}
         </p>
       </div>
       {isPending ? (
         <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 text-sm text-amber-700 dark:text-amber-400 font-medium">
-          ⏳ To'lovingiz ko'rib chiqilmoqda. Tez orada faollashadi.
+          {t("home.pending_msg")}
         </div>
       ) : (
         <Link to="/pricing">
           <Button className="w-full h-12 text-base font-semibold select-none">
-            Obuna rejalarini ko'rish →
+            {t("home.view_plans")}
           </Button>
         </Link>
       )}
@@ -457,6 +460,7 @@ function TrialHomeScreen({ isAdmin, subscription }) {
 }
 
 function PaywallScreen({ user, subscription, onSubmitted }) {
+  const { t } = useAppLang();
   const [paymentRef, setPaymentRef] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(subscription?.status === "pending");
@@ -487,18 +491,18 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
   return (
     <div className="max-w-lg mx-auto px-4 py-8">
       <div className="bg-background rounded-2xl shadow-sm border border-border p-6">
-        <h2 className="text-xl font-bold text-primary text-center mb-2">Obuna faol emas</h2>
+        <h2 className="text-xl font-bold text-primary text-center mb-2">{t("home.paywall_title")}</h2>
         <p className="text-center text-sm text-muted-foreground mb-6">
-          Platformadan to'liq foydalanish uchun oylik to'lovni amalga oshiring.<br />
-          <strong className="text-foreground">Oylik obuna narxi: 18,999 so'm</strong>
+          {t("home.paywall_desc")}<br />
+          <strong className="text-foreground">{t("home.paywall_price")}</strong>
         </p>
         <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-xl p-5 text-white mb-4">
-          <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">To'lov kartasi (Uzcard/Humo)</p>
+          <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">{t("home.card_label")}</p>
           <p className="text-lg font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
-          <p className="text-sm opacity-90">Egasi: <strong>Temur Normatov Ulugbekovich</strong></p>
+          <p className="text-sm opacity-90">{t("home.card_owner")}: <strong>Temur Normatov Ulugbekovich</strong></p>
         </div>
         <div className="text-center mb-6">
-          <p className="text-xs text-muted-foreground mb-2 font-medium">Yoki QR-kod orqali tezkor to'lang:</p>
+          <p className="text-xs text-muted-foreground mb-2 font-medium">{t("home.qr_prompt")}</p>
           <img
             src="https://media.base44.com/images/public/6a40f974860993eff3634df0/4ef59e6e7_paymentqr.jpg"
             alt="To'lov QR Kodi"
@@ -507,17 +511,17 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
         </div>
         {submitted ? (
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
-            <p className="text-amber-700 dark:text-amber-400 font-medium text-sm">To'lovingiz tizimga yuborildi. O'qituvchi tasdiqlaganidan so'ng platforma faollashadi.</p>
+            <p className="text-amber-700 dark:text-amber-400 font-medium text-sm">{t("home.submitted_msg")}</p>
           </div>
         ) : (
           <>
             <div className="mb-4">
-              <label className="block text-sm font-semibold text-foreground mb-2">To'lov cheki raqami / Tranzaksiya ID:</label>
+              <label className="block text-sm font-semibold text-foreground mb-2">{t("home.ref_label")}</label>
               <input
                 type="text"
                 value={paymentRef}
                 onChange={e => setPaymentRef(e.target.value)}
-                placeholder="Masalan: 45781223"
+                placeholder={t("home.ref_placeholder")}
                 className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
               />
             </div>
@@ -526,7 +530,7 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
               disabled={submitting || !paymentRef.trim()}
               className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-base font-semibold select-none"
             >
-              {submitting ? "Yuborilmoqda..." : "To'lovni tasdiqlashga yuborish"}
+              {submitting ? t("home.submitting") : t("home.submit_payment")}
             </Button>
           </>
         )}

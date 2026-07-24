@@ -11,6 +11,7 @@ import CrosswordGame from "@/components/games/CrosswordGame";
 import UnitDrawer from "@/components/UnitDrawer";
 import RoomLeaderboard from "@/components/games/RoomLeaderboard";
 import GameSetup from "@/components/games/GameSetup";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const TRIAL_KEY = "vocab_trial_rounds";
 const MAX_TRIAL_ROUNDS = 5;
@@ -79,6 +80,7 @@ const GAME_CARDS = [
 ];
 
 export default function Games({ isActive = false, user = null }) {
+  const { t, lang, translations } = useAppLang();
   const [words, setWords] = useState([]);
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(null);
@@ -248,14 +250,14 @@ export default function Games({ isActive = false, user = null }) {
           <Lock className="w-8 h-8 text-indigo-600" />
         </div>
         <div>
-          <h2 className="text-xl font-bold text-foreground mb-2">Bepul sinov tugadi</h2>
+          <h2 className="text-xl font-bold text-foreground mb-2">{t("games.trial_ended_title")}</h2>
           <p className="text-sm text-muted-foreground">
-            {MAX_TRIAL_ROUNDS} ta bepul o'yin o'ynab bo'ldingiz. Davom etish uchun obuna kerak.
+            {t("games.trial_ended_desc", { max: MAX_TRIAL_ROUNDS })}
           </p>
         </div>
         <Link to="/pricing">
           <button className="bg-primary text-primary-foreground text-base font-semibold px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors select-none w-full">
-            Obuna rejalarini ko'rish →
+            {t("home.view_plans")}
           </button>
         </Link>
       </div>
@@ -276,9 +278,9 @@ export default function Games({ isActive = false, user = null }) {
         }} />
         <div className="relative flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest opacity-75 mb-1">O'yinlar zonasi 🎮</p>
-            <h2 className="text-xl font-bold mb-0.5">O'ynang & O'rganing!</h2>
-            <p className="text-xs opacity-80">To'g'ri javob = 🪙 tanga</p>
+            <p className="text-xs font-semibold uppercase tracking-widest opacity-75 mb-1">{t("games.zone_badge")}</p>
+            <h2 className="text-xl font-bold mb-0.5">{t("games.hero_title")}</h2>
+            <p className="text-xs opacity-80">{t("games.hero_sub")}</p>
           </div>
           {/* Coin display */}
           {user && (
@@ -289,7 +291,7 @@ export default function Games({ isActive = false, user = null }) {
             >
               <span className="text-2xl">🪙</span>
               <span className="text-lg font-bold leading-none">{userCoins?.coins || 0}</span>
-              <span className="text-[10px] opacity-75">tanga</span>
+              <span className="text-[10px] opacity-75">{t("games.coins")}</span>
             </motion.div>
           )}
         </div>
@@ -297,12 +299,12 @@ export default function Games({ isActive = false, user = null }) {
 
       {/* Unit selector */}
       <div className="mb-5">
-        <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-2">Aktiv Unit</p>
+        <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-2">{t("games.active_unit")}</p>
         <button
           onClick={() => setUnitDrawerOpen(true)}
           className="w-full flex items-center justify-between px-4 py-3 bg-background border border-border rounded-xl hover:border-primary transition-colors select-none"
         >
-          <span className="text-sm font-medium text-foreground">{selectedUnit?.name || "Unit tanlang"}</span>
+          <span className="text-sm font-medium text-foreground">{selectedUnit?.name || t("games.unit_placeholder")}</span>
           <ChevronRight className="w-4 h-4 text-muted-foreground" />
         </button>
       </div>
@@ -311,9 +313,9 @@ export default function Games({ isActive = false, user = null }) {
       {!isActive && (
         <div className="mb-4 bg-amber-500/10 border border-amber-400/30 rounded-xl px-4 py-3 flex items-center justify-between">
           <p className="text-xs font-medium text-amber-700 dark:text-amber-400">
-            Bepul sinov: {trialRounds}/{MAX_TRIAL_ROUNDS} o'yin ishlatildi
+            {t("games.trial_used", { n: trialRounds, max: MAX_TRIAL_ROUNDS })}
           </p>
-          <Link to="/pricing" className="text-xs font-bold text-primary hover:underline select-none">Obuna →</Link>
+          <Link to="/pricing" className="text-xs font-bold text-primary hover:underline select-none">{t("games.view_plans")}</Link>
         </div>
       )}
 
@@ -342,13 +344,13 @@ export default function Games({ isActive = false, user = null }) {
                   <span className="text-2xl">{card.emoji}</span>
                 </motion.div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-foreground mb-1">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{card.desc}</p>
+                  <h3 className="font-bold text-foreground mb-1">{t(`games.cards.${card.id}.title`)}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{t(`games.cards.${card.id}.desc`)}</p>
                   <div className="flex flex-wrap gap-2">
-                    {card.tags.map(tag => (
+                    {(translations[lang]?.games?.cards[card.id]?.tags || []).map(tag => (
                       <span key={tag} className={`text-xs ${card.tagColor} px-2 py-0.5 rounded-full font-medium`}>{tag}</span>
                     ))}
-                    <span className="text-xs bg-amber-500/10 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full font-medium">🪙 Tanga yutib oling</span>
+                    <span className="text-xs bg-amber-500/10 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-full font-medium">{t("games.coin_tag")}</span>
                   </div>
                 </div>
               </div>

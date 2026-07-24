@@ -4,8 +4,10 @@ import { Camera, Loader2, Check, Pencil, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function ProfileEditor({ user, onSaved }) {
+  const { t } = useAppLang();
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(user?.full_name || "");
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
@@ -74,39 +76,39 @@ export default function ProfileEditor({ user, onSaved }) {
       {editing ? (
         <>
           <div className="space-y-1.5">
-            <Label htmlFor="username">Ism familiya</Label>
+            <Label htmlFor="username">{t("profile.full_name")}</Label>
             <Input
               id="username"
               value={username}
               onChange={e => setUsername(e.target.value)}
-              placeholder="Ismingizni kiriting"
+              placeholder={t("profile.full_name_placeholder")}
               className="h-11"
               autoFocus
             />
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="roomcode">Sinf xona kodi</Label>
+            <Label htmlFor="roomcode">{t("profile.room_code")}</Label>
             <div className="relative">
               <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 id="roomcode"
                 value={roomCode}
                 onChange={e => setRoomCode(e.target.value.toUpperCase())}
-                placeholder="Masalan: ABC123"
+                placeholder={t("profile.room_code_placeholder")}
                 className="pl-10 h-11 font-mono uppercase tracking-widest"
                 maxLength={10}
               />
             </div>
-            <p className="text-xs text-muted-foreground">O'qituvchingiz bergan sinf kodini kiriting</p>
+            <p className="text-xs text-muted-foreground">{t("profile.room_code_desc")}</p>
           </div>
 
           <div className="flex gap-2">
             <Button variant="outline" onClick={handleCancel} className="flex-1 h-10 font-semibold select-none">
-              Bekor qilish
+              {t("profile.cancel")}
             </Button>
             <Button onClick={handleSave} disabled={saving || uploading} className="flex-1 h-10 font-semibold select-none">
-              {saving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Saqlanmoqda...</> : saved ? <><Check className="w-4 h-4 mr-2" />Saqlandi!</> : "Saqlash"}
+              {saving ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t("profile.saving")}</> : saved ? <><Check className="w-4 h-4 mr-2" />{t("profile.saved")}</> : t("profile.save")}
             </Button>
           </div>
         </>
@@ -122,7 +124,7 @@ export default function ProfileEditor({ user, onSaved }) {
           <div>
             <Button variant="outline" size="sm" onClick={() => setEditing(true)} className="gap-2 select-none">
               <Pencil className="w-3.5 h-3.5" />
-              Tahrirlash
+              {t("profile.edit")}
             </Button>
           </div>
         </div>
