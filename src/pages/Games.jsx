@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
+import SpellingGame from "@/components/games/SpellingGame";
+import WordFormsGame from "@/components/games/WordFormsGame";
+import CrosswordGame from "@/components/games/CrosswordGame";
 import UnitDrawer from "@/components/UnitDrawer";
 import RoomLeaderboard from "@/components/games/RoomLeaderboard";
 import GameSetup from "@/components/games/GameSetup";
@@ -36,6 +39,42 @@ const GAME_CARDS = [
     tags: ["Barcha unitlar", "AI tekshiruv"],
     tagColor: "bg-violet-500/10 text-violet-700 dark:text-violet-400",
     img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=300&q=80",
+  },
+  {
+    id: "spelling",
+    title: "To'g'ri Yozish",
+    desc: "So'z ovozini eshiting yoki ma'nosini ko'rib, harflardan so'zni to'g'ri yiging",
+    emoji: "🔤",
+    gradient: "from-amber-500 to-orange-600",
+    lightBg: "from-amber-500/10 to-orange-500/10",
+    border: "border-amber-300 dark:border-amber-700",
+    tags: ["Audio", "Harflardan yig'ing"],
+    tagColor: "bg-amber-500/10 text-amber-700 dark:text-amber-400",
+    img: "https://images.unsplash.com/photo-1517842645767-c63904cac77f?w=300&q=80",
+  },
+  {
+    id: "wordforms",
+    title: "So'z Shakllari",
+    desc: "Berilgan so'zning turli grammatik shakllarini (Fe'l, Ot, Sifat, Ravish) to'g'ri toping",
+    emoji: "🧩",
+    gradient: "from-teal-500 to-emerald-600",
+    lightBg: "from-teal-500/10 to-emerald-500/10",
+    border: "border-teal-300 dark:border-teal-700",
+    tags: ["Grammatika", "AI tekshiruv"],
+    tagColor: "bg-teal-500/10 text-teal-700 dark:text-teal-400",
+    img: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=300&q=80",
+  },
+  {
+    id: "crossword",
+    title: "Krossvord",
+    desc: "Lug'at boyligingizni sinab ko'ring va krossvord katakchalarini to'ldiring",
+    emoji: "🟦",
+    gradient: "from-sky-500 to-blue-600",
+    lightBg: "from-sky-500/10 to-blue-500/10",
+    border: "border-sky-300 dark:border-sky-700",
+    tags: ["Interaktiv", "Yonama/Pastga"],
+    tagColor: "bg-sky-500/10 text-sky-700 dark:text-sky-400",
+    img: "https://images.unsplash.com/photo-1606857521015-1f7b76870e9f?w=300&q=80",
   },
 ];
 
@@ -162,6 +201,42 @@ export default function Games({ isActive = false, user = null }) {
             setTrialRounds(next);
           }
         }}
+      />
+    );
+  }
+
+  if (activeGame === "spelling") {
+    return (
+      <SpellingGame
+        words={unitWords}
+        unitName={selectedUnit?.name || ""}
+        onBack={handleBack}
+        onCoinsEarned={handleCoinsEarned}
+        difficulty={config?.difficulty || "intermediate"}
+      />
+    );
+  }
+
+  if (activeGame === "wordforms") {
+    return (
+      <WordFormsGame
+        words={unitWords}
+        unitName={selectedUnit?.name || ""}
+        onBack={handleBack}
+        onCoinsEarned={handleCoinsEarned}
+        difficulty={config?.difficulty || "intermediate"}
+      />
+    );
+  }
+
+  if (activeGame === "crossword") {
+    return (
+      <CrosswordGame
+        words={unitWords}
+        unitName={selectedUnit?.name || ""}
+        onBack={handleBack}
+        onCoinsEarned={handleCoinsEarned}
+        difficulty={config?.difficulty || "intermediate"}
       />
     );
   }
