@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { ArrowLeft, Lightbulb, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const DIFF_CONFIG = {
   beginner:     { rounds: 3, ask: ["noun", "verb"], allowHint: true },
@@ -11,16 +12,12 @@ const DIFF_CONFIG = {
   proficient:    { rounds: 6, ask: ["noun", "verb", "adjective", "adverb"], allowHint: false },
 };
 
-const FORM_LABELS = {
-  noun: { uz: "Ot (noun)", emoji: "📌" },
-  verb: { uz: "Fe'l (verb)", emoji: "⚡" },
-  adjective: { uz: "Sifat (adjective)", emoji: "🎨" },
-  adverb: { uz: "Ravish (adverb)", emoji: "💨" },
-};
+const FORM_EMOJI = { noun: "📌", verb: "⚡", adjective: "🎨", adverb: "💨" };
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
 export default function WordFormsGame({ words, unitName, onBack, onCoinsEarned, difficulty = "intermediate" }) {
+  const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const [formsData, setFormsData] = useState([]); // [{word, noun, verb, adjective, adverb}]
   const [idx, setIdx] = useState(0);
@@ -104,9 +101,10 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
     const got = normalize(input);
     const correct = got === expected || got === normalize(current.base);
     // simple explanation
+    const formLabel = t(`gameui.forms.${askForm}`);
     const explanation = correct
-      ? `To'g'ri! "${current.english}" so'zining ${FORM_LABELS[askForm].uz.toLowerCase()} formasi — ${expected}.`
-      : `Noto'g'ri. "${current.english}" so'zining ${FORM_LABELS[askForm].uz.toLowerCase()} formasi — ${expected}.`;
+      ? t("gameui.form_correct_explain", { word: current.english, form: formLabel, expected })
+      : t("gameui.form_wrong_explain", { word: current.english, form: formLabel, expected });
     setStatus({ correct, expected, explanation });
     setScores(s => [...s, correct ? 1 : 0]);
     if (correct) { setCoinAnim("+1 🪙"); setTimeout(() => setCoinAnim(null), 900); }
@@ -130,7 +128,7 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
         <Loader2 className="w-8 h-8 text-primary animate-spin" />
-        <p className="text-sm text-muted-foreground">So'z shakllari tayyorlanmoqda...</p>
+        <p className="text-sm text-muted-foreground">{t("gameui.wordforms_loading")}</p>
       </div>
     );
   }
@@ -140,19 +138,19 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{correctCount / formsData.length >= 0.7 ? "🏆" : "📚"}</div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">So'z Shakllari tugadi!</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">{t("gameui.wordforms_done")}</h2>
         <p className="text-muted-foreground text-sm mb-1">{unitName}</p>
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3">
           <span className="text-3xl">🪙</span>
-          <div><p className="text-2xl font-bold text-amber-600">+{correctCount}</p><p className="text-xs text-muted-foreground">tanga qo'shildi</p></div>
+          <div><p className="text-2xl font-bold text-amber-600">+{correctCount}</p><p className="text-xs text-muted-foreground">{t("gameui.coins_added")}</p></div>
         </motion.div>
         <div className="bg-primary/10 rounded-2xl p-5 mb-5">
           <p className="text-3xl font-bold text-primary">{correctCount} / {formsData.length}</p>
-          <p className="text-sm text-muted-foreground mt-1">To'g'ri javoblar</p>
+          <p className="text-sm text-muted-foreground mt-1">{t("gameui.wordforms_correct_answers")}</p>
         </div>
-        <Button onClick={buildGame} className="w-full mb-2">Qayta urinib ko'ring</Button>
-        <Button variant="outline" onClick={onBack} className="w-full">Orqaga</Button>
+        <Button onClick={buildGame} className="w-full mb-2">{t("gameui.retry")}</Button>
+        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
       </motion.div>
     );
   }
@@ -174,7 +172,7 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
 
       <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none flex items-center gap-1">
-          <ArrowLeft className="w-4 h-4" /> Orqaga
+          <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
         </button>
         <span className="text-xs text-muted-foreground font-medium">{idx + 1} / {formsData.length}</span>
         <span className="w-10" />
@@ -184,15 +182,15 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
         <motion.div key={idx} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.2 }}>
           {/* Base word */}
           <div className="bg-background border border-border rounded-2xl p-5 mb-5 text-center">
-            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">Asosiy so'z</p>
+            <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t("gameui.wordforms_base_word")}</p>
             <p className="text-3xl font-bold text-foreground">{current.english}</p>
             {current.uzbek && <p className="text-sm text-muted-foreground mt-1">{current.uzbek}</p>}
           </div>
 
           {/* Asked form */}
           <div className="bg-gradient-to-br from-violet-500/10 to-indigo-500/10 border border-violet-300 dark:border-violet-700 rounded-2xl p-4 mb-4 text-center">
-            <p className="text-xs text-muted-foreground mb-1">So'ralayotgan shakl</p>
-            <p className="text-lg font-bold text-foreground">{FORM_LABELS[askForm].emoji} {FORM_LABELS[askForm].uz}</p>
+            <p className="text-xs text-muted-foreground mb-1">{t("gameui.wordforms_asked_form")}</p>
+            <p className="text-lg font-bold text-foreground">{FORM_EMOJI[askForm]} {t(`gameui.forms.${askForm}`)}</p>
           </div>
 
           {/* Input */}
@@ -200,7 +198,7 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
             type="text"
             value={input}
             onChange={e => setInput(e.target.value)}
-            placeholder={`${FORM_LABELS[askForm].uz} formasini yozing...`}
+            placeholder={t("gameui.wordforms_form_placeholder", { form: t(`gameui.forms.${askForm}`) })}
             disabled={!!status}
             onKeyDown={e => { if (e.key === "Enter") submit(); }}
             className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors mb-3"
@@ -211,11 +209,11 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
             <div className="mb-3">
               {!showHint ? (
                 <button onClick={() => setShowHint(true)} className="text-xs text-amber-600 hover:underline flex items-center gap-1 select-none">
-                  <Lightbulb className="w-3.5 h-3.5" /> Maslahat ko'rsatish
-                </button>
-              ) : (
-                <p className="text-xs text-muted-foreground bg-amber-500/10 rounded-lg p-2">
-                  💡 Bosh harf: <strong className="text-foreground">{(current[askForm] || "").charAt(0).toUpperCase() || "?"}</strong>
+                  <Lightbulb className="w-3.5 h-3.5" /> {t("gameui.wordforms_show_hint")}
+                  </button>
+                  ) : (
+                  <p className="text-xs text-muted-foreground bg-amber-500/10 rounded-lg p-2">
+                  {t("gameui.wordforms_hint_letter")} <strong className="text-foreground">{(current[askForm] || "").charAt(0).toUpperCase() || "?"}</strong>
                 </p>
               )}
             </div>
@@ -224,18 +222,18 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
           {/* Status / explanation */}
           {status && (
             <div className={`rounded-xl p-3 text-sm mb-3 ${status.correct ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
-              <p className="font-semibold">{status.correct ? "✅ To'g'ri! +1 🪙" : "❌ Noto'g'ri"}</p>
+              <p className="font-semibold">{status.correct ? t("gameui.wordforms_correct_explain") : t("gameui.wordforms_wrong_explain")}</p>
               <p className="text-xs font-normal mt-1 text-muted-foreground">{status.explanation}</p>
             </div>
           )}
 
           {!status ? (
             <Button onClick={submit} disabled={!input.trim() || checking} className="w-full select-none">
-              {checking ? "Tekshirilmoqda..." : "Javobni tekshirish"}
-            </Button>
-          ) : (
-            <Button onClick={nextRound} className="w-full select-none">
-              {idx + 1 >= formsData.length ? "Yakunlash" : "Keyingi so'z"} <ArrowRight className="w-4 h-4 ml-1" />
+              {checking ? t("gameui.checking") : t("gameui.check_answer")}
+              </Button>
+              ) : (
+              <Button onClick={nextRound} className="w-full select-none">
+              {idx + 1 >= formsData.length ? t("gameui.finish") : t("gameui.next_word")} <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
           )}
         </motion.div>

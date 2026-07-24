@@ -1,8 +1,10 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function UnitDrawer({ open, onClose, units, selectedUnit, onSelect }) {
+  const { t } = useAppLang();
   return (
     <AnimatePresence>
       {open && (
@@ -23,7 +25,7 @@ export default function UnitDrawer({ open, onClose, units, selectedUnit, onSelec
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             <div className="w-10 h-1 bg-muted-foreground/30 rounded-full mx-auto mt-3 mb-4" />
-            <h3 className="text-base font-bold text-foreground px-5 mb-3">Unit tanlang</h3>
+            <h3 className="text-base font-bold text-foreground px-5 mb-3">{t("common.select_unit_title")}</h3>
             <div className="divide-y divide-border">
               {units.map(u => (
                 <button

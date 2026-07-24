@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslationLang } from "@/hooks/useTranslationLang";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const DIFF_CONFIG = {
   beginner:     { count: 20, types: ["multiple_choice"], hints: true },
@@ -62,6 +63,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   const [coinAnimation, setCoinAnimation] = useState(null);
   const timerRef = useRef(null);
   const { showRu } = useTranslationLang();
+  const { t } = useAppLang();
 
   const buildQuestions = () => {
     const TARGET = Math.min(cfg.count, Math.max(words.length, 1));
@@ -180,9 +182,9 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">Quiz tugadi!</h2>
+        <h2 className="text-2xl font-bold text-foreground mb-2">{t("gameui.quiz_done")}</h2>
         <p className="text-muted-foreground mb-1">{unitName}</p>
-        <p className="text-xs text-muted-foreground mb-4 capitalize">{difficulty} daraja · {questions.length} ta savol</p>
+        <p className="text-xs text-muted-foreground mb-4 capitalize">{t("gameui.level_label", { level: difficulty })} · {t("gameui.questions_count", { n: questions.length })}</p>
 
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
@@ -191,18 +193,18 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           <span className="text-3xl">🪙</span>
           <div>
             <p className="text-2xl font-bold text-amber-600">+{coinsEarned}</p>
-            <p className="text-xs text-muted-foreground">tanga qo'shildi ({correctCount} × 1)</p>
+            <p className="text-xs text-muted-foreground">{t("gameui.coins_added_x", { n: correctCount })}</p>
           </div>
         </motion.div>
 
         <div className="bg-primary/10 rounded-2xl p-5 mb-5">
           <p className="text-4xl font-bold text-primary">{avg}%</p>
-          <p className="text-sm text-muted-foreground mt-1">O'rtacha ball</p>
+          <p className="text-sm text-muted-foreground mt-1">{t("gameui.avg_score")}</p>
         </div>
         <div className="space-y-2 mb-6 max-h-64 overflow-y-auto">
           {scores.map((s, i) => (
             <div key={i} className="flex items-center justify-between text-sm px-2">
-              <span className="text-muted-foreground">Savol {i + 1}</span>
+              <span className="text-muted-foreground">{t("gameui.question_n", { n: i + 1 })}</span>
               <div className="flex items-center gap-2">
                 {s === 100 && <span className="text-xs text-amber-600 font-semibold">+1 🪙</span>}
                 <span className={`font-semibold ${s === 100 ? "text-emerald-600" : "text-destructive"}`}>{s === 100 ? "100%" : "0%"}</span>
@@ -210,8 +212,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             </div>
           ))}
         </div>
-        <Button onClick={buildQuestions} className="w-full mb-2">Qayta urinib ko'ring</Button>
-        <Button variant="outline" onClick={onBack} className="w-full">Orqaga</Button>
+        <Button onClick={buildQuestions} className="w-full mb-2">{t("gameui.retry")}</Button>
+        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
       </motion.div>
     );
   }
@@ -237,10 +239,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
 
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← Orqaga</button>
+        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← {t("gameui.back")}</button>
         <span className="text-xs text-muted-foreground font-medium">{qIndex + 1} / {questions.length}</span>
         <div className="flex items-center gap-1 text-sm font-semibold text-primary">
-          {timed ? (<><Timer className="w-4 h-4" /><span>{timeLeft}s</span></>) : <span className="text-xs">∞ Cheksiz</span>}
+          {timed ? (<><Timer className="w-4 h-4" /><span>{timeLeft}s</span></>) : <span className="text-xs">{t("gameui.untimed")}</span>}
         </div>
       </div>
 
@@ -261,14 +263,14 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           <div className="bg-background border border-border rounded-2xl p-5 mb-5 text-center">
             {q.type === "multiple_choice" && (
               <>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">O'zbekchaga tarjima qiling</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t("gameui.translate_to_uz")}</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.english}</p>
                 {cfg.hints && q.word.pronunciation && <p className="text-sm text-muted-foreground mt-1">{q.word.pronunciation}</p>}
               </>
             )}
             {q.type === "translation" && (
               <>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">Inglizchaga tarjima qiling</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t("gameui.translate_to_en")}</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
                 {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
@@ -276,7 +278,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             {q.type === "define" && (
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">
-                  <Lightbulb className="inline w-3.5 h-3.5 mr-1" />Inglizcha tarjimasini yozing
+                  <Lightbulb className="inline w-3.5 h-3.5 mr-1" />{t("gameui.write_en_translation")}
                 </p>
                 <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
                 {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
@@ -309,19 +311,19 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
               <textarea
                 value={defineInput}
                 onChange={e => setDefineInput(e.target.value)}
-                placeholder="Inglizcha tarjimasini yozing..."
+                placeholder={t("gameui.write_en_placeholder")}
                 className="w-full h-28 px-4 py-3 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors resize-none"
                 disabled={checking || defineScore !== null}
               />
               {defineScore !== null && (
                 <div className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore === 100 ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
-                  {defineScore === 100 ? "✅ Ajoyib! +1 🪙" : "❌ Noto'g'ri!"} — {defineScore === 100 ? "100%" : "0%"} to'g'ri
-                  <p className="text-xs font-normal mt-1 text-muted-foreground">To'g'ri javob: {q.word.english} = {q.word.uzbek}</p>
+                  {defineScore === 100 ? t("gameui.correct_great") : t("gameui.wrong")} — {t("gameui.correct_wrong_pct", { pct: defineScore === 100 ? "100%" : "0%" })}
+                  <p className="text-xs font-normal mt-1 text-muted-foreground">{t("gameui.correct_answer_is")} {q.word.english} = {q.word.uzbek}</p>
                 </div>
               )}
               {defineScore === null && (
                 <Button onClick={handleDefineSubmit} disabled={!defineInput.trim() || checking} className="w-full mt-3">
-                  {checking ? "Tekshirilmoqda..." : "Javobni yuborish"}
+                  {checking ? t("gameui.checking") : t("gameui.submit_answer")}
                 </Button>
               )}
             </div>
@@ -333,7 +335,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
       {waitingNext && !autoAdvance && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
           <Button onClick={goNext} className="w-full mt-4 select-none">
-            {qIndex + 1 >= questions.length ? "Yakunlash" : "Keyingi savol"} <ArrowRight className="w-4 h-4 ml-1" />
+            {qIndex + 1 >= questions.length ? t("gameui.finish") : t("gameui.next_question")} <ArrowRight className="w-4 h-4 ml-1" />
           </Button>
         </motion.div>
       )}

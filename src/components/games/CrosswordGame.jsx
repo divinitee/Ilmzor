@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Check, Eye, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const DIFF_CONFIG = {
   beginner:     { count: 4 },
@@ -150,6 +151,7 @@ function buildCrossword(wordList, difficulty = "intermediate") {
 }
 
 export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, difficulty = "intermediate" }) {
+  const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const puzzle = useMemo(() => buildCrossword(words, cfg.count), [words, difficulty]);
   const [entries, setEntries] = useState({}); // "r,c" -> user char
@@ -172,8 +174,8 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
   if (!puzzle) {
     return (
       <div className="max-w-sm mx-auto px-4 py-10 text-center">
-        <p className="text-muted-foreground text-sm mb-4">Krossvord tuzish uchun yetarli so'z topilmadi.</p>
-        <Button variant="outline" onClick={onBack} className="w-full">Orqaga</Button>
+        <p className="text-muted-foreground text-sm mb-4">{t("gameui.crossword_not_enough")}</p>
+        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
       </div>
     );
   }
@@ -311,7 +313,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
 
       <div className="flex items-center justify-between mb-4">
         <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none flex items-center gap-1">
-          <ArrowLeft className="w-4 h-4" /> Orqaga
+          <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
         </button>
         <span className="text-xs text-muted-foreground font-medium">{unitName}</span>
         <span className="w-10" />
@@ -321,8 +323,8 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
         {done && (
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
             className="bg-emerald-500/10 border border-emerald-400/30 rounded-2xl p-4 mb-4 text-center">
-            <p className="text-lg font-bold text-emerald-700 dark:text-emerald-400">🎉 Krossvord to'ldirildi!</p>
-            <p className="text-xs text-muted-foreground mt-1">Barcha so'zlar to'g'ri — tanga yutib oldingiz</p>
+            <p className="text-lg font-bold text-emerald-700 dark:text-emerald-400">{t("gameui.crossword_done")}</p>
+            <p className="text-xs text-muted-foreground mt-1">{t("gameui.crossword_done_desc")}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -369,13 +371,13 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
       {/* Controls */}
       <div className="flex gap-2 mb-5">
         <Button variant="outline" onClick={handleCheck} disabled={done} className="flex-1 select-none text-xs">
-          <Check className="w-4 h-4 mr-1" /> Tekshirish
+          <Check className="w-4 h-4 mr-1" /> {t("gameui.crossword_check")}
         </Button>
         <Button variant="outline" onClick={handleReveal} disabled={done} className="flex-1 select-none text-xs">
-          <Eye className="w-4 h-4 mr-1" /> Ko'rsatish
+          <Eye className="w-4 h-4 mr-1" /> {t("gameui.crossword_reveal")}
         </Button>
         <Button variant="outline" onClick={reset} className="flex-1 select-none text-xs">
-          <RefreshCw className="w-4 h-4 mr-1" /> Tozalash
+          <RefreshCw className="w-4 h-4 mr-1" /> {t("gameui.crossword_clear")}
         </Button>
       </div>
 
@@ -383,7 +385,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
       {activeWord && (
         <div className="bg-gradient-to-br from-indigo-500/10 to-violet-500/10 border border-indigo-300 dark:border-indigo-700 rounded-2xl p-3 mb-4">
           <p className="text-xs text-muted-foreground mb-0.5">
-            {activeWord.num}. {activeWord.dir === "across" ? "Yonama" : "Pastga"} · {activeWord.word.length} harf
+            {activeWord.num}. {activeWord.dir === "across" ? t("gameui.crossword_across") : t("gameui.crossword_down")} · {t("gameui.crossword_letters", { n: activeWord.word.length })}
           </p>
           <p className="text-sm font-semibold text-foreground">{activeWord.clue}</p>
         </div>
@@ -392,7 +394,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
       {/* Clue lists */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Yonama</p>
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{t("gameui.crossword_across")}</p>
           <div className="space-y-1.5">
             {puzzle.across.map(w => (
               <button key={w.num} onClick={() => focusCell(w.row, w.col, "across")}
@@ -403,7 +405,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
           </div>
         </div>
         <div>
-          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Pastga</p>
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">{t("gameui.crossword_down")}</p>
           <div className="space-y-1.5">
             {puzzle.down.map(w => (
               <button key={w.num} onClick={() => focusCell(w.row, w.col, "down")}

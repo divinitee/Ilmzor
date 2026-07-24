@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { Send, Sparkles } from "lucide-react";
 import MessageBubble from "@/components/tutor/MessageBubble";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const AGENT_NAME = "vocabulary_tutor";
 
 export default function VocabTutorChat() {
+  const { t } = useAppLang();
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -71,15 +73,15 @@ export default function VocabTutorChat() {
           <Sparkles className="w-4.5 h-4.5 text-primary" />
         </div>
         <div>
-          <h2 className="text-base font-bold text-foreground">AI So'z Ustozi</h2>
-          <p className="text-xs text-muted-foreground">O'rganmoqchi bo'lgan so'zingizni yozing</p>
+          <h2 className="text-base font-bold text-foreground">{t("tutor.title")}</h2>
+          <p className="text-xs text-muted-foreground">{t("tutor.sub")}</p>
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto space-y-3 pr-1">
         {messages.length === 0 && (
           <div className="text-center text-sm text-muted-foreground py-10 px-4">
-            👋 Salom! Menga o'rganmoqchi bo'lgan so'zingizni yozing (masalan: "achieve" yoki "erishmoq"), men sizga ma'nosini tushuntirib, mashq qildiraman.
+            {t("tutor.empty")}
           </div>
         )}
         {messages.map((m, i) => (
@@ -94,7 +96,7 @@ export default function VocabTutorChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
-          placeholder="So'z yozing..."
+          placeholder={t("tutor.placeholder")}
           disabled={sending}
           className="flex-1 h-11 px-4 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
         />

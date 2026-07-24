@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Shuffle, CheckCircle2 } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 // Difficulty drives sentence-complexity targets.
 const DIFFICULTY = {
-  beginner:     { minWords: 3,  label: "Beginner",     target: "one simple complete sentence (subject + verb)",     connectors: [], hint: "Oddiy jumla: sub'ekt + fe'l. Kamida bitta mavzu so'zidan foydalaning." },
-  intermediate: { minWords: 5,  label: "Intermediate",  target: "one complete sentence (5+ words)",                connectors: [], hint: "To'liq jumla tuzing (5+ so'z). Kamida ikkita mavzu so'zidan foydalaning." },
-  advanced:     { minWords: 7,  label: "Advanced",      target: "a compound or complex sentence (7+ words) using a linking word", connectors: ["and", "but", "because", "although", "while", "so", "however"], hint: "Murakkab jumla tuzing (7+ so'z). Bog'lovchi so'z ishlating: and / but / because / although / while / so." },
-  proficient:   { minWords: 9,  label: "Proficient",    target: "a complex / compound-complex sentence (9+ words) with a subordinate clause", connectors: ["because", "although", "while", "when", "if", "that", "which", "since", "unless"], hint: "Murakkab gap tuzing (9+ so'z). Ergash gap bosing: because / although / while / when / if / that / which." },
+  beginner:     { minWords: 3,  label: "Beginner",     target: "one simple complete sentence (subject + verb)",     connectors: [], hintKey: "beginner" },
+  intermediate: { minWords: 5,  label: "Intermediate",  target: "one complete sentence (5+ words)",                connectors: [], hintKey: "intermediate" },
+  advanced:     { minWords: 7,  label: "Advanced",      target: "a compound or complex sentence (7+ words) using a linking word", connectors: ["and", "but", "because", "although", "while", "so", "however"], hintKey: "advanced" },
+  proficient:   { minWords: 9,  label: "Proficient",    target: "a complex / compound-complex sentence (9+ words) with a subordinate clause", connectors: ["because", "although", "while", "when", "if", "that", "which", "since", "unless"], hintKey: "proficient" },
 };
 
 // Groups of semantically related words
@@ -34,7 +35,7 @@ function tokenise(s) {
 function quickFail(sentence, theme) {
   const words = tokenise(sentence);
   if (words.length === 0) {
-    return { grammar: 0, relevance: 0, creativity: 0, tip: "Iltimos, kamida bitta jumla yozing." };
+    return { grammar: 0, relevance: 0, creativity: 0, tipKey: "empty" };
   }
 
   const themeWords = tokenise(theme);
@@ -46,17 +47,17 @@ function quickFail(sentence, theme) {
       grammar: 0,
       relevance: Math.round((themeMatchCount / Math.max(words.length, 1)) * 40),
       creativity: 0,
-      tip: "So'zlarni ketma-ket yozish jumla emas. To'liq fikr bildiruvchi gap tuzing."
+      tipKey: "no_verb"
     };
   }
 
   const unique = new Set(words);
   if (words.length >= 4 && unique.size <= 2) {
-    return { grammar: 0, relevance: 5, creativity: 0, tip: "So'zni qaytarib yozish jumla emas. Sub'ekt + fe'l ishlatib yangi gap tuzing." };
+    return { grammar: 0, relevance: 5, creativity: 0, tipKey: "repeat" };
   }
 
   if (words.length < 2) {
-    return { grammar: 0, relevance: 0, creativity: 0, tip: "Juda qisqa. To'liq jumla yozing (sub'ekt + fe'l)." };
+    return { grammar: 0, relevance: 0, creativity: 0, tipKey: "too_short" };
   }
 
   return null;
@@ -111,11 +112,12 @@ async function evaluateSentence(sentence, theme, themeWords, difficulty) {
       tip: res.tip || "Keep practising!"
     };
   } catch {
-    return { grammar: 0, relevance: 0, creativity: 0, tip: "Baholashda xatolik. Iltimos, qaytadan urinib ko'ring." };
+    return { grammar: 0, relevance: 0, creativity: 0, tipKey: "error" };
   }
 }
 
 export default function SentenceBuilderGame({ words, onBack, onNewRound, trialExhausted, difficulty = "beginner" }) {
+  const { t } = useAppLang();
   const cfg = DIFFICULTY[difficulty] || DIFFICULTY.beginner;
   const [groupIdx, setGroupIdx] = useState(null);
   const [sentence, setSentence] = useState("");
@@ -163,14 +165,14 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
   return (
     <div className="max-w-sm mx-auto px-4 py-6">
       <div className="flex items-center justify-between mb-6">
-        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← Orqaga</button>
+        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground select-none">← {t("gameui.back")}</button>
         <span className="text-xs bg-violet-500/10 text-violet-700 font-semibold px-2.5 py-1 rounded-full">{cfg.label}</span>
         <span className="text-xs text-muted-foreground">#{round + 1}</span>
       </div>
 
       {/* Word group display */}
       <div className="bg-gradient-to-br from-violet-500/10 to-indigo-500/10 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 mb-4">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Quyidagi so'zlardan foydalanib jumla tuzing:</p>
+        <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">{t("gameui.sentence_build_prompt")}</p>
         <div className="flex flex-wrap gap-2">
           {currentGroup.map((w, i) => (
             <motion.span
@@ -185,13 +187,13 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
             </motion.span>
           ))}
         </div>
-        <p className="text-xs text-muted-foreground mt-3">💡 So'zni bosib jumla ichiga qo'shing yoki o'zingiz yozing</p>
+        <p className="text-xs text-muted-foreground mt-3">{t("gameui.sentence_tap_hint")}</p>
       </div>
 
       {/* Difficulty instruction */}
       <div className="bg-amber-500/10 border border-amber-300 dark:border-amber-700 rounded-xl p-3 mb-4">
-        <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">🎯 {cfg.label} vazifasi</p>
-        <p className="text-xs text-foreground/80">{cfg.hint}</p>
+        <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">🎯 {t("gameui.sentence_task", { level: cfg.label })}</p>
+        <p className="text-xs text-foreground/80">{t(`gameui.sentence_hints.${cfg.hintKey}`)}</p>
         {cfg.connectors.length > 0 && (
           <div className="flex flex-wrap gap-1.5 mt-2">
             {cfg.connectors.map(c => (
@@ -205,14 +207,14 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
             ))}
           </div>
         )}
-        <p className="text-[11px] text-muted-foreground mt-2">Minimum so'zlar: {cfg.minWords} · Hozir: {wordCount} {meetsMin ? "✓" : "✗"}</p>
+        <p className="text-[11px] text-muted-foreground mt-2">{t("gameui.sentence_min_words", { min: cfg.minWords, n: wordCount })} {meetsMin ? "✓" : "✗"}</p>
       </div>
 
       {/* Text input */}
       <textarea
         value={sentence}
         onChange={e => setSentence(e.target.value)}
-        placeholder="Shu so'zlardan foydalanib bir jumla yozing..."
+        placeholder={t("gameui.sentence_placeholder")}
         className="w-full h-28 px-4 py-3 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors resize-none mb-4"
         disabled={!!result}
       />
@@ -227,15 +229,15 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle2 className={`w-5 h-5 ${avg >= 70 ? "text-emerald-500" : avg >= 40 ? "text-amber-500" : "text-destructive"}`} />
               <span className="font-semibold text-foreground">
-                {avg >= 70 ? "Ajoyib!" : avg >= 40 ? "Yaxshi!" : "Yana urinib ko'ring"}
+                {avg >= 70 ? t("gameui.result_great") : avg >= 40 ? t("gameui.result_good") : t("gameui.result_try_again")}
               </span>
               <span className="ml-auto text-lg font-bold text-primary">{avg}%</span>
             </div>
             <div className="space-y-2 mb-4">
               {[
-                { label: "Grammatika", val: result.grammar },
-                { label: "Mavzuga aloqadorlik", val: result.relevance },
-                { label: "Ijodkorlik", val: result.creativity },
+                { label: t("gameui.grammar"), val: result.grammar },
+                { label: t("gameui.relevance"), val: result.relevance },
+                { label: t("gameui.creativity"), val: result.creativity },
               ].map(({ label, val }) => (
                 <div key={label}>
                   <div className="flex justify-between text-xs text-muted-foreground mb-1">
@@ -248,7 +250,7 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
               ))}
             </div>
             {result.tip && (
-              <p className="text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2">💬 {result.tip}</p>
+              <p className="text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2">💬 {result.tipKey ? t(`gameui.sentence_tips.${result.tipKey}`) : result.tip}</p>
             )}
           </motion.div>
         )}
@@ -256,13 +258,13 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
 
       {!result ? (
         <Button onClick={handleSubmit} disabled={!sentence.trim() || checking} className="w-full">
-          {checking ? "Tekshirilmoqda..." : "Jumlani tekshirish"}
+          {checking ? t("gameui.checking") : t("gameui.check_sentence")}
         </Button>
       ) : (
         <div className="flex gap-3">
-          <Button variant="outline" onClick={onBack} className="flex-1 select-none">Chiqish</Button>
+          <Button variant="outline" onClick={onBack} className="flex-1 select-none">{t("gameui.exit")}</Button>
           <Button onClick={nextRound} className="flex-1 select-none">
-            <Shuffle className="w-4 h-4 mr-1" /> Yangi tur
+            <Shuffle className="w-4 h-4 mr-1" /> {t("gameui.new_round")}
           </Button>
         </div>
       )}
