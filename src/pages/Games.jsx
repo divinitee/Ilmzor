@@ -8,6 +8,7 @@ import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
 import SpellingGame from "@/components/games/SpellingGame";
 import WordFormsGame from "@/components/games/WordFormsGame";
 import CrosswordGame from "@/components/games/CrosswordGame";
+import DefinitionGame from "@/components/games/DefinitionGame";
 import UnitDrawer from "@/components/UnitDrawer";
 import RoomLeaderboard from "@/components/games/RoomLeaderboard";
 import GameSetup from "@/components/games/GameSetup";
@@ -76,6 +77,18 @@ const GAME_CARDS = [
     tags: ["Interaktiv", "Yonama/Pastga"],
     tagColor: "bg-sky-500/10 text-sky-700 dark:text-sky-400",
     img: "https://images.unsplash.com/photo-1606857521015-1f7b76870e9f?w=300&q=80",
+  },
+  {
+    id: "definition",
+    title: "So'z Ta'rifi",
+    desc: "So'z ta'rifini o'qing va o'z so'zlaringiz bilan qayta yozing, AI 1–5 tanga baholaydi",
+    emoji: "📖",
+    gradient: "from-rose-500 to-pink-600",
+    lightBg: "from-rose-500/10 to-pink-500/10",
+    border: "border-rose-200 dark:border-rose-800",
+    tags: ["AI baholash", "1–5 tanga"],
+    tagColor: "bg-rose-500/10 text-rose-700 dark:text-rose-400",
+    img: "https://images.unsplash.com/photo-1524995997946-a1c2e2d4d3e8?w=300&q=80",
   },
 ];
 
@@ -237,6 +250,19 @@ export default function Games({ isActive = false, user = null }) {
         words={unitWords}
         unitName={selectedUnit?.name || ""}
         onBack={handleBack}
+        onCoinsEarned={handleCoinsEarned}
+        difficulty={config?.difficulty || "intermediate"}
+      />
+    );
+  }
+
+  if (activeGame === "definition") {
+    return (
+      <DefinitionGame
+        words={unitWords}
+        unitName={selectedUnit?.name || ""}
+        onBack={handleBack}
+        user={user}
         onCoinsEarned={handleCoinsEarned}
         difficulty={config?.difficulty || "intermediate"}
       />
