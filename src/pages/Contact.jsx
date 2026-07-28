@@ -27,11 +27,11 @@ export default function Contact() {
           <div>
             <p className="text-sm text-muted-foreground">Email</p>
             <a href="mailto:support@vocabularymaster.uz" className="text-base font-semibold text-foreground hover:text-primary">
-              support@vocabularymaster.uz
+
             </a>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>);
+
 }
