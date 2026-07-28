@@ -13,14 +13,34 @@ export default function VocabTutorChat() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [deletedIds, setDeletedIds] = useState(new Set());
   const bottomRef = useRef(null);
+
+  const storageKey = (convId) => `tutor_deleted_${convId}`;
+
+  const loadDeleted = (convId) => {
+    if (!convId) return new Set();
+    try {
+      const raw = localStorage.getItem(storageKey(convId));
+      return new Set(raw ? JSON.parse(raw) : []);
+    } catch {
+      return new Set();
+    }
+  };
+
+  const persistDeleted = (convId, ids) => {
+    if (!convId) return;
+    try {
+      localStorage.setItem(storageKey(convId), JSON.stringify([...ids]));
+    } catch {}
+  };
 
   useEffect(() => { init(); }, []);
 
   useEffect(() => {
     if (!conversation?.id) return;
     const unsubscribe = base44.agents.subscribeToConversation(conversation.id, (data) => {
-      setMessages(data.messages || []);
+      setMessages((data.messages || []).filter(m => !deletedIds.has(m.id)));
     });
     return () => unsubscribe();
   }, [conversation?.id]);
@@ -40,10 +60,20 @@ export default function VocabTutorChat() {
         });
       }
       setConversation(conv);
+      setDeletedIds(loadDeleted(conv.id));
       setMessages(conv.messages || []);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDeleteMessage = (id) => {
+    setDeletedIds(prev => {
+      const next = new Set(prev).add(id);
+      persistDeleted(conversation?.id, next);
+      return next;
+    });
+    setMessages(prev => prev.filter(m => m.id !== id));
   };
 
   const handleSend = async () => {
@@ -85,7 +115,11 @@ export default function VocabTutorChat() {
           </div>
         )}
         {messages.map((m, i) => (
-          <MessageBubble key={i} message={m} />
+          <MessageBubble
+            key={m.id || i}
+            message={m}
+            onDelete={m.id ? () => handleDeleteMessage(m.id) : undefined}
+          />
         ))}
         <div ref={bottomRef} />
       </div>
