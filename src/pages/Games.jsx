@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { Gamepad2, Zap, MessageSquare, ChevronRight, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
 import SpellingGame from "@/components/games/SpellingGame";
@@ -98,13 +98,32 @@ export default function Games({ isActive = false, user = null }) {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
-  const [activeGame, setActiveGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [trialRounds, setTrialRounds] = useState(() => parseInt(localStorage.getItem(TRIAL_KEY) || "0", 10));
-  const [setupGame, setSetupGame] = useState(null);
-  const [config, setConfig] = useState(null);
   const [userCoins, setUserCoins] = useState(null);
   const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
+
+  // Routing via search params: ?game=<id> (setup) or ?game=<id>&play=1&difficulty=... (playing)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const gameParam = searchParams.get("game");
+  const isPlaying = searchParams.get("play") === "1";
+  const setupGame = gameParam && !isPlaying ? gameParam : null;
+  const activeGame = gameParam && isPlaying ? gameParam : null;
+  const config = {
+    difficulty: searchParams.get("difficulty") || "intermediate",
+    timePerQ: searchParams.get("timePerQ") ? Number(searchParams.get("timePerQ")) : 30,
+    autoAdvance: searchParams.get("autoAdvance") !== "0",
+  };
+
+  const mergeParams = (updates, options) => {
+    const next = new URLSearchParams(searchParams);
+    for (const [k, v] of Object.entries(updates)) {
+      if (v === null || v === undefined || v === "") next.delete(k);
+      else next.set(k, String(v));
+    }
+    setSearchParams(next, options);
+  };
+  const clearGameParams = (options) => mergeParams({ game: null, play: null, difficulty: null, timePerQ: null, autoAdvance: null }, options);
 
   useEffect(() => {
     base44.entities.VocabularyWord.list('unit_number', 2000).then(all => {
@@ -129,7 +148,7 @@ export default function Games({ isActive = false, user = null }) {
 
   const unitWords = words.filter(w => selectedUnit && w.unit_key === selectedUnit.key);
 
-  const openSetup = (game) => setSetupGame(game);
+  const openSetup = (game) => mergeParams({ game, play: null });
 
   const handleSetupStart = (cfg) => {
     if (!isActive) {
@@ -137,12 +156,10 @@ export default function Games({ isActive = false, user = null }) {
       localStorage.setItem(TRIAL_KEY, String(next));
       setTrialRounds(next);
     }
-    setConfig(cfg);
-    setActiveGame(setupGame);
-    setSetupGame(null);
+    mergeParams({ game: gameParam, play: "1", difficulty: cfg.difficulty, timePerQ: cfg.timePerQ, autoAdvance: cfg.autoAdvance ? "1" : "0" }, { replace: true });
   };
 
-  const handleBack = () => setActiveGame(null);
+  const handleBack = () => clearGameParams({ replace: true });
 
   const handleCoinsEarned = async (earned, correctCount) => {
     if (!user || earned === 0) return;
@@ -182,7 +199,7 @@ export default function Games({ isActive = false, user = null }) {
         gameId={setupGame}
         unitName={selectedUnit?.name || ""}
         onStart={handleSetupStart}
-        onCancel={() => setSetupGame(null)}
+        onCancel={() => clearGameParams({ replace: true })}
       />
     );
   }

@@ -5,7 +5,7 @@ import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, S
 import { AnimatePresence as AP } from "framer-motion";
 import ChatWindow from "@/components/ChatWindow";
 import ProfileEditor from "@/components/ProfileEditor";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
@@ -30,7 +30,14 @@ export default function Home() {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("home");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "home";
+  const navigateTab = (tab) => {
+    const next = new URLSearchParams(searchParams);
+    ["game", "play", "difficulty", "timePerQ", "autoAdvance"].forEach(k => next.delete(k));
+    if (tab === "home") next.delete("tab"); else next.set("tab", tab);
+    setSearchParams(next);
+  };
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -205,7 +212,7 @@ export default function Home() {
       </div>
 
       {/* Bottom Tab Bar */}
-      <BottomTabBar activeTab={activeTab} onTabChange={setActiveTab} />
+      <BottomTabBar activeTab={activeTab} onTabChange={navigateTab} />
 
       {/* Unit Drawer */}
       <UnitDrawer

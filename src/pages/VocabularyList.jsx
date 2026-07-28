@@ -144,7 +144,7 @@ export default function VocabularyList({ isActive = false }) {
                         unitWords.map((w, i) => (
                           <div
                             key={w.id || i}
-                            className={`px-4 py-3 gap-2 text-sm ${lang === "both" ? "grid grid-cols-3" : "grid grid-cols-2"} ${i % 2 === 0 ? "" : "bg-muted/20"} border-b border-border last:border-0`}
+                            className={`select-text px-4 py-3 gap-2 text-sm ${lang === "both" ? "grid grid-cols-3" : "grid grid-cols-2"} ${i % 2 === 0 ? "" : "bg-muted/20"} border-b border-border last:border-0`}
                           >
                             <div>
                               <p className="font-semibold text-foreground">{w.english}</p>

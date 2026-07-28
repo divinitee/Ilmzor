@@ -72,7 +72,7 @@ export default function VocabTutorChat() {
     });
     setConversation(conv);
     setDeletedIds(loadDeleted(conv.id));
-    setMessages(conv.messages || []);
+    setMessages(prev => (prev.length ? prev : (conv.messages || [])));
     return conv;
   };
 
@@ -86,13 +86,20 @@ export default function VocabTutorChat() {
   };
 
   const handleSend = async () => {
-    if (!input.trim() || sending) return;
-    setSending(true);
-    const text = input.trim();
+    const content = input.trim();
+    if (!content || sending) return;
+    const tempId = `temp_${Date.now()}`;
+    // Optimistic: append immediately, reset input
+    setMessages(prev => [...prev, { id: tempId, role: "user", content, _pending: true }]);
     setInput("");
+    setSending(true);
     try {
       const conv = await ensureConversation();
-      await base44.agents.addMessage(conv, { role: "user", content: text });
+      await base44.agents.addMessage(conv, { role: "user", content });
+      // subscription refreshes messages with the real list (user msg + tutor reply)
+    } catch {
+      // Rollback on failure
+      setMessages(prev => prev.filter(m => m.id !== tempId));
     } finally {
       setSending(false);
     }

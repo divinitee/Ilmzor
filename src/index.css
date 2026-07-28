@@ -90,10 +90,18 @@
 
   body {
     @apply bg-background text-foreground font-body;
-    padding-top: env(safe-area-inset-top);
+    -webkit-user-select: none;
+    user-select: none;
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
     overscroll-behavior: none;
+  }
+
+  /* Re-enable text selection for content users read / copy:
+     vocabulary translation rows and chat/message bubbles */
+  input, textarea, [contenteditable="true"], .select-text {
+    -webkit-user-select: text;
+    user-select: text;
   }
 
   .safe-header {

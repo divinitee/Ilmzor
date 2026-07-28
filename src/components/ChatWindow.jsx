@@ -25,7 +25,21 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
   }, [messages]);
 
   const handleSend = async () => {
-    if (!text.trim() || sending) return;
+    const content = text.trim();
+    if (!content || sending) return;
+    const tempId = `temp_${Date.now()}`;
+    // Optimistic: append immediately, reset input
+    setMessages(prev => [...prev, {
+      id: tempId,
+      room_id: roomId,
+      sender_id: user.id,
+      sender_name: user.full_name || user.email,
+      sender_role: user.role,
+      text: content,
+      created_date: new Date().toISOString(),
+      _pending: true,
+    }]);
+    setText("");
     setSending(true);
     try {
       await base44.entities.ChatMessage.create({
@@ -33,9 +47,14 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
         sender_id: user.id,
         sender_name: user.full_name || user.email,
         sender_role: user.role,
-        text: text.trim(),
+        text: content,
       });
-      setText("");
+      // subscription refreshes; refetch as a fallback to swap the temp msg for the real one
+      const fresh = await base44.entities.ChatMessage.filter({ room_id: roomId }, "created_date", 100);
+      setMessages(fresh);
+    } catch {
+      // Rollback on failure
+      setMessages(prev => prev.filter(m => m.id !== tempId));
     } finally {
       setSending(false);
     }
@@ -73,7 +92,7 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
           const isMe = msg.sender_id === user.id;
           return (
             <div key={msg.id} className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 ${isMe ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
+              <div className={`select-text max-w-[75%] rounded-2xl px-4 py-2.5 ${isMe ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
                 {!isMe && <p className="text-[10px] font-semibold opacity-70 mb-0.5">{msg.sender_name}</p>}
                 <p className="text-sm leading-snug">{msg.text}</p>
                 <p className={`text-[10px] mt-1 opacity-60 ${isMe ? "text-right" : ""}`}>
