@@ -52,19 +52,28 @@ export default function VocabTutorChat() {
   const init = async () => {
     try {
       const existing = await base44.agents.listConversations({ agent_name: AGENT_NAME });
-      let conv = existing?.[0];
-      if (!conv) {
-        conv = await base44.agents.createConversation({
-          agent_name: AGENT_NAME,
-          metadata: { name: "Vocabulary Tutor", description: "Word mastery practice" },
-        });
+      const conv = existing?.[0];
+      if (conv) {
+        setConversation(conv);
+        setDeletedIds(loadDeleted(conv.id));
+        setMessages(conv.messages || []);
       }
-      setConversation(conv);
-      setDeletedIds(loadDeleted(conv.id));
-      setMessages(conv.messages || []);
+      // Do NOT auto-create a conversation — only create one when the user sends their first message.
     } finally {
       setLoading(false);
     }
+  };
+
+  const ensureConversation = async () => {
+    if (conversation) return conversation;
+    const conv = await base44.agents.createConversation({
+      agent_name: AGENT_NAME,
+      metadata: { name: "Vocabulary Tutor", description: "Word mastery practice" },
+    });
+    setConversation(conv);
+    setDeletedIds(loadDeleted(conv.id));
+    setMessages(conv.messages || []);
+    return conv;
   };
 
   const handleDeleteMessage = (id) => {
@@ -77,12 +86,13 @@ export default function VocabTutorChat() {
   };
 
   const handleSend = async () => {
-    if (!input.trim() || sending || !conversation) return;
+    if (!input.trim() || sending) return;
     setSending(true);
     const text = input.trim();
     setInput("");
     try {
-      await base44.agents.addMessage(conversation, { role: "user", content: text });
+      const conv = await ensureConversation();
+      await base44.agents.addMessage(conv, { role: "user", content: text });
     } finally {
       setSending(false);
     }
