@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
@@ -47,20 +47,23 @@ async function evaluateDefinition(userDef, word, cfg) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
       prompt: [
-        `You are a strict English vocabulary examiner for ${cfg.minWords >= 16 ? "PROFICIENT" : cfg.minWords >= 12 ? "ADVANCED" : "INTERMEDIATE"} B1 learners.`,
+        `You are a strict but fair English vocabulary examiner for B1 learners.`,
         `Target word (English): "${word.english}" — Uzbek: "${word.uzbek}".`,
         `Reference definition: "${word.definition || ""}".`,
         `The student rewrote the definition in their own words:`,
         `"${userDef}".`,
         ``,
-        `Score these criteria each from 0 to 100 (whole numbers):`,
-        `- accuracy: does it capture the correct meaning of the word?`,
-        `- completeness: does it cover the key idea (not just a synonym)?`,
-        `- own_words: did the student paraphrase rather than copy the reference word-for-word?`,
-        `Then reward coins as an integer from 1 to 5 based on overall quality:`,
-        `5 = excellent, 4 = good, 3 = decent, 2 = weak, 1 = poor. Never 0.`,
-        `Minimum ${cfg.minWords} words expected; shorter answers cap lower.`,
-        `Also give ONE short encouraging tip in English (max 15 words).`,
+        `Evaluate the student's text ONLY on meaning, not wording. A paraphrase that uses completely different words but keeps the correct meaning is EXCELLENT (accuracy 90-100). A definition that is factually wrong scores 0-20 on accuracy.`,
+        ``,
+        `Score these criteria each 0-100 (whole numbers):`,
+        `- accuracy: does it convey the CORRECT meaning of "${word.english}"? (synonyms/paraphrase = high; wrong meaning = low)`,
+        `- completeness: does it capture the key idea, not just a vague synonym?`,
+        `- own_words: did the student paraphrase rather than copy the reference almost word-for-word? (near-copy = 0-30)`,
+        ``,
+        `Then reward coins (integer 1-5) from the AVERAGE of the three scores:`,
+        `>=85 → 5, 70-84 → 4, 55-69 → 3, 35-54 → 2, <35 → 1.`,
+        `Minimum ${cfg.minWords} words expected; much shorter answers subtract ~10 from each score.`,
+        `Also give ONE concrete, specific tip (max 15 words) pointing out exactly what to improve — not generic praise.`,
         `Reply as JSON only.`,
       ].join("\n"),
       response_json_schema: {
@@ -102,11 +105,17 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   const [checking, setChecking] = useState(false);
   const [totalCoins, setTotalCoins] = useState(0);
   const [done, setDone] = useState(false);
+  // Capture words once on mount so a parent re-render (e.g. coin update) does NOT
+  // re-run start() and reset the in-progress round.
+  const wordsRef = useRef(words);
+  wordsRef.current = words;
+  const startedRef = useRef(false);
 
   const start = useCallback(() => {
-    if (!words.length) return;
-    const target = Math.min(cfg.count, words.length);
-    const picked = shuffle(words).slice(0, target);
+    const ws = wordsRef.current;
+    if (!ws.length) return;
+    const target = Math.min(cfg.count, ws.length);
+    const picked = shuffle(ws).slice(0, target);
     setPool(picked);
     setQIndex(0);
     setAnswer("");
@@ -117,9 +126,13 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     generateDefinitions(picked)
       .then(map => setDefs(map))
       .finally(() => setLoadingDefs(false));
-  }, [words, cfg.count]);
+  }, [cfg.count]);
 
-  useEffect(() => { start(); }, [start]);
+  useEffect(() => {
+    if (startedRef.current) return;
+    startedRef.current = true;
+    start();
+  }, [start]);
 
   const current = pool[qIndex];
   const currentDef = current ? defs[current.english?.toLowerCase()] : null;
