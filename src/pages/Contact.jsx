@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, ArrowLeft, MessageCircle } from "lucide-react";
+import { Mail, Phone, ArrowLeft, MessageCircle } from "lucide-react";
 
 export default function Contact() {
   return (
@@ -26,8 +26,20 @@ export default function Contact() {
           </div>
           <div>
             <p className="text-sm text-muted-foreground">Email</p>
-            <a href="mailto:support@vocabularymaster.uz" className="text-base font-semibold text-foreground hover:text-primary">
-              support@vocabularymaster.uz
+            <a href="mailto:ilmzor.uz@gmail.com" className="text-base font-semibold text-foreground hover:text-primary">
+              ilmzor.uz@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <div className="bg-card border border-border rounded-2xl p-6 flex items-center gap-4 mt-4">
+          <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <Phone className="w-5 h-5 text-primary" />
+          </div>
+          <div>
+            <p className="text-sm text-muted-foreground">Telefon</p>
+            <a href="tel:+998939338845" className="text-base font-semibold text-foreground hover:text-primary">
+              +998 93 933 88 45
             </a>
           </div>
         </div>
