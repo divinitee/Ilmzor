@@ -25,8 +25,8 @@ export default function Contact() {
             <Mail className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Email</p>
-            <a href="mailto:support@vocabularymaster.uz" className="text-base font-semibold text-foreground hover:text-primary">
+            <p className="text-sm text-muted-foreground">Email </p>
+            <a href="mailto:support@vocabularymaster.uz" className="text-base font-semibold text-foreground hover:text-primary">,il
 
             </a>
           </div>
