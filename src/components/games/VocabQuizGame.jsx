@@ -46,7 +46,7 @@ async function aiSimilarity(userInput, word) {
   }
 }
 
-export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
+export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const timed = timePerQ && timePerQ > 0;
 
@@ -119,6 +119,8 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     if (!done || !user || scores.length === 0) return;
     const correctCount = scores.filter(s => s === 100).length;
     const coinsEarned = correctCount * 1;
+    const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+    if (onGameComplete) onGameComplete({ scorePct: avg, correct: correctCount, total: scores.length });
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     base44.entities.QuizResult.create({

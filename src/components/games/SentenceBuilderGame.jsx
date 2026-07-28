@@ -116,7 +116,7 @@ async function evaluateSentence(sentence, theme, themeWords, difficulty) {
   }
 }
 
-export default function SentenceBuilderGame({ words, onBack, onNewRound, trialExhausted, difficulty = "beginner" }) {
+export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameComplete, trialExhausted, difficulty = "beginner" }) {
   const { t } = useAppLang();
   const cfg = DIFFICULTY[difficulty] || DIFFICULTY.beginner;
   const [groupIdx, setGroupIdx] = useState(null);
@@ -149,6 +149,8 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, trialEx
     const res = await evaluateSentence(sentence, theme, currentGroup, difficulty);
     setResult(res);
     setChecking(false);
+    const avg = Math.round((res.grammar + res.relevance + res.creativity) / 3);
+    if (onGameComplete) onGameComplete({ scorePct: avg, correct: res.grammar, total: 100 });
   };
 
   const nextRound = () => {

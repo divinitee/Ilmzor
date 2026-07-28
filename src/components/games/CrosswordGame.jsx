@@ -150,7 +150,7 @@ function buildCrossword(wordList, difficulty = "intermediate") {
   return { grid, rows, cols, across, down };
 }
 
-export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, difficulty = "intermediate" }) {
+export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const puzzle = useMemo(() => buildCrossword(words, cfg.count), [words, difficulty]);
@@ -282,6 +282,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
     setCoinAnim(`+${coins} 🪙`);
     setTimeout(() => setCoinAnim(null), 1200);
     if (onCoinsEarned) onCoinsEarned(coins, coins);
+    if (onGameComplete) onGameComplete({ scorePct: 100, correct: coins, total: coins });
   };
 
   const handleReveal = () => {

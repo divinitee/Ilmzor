@@ -13,7 +13,7 @@ const DIFF_CONFIG = {
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, difficulty = "intermediate" }) {
+export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
 
@@ -113,7 +113,9 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, d
   useEffect(() => {
     if (!done || scores.length === 0) return;
     const correctCount = scores.filter(Boolean).length;
+    const pct = scores.length ? Math.round((correctCount / scores.length) * 100) : 0;
     if (onCoinsEarned) onCoinsEarned(correctCount, correctCount);
+    if (onGameComplete) onGameComplete({ scorePct: pct, correct: correctCount, total: scores.length });
   }, [done]); /* eslint-disable-next-line */
 
   useEffect(() => () => { try { window.speechSynthesis.cancel(); } catch { /* */ } }, []);

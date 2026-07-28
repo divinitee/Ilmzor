@@ -16,7 +16,7 @@ const FORM_EMOJI = { noun: "📌", verb: "⚡", adjective: "🎨", adverb: "💨
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-export default function WordFormsGame({ words, unitName, onBack, onCoinsEarned, difficulty = "intermediate" }) {
+export default function WordFormsGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const [formsData, setFormsData] = useState([]); // [{word, noun, verb, adjective, adverb}]
@@ -121,7 +121,9 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
   useEffect(() => {
     if (!done || scores.length === 0) return;
     const correctCount = scores.filter(Boolean).length;
+    const pct = scores.length ? Math.round((correctCount / scores.length) * 100) : 0;
     if (onCoinsEarned) onCoinsEarned(correctCount, correctCount);
+    if (onGameComplete) onGameComplete({ scorePct: pct, correct: correctCount, total: scores.length });
   }, [done]); /* eslint-disable-next-line */
 
   if (loading) {

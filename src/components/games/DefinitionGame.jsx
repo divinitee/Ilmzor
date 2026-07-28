@@ -92,7 +92,7 @@ async function evaluateDefinition(userDef, word, cfg) {
   }
 }
 
-export default function DefinitionGame({ words, unitName, onBack, user, onCoinsEarned, difficulty = "intermediate" }) {
+export default function DefinitionGame({ words, unitName, onBack, user, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
 
@@ -154,6 +154,14 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     setAnswer("");
     setResult(null);
   };
+
+  // record skill progress once on completion
+  useEffect(() => {
+    if (!done || pool.length === 0) return;
+    const max = pool.length * 5;
+    const pct = max ? Math.round((totalCoins / max) * 100) : 0;
+    if (onGameComplete) onGameComplete({ scorePct: pct, correct: totalCoins, total: max });
+  }, [done]); /* eslint-disable-next-line */
 
   if (!words.length) {
     return (

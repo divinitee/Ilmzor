@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Gamepad2, Zap, MessageSquare, ChevronRight, Lock } from "lucide-react";
+import { Gamepad2, Zap, MessageSquare, ChevronRight, Lock, Info } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
@@ -12,6 +12,10 @@ import DefinitionGame from "@/components/games/DefinitionGame";
 import UnitDrawer from "@/components/UnitDrawer";
 import RoomLeaderboard from "@/components/games/RoomLeaderboard";
 import GameSetup from "@/components/games/GameSetup";
+import ProgressOverview from "@/components/games/ProgressOverview";
+import InstructionsContent from "@/components/games/InstructionsContent";
+import GameInstructionsSheet from "@/components/games/GameInstructionsSheet";
+import { recordGameResult, getGameStats, GAME_SKILL_MAP } from "@/lib/gameSkills";
 import { useAppLang } from "@/hooks/useAppLang";
 
 const TRIAL_KEY = "vocab_trial_rounds";
@@ -101,6 +105,7 @@ export default function Games({ isActive = false, user = null }) {
   const [loading, setLoading] = useState(true);
   const [trialRounds, setTrialRounds] = useState(() => parseInt(localStorage.getItem(TRIAL_KEY) || "0", 10));
   const [userCoins, setUserCoins] = useState(null);
+  const [infoGame, setInfoGame] = useState(null);
   const trialExhausted = !isActive && trialRounds >= MAX_TRIAL_ROUNDS;
 
   // Routing via search params: ?game=<id> (setup) or ?game=<id>&play=1&difficulty=... (playing)
@@ -185,6 +190,13 @@ export default function Games({ isActive = false, user = null }) {
     } catch (e) { console.error(e); }
   };
 
+  const handleGameComplete = (result) => {
+    const gameId = activeGame;
+    if (!gameId) return;
+    const pct = Math.max(0, Math.min(100, Math.round(result?.scorePct ?? 0)));
+    recordGameResult(gameId, pct);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
@@ -195,12 +207,15 @@ export default function Games({ isActive = false, user = null }) {
 
   if (setupGame) {
     return (
-      <GameSetup
-        gameId={setupGame}
-        unitName={selectedUnit?.name || ""}
-        onStart={handleSetupStart}
-        onCancel={() => clearGameParams({ replace: true })}
-      />
+      <div className="max-w-lg mx-auto px-4 py-6">
+        <InstructionsContent gameId={setupGame} />
+        <GameSetup
+          gameId={setupGame}
+          unitName={selectedUnit?.name || ""}
+          onStart={handleSetupStart}
+          onCancel={() => clearGameParams({ replace: true })}
+        />
+      </div>
     );
   }
 
@@ -215,6 +230,7 @@ export default function Games({ isActive = false, user = null }) {
         difficulty={config?.difficulty || "intermediate"}
         timePerQ={config?.timePerQ ?? 30}
         autoAdvance={config?.autoAdvance ?? true}
+        onGameComplete={handleGameComplete}
       />
     );
   }
@@ -233,6 +249,7 @@ export default function Games({ isActive = false, user = null }) {
             setTrialRounds(next);
           }
         }}
+        onGameComplete={handleGameComplete}
       />
     );
   }
@@ -244,6 +261,7 @@ export default function Games({ isActive = false, user = null }) {
         unitName={selectedUnit?.name || ""}
         onBack={handleBack}
         onCoinsEarned={handleCoinsEarned}
+        onGameComplete={handleGameComplete}
         difficulty={config?.difficulty || "intermediate"}
       />
     );
@@ -256,6 +274,7 @@ export default function Games({ isActive = false, user = null }) {
         unitName={selectedUnit?.name || ""}
         onBack={handleBack}
         onCoinsEarned={handleCoinsEarned}
+        onGameComplete={handleGameComplete}
         difficulty={config?.difficulty || "intermediate"}
       />
     );
@@ -268,6 +287,7 @@ export default function Games({ isActive = false, user = null }) {
         unitName={selectedUnit?.name || ""}
         onBack={handleBack}
         onCoinsEarned={handleCoinsEarned}
+        onGameComplete={handleGameComplete}
         difficulty={config?.difficulty || "intermediate"}
       />
     );
@@ -281,6 +301,7 @@ export default function Games({ isActive = false, user = null }) {
         onBack={handleBack}
         user={user}
         onCoinsEarned={handleCoinsEarned}
+        onGameComplete={handleGameComplete}
         difficulty={config?.difficulty || "intermediate"}
       />
     );
@@ -340,6 +361,8 @@ export default function Games({ isActive = false, user = null }) {
         </div>
       </motion.div>
 
+      <ProgressOverview coins={userCoins?.coins || 0} />
+
       {/* Unit selector */}
       <div className="mb-5">
         <p className="text-xs text-muted-foreground font-semibold uppercase tracking-wider mb-2">{t("games.active_unit")}</p>
@@ -387,8 +410,27 @@ export default function Games({ isActive = false, user = null }) {
                   <span className="text-2xl">{card.emoji}</span>
                 </motion.div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-foreground mb-1">{t(`games.cards.${card.id}.title`)}</h3>
-                  <p className="text-sm text-muted-foreground mb-3">{t(`games.cards.${card.id}.desc`)}</p>
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <h3 className="font-bold text-foreground">{t(`games.cards.${card.id}.title`)}</h3>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setInfoGame(card.id); }}
+                      className="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors select-none flex-shrink-0"
+                      title={t("games.how_to_play")}
+                    >
+                      <Info className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-2">{t(`games.cards.${card.id}.desc`)}</p>
+                  <div className="flex items-center gap-2 mb-3 flex-wrap">
+                    <span className="text-[11px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+                      🎯 {t(`games.skills.${GAME_SKILL_MAP[card.id]}`)}
+                    </span>
+                    {getGameStats(card.id).plays > 0 && (
+                      <span className="text-[11px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full font-medium">
+                        ⭐ {getGameStats(card.id).best}%
+                      </span>
+                    )}
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {(translations[lang]?.games?.cards[card.id]?.tags || []).map(tag => (
                       <span key={tag} className={`text-xs ${card.tagColor} px-2 py-0.5 rounded-full font-medium`}>{tag}</span>
@@ -405,6 +447,12 @@ export default function Games({ isActive = false, user = null }) {
       {/* Room Leaderboard */}
       <RoomLeaderboard user={user} />
 
+      <GameInstructionsSheet
+        gameId={infoGame}
+        open={!!infoGame}
+        onClose={() => setInfoGame(null)}
+        onStart={() => { const g = infoGame; setInfoGame(null); openSetup(g); }}
+      />
       <UnitDrawer
         open={unitDrawerOpen}
         onClose={() => setUnitDrawerOpen(false)}
