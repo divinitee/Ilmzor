@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Volume2, ArrowLeft, RefreshCw, Eraser, Check } from "lucide-react";
+import { Volume2, ArrowLeft, RefreshCw, Eraser, Check, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 
@@ -100,7 +100,8 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
       setCoinAnim("+1 🪙");
       setTimeout(() => setCoinAnim(null), 900);
     }
-    setTimeout(next, ok ? 1100 : 1600);
+    // Reveal the correct spelling in the slots so the learner can review it before moving on.
+    setPlaced(cleanTarget.split(""));
   };
 
   const next = () => {
@@ -189,18 +190,22 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
             {cleanTarget.split("").map((_, i) => {
               const ch = placed[i];
               let cls = "w-9 h-11 rounded-xl border-2 flex items-center justify-center text-lg font-bold transition-colors";
-              if (status === "correct") cls += " border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300";
-              else if (status === "wrong" && i < placed.length) cls += " border-destructive bg-destructive/10 text-destructive";
+              if (status) cls += " border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300";
               else if (ch) cls += " border-primary bg-primary/10 text-foreground";
               else cls += " border-border bg-background text-muted-foreground";
               return <div key={i} className={cls}>{ch || ""}</div>;
             })}
           </div>
 
-          {/* Status */}
+          {/* Status + correct answer reveal */}
           {status && (
-            <div className={`text-center text-sm font-semibold mb-4 ${status === "correct" ? "text-emerald-600" : "text-destructive"}`}>
-              {status === "correct" ? t("gameui.spelling_correct") : t("gameui.spelling_wrong", { word: currentWord.english })}
+            <div className="text-center mb-4">
+              <div className={`text-sm font-semibold ${status === "correct" ? "text-emerald-600" : "text-destructive"}`}>
+                {status === "correct" ? t("gameui.spelling_correct") : t("gameui.spelling_wrong", { word: currentWord.english })}
+              </div>
+              {status === "wrong" && currentWord.uzbek && (
+                <div className="text-xs text-muted-foreground mt-1">{currentWord.english} — {currentWord.uzbek}</div>
+              )}
             </div>
           )}
 
@@ -221,14 +226,20 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
           </div>
 
           {/* Controls */}
-          <div className="flex gap-2">
-            <Button variant="outline" onClick={removeLast} disabled={!!status || placed.length === 0} className="flex-1 select-none">
-              <Eraser className="w-4 h-4 mr-1" /> {t("gameui.spelling_erase")}
+          {status ? (
+            <Button onClick={next} className="w-full select-none">
+              {idx + 1 >= round.length ? t("gameui.finish") : t("gameui.next_word")} <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
-            <Button variant="outline" onClick={() => speak(cleanTarget)} className="flex-1 select-none">
-              <RefreshCw className="w-4 h-4 mr-1" /> {t("gameui.spelling_replay")}
-            </Button>
-          </div>
+          ) : (
+            <div className="flex gap-2">
+              <Button variant="outline" onClick={removeLast} disabled={placed.length === 0} className="flex-1 select-none">
+                <Eraser className="w-4 h-4 mr-1" /> {t("gameui.spelling_erase")}
+              </Button>
+              <Button variant="outline" onClick={() => speak(cleanTarget)} className="flex-1 select-none">
+                <RefreshCw className="w-4 h-4 mr-1" /> {t("gameui.spelling_replay")}
+              </Button>
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
     </div>
