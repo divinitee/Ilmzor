@@ -24,6 +24,15 @@
       "type": "string",
       "description": "Chosen plan name e.g. VIP Plan, Learner Plan, Starter Plan"
     },
+    "billing_cycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "yearly"
+      ],
+      "default": "monthly",
+      "description": "Whether the plan is billed monthly or yearly"
+    },
     "referral_code": {
       "type": "string",
       "description": "Teacher's referral code used at registration"
@@ -39,7 +48,7 @@
     "expires_at": {
       "type": "string",
       "format": "date",
-      "description": "Date the active subscription expires (1 month after approval)"
+      "description": "Date the active subscription expires (1 month or 1 year after approval, based on billing_cycle)"
     },
     "description": {
       "type": "string",

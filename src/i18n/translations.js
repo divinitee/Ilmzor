@@ -141,6 +141,9 @@ export const translations = {
       title: "AI So'z Ustozi", sub: "O'rganmoqchi bo'lgan so'zingizni yozing",
       empty: "👋 Salom! Menga o'rganmoqchi bo'lgan so'zingizni yozing (masalan: \"achieve\" yoki \"erishmoq\"), men sizga ma'nosini tushuntirib, mashq qildiraman.",
       placeholder: "So'z yozing...",
+      uses_remaining: "Bugun: {used}/{limit}", unlimited: "Cheksiz ∞",
+      limit_reached: "Kunlik AI Ustoz limiti tugadi", limit_reached_desc: "Siz bugungi {limit} ta mashingizni bajarib bo'ldingiz. Ertaga qaytadan urinib ko'ring yoki reja yangilang.",
+      upgrade: "Rejani yangilash →",
     },
     vocab: {
       title: "So'zlar ro'yxati", free_badge: "Bepul", translation_lang: "Tarjima tili:",
@@ -179,6 +182,9 @@ export const translations = {
         early_access: "Yangi kontentga erta kirish",
         priority_support: "Ustuvor qo'llab-quvvatlash",
         flashcard_only: "Flashcard rejimi",
+        ai_daily_3: "🤖 AI Ustoz: 3 marta/kun",
+        ai_daily_20: "🤖 AI Ustoz: 20 marta/kun",
+        ai_unlimited: "🤖 AI Ustoz: cheksiz",
       },
     },
     pricing: {
@@ -197,6 +203,8 @@ export const translations = {
       discount_title: "🔥 Chegirmaning oxirgi kunlari! 41% gacha arzon",
       discount_sub: "Chegirmalar cheklangan vaqt ichida amal qiladi",
       discount_word: "chegirma",
+      billing_monthly: "Oylik", billing_yearly: "Yillik",
+      billing_save: "{pct}% chegirma", per_month: "so'm / oy", per_year: "so'm / yil",
       continue_btn: "— Davom etish", payment_note: "To'lovni bank kartasi yoki QR orqali amalga oshirasiz",
     },
     studytips: {
@@ -340,6 +348,9 @@ export const translations = {
       title: "AI Word Tutor", sub: "Write a word you want to learn",
       empty: "👋 Hi! Write a word you want to learn (e.g. \"achieve\"), and I'll explain its meaning and practice with you.",
       placeholder: "Type a word...",
+      uses_remaining: "Today: {used}/{limit}", unlimited: "Unlimited ∞",
+      limit_reached: "Daily AI tutor limit reached", limit_reached_desc: "You've used all {limit} of your daily turns. Come back tomorrow or upgrade your plan.",
+      upgrade: "Upgrade plan →",
     },
     vocab: {
       title: "Word list", free_badge: "Free", translation_lang: "Translation language:",
@@ -378,6 +389,9 @@ export const translations = {
         early_access: "Early access to new content",
         priority_support: "Priority support",
         flashcard_only: "Flashcard mode",
+        ai_daily_3: "🤖 AI Tutor: 3 uses/day",
+        ai_daily_20: "🤖 AI Tutor: 20 uses/day",
+        ai_unlimited: "🤖 AI Tutor: unlimited",
       },
     },
     pricing: {
@@ -396,6 +410,8 @@ export const translations = {
       discount_title: "🔥 Last days of the sale! Up to 41% off",
       discount_sub: "Discounts are available for a limited time",
       discount_word: "off",
+      billing_monthly: "Monthly", billing_yearly: "Yearly",
+      billing_save: "{pct}% off", per_month: "so'm / mo", per_year: "so'm / yr",
       continue_btn: "— Continue", payment_note: "Pay by bank card or QR code",
     },
     studytips: {
@@ -539,6 +555,9 @@ export const translations = {
       title: "ИИ репетитор по словам", sub: "Напишите слово, которое хотите выучить",
       empty: "👋 Привет! Напишите слово, которое хотите выучить (напр. \"achieve\"), и я объясню его значение и потренирую вас.",
       placeholder: "Введите слово...",
+      uses_remaining: "Сегодня: {used}/{limit}", unlimited: "Безлимит ∞",
+      limit_reached: "Дневной лимит ИИ исчерпан", limit_reached_desc: "Вы использовали все {limit} дневных попыток. Возвращайтесь завтра или обновите план.",
+      upgrade: "Обновить план →",
     },
     vocab: {
       title: "Список слов", free_badge: "Бесплатно", translation_lang: "Язык перевода:",
@@ -577,6 +596,9 @@ export const translations = {
         early_access: "Ранний доступ к новому контенту",
         priority_support: "Приоритетная поддержка",
         flashcard_only: "Режим флеш-карт",
+        ai_daily_3: "🤖 ИИ Учитель: 3 раза/день",
+        ai_daily_20: "🤖 ИИ Учитель: 20 раз/день",
+        ai_unlimited: "🤖 ИИ Учитель: безлимит",
       },
     },
     pricing: {
@@ -595,6 +617,8 @@ export const translations = {
       discount_title: "🔥 Последние дни распродажи! Скидки до 41%",
       discount_sub: "Скидки действуют ограниченное время",
       discount_word: "скидка",
+      billing_monthly: "Ежемесячно", billing_yearly: "Ежегодно",
+      billing_save: "{pct}% скидка", per_month: "сум / мес", per_year: "сум / год",
       continue_btn: "— Продолжить", payment_note: "Оплата банковской картой или QR-кодом",
     },
     studytips: {

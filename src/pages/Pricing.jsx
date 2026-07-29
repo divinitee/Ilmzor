@@ -1,71 +1,28 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Check, Crown, Star, Zap, ArrowLeft } from "lucide-react";
+import { BookOpen, Check, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
-
-const plans = [
-  {
-    id: "vip",
-    name: "VIP Plan",
-    price: "49,999",
-    originalPrice: "79,999",
-    discount: "38%",
-    period: "so'm / yil",
-    icon: Crown,
-    color: "from-amber-500/20 to-orange-500/20",
-    border: "border-amber-400",
-    badgeKey: null,
-    iconColor: "text-amber-600",
-    hasAI: true,
-    featureKeys: ["all_units", "full_test", "all_games", "teacher_track", "early_access", "priority_support"],
-  },
-  {
-    id: "learner",
-    name: "Learner Plan",
-    price: "24,888",
-    originalPrice: "39,999",
-    discount: "38%",
-    period: "so'm / oy",
-    icon: Star,
-    color: "from-indigo-500/20 to-violet-500/20",
-    border: "border-indigo-500",
-    badgeKey: "learner",
-    iconColor: "text-indigo-600",
-    hasAI: true,
-    featureKeys: ["all_units", "full_test", "all_games", "teacher_track"],
-  },
-  {
-    id: "starter",
-    name: "Starter Plan",
-    price: "17,777",
-    originalPrice: "29,999",
-    discount: "41%",
-    period: "so'm / oy",
-    icon: Zap,
-    color: "from-emerald-500/10 to-teal-500/10",
-    border: "border-emerald-400",
-    badgeKey: null,
-    iconColor: "text-emerald-600",
-    hasAI: false,
-    featureKeys: ["all_units", "full_test", "flashcard_only"],
-  },
-];
+import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 
 export default function Pricing() {
   const navigate = useNavigate();
   const { t } = useAppLang();
   const [selectedPlan, setSelectedPlan] = useState("learner");
-  const [step, setStep] = useState("plans"); // "plans" | "payment"
+  const [cycle, setCycle] = useState("monthly");
+  const [step, setStep] = useState("plans");
   const [paymentRef, setPaymentRef] = useState("");
   const [studentName, setStudentName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const plan = plans.find(p => p.id === selectedPlan);
+  const isYearly = cycle === "yearly";
+  const plan = PLAN_LIST.find((p) => p.id === selectedPlan);
+  const price = isYearly ? yearlyPrice(plan.monthlyPrice) : plan.monthlyPrice;
+  const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
 
   const handleContinue = () => setStep("payment");
 
@@ -76,21 +33,17 @@ export default function Pricing() {
       const me = await base44.auth.me();
       const existing = await base44.entities.StudentSubscription.filter({ phone: me.email });
       const planName = plan.name;
+      const payload = {
+        student_name: studentName,
+        payment_ref: paymentRef,
+        status: "pending",
+        plan: planName,
+        billing_cycle: cycle,
+      };
       if (existing.length > 0) {
-        await base44.entities.StudentSubscription.update(existing[0].id, {
-          student_name: studentName,
-          payment_ref: paymentRef,
-          status: "pending",
-          plan: planName,
-        });
+        await base44.entities.StudentSubscription.update(existing[0].id, payload);
       } else {
-        await base44.entities.StudentSubscription.create({
-          student_name: studentName,
-          phone: me.email,
-          payment_ref: paymentRef,
-          status: "pending",
-          plan: planName,
-        });
+        await base44.entities.StudentSubscription.create({ ...payload, phone: me.email });
       }
       setSubmitted(true);
     } catch (err) {
@@ -108,9 +61,7 @@ export default function Pricing() {
             <Check className="w-10 h-10 text-emerald-600" />
           </div>
           <h2 className="text-2xl font-bold text-foreground mb-3">{t("pricing.submitted_title")}</h2>
-          <p className="text-muted-foreground text-sm mb-6">
-            {t("pricing.submitted_desc")}
-          </p>
+          <p className="text-muted-foreground text-sm mb-6">{t("pricing.submitted_desc")}</p>
           <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 text-sm text-amber-700 dark:text-amber-400 font-medium">
             {t("pricing.submitted_wait")}
           </div>
@@ -131,18 +82,16 @@ export default function Pricing() {
             <div>
               <h2 className="text-xl font-bold text-foreground">{t("pricing.payment_title")}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                {t("pricing.selected_plan")} <strong className="text-foreground">{plan.name} — {plan.price} {plan.period}</strong>
+                {t("pricing.selected_plan")} <strong className="text-foreground">{plan.name} — {formatPrice(price)} {period}</strong>
               </p>
             </div>
 
-            {/* Card info */}
             <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-2xl p-5 text-white">
               <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">{t("pricing.card_label")}</p>
               <p className="text-xl font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
               <p className="text-sm opacity-90">{t("pricing.card_owner")}: <strong>Temur Normatov Ulugbekovich</strong></p>
             </div>
 
-            {/* QR */}
             <div className="text-center">
               <p className="text-xs text-muted-foreground mb-2 font-medium">{t("pricing.qr_via")}</p>
               <img
@@ -152,14 +101,13 @@ export default function Pricing() {
               />
             </div>
 
-            {/* Name & Phone inputs */}
             <div className="space-y-3">
               <div>
                 <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.name_label")}</label>
                 <input
                   type="text"
                   value={studentName}
-                  onChange={e => setStudentName(e.target.value)}
+                  onChange={(e) => setStudentName(e.target.value)}
                   placeholder={t("pricing.name_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
@@ -169,7 +117,7 @@ export default function Pricing() {
                 <input
                   type="tel"
                   value={phone}
-                  onChange={e => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder={t("pricing.phone_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
@@ -179,7 +127,7 @@ export default function Pricing() {
                 <input
                   type="text"
                   value={paymentRef}
-                  onChange={e => setPaymentRef(e.target.value)}
+                  onChange={(e) => setPaymentRef(e.target.value)}
                   placeholder={t("pricing.ref_placeholder")}
                   className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                 />
@@ -199,32 +147,49 @@ export default function Pricing() {
     );
   }
 
-  // Plans page
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 px-4 py-12">
       <div className="max-w-lg mx-auto">
-        {/* Header */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">{t("pricing.header_title")}</h1>
-          <p className="text-sm text-muted-foreground mt-2">
-            {t("pricing.header_sub")}
-          </p>
+          <p className="text-sm text-muted-foreground mt-2">{t("pricing.header_sub")}</p>
         </div>
 
-        {/* Discount banner */}
         <div className="bg-gradient-to-r from-rose-500/10 to-amber-500/10 border border-rose-300 dark:border-rose-700 rounded-2xl p-4 mb-6 text-center">
           <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{t("pricing.discount_title")}</p>
           <p className="text-xs text-muted-foreground mt-1">{t("pricing.discount_sub")}</p>
         </div>
 
-        {/* Plan cards */}
+        {/* Billing cycle toggle */}
+        <div className="flex items-center justify-center gap-2 mb-6">
+          <button
+            onClick={() => setCycle("monthly")}
+            className={`px-5 py-2 rounded-full text-sm font-semibold border-2 transition-colors select-none ${
+              !isYearly ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground"
+            }`}
+          >
+            {t("pricing.billing_monthly")}
+          </button>
+          <button
+            onClick={() => setCycle("yearly")}
+            className={`relative px-5 py-2 rounded-full text-sm font-semibold border-2 transition-colors select-none ${
+              isYearly ? "border-primary bg-primary/10 text-primary" : "border-border text-muted-foreground"
+            }`}
+          >
+            {t("pricing.billing_yearly")}
+            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
+          </button>
+        </div>
+
         <div className="space-y-4 mb-8">
-          {plans.map((p, i) => {
+          {PLAN_LIST.map((p, i) => {
             const Icon = p.icon;
             const isSelected = selectedPlan === p.id;
+            const pPrice = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;
+            const pPeriod = isYearly ? t("pricing.per_year") : t("pricing.per_month");
             return (
               <motion.button
                 key={p.id}
@@ -238,7 +203,7 @@ export default function Pricing() {
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0">
-                    <div className={`w-11 h-11 rounded-xl bg-background/60 flex items-center justify-center`}>
+                    <div className="w-11 h-11 rounded-xl bg-background/60 flex items-center justify-center">
                       <Icon className={`w-5 h-5 ${p.iconColor}`} />
                     </div>
                   </div>
@@ -248,14 +213,16 @@ export default function Pricing() {
                       {p.badgeKey && (
                         <span className="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded-full">{t(`plans.badges.${p.badgeKey}`)}</span>
                       )}
-                      <span className="text-[10px] font-bold bg-rose-500 text-white px-2 py-0.5 rounded-full">−{p.discount}</span>
+                      {isYearly && <span className="text-[10px] font-bold bg-rose-500 text-white px-2 py-0.5 rounded-full">−25%</span>}
                     </div>
-                    <div className="flex items-baseline gap-2 mb-0.5">
-                      <span className="text-sm text-muted-foreground line-through">{p.originalPrice}</span>
-                      <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">{t("pricing.discount_word")}</span>
-                    </div>
+                    {isYearly && (
+                      <div className="flex items-baseline gap-2 mb-0.5">
+                        <span className="text-sm text-muted-foreground line-through">{formatPrice(p.monthlyPrice * 12)}</span>
+                        <span className="text-[10px] font-semibold text-rose-600 dark:text-rose-400">{t("pricing.discount_word")}</span>
+                      </div>
+                    )}
                     <p className="text-xl font-bold text-foreground">
-                      {p.price} <span className="text-sm font-normal text-muted-foreground">{p.period}</span>
+                      {formatPrice(pPrice)} <span className="text-sm font-normal text-muted-foreground">{pPeriod}</span>
                     </p>
                     <ul className="mt-3 space-y-1.5">
                       {p.featureKeys.map((f, fi) => (
@@ -264,12 +231,6 @@ export default function Pricing() {
                           {t(`plans.features.${f}`)}
                         </li>
                       ))}
-                      {p.hasAI && (
-                        <li className="flex items-center gap-2 text-xs font-semibold text-indigo-700 dark:text-indigo-400">
-                          <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                          {t("plans.ai_line")}
-                        </li>
-                      )}
                     </ul>
                   </div>
                   <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 mt-1 transition-all ${
@@ -284,12 +245,10 @@ export default function Pricing() {
         </div>
 
         <Button onClick={handleContinue} className="w-full h-12 text-base font-bold select-none">
-          {plan.name} — {plan.price} so'm {t("pricing.continue_btn")}
+          {plan.name} — {formatPrice(price)} so'm {t("pricing.continue_btn")}
         </Button>
 
-        <p className="text-center text-xs text-muted-foreground mt-4">
-          {t("pricing.payment_note")}
-        </p>
+        <p className="text-center text-xs text-muted-foreground mt-4">{t("pricing.payment_note")}</p>
       </div>
     </div>
   );
