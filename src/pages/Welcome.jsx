@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -77,7 +77,6 @@ const ease = [0.22, 1, 0.36, 1];
 export default function Welcome() {
   const [step, setStep] = useState(0);
   const [finished, setFinished] = useState(false);
-  const [auto, setAuto] = useState(true);
   const last = step === STEPS.length - 1;
 
   const next = useCallback(() => {
@@ -86,13 +85,6 @@ export default function Welcome() {
   }, [last]);
 
   const back = () => setStep(s => Math.max(0, s - 1));
-
-  // Auto-advance through the tutorial
-  useEffect(() => {
-    if (finished || !auto) return;
-    const t = setTimeout(() => next(), 4200);
-    return () => clearTimeout(t);
-  }, [step, finished, auto, next]);
 
   // Parallax tilt for the hero card
   const mx = useMotionValue(0);
@@ -272,7 +264,7 @@ export default function Welcome() {
                 {STEPS.map((_, i) => (
                   <motion.button
                     key={i}
-                    onClick={() => { setAuto(false); setStep(i); }}
+                    onClick={() => setStep(i)}
                     className="select-none"
                     whileTap={{ scale: 0.8 }}
                   >
@@ -291,7 +283,7 @@ export default function Welcome() {
                   <ArrowLeft className="w-4 h-4 mr-1" /> Orqaga
                 </Button>
                 <span className="text-xs text-white/40 font-medium tabular-nums">{step + 1} / {STEPS.length}</span>
-                <Button onClick={() => { setAuto(false); next(); }} className="bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 border-0 select-none shadow-lg shadow-indigo-500/30">
+                <Button onClick={next} className="bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 border-0 select-none shadow-lg shadow-indigo-500/30">
                   {last ? "Tayyor" : "Keyingi"} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
