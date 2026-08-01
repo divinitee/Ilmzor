@@ -50,7 +50,7 @@ export default function Plans() {
         </div>
 
         <div className="space-y-4">
-          {PLAN_LIST.map((p, i) => {
+          {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
             const price = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;
             const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");

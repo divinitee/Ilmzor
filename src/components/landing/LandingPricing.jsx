@@ -49,9 +49,10 @@ export default function LandingPricing() {
           </button>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto items-start">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto items-start">
           {PLAN_LIST.map((p, i) => {
             const Icon = p.icon;
+            const isFree = p.monthlyPrice === 0;
             const price = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;
             const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
             const highlighted = p.id === "learner";
@@ -59,10 +60,11 @@ export default function LandingPricing() {
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, ease, delay: i * 0.08 }}
+                transition={{ duration: 0.5, ease, delay: i * 0.07 }}
+                whileHover={{ y: -6 }}
                 className={`relative rounded-2xl border p-6 flex flex-col ${
                   highlighted
-                    ? "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 sm:-mt-2"
+                    ? "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 lg:-mt-2"
                     : "premium-card bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800"
                 }`}
               >
@@ -76,10 +78,16 @@ export default function LandingPricing() {
                 </div>
                 <h3 className="font-bold text-slate-900 landing-dark:text-slate-50 text-lg">{p.name}</h3>
                 <div className="mt-3 flex items-baseline gap-1">
-                  <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{formatPrice(price)}</span>
-                  <span className="text-sm text-slate-400 landing-dark:text-slate-500">{period}</span>
+                  {isFree ? (
+                    <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{t("landing.pricing.free")}</span>
+                  ) : (
+                    <>
+                      <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{formatPrice(price)}</span>
+                      <span className="text-sm text-slate-400 landing-dark:text-slate-500">{period}</span>
+                    </>
+                  )}
                 </div>
-                {isYearly && (
+                {!isFree && isYearly && (
                   <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
                 )}
                 <ul className="mt-5 space-y-2.5 flex-1">
@@ -94,14 +102,14 @@ export default function LandingPricing() {
                 </ul>
                 <Link to="/register" className="mt-6">
                   <Button
+                    variant={highlighted ? "default" : "outline"}
                     className={`w-full h-11 text-base ${
                       highlighted
                         ? ""
                         : "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"
                     }`}
-                    variant={highlighted ? "default" : "outline"}
                   >
-                    {t("plans.select_btn")} <ArrowRight className="w-4 h-4 ml-1" />
+                    {isFree ? t("landing.nav.start_free") : t("plans.select_btn")} {!isFree && <ArrowRight className="w-4 h-4 ml-1" />}
                   </Button>
                 </Link>
               </motion.div>

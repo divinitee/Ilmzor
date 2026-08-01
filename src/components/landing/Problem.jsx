@@ -35,6 +35,7 @@ export default function Problem() {
                 key={p.title}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.5, ease, delay: i * 0.08 }}
+                whileHover={{ y: -6 }}
                 className="premium-card bg-white landing-dark:bg-slate-900 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6"
               >
                 <div className="w-11 h-11 rounded-xl bg-sky-100 landing-dark:bg-blue-950/50 flex items-center justify-center mb-4">

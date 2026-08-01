@@ -91,6 +91,7 @@ export default function InterestLearning() {
                 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.4, ease, delay: i * 0.03 }}
                 whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.96 }}
                 className={`flex flex-col items-center gap-2 p-4 rounded-2xl border transition-colors select-none ${
                   isActive
                     ? "bg-gradient-to-b from-blue-500 to-blue-700 border-blue-600 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_10px_24px_-10px_rgba(37,99,235,0.6)]"
@@ -107,6 +108,7 @@ export default function InterestLearning() {
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease }}
+          whileHover={{ y: -2 }}
           className="mt-10 premium-card bg-white landing-dark:bg-slate-900 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6 sm:p-8"
         >
           <div className="flex items-center justify-between mb-5">

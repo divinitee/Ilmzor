@@ -48,6 +48,7 @@ export default function LevelAssessment() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, ease }}
+            whileHover={{ scale: 1.01 }}
             className="relative premium-card bg-white landing-dark:bg-slate-900 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6"
           >
             <div className="flex items-center justify-between mb-4">

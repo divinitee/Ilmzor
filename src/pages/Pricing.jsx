@@ -185,7 +185,7 @@ export default function Pricing() {
         </div>
 
         <div className="space-y-4 mb-8">
-          {PLAN_LIST.map((p, i) => {
+          {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
             const isSelected = selectedPlan === p.id;
             const pPrice = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;

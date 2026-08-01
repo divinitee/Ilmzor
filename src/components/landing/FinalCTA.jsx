@@ -21,11 +21,13 @@ export default function FinalCTA() {
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">{t("landing.finalcta.title")}</h2>
             <p className="mt-4 text-lg text-blue-100 max-w-xl mx-auto">{t("landing.finalcta.subtitle")}</p>
-            <Link to="/register" className="inline-block mt-8">
-              <Button className="h-12 px-7 text-base bg-white text-blue-700 hover:bg-blue-50 border border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_30px_-12px_rgba(0,0,0,0.3)]">
-                {t("landing.finalcta.cta")} <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-            </Link>
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="inline-block mt-8">
+              <Link to="/register">
+                <Button className="h-12 px-7 text-base bg-white text-blue-700 hover:bg-blue-50 border border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_30px_-12px_rgba(0,0,0,0.3)]">
+                  {t("landing.finalcta.cta")} <ArrowRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </div>
