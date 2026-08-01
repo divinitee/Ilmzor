@@ -21,13 +21,10 @@ export default function LandingPricing() {
           transition={{ duration: 0.5, ease }}
           className="text-center max-w-2xl mx-auto"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">Pricing</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">
-            Start free. Upgrade when you're ready.
-          </h2>
+          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">{t("landing.pricing.label")}</span>
+          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">{t("landing.pricing.title")}</h2>
         </motion.div>
 
-        {/* Billing cycle toggle */}
         <div className="mt-8 flex items-center justify-center gap-2 mb-10">
           <button
             onClick={() => setCycle("monthly")}
@@ -65,12 +62,12 @@ export default function LandingPricing() {
                 transition={{ duration: 0.5, ease, delay: i * 0.08 }}
                 className={`relative rounded-2xl border p-6 flex flex-col ${
                   highlighted
-                    ? "bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 shadow-xl sm:-mt-2"
-                    : "bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800 shadow-sm"
+                    ? "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 sm:-mt-2"
+                    : "premium-card bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800"
                 }`}
               >
                 {highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-xs font-semibold text-white bg-blue-600 px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-b from-blue-500 to-blue-700 px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
                     <Sparkles className="w-3 h-3" /> {t("plans.badges.learner")}
                   </span>
                 )}
@@ -83,9 +80,7 @@ export default function LandingPricing() {
                   <span className="text-sm text-slate-400 landing-dark:text-slate-500">{period}</span>
                 </div>
                 {isYearly && (
-                  <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">
-                    {t("pricing.billing_save", { pct: 25 })}
-                  </p>
+                  <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
                 )}
                 <ul className="mt-5 space-y-2.5 flex-1">
                   {p.featureKeys.map((f) => (
@@ -101,9 +96,10 @@ export default function LandingPricing() {
                   <Button
                     className={`w-full h-11 text-base ${
                       highlighted
-                        ? "bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                        ? ""
                         : "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"
                     }`}
+                    variant={highlighted ? "default" : "outline"}
                   >
                     {t("plans.select_btn")} <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>

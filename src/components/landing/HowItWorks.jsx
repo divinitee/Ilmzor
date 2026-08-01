@@ -1,17 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Target, Compass, ClipboardCheck, Sparkles } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const ease = [0.22, 1, 0.36, 1];
 
-const STEPS = [
-  { icon: Target, title: "Tell us your goal", text: "Why are you learning English? Work, travel, exams, or daily life." },
-  { icon: Compass, title: "Choose your interests", text: "Pick the topics you care about — from business to movies." },
-  { icon: ClipboardCheck, title: "Quick level test", text: "Optional 3-minute check so we match words to your level." },
-  { icon: Sparkles, title: "Get personalized words", text: "Receive vocabulary tailored to you and practice daily." },
-];
-
 export default function HowItWorks() {
+  const { t } = useAppLang();
+  const steps = [
+    { icon: Target, title: t("landing.how.s1_title"), text: t("landing.how.s1_text") },
+    { icon: Compass, title: t("landing.how.s2_title"), text: t("landing.how.s2_text") },
+    { icon: ClipboardCheck, title: t("landing.how.s3_title"), text: t("landing.how.s3_text") },
+    { icon: Sparkles, title: t("landing.how.s4_title"), text: t("landing.how.s4_text") },
+  ];
+
   return (
     <section id="how-it-works" className="py-20 bg-white landing-dark:bg-slate-900 border-y border-slate-200 landing-dark:border-slate-800">
       <div className="max-w-6xl mx-auto px-5">
@@ -20,14 +22,12 @@ export default function HowItWorks() {
           transition={{ duration: 0.5, ease }}
           className="text-center max-w-2xl mx-auto"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">How it works</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">
-            Personalized vocabulary in 4 simple steps
-          </h2>
+          <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">{t("landing.how.label")}</span>
+          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">{t("landing.how.title")}</h2>
         </motion.div>
 
         <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {STEPS.map((s, i) => {
+          {steps.map((s, i) => {
             const Icon = s.icon;
             return (
               <motion.div
@@ -36,8 +36,8 @@ export default function HowItWorks() {
                 transition={{ duration: 0.5, ease, delay: i * 0.08 }}
                 className="relative"
               >
-                <div className="bg-slate-50 landing-dark:bg-slate-800/50 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6 h-full">
-                  <div className="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center shadow-sm">
+                <div className="premium-card bg-slate-50 landing-dark:bg-slate-800/50 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6 h-full">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-b from-blue-500 to-blue-700 flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_20px_-8px_rgba(37,99,235,0.6)]">
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <span className="absolute top-6 right-6 text-xs font-bold text-slate-300 landing-dark:text-slate-600">0{i + 1}</span>
