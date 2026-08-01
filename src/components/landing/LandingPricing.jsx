@@ -103,7 +103,7 @@ export default function LandingPricing() {
                 <Link to="/register" className="mt-6">
                   <Button
                     variant={highlighted ? "default" : "outline"}
-                    className={`w-full h-11 text-sm ${
+                    className={`w-full h-11 text-sm [font-family:'Barlow',_sans-serif] font-bold ${
                     highlighted ?
                     "" :
                     "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"}`
