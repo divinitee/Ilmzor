@@ -92,5 +92,8 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addVariant }) { addVariant("landing-dark", ".landing-dark &"); },
+  ],
 }

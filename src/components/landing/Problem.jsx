@@ -5,21 +5,9 @@ import { ListChecks, Gauge, Brain } from "lucide-react";
 const ease = [0.22, 1, 0.36, 1];
 
 const PROBLEMS = [
-  {
-    icon: ListChecks,
-    title: "Generic word lists feel boring",
-    text: "Everyone gets the same random words. They don't match what you actually need or care about.",
-  },
-  {
-    icon: Gauge,
-    title: "It's hard to know your real level",
-    text: "Without a clear starting point, you waste time on words that are too easy or too hard.",
-  },
-  {
-    icon: Brain,
-    title: "You forget words without practice",
-    text: "No personalization means no real repetition — words slip away before they stick.",
-  },
+  { icon: ListChecks, title: "Generic word lists feel boring", text: "Everyone gets the same random words. They don't match what you actually need or care about." },
+  { icon: Gauge, title: "It's hard to know your real level", text: "Without a clear starting point, you waste time on words that are too easy or too hard." },
+  { icon: Brain, title: "You forget words without practice", text: "No personalization means no real repetition — words slip away before they stick." },
 ];
 
 export default function Problem() {
@@ -31,10 +19,10 @@ export default function Problem() {
           transition={{ duration: 0.5, ease }}
           className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">
             Most vocabulary apps treat everyone the same
           </h2>
-          <p className="mt-4 text-lg text-slate-500">
+          <p className="mt-4 text-lg text-slate-500 landing-dark:text-slate-400">
             But your English learning should match your goals, interests, and level.
           </p>
         </motion.div>
@@ -47,13 +35,13 @@ export default function Problem() {
                 key={p.title}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.5, ease, delay: i * 0.08 }}
-                className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white landing-dark:bg-slate-900 rounded-2xl border border-slate-200 landing-dark:border-slate-800 p-6 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="w-11 h-11 rounded-xl bg-sky-100 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-blue-600" />
+                <div className="w-11 h-11 rounded-xl bg-sky-100 landing-dark:bg-blue-950/50 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-blue-600 landing-dark:text-blue-400" />
                 </div>
-                <h3 className="font-semibold text-slate-900">{p.title}</h3>
-                <p className="mt-2 text-sm text-slate-500 leading-relaxed">{p.text}</p>
+                <h3 className="font-semibold text-slate-900 landing-dark:text-slate-50">{p.title}</h3>
+                <p className="mt-2 text-sm text-slate-500 landing-dark:text-slate-400 leading-relaxed">{p.text}</p>
               </motion.div>
             );
           })}

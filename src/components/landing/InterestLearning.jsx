@@ -72,11 +72,11 @@ export default function InterestLearning() {
           transition={{ duration: 0.5, ease }}
           className="text-center max-w-2xl mx-auto"
         >
-          <span className="text-xs font-semibold uppercase tracking-widest text-teal-600">Interest-based learning</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <span className="text-xs font-semibold uppercase tracking-widest text-teal-600 landing-dark:text-teal-400">Interest-based learning</span>
+          <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">
             Learn words for the topics you actually care about
           </h2>
-          <p className="mt-4 text-lg text-slate-500">Tap a topic to preview a sample vocabulary set.</p>
+          <p className="mt-4 text-lg text-slate-500 landing-dark:text-slate-400">Tap a topic to preview a sample vocabulary set.</p>
         </motion.div>
 
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -93,10 +93,10 @@ export default function InterestLearning() {
                 className={`flex flex-col items-center gap-2 p-4 rounded-2xl border transition-colors select-none ${
                   isActive
                     ? "bg-blue-600 border-blue-600 text-white shadow-md"
-                    : "bg-white border-slate-200 text-slate-600 hover:border-blue-300 hover:bg-sky-50"
+                    : "bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800 text-slate-600 landing-dark:text-slate-300 hover:border-blue-300 landing-dark:hover:border-blue-500 hover:bg-sky-50 landing-dark:hover:bg-slate-800"
                 }`}
               >
-                <Icon className={`w-5 h-5 ${isActive ? "text-white" : "text-blue-600"}`} />
+                <Icon className={`w-5 h-5 ${isActive ? "text-white" : "text-blue-600 landing-dark:text-blue-400"}`} />
                 <span className="text-xs font-medium text-center leading-tight">{t.label}</span>
               </motion.button>
             );
@@ -106,11 +106,11 @@ export default function InterestLearning() {
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, ease }}
-          className="mt-10 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8"
+          className="mt-10 bg-white landing-dark:bg-slate-900 rounded-2xl border border-slate-200 landing-dark:border-slate-800 shadow-sm p-6 sm:p-8"
         >
           <div className="flex items-center justify-between mb-5">
-            <h3 className="font-semibold text-slate-900">{current.label} — sample words</h3>
-            <span className="text-xs font-medium text-slate-400">3 of many</span>
+            <h3 className="font-semibold text-slate-900 landing-dark:text-slate-50">{current.label} — sample words</h3>
+            <span className="text-xs font-medium text-slate-400 landing-dark:text-slate-500">3 of many</span>
           </div>
           <AnimatePresence mode="wait">
             <motion.div
@@ -120,9 +120,9 @@ export default function InterestLearning() {
               className="grid sm:grid-cols-3 gap-4"
             >
               {current.words.map((w) => (
-                <div key={w.w} className="rounded-xl bg-slate-50 border border-slate-100 p-4">
-                  <p className="font-semibold text-slate-900">{w.w}</p>
-                  <p className="mt-1 text-xs text-slate-500 leading-relaxed">{w.d}</p>
+                <div key={w.w} className="rounded-xl bg-slate-50 landing-dark:bg-slate-800/50 border border-slate-100 landing-dark:border-slate-800 p-4">
+                  <p className="font-semibold text-slate-900 landing-dark:text-slate-50">{w.w}</p>
+                  <p className="mt-1 text-xs text-slate-500 landing-dark:text-slate-400 leading-relaxed">{w.d}</p>
                 </div>
               ))}
             </motion.div>
