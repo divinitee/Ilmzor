@@ -80,7 +80,6 @@ const STR = {
 const PLANS_BASE = [
   { id: "vip", name: "VIP", price: "49,999", original: "79,999", icon: Crown, color: "text-amber-600", badge: "−38%", cycle: "yearly" },
   { id: "learner", name: "Learner", price: "24,888", original: "39,999", icon: Star, color: "text-indigo-600", badge: "−38%", cycle: "monthly" },
-  { id: "starter", name: "Starter", price: "17,777", original: "29,999", icon: Zap, color: "text-emerald-600", badge: "−41%", cycle: "monthly" },
 ];
 
 // Floating aurora blob

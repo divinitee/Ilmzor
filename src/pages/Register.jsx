@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe } from "lucide-react";
+import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe, Briefcase, Award, Plane, Film, MessageCircle, Target } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import GoogleIcon from "@/components/GoogleIcon";
 import { toast } from "@/components/ui/use-toast";
@@ -18,6 +18,7 @@ const STR = {
     roleTitle: "Siz kimisiz?", roleSub: "Hisob turini tanlang",
     student: "O'quvchi", studentDesc: "So'zlar va o'yinlarni o'rganing",
     teacher: "O'qituvchi", teacherDesc: "O'quvchilaringizni kuzating",
+    goalsTitle: "Ingliz tilini nima uchun o'rganasiz?", goalsSub: "Mos keladigan barchasini tanlang — so'zlarni shaxsiylashtiramiz",
     nameTitle: "Ismingiz", nameSub: "Ism familiyangizni kiriting",
     fullName: "Ism familiya", fullNamePh: "Masalan: Alibek Karimov",
     credsTitle: "Hisob ma'lumotlari", credsSub: "Email va parol yarating",
@@ -34,12 +35,14 @@ const STR = {
     google: "Google orqali davom etish", or: "yoki",
     haveAccount: "Hisob bormi?", login: "Kirish",
     registerFail: "Ro'yxatdan o'tish muvaffaqiyatsiz", otpFail: "Tasdiqlash kodi noto'g'ri", resendFail: "Kodni qayta yuborib bo'lmadi",
+    goals: { work: "Ish", ielts: "IELTS", travel: "Sayohat", university: "Universitet", movies: "Kino", daily: "Kundalik suhbat" },
   },
   en: {
     langTitle: "Choose your language", langSub: "Pick your app language — you can change it later",
     roleTitle: "Who are you?", roleSub: "Choose your account type",
     student: "Student", studentDesc: "Learn words and play games",
     teacher: "Teacher", teacherDesc: "Track your students",
+    goalsTitle: "What are you learning English for?", goalsSub: "Select all that apply — we'll personalize your words",
     nameTitle: "Your name", nameSub: "Enter your full name",
     fullName: "Full name", fullNamePh: "e.g. Alibek Karimov",
     credsTitle: "Account details", credsSub: "Create your email and password",
@@ -56,17 +59,19 @@ const STR = {
     google: "Continue with Google", or: "or",
     haveAccount: "Already have an account?", login: "Log in",
     registerFail: "Registration failed", otpFail: "Invalid verification code", resendFail: "Couldn't resend code",
+    goals: { work: "Work", ielts: "IELTS", travel: "Travel", university: "University", movies: "Movies", daily: "Daily conversation" },
   },
   ru: {
     langTitle: "Выберите язык", langSub: "Выберите язык приложения — потом можно изменить",
     roleTitle: "Кто вы?", roleSub: "Выберите тип аккаунта",
     student: "Ученик", studentDesc: "Учите слова и играйте",
     teacher: "Учитель", teacherDesc: "Отслеживайте учеников",
+    goalsTitle: "Зачем вы учите английский?", goalsSub: "Выберите всё подходящее — мы подберём слова для вас",
     nameTitle: "Ваше имя", nameSub: "Введите имя и фамилию",
     fullName: "Имя и фамилия", fullNamePh: "Напр. Алибек Каримов",
     credsTitle: "Данные аккаунта", credsSub: "Создайте email и пароль",
     email: "Email", emailPh: "you@example.com",
-    password: "Пароль", confirm: "Подтвердите пароль", pwdMismatch: "Пароли не совпадают",
+    password: "Парол", confirm: "Подтвердите пароль", pwdMismatch: "Пароли не совпадают",
     codeTitle: "Код класса", codeSub: "Введите код от учителя",
     codeStudentLabel: "Код класса", codeStudentPh: "Напр. ABC123", codeStudentHint: "Введите код класса, выданный учителем",
     codeTeacherLabel: "Код комнаты", codeTeacherPh: "Напр. ROOM1", codeTeacherHint: "Код, по которому ученики связываются с вами",
@@ -78,8 +83,18 @@ const STR = {
     google: "Продолжить через Google", or: "или",
     haveAccount: "Уже есть аккаунт?", login: "Войти",
     registerFail: "Регистрация не удалась", otpFail: "Неверный код подтверждения", resendFail: "Не удалось отправить код снова",
+    goals: { work: "Работа", ielts: "IELTS", travel: "Путешествия", university: "Университет", movies: "Кино", daily: "Повседневное общение" },
   },
 };
+
+const GOAL_OPTIONS = [
+  { key: "work", icon: Briefcase },
+  { key: "ielts", icon: Award },
+  { key: "travel", icon: Plane },
+  { key: "university", icon: GraduationCap },
+  { key: "movies", icon: Film },
+  { key: "daily", icon: MessageCircle },
+];
 
 const ease = [0.22, 1, 0.36, 1];
 const variants = {
@@ -87,8 +102,6 @@ const variants = {
   center: { x: 0, opacity: 1 },
   exit: (dir) => ({ x: dir > 0 ? -50 : 50, opacity: 0 }),
 };
-
-const TOTAL = 6;
 
 function StepHeader({ icon: Icon, title, sub }) {
   return (
@@ -128,6 +141,7 @@ export default function Register() {
   const [step, setStep] = useState(0);
   const [dir, setDir] = useState(1);
   const [role, setRole] = useState("student");
+  const [goals, setGoals] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -137,20 +151,34 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [otpCode, setOtpCode] = useState("");
 
+  // Step sequence — students get an extra "goals" step after role selection
+  const STEPS = role === "student"
+    ? ["lang", "role", "goals", "name", "creds", "code", "otp"]
+    : ["lang", "role", "name", "creds", "code", "otp"];
+  const TOTAL = STEPS.length;
+  const currentKey = STEPS[step];
+
   const progress = Math.round(((step + 1) / TOTAL) * 100);
 
   const go = (nextStep) => { setDir(nextStep > step ? 1 : -1); setStep(nextStep); setError(""); };
   const next = () => {
-    if (step === 3 && password !== confirmPassword) { setError(s.pwdMismatch); return; }
+    if (currentKey === "creds" && password !== confirmPassword) { setError(s.pwdMismatch); return; }
+    if (currentKey === "goals") {
+      try { localStorage.setItem("user_goals", JSON.stringify(goals)); } catch { /* ignore */ }
+    }
     setError("");
     go(step + 1);
   };
   const back = () => go(step - 1);
 
   const canNext = () => {
-    if (step === 2) return username.trim().length > 0;
-    if (step === 3) return email.trim() && password && confirmPassword;
+    if (currentKey === "name") return username.trim().length > 0;
+    if (currentKey === "creds") return email.trim() && password && confirmPassword;
     return true;
+  };
+
+  const toggleGoal = (key) => {
+    setGoals(prev => prev.includes(key) ? prev.filter(g => g !== key) : [...prev, key]);
   };
 
   const handleSubmit = async () => {
@@ -160,7 +188,7 @@ export default function Register() {
     try {
       await base44.auth.register({ email, password });
       setDir(1);
-      setStep(5);
+      setStep(STEPS.length - 1); // OTP is always last
     } catch (err) {
       setError(err.message || s.registerFail);
     } finally {
@@ -251,8 +279,8 @@ export default function Register() {
               transition={{ duration: 0.3, ease }}
               className="flex-1 flex flex-col"
             >
-              {/* Step 0: Language */}
-              {step === 0 && (
+              {/* Step: Language */}
+              {currentKey === "lang" && (
                 <>
                   <StepHeader icon={Globe} title={s.langTitle} sub={s.langSub} />
                   <div className="space-y-3 flex-1">
@@ -274,8 +302,8 @@ export default function Register() {
                 </>
               )}
 
-              {/* Step 1: Role */}
-              {step === 1 && (
+              {/* Step: Role */}
+              {currentKey === "role" && (
                 <>
                   <StepHeader icon={GraduationCap} title={s.roleTitle} sub={s.roleSub} />
                   <div className="grid grid-cols-2 gap-3 flex-1">
@@ -308,8 +336,36 @@ export default function Register() {
                 </>
               )}
 
-              {/* Step 2: Name */}
-              {step === 2 && (
+              {/* Step: Goals (students only) */}
+              {currentKey === "goals" && (
+                <>
+                  <StepHeader icon={Target} title={s.goalsTitle} sub={s.goalsSub} />
+                  <div className="grid grid-cols-2 gap-3 flex-1">
+                    {GOAL_OPTIONS.map((opt) => {
+                      const Icon = opt.icon;
+                      const selected = goals.includes(opt.key);
+                      return (
+                        <button
+                          key={opt.key} onClick={() => toggleGoal(opt.key)}
+                          className={`flex items-center gap-2 p-4 rounded-2xl border-2 transition-all select-none text-left ${
+                            selected ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                          }`}
+                        >
+                          <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${selected ? "bg-primary/10" : "bg-muted"}`}>
+                            <Icon className={`w-4 h-4 ${selected ? "text-primary" : "text-muted-foreground"}`} />
+                          </div>
+                          <span className="font-medium text-foreground text-sm flex-1">{s.goals[opt.key]}</span>
+                          {selected && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <NavButtons onBack={back} onNext={next} nextLabel={s.next} backLabel={s.back} />
+                </>
+              )}
+
+              {/* Step: Name */}
+              {currentKey === "name" && (
                 <>
                   <StepHeader icon={User} title={s.nameTitle} sub={s.nameSub} />
                   <div className="space-y-2 flex-1">
@@ -328,8 +384,8 @@ export default function Register() {
                 </>
               )}
 
-              {/* Step 3: Credentials */}
-              {step === 3 && (
+              {/* Step: Credentials */}
+              {currentKey === "creds" && (
                 <>
                   <StepHeader icon={Mail} title={s.credsTitle} sub={s.credsSub} />
                   <Button variant="outline" className="w-full h-11 text-sm font-medium mb-4" onClick={handleGoogle}>
@@ -373,8 +429,8 @@ export default function Register() {
                 </>
               )}
 
-              {/* Step 4: Class / Room code */}
-              {step === 4 && (
+              {/* Step: Class / Room code */}
+              {currentKey === "code" && (
                 <>
                   <StepHeader icon={Hash} title={s.codeTitle} sub={s.codeSub} />
                   {error && <div className="mb-3 p-3 rounded-xl bg-destructive/10 text-destructive text-sm">{error}</div>}
@@ -401,8 +457,8 @@ export default function Register() {
                 </>
               )}
 
-              {/* Step 5: OTP */}
-              {step === 5 && (
+              {/* Step: OTP */}
+              {currentKey === "otp" && (
                 <>
                   <StepHeader icon={Mail} title={s.otpTitle} sub={s.otpSub.replace("{email}", email)} />
                   {error && <div className="mb-4 p-3 rounded-xl bg-destructive/10 text-destructive text-sm">{error}</div>}
