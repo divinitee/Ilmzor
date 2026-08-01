@@ -3,57 +3,84 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Gamepad2, Sparkles, Trophy, ArrowRight, ArrowLeft, Check, Crown, Star, Zap, Home as HomeIcon, Settings as SettingsIcon } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
-const STEPS = [
-  {
-    emoji: "🎓",
-    title: "Xush kelibsiz",
-    text: "Vocabulary A2·B1·B2 — ingliz tilini o'ynab, o'rganib, mashq qilib egallang. Keling, ilovani birgalikda ko'rib chiqamiz.",
-    accent: "from-indigo-500 via-violet-500 to-fuchsia-500",
-    glow: "rgba(124,58,237,0.45)",
+const STR = {
+  uz: {
+    skip: "O'tkazib yuborish", journey: "Ilova sayohati", structure: "Ilova tuzilishi",
+    back: "Orqaga", ready: "Tayyor", next: "Keyingi",
+    ctaTitle: "Boshlaymizmi?", ctaSub: "Bepul sinov bilan boshlang yoki premium rejani tanlang.",
+    freeTitle: "Bepul boshlash", freeDesc: "So'zlar ro'yxati va bir nechta o'yin — bepul",
+    plansHeader: "🔥 Chegirmali obuna rejalari", planFeat: "Barcha unitlar · Testlar · O'yinlar",
+    som: "so'm", perMonth: "/oy", perYear: "/yil",
+    viewPlans: "Obuna rejalarini ko'rish", haveAccount: "Hisobingiz bormi?", login: "Kirish",
+    steps: [
+      { emoji: "🎓", title: "Xush kelibsiz", text: "Vocabulary A2·B1·B2 — ingliz tilini o'ynab, o'rganib, mashq qilib egallang. Keling, ilovani birgalikda ko'rib chiqamiz.", accent: "from-indigo-500 via-violet-500 to-fuchsia-500", glow: "rgba(124,58,237,0.45)" },
+      { emoji: "📚", title: "So'zlar Ro'yxati", text: "12 ta unit bo'ylab yuzlab so'zlarni o'rganing. English, O'zbek va Rus tarjimalarini solishtiring — flashcard bilan yodlang.", accent: "from-emerald-500 via-teal-500 to-cyan-500", glow: "rgba(16,185,129,0.45)" },
+      { emoji: "🎮", title: "O'yinlar Zonasi", text: "Vokabulyar Quiz va Jumla Yasash o'yinlarida qatnashing. Har bir to'g'ri javob uchun 🪙 tanga yutib oling.", accent: "from-amber-500 via-orange-500 to-rose-500", glow: "rgba(245,158,11,0.45)" },
+      { emoji: "🤖", title: "AI So'z Ustozi", text: "AI bilan suhbat qurib, so'zlarni real jumlalarda ishlatishni mashq qiling. U sizni tuzatadi va rag'batlantiradi.", accent: "from-violet-500 via-purple-500 to-pink-500", glow: "rgba(168,85,247,0.45)" },
+      { emoji: "🏆", title: "Test & Reyting", text: "Har unitdan 30 savollik test topshiring, natijalarni kuzating va reyting jadvalida ko'tariling. O'qituvchi sizni kuzatib boradi.", accent: "from-sky-500 via-blue-500 to-indigo-500", glow: "rgba(59,130,246,0.45)" },
+    ],
+    tabs: [
+      { icon: HomeIcon, label: "Bosh sahifa", color: "text-indigo-500" },
+      { icon: BookOpen, label: "So'zlar", color: "text-emerald-500" },
+      { icon: Gamepad2, label: "O'yinlar", color: "text-amber-500" },
+      { icon: Sparkles, label: "AI Ustoz", color: "text-violet-500" },
+      { icon: SettingsIcon, label: "Sozlamalar", color: "text-slate-500" },
+    ],
   },
-  {
-    emoji: "📚",
-    title: "So'zlar Ro'yxati",
-    text: "12 ta unit bo'ylab yuzlab so'zlarni o'rganing. English, O'zbek va Rus tarjimalarini solishtiring — flashcard bilan yodlang.",
-    accent: "from-emerald-500 via-teal-500 to-cyan-500",
-    glow: "rgba(16,185,129,0.45)",
+  en: {
+    skip: "Skip", journey: "App journey", structure: "App structure",
+    back: "Back", ready: "Done", next: "Next",
+    ctaTitle: "Ready to start?", ctaSub: "Start with a free trial or choose a premium plan.",
+    freeTitle: "Start for free", freeDesc: "Word list and a few games — free",
+    plansHeader: "🔥 Discounted subscription plans", planFeat: "All units · Tests · Games",
+    som: "so'm", perMonth: "/mo", perYear: "/yr",
+    viewPlans: "View subscription plans", haveAccount: "Already have an account?", login: "Log in",
+    steps: [
+      { emoji: "🎓", title: "Welcome", text: "Vocabulary A2·B1·B2 — learn English by playing, studying, and practicing. Let's explore the app together.", accent: "from-indigo-500 via-violet-500 to-fuchsia-500", glow: "rgba(124,58,237,0.45)" },
+      { emoji: "📚", title: "Word List", text: "Learn hundreds of words across 12 units. Compare English, Uzbek, and Russian translations — memorize with flashcards.", accent: "from-emerald-500 via-teal-500 to-cyan-500", glow: "rgba(16,185,129,0.45)" },
+      { emoji: "🎮", title: "Games Zone", text: "Join Vocabulary Quiz and Sentence Builder games. Earn 🪙 coins for every correct answer.", accent: "from-amber-500 via-orange-500 to-rose-500", glow: "rgba(245,158,11,0.45)" },
+      { emoji: "🤖", title: "AI Word Tutor", text: "Chat with AI to practice using words in real sentences. It corrects and encourages you.", accent: "from-violet-500 via-purple-500 to-pink-500", glow: "rgba(168,85,247,0.45)" },
+      { emoji: "🏆", title: "Tests & Leaderboard", text: "Take a 30-question test for each unit, track your results, and climb the leaderboard. Your teacher follows your progress.", accent: "from-sky-500 via-blue-500 to-indigo-500", glow: "rgba(59,130,246,0.45)" },
+    ],
+    tabs: [
+      { icon: HomeIcon, label: "Home", color: "text-indigo-500" },
+      { icon: BookOpen, label: "Words", color: "text-emerald-500" },
+      { icon: Gamepad2, label: "Games", color: "text-amber-500" },
+      { icon: Sparkles, label: "AI Tutor", color: "text-violet-500" },
+      { icon: SettingsIcon, label: "Settings", color: "text-slate-500" },
+    ],
   },
-  {
-    emoji: "🎮",
-    title: "O'yinlar Zonasi",
-    text: "Vokabulyar Quiz va Jumla Yasash o'yinlarida qatnashing. Har bir to'g'ri javob uchun 🪙 tanga yutib oling.",
-    accent: "from-amber-500 via-orange-500 to-rose-500",
-    glow: "rgba(245,158,11,0.45)",
+  ru: {
+    skip: "Пропустить", journey: "Путь в приложении", structure: "Структура приложения",
+    back: "Назад", ready: "Готово", next: "Далее",
+    ctaTitle: "Начнём?", ctaSub: "Начните с бесплатного пробного периода или выберите премиум-план.",
+    freeTitle: "Начать бесплатно", freeDesc: "Список слов и несколько игр — бесплатно",
+    plansHeader: "🔥 Скидки на планы подписки", planFeat: "Все разделы · Тесты · Игры",
+    som: "сум", perMonth: "/мес", perYear: "/год",
+    viewPlans: "Посмотреть планы подписки", haveAccount: "Уже есть аккаунт?", login: "Войти",
+    steps: [
+      { emoji: "🎓", title: "Добро пожаловать", text: "Vocabulary A2·B1·B2 — учите английский, играя, изучая и практикуя. Давайте рассмотрим приложение вместе.", accent: "from-indigo-500 via-violet-500 to-fuchsia-500", glow: "rgba(124,58,237,0.45)" },
+      { emoji: "📚", title: "Список слов", text: "Учите сотни слов по 12 разделам. Сравнивайте переводы на английский, узбекский и русский — запоминайте с флеш-картами.", accent: "from-emerald-500 via-teal-500 to-cyan-500", glow: "rgba(16,185,129,0.45)" },
+      { emoji: "🎮", title: "Зона игр", text: "Участвуйте в викторинах и построении предложений. За каждый правильный ответ получайте 🪙 монеты.", accent: "from-amber-500 via-orange-500 to-rose-500", glow: "rgba(245,158,11,0.45)" },
+      { emoji: "🤖", title: "ИИ репетитор", text: "Общайтесь с ИИ, практикуя слова в реальных предложениях. Он исправляет и поддерживает вас.", accent: "from-violet-500 via-purple-500 to-pink-500", glow: "rgba(168,85,247,0.45)" },
+      { emoji: "🏆", title: "Тесты и рейтинг", text: "Проходите 30-вопросные тесты по каждому разделу, отслеживайте результаты и поднимайтесь в таблице лидеров. Учитель следит за вашим прогрессом.", accent: "from-sky-500 via-blue-500 to-indigo-500", glow: "rgba(59,130,246,0.45)" },
+    ],
+    tabs: [
+      { icon: HomeIcon, label: "Главная", color: "text-indigo-500" },
+      { icon: BookOpen, label: "Слова", color: "text-emerald-500" },
+      { icon: Gamepad2, label: "Игры", color: "text-amber-500" },
+      { icon: Sparkles, label: "ИИ Учитель", color: "text-violet-500" },
+      { icon: SettingsIcon, label: "Настройки", color: "text-slate-500" },
+    ],
   },
-  {
-    emoji: "🤖",
-    title: "AI So'z Ustozi",
-    text: "AI bilan suhbat qurib, so'zlarni real jumlalarda ishlatishni mashq qiling. U sizni tuzatadi va rag'batlantiradi.",
-    accent: "from-violet-500 via-purple-500 to-pink-500",
-    glow: "rgba(168,85,247,0.45)",
-  },
-  {
-    emoji: "🏆",
-    title: "Test & Reyting",
-    text: "Har unitdan 30 savollik test topshiring, natijalarni kuzating va reyting jadvalida ko'tariling. O'qituvchi sizni kuzatib boradi.",
-    accent: "from-sky-500 via-blue-500 to-indigo-500",
-    glow: "rgba(59,130,246,0.45)",
-  },
-];
+};
 
-const TABS = [
-  { icon: HomeIcon, label: "Bosh sahifa", color: "text-indigo-500" },
-  { icon: BookOpen, label: "So'zlar", color: "text-emerald-500" },
-  { icon: Gamepad2, label: "O'yinlar", color: "text-amber-500" },
-  { icon: Sparkles, label: "AI Ustoz", color: "text-violet-500" },
-  { icon: SettingsIcon, label: "Sozlamalar", color: "text-slate-500" },
-];
-
-const PLANS = [
-  { id: "vip", name: "VIP", price: "49,999", original: "79,999", period: "/yil", icon: Crown, color: "text-amber-600", badge: "−38%" },
-  { id: "learner", name: "Learner", price: "24,888", original: "39,999", period: "/oy", icon: Star, color: "text-indigo-600", badge: "−38%" },
-  { id: "starter", name: "Starter", price: "17,777", original: "29,999", period: "/oy", icon: Zap, color: "text-emerald-600", badge: "−41%" },
+const PLANS_BASE = [
+  { id: "vip", name: "VIP", price: "49,999", original: "79,999", icon: Crown, color: "text-amber-600", badge: "−38%", cycle: "yearly" },
+  { id: "learner", name: "Learner", price: "24,888", original: "39,999", icon: Star, color: "text-indigo-600", badge: "−38%", cycle: "monthly" },
+  { id: "starter", name: "Starter", price: "17,777", original: "29,999", icon: Zap, color: "text-emerald-600", badge: "−41%", cycle: "monthly" },
 ];
 
 // Floating aurora blob
@@ -75,6 +102,12 @@ function AuroraBlob({ className, delay = 0 }) {
 const ease = [0.22, 1, 0.36, 1];
 
 export default function Welcome() {
+  const { lang } = useAppLang();
+  const s = STR[lang] || STR.uz;
+  const STEPS = s.steps;
+  const TABS = s.tabs;
+  const PLANS = PLANS_BASE.map(p => ({ ...p, period: p.cycle === "yearly" ? s.perYear : s.perMonth }));
+
   const [step, setStep] = useState(0);
   const [finished, setFinished] = useState(false);
   const last = step === STEPS.length - 1;
@@ -132,7 +165,7 @@ export default function Welcome() {
         </motion.div>
         {!finished && (
           <button onClick={() => setFinished(true)} className="text-xs font-medium text-white/50 hover:text-white transition-colors select-none">
-            O'tkazib yuborish
+            {s.skip}
           </button>
         )}
       </div>
@@ -148,7 +181,7 @@ export default function Welcome() {
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }}
                   className="inline-block text-[11px] font-semibold tracking-[0.2em] uppercase text-white/40 mb-3"
                 >
-                  Ilova sayohati
+                  {s.journey}
                 </motion.span>
                 <motion.h1
                   key={current.title}
@@ -237,7 +270,7 @@ export default function Welcome() {
                 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, ease }}
                 className="mt-6"
               >
-                <p className="text-center text-[11px] uppercase tracking-widest text-white/30 mb-3 font-semibold">Ilova tuzilishi</p>
+                <p className="text-center text-[11px] uppercase tracking-widest text-white/30 mb-3 font-semibold">{s.structure}</p>
                 <div className="bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 px-2 py-2.5 flex justify-between shadow-lg">
                   {TABS.map((t, i) => {
                     const Icon = t.icon;
@@ -280,11 +313,11 @@ export default function Welcome() {
               {/* Controls */}
               <div className="flex items-center justify-between">
                 <Button variant="ghost" onClick={back} disabled={step === 0} className="text-white/70 hover:text-white hover:bg-white/10 select-none">
-                  <ArrowLeft className="w-4 h-4 mr-1" /> Orqaga
+                  <ArrowLeft className="w-4 h-4 mr-1" /> {s.back}
                 </Button>
                 <span className="text-xs text-white/40 font-medium tabular-nums">{step + 1} / {STEPS.length}</span>
                 <Button onClick={next} className="bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 border-0 select-none shadow-lg shadow-indigo-500/30">
-                  {last ? "Tayyor" : "Keyingi"} <ArrowRight className="w-4 h-4 ml-1" />
+                  {last ? s.ready : s.next} <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
             </motion.div>
@@ -307,10 +340,10 @@ export default function Welcome() {
                   initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, ease }}
                   className="text-4xl font-bold text-white mb-2"
                 >
-                  Boshlaymizmi?
+                  {s.ctaTitle}
                 </motion.h1>
                 <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} className="text-sm text-white/50">
-                  Bepul sinov bilan boshlang yoki premium rejani tanlang.
+                  {s.ctaSub}
                 </motion.p>
               </div>
 
@@ -326,8 +359,8 @@ export default function Welcome() {
                     <Check className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div className="relative flex-1">
-                    <p className="font-bold text-white">Bepul boshlash</p>
-                    <p className="text-xs text-white/50">So'zlar ro'yxati va bir nechta o'yin — bepul</p>
+                    <p className="font-bold text-white">{s.freeTitle}</p>
+                    <p className="text-xs text-white/50">{s.freeDesc}</p>
                   </div>
                   <ArrowRight className="relative w-5 h-5 text-white/40 group-hover:text-white transition-colors" />
                 </motion.div>
@@ -338,7 +371,7 @@ export default function Welcome() {
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
                 className="text-center text-[11px] font-semibold text-white/40 uppercase tracking-widest mb-3"
               >
-                🔥 Chegirmali obuna rejalari
+                {s.plansHeader}
               </motion.p>
 
               {/* Premium plans */}
@@ -362,11 +395,11 @@ export default function Welcome() {
                           <p className="font-bold text-white">{p.name}</p>
                           <span className="text-[10px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">{p.badge}</span>
                         </div>
-                        <p className="text-xs text-white/40 truncate mt-0.5">Barcha unitlar · Testlar · O'yinlar</p>
+                        <p className="text-xs text-white/40 truncate mt-0.5">{s.planFeat}</p>
                         <div className="flex items-baseline gap-2 mt-1">
                           <span className="text-sm text-white/30 line-through">{p.original}</span>
                           <span className="text-xl font-bold text-white">{p.price}</span>
-                          <span className="text-xs text-white/40">so'm{p.period}</span>
+                          <span className="text-xs text-white/40">{s.som}{p.period}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -377,14 +410,14 @@ export default function Welcome() {
               <Link to="/pricing">
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button className="w-full h-12 text-base font-bold border-0 select-none bg-gradient-to-r from-indigo-500 to-violet-600 hover:from-indigo-400 hover:to-violet-500 shadow-lg shadow-indigo-500/40">
-                    Obuna rejalarini ko'rish <ArrowRight className="w-4 h-4 ml-1" />
+                    {s.viewPlans} <ArrowRight className="w-4 h-4 ml-1" />
                   </Button>
                 </motion.div>
               </Link>
 
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="text-center text-xs text-white/40 mt-4">
-                Hisobingiz bormi?{" "}
-                <Link to="/login" className="text-indigo-400 font-medium hover:underline">Kirish</Link>
+                {s.haveAccount}{" "}
+                <Link to="/login" className="text-indigo-400 font-medium hover:underline">{s.login}</Link>
               </motion.p>
             </motion.div>
           )}

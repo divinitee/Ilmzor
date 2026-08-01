@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { useAppLang } from "@/hooks/useAppLang";
+
 import { useAuth } from "@/lib/AuthContext";
 import {
   ArrowLeft, Users, CreditCard, CheckCircle2, Clock, Search, Shield,
@@ -60,8 +60,7 @@ const statusLabel = (status, s) =>
   status === "active" ? s.active : status === "pending" ? s.pending : s.inactive;
 
 export default function AdminDashboard() {
-  const { lang } = useAppLang();
-  const s = STR[lang] || STR.uz;
+  const s = STR.en;
   const { user, authChecked, isLoadingAuth } = useAuth();
 
   const [tab, setTab] = useState("users");

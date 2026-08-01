@@ -73,7 +73,7 @@ export default function TeacherDashboard() {
     const expiresAt = new Date();
     expiresAt.setMonth(expiresAt.getMonth() + 1);
     await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAt.toISOString().split("T")[0] });
-    setNotification(`"${sub.student_name}" obunasi tasdiqlandi!`);
+    setNotification(`"${sub.student_name}" subscription approved!`);
     setTimeout(() => setNotification(""), 3000);
     loadData(true);
   };
@@ -88,7 +88,7 @@ export default function TeacherDashboard() {
         teacher_name: user.full_name || user.email,
         teacher_email: user.email,
         code,
-        label: newCodeLabel.trim() || `Guruh ${referrals.length + 1}`,
+        label: newCodeLabel.trim() || `Group ${referrals.length + 1}`,
         uses: 0,
       });
       setNewCodeLabel("");
@@ -100,7 +100,7 @@ export default function TeacherDashboard() {
 
   const copyCode = (code) => {
     navigator.clipboard.writeText(code);
-    setNotification(`Kod nusxalandi: ${code}`);
+    setNotification(`Code copied: ${code}`);
     setTimeout(() => setNotification(""), 2000);
   };
 
@@ -118,9 +118,9 @@ export default function TeacherDashboard() {
   const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
 
   const StatusBadge = ({ sub }) => {
-    if (sub.status === "active") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ To'langan</span>;
-    if (sub.status === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Kutilmoqda</span>;
-    return <span className="text-xs font-semibold text-destructive bg-destructive/10 px-2 py-1 rounded-full">❌ To'lanmagan</span>;
+    if (sub.status === "active") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ Paid</span>;
+    if (sub.status === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Pending</span>;
+    return <span className="text-xs font-semibold text-destructive bg-destructive/10 px-2 py-1 rounded-full">❌ Unpaid</span>;
   };
 
   // Group subscriptions by referral code
@@ -136,10 +136,10 @@ export default function TeacherDashboard() {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <BookOpen className="w-5 h-5 text-primary select-none" />
-          <span className="font-bold text-foreground">O'qituvchi Paneli</span>
+          <span className="font-bold text-foreground">Teacher Panel</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">O'qituvchi</span>
+          <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">Teacher</span>
           <button onClick={() => base44.auth.logout("/login")} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
             <LogOut className="w-4 h-4" />
           </button>
@@ -163,17 +163,17 @@ export default function TeacherDashboard() {
             <div className="bg-background rounded-xl p-4 border border-border text-center">
               <Users className="w-5 h-5 text-primary mx-auto mb-1 select-none" />
               <p className="text-xl font-bold text-foreground">{subscriptions.length}</p>
-              <p className="text-xs text-muted-foreground">Jami</p>
+              <p className="text-xs text-muted-foreground">Total</p>
             </div>
             <div className="bg-background rounded-xl p-4 border border-border text-center">
               <CheckCircle className="w-5 h-5 text-emerald-500 mx-auto mb-1 select-none" />
               <p className="text-xl font-bold text-emerald-600">{activeCount}</p>
-              <p className="text-xs text-muted-foreground">Faol</p>
+              <p className="text-xs text-muted-foreground">Active</p>
             </div>
             <div className="bg-background rounded-xl p-4 border border-border text-center">
               <Clock className="w-5 h-5 text-amber-500 mx-auto mb-1 select-none" />
               <p className="text-xl font-bold text-amber-600">{pendingCount}</p>
-              <p className="text-xs text-muted-foreground">Kutilmoqda</p>
+              <p className="text-xs text-muted-foreground">Pending</p>
             </div>
           </div>
 
@@ -186,9 +186,9 @@ export default function TeacherDashboard() {
           {/* Tabs */}
           <div className="grid grid-cols-3 gap-1 bg-muted p-1 rounded-xl">
             {[
-              { id: "students", label: "O'quvchilar" },
-              { id: "referrals", label: "Kodlar" },
-              { id: "results", label: "Natijalar" },
+              { id: "students", label: "Students" },
+              { id: "referrals", label: "Codes" },
+              { id: "results", label: "Results" },
             ].map(t => (
               <button key={t.id} onClick={() => setActiveTab(t.id)}
                 className={`py-2 rounded-lg text-xs font-semibold transition-all select-none ${activeTab === t.id ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
@@ -204,7 +204,7 @@ export default function TeacherDashboard() {
               {subscriptions.filter(s => s.status === "pending").length > 0 && (
                 <div className="bg-amber-500/5 border border-amber-500/30 rounded-2xl overflow-hidden">
                   <div className="px-5 py-3 border-b border-amber-500/20">
-                    <h3 className="text-sm font-semibold text-amber-700 dark:text-amber-400">⏳ Tasdiqlash kutilmoqda</h3>
+                    <h3 className="text-sm font-semibold text-amber-700 dark:text-amber-400">⏳ Pending Approval</h3>
                   </div>
                   {subscriptions.filter(s => s.status === "pending").map(sub => (
                     <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-b border-amber-500/10 last:border-0">
@@ -216,7 +216,7 @@ export default function TeacherDashboard() {
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-muted-foreground font-mono">{sub.payment_ref || "—"}</span>
                         <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
-                          Tasdiqlash
+                          Approve
                         </Button>
                         <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
                           <MessageCircle className="w-4 h-4" />
@@ -227,7 +227,7 @@ export default function TeacherDashboard() {
                 </div>
               )}
 
-              {/* Students grouped by referral */}
+              {/* Students grouped by referral -->
               {referrals.map(ref => {
                 const refStudents = subscriptions.filter(s => s.referral_code === ref.code);
                 if (refStudents.length === 0) return null;
@@ -241,7 +241,7 @@ export default function TeacherDashboard() {
                         <span className="font-mono text-sm font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">{ref.code}</span>
                         <div className="text-left">
                           <p className="text-sm font-semibold text-foreground">{ref.label}</p>
-                          <p className="text-xs text-muted-foreground">{refStudents.length} ta o'quvchi</p>
+                          <p className="text-xs text-muted-foreground">{refStudents.length} students</p>
                         </div>
                       </div>
                       <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${expandedReferral === ref.id ? "rotate-180" : ""}`} />
@@ -260,7 +260,7 @@ export default function TeacherDashboard() {
                                   <StatusBadge sub={sub} />
                                   {sub.status === "pending" && (
                                     <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
-                                      Tasdiqlash
+                                      Approve
                                     </Button>
                                   )}
                                   <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
@@ -281,7 +281,7 @@ export default function TeacherDashboard() {
               {ungrouped.length > 0 && (
                 <div className="bg-background rounded-2xl border border-border overflow-hidden">
                   <div className="px-5 py-3 border-b border-border">
-                    <h3 className="text-sm font-semibold text-muted-foreground">Kodsiz o'quvchilar</h3>
+                    <h3 className="text-sm font-semibold text-muted-foreground">Students without code</h3>
                   </div>
                   {ungrouped.map(sub => (
                     <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-b border-border last:border-0">
@@ -293,7 +293,7 @@ export default function TeacherDashboard() {
                         <StatusBadge sub={sub} />
                         {sub.status === "pending" && (
                           <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
-                            Tasdiqlash
+                            Approve
                           </Button>
                         )}
                         <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
@@ -306,7 +306,7 @@ export default function TeacherDashboard() {
               )}
 
               {subscriptions.length === 0 && (
-                <p className="text-center text-sm text-muted-foreground py-10">Hozircha o'quvchi yo'q</p>
+                <p className="text-center text-sm text-muted-foreground py-10">No students yet</p>
               )}
             </div>
           )}
@@ -316,25 +316,25 @@ export default function TeacherDashboard() {
             <div className="space-y-4">
               {/* Create new code */}
               <div className="bg-background rounded-2xl border border-border p-5">
-                <h3 className="text-sm font-semibold text-foreground mb-3">Yangi referral kodi yaratish</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-3">Create new referral code</h3>
                 <div className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Guruh nomi (ixtiyoriy)"
+                    placeholder="Group name (optional)"
                     value={newCodeLabel}
                     onChange={e => setNewCodeLabel(e.target.value)}
                     className="flex-1 h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
                   />
                   <Button onClick={handleCreateCode} disabled={creatingCode} className="h-10 gap-1.5 select-none">
                     <Plus className="w-4 h-4" />
-                    Yaratish
+                    Create
                   </Button>
                 </div>
-                <p className="text-xs text-muted-foreground mt-2">Har bir guruh yoki sinf uchun alohida kod yarating</p>
+                <p className="text-xs text-muted-foreground mt-2">Create a separate code for each group or class</p>
               </div>
 
               {referrals.length === 0 ? (
-                <p className="text-center text-sm text-muted-foreground py-6">Hali kod yaratilmagan</p>
+                <p className="text-center text-sm text-muted-foreground py-6">No codes created yet</p>
               ) : (
                 <div className="space-y-3">
                   {referrals.map(ref => (
@@ -344,12 +344,12 @@ export default function TeacherDashboard() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-foreground font-mono text-lg tracking-widest">{ref.code}</p>
-                        <p className="text-xs text-muted-foreground">{ref.label} · {ref.uses || 0} ta o'quvchi</p>
+                        <p className="text-xs text-muted-foreground">{ref.label} · {ref.uses || 0} students</p>
                       </div>
                       <button
                         onClick={() => copyCode(ref.code)}
                         className="p-2 rounded-lg hover:bg-muted transition-colors text-muted-foreground hover:text-foreground select-none"
-                        title="Nusxalash"
+                        title="Copy"
                       >
                         <Copy className="w-4 h-4" />
                       </button>
@@ -364,19 +364,19 @@ export default function TeacherDashboard() {
           {activeTab === "results" && (
             <div className="bg-background rounded-2xl border border-border overflow-hidden">
               <div className="px-5 py-4 border-b border-border">
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Test Natijalari</h3>
+                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Test Results</h3>
               </div>
               {results.length === 0 ? (
-                <p className="p-5 text-sm text-muted-foreground text-center">Natijalar topilmadi</p>
+                <p className="p-5 text-sm text-muted-foreground text-center">No results found</p>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-border">
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">O'quvchi</th>
+                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Student</th>
                         <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Unit</th>
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Natija</th>
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Sana</th>
+                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Score</th>
+                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Date</th>
                       </tr>
                     </thead>
                     <tbody>
