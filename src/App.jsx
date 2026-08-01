@@ -24,6 +24,7 @@ import MyProgress from '@/pages/MyProgress';
 import Plans from '@/pages/Plans';
 import Settings from '@/pages/Settings';
 import StudyTips from '@/pages/StudyTips';
+import AdminDashboard from '@/pages/AdminDashboard';
 import Welcome from '@/pages/Welcome';
 import Landing from '@/pages/Landing';
 import AppLoader from '@/components/AppLoader';
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
         <Route path="/plans" element={<Plans />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/study-tips" element={<StudyTips />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
