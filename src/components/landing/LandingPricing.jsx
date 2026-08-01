@@ -109,7 +109,7 @@ export default function LandingPricing() {
                     "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"}`
                     }>
                     
-                    {isFree ? t("landing.nav.start_free") : t("plans.select_btn")} {!isFree && <ArrowRight className="w-4 h-4 ml-1" />}
+                    {isFree ? t("landing.nav.start_free") : "Select"} {!isFree && <ArrowRight className="w-4 h-4 ml-1" />}
                   </Button>
                 </Link>
               </motion.div>);
