@@ -19,8 +19,8 @@ export default function LandingPricing() {
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease }}
-          className="text-center max-w-2xl mx-auto"
-        >
+          className="text-center max-w-2xl mx-auto">
+          
           <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">{t("landing.pricing.label")}</span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">{t("landing.pricing.title")}</h2>
         </motion.div>
@@ -29,21 +29,21 @@ export default function LandingPricing() {
           <button
             onClick={() => setCycle("monthly")}
             className={`px-5 py-2 rounded-full text-sm font-semibold border-2 transition-colors select-none ${
-              !isYearly
-                ? "border-blue-600 bg-blue-50 landing-dark:bg-blue-950/40 text-blue-600 landing-dark:text-blue-300"
-                : "border-slate-200 landing-dark:border-slate-700 text-slate-500 landing-dark:text-slate-400"
-            }`}
-          >
+            !isYearly ?
+            "border-blue-600 bg-blue-50 landing-dark:bg-blue-950/40 text-blue-600 landing-dark:text-blue-300" :
+            "border-slate-200 landing-dark:border-slate-700 text-slate-500 landing-dark:text-slate-400"}`
+            }>
+            
             {t("pricing.billing_monthly")}
           </button>
           <button
             onClick={() => setCycle("yearly")}
             className={`relative px-5 py-2 rounded-full text-sm font-semibold border-2 transition-colors select-none ${
-              isYearly
-                ? "border-blue-600 bg-blue-50 landing-dark:bg-blue-950/40 text-blue-600 landing-dark:text-blue-300"
-                : "border-slate-200 landing-dark:border-slate-700 text-slate-500 landing-dark:text-slate-400"
-            }`}
-          >
+            isYearly ?
+            "border-blue-600 bg-blue-50 landing-dark:bg-blue-950/40 text-blue-600 landing-dark:text-blue-300" :
+            "border-slate-200 landing-dark:border-slate-700 text-slate-500 landing-dark:text-slate-400"}`
+            }>
+            
             {t("pricing.billing_yearly")}
             <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
           </button>
@@ -63,60 +63,60 @@ export default function LandingPricing() {
                 transition={{ duration: 0.5, ease, delay: i * 0.07 }}
                 whileHover={{ y: -6 }}
                 className={`relative rounded-2xl border p-6 flex flex-col ${
-                  highlighted
-                    ? "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 lg:-mt-2"
-                    : "premium-card bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800"
-                }`}
-              >
-                {highlighted && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-b from-blue-500 to-blue-700 px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
+                highlighted ?
+                "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 lg:-mt-2" :
+                "premium-card bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800"}`
+                }>
+                
+                {highlighted &&
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-b from-blue-500 to-blue-700 px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
                     <Sparkles className="w-3 h-3" /> {t("plans.badges.learner")}
                   </span>
-                )}
+                }
                 <div className="w-11 h-11 rounded-xl bg-blue-600/10 landing-dark:bg-blue-500/10 flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5 text-blue-600 landing-dark:text-blue-400" />
                 </div>
                 <h3 className="font-bold text-slate-900 landing-dark:text-slate-50 text-lg">{p.name}</h3>
                 <div className="mt-3 flex items-baseline gap-1">
-                  {isFree ? (
-                    <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{t("landing.pricing.free")}</span>
-                  ) : (
-                    <>
+                  {isFree ?
+                  <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{t("landing.pricing.free")}</span> :
+
+                  <>
                       <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{formatPrice(price)}</span>
                       <span className="text-sm text-slate-400 landing-dark:text-slate-500">{period}</span>
                     </>
-                  )}
+                  }
                 </div>
-                {!isFree && isYearly && (
-                  <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
-                )}
+                {!isFree && isYearly &&
+                <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
+                }
                 <ul className="mt-5 space-y-2.5 flex-1">
-                  {p.featureKeys.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 landing-dark:text-slate-300">
+                  {p.featureKeys.map((f) =>
+                  <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 landing-dark:text-slate-300">
                       <span className="mt-0.5 w-5 h-5 rounded-full bg-green-100 landing-dark:bg-green-900/40 flex items-center justify-center flex-shrink-0">
                         <Check className="w-3 h-3 text-green-600 landing-dark:text-green-400" />
                       </span>
                       {t(`plans.features.${f}`)}
                     </li>
-                  ))}
+                  )}
                 </ul>
                 <Link to="/register" className="mt-6">
                   <Button
                     variant={highlighted ? "default" : "outline"}
-                    className={`w-full h-11 text-base ${
-                      highlighted
-                        ? ""
-                        : "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"
-                    }`}
-                  >
+                    className={`w-full h-11 text-sm ${
+                    highlighted ?
+                    "" :
+                    "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"}`
+                    }>
+                    
                     {isFree ? t("landing.nav.start_free") : t("plans.select_btn")} {!isFree && <ArrowRight className="w-4 h-4 ml-1" />}
                   </Button>
                 </Link>
-              </motion.div>
-            );
+              </motion.div>);
+
           })}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
