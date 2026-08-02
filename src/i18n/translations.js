@@ -12,7 +12,7 @@ export const VALID_LANGS = APP_LANGS.map(l => l.id);
 
 export const translations = {
   uz: {
-    nav: { home: "Bosh sahifa", words: "So'zlar", games: "O'yinlar", ai_teacher: "AI Ustoz", settings: "Sozlamalar" },
+    nav: { home: "Bosh sahifa", words: "So'zlar", games: "O'yinlar", ai_teacher: "AI Ustoz", settings: "Sozlamalar", skill_hub: "Skill Hub" },
     common: { back: "Orqaga", save: "Saqlash", cancel: "Bekor qilish", continue: "Davom etish", search: "Qidirish", select_unit_title: "Unit tanlang" },
     home: {
       app_name: "Vocabulary A2·B1·B2",
@@ -272,7 +272,7 @@ export const translations = {
     },
   },
   en: {
-    nav: { home: "Home", words: "Words", games: "Games", ai_teacher: "AI Teacher", settings: "Settings" },
+    nav: { home: "Home", words: "Words", games: "Games", ai_teacher: "AI Teacher", settings: "Settings", skill_hub: "Skill Hub" },
     common: { back: "Back", save: "Save", cancel: "Cancel", continue: "Continue", search: "Search", select_unit_title: "Select unit" },
     home: {
       app_name: "Vocabulary A2·B1·B2",
@@ -532,7 +532,7 @@ export const translations = {
     },
   },
   ru: {
-    nav: { home: "Главная", words: "Слова", games: "Игры", ai_teacher: "ИИ Учитель", settings: "Настройки" },
+    nav: { home: "Главная", words: "Слова", games: "Игры", ai_teacher: "ИИ Учитель", settings: "Настройки", skill_hub: "Skill Hub" },
     common: { back: "Назад", save: "Сохранить", cancel: "Отмена", continue: "Продолжить", search: "Поиск", select_unit_title: "Выберите раздел" },
     home: {
       app_name: "Vocabulary A2·B1·B2",

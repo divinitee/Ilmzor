@@ -10,9 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
-import VocabularyList from "@/pages/VocabularyList";
 import ParticleBackground from "@/components/ParticleBackground";
-import Games from "@/pages/Games";
+import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
@@ -198,9 +197,7 @@ export default function Home() {
           )
         )}
 
-        {activeTab === "vocab" && <VocabularyList isActive={isActive} />}
-
-        {activeTab === "games" && <Games isActive={isActive} user={user} />}
+        {activeTab === "skillhub" && <SkillHub isActive={isActive} user={user} />}
 
         {activeTab === "tutor" && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
 
