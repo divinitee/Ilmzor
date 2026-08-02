@@ -25,7 +25,6 @@ import Plans from '@/pages/Plans';
 import Settings from '@/pages/Settings';
 import StudyTips from '@/pages/StudyTips';
 import AdminDashboard from '@/pages/AdminDashboard';
-import Welcome from '@/pages/Welcome';
 import Landing from '@/pages/Landing';
 import AppLoader from '@/components/AppLoader';
 
@@ -57,7 +56,6 @@ const AuthenticatedApp = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/welcome" element={<Welcome />} />
       <Route path="/landing" element={<Landing />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/landing" replace />} />}>
         <Route path="/" element={<Home />} />
