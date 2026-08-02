@@ -12,6 +12,7 @@ import SpellingGame from "@/components/games/SpellingGame";
 import WordFormsGame from "@/components/games/WordFormsGame";
 import CrosswordGame from "@/components/games/CrosswordGame";
 import DefinitionGame from "@/components/games/DefinitionGame";
+import GrammarQuizGame from "@/components/games/GrammarQuizGame";
 import { getGameStats, recordGameResult } from "@/lib/gameSkills";
 
 /* ---------- Skill tree data ---------- */
@@ -33,12 +34,18 @@ const gen = (names, game) => names.map((name, i) => ({
   xp: [40, 65, 100][i % 3],
 }));
 
-const C = (label, subs, challenges) => ({ label, subs, challenges });
+const C = (label, subs, challenges, comingSoon = false) => ({ label, subs, challenges, comingSoon });
+const grammarCh = (names, bank) => names.map((name, i) => ({
+  name, game: "grammar", bank,
+  difficulty: ["Easy", "Medium", "Hard"][i % 3],
+  time: ["3 min", "5 min", "8 min"][i % 3],
+  xp: [40, 65, 100][i % 3],
+}));
 
 const SKILL_CHILDREN = {
   vocabulary: [
     C("Meaning", ["Definitions", "Context", "Multiple meanings"], gen(["Definition Match", "Picture Match", "Context Guess", "Memory Flip"], "definition")),
-    C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling")),
+    C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
     C("Spelling", ["Typing", "Letter order", "Missing letters"], gen(["Typing", "Letter Order", "Missing Letters"], "spelling")),
     C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
     C("Usage", ["Example sentences", "Fill in the blank", "Collocations", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair", "Collocation Match"], "sentence")),
@@ -46,14 +53,14 @@ const SKILL_CHILDREN = {
   ],
   grammar: [
     C("Sentence Structure", ["Word Order"], gen(["Word Order", "Build It"], "sentence")),
-    C("Verb Tenses", [], gen(["Tense Match", "Verb Forms"], "wordforms")),
-    C("Articles", [], gen(["Article Quiz", "A / An / The"], "quiz")),
-    C("Prepositions", [], gen(["Prep Quiz", "In / On / At"], "quiz")),
-    C("Punctuation", [], gen(["Punctuate", "Fix It"], "sentence")),
-    C("Question Formation", [], gen(["Ask It", "Question Builder"], "sentence")),
-    C("Active vs Passive", [], gen(["Transform", "Voice Swap"], "sentence")),
-    C("Conditionals", [], gen(["If Clauses", "Conditional Builder"], "sentence")),
-    C("Reported Speech", [], gen(["Report It", "Speech Shift"], "sentence")),
+    C("Verb Tenses", [], grammarCh(["Present vs Past", "Perfect Tenses"], "verb_tenses")),
+    C("Articles", [], grammarCh(["A or An", "The or Zero"], "articles")),
+    C("Prepositions", [], grammarCh(["Time Prepositions", "Place Prepositions"], "prepositions")),
+    C("Punctuation", [], grammarCh(["End Marks", "Apostrophes & Commas"], "punctuation")),
+    C("Question Formation", [], grammarCh(["Yes/No Questions", "Wh-Questions"], "question_formation")),
+    C("Active vs Passive", [], grammarCh(["Form the Passive", "Spot the Voice"], "active_passive")),
+    C("Conditionals", [], grammarCh(["Zero & First", "Second & Third"], "conditionals")),
+    C("Reported Speech", [], grammarCh(["Statements", "Questions & Commands"], "reported_speech")),
   ],
   speaking: [
     C("Pronunciation", [], gen(["Hear & Choose", "Repeat"], "spelling")),
@@ -169,6 +176,8 @@ export default function SkillHub({ isActive = true, user = null }) {
       return <CrosswordGame {...base} />;
     if (activeGame.game === "definition")
       return <DefinitionGame {...base} user={user} />;
+    if (activeGame.game === "grammar")
+      return <GrammarQuizGame {...base} bankKey={activeGame.bank} skillLabel={activeGame.skillLabel} />;
   }
 
   return (
@@ -211,7 +220,7 @@ export default function SkillHub({ isActive = true, user = null }) {
                 key={`detail-${selected}`}
                 skillId={selected}
                 onBack={() => setSelected(null)}
-                onPickChild={(child) => setModalChild({ skillId: selected, child })}
+                onPickChild={(child) => !child.comingSoon && setModalChild({ skillId: selected, child })}
               />
             )}
           </AnimatePresence>
@@ -227,7 +236,7 @@ export default function SkillHub({ isActive = true, user = null }) {
             onClose={() => setModalChild(null)}
             onPlay={(challenge) => {
               setModalChild(null);
-              setActiveGame({ game: challenge.game, difficulty: challenge.difficulty });
+              setActiveGame({ game: challenge.game, difficulty: challenge.difficulty, bank: challenge.bank, skillLabel: modalChild.child.label });
             }}
           />
         )}
@@ -363,19 +372,25 @@ function SkillNode({ node, index, onClick }) {
 }
 
 function ChildNode({ node, index, onClick }) {
+  const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <motion.button
-        onClick={onClick}
+        onClick={soon ? undefined : onClick}
+        disabled={soon}
         initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
-        whileHover={{ scale: 1.12 }} whileTap={{ scale: 0.9 }}
-        className="group relative rounded-xl bg-card/60 backdrop-blur-xl border border-blue-400/20 px-3 py-2.5 text-center hover:border-blue-400/60 hover:shadow-[0_0_28px_rgba(59,130,246,0.45)] transition-shadow min-w-[88px] max-w-[120px]"
+        whileHover={soon ? undefined : { scale: 1.12 }} whileTap={soon ? undefined : { scale: 0.9 }}
+        className={soon
+          ? "group relative rounded-xl bg-muted/40 border border-dashed border-muted-foreground/30 px-3 py-2.5 text-center cursor-not-allowed min-w-[88px] max-w-[120px]"
+          : "group relative rounded-xl bg-card/60 backdrop-blur-xl border border-blue-400/20 px-3 py-2.5 text-center hover:border-blue-400/60 hover:shadow-[0_0_28px_rgba(59,130,246,0.45)] transition-shadow min-w-[88px] max-w-[120px]"}
       >
-        <div className="absolute inset-0 rounded-xl ring-1 ring-blue-300/20 opacity-50 group-hover:opacity-100 transition-opacity animate-pulse" />
-        <span className="block text-[11px] font-bold text-foreground leading-tight">{node.label}</span>
-        {node.subs.length > 0 && (
+        {!soon && <div className="absolute inset-0 rounded-xl ring-1 ring-blue-300/20 opacity-50 group-hover:opacity-100 transition-opacity animate-pulse" />}
+        <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
+        {soon ? (
+          <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(coming soon)</span>
+        ) : node.subs.length > 0 ? (
           <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).join(" · ")}</span>
-        )}
+        ) : null}
       </motion.button>
     </div>
   );
