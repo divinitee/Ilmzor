@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
+import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 
 export default function Pricing() {
   const navigate = useNavigate();
@@ -94,6 +95,8 @@ export default function Pricing() {
                 className="w-36 h-36 mx-auto rounded-xl border-4 border-white shadow-md object-contain bg-white"
               />
             </div>
+
+            <TelegramPaymentLink />
 
             <div className="space-y-3">
               <div>

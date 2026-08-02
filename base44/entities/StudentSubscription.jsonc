@@ -50,6 +50,10 @@
       "format": "date",
       "description": "Date the active subscription expires (1 month or 1 year after approval, based on billing_cycle)"
     },
+    "telegram_chat_id": {
+      "type": "string",
+      "description": "Telegram chat ID for payment bot notifications"
+    },
     "description": {
       "type": "string",
       "maxLength": 1000,

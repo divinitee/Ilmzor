@@ -21,6 +21,7 @@ import ActivityTimeline from "@/components/dashboard/ActivityTimeline";
 import VocabularyStats from "@/components/dashboard/VocabularyStats";
 import ActivityChart from "@/components/dashboard/ActivityChart";
 import PerformanceCard from "@/components/dashboard/PerformanceCard";
+import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -480,6 +481,9 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
             alt="To'lov QR Kodi"
             className="w-44 h-44 mx-auto rounded-xl border-4 border-white shadow-md object-contain bg-white"
           />
+        </div>
+        <div className="mb-4">
+          <TelegramPaymentLink />
         </div>
         {submitted ? (
           <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
