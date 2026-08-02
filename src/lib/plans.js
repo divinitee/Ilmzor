@@ -20,7 +20,7 @@ export const PLAN_LIST = [
   {
     id: "learner",
     name: "Learner Plan",
-    monthlyPrice: 222222,
+    monthlyPrice: 24777,
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
     border: "border-indigo-500",
@@ -45,7 +45,7 @@ export const PLAN_LIST = [
   },
 ];
 
-export const yearlyPrice = (monthly) => Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT));
+export const yearlyPrice = (monthly) => monthly === 24777 ? 222222 : Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT));
 
 export const formatPrice = (n) => Number(n).toLocaleString("en-US");
 
