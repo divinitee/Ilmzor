@@ -176,29 +176,25 @@ export default function Home() {
         </AnimatePresence>
 
         {activeTab === "home" && (
-          isActive ? (
-            isAdmin ? (
-              <div className="max-w-lg mx-auto px-4 py-10 text-center">
-                <h2 className="text-2xl font-bold text-foreground mb-4">{t("home.teacher_panel_title")}</h2>
-                <Link to="/teacher">
-                  <Button className="w-full h-12 text-base font-semibold select-none">{t("home.go_to_dashboard")}</Button>
-                </Link>
-              </div>
-            ) : (
-              <StudentDashboard
-                results={results}
-                units={units}
-                selectedUnit={selectedUnit}
-                selectedUnitName={selectedUnitName}
-                onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
-                isActive={isActive}
-                user={user}
-                subscription={subscription}
-                onSubmitted={() => loadData(true)}
-              />
-            )
+          isAdmin ? (
+            <div className="max-w-lg mx-auto px-4 py-10 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-4">{t("home.teacher_panel_title")}</h2>
+              <Link to="/teacher">
+                <Button className="w-full h-12 text-base font-semibold select-none">{t("home.go_to_dashboard")}</Button>
+              </Link>
+            </div>
           ) : (
-            <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />
+            <StudentDashboard
+              results={results}
+              units={units}
+              selectedUnit={selectedUnit}
+              selectedUnitName={selectedUnitName}
+              onOpenUnitDrawer={() => setUnitDrawerOpen(true)}
+              isActive={isActive}
+              user={user}
+              subscription={subscription}
+              onSubmitted={() => loadData(true)}
+            />
           )
         )}
 
@@ -286,10 +282,6 @@ export default function Home() {
 
 function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted }) {
   const { t } = useAppLang();
-
-  if (!isActive) {
-    return <PaywallScreen user={user} subscription={subscription} onSubmitted={onSubmitted} />;
-  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 lg:py-8">
