@@ -10,6 +10,41 @@ async function tgCall(token, method, body) {
   return res.json();
 }
 
+async function verifyScreenshot(base44, token, fileId) {
+  try {
+    const fileInfo = await tgCall(token, "getFile", { file_id: fileId });
+    const filePath = fileInfo.result?.file_path;
+    if (!filePath) return null;
+
+    const fileUrl = `https://api.telegram.org/file/bot${token}/${filePath}`;
+
+    const llmResult = await base44.asServiceRole.integrations.Core.InvokeLLM({
+      prompt: "Analyze this image and determine if it is a valid payment receipt, bank transfer confirmation, or mobile wallet payment screenshot (e.g., Click, Payme, Uzum, Humo, Uzcard apps). Look for: payment amount, date, transaction ID/reference, merchant/payee name, or a banking app interface. Respond with the JSON schema provided.",
+      file_urls: [fileUrl],
+      response_json_schema: {
+        type: "object",
+        properties: {
+          is_valid_payment: { type: "boolean" },
+          confidence: { type: "number" },
+          detected_amount: { type: "string" },
+          detected_app: { type: "string" },
+          notes: { type: "string" }
+        }
+      }
+    });
+
+    return {
+      verified: llmResult.is_valid_payment === true && llmResult.confidence >= 0.7,
+      confidence: llmResult.confidence || 0,
+      amount: llmResult.detected_amount || "",
+      app: llmResult.detected_app || "",
+      notes: llmResult.notes || ""
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
 export default async function(req) {
   try {
     const base44 = createClientFromRequest(req);
@@ -144,7 +179,7 @@ export default async function(req) {
         return Response.json({ ok: true });
       }
 
-      // Photo or document (payment screenshot)
+      // Photo or document (payment screenshot) — AI verified
       if (msg.photo || msg.document) {
         const subs = await base44.asServiceRole.entities.StudentSubscription.filter({ telegram_chat_id: String(chatId) });
         if (subs.length === 0) {
@@ -156,7 +191,44 @@ export default async function(req) {
         }
         const sub = subs[0];
 
-        const caption = `📋 Payment Verification\n👤 ${sub.student_name}\n📧 ${sub.phone}\n🧾 Ref: ${sub.payment_ref || "—"}\n📦 Plan: ${sub.plan || "Not set"} (${sub.billing_cycle || "monthly"})`;
+        // Get file ID
+        let fileId = null;
+        let photoFileId = null;
+        if (msg.photo) {
+          photoFileId = msg.photo[msg.photo.length - 1].file_id;
+          fileId = photoFileId;
+        } else if (msg.document) {
+          fileId = msg.document.file_id;
+        }
+
+        // Run AI verification
+        const aiResult = await verifyScreenshot(base44, token, fileId);
+        const isVerified = aiResult?.verified || false;
+
+        // Update subscription with verification result
+        const updateData = {
+          status: "pending",
+          screenshot_verified: isVerified
+        };
+        if (aiResult?.notes) {
+          updateData.description = `${aiResult.notes}${aiResult.amount ? ` | Amount: ${aiResult.amount}` : ""}${aiResult.app ? ` | App: ${aiResult.app}` : ""}`;
+        }
+        await base44.asServiceRole.entities.StudentSubscription.update(sub.id, updateData);
+
+        // Build caption with AI assessment
+        let caption = `📋 Payment Verification\n👤 ${sub.student_name}\n📧 ${sub.phone}\n🧾 Ref: ${sub.payment_ref || "—"}\n📦 Plan: ${sub.plan || "Not set"} (${sub.billing_cycle || "monthly"})`;
+        if (aiResult) {
+          if (isVerified) {
+            caption += `\n🤖 AI: ✅ Valid payment (${Math.round(aiResult.confidence * 100)}%)`;
+            if (aiResult.amount) caption += `\n💰 Amount: ${aiResult.amount}`;
+            if (aiResult.app) caption += `\n📱 App: ${aiResult.app}`;
+          } else {
+            caption += `\n🤖 AI: ⚠️ ${aiResult.notes || "Could not verify"} (${Math.round(aiResult.confidence * 100)}%)`;
+          }
+        } else {
+          caption += `\n🤖 AI: ⚠️ Verification unavailable`;
+        }
+
         const keyboard = {
           inline_keyboard: [[
             { text: "✅ Approve", callback_data: `approve:${sub.id}` },
@@ -164,11 +236,11 @@ export default async function(req) {
           ]]
         };
 
+        // Forward to admin
         if (msg.photo) {
-          const photo = msg.photo[msg.photo.length - 1];
           await tgCall(token, "sendPhoto", {
             chat_id: adminChatId,
-            photo: photo.file_id,
+            photo: photoFileId,
             caption,
             reply_markup: keyboard
           });
@@ -181,9 +253,12 @@ export default async function(req) {
           });
         }
 
+        // Notify student
         await tgCall(token, "sendMessage", {
           chat_id: chatId,
-          text: "📤 Screenshot sent for verification! You'll be notified once it's reviewed."
+          text: isVerified
+            ? "✅ Screenshot verified by AI! Your payment is being reviewed. You'll be notified once it's approved."
+            : "📤 Screenshot sent for verification! You'll be notified once it's reviewed."
         });
         return Response.json({ ok: true });
       }

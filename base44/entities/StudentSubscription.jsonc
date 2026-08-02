@@ -54,6 +54,11 @@
       "type": "string",
       "description": "Telegram chat ID for payment bot notifications"
     },
+    "screenshot_verified": {
+      "type": "boolean",
+      "default": false,
+      "description": "AI-verified payment screenshot"
+    },
     "description": {
       "type": "string",
       "maxLength": 1000,

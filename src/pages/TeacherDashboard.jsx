@@ -71,9 +71,33 @@ export default function TeacherDashboard() {
 
   const handleAccept = async (sub) => {
     const expiresAt = new Date();
-    expiresAt.setMonth(expiresAt.getMonth() + 1);
+    if (sub.billing_cycle === "yearly") {
+      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+    } else {
+      expiresAt.setMonth(expiresAt.getMonth() + 1);
+    }
     await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAt.toISOString().split("T")[0] });
     setNotification(`"${sub.student_name}" subscription approved!`);
+    setTimeout(() => setNotification(""), 3000);
+    loadData(true);
+  };
+
+  const handleApproveAllVerified = async () => {
+    const verifiedPending = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified);
+    if (verifiedPending.length === 0) return;
+    for (const sub of verifiedPending) {
+      const expiresAt = new Date();
+      if (sub.billing_cycle === "yearly") {
+        expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+      } else {
+        expiresAt.setMonth(expiresAt.getMonth() + 1);
+      }
+      await base44.entities.StudentSubscription.update(sub.id, {
+        status: "active",
+        expires_at: expiresAt.toISOString().split("T")[0],
+      });
+    }
+    setNotification(`${verifiedPending.length} AI-verified subscriptions approved!`);
     setTimeout(() => setNotification(""), 3000);
     loadData(true);
   };
@@ -114,6 +138,7 @@ export default function TeacherDashboard() {
 
   const activeCount = subscriptions.filter(s => s.status === "active").length;
   const pendingCount = subscriptions.filter(s => s.status === "pending").length;
+  const verifiedPendingCount = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified).length;
 
   const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
 
@@ -203,8 +228,13 @@ export default function TeacherDashboard() {
               {/* Pending approvals first */}
               {subscriptions.filter(s => s.status === "pending").length > 0 && (
                 <div className="bg-amber-500/5 border border-amber-500/30 rounded-2xl overflow-hidden">
-                  <div className="px-5 py-3 border-b border-amber-500/20">
+                  <div className="px-5 py-3 border-b border-amber-500/20 flex items-center justify-between">
                     <h3 className="text-sm font-semibold text-amber-700 dark:text-amber-400">⏳ Pending Approval</h3>
+                    {verifiedPendingCount > 0 && (
+                      <Button size="sm" onClick={handleApproveAllVerified} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
+                        ✅ Approve {verifiedPendingCount} verified
+                      </Button>
+                    )}
                   </div>
                   {subscriptions.filter(s => s.status === "pending").map(sub => (
                     <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-b border-amber-500/10 last:border-0">
@@ -214,6 +244,9 @@ export default function TeacherDashboard() {
                         {sub.referral_code && <p className="text-xs text-primary font-mono mt-0.5">{sub.referral_code}</p>}
                       </div>
                       <div className="flex items-center gap-2">
+                        {sub.screenshot_verified && (
+                          <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-500/10 px-1.5 py-0.5 rounded-full whitespace-nowrap">🤖 AI Verified</span>
+                        )}
                         <span className="text-xs text-muted-foreground font-mono">{sub.payment_ref || "—"}</span>
                         <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
                           Approve
@@ -257,7 +290,7 @@ export default function TeacherDashboard() {
                                   <p className="text-xs text-muted-foreground">{sub.phone}</p>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                  <StatusBadge sub={sub} />
+                                  <StatusBadge sub={sub} /> {sub.screenshot_verified && <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-500/10 px-1.5 py-0.5 rounded-full whitespace-nowrap">🤖 AI Verified</span>}
                                   {sub.status === "pending" && (
                                     <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
                                       Approve
@@ -290,7 +323,7 @@ export default function TeacherDashboard() {
                         <p className="text-xs text-muted-foreground">{sub.phone}</p>
                       </div>
                       <div className="flex items-center gap-2">
-                        <StatusBadge sub={sub} />
+                        <StatusBadge sub={sub} /> {sub.screenshot_verified && <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-500/10 px-1.5 py-0.5 rounded-full whitespace-nowrap">🤖 AI Verified</span>}
                         {sub.status === "pending" && (
                           <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
                             Approve
