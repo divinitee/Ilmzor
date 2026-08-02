@@ -45,7 +45,7 @@ export const PLAN_LIST = [
   },
 ];
 
-export const yearlyPrice = (monthly) => monthly === 24777 ? 222222 : Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT));
+export const yearlyPrice = (monthly) => monthly === 24777 ? 222222 : monthly === 49999 ? 444444 : Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT));
 
 export const formatPrice = (n) => Number(n).toLocaleString("en-US");
 
