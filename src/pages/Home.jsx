@@ -473,11 +473,6 @@ function PaywallScreen({ user, subscription, onSubmitted }) {
           {t("home.paywall_desc")}<br />
           <strong className="text-foreground">{t("home.paywall_price")}</strong>
         </p>
-        <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-xl p-5 text-white mb-4">
-          <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">{t("home.card_label")}</p>
-          <p className="text-lg font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
-          <p className="text-sm opacity-90">{t("home.card_owner")}: <strong>Temur Normatov Ulugbekovich</strong></p>
-        </div>
         <div className="text-center mb-6">
           <p className="text-xs text-muted-foreground mb-2 font-medium">{t("home.qr_prompt")}</p>
           <img

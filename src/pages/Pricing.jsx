@@ -86,12 +86,6 @@ export default function Pricing() {
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-2xl p-5 text-white">
-              <p className="text-[10px] uppercase tracking-widest opacity-70 mb-1">{t("pricing.card_label")}</p>
-              <p className="text-xl font-mono font-bold tracking-wider mb-3 select-all">9860 1201 5281 8502</p>
-              <p className="text-sm opacity-90">{t("pricing.card_owner")}: <strong>Temur Normatov Ulugbekovich</strong></p>
-            </div>
-
             <div className="text-center">
               <p className="text-xs text-muted-foreground mb-2 font-medium">{t("pricing.qr_via")}</p>
               <img
