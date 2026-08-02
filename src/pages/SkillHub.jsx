@@ -16,6 +16,7 @@ import GrammarQuizGame from "@/components/games/GrammarQuizGame";
 import DefinitionMatchGame from "@/components/games/DefinitionMatchGame";
 import ContextGuessGame from "@/components/games/ContextGuessGame";
 import MemoryFlipGame from "@/components/games/MemoryFlipGame";
+import PictureMatchGame from "@/components/games/PictureMatchGame";
 import { getGameStats, recordGameResult } from "@/lib/gameSkills";
 
 /* ---------- Skill tree data ---------- */
@@ -49,7 +50,7 @@ const SKILL_CHILDREN = {
   vocabulary: [
     C("Meaning", ["Definitions", "Context", "Multiple meanings"], [
       { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "3 min", xp: 40 },
-      { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65, comingSoon: true },
+      { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
       { name: "Memory Flip", game: "memory_flip", difficulty: "Easy", time: "3 min", xp: 40 },
     ]),
@@ -192,6 +193,8 @@ export default function SkillHub({ isActive = true, user = null }) {
       return <ContextGuessGame {...base} />;
     if (activeGame.game === "memory_flip")
       return <MemoryFlipGame {...base} />;
+    if (activeGame.game === "picture_match")
+      return <PictureMatchGame {...base} />;
   }
 
   return (
