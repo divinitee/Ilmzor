@@ -15,6 +15,12 @@ import ParticleBackground from "@/components/ParticleBackground";
 import Games from "@/pages/Games";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
+import DashboardHeader from "@/components/dashboard/DashboardHeader";
+import TodayFocusCard from "@/components/dashboard/TodayFocusCard";
+import ActivityTimeline from "@/components/dashboard/ActivityTimeline";
+import VocabularyStats from "@/components/dashboard/VocabularyStats";
+import ActivityChart from "@/components/dashboard/ActivityChart";
+import PerformanceCard from "@/components/dashboard/PerformanceCard";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -279,70 +285,34 @@ export default function Home() {
 
 function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted }) {
   const { t } = useAppLang();
-  const totalQuizzes = results.length;
-  const totalCorrect = results.reduce((sum, r) => sum + (r.score || 0), 0);
+
+  if (!isActive) {
+    return <PaywallScreen user={user} subscription={subscription} onSubmitted={onSubmitted} />;
+  }
 
   return (
-    <div className="max-w-lg mx-auto px-4 py-8">
-      {/* Paid: Quiz section */}
-      {isActive ? (
-        <div className="bg-background rounded-2xl shadow-sm border border-border p-6 mb-6">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full">{t("home.premium_badge")}</span>
-            <h2 className="text-base font-bold text-foreground">{t("home.quiz_reading_title")}</h2>
-          </div>
-          <div className="flex gap-4 mb-6">
-            <div className="flex-1 bg-primary/5 rounded-xl p-4 text-center">
-              <p className="text-2xl font-bold text-primary">{totalQuizzes}</p>
-              <p className="text-xs text-muted-foreground mt-1">{t("home.total_quizzes")}</p>
-            </div>
-            <div className="flex-1 bg-emerald-500/10 rounded-xl p-4 text-center">
-              <p className="text-2xl font-bold text-emerald-600">{totalCorrect}</p>
-              <p className="text-xs text-muted-foreground mt-1">{t("home.correct_answers")}</p>
-            </div>
-          </div>
-          <div className="mb-5">
-            <label className="block text-sm font-semibold text-foreground mb-2">{t("home.select_unit")}</label>
-            <button
-              onClick={onOpenUnitDrawer}
-              className="w-full h-12 px-4 flex items-center justify-between border-2 border-input rounded-xl bg-background text-foreground text-sm font-medium hover:border-primary transition-colors select-none"
-            >
-              <span>{selectedUnitName || t("home.unit_placeholder")}</span>
-              <ChevronDown className="w-4 h-4 text-muted-foreground" />
-            </button>
-          </div>
-          <Link to={`/quiz/${selectedUnit}`}>
-            <Button className="w-full h-12 text-base font-semibold gap-2 select-none">
-              <Play className="w-5 h-5" />
-              {t("home.start_quiz")}
-            </Button>
-          </Link>
-        </div>
-      ) : (
-        <PaywallScreen user={user} subscription={subscription} onSubmitted={onSubmitted} />
-      )}
+    <div className="max-w-6xl mx-auto px-4 py-6 lg:py-8">
+      <DashboardHeader
+        user={user}
+        selectedUnit={selectedUnit}
+        selectedUnitName={selectedUnitName}
+        onOpenUnitDrawer={onOpenUnitDrawer}
+      />
 
-
-      {isActive && results.length > 0 && (
-        <div className="bg-background rounded-2xl shadow-sm border border-border p-6">
-          <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">{t("home.recent_results")}</h3>
-          <div className="space-y-3">
-            {results.slice(0, 5).map((r, i) => (
-              <div key={i} className="flex items-center justify-between py-2 border-b border-border last:border-0">
-                <div>
-                  <p className="text-sm font-medium text-foreground">{r.unit_name}</p>
-                  <p className="text-xs text-muted-foreground">{r.date}</p>
-                </div>
-                <div className="flex items-center gap-1 select-none">
-                  <Trophy className="w-4 h-4 text-amber-500" />
-                  <span className="font-bold text-emerald-600">{r.score}</span>
-                  <span className="text-muted-foreground text-sm">/ {r.total_questions || 30}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-6">
+        {/* Left column */}
+        <div className="lg:col-span-2 space-y-5">
+          <TodayFocusCard results={results} />
+          <ActivityTimeline results={results} />
         </div>
-      )}
+
+        {/* Right column */}
+        <div className="space-y-5">
+          <VocabularyStats results={results} />
+          <ActivityChart />
+          <PerformanceCard results={results} />
+        </div>
+      </div>
 
       <footer className="mt-8 text-center text-xs text-muted-foreground">
         {t("home.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
