@@ -20,7 +20,7 @@ export const PLAN_LIST = [
   {
     id: "learner",
     name: "Learner Plan",
-    monthlyPrice: 24888,
+    monthlyPrice: 222222,
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
     border: "border-indigo-500",
