@@ -155,12 +155,9 @@ export default function Pricing() {
           <p className="text-sm text-muted-foreground mt-2">{t("pricing.header_sub")}</p>
         </div>
 
-        <div className="bg-gradient-to-r from-rose-500/10 to-amber-500/10 border border-rose-300 dark:border-rose-700 rounded-2xl p-4 mb-6 text-center">
-          <p className="text-sm font-bold text-rose-600 dark:text-rose-400">{t("pricing.discount_title")}</p>
-          <p className="text-xs text-muted-foreground mt-1">{t("pricing.discount_sub")}</p>
-        </div>
-
         {/* Billing cycle toggle */}
+
+        {/* Billing cycle toggle end */}
         <div className="flex items-center justify-center gap-2 mb-6">
           <button
             onClick={() => setCycle("monthly")}
