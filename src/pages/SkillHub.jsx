@@ -13,6 +13,9 @@ import WordFormsGame from "@/components/games/WordFormsGame";
 import CrosswordGame from "@/components/games/CrosswordGame";
 import DefinitionGame from "@/components/games/DefinitionGame";
 import GrammarQuizGame from "@/components/games/GrammarQuizGame";
+import DefinitionMatchGame from "@/components/games/DefinitionMatchGame";
+import ContextGuessGame from "@/components/games/ContextGuessGame";
+import MemoryFlipGame from "@/components/games/MemoryFlipGame";
 import { getGameStats, recordGameResult } from "@/lib/gameSkills";
 
 /* ---------- Skill tree data ---------- */
@@ -44,7 +47,12 @@ const grammarCh = (names, bank) => names.map((name, i) => ({
 
 const SKILL_CHILDREN = {
   vocabulary: [
-    C("Meaning", ["Definitions", "Context", "Multiple meanings"], gen(["Definition Match", "Picture Match", "Context Guess", "Memory Flip"], "definition")),
+    C("Meaning", ["Definitions", "Context", "Multiple meanings"], [
+      { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "3 min", xp: 40 },
+      { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65, comingSoon: true },
+      { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
+      { name: "Memory Flip", game: "memory_flip", difficulty: "Easy", time: "3 min", xp: 40 },
+    ]),
     C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
     C("Spelling", ["Typing", "Letter order", "Missing letters"], gen(["Typing", "Letter Order", "Missing Letters"], "spelling")),
     C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
@@ -178,6 +186,12 @@ export default function SkillHub({ isActive = true, user = null }) {
       return <DefinitionGame {...base} user={user} />;
     if (activeGame.game === "grammar")
       return <GrammarQuizGame {...base} bankKey={activeGame.bank} skillLabel={activeGame.skillLabel} />;
+    if (activeGame.game === "definition_match")
+      return <DefinitionMatchGame {...base} />;
+    if (activeGame.game === "context_guess")
+      return <ContextGuessGame {...base} />;
+    if (activeGame.game === "memory_flip")
+      return <MemoryFlipGame {...base} />;
   }
 
   return (
@@ -428,6 +442,26 @@ function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
           {child.challenges.map((ch, i) => {
             const stats = getGameStats(ch.game);
             const completion = stats.best || 0;
+            if (ch.comingSoon) {
+              return (
+                <div
+                  key={ch.name + i}
+                  className="relative rounded-2xl bg-muted/30 border border-dashed border-muted-foreground/30 p-4 flex flex-col select-none min-h-[140px]"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-muted-foreground/30 text-muted-foreground">{ch.difficulty}</span>
+                    <span className="text-[9px] font-semibold text-muted-foreground/70">(coming soon)</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-muted-foreground/70 leading-tight mb-2">{ch.name}</h3>
+                  <div className="flex items-center gap-3 text-[10px] text-muted-foreground/60 mb-2">
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {ch.time}</span>
+                    <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> {ch.xp} XP</span>
+                  </div>
+                  <div className="flex-1" />
+                  <span className="text-[9px] text-muted-foreground/50 text-center">Not available yet</span>
+                </div>
+              );
+            }
             return (
               <motion.button
                 key={ch.name + i}
