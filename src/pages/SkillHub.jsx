@@ -19,10 +19,10 @@ import { getGameStats, recordGameResult } from "@/lib/gameSkills";
 const TOP_SKILLS = [
   { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-blue-500 to-indigo-600", ring: "ring-blue-400/50", glow: "rgba(59,130,246,0.55)" },
   { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-violet-500 to-purple-600", ring: "ring-violet-400/50", glow: "rgba(139,92,246,0.55)" },
-  { id: "reading", label: "Reading", icon: FileText, hue: "from-cyan-500 to-sky-600", ring: "ring-cyan-400/50", glow: "rgba(14,165,233,0.55)" },
-  { id: "listening", label: "Listening", icon: Headphones, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(20,184,166,0.55)" },
-  { id: "writing", label: "Writing", icon: PenLine, hue: "from-indigo-500 to-blue-700", ring: "ring-indigo-400/50", glow: "rgba(99,102,241,0.55)" },
-  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-rose-500 to-pink-600", ring: "ring-rose-400/50", glow: "rgba(244,63,94,0.55)" },
+  { id: "reading", label: "Reading", icon: FileText, hue: "from-cyan-500 to-sky-600", ring: "ring-cyan-400/50", glow: "rgba(14,165,233,0.55)", comingSoon: true },
+  { id: "listening", label: "Listening", icon: Headphones, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(20,184,166,0.55)", comingSoon: true },
+  { id: "writing", label: "Writing", icon: PenLine, hue: "from-indigo-500 to-blue-700", ring: "ring-indigo-400/50", glow: "rgba(99,102,241,0.55)", comingSoon: true },
+  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-rose-500 to-pink-600", ring: "ring-rose-400/50", glow: "rgba(244,63,94,0.55)", comingSoon: true },
 ];
 
 const gen = (names, game) => names.map((name, i) => ({
@@ -337,20 +337,26 @@ function DetailView({ skillId, onBack, onPickChild }) {
 /* ---------- Node components ---------- */
 
 function SkillNode({ node, index, onClick }) {
+  const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <motion.button
-        onClick={onClick}
+        onClick={soon ? undefined : onClick}
+        disabled={soon}
         initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06 }}
-        whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.92 }}
-        className={`group relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${node.hue} flex flex-col items-center justify-center text-white backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgba(15,23,42,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-shadow`}
+        whileHover={soon ? undefined : { scale: 1.1 }} whileTap={soon ? undefined : { scale: 0.92 }}
+        className={soon
+          ? "group relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-muted/50 border-2 border-dashed border-muted-foreground/30 flex flex-col items-center justify-center text-muted-foreground cursor-not-allowed"
+          : `group relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${node.hue} flex flex-col items-center justify-center text-white backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgba(15,23,42,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-shadow`}
       >
-        <div className={`absolute inset-0 rounded-2xl ring-1 ${node.ring} opacity-60 group-hover:opacity-100 transition-opacity`} />
-        <node.icon className="w-6 h-6 mb-1" />
+        {!soon && <div className={`absolute inset-0 rounded-2xl ring-1 ${node.ring} opacity-60 group-hover:opacity-100 transition-opacity`} />}
+        <node.icon className={soon ? "w-6 h-6 mb-1 opacity-50" : "w-6 h-6 mb-1"} />
         <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
-        <div className="absolute -bottom-1.5 right-1 w-4 h-4 rounded-full bg-blue-400/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-          <ChevronRight className="w-2.5 h-2.5 text-white" />
-        </div>
+        {soon
+          ? <span className="text-[7px] font-medium leading-none mt-0.5 opacity-70">(coming soon)</span>
+          : <div className="absolute -bottom-1.5 right-1 w-4 h-4 rounded-full bg-blue-400/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <ChevronRight className="w-2.5 h-2.5 text-white" />
+            </div>}
       </motion.button>
     </div>
   );
