@@ -114,27 +114,18 @@ const pos = (i, n, rx, ry) => {
   return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
 };
 
-// Build a gently squiggly/wavy path between two points (viewBox 0..100).
-// `phase` shifts the sine so we can morph between two wave states for animation.
+// Build a smooth, gently rounded arc between two points (viewBox 0..100).
+// `phase` flips the bow direction so we can morph between two soft states.
 const wavyPath = (x1, y1, x2, y2, phase) => {
   const dx = x2 - x1, dy = y2 - y1;
   const len = Math.hypot(dx, dy) || 1;
-  const ux = dx / len, uy = dy / len;
-  const nx = -uy, ny = ux;
-  const steps = 14;
-  const amp = 2.2;
-  const waves = 2.5;
-  let d = "";
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps;
-    const bx = x1 + dx * t;
-    const by = y1 + dy * t;
-    const off = amp * Math.sin(t * waves * Math.PI * 2 + phase);
-    const px = bx + nx * off;
-    const py = by + ny * off;
-    d += (i === 0 ? "M" : "L") + px.toFixed(2) + " " + py.toFixed(2) + " ";
-  }
-  return d.trim();
+  const nx = -dy / len, ny = dx / len;
+  const amp = 5 * phase;
+  const c1x = x1 + dx * 0.33 + nx * amp;
+  const c1y = y1 + dy * 0.33 + ny * amp;
+  const c2x = x1 + dx * 0.67 + nx * amp;
+  const c2y = y1 + dy * 0.67 + ny * amp;
+  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${x2.toFixed(2)} ${y2.toFixed(2)}`;
 };
 
 /* ---------- Page ---------- */
@@ -305,8 +296,8 @@ function OverviewView({ onSelect }) {
           </linearGradient>
         </defs>
         {nodes.map((n, i) => {
-          const d0 = wavyPath(50, 50, n.x, n.y, 0);
-          const d1 = wavyPath(50, 50, n.x, n.y, Math.PI);
+          const d0 = wavyPath(50, 50, n.x, n.y, 1);
+          const d1 = wavyPath(50, 50, n.x, n.y, -1);
           return (
             <path key={n.id} d={d0} fill="none" stroke="url(#ovGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
               <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
@@ -363,8 +354,8 @@ function DetailView({ skillId, onBack, onPickChild }) {
           </linearGradient>
         </defs>
         {nodes.map((c, i) => {
-          const d0 = wavyPath(50, 50, c.x, c.y, 0);
-          const d1 = wavyPath(50, 50, c.x, c.y, Math.PI);
+          const d0 = wavyPath(50, 50, c.x, c.y, 1);
+          const d1 = wavyPath(50, 50, c.x, c.y, -1);
           return (
             <path key={c.label} d={d0} fill="none" stroke="url(#dtGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
               <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
