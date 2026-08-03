@@ -247,6 +247,15 @@
 
   .neo-float { animation: neo-float 7s ease-in-out infinite; }
   .neo-fade { animation: neo-fade 0.7s ease-out both; }
+
+  @keyframes skillBeamPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.95; }
+  }
+  .skill-beam {
+    animation: skillBeamPulse 4s ease-in-out infinite;
+    will-change: opacity, d;
+  }
 }
 
 @layer utilities {

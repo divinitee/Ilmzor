@@ -114,6 +114,29 @@ const pos = (i, n, rx, ry) => {
   return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
 };
 
+// Build a gently squiggly/wavy path between two points (viewBox 0..100).
+// `phase` shifts the sine so we can morph between two wave states for animation.
+const wavyPath = (x1, y1, x2, y2, phase) => {
+  const dx = x2 - x1, dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const ux = dx / len, uy = dy / len;
+  const nx = -uy, ny = ux;
+  const steps = 14;
+  const amp = 2.2;
+  const waves = 2.5;
+  let d = "";
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const bx = x1 + dx * t;
+    const by = y1 + dy * t;
+    const off = amp * Math.sin(t * waves * Math.PI * 2 + phase);
+    const px = bx + nx * off;
+    const py = by + ny * off;
+    d += (i === 0 ? "M" : "L") + px.toFixed(2) + " " + py.toFixed(2) + " ";
+  }
+  return d.trim();
+};
+
 /* ---------- Page ---------- */
 
 export default function SkillHub({ isActive = true, user = null }) {
@@ -274,16 +297,22 @@ function OverviewView({ onSelect }) {
       className="absolute inset-0"
       initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
     >
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: "drop-shadow(0 0 5px rgba(99,102,241,0.5))" }}>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(99,102,241,0.5))" }}>
         <defs>
           <linearGradient id="ovGrad" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#93c5fd" />
             <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
         </defs>
-        {nodes.map((n) => (
-          <line key={n.id} x1="50" y1="50" x2={n.x} y2={n.y} stroke="url(#ovGrad)" strokeWidth="0.7" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
-        ))}
+        {nodes.map((n, i) => {
+          const d0 = wavyPath(50, 50, n.x, n.y, 0);
+          const d1 = wavyPath(50, 50, n.x, n.y, Math.PI);
+          return (
+            <path key={n.id} d={d0} fill="none" stroke="url(#ovGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
+              <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
+            </path>
+          );
+        })}
       </svg>
 
       {/* Center node */}
@@ -326,16 +355,22 @@ function DetailView({ skillId, onBack, onPickChild }) {
       className="absolute inset-0"
       initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
     >
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.5))" }}>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.5))" }}>
         <defs>
           <linearGradient id="dtGrad" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#c4b5fd" />
             <stop offset="100%" stopColor="#93c5fd" />
           </linearGradient>
         </defs>
-        {nodes.map((c) => (
-          <line key={c.label} x1="50" y1="50" x2={c.x} y2={c.y} stroke="url(#dtGrad)" strokeWidth="0.7" strokeOpacity="0.55" vectorEffect="non-scaling-stroke" />
-        ))}
+        {nodes.map((c, i) => {
+          const d0 = wavyPath(50, 50, c.x, c.y, 0);
+          const d1 = wavyPath(50, 50, c.x, c.y, Math.PI);
+          return (
+            <path key={c.label} d={d0} fill="none" stroke="url(#dtGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
+              <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
+            </path>
+          );
+        })}
       </svg>
 
       {/* Hub node = selected skill */}
