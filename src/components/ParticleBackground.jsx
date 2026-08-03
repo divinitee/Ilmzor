@@ -16,14 +16,16 @@ export default function ParticleBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    const count = 45;
+    const palette = [[139, 92, 246], [99, 102, 241], [236, 72, 153], [56, 189, 248]];
+    const count = 32;
     const particles = Array.from({ length: count }, () => ({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      r: Math.random() * 3 + 1.5,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5,
-      alpha: Math.random() * 0.35 + 0.1,
+      r: Math.random() * 2 + 1,
+      dx: (Math.random() - 0.5) * 0.16,
+      dy: (Math.random() - 0.5) * 0.16,
+      alpha: Math.random() * 0.16 + 0.04,
+      c: palette[Math.floor(Math.random() * palette.length)],
     }));
 
     const draw = () => {
@@ -31,7 +33,8 @@ export default function ParticleBackground() {
       particles.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(99,102,241,${p.alpha})`;
+        const [cr, cg, cb] = p.c;
+        ctx.fillStyle = `rgba(${cr},${cg},${cb},${p.alpha})`;
         ctx.fill();
         p.x += p.dx;
         p.y += p.dy;

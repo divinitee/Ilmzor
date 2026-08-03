@@ -274,15 +274,15 @@ function OverviewView({ onSelect }) {
       className="absolute inset-0"
       initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
     >
-      <svg className="absolute inset-0 w-full h-full animate-pulse" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: "drop-shadow(0 0 5px rgba(99,102,241,0.5))" }}>
         <defs>
           <linearGradient id="ovGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#60a5fa" />
-            <stop offset="100%" stopColor="#6366f1" />
+            <stop offset="0%" stopColor="#93c5fd" />
+            <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
         </defs>
         {nodes.map((n) => (
-          <line key={n.id} x1="50" y1="50" x2={n.x} y2={n.y} stroke="url(#ovGrad)" strokeWidth="0.5" strokeOpacity="0.5" vectorEffect="non-scaling-stroke" />
+          <line key={n.id} x1="50" y1="50" x2={n.x} y2={n.y} stroke="url(#ovGrad)" strokeWidth="0.7" strokeOpacity="0.6" vectorEffect="non-scaling-stroke" />
         ))}
       </svg>
 
@@ -290,11 +290,16 @@ function OverviewView({ onSelect }) {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-          className="relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 flex flex-col items-center justify-center text-white shadow-[0_0_45px_rgba(59,130,246,0.6)]"
+          className="relative w-24 h-24 md:w-28 md:h-28"
         >
-          <div className="absolute inset-0 rounded-full ring-2 ring-blue-300/40 animate-pulse" />
-          <Brain className="w-7 h-7 mb-1" />
-          <span className="text-[10px] font-bold tracking-wide leading-none text-center px-2">English Skills</span>
+          <div className="absolute inset-0 animate-neo-float">
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none animate-neo-breathe"
+              style={{ width: "200%", height: "200%", background: "radial-gradient(closest-side, rgba(37,99,235,0.7), rgba(124,58,237,0.3) 55%, transparent 75%)", filter: "blur(26px)" }} />
+            <div className="relative w-full h-full rounded-full border border-white/25 bg-white/[0.1] backdrop-blur-2xl flex flex-col items-center justify-center text-white shadow-[0_0_55px_rgba(37,99,235,0.6),inset_0_1px_0_rgba(255,255,255,0.22)]">
+              <Brain className="w-7 h-7 mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
+              <span className="text-[10px] font-bold tracking-wide leading-none text-center px-2">English Skills</span>
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -321,15 +326,15 @@ function DetailView({ skillId, onBack, onPickChild }) {
       className="absolute inset-0"
       initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
     >
-      <svg className="absolute inset-0 w-full h-full animate-pulse" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.5))" }}>
         <defs>
           <linearGradient id="dtGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#60a5fa" />
-            <stop offset="100%" stopColor={skill?.glow.replace(/rgba?\(([^)]+)\)/, "") || "#6366f1"} />
+            <stop offset="0%" stopColor="#c4b5fd" />
+            <stop offset="100%" stopColor="#93c5fd" />
           </linearGradient>
         </defs>
         {nodes.map((c) => (
-          <line key={c.label} x1="50" y1="50" x2={c.x} y2={c.y} stroke="url(#dtGrad)" strokeWidth="0.5" strokeOpacity="0.45" vectorEffect="non-scaling-stroke" />
+          <line key={c.label} x1="50" y1="50" x2={c.x} y2={c.y} stroke="url(#dtGrad)" strokeWidth="0.7" strokeOpacity="0.55" vectorEffect="non-scaling-stroke" />
         ))}
       </svg>
 
@@ -338,12 +343,17 @@ function DetailView({ skillId, onBack, onPickChild }) {
         <motion.button
           onClick={onBack}
           initial={{ scale: 0.8 }} animate={{ scale: 1 }}
-          whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.94 }}
-          className={`relative w-24 h-24 md:w-28 md:h-28 rounded-full bg-gradient-to-br ${skill?.hue} flex flex-col items-center justify-center text-white shadow-[0_0_40px_rgba(59,130,246,0.5)]`}
+          whileHover={{ scale: 1.06, y: -3 }} whileTap={{ scale: 0.94 }}
+          className="relative w-24 h-24 md:w-28 md:h-28"
         >
-          <div className="absolute inset-0 rounded-full ring-2 ring-white/30 animate-pulse" />
-          {skill && <skill.icon className="w-7 h-7 mb-1" />}
-          <span className="text-[11px] font-bold tracking-wide leading-none text-center px-2">{skill?.label}</span>
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none animate-neo-breathe"
+            style={{ width: "190%", height: "190%", background: `radial-gradient(closest-side, ${skill?.glow || "rgba(99,102,241,0.6)"}, transparent 72%)`, filter: "blur(24px)" }} />
+          <div className="relative w-full h-full rounded-full border border-white/20 bg-white/[0.09] backdrop-blur-2xl flex flex-col items-center justify-center text-white"
+            style={{ boxShadow: `0 0 45px ${skill?.glow || "rgba(99,102,241,0.5)"}, inset 0 1px 0 rgba(255,255,255,0.18)` }}>
+            <div className="absolute inset-0 rounded-full ring-1 ring-white/25" />
+            {skill && <skill.icon className="w-7 h-7 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />}
+            <span className="text-[11px] font-bold tracking-wide leading-none text-center px-2">{skill?.label}</span>
+          </div>
         </motion.button>
       </div>
 
@@ -369,24 +379,28 @@ function SkillNode({ node, index, onClick }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
-      <motion.button
-        onClick={soon ? undefined : onClick}
-        disabled={soon}
-        initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06 }}
-        whileHover={soon ? undefined : { scale: 1.1 }} whileTap={soon ? undefined : { scale: 0.92 }}
-        className={soon
-          ? "group relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-muted/50 border-2 border-dashed border-muted-foreground/30 flex flex-col items-center justify-center text-muted-foreground cursor-not-allowed"
-          : `group relative w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${node.hue} flex flex-col items-center justify-center text-white backdrop-blur-md border border-white/20 shadow-[0_8px_30px_rgba(15,23,42,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-shadow`}
-      >
-        {!soon && <div className={`absolute inset-0 rounded-2xl ring-1 ${node.ring} opacity-60 group-hover:opacity-100 transition-opacity`} />}
-        <node.icon className={soon ? "w-6 h-6 mb-1 opacity-50" : "w-6 h-6 mb-1"} />
-        <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
-        {soon
-          ? <span className="text-[7px] font-medium leading-none mt-0.5 opacity-70">(coming soon)</span>
-          : <div className="absolute -bottom-1.5 right-1 w-4 h-4 rounded-full bg-blue-400/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <ChevronRight className="w-2.5 h-2.5 text-white" />
-            </div>}
-      </motion.button>
+      <div className="animate-neo-float">
+        <motion.button
+          onClick={soon ? undefined : onClick}
+          disabled={soon}
+          initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06, type: "spring", stiffness: 200, damping: 22 }}
+          whileHover={soon ? undefined : { scale: 1.08, y: -4 }} whileTap={soon ? undefined : { scale: 0.95 }}
+          className="group relative"
+          style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})` }}
+        >
+          {!soon && (
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none animate-neo-breathe"
+              style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
+          )}
+          <span
+            className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"}`}
+          >
+            <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
+            <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
+            {soon && <span className="text-[7px] font-medium leading-none mt-0.5 opacity-60">(soon)</span>}
+          </span>
+        </motion.button>
+      </div>
     </div>
   );
 }
@@ -395,23 +409,27 @@ function ChildNode({ node, index, onClick }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
-      <motion.button
-        onClick={soon ? undefined : onClick}
-        disabled={soon}
-        initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
-        whileHover={soon ? undefined : { scale: 1.12 }} whileTap={soon ? undefined : { scale: 0.9 }}
-        className={soon
-          ? "group relative rounded-xl bg-muted/40 border border-dashed border-muted-foreground/30 px-3 py-2.5 text-center cursor-not-allowed min-w-[88px] max-w-[120px]"
-          : "group relative rounded-xl bg-card/60 backdrop-blur-xl border border-blue-400/20 px-3 py-2.5 text-center hover:border-blue-400/60 hover:shadow-[0_0_28px_rgba(59,130,246,0.45)] transition-shadow min-w-[88px] max-w-[120px]"}
-      >
-        {!soon && <div className="absolute inset-0 rounded-xl ring-1 ring-blue-300/20 opacity-50 group-hover:opacity-100 transition-opacity animate-pulse" />}
-        <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
-        {soon ? (
-          <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(coming soon)</span>
-        ) : node.subs.length > 0 ? (
-          <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).join(" · ")}</span>
-        ) : null}
-      </motion.button>
+      <div className="animate-neo-float">
+        <motion.button
+          onClick={soon ? undefined : onClick}
+          disabled={soon}
+          initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
+          whileHover={soon ? undefined : { scale: 1.1, y: -3 }} whileTap={soon ? undefined : { scale: 0.92 }}          className="group relative min-w-[92px] max-w-[124px]"
+        >
+          {!soon && (
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
+              style={{ width: "150%", height: "155%", background: "radial-gradient(closest-side, rgba(37,99,235,0.5), transparent 72%)", filter: "blur(16px)", opacity: 0.5 }} />
+          )}
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"}`}>
+            <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
+            {soon ? (
+              <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(soon)</span>
+            ) : node.subs.length > 0 ? (
+              <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).join(" · ")}</span>
+            ) : null}
+          </span>
+        </motion.button>
+      </div>
     </div>
   );
 }
@@ -428,7 +446,7 @@ function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
       <motion.div
         initial={{ y: 40, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 40, opacity: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 28 }}
-        className="relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-3xl md:rounded-3xl bg-card/90 backdrop-blur-xl border border-blue-400/20 shadow-[0_0_60px_rgba(59,130,246,0.25)]"
+        className="premium-card relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-[32px] md:rounded-[32px]"
       >
         {/* glow header */}
         <div className="sticky top-0 z-10 bg-gradient-to-b from-blue-600/15 to-transparent px-5 pt-5 pb-3 backdrop-blur-xl border-b border-blue-400/10">
