@@ -207,8 +207,11 @@ export default function SkillHub({ isActive = true, user = null }) {
           initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}
           className="text-center mb-4"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-300 text-[11px] font-semibold mb-3 select-none">
-            <Sparkles className="w-3.5 h-3.5" /> Your English Laboratory
+          <div className="relative inline-flex mb-4">
+            <span className="neo-bloom" aria-hidden="true" />
+            <div className="relative neo-pill px-4 py-1.5 text-fuchsia-200 text-[11px] font-semibold uppercase tracking-[0.18em]">
+              <Sparkles className="w-3.5 h-3.5" /> Your English Laboratory
+            </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
             What skill are we honing today?
