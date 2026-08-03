@@ -129,6 +129,16 @@
     -webkit-user-select: none;
     -webkit-touch-callout: none;
   }
+
+  /* Icons must never be the click target — an SVG element's className is a live
+     SVGAnimatedString that cannot be structured-cloned by postMessage, which
+     throws DataCloneError when the analytics/statics collector serializes the
+     event target. Let the enclosing button/link be the target instead. */
+  button svg,
+  a svg,
+  [role="button"] svg {
+    pointer-events: none;
+  }
 }
 
 @layer components {
