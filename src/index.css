@@ -248,6 +248,20 @@
   .neo-float { animation: neo-float 7s ease-in-out infinite; }
   .neo-fade { animation: neo-fade 0.7s ease-out both; }
 
+  /* Border bloom synced to the comet head arriving at the skill node (2.2s cycle).
+     Dim while the next pulse travels hub → skill, blooms as it lands, fades out. */
+  @keyframes skillArrivalGlow {
+    0%   { opacity: 0.2; }
+    50%  { opacity: 0.28; }
+    72%  { opacity: 0.85; }
+    85%  { opacity: 1; }
+    100% { opacity: 0.2; }
+  }
+  .skill-arrival-glow {
+    animation: skillArrivalGlow 2.2s ease-in-out infinite;
+    will-change: opacity;
+  }
+
   @keyframes skillBeamPulse {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.95; }
