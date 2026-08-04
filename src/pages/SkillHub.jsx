@@ -114,6 +114,22 @@ const pos = (i, n, rx, ry) => {
   return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
 };
 
+/* Staggered comet phases — a bright head with a fading tail streaming hub → skill */
+const PULSE_PHASES = [
+  { begin: 0,    r: 3.0, fo: 0.95 },
+  { begin: 0.55, r: 2.2, fo: 0.55 },
+  { begin: 1.1,  r: 1.5, fo: 0.3  },
+];
+
+function StreamPulses({ color, x, y, filterId }) {
+  return PULSE_PHASES.map((p, i) => (
+    <circle key={i} r={p.r} fill={color} fillOpacity={p.fo} opacity={0} filter={`url(#${filterId})`}>
+      <animateMotion dur="2.2s" begin={`${p.begin}s`} repeatCount="indefinite" path={`M 50 50 L ${x} ${y}`} calcMode="linear" />
+      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="2.2s" begin={`${p.begin}s`} repeatCount="indefinite" />
+    </circle>
+  ));
+}
+
 
 
 /* ---------- Page ---------- */
@@ -313,7 +329,7 @@ function OverviewView({ onSelect, onComingSoon }) {
             <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
           <filter id="ovPulse" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="1.4" />
+            <feGaussianBlur stdDeviation="2.2" />
           </filter>
         </defs>
         {nodes.map((n) => {
@@ -326,10 +342,9 @@ function OverviewView({ onSelect, onComingSoon }) {
           );
         })}
         {nodes.map((n) => hoveredId === n.id && (
-          <circle key={n.id + "-p"} r="2.6" fill={n.color} fillOpacity={0.6} filter="url(#ovPulse)">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${n.x} ${n.y}`} calcMode="linear" />
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="2.2s" repeatCount="indefinite" />
-          </circle>
+          <g key={n.id + "-p"}>
+            <StreamPulses color={n.color} x={n.x} y={n.y} filterId="ovPulse" />
+          </g>
         ))}
       </svg>
 
@@ -382,7 +397,7 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
             <stop offset="100%" stopColor="#93c5fd" />
           </linearGradient>
           <filter id="dtPulse" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="1.4" />
+            <feGaussianBlur stdDeviation="2.2" />
           </filter>
         </defs>
         {nodes.map((c) => {
@@ -395,10 +410,9 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
           );
         })}
         {nodes.map((c) => hoveredLabel === c.label && (
-          <circle key={c.label + "-p"} r="2.6" fill={skill?.color || "#a78bfa"} fillOpacity={0.6} filter="url(#dtPulse)">
-            <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${c.x} ${c.y}`} calcMode="linear" />
-            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="2.2s" repeatCount="indefinite" />
-          </circle>
+          <g key={c.label + "-p"}>
+            <StreamPulses color={skill?.color || "#a78bfa"} x={c.x} y={c.y} filterId="dtPulse" />
+          </g>
         ))}
       </svg>
 
