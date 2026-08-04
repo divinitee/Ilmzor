@@ -114,19 +114,7 @@ const pos = (i, n, rx, ry) => {
   return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
 };
 
-// Build a smooth, gently rounded arc between two points (viewBox 0..100).
-// `phase` flips the bow direction so we can morph between two soft states.
-const wavyPath = (x1, y1, x2, y2, phase) => {
-  const dx = x2 - x1, dy = y2 - y1;
-  const len = Math.hypot(dx, dy) || 1;
-  const nx = -dy / len, ny = dx / len;
-  const amp = 5 * phase;
-  const c1x = x1 + dx * 0.33 + nx * amp;
-  const c1y = y1 + dy * 0.33 + ny * amp;
-  const c2x = x1 + dx * 0.67 + nx * amp;
-  const c2y = y1 + dy * 0.67 + ny * amp;
-  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} C ${c1x.toFixed(2)} ${c1y.toFixed(2)}, ${c2x.toFixed(2)} ${c2y.toFixed(2)}, ${x2.toFixed(2)} ${y2.toFixed(2)}`;
-};
+
 
 /* ---------- Page ---------- */
 
@@ -283,6 +271,7 @@ export default function SkillHub({ isActive = true, user = null }) {
 
 function OverviewView({ onSelect }) {
   const nodes = TOP_SKILLS.map((s, i) => ({ ...s, ...pos(i, 6, 38, 36) }));
+  const [hoveredId, setHoveredId] = useState(null);
   return (
     <motion.div
       className="absolute inset-0"
@@ -294,16 +283,24 @@ function OverviewView({ onSelect }) {
             <stop offset="0%" stopColor="#93c5fd" />
             <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
+          <filter id="ovPulse" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="1.4" />
+          </filter>
         </defs>
-        {nodes.map((n, i) => {
-          const d0 = wavyPath(50, 50, n.x, n.y, 1);
-          const d1 = wavyPath(50, 50, n.x, n.y, -1);
+        {nodes.map((n) => {
+          const hot = hoveredId === n.id;
           return (
-            <path key={n.id} d={d0} fill="none" stroke="url(#ovGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
-              <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
-            </path>
+            <line key={n.id} x1={50} y1={50} x2={n.x} y2={n.y}
+              stroke="url(#ovGrad)" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              strokeWidth={hot ? 1.4 : 0.7}
+              style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
           );
         })}
+        {nodes.map((n) => hoveredId === n.id && (
+          <circle key={n.id + "-p"} r="2.4" fill="#dbeafe" filter="url(#ovPulse)">
+            <animateMotion dur="0.95s" repeatCount="indefinite" path={`M 50 50 L ${n.x} ${n.y}`} calcMode="linear" />
+          </circle>
+        ))}
       </svg>
 
       {/* Center node */}
@@ -325,7 +322,8 @@ function OverviewView({ onSelect }) {
 
       {/* Skill nodes */}
       {nodes.map((n, i) => (
-        <SkillNode key={n.id} node={n} index={i} onClick={() => onSelect(n.id)} />
+        <SkillNode key={n.id} node={n} index={i} onClick={() => onSelect(n.id)}
+          onHoverStart={() => setHoveredId(n.id)} onHoverEnd={() => setHoveredId(null)} />
       ))}
     </motion.div>
   );
@@ -340,28 +338,37 @@ function DetailView({ skillId, onBack, onPickChild }) {
   const rx = n > 6 ? 42 : 38;
   const ry = n > 6 ? 40 : 36;
   const nodes = children.map((c, i) => ({ ...c, ...pos(i, n, rx, ry) }));
+  const [hoveredLabel, setHoveredLabel] = useState(null);
 
   return (
     <motion.div
       className="absolute inset-0"
       initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
     >
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.5))" }}>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.4))" }}>
         <defs>
           <linearGradient id="dtGrad" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="#c4b5fd" />
             <stop offset="100%" stopColor="#93c5fd" />
           </linearGradient>
+          <filter id="dtPulse" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="1.4" />
+          </filter>
         </defs>
-        {nodes.map((c, i) => {
-          const d0 = wavyPath(50, 50, c.x, c.y, 1);
-          const d1 = wavyPath(50, 50, c.x, c.y, -1);
+        {nodes.map((c) => {
+          const hot = hoveredLabel === c.label;
           return (
-            <path key={c.label} d={d0} fill="none" stroke="url(#dtGrad)" strokeWidth="0.9" vectorEffect="non-scaling-stroke" className="skill-beam" style={{ animationDelay: `${i * 0.4}s` }}>
-              <animate attributeName="d" values={`${d0};${d1};${d0}`} dur="5s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1" />
-            </path>
+            <line key={c.label} x1={50} y1={50} x2={c.x} y2={c.y}
+              stroke="url(#dtGrad)" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              strokeWidth={hot ? 1.4 : 0.7}
+              style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
           );
         })}
+        {nodes.map((c) => hoveredLabel === c.label && !c.comingSoon && (
+          <circle key={c.label + "-p"} r="2.4" fill="#ede9fe" filter="url(#dtPulse)">
+            <animateMotion dur="0.95s" repeatCount="indefinite" path={`M 50 50 L ${c.x} ${c.y}`} calcMode="linear" />
+          </circle>
+        ))}
       </svg>
 
       {/* Hub node = selected skill */}
@@ -393,7 +400,8 @@ function DetailView({ skillId, onBack, onPickChild }) {
 
       {/* Child nodes */}
       {nodes.map((c, i) => (
-        <ChildNode key={c.label} node={c} index={i} onClick={() => onPickChild(c)} />
+        <ChildNode key={c.label} node={c} index={i} onClick={() => onPickChild(c)}
+          onHoverStart={() => setHoveredLabel(c.label)} onHoverEnd={() => setHoveredLabel(null)} />
       ))}
     </motion.div>
   );
@@ -401,7 +409,7 @@ function DetailView({ skillId, onBack, onPickChild }) {
 
 /* ---------- Node components ---------- */
 
-function SkillNode({ node, index, onClick }) {
+function SkillNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
@@ -409,6 +417,8 @@ function SkillNode({ node, index, onClick }) {
         <motion.button
           onClick={soon ? undefined : onClick}
           disabled={soon}
+          onMouseEnter={soon ? undefined : onHoverStart}
+          onMouseLeave={soon ? undefined : onHoverEnd}
           initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06, type: "spring", stiffness: 200, damping: 22 }}
           whileHover={soon ? undefined : { scale: 1.08, y: -4 }} whileTap={soon ? undefined : { scale: 0.95 }}
           className="group relative"
@@ -431,7 +441,7 @@ function SkillNode({ node, index, onClick }) {
   );
 }
 
-function ChildNode({ node, index, onClick }) {
+function ChildNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
@@ -439,6 +449,8 @@ function ChildNode({ node, index, onClick }) {
         <motion.button
           onClick={soon ? undefined : onClick}
           disabled={soon}
+          onMouseEnter={soon ? undefined : onHoverStart}
+          onMouseLeave={soon ? undefined : onHoverEnd}
           initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
           whileHover={soon ? undefined : { scale: 1.1, y: -3 }} whileTap={soon ? undefined : { scale: 0.92 }}          className="group relative min-w-[92px] max-w-[124px]"
         >
