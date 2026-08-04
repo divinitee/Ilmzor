@@ -263,6 +263,27 @@
     will-change: border-color, box-shadow;
   }
 
+  /* Slow traveling light across mission-control cards — light moves, not the content */
+  @keyframes missionSweep {
+    0%   { transform: translateX(-130%); }
+    100% { transform: translateX(240%); }
+  }
+  .mission-sweep { position: relative; overflow: hidden; }
+  .mission-sweep::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 40%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    transform: translateX(-130%);
+    animation: missionSweep 9s ease-in-out infinite;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* The hero Continue button breathes its accent glow gently */
+  @keyframes heroPulse {
+    0%, 100% { box-shadow: 0 14px 34px -18px var(--accent-glow, rgba(59,130,246,0.5)); }
+    50%      { box-shadow: 0 24px 52px -12px var(--accent-glow, rgba(59,130,246,0.7)); }
+  }
+  .hero-continue { animation: heroPulse 4.5s ease-in-out infinite; }
+
   @keyframes skillBeamPulse {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.95; }

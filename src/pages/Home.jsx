@@ -14,12 +14,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
-import DashboardHeader from "@/components/dashboard/DashboardHeader";
-import TodayFocusCard from "@/components/dashboard/TodayFocusCard";
-import ActivityTimeline from "@/components/dashboard/ActivityTimeline";
-import VocabularyStats from "@/components/dashboard/VocabularyStats";
-import ActivityChart from "@/components/dashboard/ActivityChart";
-import PerformanceCard from "@/components/dashboard/PerformanceCard";
+import MissionControl from "@/components/mission/MissionControl";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 
 const pageVariants = {
@@ -196,6 +191,7 @@ export default function Home() {
               user={user}
               subscription={subscription}
               onSubmitted={() => loadData(true)}
+              onNavigate={navigateTab}
             />
           )
         )}
@@ -280,37 +276,19 @@ export default function Home() {
   );
 }
 
-function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted }) {
-  const { t } = useAppLang();
-
+function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted, onNavigate }) {
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6 lg:py-8">
-      <DashboardHeader
-        user={user}
-        selectedUnit={selectedUnit}
-        selectedUnitName={selectedUnitName}
-        onOpenUnitDrawer={onOpenUnitDrawer}
-      />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-6">
-        {/* Left column */}
-        <div className="lg:col-span-2 space-y-5">
-          <TodayFocusCard results={results} />
-          <ActivityTimeline results={results} />
-        </div>
-
-        {/* Right column */}
-        <div className="space-y-5">
-          <VocabularyStats results={results} />
-          <ActivityChart />
-          <PerformanceCard results={results} />
-        </div>
-      </div>
-
-      <footer className="mt-8 text-center text-xs text-muted-foreground">
-        {t("home.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
-      </footer>
-    </div>
+    <MissionControl
+      user={user}
+      results={results}
+      units={units}
+      selectedUnit={selectedUnit}
+      selectedUnitName={selectedUnitName}
+      subscription={subscription}
+      isActive={isActive}
+      onOpenUnitDrawer={onOpenUnitDrawer}
+      onNavigate={onNavigate}
+    />
   );
 }
 

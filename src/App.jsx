@@ -25,6 +25,7 @@ import Plans from '@/pages/Plans';
 import Settings from '@/pages/Settings';
 import StudyTips from '@/pages/StudyTips';
 import AdminDashboard from '@/pages/AdminDashboard';
+import Analytics from '@/pages/Analytics';
 import Landing from '@/pages/Landing';
 import AppLoader from '@/components/AppLoader';
 
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
         <Route path="/settings" element={<Settings />} />
         <Route path="/study-tips" element={<StudyTips />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/analytics" element={<Analytics />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
