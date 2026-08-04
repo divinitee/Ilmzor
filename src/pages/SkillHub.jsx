@@ -472,12 +472,9 @@ function SkillNode({ node, index, onClick, onComingSoon, hot, onHoverStart, onHo
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none animate-neo-breathe"
               style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
           )}
-          {hot && (
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-[28px] pointer-events-none skill-arrival-glow"
-              style={{ width: "118%", height: "118%", background: `radial-gradient(closest-side, ${node.glow}, transparent 68%)`, filter: "blur(12px)" }} />
-          )}
           <span
-            className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"}`}
+            className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"} ${hot ? "skill-border-glow" : ""}`}
+            style={hot ? { "--arrival-color": node.glow } : undefined}
           >
             <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
             <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
@@ -506,11 +503,8 @@ function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
               style={{ width: "150%", height: "155%", background: "radial-gradient(closest-side, rgba(37,99,235,0.5), transparent 72%)", filter: "blur(16px)", opacity: 0.5 }} />
           )}
-          {hot && (
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none skill-arrival-glow"
-              style={{ width: "120%", height: "124%", background: `radial-gradient(closest-side, ${glow || "rgba(99,102,241,0.5)"}, transparent 68%)`, filter: "blur(11px)" }} />
-          )}
-          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"}`}>
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
+            style={hot ? { "--arrival-color": glow || "rgba(99,102,241,0.5)" } : undefined}>
             <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
             {soon ? (
               <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(soon)</span>

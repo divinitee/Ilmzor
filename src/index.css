@@ -248,18 +248,19 @@
   .neo-float { animation: neo-float 7s ease-in-out infinite; }
   .neo-fade { animation: neo-fade 0.7s ease-out both; }
 
-  /* Border bloom synced to the comet head arriving at the skill node (2.2s cycle).
-     Dim while the next pulse travels hub → skill, blooms as it lands, fades out. */
-  @keyframes skillArrivalGlow {
-    0%   { opacity: 0.2; }
-    50%  { opacity: 0.28; }
-    72%  { opacity: 0.85; }
-    85%  { opacity: 1; }
-    100% { opacity: 0.2; }
+  /* The skill card's own border lights up in the skill color, synced to the
+     comet head arriving (2.2s). Dim while the next pulse travels, blooms at
+     arrival, fades out — the perimeter glows, not the center. */
+  @keyframes skillBorderArrival {
+    0%   { border-color: rgba(255,255,255,0.15); box-shadow: 0 0 0 0 var(--arrival-color); }
+    55%  { border-color: rgba(255,255,255,0.2);  box-shadow: 0 0 0 0 var(--arrival-color); }
+    78%  { border-color: var(--arrival-color);   box-shadow: 0 0 20px 1px var(--arrival-color); }
+    88%  { border-color: var(--arrival-color);   box-shadow: 0 0 30px 3px var(--arrival-color); }
+    100% { border-color: rgba(255,255,255,0.15); box-shadow: 0 0 0 0 var(--arrival-color); }
   }
-  .skill-arrival-glow {
-    animation: skillArrivalGlow 2.2s ease-in-out infinite;
-    will-change: opacity;
+  .skill-border-glow {
+    animation: skillBorderArrival 2.2s ease-in-out infinite;
+    will-change: border-color, box-shadow;
   }
 
   @keyframes skillBeamPulse {
