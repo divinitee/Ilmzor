@@ -22,12 +22,12 @@ import { getGameStats, recordGameResult } from "@/lib/gameSkills";
 /* ---------- Skill tree data ---------- */
 
 const TOP_SKILLS = [
-  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-blue-500 to-indigo-600", ring: "ring-blue-400/50", glow: "rgba(59,130,246,0.55)" },
-  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-violet-500 to-purple-600", ring: "ring-violet-400/50", glow: "rgba(139,92,246,0.55)" },
-  { id: "reading", label: "Reading", icon: FileText, hue: "from-cyan-500 to-sky-600", ring: "ring-cyan-400/50", glow: "rgba(14,165,233,0.55)", comingSoon: true },
-  { id: "listening", label: "Listening", icon: Headphones, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(20,184,166,0.55)", comingSoon: true },
-  { id: "writing", label: "Writing", icon: PenLine, hue: "from-indigo-500 to-blue-700", ring: "ring-indigo-400/50", glow: "rgba(99,102,241,0.55)", comingSoon: true },
-  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-rose-500 to-pink-600", ring: "ring-rose-400/50", glow: "rgba(244,63,94,0.55)", comingSoon: true },
+  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-blue-500 to-indigo-600", ring: "ring-blue-400/50", glow: "rgba(59,130,246,0.55)", color: "#3b82f6" },
+  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-rose-500 to-red-600", ring: "ring-rose-400/50", glow: "rgba(239,68,68,0.55)", color: "#ef4444" },
+  { id: "reading", label: "Reading", icon: FileText, hue: "from-amber-400 to-yellow-500", ring: "ring-amber-400/50", glow: "rgba(250,204,21,0.5)", comingSoon: true, color: "#facc15" },
+  { id: "listening", label: "Listening", icon: Headphones, hue: "from-slate-200 to-white", ring: "ring-slate-200/50", glow: "rgba(248,250,252,0.55)", comingSoon: true, color: "#f8fafc" },
+  { id: "writing", label: "Writing", icon: PenLine, hue: "from-blue-700 to-indigo-800", ring: "ring-blue-500/50", glow: "rgba(37,99,235,0.5)", comingSoon: true, color: "#1d4ed8" },
+  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-emerald-500 to-green-600", ring: "ring-emerald-400/50", glow: "rgba(34,197,94,0.55)", comingSoon: true, color: "#22c55e" },
 ];
 
 const gen = (names, game) => names.map((name, i) => ({
@@ -291,14 +291,14 @@ function OverviewView({ onSelect }) {
           const hot = hoveredId === n.id;
           return (
             <line key={n.id} x1={50} y1={50} x2={n.x} y2={n.y}
-              stroke="url(#ovGrad)" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              stroke={n.color} strokeLinecap="round" vectorEffect="non-scaling-stroke"
               strokeWidth={hot ? 1.4 : 0.7}
               style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
           );
         })}
         {nodes.map((n) => hoveredId === n.id && (
-          <circle key={n.id + "-p"} r="2.4" fill="#dbeafe" filter="url(#ovPulse)">
-            <animateMotion dur="0.95s" repeatCount="indefinite" path={`M 50 50 L ${n.x} ${n.y}`} calcMode="linear" />
+          <circle key={n.id + "-p"} r="2.6" fill={n.color} fillOpacity={0.5} filter="url(#ovPulse)">
+            <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${n.x} ${n.y}`} calcMode="linear" />
           </circle>
         ))}
       </svg>
@@ -359,14 +359,14 @@ function DetailView({ skillId, onBack, onPickChild }) {
           const hot = hoveredLabel === c.label;
           return (
             <line key={c.label} x1={50} y1={50} x2={c.x} y2={c.y}
-              stroke="url(#dtGrad)" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              stroke={skill?.color || "#a78bfa"} strokeLinecap="round" vectorEffect="non-scaling-stroke"
               strokeWidth={hot ? 1.4 : 0.7}
               style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
           );
         })}
         {nodes.map((c) => hoveredLabel === c.label && !c.comingSoon && (
-          <circle key={c.label + "-p"} r="2.4" fill="#ede9fe" filter="url(#dtPulse)">
-            <animateMotion dur="0.95s" repeatCount="indefinite" path={`M 50 50 L ${c.x} ${c.y}`} calcMode="linear" />
+          <circle key={c.label + "-p"} r="2.6" fill={skill?.color || "#a78bfa"} fillOpacity={0.5} filter="url(#dtPulse)">
+            <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${c.x} ${c.y}`} calcMode="linear" />
           </circle>
         ))}
       </svg>
