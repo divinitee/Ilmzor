@@ -126,6 +126,7 @@ export default function SkillHub({ isActive = true, user = null }) {
   const [selected, setSelected] = useState(null); // top skill id
   const [modalChild, setModalChild] = useState(null); // { skillId, child }
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty }
+  const [soonLabel, setSoonLabel] = useState(null); // label of a coming-soon skill
 
   useEffect(() => {
     base44.entities.VocabularyWord.list("unit_number", 2000)
@@ -236,13 +237,14 @@ export default function SkillHub({ isActive = true, user = null }) {
         <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
           <AnimatePresence mode="wait">
             {!selected ? (
-              <OverviewView key="overview" onSelect={setSelected} />
+              <OverviewView key="overview" onSelect={setSelected} onComingSoon={(label) => setSoonLabel(label)} />
             ) : (
               <DetailView
                 key={`detail-${selected}`}
                 skillId={selected}
                 onBack={() => setSelected(null)}
-                onPickChild={(child) => !child.comingSoon && setModalChild({ skillId: selected, child })}
+                onPickChild={(child) => setModalChild({ skillId: selected, child })}
+                onComingSoon={(label) => setSoonLabel(label)}
               />
             )}
           </AnimatePresence>
@@ -263,13 +265,40 @@ export default function SkillHub({ isActive = true, user = null }) {
           />
         )}
       </AnimatePresence>
+
+      {/* Coming-soon notice */}
+      <AnimatePresence>
+        {soonLabel && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setSoonLabel(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ y: 20, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 20, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 26 }}
+              className="premium-card relative w-full max-w-sm rounded-[28px] p-6 text-center"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-lg font-bold text-foreground">{soonLabel}</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-5">This skill is coming soon — stay tuned!</p>
+              <button onClick={() => setSoonLabel(null)} className="neo-pill px-5 py-2 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
+                Got it
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
 /* ---------- Overview: center + 6 skills ---------- */
 
-function OverviewView({ onSelect }) {
+function OverviewView({ onSelect, onComingSoon }) {
   const nodes = TOP_SKILLS.map((s, i) => ({ ...s, ...pos(i, 6, 38, 36) }));
   const [hoveredId, setHoveredId] = useState(null);
   return (
@@ -297,8 +326,9 @@ function OverviewView({ onSelect }) {
           );
         })}
         {nodes.map((n) => hoveredId === n.id && (
-          <circle key={n.id + "-p"} r="2.6" fill={n.color} fillOpacity={0.5} filter="url(#ovPulse)">
+          <circle key={n.id + "-p"} r="2.6" fill={n.color} fillOpacity={0.6} filter="url(#ovPulse)">
             <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${n.x} ${n.y}`} calcMode="linear" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="2.2s" repeatCount="indefinite" />
           </circle>
         ))}
       </svg>
@@ -322,7 +352,7 @@ function OverviewView({ onSelect }) {
 
       {/* Skill nodes */}
       {nodes.map((n, i) => (
-        <SkillNode key={n.id} node={n} index={i} onClick={() => onSelect(n.id)}
+        <SkillNode key={n.id} node={n} index={i} onClick={() => onSelect(n.id)} onComingSoon={onComingSoon}
           onHoverStart={() => setHoveredId(n.id)} onHoverEnd={() => setHoveredId(null)} />
       ))}
     </motion.div>
@@ -331,7 +361,7 @@ function OverviewView({ onSelect }) {
 
 /* ---------- Detail: selected skill as hub + children ---------- */
 
-function DetailView({ skillId, onBack, onPickChild }) {
+function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
   const skill = TOP_SKILLS.find((s) => s.id === skillId);
   const children = SKILL_CHILDREN[skillId] || [];
   const n = children.length;
@@ -364,9 +394,10 @@ function DetailView({ skillId, onBack, onPickChild }) {
               style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
           );
         })}
-        {nodes.map((c) => hoveredLabel === c.label && !c.comingSoon && (
-          <circle key={c.label + "-p"} r="2.6" fill={skill?.color || "#a78bfa"} fillOpacity={0.5} filter="url(#dtPulse)">
+        {nodes.map((c) => hoveredLabel === c.label && (
+          <circle key={c.label + "-p"} r="2.6" fill={skill?.color || "#a78bfa"} fillOpacity={0.6} filter="url(#dtPulse)">
             <animateMotion dur="2.2s" repeatCount="indefinite" path={`M 50 50 L ${c.x} ${c.y}`} calcMode="linear" />
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="2.2s" repeatCount="indefinite" />
           </circle>
         ))}
       </svg>
@@ -400,7 +431,7 @@ function DetailView({ skillId, onBack, onPickChild }) {
 
       {/* Child nodes */}
       {nodes.map((c, i) => (
-        <ChildNode key={c.label} node={c} index={i} onClick={() => onPickChild(c)}
+        <ChildNode key={c.label} node={c} index={i} onClick={() => onPickChild(c)} onComingSoon={onComingSoon}
           onHoverStart={() => setHoveredLabel(c.label)} onHoverEnd={() => setHoveredLabel(null)} />
       ))}
     </motion.div>
@@ -409,18 +440,17 @@ function DetailView({ skillId, onBack, onPickChild }) {
 
 /* ---------- Node components ---------- */
 
-function SkillNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
+function SkillNode({ node, index, onClick, onComingSoon, onHoverStart, onHoverEnd }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className="animate-neo-float">
         <motion.button
-          onClick={soon ? undefined : onClick}
-          disabled={soon}
-          onMouseEnter={soon ? undefined : onHoverStart}
-          onMouseLeave={soon ? undefined : onHoverEnd}
+          onClick={() => (soon ? onComingSoon?.(node.label) : onClick?.())}
+          onMouseEnter={onHoverStart}
+          onMouseLeave={onHoverEnd}
           initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06, type: "spring", stiffness: 200, damping: 22 }}
-          whileHover={soon ? undefined : { scale: 1.08, y: -4 }} whileTap={soon ? undefined : { scale: 0.95 }}
+          whileHover={{ scale: 1.08, y: -4 }} whileTap={{ scale: 0.95 }}
           className="group relative"
           style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})` }}
         >
@@ -429,7 +459,7 @@ function SkillNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
               style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
           )}
           <span
-            className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"}`}
+            className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"}`}
           >
             <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
             <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
@@ -441,24 +471,24 @@ function SkillNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
   );
 }
 
-function ChildNode({ node, index, onClick, onHoverStart, onHoverEnd }) {
+function ChildNode({ node, index, onClick, onComingSoon, onHoverStart, onHoverEnd }) {
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className="animate-neo-float">
         <motion.button
-          onClick={soon ? undefined : onClick}
-          disabled={soon}
-          onMouseEnter={soon ? undefined : onHoverStart}
-          onMouseLeave={soon ? undefined : onHoverEnd}
+          onClick={() => (soon ? onComingSoon?.(node.label) : onClick?.())}
+          onMouseEnter={onHoverStart}
+          onMouseLeave={onHoverEnd}
           initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
-          whileHover={soon ? undefined : { scale: 1.1, y: -3 }} whileTap={soon ? undefined : { scale: 0.92 }}          className="group relative min-w-[92px] max-w-[124px]"
+          whileHover={{ scale: 1.1, y: -3 }} whileTap={{ scale: 0.92 }}
+          className="group relative min-w-[92px] max-w-[124px]"
         >
           {!soon && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
               style={{ width: "150%", height: "155%", background: "radial-gradient(closest-side, rgba(37,99,235,0.5), transparent 72%)", filter: "blur(16px)", opacity: 0.5 }} />
           )}
-          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"}`}>
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"}`}>
             <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
             {soon ? (
               <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(soon)</span>
