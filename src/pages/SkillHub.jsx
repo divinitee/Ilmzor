@@ -141,7 +141,7 @@ export default function SkillHub({ isActive = true, user = null }) {
   const [userCoins, setUserCoins] = useState(null);
 
   const [selected, setSelected] = useState(null); // top skill id
-  const [modalChild, setModalChild] = useState(null); // { skillId, child }
+  const [activeChild, setActiveChild] = useState(null); // subskill child zoomed into
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty }
   const [soonLabel, setSoonLabel] = useState(null); // label of a coming-soon skill
   const loc = useSkillLoc();
@@ -252,37 +252,33 @@ export default function SkillHub({ isActive = true, user = null }) {
         )}
 
         {/* Mind map stage */}
-        <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
+        <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]" style={{ perspective: "1400px" }}>
           <AnimatePresence mode="wait">
             {!selected ? (
               <OverviewView key="overview" onSelect={setSelected} onComingSoon={(label) => setSoonLabel(label)} />
+            ) : activeChild ? (
+              <GamesView
+                key={`games-${selected}-${activeChild.label}`}
+                child={activeChild}
+                skill={TOP_SKILLS.find((s) => s.id === selected)}
+                onBack={() => setActiveChild(null)}
+                onPlay={(challenge) => {
+                  setActiveChild(null);
+                  setActiveGame({ game: challenge.game, difficulty: challenge.difficulty, bank: challenge.bank, skillLabel: activeChild.label });
+                }}
+              />
             ) : (
               <DetailView
                 key={`detail-${selected}`}
                 skillId={selected}
                 onBack={() => setSelected(null)}
-                onPickChild={(child) => setModalChild({ skillId: selected, child })}
+                onPickChild={(child) => setActiveChild(child)}
                 onComingSoon={(label) => setSoonLabel(label)}
               />
             )}
           </AnimatePresence>
         </div>
       </div>
-
-      {/* Challenge modal */}
-      <AnimatePresence>
-        {modalChild && (
-          <ChallengeModal
-            child={modalChild.child}
-            skillLabel={TOP_SKILLS.find((s) => s.id === modalChild.skillId)?.label}
-            onClose={() => setModalChild(null)}
-            onPlay={(challenge) => {
-              setModalChild(null);
-              setActiveGame({ game: challenge.game, difficulty: challenge.difficulty, bank: challenge.bank, skillLabel: modalChild.child.label });
-            }}
-          />
-        )}
-      </AnimatePresence>
 
       {/* Coming-soon notice */}
       <AnimatePresence>
@@ -323,7 +319,7 @@ function OverviewView({ onSelect, onComingSoon }) {
   return (
     <motion.div
       className="absolute inset-0"
-      initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 0, scale: 0.9, filter: "blur(6px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 1.6, filter: "blur(10px)" }} transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
     >
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(99,102,241,0.5))" }}>
         <defs>
@@ -392,7 +388,7 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
   return (
     <motion.div
       className="absolute inset-0"
-      initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 0, scale: 0.4, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 1.6, filter: "blur(10px)" }} transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
     >
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: "drop-shadow(0 0 5px rgba(139,92,246,0.4))" }}>
         <defs>
@@ -468,10 +464,10 @@ function SkillNode({ node, index, onClick, onComingSoon, hot, onHoverStart, onHo
           onClick={() => (soon ? onComingSoon?.(node.label) : onClick?.())}
           onMouseEnter={onHoverStart}
           onMouseLeave={onHoverEnd}
-          initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.05 + index * 0.06, type: "spring", stiffness: 200, damping: 22 }}
+          initial={{ scale: 0.6, opacity: 0, z: -260 }} animate={{ scale: 1, opacity: 1, z: 0 }} transition={{ delay: 0.05 + index * 0.06, type: "spring", stiffness: 200, damping: 22 }}
           whileHover={{ scale: 1.08, y: -4 }} whileTap={{ scale: 0.95 }}
           className="group relative"
-          style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})` }}
+          style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})`, transformPerspective: 700 }}
         >
           {!soon && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none animate-neo-breathe"
@@ -501,9 +497,10 @@ function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart
           onClick={() => (soon ? onComingSoon?.(node.label) : onClick?.())}
           onMouseEnter={onHoverStart}
           onMouseLeave={onHoverEnd}
-          initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 260, damping: 20 }}
+          initial={{ scale: 0.5, opacity: 0, z: -260 }} animate={{ scale: 1, opacity: 1, z: 0 }} transition={{ delay: 0.04 + index * 0.05, type: "spring", stiffness: 240, damping: 22 }}
           whileHover={{ scale: 1.1, y: -3 }} whileTap={{ scale: 0.92 }}
           className="group relative min-w-[92px] max-w-[124px]"
+          style={{ transformPerspective: 700 }}
         >
           {!soon && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
@@ -524,90 +521,114 @@ function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart
   );
 }
 
-/* ---------- Challenge modal ---------- */
+/* ---------- Games: subskill hub + challenges in a web ---------- */
 
-function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
+function GamesView({ child, skill, onBack, onPlay }) {
   const loc = useSkillLoc();
+  const challenges = child.challenges;
+  const n = challenges.length;
+  const rx = n > 6 ? 42 : 38;
+  const ry = n > 6 ? 40 : 36;
+  const nodes = challenges.map((c, i) => ({ ...c, i, ...pos(i, n, rx, ry) }));
+  const [hovered, setHovered] = useState(null);
+  const glow = skill?.glow || "rgba(99,102,241,0.5)";
+  const color = skill?.color || "#a78bfa";
+
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
-      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="absolute inset-0"
+      initial={{ opacity: 0, scale: 0.4, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 0.4, filter: "blur(10px)" }} transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
+      style={{ transformStyle: "preserve-3d" }}
     >
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
-      <motion.div
-        initial={{ y: 40, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 40, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 28 }}
-        className="premium-card relative w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-t-[32px] md:rounded-[32px]"
-      >
-        {/* glow header */}
-        <div className="sticky top-0 z-10 bg-gradient-to-b from-blue-600/15 to-transparent px-5 pt-5 pb-3 backdrop-blur-xl border-b border-blue-400/10">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300 mb-1">{loc(skillLabel)}</p>
-              <h2 className="text-xl font-bold text-foreground">{loc("ui.chooseChallenge")}</h2>
-              <p className="text-xs text-muted-foreground mt-0.5">{loc(child.label)}</p>
-            </div>
-            <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted/60 flex items-center justify-center text-muted-foreground hover:text-foreground select-none">
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" pointerEvents="none" style={{ filter: `drop-shadow(0 0 5px ${glow})` }}>
+        <defs>
+          <filter id="gmPulse" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="2.2" />
+          </filter>
+        </defs>
+        {nodes.map((c) => {
+          const hot = hovered === c.i;
+          return (
+            <line key={"g" + c.i} x1={50} y1={50} x2={c.x} y2={c.y}
+              stroke={color} strokeLinecap="round" vectorEffect="non-scaling-stroke"
+              strokeWidth={hot ? 1.4 : 0.7}
+              style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
+          );
+        })}
+        {nodes.map((c) => hovered === c.i && (
+          <g key={"gp" + c.i}>
+            <StreamPulses color={color} x={c.x} y={c.y} filterId="gmPulse" />
+          </g>
+        ))}
+      </svg>
 
-        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {child.challenges.map((ch, i) => {
-            const stats = getGameStats(ch.game);
-            const completion = stats.best || 0;
-            if (ch.comingSoon) {
-              return (
-                <div
-                  key={ch.name + i}
-                  className="relative rounded-2xl bg-muted/30 border border-dashed border-muted-foreground/30 p-4 flex flex-col select-none min-h-[140px]"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-muted-foreground/30 text-muted-foreground">{ch.difficulty}</span>
-                    <span className="text-[9px] font-semibold text-muted-foreground/70">{loc("ui.comingSoonTag")}</span>
-                  </div>
-                  <h3 className="text-sm font-bold text-muted-foreground/70 leading-tight mb-2">{loc(ch.name)}</h3>
-                  <div className="flex items-center gap-3 text-[10px] text-muted-foreground/60 mb-2">
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {loc(ch.time)}</span>
-                    <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> {ch.xp} XP</span>
-                  </div>
-                  <div className="flex-1" />
-                  <span className="text-[9px] text-muted-foreground/50 text-center">{loc("ui.notAvailable")}</span>
-                </div>
-              );
-            }
-            return (
-              <motion.button
-                key={ch.name + i}
-                initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
-                whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                onClick={() => onPlay(ch)}
-                className="group text-left rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/5 border border-blue-400/20 p-4 hover:border-blue-400/50 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${DIFF_STYLE[ch.difficulty]}`}>{loc(ch.difficulty)}</span>
-                  <Play className="w-4 h-4 text-blue-400 opacity-70 group-hover:opacity-100" />
-                </div>
-                <h3 className="text-sm font-bold text-foreground leading-tight mb-2">{loc(ch.name)}</h3>
-                <div className="flex items-center gap-3 text-[10px] text-muted-foreground mb-2">
-                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {loc(ch.time)}</span>
-                  <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-amber-400" /> {ch.xp} XP</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
-                      initial={{ width: 0 }} animate={{ width: `${completion}%` }} transition={{ delay: 0.2 + i * 0.05 }}
-                    />
-                  </div>
-                  <span className="text-[9px] font-semibold text-muted-foreground">{completion}%</span>
-                </div>
-              </motion.button>
-            );
-          })}
-        </div>
-      </motion.div>
+      {/* Hub node = subskill (child) */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+        <motion.button
+          onClick={onBack}
+          initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.06, y: -3 }} whileTap={{ scale: 0.94 }}
+          className="relative w-24 h-24 md:w-28 md:h-28"
+        >
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none animate-neo-breathe"
+            style={{ width: "190%", height: "190%", background: `radial-gradient(closest-side, ${glow}, transparent 72%)`, filter: "blur(24px)" }} />
+          <div className="relative w-full h-full rounded-full border border-white/20 bg-white/[0.09] backdrop-blur-2xl flex flex-col items-center justify-center text-white"
+            style={{ boxShadow: `0 0 45px ${glow}, inset 0 1px 0 rgba(255,255,255,0.18)` }}>
+            <div className="absolute inset-0 rounded-full ring-1 ring-white/25" />
+            <Sparkles className="w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
+            <span className="text-[10px] font-bold tracking-wide leading-none text-center px-2">{loc(child.label)}</span>
+          </div>
+        </motion.button>
+      </div>
+
+      {/* Back button */}
+      <button onClick={onBack} className="absolute left-1/2 -translate-x-1/2 -bottom-1 z-20 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground bg-card/70 backdrop-blur border border-border rounded-full px-3 py-1.5 select-none">
+        <ArrowLeft className="w-3.5 h-3.5" /> {loc(skill?.label)}
+      </button>
+
+      {/* Game nodes */}
+      {nodes.map((c) => (
+        <GameNode key={"gn" + c.i} node={c} onClick={() => onPlay(c)} hot={hovered === c.i} glow={glow}
+          onHoverStart={() => setHovered(c.i)} onHoverEnd={() => setHovered(null)} />
+      ))}
     </motion.div>
+  );
+}
+
+function GameNode({ node, onClick, hot, glow, onHoverStart, onHoverEnd }) {
+  const loc = useSkillLoc();
+  const soon = node.comingSoon;
+  const completion = getGameStats(node.game).best || 0;
+  return (
+    <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
+      <div className="animate-neo-float">
+        <motion.button
+          onClick={() => (soon ? null : onClick?.())}
+          onMouseEnter={onHoverStart}
+          onMouseLeave={onHoverEnd}
+          initial={{ scale: 0.4, opacity: 0, z: -260 }} animate={{ scale: 1, opacity: 1, z: 0 }} transition={{ delay: 0.05 + node.i * 0.06, type: "spring", stiffness: 220, damping: 22 }}
+          whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
+          className="group relative min-w-[96px] max-w-[128px]"
+          style={{ transformPerspective: 700 }}
+        >
+          {!soon && (
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
+              style={{ width: "150%", height: "155%", background: `radial-gradient(closest-side, ${glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.5 }} />
+          )}
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
+            style={hot ? { "--arrival-color": glow } : undefined}>
+            <span className="block text-[11px] font-bold text-foreground leading-tight">{loc(node.name)}</span>
+            <span className={`mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${DIFF_STYLE[node.difficulty]}`}>{loc(node.difficulty)}</span>
+            <span className="mt-1 flex items-center justify-center gap-2 text-[8px] text-muted-foreground leading-tight">
+              <span className="flex items-center gap-0.5"><Clock className="w-2.5 h-2.5" />{loc(node.time)}</span>
+              <span className="flex items-center gap-0.5"><Zap className="w-2.5 h-2.5 text-amber-400" />{node.xp}</span>
+            </span>
+            {!soon && completion > 0 && (
+              <span className="block text-[8px] text-muted-foreground/70 mt-0.5">{completion}%</span>
+            )}
+          </span>
+        </motion.button>
+      </div>
+    </div>
   );
 }
