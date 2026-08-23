@@ -15,7 +15,7 @@ export const translations = {
     nav: { home: "Bosh sahifa", words: "So'zlar", games: "O'yinlar", ai_teacher: "AI Ustoz", settings: "Sozlamalar", skill_hub: "Skill Hub" },
     common: { back: "Orqaga", save: "Saqlash", cancel: "Bekor qilish", continue: "Davom etish", search: "Qidirish", select_unit_title: "Unit tanlang" },
     home: {
-      app_name: "Vocabulary A2·B1·B2",
+      app_name: "Ilmzor",
       teacher_badge: "O'qituvchi", student_badge: "O'quvchi",
       teacher_panel_title: "O'qituvchi Paneli", go_to_dashboard: "Nazorat Paneliga o'tish",
       premium_badge: "Premium", quiz_reading_title: "Test va Reading",
@@ -312,7 +312,7 @@ export const translations = {
     nav: { home: "Home", words: "Words", games: "Games", ai_teacher: "AI Teacher", settings: "Settings", skill_hub: "Skill Hub" },
     common: { back: "Back", save: "Save", cancel: "Cancel", continue: "Continue", search: "Search", select_unit_title: "Select unit" },
     home: {
-      app_name: "Vocabulary A2·B1·B2",
+      app_name: "Ilmzor",
       teacher_badge: "Teacher", student_badge: "Student",
       teacher_panel_title: "Teacher Panel", go_to_dashboard: "Go to Dashboard",
       premium_badge: "Premium", quiz_reading_title: "Tests & Reading",
@@ -609,7 +609,7 @@ export const translations = {
     nav: { home: "Главная", words: "Слова", games: "Игры", ai_teacher: "ИИ Учитель", settings: "Настройки", skill_hub: "Skill Hub" },
     common: { back: "Назад", save: "Сохранить", cancel: "Отмена", continue: "Продолжить", search: "Поиск", select_unit_title: "Выберите раздел" },
     home: {
-      app_name: "Vocabulary A2·B1·B2",
+      app_name: "Ilmzor",
       teacher_badge: "Учитель", student_badge: "Ученик",
       teacher_panel_title: "Панель учителя", go_to_dashboard: "Перейти к панели",
       premium_badge: "Premium", quiz_reading_title: "Тесты и чтение",
