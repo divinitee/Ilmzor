@@ -8,8 +8,9 @@ const SKILL = {
   "ui.lab": { uz: "Ingliz tili laboratoriyangiz", ru: "Ваша лаборатория английского" },
   "ui.title": { uz: "Bugun qaysi ko'nikmani rivojlantiramiz?", ru: "Какой навык развиваем сегодня?" },
   "ui.sub": {
-    uz: "Bir sohani tanlang. O'yinlar, mashqlar va tavsiyalar avtomatik moslashadi.",
-    ru: "Выберите одну область. Игры, упражнения и рекомендации адаптируются автоматически.",
+    en: "What skill are we working on?",
+    uz: "Bugun qaysi ko'nikmani rivojlantiramiz?",
+    ru: "Какой навык развиваем сегодня?",
   },
   "ui.center": { uz: "Ingliz ko'nikmalari", ru: "Навыки английского" },
   "ui.allSkills": { uz: "Barcha ko'nikmalar", ru: "Все навыки" },
