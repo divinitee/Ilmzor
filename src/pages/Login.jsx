@@ -33,7 +33,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-background premium-mesh flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -73,12 +73,12 @@ export default function Login() {
         {/* Card */}
         <div className="bg-card border border-border rounded-3xl shadow-sm p-6">
           {role === "student" && (
-            <p className="text-xs text-muted-foreground bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 rounded-xl px-3 py-2 mb-5">
+            <p className="text-xs text-muted-foreground bg-indigo-500/10 text-indigo-300 rounded-xl px-3 py-2 mb-5">
               O'quvchi sifatida kirish uchun quyidagi formani to'ldiring
             </p>
           )}
           {role === "teacher" && (
-            <p className="text-xs bg-violet-500/10 text-violet-700 dark:text-violet-400 rounded-xl px-3 py-2 mb-5">
+            <p className="text-xs bg-violet-500/10 text-violet-300 rounded-xl px-3 py-2 mb-5">
               O'qituvchi hisobi bilan kirish — o'quvchilaringizni kuzatib boring
             </p>
           )}
