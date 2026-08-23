@@ -235,7 +235,7 @@ export default function SkillHub({ isActive = true, user = null }) {
             </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            {loc("ui.title")}
+            Skill Hub
           </h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             {loc("ui.sub")}
