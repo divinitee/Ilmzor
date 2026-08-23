@@ -30,8 +30,12 @@ function Lines({ nodes, color, hovered, filterId }) {
       </defs>
       {nodes.map((n) => {
         const hot = hovered === nodeKey(n);
+        const dx = n.x - 50, dy = n.y - 50;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len, uy = dy / len;
+        const r0 = 7, r1 = 9; // gap from hub edge and node edge
         return (
-          <line key={nodeKey(n)} x1={50} y1={50} x2={n.x} y2={n.y}
+          <line key={nodeKey(n)} x1={50 + ux * r0} y1={50 + uy * r0} x2={n.x - ux * r1} y2={n.y - uy * r1}
             stroke={color} strokeLinecap="round" vectorEffect="non-scaling-stroke"
             strokeWidth={hot ? 1.4 : 0.7}
             style={{ opacity: hot ? 0.9 : 0.3, transition: "opacity .3s ease, stroke-width .3s ease" }} />
@@ -192,7 +196,7 @@ function SkillNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? 0.1 + index * 0.06 : 0, type: "spring", stiffness: 200, damping: 22 }}
-          whileHover={{ scale: 1.08, y: -4 }} whileTap={{ scale: 0.95 }}
+          whileHover={{ y: -4 }} whileTap={{ scale: 0.95 }}
           className="group relative"
           style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})`, transformPerspective: 700 }}
         >
@@ -200,7 +204,7 @@ function SkillNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none animate-neo-breathe"
               style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
           )}
-          <span className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"} ${hot ? "skill-border-glow" : ""}`}
+          <span className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12] skill-hover-pulse"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": node.glow } : undefined}>
             <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
             <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{loc(node.label)}</span>
@@ -224,7 +228,7 @@ function ChildNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? 0.08 + index * 0.05 : 0, type: "spring", stiffness: 220, damping: 22 }}
-          whileHover={{ scale: 1.1, y: -3 }} whileTap={{ scale: 0.92 }}
+          whileHover={{ y: -3 }} whileTap={{ scale: 0.92 }}
           className="group relative min-w-[92px] max-w-[124px]"
           style={{ transformPerspective: 700 }}
         >
@@ -232,7 +236,7 @@ function ChildNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
               style={{ width: "150%", height: "155%", background: "radial-gradient(closest-side, rgba(37,99,235,0.5), transparent 72%)", filter: "blur(16px)", opacity: 0.5 }} />
           )}
-          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11] skill-hover-pulse"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": "rgba(99,102,241,0.5)" } : undefined}>
             <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{loc(node.label)}</span>
             {soon ? (
@@ -260,7 +264,7 @@ function GameNode({ node, active, onClick, hot, glow, onHoverStart, onHoverEnd }
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? 0.08 + node._i * 0.06 : 0, type: "spring", stiffness: 220, damping: 22 }}
-          whileHover={{ scale: 1.08, y: -3 }} whileTap={{ scale: 0.95 }}
+          whileHover={{ y: -3 }} whileTap={{ scale: 0.95 }}
           className="group relative min-w-[96px] max-w-[128px]"
           style={{ transformPerspective: 700 }}
         >
@@ -268,7 +272,7 @@ function GameNode({ node, active, onClick, hot, glow, onHoverStart, onHoverEnd }
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
               style={{ width: "150%", height: "155%", background: `radial-gradient(closest-side, ${glow || "rgba(99,102,241,0.5)"}, transparent 72%)`, filter: "blur(16px)", opacity: 0.5 }} />
           )}
-          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11] skill-hover-pulse"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": glow || "rgba(99,102,241,0.5)" } : undefined}>
             <span className="block text-[11px] font-bold text-foreground leading-tight">{loc(node.name)}</span>
             <span className={`mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${DIFF_STYLE[node.difficulty]}`}>{loc(node.difficulty)}</span>

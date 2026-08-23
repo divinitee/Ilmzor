@@ -263,6 +263,16 @@
     will-change: border-color, box-shadow;
   }
 
+  /* Soft, premium breathing enlargement when a skill node is hovered */
+  @keyframes skillHoverPulse {
+    0%, 100% { transform: scale(1.05); }
+    50%      { transform: scale(1.12); }
+  }
+  .group:hover .skill-hover-pulse {
+    animation: skillHoverPulse 2.6s ease-in-out infinite;
+    will-change: transform;
+  }
+
   /* Slow traveling light across mission-control cards — light moves, not the content */
   @keyframes missionSweep {
     0%   { transform: translateX(-130%); }
