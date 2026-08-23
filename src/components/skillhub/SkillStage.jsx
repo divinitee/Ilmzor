@@ -65,6 +65,49 @@ function NodeGroup({ active, children }) {
   );
 }
 
+/* Otherworldly "dive" portal played when entering a skill world. */
+function WarpOverlay({ dive }) {
+  const { x, y, color, k } = dive;
+  const ring = [0, 1, 2];
+  const streaks = Array.from({ length: 16 });
+  return (
+    <motion.div key={k} className="fixed inset-0 z-50 pointer-events-none overflow-hidden"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}>
+      {/* bright portal core expanding from the clicked node */}
+      <div className="absolute" style={{ left: x, top: y, transform: "translate(-50%, -50%)" }}>
+        <motion.div className="rounded-full"
+          style={{ width: 80, height: 80, background: `radial-gradient(closest-side, #ffffff, ${color} 38%, transparent 72%)`, filter: "blur(4px)" }}
+          initial={{ scale: 0, opacity: 0.95 }}
+          animate={{ scale: 16, opacity: 0 }}
+          transition={{ duration: 0.7, ease: EASE }} />
+      </div>
+      {/* concentric rings racing outward */}
+      {ring.map((i) => (
+        <div key={i} className="absolute" style={{ left: x, top: y, transform: "translate(-50%, -50%)" }}>
+          <motion.div className="rounded-full border-2"
+            style={{ width: 80, height: 80, borderColor: color }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 3 + i * 3.5, opacity: [0, 0.85, 0] }}
+            transition={{ duration: 0.66, delay: i * 0.07, ease: "easeOut" }} />
+        </div>
+      ))}
+      {/* warp streaks radiating outward like a hyperspace jump */}
+      {streaks.map((_, i) => {
+        const ang = (i / streaks.length) * 360;
+        return (
+          <div key={"s" + i} className="absolute" style={{ left: x, top: y, transform: `translate(-50%, -50%) rotate(${ang}deg)` }}>
+            <motion.div
+              style={{ width: 140, height: 2, transformOrigin: "left center", background: `linear-gradient(90deg, transparent, ${color}, transparent)`, filter: "blur(1px)" }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 9, opacity: [0, 0.7, 0] }}
+              transition={{ duration: 0.6, ease: "easeOut" }} />
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+}
+
 /* ---------- Stage ---------- */
 
 export default function SkillStage({ onPlayGame, onComingSoon }) {
@@ -72,6 +115,15 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
   const [hovered, setHovered] = useState(null); // { group, key }
+  const [dive, setDive] = useState(null);
+
+  const triggerDive = (node, e, next) => {
+    const rect = e?.currentTarget?.getBoundingClientRect?.();
+    if (!rect) { next?.(); return; }
+    setDive({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, color: node.color || node.glow || "#a78bfa", k: Date.now() });
+    next?.();
+    setTimeout(() => setDive(null), 720);
+  };
 
   const level = activeChild ? 2 : selected ? 1 : 0;
   const skill = TOP_SKILLS.find((s) => s.id === selected);
@@ -101,7 +153,8 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
       : { Icon: Sparkles, label: loc(activeChild?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" };
 
   return (
-    <div className="relative w-full h-full" style={{ perspective: "1400px" }}>
+    <>
+    <motion.div className="relative w-full h-full" style={{ perspective: "1400px" }} animate={{ scale: dive ? 1.03 : 1 }} transition={{ duration: 0.5, ease: EASE }}>
       {/* ---------- Hub: persistent circle, content does a 3D card-turn ---------- */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
         <div className="relative w-24 h-24 md:w-28 md:h-28">
@@ -151,7 +204,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
         <Lines nodes={skillNodes} color="#a78bfa" hovered={hovered?.group === "skill" ? hovered.key : null} filterId="ovPulse" />
         {skillNodes.map((n, i) => (
           <SkillNode key={n.id} node={n} index={i} active={level === 0}
-            onClick={() => setSelected(n.id)} onComingSoon={() => onComingSoon(n.label)}
+            onClick={(e) => triggerDive(n, e, () => setSelected(n.id))} onComingSoon={() => onComingSoon(n.label)}
             hot={hovered?.group === "skill" && hovered.key === n.id}
             onHoverStart={() => setHovered({ group: "skill", key: n.id })} onHoverEnd={() => setHovered(null)} />
         ))}
@@ -162,7 +215,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
         <Lines nodes={childNodes} color={skill?.color || "#a78bfa"} hovered={hovered?.group === "child" ? hovered.key : null} filterId="dtPulse" />
         {childNodes.map((c, i) => (
           <ChildNode key={c.label} node={c} index={i} active={level === 1}
-            onClick={() => setActiveChild(c)} onComingSoon={() => onComingSoon(c.label)}
+            onClick={(e) => triggerDive(c, e, () => setActiveChild(c))} onComingSoon={() => onComingSoon(c.label)}
             hot={hovered?.group === "child" && hovered.key === c.label}
             onHoverStart={() => setHovered({ group: "child", key: c.label })} onHoverEnd={() => setHovered(null)} />
         ))}
@@ -178,7 +231,12 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
             onHoverStart={() => setHovered({ group: "game", key: c._i })} onHoverEnd={() => setHovered(null)} />
         ))}
       </NodeGroup>
-    </div>
+    </motion.div>
+
+      <AnimatePresence>
+        {dive && <WarpOverlay key={dive.k} dive={dive} />}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -191,7 +249,7 @@ function SkillNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className="animate-neo-float">
         <motion.button
-          onClick={() => (soon ? onComingSoon?.() : onClick?.())}
+          onClick={(e) => (soon ? onComingSoon?.() : onClick?.(e))}
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
@@ -223,7 +281,7 @@ function ChildNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className="animate-neo-float">
         <motion.button
-          onClick={() => (soon ? onComingSoon?.() : onClick?.())}
+          onClick={(e) => (soon ? onComingSoon?.() : onClick?.(e))}
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
