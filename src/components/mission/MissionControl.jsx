@@ -41,7 +41,7 @@ export default function MissionControl({
   onOpenUnitDrawer,
   onNavigate,
 }) {
-  const { lang } = useAppLang();
+  const { lang, t } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
   const navigate = useNavigate();
   const [coins, setCoins] = useState(null);
@@ -94,35 +94,35 @@ export default function MissionControl({
   const goal = getLearningGoal(lang);
 
   const missions = [
-    { id: "words", label: "Learn 8 new words", icon: "BookOpen", progress: Math.min(data.wordsCorrectToday, 8), target: 8, done: data.wordsCorrectToday >= 8 },
-    { id: "challenge", label: "Complete one challenge", icon: "Zap", progress: Math.min(data.quizzesToday, 1), target: 1, done: data.quizzesToday >= 1 },
-    { id: "score", label: "Score 80%+ on a quiz", icon: "Target", progress: Math.min(Math.round(data.bestAccuracyToday), 80), target: 80, done: data.bestAccuracyToday >= 80 },
-    { id: "streak", label: "Keep your streak alive", icon: "Flame", progress: data.streak > 0 ? 1 : 0, target: 1, done: data.streak > 0 },
+    { id: "words", label: t("dashboard.missionWords"), icon: "BookOpen", progress: Math.min(data.wordsCorrectToday, 8), target: 8, done: data.wordsCorrectToday >= 8 },
+    { id: "challenge", label: t("dashboard.missionChallenge"), icon: "Zap", progress: Math.min(data.quizzesToday, 1), target: 1, done: data.quizzesToday >= 1 },
+    { id: "score", label: t("dashboard.missionScore"), icon: "Target", progress: Math.min(Math.round(data.bestAccuracyToday), 80), target: 80, done: data.bestAccuracyToday >= 80 },
+    { id: "streak", label: t("dashboard.missionStreak"), icon: "Flame", progress: data.streak > 0 ? 1 : 0, target: 1, done: data.streak > 0 },
   ];
 
   const aiRecs = useMemo(() => {
     const r = [];
     if (data.quizzesToday === 0)
-      r.push("You haven't studied yet today. A 5-minute round keeps your momentum going.");
+      r.push(t("dashboard.recNoStudy"));
     if (data.bestAccuracyToday >= 80)
-      r.push("Great accuracy today — you're ready for a harder challenge in Deep Mode.");
+      r.push(t("dashboard.recHighAcc"));
     else if (data.bestAccuracyToday > 0 && data.bestAccuracyToday < 70)
-      r.push(`Today's accuracy is ${data.bestAccuracyToday}%. Review the words you missed before advancing.`);
+      r.push(t("dashboard.recLowAcc", { pct: data.bestAccuracyToday }));
     if (data.streak >= 5)
-      r.push(`You're on a ${data.streak}-day streak. One challenge today keeps it alive.`);
+      r.push(t("dashboard.recStreak", { n: data.streak }));
     if (data.totalCorrect > 0 && data.totalCorrect < 50)
-      r.push(`You've learned ${data.totalCorrect} words. Push past 50 to unlock the Centurion badge.`);
+      r.push(t("dashboard.recTotal", { n: data.totalCorrect }));
     if (data.totalQuizzes === 0)
-      r.push("Start your first session to begin your streak and unlock achievements.");
-    if (r.length === 0) r.push("Stay consistent — short daily sessions beat long cramming.");
+      r.push(t("dashboard.recNoQuiz"));
+    if (r.length === 0) r.push(t("dashboard.recDefault"));
     return r.slice(0, 3);
   }, [data]);
 
   const achievement = useMemo(() => {
-    if (data.streak >= 30) return { title: "Unbreakable", desc: "30-day streak", tint: "#f59e0b", icon: "Flame" };
-    if (data.streak >= 7) return { title: "Week Warrior", desc: "7-day streak", tint: "#22c55e", icon: "Flame" };
-    if (data.totalCorrect >= 100) return { title: "Centurion", desc: "100 words learned", tint: "#a78bfa", icon: "Trophy" };
-    if (data.totalQuizzes >= 1) return { title: "First Steps", desc: "First quiz completed", tint: ACCENT, icon: "BookOpen" };
+    if (data.streak >= 30) return { title: t("dashboard.achUnbreakable"), desc: t("dashboard.achUnbreakableDesc"), tint: "#f59e0b", icon: "Flame" };
+    if (data.streak >= 7) return { title: t("dashboard.achWeek"), desc: t("dashboard.achWeekDesc"), tint: "#22c55e", icon: "Flame" };
+    if (data.totalCorrect >= 100) return { title: t("dashboard.achCenturion"), desc: t("dashboard.achCenturionDesc"), tint: "#a78bfa", icon: "Trophy" };
+    if (data.totalQuizzes >= 1) return { title: t("dashboard.achFirst"), desc: t("dashboard.achFirstDesc"), tint: ACCENT, icon: "BookOpen" };
     return null;
   }, [data]);
 
@@ -147,7 +147,7 @@ export default function MissionControl({
       <QuickActions onNavigate={onNavigate} onOpenUnitDrawer={onOpenUnitDrawer} accent={ACCENT} />
 
       <footer className="text-center text-xs text-muted-foreground pt-4">
-        Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
+        {t("home.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
       </footer>
     </div>
   );

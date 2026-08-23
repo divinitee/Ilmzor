@@ -1,17 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function LearningJourney({ path, unit, moduleNum, accent }) {
+  const { t } = useAppLang();
   const nodes = [
-    { label: "Vocabulary", icon: "📚" },
+    { label: t("dashboard.journeyVocab"), icon: "📚" },
     { label: path, icon: "🧭" },
-    { label: `Module ${moduleNum}`, icon: "📦" },
-    { label: unit || "Pick a unit", icon: "📖" },
-    { label: "Today's Lesson", icon: "✨" },
+    { label: t("dashboard.journeyModule", { n: moduleNum }), icon: "📦" },
+    { label: unit || t("dashboard.journeyPickUnit"), icon: "📖" },
+    { label: t("dashboard.journeyToday"), icon: "✨" },
   ];
   return (
     <section className="premium-card p-5 md:p-6">
-      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Learning Journey</h3>
+      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">{t("dashboard.learningJourney")}</h3>
       <div className="space-y-0">
         {nodes.map((n, i) => {
           const isLast = i === nodes.length - 1;

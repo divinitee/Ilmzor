@@ -18,6 +18,7 @@ import ContextGuessGame from "@/components/games/ContextGuessGame";
 import MemoryFlipGame from "@/components/games/MemoryFlipGame";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import { getGameStats, recordGameResult } from "@/lib/gameSkills";
+import { useSkillLoc } from "@/lib/skillHubI18n";
 
 /* ---------- Skill tree data ---------- */
 
@@ -143,6 +144,7 @@ export default function SkillHub({ isActive = true, user = null }) {
   const [modalChild, setModalChild] = useState(null); // { skillId, child }
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty }
   const [soonLabel, setSoonLabel] = useState(null); // label of a coming-soon skill
+  const loc = useSkillLoc();
 
   useEffect(() => {
     base44.entities.VocabularyWord.list("unit_number", 2000)
@@ -229,14 +231,14 @@ export default function SkillHub({ isActive = true, user = null }) {
           <div className="relative inline-flex mb-4">
             <span className="neo-bloom" aria-hidden="true" />
             <div className="relative neo-pill px-4 py-1.5 text-fuchsia-200 text-[11px] font-semibold uppercase tracking-[0.18em]">
-              <Sparkles className="w-3.5 h-3.5" /> Your English Laboratory
+              <Sparkles className="w-3.5 h-3.5" /> {loc("ui.lab")}
             </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            What skill are we honing today?
+            {loc("ui.title")}
           </h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-            Choose one area to train. Games, exercises and recommendations will adapt automatically.
+            {loc("ui.sub")}
           </p>
         </motion.div>
 
@@ -299,10 +301,10 @@ export default function SkillHub({ isActive = true, user = null }) {
               <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-lg font-bold text-foreground">{soonLabel}</h3>
-              <p className="text-sm text-muted-foreground mt-1 mb-5">This skill is coming soon — stay tuned!</p>
+              <h3 className="text-lg font-bold text-foreground">{loc(soonLabel)}</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-5">{loc("ui.comingSoonTitle")}</p>
               <button onClick={() => setSoonLabel(null)} className="neo-pill px-5 py-2 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
-                Got it
+                {loc("ui.gotIt")}
               </button>
             </motion.div>
           </motion.div>
@@ -315,6 +317,7 @@ export default function SkillHub({ isActive = true, user = null }) {
 /* ---------- Overview: center + 6 skills ---------- */
 
 function OverviewView({ onSelect, onComingSoon }) {
+  const loc = useSkillLoc();
   const nodes = TOP_SKILLS.map((s, i) => ({ ...s, ...pos(i, 6, 38, 36) }));
   const [hoveredId, setHoveredId] = useState(null);
   return (
@@ -359,7 +362,7 @@ function OverviewView({ onSelect, onComingSoon }) {
               style={{ width: "200%", height: "200%", background: "radial-gradient(closest-side, rgba(37,99,235,0.7), rgba(124,58,237,0.3) 55%, transparent 75%)", filter: "blur(26px)" }} />
             <div className="relative w-full h-full rounded-full border border-white/25 bg-white/[0.1] backdrop-blur-2xl flex flex-col items-center justify-center text-white shadow-[0_0_55px_rgba(37,99,235,0.6),inset_0_1px_0_rgba(255,255,255,0.22)]">
               <Brain className="w-7 h-7 mb-1 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)]" />
-              <span className="text-[10px] font-bold tracking-wide leading-none text-center px-2">English Skills</span>
+              <span className="text-[10px] font-bold tracking-wide leading-none text-center px-2">{loc("ui.center")}</span>
             </div>
           </div>
         </motion.div>
@@ -377,6 +380,7 @@ function OverviewView({ onSelect, onComingSoon }) {
 /* ---------- Detail: selected skill as hub + children ---------- */
 
 function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
+  const loc = useSkillLoc();
   const skill = TOP_SKILLS.find((s) => s.id === skillId);
   const children = SKILL_CHILDREN[skillId] || [];
   const n = children.length;
@@ -430,7 +434,7 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
             style={{ boxShadow: `0 0 45px ${skill?.glow || "rgba(99,102,241,0.5)"}, inset 0 1px 0 rgba(255,255,255,0.18)` }}>
             <div className="absolute inset-0 rounded-full ring-1 ring-white/25" />
             {skill && <skill.icon className="w-7 h-7 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]" />}
-            <span className="text-[11px] font-bold tracking-wide leading-none text-center px-2">{skill?.label}</span>
+            <span className="text-[11px] font-bold tracking-wide leading-none text-center px-2">{loc(skill?.label)}</span>
           </div>
         </motion.button>
       </div>
@@ -440,7 +444,7 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
         onClick={onBack}
         className="absolute left-1/2 -translate-x-1/2 -bottom-1 z-20 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground bg-card/70 backdrop-blur border border-border rounded-full px-3 py-1.5 select-none"
       >
-        <ArrowLeft className="w-3.5 h-3.5" /> All skills
+        <ArrowLeft className="w-3.5 h-3.5" /> {loc("ui.allSkills")}
       </button>
 
       {/* Child nodes */}
@@ -455,6 +459,7 @@ function DetailView({ skillId, onBack, onPickChild, onComingSoon }) {
 /* ---------- Node components ---------- */
 
 function SkillNode({ node, index, onClick, onComingSoon, hot, onHoverStart, onHoverEnd }) {
+  const loc = useSkillLoc();
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
@@ -477,8 +482,8 @@ function SkillNode({ node, index, onClick, onComingSoon, hot, onHoverStart, onHo
             style={hot ? { "--arrival-color": node.glow } : undefined}
           >
             <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
-            <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{node.label}</span>
-            {soon && <span className="text-[7px] font-medium leading-none mt-0.5 opacity-60">(soon)</span>}
+            <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{loc(node.label)}</span>
+            {soon && <span className="text-[7px] font-medium leading-none mt-0.5 opacity-60">{loc("ui.soon")}</span>}
           </span>
         </motion.button>
       </div>
@@ -487,6 +492,7 @@ function SkillNode({ node, index, onClick, onComingSoon, hot, onHoverStart, onHo
 }
 
 function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart, onHoverEnd }) {
+  const loc = useSkillLoc();
   const soon = node.comingSoon;
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
@@ -505,11 +511,11 @@ function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart
           )}
           <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": glow || "rgba(99,102,241,0.5)" } : undefined}>
-            <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{node.label}</span>
+            <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{loc(node.label)}</span>
             {soon ? (
-              <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">(soon)</span>
+              <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">{loc("ui.soon")}</span>
             ) : node.subs.length > 0 ? (
-              <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).join(" · ")}</span>
+              <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).map(loc).join(" · ")}</span>
             ) : null}
           </span>
         </motion.button>
@@ -521,6 +527,7 @@ function ChildNode({ node, index, onClick, onComingSoon, hot, glow, onHoverStart
 /* ---------- Challenge modal ---------- */
 
 function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
+  const loc = useSkillLoc();
   return (
     <motion.div
       className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
@@ -536,9 +543,9 @@ function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
         <div className="sticky top-0 z-10 bg-gradient-to-b from-blue-600/15 to-transparent px-5 pt-5 pb-3 backdrop-blur-xl border-b border-blue-400/10">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300 mb-1">{skillLabel}</p>
-              <h2 className="text-xl font-bold text-foreground">Choose your challenge</h2>
-              <p className="text-xs text-muted-foreground mt-0.5">{child.label}</p>
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-blue-300 mb-1">{loc(skillLabel)}</p>
+              <h2 className="text-xl font-bold text-foreground">{loc("ui.chooseChallenge")}</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">{loc(child.label)}</p>
             </div>
             <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted/60 flex items-center justify-center text-muted-foreground hover:text-foreground select-none">
               <X className="w-4 h-4" />
@@ -558,15 +565,15 @@ function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border border-muted-foreground/30 text-muted-foreground">{ch.difficulty}</span>
-                    <span className="text-[9px] font-semibold text-muted-foreground/70">(coming soon)</span>
+                    <span className="text-[9px] font-semibold text-muted-foreground/70">{loc("ui.comingSoonTag")}</span>
                   </div>
-                  <h3 className="text-sm font-bold text-muted-foreground/70 leading-tight mb-2">{ch.name}</h3>
+                  <h3 className="text-sm font-bold text-muted-foreground/70 leading-tight mb-2">{loc(ch.name)}</h3>
                   <div className="flex items-center gap-3 text-[10px] text-muted-foreground/60 mb-2">
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {ch.time}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {loc(ch.time)}</span>
                     <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> {ch.xp} XP</span>
                   </div>
                   <div className="flex-1" />
-                  <span className="text-[9px] text-muted-foreground/50 text-center">Not available yet</span>
+                  <span className="text-[9px] text-muted-foreground/50 text-center">{loc("ui.notAvailable")}</span>
                 </div>
               );
             }
@@ -579,12 +586,12 @@ function ChallengeModal({ child, skillLabel, onClose, onPlay }) {
                 className="group text-left rounded-2xl bg-gradient-to-br from-blue-500/10 to-indigo-500/5 border border-blue-400/20 p-4 hover:border-blue-400/50 hover:shadow-[0_0_24px_rgba(59,130,246,0.3)] transition-all"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${DIFF_STYLE[ch.difficulty]}`}>{ch.difficulty}</span>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${DIFF_STYLE[ch.difficulty]}`}>{loc(ch.difficulty)}</span>
                   <Play className="w-4 h-4 text-blue-400 opacity-70 group-hover:opacity-100" />
                 </div>
-                <h3 className="text-sm font-bold text-foreground leading-tight mb-2">{ch.name}</h3>
+                <h3 className="text-sm font-bold text-foreground leading-tight mb-2">{loc(ch.name)}</h3>
                 <div className="flex items-center gap-3 text-[10px] text-muted-foreground mb-2">
-                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {ch.time}</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {loc(ch.time)}</span>
                   <span className="flex items-center gap-1"><Zap className="w-3 h-3 text-amber-400" /> {ch.xp} XP</span>
                 </div>
                 <div className="flex items-center gap-2">

@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Play, Clock, Compass, BookOpen, ArrowRight } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 function Field({ label, value, icon: Icon }) {
   return (
@@ -14,6 +15,7 @@ function Field({ label, value, icon: Icon }) {
 }
 
 export default function HeroCard({ path, unit, accent, accentGlow, onContinue }) {
+  const { t } = useAppLang();
   return (
     <div className="relative">
       <span className="neo-bloom neo-bloom-blue" aria-hidden="true" />
@@ -25,25 +27,25 @@ export default function HeroCard({ path, unit, accent, accentGlow, onContinue })
       >
         <div className="relative flex items-center gap-2 mb-3">
           <span className="neo-pill px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-200">
-            <Sparkles className="w-3 h-3" /> Mission Control
+            <Sparkles className="w-3 h-3" /> {t("dashboard.missionControl")}
           </span>
         </div>
         <h2 className="relative text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-          Continue Learning
+          {t("dashboard.continueLearning")}
         </h2>
         <div className="relative mt-4 grid grid-cols-2 gap-3">
-          <Field label="Current Path" value={path} icon={Compass} />
-          <Field label="Current Unit" value={unit} icon={BookOpen} />
+          <Field label={t("dashboard.currentPath")} value={path} icon={Compass} />
+          <Field label={t("dashboard.currentUnit")} value={unit} icon={BookOpen} />
         </div>
         <div className="relative mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-          <Clock className="w-3.5 h-3.5" /> <span>Estimated session · 5 min</span>
+          <Clock className="w-3.5 h-3.5" /> <span>{t("dashboard.estSession")}</span>
         </div>
         <button
           onClick={onContinue}
           className="hero-continue relative mt-5 w-full h-14 rounded-2xl font-bold text-white text-base flex items-center justify-center gap-2 select-none overflow-hidden"
           style={{ background: `linear-gradient(180deg, ${accent}, #1d4ed8)`, "--accent-glow": accentGlow }}
         >
-          <Play className="w-5 h-5" /> Continue <ArrowRight className="w-4 h-4 opacity-80" />
+          <Play className="w-5 h-5" /> {t("dashboard.continue")} <ArrowRight className="w-4 h-4 opacity-80" />
         </button>
       </motion.div>
     </div>

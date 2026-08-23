@@ -9,7 +9,7 @@ import { canUseAiToday, incrementAiUsage } from "@/lib/aiLimits";
 const AGENT_NAME = "vocabulary_tutor";
 
 export default function VocabTutorChat() {
-  const { t } = useAppLang();
+  const { t, lang } = useAppLang();
   const [conversation, setConversation] = useState(null);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -104,7 +104,7 @@ export default function VocabTutorChat() {
     setSending(true);
     try {
       const conv = await ensureConversation();
-      await base44.agents.addMessage(conv, { role: "user", content });
+      await base44.agents.addMessage(conv, { role: "user", content: `[${lang}] ${content}` });
       const me = await base44.auth.me();
       await incrementAiUsage(me.email, me.id, me.full_name);
       setUsage((u) => ({

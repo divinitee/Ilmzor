@@ -1,8 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Brain, Sparkles } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function AICoachCard({ recs, accent, accentGlow }) {
+  const { t } = useAppLang();
   return (
     <section className="premium-card p-5 md:p-6">
       <header className="flex items-center gap-2.5 mb-4">
@@ -13,8 +15,8 @@ export default function AICoachCard({ recs, accent, accentGlow }) {
           <Brain className="w-4 h-4 text-white" />
         </span>
         <div>
-          <h3 className="text-sm font-bold text-foreground uppercase tracking-wider leading-none">AI Coach</h3>
-          <p className="text-[10px] text-muted-foreground mt-0.5">Personalized guidance</p>
+          <h3 className="text-sm font-bold text-foreground uppercase tracking-wider leading-none">{t("dashboard.aiCoach")}</h3>
+          <p className="text-[10px] text-muted-foreground mt-0.5">{t("dashboard.aiCoachSub")}</p>
         </div>
       </header>
       <div className="space-y-2.5">

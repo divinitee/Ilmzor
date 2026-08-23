@@ -1,19 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Flame, Trophy, BookOpen, Sparkles } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const ICONS = { Flame, Trophy, BookOpen };
 
 export default function RecentAchievement({ achievement }) {
+  const { t } = useAppLang();
   if (!achievement) {
     return (
       <section className="premium-card p-5 md:p-6 text-center">
         <div className="w-12 h-12 mx-auto rounded-2xl bg-white/5 flex items-center justify-center mb-3">
           <Trophy className="w-6 h-6 text-muted-foreground/50" />
         </div>
-        <h3 className="text-sm font-bold text-foreground mb-1">No achievements yet</h3>
+        <h3 className="text-sm font-bold text-foreground mb-1">{t("dashboard.noAchievements")}</h3>
         <p className="text-xs text-muted-foreground">
-          Complete your first challenge to unlock an achievement.
+          {t("dashboard.noAchievementsDesc")}
         </p>
       </section>
     );
@@ -32,7 +34,7 @@ export default function RecentAchievement({ achievement }) {
           <Icon className="w-7 h-7 text-white" />
         </motion.div>
         <div className="flex-1 min-w-0">
-          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Latest Achievement</p>
+          <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t("dashboard.latestAchievement")}</p>
           <h3 className="text-base font-bold text-foreground leading-tight">{achievement.title}</h3>
           <p className="text-xs text-muted-foreground">{achievement.desc}</p>
         </div>

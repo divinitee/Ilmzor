@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Flame, Star, Clock, RotateCw } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 function Tile({ label, value, sub, icon: Icon }) {
   const empty = value === "—";
@@ -22,18 +23,19 @@ function Tile({ label, value, sub, icon: Icon }) {
 }
 
 export default function ProgressSnapshot({ totalCorrect, streak, xp }) {
+  const { t } = useAppLang();
   return (
     <section className="premium-card p-5 md:p-6">
-      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">Progress Snapshot</h3>
+      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-4">{t("dashboard.progressSnapshot")}</h3>
       <div className="grid grid-cols-2 gap-2.5">
-        <Tile label="Words Learned" value={totalCorrect} icon={BookOpen} />
-        <Tile label="Streak" value={streak} sub="days" icon={Flame} />
-        <Tile label="Current XP" value={xp} icon={Star} />
-        <Tile label="Words Due" value="—" sub="no SRS" icon={RotateCw} />
-        <Tile label="Study Today" value="—" sub="min" icon={Clock} />
+        <Tile label={t("dashboard.wordsLearned")} value={totalCorrect} icon={BookOpen} />
+        <Tile label={t("dashboard.streak")} value={streak} sub={t("dashboard.days")} icon={Flame} />
+        <Tile label={t("dashboard.currentXp")} value={xp} icon={Star} />
+        <Tile label={t("dashboard.wordsDue")} value="—" sub={t("dashboard.noSrs")} icon={RotateCw} />
+        <Tile label={t("dashboard.studyToday")} value="—" sub={t("dashboard.min")} icon={Clock} />
       </div>
       <p className="text-[10px] text-muted-foreground/70 mt-3 leading-relaxed">
-        Values reflect your real activity. Time-based metrics activate as you study.
+        {t("dashboard.progressNote")}
       </p>
     </section>
   );

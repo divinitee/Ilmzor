@@ -26,7 +26,7 @@ export default function MessageBubble({ message, onDelete }) {
         }`}
       >
         {isUser ? (
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          <p className="whitespace-pre-wrap">{String(message.content || "").replace(/^\[(uz|ru|en)\]\s*/, "")}</p>
         ) : (
           <ReactMarkdown className="prose prose-sm dark:prose-invert max-w-none [&>*]:my-1">
             {message.content}

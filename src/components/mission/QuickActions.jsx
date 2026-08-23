@@ -2,18 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { RotateCw, Layers, Shuffle, MessageCircle, Library, BarChart3 } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function QuickActions({ onNavigate, onOpenUnitDrawer }) {
+  const { t } = useAppLang();
   const actions = [
-    { label: "Review Due Words", icon: RotateCw, onClick: () => onNavigate("skillhub") },
-    { label: "Deep Mode", icon: Layers, onClick: () => onNavigate("skillhub") },
-    { label: "Random Challenge", icon: Shuffle, onClick: () => onNavigate("skillhub") },
-    { label: "Ask AI Teacher", icon: MessageCircle, onClick: () => onNavigate("tutor") },
-    { label: "Vocabulary Library", icon: Library, onClick: () => onOpenUnitDrawer() },
+    { label: t("dashboard.qaReview"), icon: RotateCw, onClick: () => onNavigate("skillhub") },
+    { label: t("dashboard.qaDeep"), icon: Layers, onClick: () => onNavigate("skillhub") },
+    { label: t("dashboard.qaRandom"), icon: Shuffle, onClick: () => onNavigate("skillhub") },
+    { label: t("dashboard.qaAi"), icon: MessageCircle, onClick: () => onNavigate("tutor") },
+    { label: t("dashboard.qaLibrary"), icon: Library, onClick: () => onOpenUnitDrawer() },
   ];
   return (
     <section>
-      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-3 px-1">Quick Actions</h3>
+      <h3 className="text-sm font-bold text-foreground uppercase tracking-wider mb-3 px-1">{t("dashboard.quickActions")}</h3>
       <div className="grid grid-cols-2 gap-2.5">
         {actions.map((a, i) => {
           const Icon = a.icon;
@@ -48,8 +50,8 @@ export default function QuickActions({ onNavigate, onOpenUnitDrawer }) {
               <BarChart3 className="w-5 h-5 text-purple-300" />
             </span>
             <div className="flex-1 text-left min-w-0">
-              <p className="text-sm font-bold text-foreground">Premium Analytics</p>
-              <p className="text-[11px] text-muted-foreground">Heatmaps, mastery graphs & AI reports</p>
+              <p className="text-sm font-bold text-foreground">{t("dashboard.premiumAnalytics")}</p>
+              <p className="text-[11px] text-muted-foreground">{t("dashboard.premiumAnalyticsDesc")}</p>
             </div>
           </motion.div>
         </Link>

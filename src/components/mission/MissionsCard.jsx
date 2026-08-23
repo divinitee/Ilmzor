@@ -1,15 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check, BookOpen, Zap, Target, Flame } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const ICONS = { BookOpen, Zap, Target, Flame };
 
 export default function MissionsCard({ missions, accent, accentGlow }) {
+  const { t } = useAppLang();
   const doneCount = missions.filter((m) => m.done).length;
   return (
     <section className="premium-card p-5 md:p-6">
       <header className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">Today's Mission</h3>
+        <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">{t("dashboard.todaysMission")}</h3>
         <span className="text-[10px] text-muted-foreground tabular-nums">{doneCount}/{missions.length}</span>
       </header>
       <div className="space-y-2.5">
