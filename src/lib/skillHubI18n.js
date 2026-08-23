@@ -5,22 +5,22 @@ import { useAppLang } from "@/hooks/useAppLang";
 
 const SKILL = {
   // ---- UI chrome ----
-  "ui.lab": { uz: "Ingliz tili laboratoriyangiz", ru: "Ваша лаборатория английского" },
-  "ui.title": { uz: "Bugun qaysi ko'nikmani rivojlantiramiz?", ru: "Какой навык развиваем сегодня?" },
+  "ui.lab": { en: "Your English Lab", uz: "Ingliz tili laboratoriyangiz", ru: "Ваша лаборатория английского" },
+  "ui.title": { en: "What skill are we working on?", uz: "Bugun qaysi ko'nikmani rivojlantiramiz?", ru: "Какой навык развиваем сегодня?" },
   "ui.sub": {
     en: "What skill are we working on?",
     uz: "Bugun qaysi ko'nikmani rivojlantiramiz?",
     ru: "Какой навык развиваем сегодня?",
   },
-  "ui.center": { uz: "Ingliz ko'nikmalari", ru: "Навыки английского" },
-  "ui.allSkills": { uz: "Barcha ko'nikmalar", ru: "Все навыки" },
-  "ui.chooseChallenge": { uz: "Mashqni tanlang", ru: "Выберите задание" },
-  "ui.soon": { uz: "(tezda)", ru: "(скоро)" },
-  "ui.comingSoonTitle": { uz: "Bu ko'nikma tez orada qo'shiladi — kuting!", ru: "Этот навык скоро появится — следите за новостями!" },
-  "ui.gotIt": { uz: "Tushundim", ru: "Понятно" },
-  "ui.notAvailable": { uz: "Hali mavjud emas", ru: "Пока недоступно" },
-  "ui.comingSoonTag": { uz: "(tezda)", ru: "(скоро)" },
-  "ui.tapHint": { uz: "So'zni bosing, so'ng uning ta'rifini bosing", ru: "Нажмите слово, затем его определение" },
+  "ui.center": { en: "English Skills", uz: "Ingliz ko'nikmalari", ru: "Навыки английского" },
+  "ui.allSkills": { en: "All Skills", uz: "Barcha ko'nikmalar", ru: "Все навыки" },
+  "ui.chooseChallenge": { en: "Choose a Challenge", uz: "Mashqni tanlang", ru: "Выберите задание" },
+  "ui.soon": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
+  "ui.comingSoonTitle": { en: "This skill is coming soon — stay tuned!", uz: "Bu ko'nikma tez orada qo'shiladi — kuting!", ru: "Этот навык скоро появится — следите за новостями!" },
+  "ui.gotIt": { en: "Got it", uz: "Tushundim", ru: "Понятно" },
+  "ui.notAvailable": { en: "Not available yet", uz: "Hali mavjud emas", ru: "Пока недоступно" },
+  "ui.comingSoonTag": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
+  "ui.tapHint": { en: "Tap a word, then its definition", uz: "So'zni bosing, so'ng uning ta'rifini bosing", ru: "Нажмите слово, затем его определение" },
 
   // ---- difficulty / time ----
   Easy: { uz: "Oson", ru: "Лёгкий" },
