@@ -72,13 +72,14 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
   const [hovered, setHovered] = useState(null); // { group, key }
-  const [zooming, setZooming] = useState(false);
+  const [dive, setDive] = useState(null);
 
-  // Camera push: a brief zoom-in when entering a skill world.
-  const diveIn = (next) => {
-    setZooming(true);
+  // Cinematic zoom: spawn a glowing clone of the clicked node that flies to
+  // the center and scales up — like diving into that skill's world.
+  const triggerDive = (node, glow, next) => {
+    setDive({ x: node.x, y: node.y, glow: glow || "rgba(99,102,241,0.5)", Icon: node.icon || null, k: Date.now() });
     next?.();
-    setTimeout(() => setZooming(false), 620);
+    setTimeout(() => setDive(null), 640);
   };
 
   const level = activeChild ? 2 : selected ? 1 : 0;
@@ -109,8 +110,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
       : { Icon: Sparkles, label: loc(activeChild?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" };
 
   return (
-    <>
-    <motion.div className="relative w-full h-full" style={{ perspective: "1400px" }} animate={{ scale: zooming ? 1.05 : 1 }} transition={{ duration: 0.5, ease: EASE }}>
+    <div className="relative w-full h-full" style={{ perspective: "1400px" }}>
       {/* ---------- Hub: persistent circle, content does a 3D card-turn ---------- */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
         <div className="relative w-24 h-24 md:w-28 md:h-28">
@@ -160,7 +160,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
         <Lines nodes={skillNodes} color="#a78bfa" hovered={hovered?.group === "skill" ? hovered.key : null} filterId="ovPulse" />
         {skillNodes.map((n, i) => (
           <SkillNode key={n.id} node={n} index={i} active={level === 0}
-            onClick={() => diveIn(() => setSelected(n.id))} onComingSoon={() => onComingSoon(n.label)}
+            onClick={() => triggerDive(n, n.glow, () => setSelected(n.id))} onComingSoon={() => onComingSoon(n.label)}
             hot={hovered?.group === "skill" && hovered.key === n.id}
             onHoverStart={() => setHovered({ group: "skill", key: n.id })} onHoverEnd={() => setHovered(null)} />
         ))}
@@ -170,8 +170,8 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
       <NodeGroup active={level === 1}>
         <Lines nodes={childNodes} color={skill?.color || "#a78bfa"} hovered={hovered?.group === "child" ? hovered.key : null} filterId="dtPulse" />
         {childNodes.map((c, i) => (
-          <ChildNode key={c.label} node={c} index={i} active={level === 1}
-            onClick={() => diveIn(() => setActiveChild(c))} onComingSoon={() => onComingSoon(c.label)}
+          <ChildNode key={c.label} node={c} index={i} active={level === 1} glow={skill?.glow || skill?.color}
+            onClick={() => triggerDive(c, skill?.glow || skill?.color, () => setActiveChild(c))} onComingSoon={() => onComingSoon(c.label)}
             hot={hovered?.group === "child" && hovered.key === c.label}
             onHoverStart={() => setHovered({ group: "child", key: c.label })} onHoverEnd={() => setHovered(null)} />
         ))}
@@ -181,14 +181,32 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
       <NodeGroup active={level === 2}>
         <Lines nodes={gameNodes} color={skill?.color || "#a78bfa"} hovered={hovered?.group === "game" ? hovered.key : null} filterId="gmPulse" />
         {gameNodes.map((c) => (
-          <GameNode key={c.name + c._i} node={c} active={level === 2}
+          <GameNode key={c.name + c._i} node={c} active={level === 2} glow={skill?.glow || skill?.color}
             onClick={() => onPlayGame({ game: c.game, difficulty: c.difficulty, bank: c.bank, skillLabel: activeChild.label })}
             hot={hovered?.group === "game" && hovered.key === c._i}
             onHoverStart={() => setHovered({ group: "game", key: c._i })} onHoverEnd={() => setHovered(null)} />
         ))}
       </NodeGroup>
-    </motion.div>
-    </>
+
+      {/* ---------- Cinematic dive clone: zooms into the clicked skill ---------- */}
+      <AnimatePresence>
+        {dive && (
+          <motion.div key={dive.k} className="absolute z-40 pointer-events-none"
+            initial={{ left: `${dive.x}%`, top: `${dive.y}%`, scale: 1, opacity: 1 }}
+            animate={{ left: "50%", top: "50%", scale: 6, opacity: [1, 1, 0] }}
+            transition={{ duration: 0.62, ease: EASE }}>
+            <div className="-translate-x-1/2 -translate-y-1/2 relative">
+              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+                style={{ width: 120, height: 120, background: `radial-gradient(closest-side, #ffffff, ${dive.glow} 45%, transparent 75%)`, filter: "blur(10px)" }} />
+              <div className="relative w-20 h-20 rounded-full border border-white/40 bg-white/15 backdrop-blur-2xl flex items-center justify-center"
+                style={{ boxShadow: `0 0 70px ${dive.glow}, inset 0 1px 0 rgba(255,255,255,0.3)` }}>
+                {dive.Icon ? <dive.Icon className="w-8 h-8 text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.8)]" /> : <Sparkles className="w-8 h-8 text-white" />}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -226,9 +244,10 @@ function SkillNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
   );
 }
 
-function ChildNode({ node, index, active, onClick, onComingSoon, hot, onHoverStart, onHoverEnd }) {
+function ChildNode({ node, index, active, onClick, onComingSoon, hot, glow, onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
   const soon = node.comingSoon;
+  const g = glow || "rgba(99,102,241,0.5)";
   return (
     <div className="absolute z-10" style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className="animate-neo-float">
@@ -244,10 +263,10 @@ function ChildNode({ node, index, active, onClick, onComingSoon, hot, onHoverSta
         >
           {!soon && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none animate-neo-breathe"
-              style={{ width: "150%", height: "155%", background: "radial-gradient(closest-side, rgba(37,99,235,0.5), transparent 72%)", filter: "blur(16px)", opacity: 0.5 }} />
+              style={{ width: "150%", height: "155%", background: `radial-gradient(closest-side, ${g}, transparent 72%)`, filter: "blur(16px)", opacity: 0.5 }} />
           )}
           <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11] skill-hover-pulse"} ${hot ? "skill-border-glow" : ""}`}
-            style={hot ? { "--arrival-color": "rgba(99,102,241,0.5)" } : undefined}>
+            style={hot ? { "--arrival-color": g } : undefined}>
             <span className={soon ? "block text-[11px] font-bold text-muted-foreground leading-tight" : "block text-[11px] font-bold text-foreground leading-tight"}>{loc(node.label)}</span>
             {soon ? (
               <span className="block text-[8px] text-muted-foreground/70 mt-0.5 leading-tight">{loc("ui.soon")}</span>
