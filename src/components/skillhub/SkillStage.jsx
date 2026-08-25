@@ -5,7 +5,7 @@ import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, PULSE_PHASES } from "@/lib/skillTreeData";
 
-const EASE = [0.2, 0.8, 0.2, 1];
+const EASE = [0.16, 1, 0.3, 1]; // premium ease-out-expo — slow, smooth settle
 const RM = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- helpers ---------- */
@@ -70,7 +70,7 @@ function NodeGroup({ active, delay = 0, children }) {
         z: active ? 0 : -220,
         filter: active ? "blur(0px)" : "blur(6px)",
       }}
-      transition={{ duration: 0.7, ease: EASE, delay: active ? delay : 0 }}
+      transition={{ duration: 0.9, ease: EASE, delay: active ? delay : 0 }}
     >
       {children}
     </motion.div>
@@ -94,7 +94,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
     setDivingId(node.id || node.label);
     setDive({ x: node.x, y: node.y, glow: glow || "rgba(99,102,241,0.5)", Icon: node.icon || null, label: node.label, k: Date.now() });
     next?.();
-    setTimeout(() => { setDive(null); setDivingId(null); }, 880);
+    setTimeout(() => { setDive(null); setDivingId(null); }, 1180);
   };
 
   // Reverse dive (Back): the center node pulls back toward its original
@@ -102,11 +102,11 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
   const triggerBackDive = (node, glow, next) => {
     setBackDive({ x: node.x, y: node.y, glow: glow || "rgba(99,102,241,0.5)", Icon: node.icon || null, label: node.label, k: Date.now() });
     next?.();
-    setTimeout(() => setBackDive(null), 760);
+    setTimeout(() => setBackDive(null), 950);
   };
 
   const level = activeChild ? 2 : selected ? 1 : 0;
-  const diveDelay = dive ? 0.42 : 0;
+  const diveDelay = dive ? 0.55 : 0;
   const skill = TOP_SKILLS.find((s) => s.id === selected);
 
   const onBack = () => {
@@ -153,7 +153,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
       />
 
       {/* ---------- Hub: persistent circle, content does a 3D card-turn ---------- */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20" style={{ opacity: hubHidden ? 0 : 1, transition: "opacity 0.3s ease" }}>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20" style={{ opacity: hubHidden ? 0 : 1, transition: "opacity 0.45s ease" }}>
         <div className="relative w-24 h-24 md:w-28 md:h-28">
           <div className={RM ? "absolute inset-0" : "absolute inset-0 hub-drift"}>
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hub-glow-pulse"
@@ -241,15 +241,15 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
             animate={{
               left: [`${dive.x}%`, `${dive.x}%`, "50%"],
               top: [`${dive.y}%`, `${dive.y}%`, "50%"],
-              scale: [1, 1.18, 3.2, 1.15],
+              scale: [1, 1.1, 2.4, 1.15],
               opacity: 1,
             }}
-            exit={{ opacity: 0, transition: { duration: 0.34, ease: EASE } }}
+            exit={{ opacity: 0, transition: { duration: 0.45, ease: EASE } }}
             transition={{
-              duration: 0.85, ease: EASE,
-              scale: { times: [0, 0.18, 0.6, 1] },
-              left: { times: [0, 0.18, 1] },
-              top: { times: [0, 0.18, 1] },
+              duration: 1.1, ease: EASE,
+              scale: { times: [0, 0.22, 0.72, 1] },
+              left: { times: [0, 0.22, 1] },
+              top: { times: [0, 0.22, 1] },
             }}>
             <div className="-translate-x-1/2 -translate-y-1/2 relative">
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
@@ -280,7 +280,7 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
               opacity: [1, 1, 0],
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: EASE, opacity: { times: [0, 0.72, 1] } }}>
+            transition={{ duration: 0.9, ease: EASE, opacity: { times: [0, 0.78, 1] } }}>
             <div className="-translate-x-1/2 -translate-y-1/2 relative">
               <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
                 style={{ width: 150, height: 150, background: `radial-gradient(closest-side, #ffffff, ${backDive.glow} 42%, transparent 74%)`, filter: "blur(14px)" }} />
@@ -310,8 +310,8 @@ function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={hidden ? { scale: 0.85, opacity: 0, z: 0 } : active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
-          transition={hidden ? { duration: 0 } : { delay: active ? 0.1 + index * 0.06 : 0, type: "spring", stiffness: 200, damping: 22 }}
-          whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+          transition={hidden ? { duration: 0 } : { delay: active ? 0.12 + index * 0.07 : 0, duration: 0.7, ease: EASE }}
+          whileHover={{ scale: 1.04, transition: { duration: 0.4, ease: EASE } }} whileTap={{ scale: 0.97 }}
           className="group relative"
           style={{ filter: soon ? undefined : `drop-shadow(0 14px 26px ${node.glow})`, transformPerspective: 700 }}
         >
@@ -343,8 +343,8 @@ function ChildNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={hidden ? { scale: 0.85, opacity: 0, z: 0 } : active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
-          transition={hidden ? { duration: 0 } : { delay: active ? delay + 0.08 + index * 0.05 : 0, type: "spring", stiffness: 220, damping: 22 }}
-          whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.95 }}
+          transition={hidden ? { duration: 0 } : { delay: active ? delay + 0.1 + index * 0.06 : 0, duration: 0.7, ease: EASE }}
+          whileHover={{ scale: 1.04, transition: { duration: 0.4, ease: EASE } }} whileTap={{ scale: 0.95 }}
           className="group relative min-w-[92px] max-w-[124px]"
           style={{ transformPerspective: 700 }}
         >
@@ -379,8 +379,8 @@ function GameNode({ node, active, onClick, hot, dim, glow, delay = 0, onHoverSta
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
-          transition={{ delay: active ? delay + 0.08 + node._i * 0.06 : 0, type: "spring", stiffness: 220, damping: 22 }}
-          whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.95 }}
+          transition={{ delay: active ? delay + 0.1 + node._i * 0.06 : 0, duration: 0.7, ease: EASE }}
+          whileHover={{ scale: 1.04, transition: { duration: 0.4, ease: EASE } }} whileTap={{ scale: 0.95 }}
           className="group relative min-w-[96px] max-w-[128px]"
           style={{ transformPerspective: 700 }}
         >
