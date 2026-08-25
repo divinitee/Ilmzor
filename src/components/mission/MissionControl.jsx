@@ -146,9 +146,6 @@ export default function MissionControl({
       <LearningJourney path={goal} unit={selectedUnitName} moduleNum={data.moduleNum} accent={ACCENT} />
       <QuickActions onNavigate={onNavigate} onOpenUnitDrawer={onOpenUnitDrawer} accent={ACCENT} />
 
-      <footer className="text-center text-xs text-muted-foreground pt-4">
-        {t("home.footer_created")} <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
-      </footer>
     </div>
   );
 }

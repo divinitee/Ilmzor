@@ -314,9 +314,6 @@ Highlight strengths, weakest skill to focus on, and 2 concrete next steps.`;
           )}
         </Panel>
 
-        <footer className="text-center text-xs text-muted-foreground pt-2">
-          Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
-        </footer>
       </div>
     </div>
   );

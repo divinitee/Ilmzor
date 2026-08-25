@@ -434,9 +434,6 @@ export default function TeacherDashboard() {
             </div>
           )}
 
-          <footer className="text-center text-xs text-muted-foreground pb-4">
-            Created by <strong className="text-foreground">Salohiddin Nurullaev & Temur Normatov</strong>
-          </footer>
         </div>
       </div>
 
