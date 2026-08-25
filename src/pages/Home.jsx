@@ -135,10 +135,10 @@ export default function Home() {
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
         <div className="relative flex items-center gap-2 select-none">
           <span className="neo-bloom" aria-hidden="true" />
-          <div className="relative neo-pill px-3 py-1.5">
+          <button onClick={() => navigateTab("home")} className="relative neo-pill px-3 py-1.5 cursor-pointer select-none">
             <BookOpen className="w-4 h-4 text-fuchsia-300" />
             <span className="font-bold text-foreground tracking-tight text-[13px]">{t("home.app_name")}</span>
-          </div>
+          </button>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
