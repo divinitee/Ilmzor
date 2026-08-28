@@ -15,6 +15,7 @@ import DefinitionMatchGame from "@/components/games/DefinitionMatchGame";
 import ContextGuessGame from "@/components/games/ContextGuessGame";
 import MemoryFlipGame from "@/components/games/MemoryFlipGame";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
+import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { DIFF_TO_GAME } from "@/lib/skillTreeData";
@@ -99,6 +100,8 @@ export default function SkillHub({ isActive = true, user = null }) {
       return <MemoryFlipGame {...base} />;
     if (activeGame.game === "picture_match")
       return <PictureMatchGame {...base} />;
+    if (activeGame.game === "odd_one_out")
+      return <OddOneOutGame {...base} />;
   }
 
   return (
