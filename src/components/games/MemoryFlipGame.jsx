@@ -1,13 +1,15 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Star, RotateCcw, Trophy, BookOpen } from "lucide-react";
-import { usableWords, pickN, meaningOf, shuffle } from "@/lib/vocabGameUtils";
+import { usableWords, pickN, meaningInLang, shuffle } from "@/lib/vocabGameUtils";
+import { useAppLang } from "@/hooks/useAppLang";
 
 const PAIR_COUNT = 6;
 
 // "Memory Flip" — flip cards two at a time to match each word with its meaning.
 export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGameComplete }) {
   const [round, setRound] = useState(0);
+  const { lang } = useAppLang();
 
   const pairs = useMemo(() => {
     const pool = usableWords(words);
@@ -21,7 +23,7 @@ export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGa
     const list = [];
     pairs.forEach((w, i) => {
       list.push({ id: `${i}-w`, pairId: i, content: w.english, type: "word" });
-      list.push({ id: `${i}-m`, pairId: i, content: meaningOf(w), type: "meaning" });
+      list.push({ id: `${i}-m`, pairId: i, content: meaningInLang(w, lang), type: "meaning" });
     });
     return shuffle(list);
   }, [pairs]);
