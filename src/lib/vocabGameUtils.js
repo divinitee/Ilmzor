@@ -1,11 +1,7 @@
-export const meaningOf = (w) => (w && (w.uzbek || w.russian || w.description || w.english)) || "";
-
-const TRANSLATION_KEY = "vocab_translation_lang";
-export function getTranslationLang() {
-  try { return localStorage.getItem(TRANSLATION_KEY) || "both"; } catch { return "both"; }
-}
-// The meaning in the user's chosen learning/translation language.
-export const meaningInLang = (w, lang = getTranslationLang()) => {
+// The meaning in the app's current language (uz/en/ru from useAppLang).
+// "en" has no dedicated meaning field on VocabularyWord, so it falls back
+// to showing whichever translation exists, Uzbek first.
+export const meaningInLang = (w, lang) => {
   if (!w) return "";
   if (lang === "uz") return w.uzbek || "";
   if (lang === "ru") return w.russian || "";
@@ -27,9 +23,8 @@ export function shuffle(arr) {
 export const pickN = (arr, n) => shuffle(arr).slice(0, n);
 
 // Build a multiple-choice question: pick the correct meaning of `target`
-// from 4 options (1 correct + 3 distractors from the pool).
-export function buildMeaningMcq(pool, target) {
-  const lang = getTranslationLang();
+// from 4 options (1 correct + 3 distractors from the pool), in `lang`.
+export function buildMeaningMcq(pool, target, lang) {
   const correct = meaningInLang(target, lang);
   const distractors = [];
   const used = new Set([correct]);
