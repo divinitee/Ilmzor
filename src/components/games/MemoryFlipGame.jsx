@@ -99,7 +99,7 @@ export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGa
     const pct = Math.max(40, 100 - extra * 8);
     const pass = pct >= 60;
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col items-center justify-center px-4 py-10">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -139,7 +139,7 @@ export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGa
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="bg-background/80 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
         <button
           onClick={onBack}
