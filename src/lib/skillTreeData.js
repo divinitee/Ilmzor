@@ -38,7 +38,12 @@ export const SKILL_CHILDREN = {
     C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
     C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
     C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
-    C("Relationships", ["Synonyms", "Antonyms", "Related words"], gen(["Synonym Sprint", "Antonym Hunt", "Related Words", "Connection Challenge"], "quiz")),
+    C("Relationships", ["Synonyms", "Antonyms", "Related words"], [
+      { name: "Synonym Sprint", game: "quiz", difficulty: "Easy", time: "3 min", xp: 40 },
+      { name: "Antonym Hunt", game: "odd_one_out", difficulty: "Medium", time: "5 min", xp: 65 },
+      { name: "Related Words", game: "quiz", difficulty: "Medium", time: "5 min", xp: 65 },
+      { name: "Connection Challenge", game: "quiz", difficulty: "Hard", time: "8 min", xp: 100 },
+    ]),
   ],
   grammar: [
     C("Sentence Structure", ["Word Order"], gen(["Word Order", "Build It"], "sentence")),
