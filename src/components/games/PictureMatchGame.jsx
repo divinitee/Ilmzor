@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowLeft, Star, Check, RotateCcw, Trophy, BookOpen } from "lucide-react";
 import { pickEmojiPairs } from "@/lib/wordEmoji";
 
