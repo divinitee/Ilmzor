@@ -92,7 +92,7 @@ export default function OddOneOutGame({ onBack, onCoinsEarned, onGameComplete })
     const earned = score * 10;
     const pass = pct >= 60;
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col items-center justify-center px-4 py-10">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-10">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -132,7 +132,7 @@ export default function OddOneOutGame({ onBack, onCoinsEarned, onGameComplete })
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="bg-background/80 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
         <button
           onClick={onBack}
@@ -188,9 +188,9 @@ export default function OddOneOutGame({ onBack, onCoinsEarned, onGameComplete })
                 whileTap={{ scale: answered ? 1 : 0.97 }}
                 className={`px-4 py-3.5 rounded-xl border-2 text-sm font-medium flex items-center justify-between select-none transition-all ${
                   isCorrect
-                    ? "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300"
+                    ? "border-emerald-500 bg-emerald-500/10 text-emerald-300"
                     : isWrong
-                    ? "border-rose-500 bg-rose-500/10 text-rose-700 dark:text-rose-300"
+                    ? "border-rose-500 bg-rose-500/10 text-rose-300"
                     : answered
                     ? "border-border bg-card text-muted-foreground"
                     : "border-border bg-card text-foreground hover:border-blue-400 hover:bg-blue-500/5"
