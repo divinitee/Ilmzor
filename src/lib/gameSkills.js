@@ -16,6 +16,7 @@ export const GAME_SKILL_MAP = {
   spelling: "spelling",
   definition: "comprehension",
   sentence: "creativity",
+  odd_one_out: "vocabulary",
 };
 
 const KEY = "vm_skill_stats_v1";
