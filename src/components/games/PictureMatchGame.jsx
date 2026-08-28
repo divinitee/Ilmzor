@@ -96,7 +96,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
 
   if (finished) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col items-center justify-center px-4 py-10">
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-10">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-sm text-center">
           <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/15 flex items-center justify-center mb-5">
             <Trophy className="w-10 h-10 text-emerald-600" />
@@ -120,7 +120,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950 flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="bg-background/80 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
         <button onClick={onBack} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground select-none">
           <ArrowLeft className="w-4 h-4" /> Back
