@@ -1,6 +1,7 @@
 import React from "react";
 import VocabMcqShell from "./VocabMcqShell";
 import { buildMeaningMcq } from "@/lib/vocabGameUtils";
+import { useAppLang } from "@/hooks/useAppLang";
 
 function renderContext(description, word) {
   if (!description) {
@@ -35,13 +36,14 @@ function renderContext(description, word) {
 
 // "Context Guess" — read the word used in a sentence, then choose its meaning.
 export default function ContextGuessGame(props) {
+  const { lang } = useAppLang();
   return (
     <VocabMcqShell
       {...props}
       headerLabel="Context Guess"
       poolFilter={(w) => !!w.description && w.description.trim().length >= 5}
       buildQuestion={(pool, t) => {
-        const m = buildMeaningMcq(pool, t);
+        const m = buildMeaningMcq(pool, t, lang);
         return {
           context: t.description,
           word: t.english,
