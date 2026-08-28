@@ -36,8 +36,9 @@ export const SKILL_CHILDREN = {
     C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
     C("Spelling", ["Typing", "Letter order", "Missing letters"], gen(["Typing", "Letter Order", "Missing Letters"], "spelling")),
     C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
-    C("Usage", ["Example sentences", "Fill in the blank", "Collocations", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair", "Collocation Match"], "sentence")),
-    C("Relationships", ["Synonyms", "Antonyms", "Related words", "Word families"], gen(["Synonym Sprint", "Antonym Hunt", "Related Words", "Connection Challenge"], "quiz")),
+    C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
+    C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
+    C("Relationships", ["Synonyms", "Antonyms", "Related words"], gen(["Synonym Sprint", "Antonym Hunt", "Related Words", "Connection Challenge"], "quiz")),
   ],
   grammar: [
     C("Sentence Structure", ["Word Order"], gen(["Word Order", "Build It"], "sentence")),
