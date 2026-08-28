@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { base44 } from "@/api/base44Client";
 import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTranslationLang } from "@/hooks/useTranslationLang";
 import { useAppLang } from "@/hooks/useAppLang";
 
 const DIFF_CONFIG = {
@@ -62,8 +61,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   const [waitingNext, setWaitingNext] = useState(false);
   const [coinAnimation, setCoinAnimation] = useState(null);
   const timerRef = useRef(null);
-  const { showRu } = useTranslationLang();
-  const { t } = useAppLang();
+  const { t, lang } = useAppLang();
+  // Supplementary Russian hint — useful unless Russian is already the
+  // primary display language, in which case it'd just repeat itself.
+  const showRu = lang !== "ru";
 
   const buildQuestions = () => {
     const TARGET = Math.min(cfg.count, Math.max(words.length, 1));
