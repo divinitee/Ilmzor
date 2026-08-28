@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw, ChevronLeft, ChevronRight, Volume2 } from "lucide-react";
-import { useTranslationLang } from "@/hooks/useTranslationLang";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function FlashCard({ words, unitName, onClose }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [direction, setDirection] = useState(1);
-  const { lang } = useTranslationLang();
+  const { lang } = useAppLang();
 
   const word = words[index];
 
@@ -82,7 +82,7 @@ export default function FlashCard({ words, unitName, onClose }) {
               ) : (
                 <>
                   <p className="text-2xl font-bold text-foreground">{word.uzbek}</p>
-                  {lang === "both" && word.russian && (
+                  {lang === "en" && word.russian && (
                     <p className="text-lg text-muted-foreground">{word.russian}</p>
                   )}
                 </>
