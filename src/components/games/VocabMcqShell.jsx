@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Check, X, Star, RotateCcw, Trophy, BookOpen } from "lucide-react";
 import { usableWords, pickN, meaningInLang } from "@/lib/vocabGameUtils";
-import { useTranslationLang } from "@/hooks/useTranslationLang";
+import { useAppLang } from "@/hooks/useAppLang";
 
 /**
  * Shared multiple-choice shell for vocabulary meaning games.
@@ -20,7 +20,7 @@ export default function VocabMcqShell({
   onCoinsEarned,
   onGameComplete,
 }) {
-  const { lang } = useTranslationLang();
+  const { lang } = useAppLang();
   const pool = useMemo(() => {
     const all = usableWords(words).filter((w) => meaningInLang(w, lang));
     if (poolFilter) {
