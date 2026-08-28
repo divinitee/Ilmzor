@@ -26,7 +26,7 @@ export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGa
       list.push({ id: `${i}-m`, pairId: i, content: meaningInLang(w, lang), type: "meaning" });
     });
     return shuffle(list);
-  }, [pairs]);
+  }, [pairs, lang]);
 
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState(new Set());
