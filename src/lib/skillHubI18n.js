@@ -44,6 +44,7 @@ const SKILL = {
   Spelling: { uz: "Imlo", ru: "Орфография" },
   "Word Forms": { uz: "So'z shakllari", ru: "Формы слов" },
   Usage: { uz: "Qo'llanilishi", ru: "Употребление" },
+  "Phrases & Chunks": { uz: "So'z birikmalari", ru: "Словосочетания" },
   Relationships: { uz: "Aloqalar", ru: "Связи" },
 
   // ---- grammar children ----
@@ -194,6 +195,7 @@ const SKILL = {
   "Example sentences": { uz: "Misol gaplar", ru: "Примеры" },
   "Fill in the blank": { uz: "Bo'shliqni to'ldirish", ru: "Заполнение пропусков" },
   Collocations: { uz: "Kollokatsiyalar", ru: "Сочетания" },
+  "Fixed expressions": { uz: "Turg'un iboralar", ru: "Устойчивые выражения" },
   "Common mistakes": { uz: "Umumiy xatolar", ru: "Частые ошибки" },
   Synonyms: { uz: "Sinonimlar", ru: "Синонимы" },
   Antonyms: { uz: "Antonimlar", ru: "Антонимы" },
