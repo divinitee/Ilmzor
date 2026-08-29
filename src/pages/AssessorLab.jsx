@@ -54,6 +54,7 @@ const GRAMMAR_HEADINGS = [
   "Countable/Uncountable Nouns", "Third Conditional",
   "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
   "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
+  "Zero Conditional", "Used to", "Question Tags", "Time Clauses", "Causative", "Phrasal Verbs",
 ];
 const GRAMMAR_FLAWS = [
   { flawLabel: "Missing article entirely", good: "I bought a book yesterday, and the book was really interesting.", flaw: "I bought a book yesterday, and book was really interesting." },
@@ -74,6 +75,12 @@ const GRAMMAR_FLAWS = [
   { flawLabel: "Gerund used instead of required to-infinitive", good: "She decided to study abroad next year.", flaw: "She decided studying abroad next year." },
   { flawLabel: "To-infinitive used instead of required gerund", good: "He enjoys playing basketball on weekends.", flaw: "He enjoys to play basketball on weekends." },
   { flawLabel: "Wrong relative pronoun for a person (which instead of who)", good: "The man who lives next door is a doctor.", flaw: "The man which lives next door is a doctor." },
+  { flawLabel: "'will' used instead of present simple in the result clause", good: "If you heat ice, it melts.", flaw: "If you heat ice, it will melt." },
+  { flawLabel: "Gerund used instead of base verb after 'used to'", good: "I used to play football every weekend when I was a child.", flaw: "I used to playing football every weekend when I was a child." },
+  { flawLabel: "Wrong auxiliary in the question tag", good: "You like coffee, don't you?", flaw: "You like coffee, isn't it?" },
+  { flawLabel: "'will' used in a future time clause instead of present simple", good: "I called my friend after I finished my homework.", flaw: "I will call my friend after I will finish my homework." },
+  { flawLabel: "Base verb used instead of past participle in the causative structure", good: "I had my car repaired last week.", flaw: "I had my car repair last week." },
+  { flawLabel: "Incorrect placement of the phrasal verb particle", good: "I need to look after my little sister this weekend.", flaw: "I need to look my little sister after this weekend." },
 ];
 // Looked up by topic name, not array position — TIER2_GRAMMAR has grown
 // and reordered since these cases were written, so positional indexing
@@ -83,6 +90,7 @@ const GRAMMAR_TOPIC_ORDER = [
   "Prepositions", "Modal Verbs", "Reported Speech", "Countable/Uncountable", "Third Conditional",
   "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
   "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
+  "Zero Conditional", "Used to", "Question Tags", "Time Clauses", "Causative", "Phrasal Verbs",
 ];
 const GRAMMAR_ITEMS = GRAMMAR_TOPIC_ORDER.map((name, i) => ({
   topic: GRAMMAR_HEADINGS[i],
