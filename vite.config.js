@@ -15,5 +15,12 @@ export default defineConfig({
       visualEditAgent: true
     }),
     react(),
-  ]
+  ],
+  optimizeDeps: {
+    // Force a single pre-bundled copy of React so all deps share one instance
+    include: ['react', 'react-dom', 'next-themes'],
+  },
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
 });
