@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Loader2, Trophy, Sparkles } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
-import { TIER1_MCQ, TIER3_ITEMS } from "@/lib/placementContent";
+import { TIER3_ITEMS } from "@/lib/placementContent";
 import {
-  recordAssessmentResult, pickTier2Set, scoreTier1, tier1Passed,
+  recordAssessmentResult, pickTier1Set, pickTier2Set, scoreTier1, tier1Passed,
   tier2Outcome, tier3Outcome, summarizeWeakAreas,
 } from "@/lib/placementTest";
 
@@ -37,7 +37,8 @@ export default function PlacementTest() {
   const [userEmail, setUserEmail] = useState("");
   const [phase, setPhase] = useState("tier1"); // tier1 | tier2 | tier3 | results
 
-  // Tier 1
+  // Tier 1 — a fresh random 10 (5 vocab + 5 grammar) picked once per attempt
+  const [tier1Set] = useState(() => pickTier1Set());
   const [t1Idx, setT1Idx] = useState(0);
   const [t1Answers, setT1Answers] = useState([]);
 
@@ -60,13 +61,13 @@ export default function PlacementTest() {
   const handleTier1Select = (optIdx) => {
     const next = [...t1Answers, optIdx];
     setT1Answers(next);
-    if (next.length < TIER1_MCQ.length) {
+    if (next.length < tier1Set.length) {
       setT1Idx(t1Idx + 1);
       return;
     }
     // Tier 1 complete
-    const { correct, total, pct } = scoreTier1(next, TIER1_MCQ);
-    TIER1_MCQ.forEach((item, i) => {
+    const { correct, total, pct } = scoreTier1(next, tier1Set);
+    tier1Set.forEach((item, i) => {
       const right = next[i] === item.answer;
       recordAssessmentResult({
         userEmail,
