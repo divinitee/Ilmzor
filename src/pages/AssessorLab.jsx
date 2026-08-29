@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Play, Loader2 } from "lucide-react";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
-import { TIER2_VOCAB, TIER2_GRAMMAR, TIER3_VOCAB, TIER3_GRAMMAR } from "@/lib/placementContent";
+import {
+  B1_VOCAB, B1_GRAMMAR, B2_VOCAB, B2_GRAMMAR, C1_VOCAB, C1_GRAMMAR,
+} from "@/lib/placementContent";
+
+// The B1/B2 gates were one combined "Tier 2" pool when these batteries were
+// written. Flattening them back into one lookup list keeps every existing
+// case valid — the batteries validate the rubric, not the gate boundaries.
+const OPEN_VOCAB = [...B1_VOCAB, ...B2_VOCAB];
+const OPEN_GRAMMAR = [...B1_GRAMMAR, ...B2_GRAMMAR];
 
 // Internal lab page — not linked in nav. Visit /assessor-lab directly.
 // Round 2: breadth test. Round 1 proved the mechanism works (near-copy,
@@ -46,6 +54,8 @@ const VOCAB_FLAWS = [
   { flawLabel: "Confuses ordering by importance with multitasking", good: "to decide what is most important and deal with that first", flaw: "to do many tasks at the same time" },
   { flawLabel: "Confuses with 'ignore'", good: "to successfully fix a problem or end a disagreement", flaw: "to ignore a problem so it goes away on its own" },
   { flawLabel: "Confuses with 'rushed/careless' (opposite meaning)", good: "done carefully and completely, checking every detail", flaw: "done very quickly without much care" },
+  { flawLabel: "Confuses persuasive force with mere popularity", good: "so convincing or interesting that you cannot ignore it and it forces you to agree", flaw: "something that a lot of people happen to like" },
+  { flawLabel: "Confuses significance with physical solidity", good: "big or important enough to really matter", flaw: "solid and heavy to the touch" },
 ];
 // Looked up by word, not array position — TIER2_VOCAB has grown since
 // these cases were written, so positional indexing would silently
@@ -56,9 +66,10 @@ const VOCAB_WORD_ORDER = [
   "reject", "assume", "acquire", "reveal", "flexible", "reliable", "considerable", "essential",
   "advocate", "coincide", "deteriorate", "enhance", "hinder", "inevitable",
   "justify", "notify", "obstacle", "prioritize", "resolve", "thorough",
+  "compelling", "substantial",
 ];
 const VOCAB_ITEMS = VOCAB_WORD_ORDER.map((name, i) => ({
-  word: TIER2_VOCAB.find((w) => w.english === name),
+  word: OPEN_VOCAB.find((w) => w.english === name),
   ...VOCAB_FLAWS[i],
 }));
 
@@ -69,6 +80,7 @@ const GRAMMAR_HEADINGS = [
   "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
   "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
   "Zero Conditional", "Used to", "Question Tags", "Time Clauses", "Causative", "Phrasal Verbs",
+  "Wish / If only", "Future Perfect", "Non-defining Relative Clauses",
 ];
 const GRAMMAR_FLAWS = [
   { flawLabel: "Missing article entirely", good: "I bought a book yesterday, and the book was really interesting.", flaw: "I bought a book yesterday, and book was really interesting." },
@@ -95,6 +107,9 @@ const GRAMMAR_FLAWS = [
   { flawLabel: "'will' used in a future time clause instead of present simple", good: "I called my friend after I finished my homework.", flaw: "I will call my friend after I will finish my homework." },
   { flawLabel: "Base verb used instead of past participle in the causative structure", good: "I had my car repaired last week.", flaw: "I had my car repair last week." },
   { flawLabel: "Incorrect placement of the phrasal verb particle", good: "I need to look after my little sister this weekend.", flaw: "I need to look my little sister after this weekend." },
+  { flawLabel: "Present tense used after 'wish' instead of the unreal past form", good: "I wish I lived closer to my family.", flaw: "I wish I live closer to my family." },
+  { flawLabel: "Simple future used instead of the future perfect", good: "By next June, I will have finished my degree.", flaw: "By next June, I will finish my degree." },
+  { flawLabel: "'that' used in a non-defining clause, and commas omitted", good: "My brother, who lives in Berlin, is visiting next week.", flaw: "My brother that lives in Berlin is visiting next week." },
 ];
 // Looked up by topic name, not array position — TIER2_GRAMMAR has grown
 // and reordered since these cases were written, so positional indexing
@@ -105,10 +120,11 @@ const GRAMMAR_TOPIC_ORDER = [
   "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
   "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
   "Zero Conditional", "Used to", "Question Tags", "Time Clauses", "Causative", "Phrasal Verbs",
+  "Wish / If only", "Future Perfect", "Non-defining Relative Clauses",
 ];
 const GRAMMAR_ITEMS = GRAMMAR_TOPIC_ORDER.map((name, i) => ({
   topic: GRAMMAR_HEADINGS[i],
-  task: TIER2_GRAMMAR.find((g) => g.topic === name),
+  task: OPEN_GRAMMAR.find((g) => g.topic === name),
   ...GRAMMAR_FLAWS[i],
 }));
 
@@ -265,7 +281,7 @@ const TIER3_VOCAB_FLAWS = [
   { flawLabel: "Confuses with 'careless' (opposite meaning)", good: "extremely careful and precise, paying close attention to every detail", flaw: "quick and careless, not worried about small details" },
   { flawLabel: "Confuses with 'systematic' (opposite meaning)", good: "decided randomly or by personal preference, without a clear reason or system", flaw: "carefully planned according to a strict logical system" },
 ];
-const TIER3_VOCAB_ITEMS = TIER3_VOCAB.map((word, i) => ({ word, ...TIER3_VOCAB_FLAWS[i] }));
+const TIER3_VOCAB_ITEMS = C1_VOCAB.map((word, i) => ({ word, ...TIER3_VOCAB_FLAWS[i] }));
 
 const TIER3_GRAMMAR_FLAWS = [
   { flawLabel: "Auxiliary not correctly inverted before the subject", good: "Never have I seen such a beautiful sunset.", flaw: "Never I have seen such a beautiful sunset." },
@@ -278,7 +294,7 @@ const TIER3_GRAMMAR_FLAWS = [
   { flawLabel: "Repeated and over-explained instead of using ellipsis", good: "Some students prefer tea, others coffee.", flaw: "Some students prefer tea, others prefer coffee to drink instead of it." },
   { flawLabel: "Auxiliary not correctly inverted after the fronted expression", good: "Little did she know what awaited her.", flaw: "Little she did know what awaited her." },
 ];
-const TIER3_GRAMMAR_ITEMS = TIER3_GRAMMAR.map((task, i) => ({ topic: task.topic, task, ...TIER3_GRAMMAR_FLAWS[i] }));
+const TIER3_GRAMMAR_ITEMS = C1_GRAMMAR.map((task, i) => ({ topic: task.topic, task, ...TIER3_GRAMMAR_FLAWS[i] }));
 
 function Tier3VocabSection() {
   const [results, setResults] = useState({});
@@ -302,7 +318,7 @@ function Tier3VocabSection() {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-bold text-foreground">Tier 3 (C1+) vocabulary — {TIER3_VOCAB_ITEMS.length} words</h2>
+          <h2 className="text-lg font-bold text-foreground">C1 gate vocabulary — {TIER3_VOCAB_ITEMS.length} words</h2>
           <p className="text-xs text-muted-foreground">Never validated before now. Same pattern: 1 clean answer + 1 realistic subtle-flaw answer ({TIER3_VOCAB_ITEMS.length * 2} gradings total).</p>
         </div>
         <button
@@ -349,7 +365,7 @@ function Tier3GrammarSection() {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-bold text-foreground">Tier 3 (C1+) grammar — {TIER3_GRAMMAR_ITEMS.length} structures</h2>
+          <h2 className="text-lg font-bold text-foreground">C1 gate grammar — {TIER3_GRAMMAR_ITEMS.length} structures</h2>
           <p className="text-xs text-muted-foreground">Never validated before now. Same pattern: 1 correct sentence + 1 classic real-world error ({TIER3_GRAMMAR_ITEMS.length * 2} gradings total).</p>
         </div>
         <button

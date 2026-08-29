@@ -1,8 +1,7 @@
 import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
 import {
-  TIER1_MCQ, TIER2_VOCAB, TIER2_GRAMMAR, TIER3_VOCAB, TIER3_GRAMMAR,
-  TIER1_PASS_THRESHOLD, TIER2_ADVANCE_AVG, TIER2_SETTLE_B1_AVG,
+  GATES, GATE_POOLS, STARTER_LEVEL, MCQ_PASS_RATIO, OPEN_PASS_AVG,
 } from "@/lib/placementContent";
 
 // Saves one graded result to the AssessmentResult entity. Always stamps
@@ -31,60 +30,62 @@ export async function recordAssessmentResult({
   }
 }
 
-// Picks a random 5 vocab + 5 grammar from the Tier 1 pool of 20, shuffled
-// and interleaved — same rationale as Tier 2's randomization: with a fixed
-// set every student (and every retake) would see identical questions in
-// identical order, which is both stale and easy to share answers for.
-export function pickTier1Set() {
-  const vocab = shuffle(TIER1_MCQ.filter((q) => q.type === "vocab")).slice(0, 5);
-  const grammar = shuffle(TIER1_MCQ.filter((q) => q.type === "grammar")).slice(0, 5);
+export const gateFormat = (level) => GATE_POOLS[level]?.format || "open";
+
+export const nextGate = (level) => GATES[GATES.indexOf(level) + 1] || null;
+
+// The level a student settles at when they fail the gate for `level`:
+// the previous gate they actually cleared, or Starter if they failed A1.
+export const previousGate = (level) => GATES[GATES.indexOf(level) - 1] || STARTER_LEVEL;
+
+// Builds one gate's 10 items — 5 vocab + 5 grammar, shuffled and
+// interleaved. Randomized per attempt so retakes aren't identical and
+// answers are harder to share between students; each item is scored
+// independently, so order doesn't affect placement accuracy.
+export function pickGateSet(level) {
+  const pool = GATE_POOLS[level];
+  if (!pool) return [];
+  if (pool.format === "mcq") {
+    const vocab = shuffle(pool.mcq.filter((q) => q.type === "vocab")).slice(0, 5);
+    const grammar = shuffle(pool.mcq.filter((q) => q.type === "grammar")).slice(0, 5);
+    return shuffle([...vocab, ...grammar]);
+  }
+  const vocab = shuffle(pool.vocab).slice(0, 5).map((w) => ({ type: "vocab", ...w }));
+  const grammar = shuffle(pool.grammar).slice(0, 5).map((g) => ({ type: "grammar", ...g }));
   return shuffle([...vocab, ...grammar]);
 }
 
-// Picks a random 5 vocab + 5 grammar from the Tier 2 pools, shuffled and
-// interleaved into one ordered list. Randomized per the reviewed design —
-// each item is scored independently, so order doesn't affect placement
-// accuracy, and it's more resistant to answers being shared between students.
-export function pickTier2Set() {
-  const vocab = shuffle(TIER2_VOCAB).slice(0, 5).map((w) => ({ type: "vocab", ...w }));
-  const grammar = shuffle(TIER2_GRAMMAR).slice(0, 5).map((g) => ({ type: "grammar", ...g }));
-  return shuffle([...vocab, ...grammar]);
-}
-
-// Same idea, smaller sample — 3 vocab + 3 grammar from a smaller pool,
-// since far fewer students ever reach Tier 3.
-export function pickTier3Set() {
-  const vocab = shuffle(TIER3_VOCAB).slice(0, 3).map((w) => ({ type: "vocab", ...w }));
-  const grammar = shuffle(TIER3_GRAMMAR).slice(0, 3).map((g) => ({ type: "grammar", ...g }));
-  return shuffle([...vocab, ...grammar]);
-}
-
-export function scoreTier1(answers, items) {
+// MCQ gates: `answers` is an array of chosen option indexes, compared to the
+// item answer keys. Returns a 0-1 ratio.
+export function scoreMcqGate(answers, items) {
   let correct = 0;
   answers.forEach((a, i) => {
     if (a === items[i].answer) correct += 1;
   });
-  return { correct, total: items.length, pct: correct / items.length };
+  return { correct, total: items.length, ratio: items.length ? correct / items.length : 0 };
 }
 
-export function tier1Passed(pct) {
-  return pct >= TIER1_PASS_THRESHOLD;
+// Open-ended gates: `results` is an array of graded entries with a 1-5 score.
+export function scoreOpenGate(results) {
+  if (!results.length) return { avg: 0, total: 0 };
+  const avg = results.reduce((s, r) => s + r.score, 0) / results.length;
+  return { avg, total: results.length };
 }
 
-// avg is the mean 1-5 score across the 10 Tier 2 results.
-// Below TIER2_SETTLE_B1_AVG -> B1. Between that and TIER2_ADVANCE_AVG -> B2
-// (this middle band wasn't spelled out in the original design doc — filling
-// the gap here; worth a second look). TIER2_ADVANCE_AVG+ -> unlock Tier 3.
-export function tier2Outcome(avg) {
-  if (avg >= TIER2_ADVANCE_AVG) return { level: null, advance: true };
-  if (avg >= TIER2_SETTLE_B1_AVG) return { level: "B2", advance: false };
-  return { level: "B1", advance: false };
-}
+// The whole point of the 5-gate model: a gate has exactly ONE failure
+// outcome — settle at the previous gate. There is no fixed default level to
+// fall into, which is what caused the old tier2Outcome() B1 floor bug.
+export function gateOutcome(level, score) {
+  const passed = gateFormat(level) === "mcq"
+    ? score >= MCQ_PASS_RATIO
+    : score >= OPEN_PASS_AVG;
 
-// Tier 3 only refines the placement upward from the B2/B1 floor Tier 2
-// already earned — a weak Tier 3 attempt doesn't erase a strong Tier 2 one.
-export function tier3Outcome(avg) {
-  return avg >= 3 ? "C1" : "B2";
+  if (!passed) return { passed: false, advance: false, settleAt: previousGate(level) };
+
+  const next = nextGate(level);
+  // Cleared the top gate — nothing left to climb.
+  if (!next) return { passed: true, advance: false, settleAt: level };
+  return { passed: true, advance: true, next };
 }
 
 // Groups logged results into a plain-language "what to work on" summary
