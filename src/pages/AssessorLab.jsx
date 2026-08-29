@@ -253,6 +253,127 @@ function GrammarSection() {
   );
 }
 
+// ---- Tier 3 (C1+) validation — never touched the assessor until now ----
+
+const TIER3_VOCAB_FLAWS = [
+  { flawLabel: "Overstates 'mitigate' as complete elimination rather than reduction", good: "to reduce how severe or harmful something is", flaw: "to completely remove all effects of something" },
+  { flawLabel: "Misses the 'appears true but may not be' nuance — states certainty instead", good: "seeming to be true on the surface, though it might not actually be the case", flaw: "definitely and certainly true without any doubt" },
+  { flawLabel: "Confuses with 'rare' (opposite meaning)", good: "existing or seeming to exist everywhere at the same time", flaw: "extremely rare and hard to find" },
+  { flawLabel: "Confuses with 'idealistic/dogmatic' (opposite meaning)", good: "approaching problems in a practical, realistic way rather than following strict theory or ideals", flaw: "following strict rules and theories no matter the situation" },
+  { flawLabel: "Confuses with 'refute' (opposite meaning)", good: "to provide evidence that confirms or supports something already stated", flaw: "to disprove or cast doubt on a claim" },
+  { flawLabel: "Confuses with 'permanent' (opposite meaning)", good: "lasting only a very short time before disappearing or ending", flaw: "lasting forever without ever changing" },
+  { flawLabel: "Confuses with 'careless' (opposite meaning)", good: "extremely careful and precise, paying close attention to every detail", flaw: "quick and careless, not worried about small details" },
+  { flawLabel: "Confuses with 'systematic' (opposite meaning)", good: "decided randomly or by personal preference, without a clear reason or system", flaw: "carefully planned according to a strict logical system" },
+];
+const TIER3_VOCAB_ITEMS = TIER3_VOCAB.map((word, i) => ({ word, ...TIER3_VOCAB_FLAWS[i] }));
+
+const TIER3_GRAMMAR_FLAWS = [
+  { flawLabel: "Auxiliary not correctly inverted before the subject", good: "Never have I seen such a beautiful sunset.", flaw: "Never I have seen such a beautiful sunset." },
+  { flawLabel: "Indicative form used instead of subjunctive base form", good: "It is essential that he arrive on time.", flaw: "It is essential that he arrives on time." },
+  { flawLabel: "No actual nominalization performed — just restated with a connector", good: "The sudden change in policy caused businesses to struggle to adapt.", flaw: "The government suddenly changed the policy, so businesses struggled to adapt." },
+  { flawLabel: "Missing relative pronoun in the cleft structure", good: "It was Sarah who won the award, not her brother.", flaw: "It was Sarah won the award, not her brother." },
+  { flawLabel: "Tenses don't correctly mix a past condition with a present result", good: "If I had studied medicine, I would be a doctor now.", flaw: "If I studied medicine, I would have been a doctor now." },
+  { flawLabel: "Made the claim more absolute instead of hedging it", good: "It could be argued that social media contributes to anxiety in some teenagers.", flaw: "Social media absolutely causes anxiety in all teenagers, without question." },
+  { flawLabel: "Missing 'having' before the past participle", good: "Having finished his work early, he decided to leave.", flaw: "Finished his work early, he decided to leave." },
+  { flawLabel: "Repeated and over-explained instead of using ellipsis", good: "Some students prefer tea, others coffee.", flaw: "Some students prefer tea, others prefer coffee to drink instead of it." },
+  { flawLabel: "Auxiliary not correctly inverted after the fronted expression", good: "Little did she know what awaited her.", flaw: "Little she did know what awaited her." },
+];
+const TIER3_GRAMMAR_ITEMS = TIER3_GRAMMAR.map((task, i) => ({ topic: task.topic, task, ...TIER3_GRAMMAR_FLAWS[i] }));
+
+function Tier3VocabSection() {
+  const [results, setResults] = useState({});
+  const [running, setRunning] = useState(false);
+
+  const runAll = async () => {
+    setRunning(true);
+    const jobs = [];
+    TIER3_VOCAB_ITEMS.forEach((item, i) => {
+      jobs.push(["good-" + i, evaluateVocabArticulation(item.word, item.good)]);
+      jobs.push(["flaw-" + i, evaluateVocabArticulation(item.word, item.flaw)]);
+    });
+    const entries = await Promise.all(jobs.map(async ([key, p]) => [key, await p]));
+    setResults(Object.fromEntries(entries));
+    setRunning(false);
+  };
+
+  const axes = [["accuracy", "Accuracy"], ["completeness", "Completeness"], ["own_words", "Own words"]];
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-foreground">Tier 3 (C1+) vocabulary — {TIER3_VOCAB_ITEMS.length} words</h2>
+          <p className="text-xs text-muted-foreground">Never validated before now. Same pattern: 1 clean answer + 1 realistic subtle-flaw answer ({TIER3_VOCAB_ITEMS.length * 2} gradings total).</p>
+        </div>
+        <button
+          onClick={runAll}
+          disabled={running}
+          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
+        >
+          {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+          Run all {TIER3_VOCAB_ITEMS.length * 2}
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        {TIER3_VOCAB_ITEMS.map((item, i) => (
+          <div key={item.word.english} className="grid sm:grid-cols-2 gap-3">
+            <ResultCard heading={`"${item.word.english}" — good answer`} answer={item.good} result={results["good-" + i]} axes={axes} />
+            <ResultCard heading={`"${item.word.english}" — ${item.flawLabel}`} answer={item.flaw} result={results["flaw-" + i]} axes={axes} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Tier3GrammarSection() {
+  const [results, setResults] = useState({});
+  const [running, setRunning] = useState(false);
+
+  const runAll = async () => {
+    setRunning(true);
+    const jobs = [];
+    TIER3_GRAMMAR_ITEMS.forEach((item, i) => {
+      jobs.push(["good-" + i, evaluateGrammarConstruction(item.task, item.good)]);
+      jobs.push(["flaw-" + i, evaluateGrammarConstruction(item.task, item.flaw)]);
+    });
+    const entries = await Promise.all(jobs.map(async ([key, p]) => [key, await p]));
+    setResults(Object.fromEntries(entries));
+    setRunning(false);
+  };
+
+  const axes = [["structureUsed", "Structure used"], ["correctness", "Correctness"], ["naturalness", "Naturalness"]];
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-foreground">Tier 3 (C1+) grammar — {TIER3_GRAMMAR_ITEMS.length} structures</h2>
+          <p className="text-xs text-muted-foreground">Never validated before now. Same pattern: 1 correct sentence + 1 classic real-world error ({TIER3_GRAMMAR_ITEMS.length * 2} gradings total).</p>
+        </div>
+        <button
+          onClick={runAll}
+          disabled={running}
+          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
+        >
+          {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+          Run all {TIER3_GRAMMAR_ITEMS.length * 2}
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        {TIER3_GRAMMAR_ITEMS.map((item, i) => (
+          <div key={item.topic} className="grid sm:grid-cols-2 gap-3">
+            <ResultCard heading={item.topic} subLabel="Correct" answer={item.good} result={results["good-" + i]} axes={axes} />
+            <ResultCard heading={item.topic} subLabel={item.flawLabel} answer={item.flaw} result={results["flaw-" + i]} axes={axes} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function AssessorLab() {
   return (
     <div className="min-h-screen bg-background px-4 py-6 max-w-4xl mx-auto">
@@ -268,6 +389,9 @@ export default function AssessorLab() {
 
       <VocabSection />
       <GrammarSection />
+      <Tier3VocabSection />
+      <Tier3GrammarSection />
     </div>
   );
+}
 }
