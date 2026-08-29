@@ -61,7 +61,7 @@ function ScoreBar({ label, val }) {
   );
 }
 
-function ResultCard({ heading, subLabel, answer, result, axes }) {
+function ResultCard({ heading, subLabel = null, answer, result, axes }) {
   const badgeColor = !result ? "bg-muted text-muted-foreground border-border" :
     result.score >= 4 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" :
     result.score >= 3 ? "bg-amber-500/10 text-amber-400 border-amber-500/30" :
