@@ -26,8 +26,27 @@ const VOCAB_FLAWS = [
   { flawLabel: "Confuses with 'force'", good: "to convince someone to agree with you or do something by giving good reasons", flaw: "to force someone to do something" },
   { flawLabel: "Near-verbatim copy (spot-check on a short definition)", good: "something that breaks easily if you're not careful with it", flaw: "easily broken or damaged; delicate" },
   { flawLabel: "Confuses authentic with high-quality", good: "something that is real and true, not fake or pretending to be something else", flaw: "something that is very good quality" },
+  { flawLabel: "Confuses with 'accept'", good: "to refuse to accept, believe, or consider something", flaw: "to accept something without question" },
+  { flawLabel: "Confuses with 'prove'", good: "to accept something as true without proof", flaw: "to prove that something is definitely true" },
+  { flawLabel: "Confuses with 'buy immediately'", good: "to get or obtain something, often gradually", flaw: "to buy something quickly in one purchase" },
+  { flawLabel: "Confuses with 'hide'", good: "to make known something that was previously secret or hidden", flaw: "to keep something secret so no one finds out" },
+  { flawLabel: "Confuses with 'weak'", good: "able to change or adapt easily to different conditions", flaw: "easily broken or physically weak" },
+  { flawLabel: "Confuses with 'friendly'", good: "able to be trusted to do what is expected; consistent", flaw: "kind and pleasant to talk to" },
+  { flawLabel: "Confuses with 'huge'", good: "large or important enough to be worth considering", flaw: "extremely large in physical size" },
+  { flawLabel: "Confuses with 'nice to have'", good: "absolutely necessary; extremely important", flaw: "a pleasant extra that improves something" },
 ];
-const VOCAB_ITEMS = TIER2_VOCAB.map((word, i) => ({ word, ...VOCAB_FLAWS[i] }));
+// Looked up by word, not array position — TIER2_VOCAB has grown since
+// these cases were written, so positional indexing would silently
+// mismatch or crash. Name lookup stays correct regardless.
+const VOCAB_WORD_ORDER = [
+  "postpone", "reluctant", "negotiate", "sustainable", "diligent", "compensate",
+  "ambiguous", "persuade", "fragile", "genuine",
+  "reject", "assume", "acquire", "reveal", "flexible", "reliable", "considerable", "essential",
+];
+const VOCAB_ITEMS = VOCAB_WORD_ORDER.map((name, i) => ({
+  word: TIER2_VOCAB.find((w) => w.english === name),
+  ...VOCAB_FLAWS[i],
+}));
 
 const GRAMMAR_HEADINGS = [
   "Articles (a/an/the)", "Present Perfect vs Past Simple", "Second Conditional", "Passive Voice",
