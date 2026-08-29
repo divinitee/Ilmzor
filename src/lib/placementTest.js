@@ -1,7 +1,7 @@
 import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
 import {
-  TIER2_VOCAB, TIER2_GRAMMAR,
+  TIER1_MCQ, TIER2_VOCAB, TIER2_GRAMMAR,
   TIER1_PASS_THRESHOLD, TIER2_ADVANCE_AVG, TIER2_SETTLE_B1_AVG,
 } from "@/lib/placementContent";
 
@@ -29,6 +29,16 @@ export async function recordAssessmentResult({
     // Don't let a logging failure break the test experience itself.
     console.error("recordAssessmentResult failed:", e);
   }
+}
+
+// Picks a random 5 vocab + 5 grammar from the Tier 1 pool of 20, shuffled
+// and interleaved — same rationale as Tier 2's randomization: with a fixed
+// set every student (and every retake) would see identical questions in
+// identical order, which is both stale and easy to share answers for.
+export function pickTier1Set() {
+  const vocab = shuffle(TIER1_MCQ.filter((q) => q.type === "vocab")).slice(0, 5);
+  const grammar = shuffle(TIER1_MCQ.filter((q) => q.type === "grammar")).slice(0, 5);
+  return shuffle([...vocab, ...grammar]);
 }
 
 // Picks a random 5 vocab + 5 grammar from the Tier 2 pools, shuffled and
