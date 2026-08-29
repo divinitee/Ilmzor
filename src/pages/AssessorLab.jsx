@@ -140,8 +140,8 @@ function VocabSection() {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-bold text-foreground">Vocabulary articulation — 10 words</h2>
-          <p className="text-xs text-muted-foreground">Each word: 1 clean answer + 1 realistic subtle-flaw answer (20 gradings total).</p>
+          <h2 className="text-lg font-bold text-foreground">Vocabulary articulation — {VOCAB_ITEMS.length} words</h2>
+          <p className="text-xs text-muted-foreground">Each word: 1 clean answer + 1 realistic subtle-flaw answer ({VOCAB_ITEMS.length * 2} gradings total).</p>
         </div>
         <button
           onClick={runAll}
@@ -149,7 +149,7 @@ function VocabSection() {
           className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-          Run all 20
+          Run all {VOCAB_ITEMS.length * 2}
         </button>
       </div>
 
@@ -187,8 +187,8 @@ function GrammarSection() {
     <section className="mb-10">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-bold text-foreground">Grammar construction — 10 structures</h2>
-          <p className="text-xs text-muted-foreground">Each structure: 1 correct sentence + 1 sentence with that structure's classic real-world error (20 gradings total).</p>
+          <h2 className="text-lg font-bold text-foreground">Grammar construction — {GRAMMAR_ITEMS.length} structures</h2>
+          <p className="text-xs text-muted-foreground">Each structure: 1 correct sentence + 1 sentence with that structure's classic real-world error ({GRAMMAR_ITEMS.length * 2} gradings total).</p>
         </div>
         <button
           onClick={runAll}
@@ -196,7 +196,7 @@ function GrammarSection() {
           className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-          Run all 20
+          Run all {GRAMMAR_ITEMS.length * 2}
         </button>
       </div>
 
