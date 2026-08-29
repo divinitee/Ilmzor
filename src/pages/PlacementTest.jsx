@@ -141,7 +141,6 @@ export default function PlacementTest() {
       return;
     }
     if (phase === "tier2") {
-      const results = [...t2Results, ...(feedback ? [] : [])]; // t2Results already updated via setter above
       const avg = t2Results.reduce((s, r) => s + r.score, 0) / t2Results.length;
       const { level, advance } = tier2Outcome(avg);
       if (advance) {
@@ -223,9 +222,8 @@ export default function PlacementTest() {
 
   // tier2 / tier3
   const tierLabel = phase === "tier2" ? "Tier 2 \u00b7 B1-B2" : "Tier 3 \u00b7 C1+";
-  const prompt = currentItem?.type === "vocab"
-    ? `Explain what "${currentItem.english}" means, in your own words.`
-    : currentItem?.instruction;
+  const prompt = currentItem?.instruction
+    || (currentItem?.type === "vocab" ? `Explain what "${currentItem.english}" means, in your own words.` : "");
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
