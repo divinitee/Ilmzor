@@ -4,35 +4,87 @@ import { ArrowLeft, Play, Loader2 } from "lucide-react";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 
 // Internal lab page — not linked in nav. Visit /assessor-lab directly.
-// Runs the real LLM-graded assessor against a battery of pre-written edge
-// cases (good / mediocre / wrong / blank / gaming answers) so we can eyeball
-// whether the rubric behaves before wiring it into any real student flow.
+// Round 2: breadth test. Round 1 proved the mechanism works (near-copy,
+// wrong-conjunction-type, blank, gaming all behaved correctly) on ONE word
+// and ONE grammar structure. This round swaps in 10 different words and 10
+// different grammar trouble-spots to check the rubric generalizes, rather
+// than re-proving the same edge-case categories we already confirmed work.
+// Each item gets a clean answer + one realistic, subtly-wrong answer.
 
-const VOCAB_WORD = { english: "assess", definition: "evaluate or estimate the nature, ability, or quality of something" };
-
-const VOCAB_CASES = [
-  { label: "Good paraphrase (from Ilkhom's own example)", answer: "to grade or rate smth based on certain criteria" },
-  { label: "Near-verbatim copy of the definition", answer: "to evaluate or estimate the nature, ability, or quality of something" },
-  { label: "Wrong meaning entirely", answer: "to help someone do a difficult task" },
-  { label: "Vague / doesn't commit to a meaning", answer: "it's like when you think about something" },
-  { label: "Blank answer", answer: "" },
-  { label: "Gaming attempt / gibberish", answer: "asdf assess is a good word i like it" },
+const VOCAB_ITEMS = [
+  { word: { english: "postpone", definition: "to delay an event to a later time" },
+    good: "to move something to happen at a later date instead of now",
+    flawLabel: "Confuses with 'cancel'", flaw: "to cancel something completely" },
+  { word: { english: "reluctant", definition: "unwilling and hesitant; disinclined" },
+    good: "not really wanting to do something and hesitating before doing it",
+    flawLabel: "Confuses with 'afraid'", flaw: "feeling nervous or scared about something" },
+  { word: { english: "negotiate", definition: "to try to reach an agreement through discussion" },
+    good: "to talk with someone to reach a deal both sides accept",
+    flawLabel: "Misses the mutual-agreement part", flaw: "to argue with someone until they agree with you" },
+  { word: { english: "sustainable", definition: "able to continue over time without depleting resources or causing lasting damage" },
+    good: "something that can keep going long-term without using up resources or harming the environment",
+    flawLabel: "Too vague — loses the mechanism", flaw: "something that is good for the environment" },
+  { word: { english: "diligent", definition: "showing careful and persistent effort in one's work" },
+    good: "working hard and carefully, putting in steady effort",
+    flawLabel: "Confuses with 'intelligent'", flaw: "very smart and quick at learning things" },
+  { word: { english: "compensate", definition: "to give something, usually money, to make up for loss, damage, or an insufficiency" },
+    good: "to pay someone back or make up for a problem you caused them",
+    flawLabel: "Confuses with 'complain'", flaw: "to complain to someone about a mistake they made" },
+  { word: { english: "ambiguous", definition: "open to more than one interpretation; not having one obvious meaning" },
+    good: "when something can be understood in more than one way, so it's unclear which meaning is right",
+    flawLabel: "Confuses unclear-by-complexity with unclear-by-multiple-meanings", flaw: "when something is very difficult to understand" },
+  { word: { english: "persuade", definition: "to cause someone to believe or do something through reasoning or argument" },
+    good: "to convince someone to agree with you or do something by giving good reasons",
+    flawLabel: "Confuses with 'force'", flaw: "to force someone to do something" },
+  { word: { english: "fragile", definition: "easily broken or damaged; delicate" },
+    good: "something that breaks easily if you're not careful with it",
+    flawLabel: "Near-verbatim copy (spot-check on a short definition)", flaw: "easily broken or damaged; delicate" },
+  { word: { english: "genuine", definition: "real and authentic; not fake or pretended" },
+    good: "something that is real and true, not fake or pretending to be something else",
+    flawLabel: "Confuses authentic with high-quality", flaw: "something that is very good quality" },
 ];
 
-const GRAMMAR_TASK = {
-  instruction: "Write one sentence containing two clauses joined by a subordinating conjunction.",
-  requiredElement: "a subordinating conjunction (e.g. because, although, when, if, since)",
-  topic: "Complex sentences — subordination",
-};
-
-const GRAMMAR_CASES = [
-  { label: "Correct complex sentence", answer: "I stayed home because it was raining heavily outside." },
-  { label: "Used a coordinating conjunction instead", answer: "I stayed home and it was raining heavily outside." },
-  { label: "Run-on / comma splice", answer: "It was raining, I stayed home, it was cold too." },
-  { label: "Sentence fragment", answer: "Because it was raining outside." },
-  { label: "Correct structure, verb tense error", answer: "I stay home yesterday because it was raining." },
-  { label: "Blank answer", answer: "" },
-  { label: "Off-topic / gaming attempt", answer: "I like sentences and grammar is fun to learn." },
+const GRAMMAR_ITEMS = [
+  { topic: "Articles (a/an/the)",
+    task: { instruction: "Write one sentence using 'the' correctly for something specific already mentioned.", requiredElement: "correct use of the definite article 'the' for a known/specific noun", topic: "Articles" },
+    good: "I bought a book yesterday, and the book was really interesting.",
+    flawLabel: "Missing article entirely", flaw: "I bought a book yesterday, and book was really interesting." },
+  { topic: "Present Perfect vs Past Simple",
+    task: { instruction: "Write one sentence using the present perfect to describe a past experience with no specific time.", requiredElement: "present perfect (have/has + past participle), no specific past time marker", topic: "Present Perfect" },
+    good: "I have visited Paris three times.",
+    flawLabel: "Present perfect + specific past time marker", flaw: "I have visited Paris in 2019." },
+  { topic: "Second Conditional",
+    task: { instruction: "Write one sentence using the second conditional for an imaginary present situation.", requiredElement: "if + past simple, ... would + base verb", topic: "Second Conditional" },
+    good: "If I had more money, I would travel around the world.",
+    flawLabel: "'will' used in the if-clause", flaw: "If I will have more money, I would travel around the world." },
+  { topic: "Passive Voice",
+    task: { instruction: "Write one sentence in the passive voice describing an action done to something.", requiredElement: "be + past participle, correct subject-object inversion", topic: "Passive Voice" },
+    good: "The report was completed by the team yesterday.",
+    flawLabel: "Adjective used instead of past participle", flaw: "The report was complete by the team yesterday." },
+  { topic: "Comparatives",
+    task: { instruction: "Write one sentence comparing two things using a comparative adjective.", requiredElement: "correct comparative form (-er or more + adjective), not both", topic: "Comparatives" },
+    good: "This laptop is more expensive than that one.",
+    flawLabel: "Double comparative", flaw: "This laptop is more cheaper than that one." },
+  { topic: "Prepositions of Time",
+    task: { instruction: "Write one sentence using the correct preposition of time with a specific clock time.", requiredElement: "'at' used correctly with a clock time", topic: "Prepositions of Time" },
+    good: "The meeting starts at 9 o'clock.",
+    flawLabel: "Wrong preposition", flaw: "The meeting starts in 9 o'clock." },
+  { topic: "Modal Verbs of Obligation",
+    task: { instruction: "Write one sentence using the modal verb 'must' to express obligation.", requiredElement: "must + base form of the verb, no 'to'", topic: "Modal Verbs" },
+    good: "You must submit the form before Friday.",
+    flawLabel: "'to' added after a modal verb", flaw: "You must to submit the form before Friday." },
+  { topic: "Reported Speech",
+    task: { instruction: "Write one sentence reporting what someone said, using correct backshifted reported speech, for the original statement \"I am tired.\"", requiredElement: "tense backshift from present to past (am -> was)", topic: "Reported Speech" },
+    good: "She said that she was tired.",
+    flawLabel: "No tense backshift", flaw: "She said that she is tired." },
+  { topic: "Countable/Uncountable Nouns",
+    task: { instruction: "Write one sentence using 'much' or 'many' correctly with the right kind of noun.", requiredElement: "correct pairing of much (uncountable) or many (countable) with the noun used", topic: "Countable/Uncountable" },
+    good: "I don't have much time today.",
+    flawLabel: "'much' paired with a countable noun", flaw: "I don't have much friends today." },
+  { topic: "Third Conditional",
+    task: { instruction: "Write one sentence using the third conditional for an imaginary past situation and its unreal past result.", requiredElement: "if + past perfect, ... would have + past participle", topic: "Third Conditional" },
+    good: "If I had studied harder, I would have passed the exam.",
+    flawLabel: "Past simple used instead of past perfect", flaw: "If I studied harder, I would have passed the exam." },
 ];
 
 function ScoreBar({ label, val }) {
@@ -48,9 +100,8 @@ function ScoreBar({ label, val }) {
   );
 }
 
-function ResultCard({ label, answer, result, axes }) {
-  if (!result) return null;
-  const badgeColor =
+function ResultCard({ heading, subLabel, answer, result, axes }) {
+  const badgeColor = !result ? "bg-muted text-muted-foreground border-border" :
     result.score >= 4 ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30" :
     result.score >= 3 ? "bg-amber-500/10 text-amber-400 border-amber-500/30" :
     "bg-rose-500/10 text-rose-400 border-rose-500/30";
@@ -58,90 +109,120 @@ function ResultCard({ label, answer, result, axes }) {
     <div className="bg-card border border-border rounded-xl p-4">
       <div className="flex items-start justify-between gap-3 mb-2">
         <div>
-          <p className="text-xs text-muted-foreground font-medium">{label}</p>
+          <p className="text-xs text-muted-foreground font-medium">{heading}</p>
+          {subLabel && <p className="text-[11px] text-muted-foreground/70 italic">{subLabel}</p>}
           <p className="text-sm text-foreground mt-0.5">{answer || <em className="text-muted-foreground">(blank)</em>}</p>
         </div>
         <span className={`shrink-0 text-xs font-bold px-2 py-1 rounded-full border ${badgeColor}`}>
-          {result.score}/5
+          {result ? `${result.score}/5` : "—"}
         </span>
       </div>
-      <div className="space-y-1.5 my-3">
-        {axes.map(([key, axisLabel]) => (
-          <ScoreBar key={key} label={axisLabel} val={result[key]} />
-        ))}
-      </div>
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        <span className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">{result.diagnosis}</span>
-        {result.tip && <span className="text-muted-foreground">💬 {result.tip}</span>}
-      </div>
+      {result && (
+        <>
+          <div className="space-y-1.5 my-3">
+            {axes.map(([key, axisLabel]) => (
+              <ScoreBar key={key} label={axisLabel} val={result[key]} />
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            <span className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-mono">{result.diagnosis}</span>
+            {result.tip && <span className="text-muted-foreground">💬 {result.tip}</span>}
+          </div>
+        </>
+      )}
     </div>
   );
 }
 
-function Section({ title, task, cases, evaluator, axes, buildInput }) {
+function VocabSection() {
   const [results, setResults] = useState({});
   const [running, setRunning] = useState(false);
-  const [customAnswer, setCustomAnswer] = useState("");
-  const [customResult, setCustomResult] = useState(null);
-  const [customRunning, setCustomRunning] = useState(false);
 
-  const runBattery = async () => {
+  const runAll = async () => {
     setRunning(true);
-    const entries = await Promise.all(
-      cases.map(async (c) => [c.label, await evaluator(...buildInput(c.answer))])
-    );
+    const jobs = [];
+    VOCAB_ITEMS.forEach((item, i) => {
+      jobs.push(["good-" + i, evaluateVocabArticulation(item.word, item.good)]);
+      jobs.push(["flaw-" + i, evaluateVocabArticulation(item.word, item.flaw)]);
+    });
+    const entries = await Promise.all(jobs.map(async ([key, p]) => [key, await p]));
     setResults(Object.fromEntries(entries));
     setRunning(false);
   };
 
-  const runCustom = async () => {
-    setCustomRunning(true);
-    const res = await evaluator(...buildInput(customAnswer));
-    setCustomResult(res);
-    setCustomRunning(false);
-  };
+  const axes = [["accuracy", "Accuracy"], ["completeness", "Completeness"], ["own_words", "Own words"]];
 
   return (
     <section className="mb-10">
-      <div className="flex items-center justify-between mb-1">
-        <h2 className="text-lg font-bold text-foreground">{title}</h2>
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-foreground">Vocabulary articulation — 10 words</h2>
+          <p className="text-xs text-muted-foreground">Each word: 1 clean answer + 1 realistic subtle-flaw answer (20 gradings total).</p>
+        </div>
         <button
-          onClick={runBattery}
+          onClick={runAll}
           disabled={running}
-          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none"
+          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
         >
           {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
-          Run all {cases.length} cases
+          Run all 20
         </button>
       </div>
-      {task && <p className="text-xs text-muted-foreground mb-4 italic">Task: {task}</p>}
 
       <div className="space-y-3">
-        {cases.map((c) => (
-          <ResultCard key={c.label} label={c.label} answer={c.answer} result={results[c.label]} axes={axes} />
+        {VOCAB_ITEMS.map((item, i) => (
+          <div key={item.word.english} className="grid sm:grid-cols-2 gap-3">
+            <ResultCard heading={`"${item.word.english}" — good answer`} answer={item.good} result={results["good-" + i]} axes={axes} />
+            <ResultCard heading={`"${item.word.english}" — ${item.flawLabel}`} answer={item.flaw} result={results["flaw-" + i]} axes={axes} />
+          </div>
         ))}
       </div>
+    </section>
+  );
+}
 
-      <div className="mt-4 bg-card border border-dashed border-border rounded-xl p-4">
-        <p className="text-xs text-muted-foreground font-medium mb-2">Try your own answer</p>
-        <textarea
-          value={customAnswer}
-          onChange={(e) => setCustomAnswer(e.target.value)}
-          placeholder="Type an answer to grade..."
-          className="w-full h-20 px-3 py-2 border border-input rounded-lg text-sm bg-background text-foreground focus:border-primary focus:outline-none resize-none mb-2"
-        />
+function GrammarSection() {
+  const [results, setResults] = useState({});
+  const [running, setRunning] = useState(false);
+
+  const runAll = async () => {
+    setRunning(true);
+    const jobs = [];
+    GRAMMAR_ITEMS.forEach((item, i) => {
+      jobs.push(["good-" + i, evaluateGrammarConstruction(item.task, item.good)]);
+      jobs.push(["flaw-" + i, evaluateGrammarConstruction(item.task, item.flaw)]);
+    });
+    const entries = await Promise.all(jobs.map(async ([key, p]) => [key, await p]));
+    setResults(Object.fromEntries(entries));
+    setRunning(false);
+  };
+
+  const axes = [["structureUsed", "Structure used"], ["correctness", "Correctness"], ["naturalness", "Naturalness"]];
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-foreground">Grammar construction — 10 structures</h2>
+          <p className="text-xs text-muted-foreground">Each structure: 1 correct sentence + 1 sentence with that structure's classic real-world error (20 gradings total).</p>
+        </div>
         <button
-          onClick={runCustom}
-          disabled={customRunning || !customAnswer.trim()}
-          className="text-sm font-semibold bg-muted hover:bg-muted/70 text-foreground px-3 py-1.5 rounded-lg disabled:opacity-50 select-none"
+          onClick={runAll}
+          disabled={running}
+          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
         >
-          {customRunning ? "Grading..." : "Grade this"}
+          {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+          Run all 20
         </button>
-        {customResult && (
-          <div className="mt-3">
-            <ResultCard label="Your answer" answer={customAnswer} result={customResult} axes={axes} />
+      </div>
+
+      <div className="space-y-3">
+        {GRAMMAR_ITEMS.map((item, i) => (
+          <div key={item.topic} className="grid sm:grid-cols-2 gap-3">
+            <ResultCard heading={item.topic} subLabel="Correct" answer={item.good} result={results["good-" + i]} axes={axes} />
+            <ResultCard heading={item.topic} subLabel={item.flawLabel} answer={item.flaw} result={results["flaw-" + i]} axes={axes} />
           </div>
-        )}
+        ))}
       </div>
     </section>
   );
@@ -149,33 +230,19 @@ function Section({ title, task, cases, evaluator, axes, buildInput }) {
 
 export default function AssessorLab() {
   return (
-    <div className="min-h-screen bg-background px-4 py-6 max-w-2xl mx-auto">
+    <div className="min-h-screen bg-background px-4 py-6 max-w-4xl mx-auto">
       <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 select-none">
         <ArrowLeft className="w-4 h-4" /> Back to app
       </Link>
       <h1 className="text-xl font-bold text-foreground mb-1">Assessor Lab</h1>
       <p className="text-sm text-muted-foreground mb-8">
-        Internal test harness — runs the real LLM-graded assessor against known edge cases so we can
-        judge whether the rubric behaves before it touches any real student flow.
+        Round 2 — breadth test. 10 different words and 10 different grammar trouble-spots, each with a
+        clean answer and a realistic subtly-wrong one, to check the rubric generalizes past the first two
+        items we already proved work.
       </p>
 
-      <Section
-        title="Vocabulary articulation"
-        task={`Explain what "${VOCAB_WORD.english}" means, in your own words.`}
-        cases={VOCAB_CASES}
-        evaluator={evaluateVocabArticulation}
-        axes={[["accuracy", "Accuracy"], ["completeness", "Completeness"], ["own_words", "Own words"]]}
-        buildInput={(answer) => [VOCAB_WORD, answer]}
-      />
-
-      <Section
-        title="Grammar construction"
-        task={GRAMMAR_TASK.instruction}
-        cases={GRAMMAR_CASES}
-        evaluator={evaluateGrammarConstruction}
-        axes={[["structureUsed", "Structure used"], ["correctness", "Correctness"], ["naturalness", "Naturalness"]]}
-        buildInput={(answer) => [GRAMMAR_TASK, answer]}
-      />
+      <VocabSection />
+      <GrammarSection />
     </div>
   );
 }
