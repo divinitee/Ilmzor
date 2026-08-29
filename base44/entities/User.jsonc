@@ -7,6 +7,13 @@
         "admin",
         "user"
       ]
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Why the student is learning English, selected at signup e.g. work, ielts, travel, university, movies, daily"
     }
   },
   "required": [
