@@ -28,6 +28,7 @@ import AdminDashboard from '@/pages/AdminDashboard';
 import Analytics from '@/pages/Analytics';
 import Landing from '@/pages/Landing';
 import AssessorLab from '@/pages/AssessorLab';
+import PlacementTest from '@/pages/PlacementTest';
 import AppLoader from '@/components/AppLoader';
 
 const AuthenticatedApp = () => {
@@ -72,6 +73,7 @@ const AuthenticatedApp = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/assessor-lab" element={<AssessorLab />} />
+        <Route path="/placement-test" element={<PlacementTest />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
