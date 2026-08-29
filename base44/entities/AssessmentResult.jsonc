@@ -1,0 +1,82 @@
+{
+  "name": "AssessmentResult",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "placement_test",
+        "practice"
+      ],
+      "default": "practice"
+    },
+    "skill": {
+      "type": "string"
+    },
+    "subskill": {
+      "type": "string"
+    },
+    "item_label": {
+      "type": "string"
+    },
+    "student_answer": {
+      "type": "string",
+      "maxLength": 1000
+    },
+    "score": {
+      "type": "number"
+    },
+    "axis_scores": {
+      "type": "object"
+    },
+    "diagnosis": {
+      "type": "string"
+    },
+    "tip": {
+      "type": "string",
+      "maxLength": 500
+    }
+  },
+  "required": [
+    "user_email",
+    "skill",
+    "score"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
