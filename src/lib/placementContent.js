@@ -3,6 +3,9 @@
 // never drift out of sync with each other.
 
 // ---- Tier 2 (B1-B2) — articulated, AI-graded ----
+// Expanded to 18 words to match the grammar pool's breadth — with only 10,
+// every retake or every other student would keep seeing largely the same
+// words even with random sampling.
 
 export const TIER2_VOCAB = [
   { english: "postpone", definition: "to delay an event to a later time" },
@@ -15,13 +18,16 @@ export const TIER2_VOCAB = [
   { english: "persuade", definition: "to cause someone to believe or do something through reasoning or argument" },
   { english: "fragile", definition: "easily broken or damaged; delicate" },
   { english: "genuine", definition: "real and authentic; not fake or pretended" },
+  { english: "reject", definition: "to refuse to accept, believe, or consider something" },
+  { english: "assume", definition: "to accept something as true without proof" },
+  { english: "acquire", definition: "to get or obtain something, often gradually" },
+  { english: "reveal", definition: "to make known something that was previously secret or hidden" },
+  { english: "flexible", definition: "able to change or adapt easily to different conditions" },
+  { english: "reliable", definition: "able to be trusted to do what is expected; consistent" },
+  { english: "considerable", definition: "large or important enough to be worth considering" },
+  { english: "essential", definition: "absolutely necessary; extremely important" },
 ];
 
-// Expanded to properly cover the systematic A2-B2 grammar range from the
-// reviewed grammar document (tenses, subject-verb agreement, infinitives vs
-// gerunds, relative clauses) \u2014 the original 10-topic set was missing whole
-// categories outright. Tier 2 still only pulls 5 grammar items per session,
-// randomly, from this larger pool \u2014 broader source, same session length.
 export const TIER2_GRAMMAR = [
   { topic: "Articles", instruction: "Write one sentence using 'the' correctly for something specific already mentioned.", requiredElement: "correct use of the definite article 'the' for a known/specific noun" },
   { topic: "Present Simple vs Continuous", instruction: "Write one sentence using the present simple to describe a habit or routine, not something happening right now.", requiredElement: "present simple form for a habitual/repeated action, not present continuous" },
@@ -44,8 +50,9 @@ export const TIER2_GRAMMAR = [
 ];
 
 // ---- Tier 1 (A1-A2) — multiple choice, plain answer-key scoring ----
-// Grammar items taken verbatim from the reviewed grammar document, not
-// invented \u2014 same question, options, and answer key as the source.
+// 20 items now (10 vocab + 10 grammar), 10 sampled + shuffled per session
+// via pickTier1Set() in placementTest.js. All grammar items taken verbatim
+// from the reviewed grammar document, not invented.
 
 export const TIER1_MCQ = [
   { type: "vocab", concept: "Antonyms", question: "Choose the word that means the opposite of \u201chappy.\u201d", options: ["sad", "hungry", "tall", "fast"], answer: 0 },
@@ -58,14 +65,19 @@ export const TIER1_MCQ = [
   { type: "grammar", concept: "Prepositions", question: "We arrived ______ the airport two hours early.", options: ["at", "on", "to", "in"], answer: 0 },
   { type: "vocab", concept: "Value/Price", question: "Which word means \u201cnot expensive\u201d?", options: ["cheap", "heavy", "new", "fast"], answer: 0 },
   { type: "grammar", concept: "Modal Verbs", question: "You ______ wear a seatbelt while driving. It is the law.", options: ["must", "might", "could", "would"], answer: 0 },
+  { type: "vocab", concept: "Animals", question: "Which word means a baby dog?", options: ["puppy", "kitten", "cub", "chick"], answer: 0 },
+  { type: "grammar", concept: "Present Simple", question: "Water ______ at 100\u00b0C.", options: ["boil", "boiling", "boils", "is boiling"], answer: 2 },
+  { type: "vocab", concept: "Antonyms", question: "Choose the word that means the opposite of \u201cbig.\u201d", options: ["small", "new", "fast", "loud"], answer: 0 },
+  { type: "grammar", concept: "Present Continuous", question: "I ______ this book right now, so I cannot lend it to you.", options: ["read", "am reading", "reads", "reading"], answer: 1 },
+  { type: "vocab", concept: "Occupations", question: "What do you call a person who teaches students?", options: ["doctor", "teacher", "driver", "farmer"], answer: 1 },
+  { type: "grammar", concept: "Simple Past", question: "I ______ my keys yesterday and could not enter the house.", options: ["lose", "lost", "losing", "have lose"], answer: 1 },
+  { type: "vocab", concept: "Colors", question: "Which word describes the color of a clear sky?", options: ["red", "blue", "green", "black"], answer: 1 },
+  { type: "grammar", concept: "Articles", question: "I saw ______ interesting documentary last night.", options: ["a", "an", "the", "\u2013"], answer: 1 },
+  { type: "vocab", concept: "House/Rooms", question: "Which word means a place where you sleep?", options: ["kitchen", "bedroom", "garden", "office"], answer: 1 },
+  { type: "grammar", concept: "Modal Verbs", question: "You ______ see a doctor if the pain continues.", options: ["should", "may", "would", "might"], answer: 0 },
 ];
 
 // ---- Tier 3 (C1+) — articulated, harder ----
-// Sketch only — not yet validated against the assessor the way Tier 2 was.
-// Nominalization item rewritten: shows the transformation pattern via a
-// worked example instead of naming the linguistic term, since the goal is
-// testing the skill, not testing vocabulary about grammar.
-
 export const TIER3_ITEMS = [
   { type: "vocab", english: "mitigate", definition: "to make something less severe, serious, or painful", instruction: "Explain what 'mitigate' means, in your own words, and give an example of something that can be mitigated." },
   { type: "grammar", topic: "Inversion for Emphasis", instruction: "Rewrite this sentence using inversion for emphasis: \"I have never seen such a beautiful sunset.\"", requiredElement: "inverted word order beginning with 'Never have I...'" },
