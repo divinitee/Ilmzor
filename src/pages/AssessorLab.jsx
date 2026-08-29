@@ -34,6 +34,18 @@ const VOCAB_FLAWS = [
   { flawLabel: "Confuses with 'friendly'", good: "able to be trusted to do what is expected; consistent", flaw: "kind and pleasant to talk to" },
   { flawLabel: "Confuses with 'huge'", good: "large or important enough to be worth considering", flaw: "extremely large in physical size" },
   { flawLabel: "Confuses with 'nice to have'", good: "absolutely necessary; extremely important", flaw: "a pleasant extra that improves something" },
+  { flawLabel: "Confuses with 'oppose' (near-opposite meaning)", good: "to speak in support of an idea or cause and encourage others to accept it", flaw: "to strongly disagree with an idea or policy" },
+  { flawLabel: "Confuses timing overlap with similarity", good: "when two events happen at exactly the same time", flaw: "when two things are very similar to each other" },
+  { flawLabel: "Confuses with 'improve' (opposite meaning)", good: "to gradually get worse over time", flaw: "to slowly get better over time" },
+  { flawLabel: "Confuses quality improvement with physical size increase", good: "to make something better or more valuable than it was before", flaw: "to make something bigger in physical size" },
+  { flawLabel: "Confuses with 'help' (opposite meaning)", good: "to make it harder for someone to do something or make progress", flaw: "to help someone finish a task more quickly" },
+  { flawLabel: "Confuses with 'unlikely' (opposite meaning)", good: "something that is definitely going to happen and cannot be avoided", flaw: "something that is very unlikely to happen" },
+  { flawLabel: "Confuses with 'apologize'", good: "to give good reasons that explain why something is acceptable or correct", flaw: "to apologize for doing something wrong" },
+  { flawLabel: "Confuses with 'ask'", good: "to officially tell someone about something they need to know", flaw: "to ask someone a question about something" },
+  { flawLabel: "Confuses with 'aid/tool' (opposite meaning)", good: "a problem or barrier that makes it harder to achieve something", flaw: "a helpful tool that makes a task easier" },
+  { flawLabel: "Confuses ordering by importance with multitasking", good: "to decide what is most important and deal with that first", flaw: "to do many tasks at the same time" },
+  { flawLabel: "Confuses with 'ignore'", good: "to successfully fix a problem or end a disagreement", flaw: "to ignore a problem so it goes away on its own" },
+  { flawLabel: "Confuses with 'rushed/careless' (opposite meaning)", good: "done carefully and completely, checking every detail", flaw: "done very quickly without much care" },
 ];
 // Looked up by word, not array position — TIER2_VOCAB has grown since
 // these cases were written, so positional indexing would silently
@@ -42,6 +54,8 @@ const VOCAB_WORD_ORDER = [
   "postpone", "reluctant", "negotiate", "sustainable", "diligent", "compensate",
   "ambiguous", "persuade", "fragile", "genuine",
   "reject", "assume", "acquire", "reveal", "flexible", "reliable", "considerable", "essential",
+  "advocate", "coincide", "deteriorate", "enhance", "hinder", "inevitable",
+  "justify", "notify", "obstacle", "prioritize", "resolve", "thorough",
 ];
 const VOCAB_ITEMS = VOCAB_WORD_ORDER.map((name, i) => ({
   word: TIER2_VOCAB.find((w) => w.english === name),
