@@ -46,7 +46,18 @@ const GRAMMAR_FLAWS = [
   { flawLabel: "'much' paired with a countable noun", good: "I don't have much time today.", flaw: "I don't have much friends today." },
   { flawLabel: "Past simple used instead of past perfect", good: "If I had studied harder, I would have passed the exam.", flaw: "If I studied harder, I would have passed the exam." },
 ];
-const GRAMMAR_ITEMS = TIER2_GRAMMAR.map((task, i) => ({ topic: GRAMMAR_HEADINGS[i], task, ...GRAMMAR_FLAWS[i] }));
+// Looked up by topic name, not array position — TIER2_GRAMMAR has grown
+// and reordered since these cases were written, so positional indexing
+// would silently mismatch or crash. Name lookup stays correct regardless.
+const GRAMMAR_TOPIC_ORDER = [
+  "Articles", "Present Perfect", "Second Conditional", "Passive Voice", "Comparatives",
+  "Prepositions", "Modal Verbs", "Reported Speech", "Countable/Uncountable", "Third Conditional",
+];
+const GRAMMAR_ITEMS = GRAMMAR_TOPIC_ORDER.map((name, i) => ({
+  topic: GRAMMAR_HEADINGS[i],
+  task: TIER2_GRAMMAR.find((g) => g.topic === name),
+  ...GRAMMAR_FLAWS[i],
+}));
 
 function ScoreBar({ label, val }) {
   return (
