@@ -78,6 +78,12 @@ export default function Home() {
       if (unitList.length > 0 && !selectedUnit) setSelectedUnit(unitList[0].key);
       const myResults = await base44.entities.QuizResult.filter({ student_phone: me.email }, '-created_date');
       setResults(myResults);
+      if (me?.role !== "admin") {
+        const placementDone = await base44.entities.AssessmentResult.filter({ user_email: me.email, source: "placement_test" });
+        setHasPlacement(placementDone.length > 0);
+      } else {
+        setHasPlacement(true);
+      }
     } catch (err) {
       console.error(err);
     } finally {
