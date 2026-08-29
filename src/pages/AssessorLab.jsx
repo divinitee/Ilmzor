@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Play, Loader2 } from "lucide-react";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
+import { TIER2_VOCAB, TIER2_GRAMMAR } from "@/lib/placementContent";
 
 // Internal lab page — not linked in nav. Visit /assessor-lab directly.
 // Round 2: breadth test. Round 1 proved the mechanism works (near-copy,
