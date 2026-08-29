@@ -75,6 +75,7 @@ export default function PlacementTest() {
       const right = next[i] === q.answer;
       recordAssessmentResult({
         userEmail,
+        source: "placement_test",
         skill: q.type,
         subskill: q.concept,
         itemLabel: q.question,
