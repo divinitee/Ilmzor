@@ -33,6 +33,8 @@ const GRAMMAR_HEADINGS = [
   "Articles (a/an/the)", "Present Perfect vs Past Simple", "Second Conditional", "Passive Voice",
   "Comparatives", "Prepositions of Time", "Modal Verbs of Obligation", "Reported Speech",
   "Countable/Uncountable Nouns", "Third Conditional",
+  "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
+  "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
 ];
 const GRAMMAR_FLAWS = [
   { flawLabel: "Missing article entirely", good: "I bought a book yesterday, and the book was really interesting.", flaw: "I bought a book yesterday, and book was really interesting." },
@@ -45,6 +47,14 @@ const GRAMMAR_FLAWS = [
   { flawLabel: "No tense backshift", good: "She said that she was tired.", flaw: "She said that she is tired." },
   { flawLabel: "'much' paired with a countable noun", good: "I don't have much time today.", flaw: "I don't have much friends today." },
   { flawLabel: "Past simple used instead of past perfect", good: "If I had studied harder, I would have passed the exam.", flaw: "If I studied harder, I would have passed the exam." },
+  { flawLabel: "Present continuous used for a habit instead of present simple", good: "I usually wake up at seven o'clock every morning.", flaw: "I am usually waking up at seven o'clock every morning." },
+  { flawLabel: "Missing past tense ending", good: "She finished her homework before dinner yesterday.", flaw: "She finish her homework before dinner yesterday." },
+  { flawLabel: "Simple past used instead of past perfect for the earlier event", good: "By the time I arrived, the movie had already started.", flaw: "By the time I arrived, the movie already started." },
+  { flawLabel: "'will' followed by gerund instead of base verb", good: "I will call you as soon as I arrive.", flaw: "I will calling you as soon as I arrive." },
+  { flawLabel: "Plural verb used with singular 'each' subject", good: "Each of the students has completed the assignment.", flaw: "Each of the students have completed the assignment." },
+  { flawLabel: "Gerund used instead of required to-infinitive", good: "She decided to study abroad next year.", flaw: "She decided studying abroad next year." },
+  { flawLabel: "To-infinitive used instead of required gerund", good: "He enjoys playing basketball on weekends.", flaw: "He enjoys to play basketball on weekends." },
+  { flawLabel: "Wrong relative pronoun for a person (which instead of who)", good: "The man who lives next door is a doctor.", flaw: "The man which lives next door is a doctor." },
 ];
 // Looked up by topic name, not array position — TIER2_GRAMMAR has grown
 // and reordered since these cases were written, so positional indexing
@@ -52,6 +62,8 @@ const GRAMMAR_FLAWS = [
 const GRAMMAR_TOPIC_ORDER = [
   "Articles", "Present Perfect", "Second Conditional", "Passive Voice", "Comparatives",
   "Prepositions", "Modal Verbs", "Reported Speech", "Countable/Uncountable", "Third Conditional",
+  "Present Simple vs Continuous", "Past Simple", "Past Perfect", "Future with Will",
+  "Subject-Verb Agreement", "Infinitives", "Gerunds", "Relative Clauses",
 ];
 const GRAMMAR_ITEMS = GRAMMAR_TOPIC_ORDER.map((name, i) => ({
   topic: GRAMMAR_HEADINGS[i],
