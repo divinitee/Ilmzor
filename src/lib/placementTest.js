@@ -1,7 +1,7 @@
 import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
 import {
-  TIER1_MCQ, TIER2_VOCAB, TIER2_GRAMMAR,
+  TIER1_MCQ, TIER2_VOCAB, TIER2_GRAMMAR, TIER3_VOCAB, TIER3_GRAMMAR,
   TIER1_PASS_THRESHOLD, TIER2_ADVANCE_AVG, TIER2_SETTLE_B1_AVG,
 } from "@/lib/placementContent";
 
@@ -48,6 +48,14 @@ export function pickTier1Set() {
 export function pickTier2Set() {
   const vocab = shuffle(TIER2_VOCAB).slice(0, 5).map((w) => ({ type: "vocab", ...w }));
   const grammar = shuffle(TIER2_GRAMMAR).slice(0, 5).map((g) => ({ type: "grammar", ...g }));
+  return shuffle([...vocab, ...grammar]);
+}
+
+// Same idea, smaller sample — 3 vocab + 3 grammar from a smaller pool,
+// since far fewer students ever reach Tier 3.
+export function pickTier3Set() {
+  const vocab = shuffle(TIER3_VOCAB).slice(0, 3).map((w) => ({ type: "vocab", ...w }));
+  const grammar = shuffle(TIER3_GRAMMAR).slice(0, 3).map((g) => ({ type: "grammar", ...g }));
   return shuffle([...vocab, ...grammar]);
 }
 
