@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Loader2, Trophy, Sparkles } from "lucide-react";
+import { Loader2, Trophy, Sparkles } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { TIER1_MCQ, TIER3_ITEMS } from "@/lib/placementContent";
