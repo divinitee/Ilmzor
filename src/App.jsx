@@ -27,6 +27,7 @@ import StudyTips from '@/pages/StudyTips';
 import AdminDashboard from '@/pages/AdminDashboard';
 import Analytics from '@/pages/Analytics';
 import Landing from '@/pages/Landing';
+import AssessorLab from '@/pages/AssessorLab';
 import AppLoader from '@/components/AppLoader';
 
 const AuthenticatedApp = () => {
@@ -70,6 +71,7 @@ const AuthenticatedApp = () => {
         <Route path="/study-tips" element={<StudyTips />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/analytics" element={<Analytics />} />
+        <Route path="/assessor-lab" element={<AssessorLab />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
