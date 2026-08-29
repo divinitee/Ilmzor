@@ -374,6 +374,65 @@ function Tier3GrammarSection() {
   );
 }
 
+// ---- Language-exploit check — found live, Aug 29: "Kompensatsiya" (an Uzbek/
+// Russian transliteration of "compensate") scored 5/5 because the grader matched
+// the meaning without checking the answer was actually in English. Fixed in
+// assessor.js; these cases confirm it and guard against it silently regressing.
+
+const LANGUAGE_CHECK_CASES = [
+  { kind: "vocab", label: "'compensate' answered with its Uzbek/Russian transliteration (the real case that broke it)", word: { english: "compensate", definition: "to give something, usually money, to make up for loss, damage, or an insufficiency" }, answer: "Kompensatsiya" },
+  { kind: "vocab", label: "'negotiate' answered in Uzbek, not just a cognate", word: { english: "negotiate", definition: "to try to reach an agreement through discussion" }, answer: "muzokara qilish" },
+  { kind: "vocab", label: "'genuine' answered with an unrelated Uzbek word", word: { english: "genuine", definition: "real and authentic; not fake or pretended" }, answer: "haqiqiy" },
+  { kind: "grammar", label: "Second Conditional sentence written entirely in Uzbek", task: { instruction: "Write one sentence using the second conditional for an imaginary present situation.", requiredElement: "if + past simple, ... would + base verb", topic: "Second Conditional" }, answer: "Agar men ko'proq pulim bo'lsa, men dunyo bo'ylab sayohat qilardim." },
+];
+
+function LanguageCheckSection() {
+  const [results, setResults] = useState({});
+  const [running, setRunning] = useState(false);
+
+  const runAll = async () => {
+    setRunning(true);
+    const entries = await Promise.all(
+      LANGUAGE_CHECK_CASES.map(async (c, i) => {
+        const result = c.kind === "vocab"
+          ? await evaluateVocabArticulation(c.word, c.answer)
+          : await evaluateGrammarConstruction(c.task, c.answer);
+        return [i, result];
+      })
+    );
+    setResults(Object.fromEntries(entries));
+    setRunning(false);
+  };
+
+  return (
+    <section className="mb-10">
+      <div className="flex items-center justify-between mb-4">
+        <div>
+          <h2 className="text-lg font-bold text-foreground">Language-exploit check — {LANGUAGE_CHECK_CASES.length} cases</h2>
+          <p className="text-xs text-muted-foreground">Every one of these should score near-zero with diagnosis "not_in_english". Any that don't means the fix regressed.</p>
+        </div>
+        <button
+          onClick={runAll}
+          disabled={running}
+          className="flex items-center gap-1.5 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg disabled:opacity-50 select-none shrink-0"
+        >
+          {running ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Play className="w-3.5 h-3.5" />}
+          Run all {LANGUAGE_CHECK_CASES.length}
+        </button>
+      </div>
+
+      <div className="space-y-3">
+        {LANGUAGE_CHECK_CASES.map((c, i) => {
+          const axes = c.kind === "vocab"
+            ? [["accuracy", "Accuracy"], ["completeness", "Completeness"], ["own_words", "Own words"]]
+            : [["structureUsed", "Structure used"], ["correctness", "Correctness"], ["naturalness", "Naturalness"]];
+          return <ResultCard key={i} heading={c.label} answer={c.answer} result={results[i]} axes={axes} />;
+        })}
+      </div>
+    </section>
+  );
+}
+
 export default function AssessorLab() {
   return (
     <div className="min-h-screen bg-background px-4 py-6 max-w-4xl mx-auto">
@@ -391,6 +450,7 @@ export default function AssessorLab() {
       <GrammarSection />
       <Tier3VocabSection />
       <Tier3GrammarSection />
+      <LanguageCheckSection />
     </div>
   );
 }
