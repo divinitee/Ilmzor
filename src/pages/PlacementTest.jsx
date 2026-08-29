@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { Loader2, Trophy, Sparkles } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
-import { TIER3_ITEMS } from "@/lib/placementContent";
 import {
-  recordAssessmentResult, pickTier1Set, pickTier2Set, scoreTier1, tier1Passed,
+  recordAssessmentResult, pickTier1Set, pickTier2Set, pickTier3Set, scoreTier1, tier1Passed,
   tier2Outcome, tier3Outcome, summarizeWeakAreas,
 } from "@/lib/placementTest";
 
@@ -145,7 +144,7 @@ export default function PlacementTest() {
       const avg = t2Results.reduce((s, r) => s + r.score, 0) / t2Results.length;
       const { level, advance } = tier2Outcome(avg);
       if (advance) {
-        setTierSet(TIER3_ITEMS);
+        setTierSet(pickTier3Set());
         setTIdx(0);
         setPhase("tier3");
       } else {
