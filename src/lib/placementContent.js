@@ -3,9 +3,7 @@
 // never drift out of sync with each other.
 
 // ---- Tier 2 (B1-B2) — articulated, AI-graded ----
-// Expanded to 18 words to match the grammar pool's breadth — with only 10,
-// every retake or every other student would keep seeing largely the same
-// words even with random sampling.
+// 18 -> 30 words. Wider pool, same 5 sampled per session.
 
 export const TIER2_VOCAB = [
   { english: "postpone", definition: "to delay an event to a later time" },
@@ -26,8 +24,22 @@ export const TIER2_VOCAB = [
   { english: "reliable", definition: "able to be trusted to do what is expected; consistent" },
   { english: "considerable", definition: "large or important enough to be worth considering" },
   { english: "essential", definition: "absolutely necessary; extremely important" },
+  { english: "advocate", definition: "to publicly support or recommend a particular cause or policy" },
+  { english: "coincide", definition: "to happen at the same time as something else" },
+  { english: "deteriorate", definition: "to become progressively worse" },
+  { english: "enhance", definition: "to improve the quality, value, or extent of something" },
+  { english: "hinder", definition: "to create difficulty for someone or something, delaying or preventing progress" },
+  { english: "inevitable", definition: "certain to happen; unavoidable" },
+  { english: "justify", definition: "to show or prove that something is right or reasonable" },
+  { english: "notify", definition: "to formally inform someone of something" },
+  { english: "obstacle", definition: "something that blocks progress or achievement" },
+  { english: "prioritize", definition: "to treat something as more important than other things" },
+  { english: "resolve", definition: "to find a solution to a problem or disagreement" },
+  { english: "thorough", definition: "complete and careful, with attention to every detail" },
 ];
 
+// 18 -> 24 topics. Six more genuinely distinct B1-B2 structures, not
+// duplicates of what's already covered.
 export const TIER2_GRAMMAR = [
   { topic: "Articles", instruction: "Write one sentence using 'the' correctly for something specific already mentioned.", requiredElement: "correct use of the definite article 'the' for a known/specific noun" },
   { topic: "Present Simple vs Continuous", instruction: "Write one sentence using the present simple to describe a habit or routine, not something happening right now.", requiredElement: "present simple form for a habitual/repeated action, not present continuous" },
@@ -47,12 +59,16 @@ export const TIER2_GRAMMAR = [
   { topic: "Relative Clauses", instruction: "Write one sentence using a relative clause with 'who', 'which', 'where', or 'whose' to describe a person, thing, or place.", requiredElement: "correct relative pronoun matching person/thing/place/possession" },
   { topic: "Reported Speech", instruction: "Write one sentence reporting what someone said, using correct backshifted reported speech, for the original statement \"I am tired.\"", requiredElement: "tense backshift from present to past (am -> was)" },
   { topic: "Countable/Uncountable", instruction: "Write one sentence using 'much' or 'many' correctly with the right kind of noun.", requiredElement: "correct pairing of much (uncountable) or many (countable) with the noun used" },
+  { topic: "Zero Conditional", instruction: "Write one sentence using the zero conditional to describe a general truth or scientific fact.", requiredElement: "if/when + present simple, ... present simple (a general truth, not a one-time prediction)" },
+  { topic: "Used to", instruction: "Write one sentence using 'used to' to describe a past habit that is no longer true.", requiredElement: "used to + base verb, describing a discontinued past habit" },
+  { topic: "Question Tags", instruction: "Write one sentence with a question tag at the end (e.g. '..., isn't it?').", requiredElement: "question tag whose auxiliary and polarity correctly match the main clause" },
+  { topic: "Time Clauses", instruction: "Write one sentence using a time clause with 'before', 'after', or 'while' to connect two actions.", requiredElement: "correct time-clause connector linking two actions with correct tense sequencing" },
+  { topic: "Causative", instruction: "Write one sentence using the causative form 'have something done' to describe arranging for someone else to do something.", requiredElement: "have/get + object + past participle (causative structure)" },
+  { topic: "Phrasal Verbs", instruction: "Write one sentence using a common phrasal verb (e.g. give up, look after, find out, put off).", requiredElement: "correctly used phrasal verb with the right particle and its idiomatic meaning" },
 ];
 
 // ---- Tier 1 (A1-A2) — multiple choice, plain answer-key scoring ----
-// 20 items now (10 vocab + 10 grammar), 10 sampled + shuffled per session
-// via pickTier1Set() in placementTest.js. All grammar items taken verbatim
-// from the reviewed grammar document, not invented.
+// 20 -> 30 items (15 vocab + 15 grammar), 10 sampled + shuffled per session.
 
 export const TIER1_MCQ = [
   { type: "vocab", concept: "Antonyms", question: "Choose the word that means the opposite of \u201chappy.\u201d", options: ["sad", "hungry", "tall", "fast"], answer: 0 },
@@ -75,6 +91,16 @@ export const TIER1_MCQ = [
   { type: "grammar", concept: "Articles", question: "I saw ______ interesting documentary last night.", options: ["a", "an", "the", "\u2013"], answer: 1 },
   { type: "vocab", concept: "House/Rooms", question: "Which word means a place where you sleep?", options: ["kitchen", "bedroom", "garden", "office"], answer: 1 },
   { type: "grammar", concept: "Modal Verbs", question: "You ______ see a doctor if the pain continues.", options: ["should", "may", "would", "might"], answer: 0 },
+  { type: "vocab", concept: "Family", question: "Which word means your father's brother?", options: ["uncle", "cousin", "nephew", "grandfather"], answer: 0 },
+  { type: "grammar", concept: "Plural Nouns", question: "I have two ______.", options: ["child", "childs", "children", "childes"], answer: 2 },
+  { type: "vocab", concept: "Days/Time", question: "What do we call the day after Monday?", options: ["Sunday", "Tuesday", "Wednesday", "Saturday"], answer: 1 },
+  { type: "grammar", concept: "Possessive 's", question: "This is ______ book.", options: ["Sarah", "Sarah's", "Sarahs'", "of Sarah"], answer: 1 },
+  { type: "vocab", concept: "Clothes", question: "Which word means something you wear on your feet?", options: ["hat", "shoes", "gloves", "scarf"], answer: 1 },
+  { type: "grammar", concept: "There is/are", question: "There ______ two cats in the garden.", options: ["is", "are", "am", "be"], answer: 1 },
+  { type: "vocab", concept: "Antonyms", question: "Choose the word that means the opposite of \u201copen.\u201d", options: ["closed", "empty", "dark", "wet"], answer: 0 },
+  { type: "grammar", concept: "Wh-Questions", question: "______ do you live?", options: ["What", "Who", "Where", "When"], answer: 2 },
+  { type: "vocab", concept: "Body Parts", question: "Which word means the part of your body you see with?", options: ["ear", "eye", "nose", "hand"], answer: 1 },
+  { type: "grammar", concept: "Imperatives", question: "______ the door, please.", options: ["Close", "Closing", "To close", "Closes"], answer: 0 },
 ];
 
 // ---- Tier 3 (C1+) — articulated, harder ----
