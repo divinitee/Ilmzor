@@ -180,7 +180,7 @@ export default function PlacementTest() {
                 {weakAreas.map((w, i) => (
                   <div key={i} className="text-sm">
                     <span className="font-semibold text-foreground">{w.label}</span>
-                    <span className="text-muted-foreground"> \u2014 {w.tip || w.diagnosis}</span>
+                    <span className="text-muted-foreground"> — {w.tip || w.diagnosis}</span>
                   </div>
                 ))}
               </div>
