@@ -3,7 +3,6 @@
 // never drift out of sync with each other.
 
 // ---- Tier 2 (B1-B2) — articulated, AI-graded ----
-// 18 -> 30 words. Wider pool, same 5 sampled per session.
 
 export const TIER2_VOCAB = [
   { english: "postpone", definition: "to delay an event to a later time" },
@@ -38,8 +37,6 @@ export const TIER2_VOCAB = [
   { english: "thorough", definition: "complete and careful, with attention to every detail" },
 ];
 
-// 18 -> 24 topics. Six more genuinely distinct B1-B2 structures, not
-// duplicates of what's already covered.
 export const TIER2_GRAMMAR = [
   { topic: "Articles", instruction: "Write one sentence using 'the' correctly for something specific already mentioned.", requiredElement: "correct use of the definite article 'the' for a known/specific noun" },
   { topic: "Present Simple vs Continuous", instruction: "Write one sentence using the present simple to describe a habit or routine, not something happening right now.", requiredElement: "present simple form for a habitual/repeated action, not present continuous" },
@@ -68,7 +65,6 @@ export const TIER2_GRAMMAR = [
 ];
 
 // ---- Tier 1 (A1-A2) — multiple choice, plain answer-key scoring ----
-// 20 -> 30 items (15 vocab + 15 grammar), 10 sampled + shuffled per session.
 
 export const TIER1_MCQ = [
   { type: "vocab", concept: "Antonyms", question: "Choose the word that means the opposite of \u201chappy.\u201d", options: ["sad", "hungry", "tall", "fast"], answer: 0 },
@@ -104,12 +100,31 @@ export const TIER1_MCQ = [
 ];
 
 // ---- Tier 3 (C1+) — articulated, harder ----
-export const TIER3_ITEMS = [
-  { type: "vocab", english: "mitigate", definition: "to make something less severe, serious, or painful", instruction: "Explain what 'mitigate' means, in your own words, and give an example of something that can be mitigated." },
-  { type: "grammar", topic: "Inversion for Emphasis", instruction: "Rewrite this sentence using inversion for emphasis: \"I have never seen such a beautiful sunset.\"", requiredElement: "inverted word order beginning with 'Never have I...'" },
-  { type: "vocab", english: "ostensibly", definition: "apparently or as it seems, but perhaps not actually true", instruction: "Explain what 'ostensibly' means, and why a writer might choose it instead of just saying something 'is.'" },
-  { type: "grammar", topic: "Formal Subjunctive", instruction: "Write one formal sentence using the subjunctive after a verb like 'recommend', 'insist', or 'require' (e.g. 'It is essential that...').", requiredElement: "subjunctive base form after the trigger verb/expression, without 's' or tense marking" },
-  { type: "grammar", topic: "Verb-to-Noun Transformation", instruction: "Academic writing often turns a verb into a noun phrase. Example: \"Because prices increased quickly, people became worried\" becomes \"The rapid increase in prices caused widespread concern.\" Rewrite this sentence the same way: \"Because the government changed the policy suddenly, businesses struggled to adapt.\"", requiredElement: "the verb 'changed' turned into a noun phrase (e.g. 'the sudden change in policy'), matching the pattern shown in the example" },
+// 5 -> 17 items (8 vocab + 9 grammar). 3+3 sampled per session via
+// pickTier3Set() — kept deliberately smaller than Tier 2's pool since far
+// fewer students ever reach this tier, but still enough for real variation.
+
+export const TIER3_VOCAB = [
+  { english: "mitigate", definition: "to make something less severe, serious, or painful", instruction: "Explain what 'mitigate' means, in your own words, and give an example of something that can be mitigated." },
+  { english: "ostensibly", definition: "apparently or as it seems, but perhaps not actually true", instruction: "Explain what 'ostensibly' means, and why a writer might choose it instead of just saying something 'is.'" },
+  { english: "ubiquitous", definition: "present, appearing, or found everywhere", instruction: "Explain what 'ubiquitous' means, in your own words, and give an example of something ubiquitous in modern life." },
+  { english: "pragmatic", definition: "dealing with things sensibly and realistically, based on practical considerations rather than theory or ideals", instruction: "Explain what 'pragmatic' means, in your own words, and contrast it with someone who is idealistic." },
+  { english: "corroborate", definition: "to confirm or give support to a statement, theory, or finding", instruction: "Explain what 'corroborate' means, in your own words, and give an example of when someone might need to corroborate a claim." },
+  { english: "ephemeral", definition: "lasting for a very short time; transient", instruction: "Explain what 'ephemeral' means, in your own words, and give an example of something ephemeral." },
+  { english: "meticulous", definition: "showing great attention to detail; very careful and precise", instruction: "Explain what 'meticulous' means, in your own words, and describe a job that requires someone to be meticulous." },
+  { english: "arbitrary", definition: "based on random choice or personal whim, rather than any reason or system", instruction: "Explain what 'arbitrary' means, in your own words, and give an example of an arbitrary rule or decision." },
+];
+
+export const TIER3_GRAMMAR = [
+  { topic: "Inversion for Emphasis", instruction: "Rewrite this sentence using inversion for emphasis: \"I have never seen such a beautiful sunset.\"", requiredElement: "inverted word order beginning with 'Never have I...'" },
+  { topic: "Formal Subjunctive", instruction: "Write one formal sentence using the subjunctive after a verb like 'recommend', 'insist', or 'require' (e.g. 'It is essential that...').", requiredElement: "subjunctive base form after the trigger verb/expression, without 's' or tense marking" },
+  { topic: "Verb-to-Noun Transformation", instruction: "Academic writing often turns a verb into a noun phrase. Example: \"Because prices increased quickly, people became worried\" becomes \"The rapid increase in prices caused widespread concern.\" Rewrite this sentence the same way: \"Because the government changed the policy suddenly, businesses struggled to adapt.\"", requiredElement: "the verb 'changed' turned into a noun phrase (e.g. 'the sudden change in policy'), matching the pattern shown in the example" },
+  { topic: "Cleft Sentences", instruction: "Rewrite this sentence as a cleft sentence to add emphasis: \"Sarah won the award, not her brother.\"", requiredElement: "cleft structure ('It was...who/that...') correctly emphasizing the right subject" },
+  { topic: "Mixed Conditionals", instruction: "Write one sentence using a mixed conditional \u2014 an imaginary past condition with a present result (e.g. 'If I had studied medicine, I would be a doctor now.').", requiredElement: "if + past perfect (past condition), ... would + base verb (present result) \u2014 two different time references combined correctly" },
+  { topic: "Hedging Language", instruction: "Rewrite this overly direct claim using hedging language appropriate for academic writing: \"Social media causes anxiety in teenagers.\"", requiredElement: "hedged/cautious phrasing (e.g. 'It could be argued that...', 'This may suggest...') instead of a direct, unqualified claim" },
+  { topic: "Participle Clauses", instruction: "Rewrite this sentence using a participle clause to make it more concise: \"Because he had finished his work early, he decided to leave.\"", requiredElement: "participle clause (e.g. 'Having finished his work early, ...') correctly replacing the full subordinate clause" },
+  { topic: "Ellipsis", instruction: "Write one sentence using ellipsis to avoid repeating a word or phrase that's already understood from context (e.g. 'Some like tea, others coffee.').", requiredElement: "grammatically correct omission of an understood, repeated element" },
+  { topic: "Fronting for Emphasis", instruction: "Rewrite this sentence using fronting for dramatic emphasis: \"She did not know what awaited her.\"", requiredElement: "fronted negative/limiting expression correctly triggering subject-auxiliary inversion (e.g. 'Little did she know...')" },
 ];
 
 // ---- Thresholds (from the reviewed test design doc) ----
