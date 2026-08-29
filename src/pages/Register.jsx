@@ -228,7 +228,7 @@ export default function Register() {
         }
       }
 
-      window.location.href = "/";
+      window.location.href = role === "student" ? "/placement-test" : "/";
     } catch (err) {
       setError(err.message || s.otpFail);
     } finally {
