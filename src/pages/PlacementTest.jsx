@@ -197,10 +197,10 @@ export default function PlacementTest() {
   }
 
   if (phase === "tier1") {
-    const item = TIER1_MCQ[t1Idx];
+    const item = tier1Set[t1Idx];
     return (
       <div className="min-h-screen bg-background flex flex-col">
-        <Header tierLabel="Tier 1 \u00b7 A1-A2" idx={t1Idx} total={TIER1_MCQ.length} />
+        <Header tierLabel="Tier 1 \u00b7 A1-A2" idx={t1Idx} total={tier1Set.length} />
         <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
           <div className="bg-card border border-border rounded-2xl p-5 mb-5">
             <p className="text-base text-foreground leading-relaxed">{item.question}</p>
