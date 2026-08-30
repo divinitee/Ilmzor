@@ -16,7 +16,7 @@ function PlanStep({ onFree, onSeePlans }) {
       <Sparkles className="w-10 h-10 text-blue-500 mb-4" />
       <h1 className="text-2xl font-bold text-foreground mb-2">Start free</h1>
       <p className="text-sm text-muted-foreground mb-8">
-        Jump in for free, or see what the paid plans unlock \u2014 either way, you're in.
+        Jump in for free, or see what the paid plans unlock — either way, you're in.
       </p>
       <button
         onClick={onFree}
@@ -39,7 +39,7 @@ function ConfirmFreeStep({ onConfirm, onSeePlans }) {
     <div className="flex-1 flex flex-col justify-center px-6 max-w-sm mx-auto w-full text-center">
       <h2 className="text-xl font-bold text-foreground mb-2">Continue with the free plan?</h2>
       <p className="text-sm text-muted-foreground mb-8">
-        You'll get full access for one week as a welcome gift, then settle onto the free tier \u2014
+        You'll get full access for one week as a welcome gift, then settle onto the free tier —
         flashcards and a few AI turns a day. You can upgrade any time.
       </p>
       <button
@@ -132,7 +132,7 @@ function SuggestTestStep({ onTakeIt, onLater }) {
       <Sparkles className="w-10 h-10 text-blue-500 mx-auto mb-4" />
       <h2 className="text-xl font-bold text-foreground mb-2">Want a quick level check?</h2>
       <p className="text-sm text-muted-foreground mb-8">
-        A short, mixed vocabulary and grammar check \u2014 helps us show you the right words and
+        A short, mixed vocabulary and grammar check — helps us show you the right words and
         grammar for where you're actually at. Totally optional.
       </p>
       <button
