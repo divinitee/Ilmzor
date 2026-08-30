@@ -59,6 +59,11 @@
       "default": false,
       "description": "AI-verified payment screenshot"
     },
+    "is_trial": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if this subscription is the automatic 1-week welcome trial, not a real payment \u2014 used to tell trial expiry apart from a lapsed paid subscription."
+    },
     "description": {
       "type": "string",
       "maxLength": 1000,
