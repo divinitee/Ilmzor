@@ -139,8 +139,16 @@ export default function AdminWipeUsers() {
           </button>
         </>
       ) : (
-        <div className="flex items-center gap-2 text-sm text-emerald-500 font-semibold mb-2">
-          <CheckCircle2 className="w-4 h-4" /> Done
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2 text-sm text-emerald-500 font-semibold">
+            <CheckCircle2 className="w-4 h-4" /> Done
+          </div>
+          <button
+            onClick={() => { setDone(false); setConfirmText(""); setLog([]); }}
+            className="text-xs text-muted-foreground hover:text-foreground underline select-none"
+          >
+            Run again
+          </button>
         </div>
       )}
 
