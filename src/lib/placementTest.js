@@ -88,31 +88,6 @@ export function gateOutcome(level, score) {
   return { passed: true, advance: true, next };
 }
 
-// Grants the 1-week free "Learner Plan" trial once a student finishes the
-// placement test, reusing the app's existing subscription/paywall system
-// (Home.jsx already gates on status === "active" and auto-expires past
-// expires_at) instead of building a parallel one. If a referral already
-// created an inactive StudentSubscription at signup, that record is
-// activated rather than duplicated.
-export async function grantTrialAccess(userEmail) {
-  try {
-    const existing = await base44.entities.StudentSubscription.filter({ phone: userEmail });
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-    if (existing.length > 0) {
-      await base44.entities.StudentSubscription.update(existing[0].id, {
-        status: "active", plan: "Learner Plan", expires_at: expiresAt,
-      });
-    } else {
-      await base44.entities.StudentSubscription.create({
-        student_name: userEmail, phone: userEmail,
-        status: "active", plan: "Learner Plan", expires_at: expiresAt,
-      });
-    }
-  } catch (e) {
-    console.error("grantTrialAccess failed:", e);
-  }
-}
-
 // Groups logged results into a plain-language "what to work on" summary
 // for the results screen, using each item's diagnosis tag and score.
 export function summarizeWeakAreas(results) {
