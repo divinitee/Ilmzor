@@ -147,8 +147,10 @@ export default function AdminWipeUsers() {
       {log.length > 0 && (
         <div className="mt-4 space-y-1 text-xs font-mono">
           {log.map((l) => (
-            <div key={l.name} className={l.status === "ok" ? "text-muted-foreground" : "text-rose-500"}>
-              {l.name}: {l.status === "ok" ? `${l.deleted} deleted` : l.message}
+            <div key={l.name} className={l.status === "ok" ? "text-muted-foreground" : l.status === "partial" ? "text-amber-500" : "text-rose-500"}>
+              {l.status === "ok" && `${l.name}: ${l.deleted} deleted`}
+              {l.status === "partial" && `${l.name}: ${l.deleted} deleted, ${l.failed} could not be deleted (${l.error})`}
+              {l.status === "error" && `${l.name}: ${l.deleted} deleted before error — ${l.message}`}
             </div>
           ))}
         </div>
