@@ -11,6 +11,7 @@ import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
 import ParticleBackground from "@/components/ParticleBackground";
+import { handleExpiredSubscription } from "@/lib/subscription";
 import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -27,7 +28,6 @@ export default function Home() {
   const { t } = useAppLang();
   const [user, setUser] = useState(null);
   const [subscription, setSubscription] = useState(null);
-  const [hasPlacement, setHasPlacement] = useState(null); // null = unknown yet
   const [results, setResults] = useState([]);
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
@@ -79,12 +79,6 @@ export default function Home() {
       if (unitList.length > 0 && !selectedUnit) setSelectedUnit(unitList[0].key);
       const myResults = await base44.entities.QuizResult.filter({ student_phone: me.email }, '-created_date');
       setResults(myResults);
-      if (me?.role !== "admin") {
-        const placementDone = await base44.entities.AssessmentResult.filter({ user_email: me.email, source: "placement_test" });
-        setHasPlacement(placementDone.length > 0);
-      } else {
-        setHasPlacement(true);
-      }
     } catch (err) {
       console.error(err);
     } finally {
