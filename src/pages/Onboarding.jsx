@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Sparkles, Crown, BookOpen, MessageSquareText, TrendingUp, ChevronRight } from "lucide-react";
+import { Sparkles, BookOpen, MessageSquareText, TrendingUp, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { chooseFreePlan } from "@/lib/subscription";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
