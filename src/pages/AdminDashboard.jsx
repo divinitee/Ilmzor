@@ -267,11 +267,12 @@ export default function AdminDashboard() {
                       <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.billing}</th>
                       <th className="text-left font-medium px-4 py-3 hidden lg:table-cell">{s.expires}</th>
                       <th className="text-left font-medium px-4 py-3 hidden lg:table-cell">{s.teacher}</th>
+                      <th className="text-left font-medium px-4 py-3"></th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredSubs.length === 0 && (
-                      <tr><td colSpan={6} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
+                      <tr><td colSpan={7} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
                     )}
                     {filteredSubs.map((x) => (
                       <tr key={x.id} className="border-t border-border hover:bg-muted/30">
@@ -290,6 +291,16 @@ export default function AdminDashboard() {
                           {x.expires_at ? new Date(x.expires_at).toLocaleDateString() : "—"}
                         </td>
                         <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{x.teacher_name || "—"}</td>
+                        <td className="px-4 py-3">
+                          {x.status === "pending" && (
+                            <button
+                              onClick={() => handleApprove(x)}
+                              className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 border border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 rounded-lg px-2.5 py-1 select-none"
+                            >
+                              Approve
+                            </button>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
