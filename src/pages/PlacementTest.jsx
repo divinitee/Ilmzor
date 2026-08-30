@@ -4,7 +4,7 @@ import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/as
 import { GATES } from "@/lib/placementContent";
 import {
   recordAssessmentResult, pickGateSet, scoreMcqGate, scoreOpenGate,
-  gateOutcome, gateFormat, summarizeWeakAreas, grantTrialAccess,
+  gateOutcome, gateFormat, summarizeWeakAreas,
 } from "@/lib/placementTest";
 import GateHeader from "@/components/placement/GateHeader";
 import McqGateItem from "@/components/placement/McqGateItem";
@@ -61,7 +61,6 @@ export default function PlacementTest() {
     }
     setFinalLevel(outcome.settleAt);
     setDone(true);
-    grantTrialAccess(userEmail);
   };
 
   // ---------- MCQ gates (A1 / A2) ----------
