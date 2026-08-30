@@ -123,15 +123,6 @@ export default function Home() {
 
   const isAdmin = user?.role === "admin";
   const isActive = subscription?.status === "active";
-
-  // Mandatory placement gate — students cannot reach anything else in the
-  // app until they've completed it at least once. Register.jsx already
-  // redirects fresh signups straight to /placement-test; this is the
-  // backstop for anyone who navigates to "/" directly without finishing.
-  if (!isAdmin && hasPlacement === false) {
-    window.location.href = "/placement-test";
-    return null;
-  }
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
   // Everyone needs an active subscription — admins are not exempt
