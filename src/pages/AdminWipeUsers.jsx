@@ -50,19 +50,32 @@ export default function AdminWipeUsers() {
     setRunning(true);
     const newLog = [];
     for (const name of TARGET_ENTITIES) {
+      let deleted = 0;
+      let failed = 0;
+      let firstError = null;
       try {
         let rows = await base44.entities[name].list();
-        let deleted = 0;
         while (rows.length > 0) {
+          let progressed = false;
           for (const row of rows) {
-            await base44.entities[name].delete(row.id);
-            deleted += 1;
+            try {
+              await base44.entities[name].delete(row.id);
+              deleted += 1;
+              progressed = true;
+            } catch (e) {
+              failed += 1;
+              if (!firstError) firstError = e.message;
+            }
           }
+          // A full pass with zero successful deletes means every remaining
+          // row is permanently undeletable (e.g. the app owner) — stop
+          // instead of retrying the same failing rows forever.
+          if (!progressed) break;
           rows = await base44.entities[name].list();
         }
-        newLog.push({ name, status: "ok", deleted });
+        newLog.push({ name, status: failed > 0 ? "partial" : "ok", deleted, failed, error: firstError });
       } catch (e) {
-        newLog.push({ name, status: "error", message: e.message });
+        newLog.push({ name, status: "error", deleted, failed, message: e.message });
       }
       setLog([...newLog]);
     }
