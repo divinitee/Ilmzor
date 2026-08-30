@@ -65,7 +65,7 @@ export default function Home() {
       if (subs.length > 0) {
         let sub = subs[0];
         if (sub.status === "active" && sub.expires_at && new Date(sub.expires_at) < new Date()) {
-          sub = await base44.entities.StudentSubscription.update(sub.id, { status: "inactive" });
+          sub = await handleExpiredSubscription(sub);
         }
         setSubscription(sub);
       }
