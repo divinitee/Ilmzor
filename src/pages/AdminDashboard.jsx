@@ -69,6 +69,24 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
 
+  // Approve a self-service payment (Pricing.jsx submissions land here as
+  // "pending"). Mirrors TeacherDashboard.jsx's handleAccept exactly — that
+  // path already sets status + expires_at together correctly; this was the
+  // one missing piece for non-teacher-referred payments, which is why a
+  // pending self-service subscription could get manually flipped to
+  // "active" elsewhere without ever getting a real expiry date.
+  const handleApprove = async (sub) => {
+    const expiresAt = new Date();
+    if (sub.billing_cycle === "yearly") {
+      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
+    } else {
+      expiresAt.setMonth(expiresAt.getMonth() + 1);
+    }
+    const expiresAtStr = expiresAt.toISOString().split("T")[0];
+    await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAtStr });
+    setSubs((prev) => prev.map((s) => (s.id === sub.id ? { ...s, status: "active", expires_at: expiresAtStr } : s)));
+  };
+
   useEffect(() => {
     (async () => {
       try {
