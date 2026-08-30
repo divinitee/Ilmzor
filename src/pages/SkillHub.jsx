@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Sparkles } from "lucide-react";
-import ParticleBackground from "@/components/ParticleBackground";
 import SkillStage from "@/components/skillhub/SkillStage";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
@@ -106,7 +105,10 @@ export default function SkillHub({ isActive = true, user = null }) {
 
   return (
     <div className="relative min-h-[calc(100vh-0px)] overflow-hidden">
-      <ParticleBackground />
+      {/* ParticleBackground removed — Home.jsx (the only parent that ever
+          renders SkillHub) already provides one persistently. Two instances
+          were running simultaneously here, doubling canvas redraw cost on
+          the one screen that already has the most else going on. */}
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 pt-6 pb-28">
         {/* Header */}
