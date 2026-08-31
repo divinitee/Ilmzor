@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import SupportSubtitle from "@/components/lesson/SupportSubtitle";
 
 // One open-ended item (B1 / B2 / C1 gates, and every lesson check/practice
 // that reuses this component) — the student writes an answer, it's
@@ -9,6 +10,12 @@ import { Loader2 } from "lucide-react";
 // attempted into this specific item's textarea, so the caller can log it
 // alongside the graded result. Paste is blocked outright (never actually
 // inserted); this is a pure observed-behavior flag, not a scoring input.
+//
+// Support-language subtitle only covers the auto-generated fallback prompt
+// ("Explain what X means...") — a single reusable template, safe to
+// translate once. The hundreds of custom item.instruction strings across
+// the grammar/vocab pools are NOT translated here; that's real content
+// authoring, not a quick code addition, and isn't silently faked.
 export default function OpenGateItem({
   item, answer, onAnswerChange, grading, feedback, onSubmit, onNext,
 }) {
@@ -23,8 +30,13 @@ export default function OpenGateItem({
     setPasteAttempted(false);
   }, [item]);
 
+  const isGeneratedPrompt = !item.instruction && item.type === "vocab";
   const prompt = item.instruction
     || (item.type === "vocab" ? `Explain what "${item.english}" means, in your own words.` : "");
+  const promptSupport = isGeneratedPrompt ? {
+    uz: `"${item.english}" so'zi yoki iborasi nimani anglatishini o'z so'zlaringiz bilan tushuntiring.`,
+    ru: `Объясните своими словами, что означает "${item.english}".`,
+  } : null;
 
   const handlePaste = (e) => {
     e.preventDefault();
@@ -37,6 +49,7 @@ export default function OpenGateItem({
     <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
         <p className="text-base text-foreground leading-relaxed">{prompt}</p>
+        <SupportSubtitle support={promptSupport} className="mt-2" />
       </div>
 
       {!feedback ? (
