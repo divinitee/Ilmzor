@@ -4,7 +4,7 @@ import { Loader2, Target, CheckCircle2, RotateCcw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { recordAssessmentResult } from "@/lib/placementTest";
-import { resolveActivityItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
+import { resolveActivityItems, getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
 import McqGateItem from "@/components/placement/McqGateItem";
 import OpenGateItem from "@/components/placement/OpenGateItem";
 
@@ -35,6 +35,7 @@ export default function LessonRunner() {
   const [feedback, setFeedback] = useState(null);
 
   const [checkOutcome, setCheckOutcome] = useState(null); // { results, pending, allPassed, mastery }
+  const [checkActivityItems, setCheckActivityItems] = useState([]); // [{activity, items}] shown this check pass
   const [advanced, setAdvanced] = useState(null);
 
   useEffect(() => {
@@ -52,26 +53,31 @@ export default function LessonRunner() {
     })();
   }, [lessonId]);
 
+  // Builds the student-facing queue from a randomized, capped sample of each
+  // activity's items (getRandomizedItems) rather than the full matched pool
+  // — a different subset/order each call, per attempt. Also returns the
+  // exact {activity, items} grouping used, so check-phase callers can pass
+  // precisely what was shown into computeCheckStatus.
   const buildQueue = (acts) => {
+    const grouped = acts.map((activity) => ({ activity, items: getRandomizedItems(activity) }));
     const q = [];
-    acts.forEach((activity) => {
-      resolveActivityItems(activity).forEach((item) => {
-        q.push({ item, activityId: activity.id, role: activity.role });
-      });
+    grouped.forEach(({ activity, items }) => {
+      items.forEach((item) => { q.push({ item, activityId: activity.id, role: activity.role }); });
     });
-    return q;
+    return { q, grouped };
   };
 
   const startPractice = () => {
     const practiceActs = activities.filter((a) => a.role === "practice");
-    const q = buildQueue(practiceActs);
+    const { q } = buildQueue(practiceActs);
     if (q.length === 0) { startCheck(); return; }
     setQueue(q); setQIdx(0); setPhase("queue");
   };
 
-  const startCheck = async (onlyActivities = null) => {
+  const startCheck = (onlyActivities = null) => {
     const checkActs = onlyActivities || activities.filter((a) => a.role === "check");
-    const q = buildQueue(checkActs);
+    const { q, grouped } = buildQueue(checkActs);
+    setCheckActivityItems(grouped);
     setQueue(q); setQIdx(0); setPhase("queue");
   };
 
@@ -88,8 +94,7 @@ export default function LessonRunner() {
       return;
     }
     setLoading(true);
-    const checkActs = activities.filter((a) => a.role === "check");
-    const outcome = await computeCheckStatus(userEmail, checkActs);
+    const outcome = await computeCheckStatus(userEmail, checkActivityItems);
     setCheckOutcome(outcome);
     setLoading(false);
     setPhase("check-result");
