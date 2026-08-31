@@ -9,7 +9,7 @@ import {
 // has no created_by_id fallback the way sibling entities do).
 export async function recordAssessmentResult({
   userEmail, source = "placement_test", skill, subskill, itemLabel,
-  studentAnswer, score, axisScores, diagnosis, tip, lessonId, activityId,
+  studentAnswer, score, axisScores, diagnosis, tip, lessonId, activityId, pasteAttempted,
 }) {
   try {
     await base44.entities.AssessmentResult.create({
@@ -23,6 +23,7 @@ export async function recordAssessmentResult({
       axis_scores: axisScores || {},
       diagnosis: diagnosis || "",
       tip: (tip || "").slice(0, 500),
+      paste_attempted: !!pasteAttempted,
       ...(lessonId ? { lesson_id: lessonId } : {}),
       ...(activityId ? { activity_id: activityId } : {}),
     });
