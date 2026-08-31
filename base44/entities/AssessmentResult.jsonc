@@ -46,6 +46,11 @@
     "activity_id": {
       "type": "string",
       "description": "references Activity.id, identifies exactly which check/practice activity produced this result"
+    },
+    "paste_attempted": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the student attempted to insert clipboard content into this response field. A neutral observed-behavior signal for future teacher analytics only \u2014 never used as an accusation, and never affects scoring or mastery."
     }
   },
   "required": [
