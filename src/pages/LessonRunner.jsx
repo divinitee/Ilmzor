@@ -158,8 +158,8 @@ export default function LessonRunner() {
         );
     await recordAssessmentResult({
       userEmail, lessonId: lesson.id, activityId: current.activityId,
-      source: "practice", skill: item.type === "vocab" ? "vocabulary" : "grammar",
-      subskill: item.type === "vocab" ? "Word Meaning" : item.topic, itemLabel: itemLabelOf(item),
+      source: "practice", skill: item.skill || (item.type === "vocab" ? "vocabulary" : "grammar"),
+      subskill: item.topic || (item.type === "vocab" ? "Word Meaning" : ""), itemLabel: itemLabelOf(item),
       studentAnswer: answer, score: result.score,
       axisScores: item.type === "vocab"
         ? { accuracy: result.accuracy, completeness: result.completeness, own_words: result.own_words }
