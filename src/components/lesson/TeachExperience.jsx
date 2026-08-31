@@ -60,10 +60,11 @@ function ConceptBeat({ beat, onNext }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: EASE }}
-        className="text-2xl font-semibold text-foreground leading-snug mb-10"
+        className="text-2xl font-semibold text-foreground leading-snug"
       >
         {beat.english}
       </motion.p>
+      <div className="mb-8"><SupportSubtitle support={beat.support} /></div>
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
