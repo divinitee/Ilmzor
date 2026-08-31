@@ -1,5 +1,6 @@
 import React from "react";
 import SupportSubtitle from "@/components/lesson/SupportSubtitle";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 
 const INSTRUCTION_SUPPORT = {
   uz: "To'g'ri javobni tanlang.",
@@ -11,6 +12,7 @@ const INSTRUCTION_SUPPORT = {
 export default function McqGateItem({ item, onSelect }) {
   return (
     <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
+      <ExplainHelp contentKey="practice_mcq" />
       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Choose the correct answer</p>
       <div className="mb-4"><SupportSubtitle support={INSTRUCTION_SUPPORT} /></div>
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
