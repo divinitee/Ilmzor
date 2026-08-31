@@ -1,0 +1,50 @@
+{
+  "properties": {
+    "cefr_range": {
+      "description": "e.g. B1-C1",
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "is_published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "name": {
+      "description": "e.g. IELTS Preparation",
+      "type": "string"
+    },
+    "order_index": {
+      "type": "number"
+    },
+    "slug": {
+      "description": "stable unique reference key, e.g. ielts-prep",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "LearningPath"
+}

@@ -1,0 +1,45 @@
+{
+  "properties": {
+    "activity_id": {
+      "description": "references Activity.id",
+      "type": "string"
+    },
+    "skill": {
+      "description": "same vocabulary as AssessmentResult.skill, e.g. vocabulary, grammar",
+      "type": "string"
+    },
+    "subskill": {
+      "description": "same vocabulary as AssessmentResult.subskill, nullable",
+      "type": "string"
+    },
+    "weight": {
+      "description": "0-1; all ActivitySkill rows for one activity_id must sum to 1.0 \u2014 enforced in application code, not the database",
+      "type": "number"
+    }
+  },
+  "required": [
+    "activity_id",
+    "skill",
+    "weight"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "ActivitySkill"
+}

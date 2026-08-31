@@ -1,0 +1,48 @@
+{
+  "properties": {
+    "computed_at": {
+      "description": "timestamp of last recompute, so staleness is detectable",
+      "format": "date-time",
+      "type": "string"
+    },
+    "lesson_id": {
+      "description": "references Lesson.id",
+      "type": "string"
+    },
+    "skill": {
+      "type": "string"
+    },
+    "subskill": {
+      "type": "string"
+    },
+    "weight": {
+      "description": "computed rollup: sum of this (skill,subskill) pair's ActivitySkill.weight across the lesson's activities, divided by activity count",
+      "type": "number"
+    }
+  },
+  "required": [
+    "lesson_id",
+    "skill",
+    "weight"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "LessonSkill"
+}

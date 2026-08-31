@@ -1,0 +1,85 @@
+{
+  "properties": {
+    "current_lesson_id": {
+      "type": "string"
+    },
+    "current_module_id": {
+      "type": "string"
+    },
+    "current_unit_id": {
+      "type": "string"
+    },
+    "enrolled_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "last_activity_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "learning_path_id": {
+      "description": "references LearningPath.id",
+      "type": "string"
+    },
+    "lessons_completed_count": {
+      "default": 0,
+      "type": "number"
+    },
+    "percent_complete": {
+      "default": 0,
+      "type": "number"
+    },
+    "user_email": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "learning_path_id"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "name": "StudentProgress"
+}

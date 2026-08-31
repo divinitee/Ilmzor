@@ -1,0 +1,48 @@
+{
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "estimated_hours": {
+      "type": "number"
+    },
+    "is_published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "learning_path_id": {
+      "description": "references LearningPath.id",
+      "type": "string"
+    },
+    "order_index": {
+      "type": "number"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "learning_path_id",
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "Module"
+}

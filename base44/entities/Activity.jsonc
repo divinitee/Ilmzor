@@ -1,0 +1,75 @@
+{
+  "properties": {
+    "activity_type": {
+      "description": "maps to an existing game/assessor component \u2014 no new components are built for this",
+      "enum": [
+        "mcq_quiz",
+        "articulation",
+        "sentence_construction",
+        "odd_one_out",
+        "matching"
+      ],
+      "type": "string"
+    },
+    "content_filter": {
+      "description": "structured filter object applied to content_source, e.g. {\"words\": [...]} or {\"topic\": \"...\"} or {\"concept\": \"...\"}",
+      "type": "object"
+    },
+    "content_source": {
+      "description": "which existing content pool this draws from, e.g. B1_OPEN_VOCAB, A1_MCQ",
+      "type": "string"
+    },
+    "instructions": {
+      "type": "string"
+    },
+    "is_published": {
+      "default": false,
+      "type": "boolean"
+    },
+    "lesson_id": {
+      "description": "references Lesson.id",
+      "type": "string"
+    },
+    "order_index": {
+      "type": "number"
+    },
+    "pass_threshold": {
+      "default": 3.5,
+      "description": "1-5 scale, same constant as OPEN_PASS_AVG",
+      "type": "number"
+    },
+    "role": {
+      "description": "practice = does not affect mastery; check = counts toward mastery score",
+      "enum": [
+        "practice",
+        "check"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "lesson_id",
+    "role",
+    "activity_type"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "Activity"
+}

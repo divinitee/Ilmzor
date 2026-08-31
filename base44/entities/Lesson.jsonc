@@ -1,0 +1,60 @@
+{
+  "properties": {
+    "content_body": {
+      "description": "the teaching explanation shown during the Teach step, markdown",
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "estimated_minutes": {
+      "type": "number"
+    },
+    "is_published": {
+      "default": false,
+      "description": "publishing requires at least one check-role Activity with a valid ActivitySkill configuration, enforced in application code",
+      "type": "boolean"
+    },
+    "learning_objectives": {
+      "description": "structured list, e.g. ['Recognize and understand 5 daily-routine vocabulary items']",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "order_index": {
+      "type": "number"
+    },
+    "title": {
+      "type": "string"
+    },
+    "unit_id": {
+      "description": "references Unit.id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "unit_id",
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  },
+  "type": "object",
+  "name": "Lesson"
+}
