@@ -19,7 +19,7 @@ import OpenGateItem from "@/components/placement/OpenGateItem";
 // plain content_body rendering below, proving the fallback path works.
 const TEACH_BEATS_BY_LESSON = {
   "6a9562a427021c1279709e25": [
-    { type: "concept", english: "Some things happen regularly." },
+    { type: "concept", english: "Some things happen regularly.", support: { uz: "Ba'zi narsalar muntazam sodir bo'ladi.", ru: "Некоторые вещи происходят регулярно." } },
     { type: "example", english: "I wake up at 7 every day.", emphasis: "every day" },
     {
       type: "contrast",
@@ -29,6 +29,7 @@ const TEACH_BEATS_BY_LESSON = {
     {
       type: "micro_check",
       prompt: "Which sentence describes a routine?",
+      support: { uz: "Qaysi gap odatiy harakatni tasvirlaydi?", ru: "Какое предложение описывает привычное действие?" },
       options: [
         { english: "I wake up at 7.", correct: true },
         { english: "I am waking up.", correct: false },
