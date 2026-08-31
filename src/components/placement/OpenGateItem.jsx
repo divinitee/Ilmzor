@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 // One open-ended item (B1 / B2 / C1 gates, and every lesson check/practice
 // that reuses this component) — the student writes an answer, it's
 // LLM-graded, then they see the score and tip before moving on.
+//
+// onSubmit receives (pasteAttempted: boolean) — whether a paste was ever
+// attempted into this specific item's textarea, so the caller can log it
+// alongside the graded result. Paste is blocked outright (never actually
+// inserted); this is a pure observed-behavior flag, not a scoring input.
 export default function OpenGateItem({
   item, answer, onAnswerChange, grading, feedback, onSubmit, onNext,
 }) {
   const [pasteBlocked, setPasteBlocked] = useState(false);
+  const [pasteAttempted, setPasteAttempted] = useState(false);
+
+  // No key prop at either call site, so this component stays mounted across
+  // questions — reset per-item state explicitly when the item changes,
+  // or a paste on question 1 would incorrectly still be flagged on question 2.
+  useEffect(() => {
+    setPasteBlocked(false);
+    setPasteAttempted(false);
+  }, [item]);
+
   const prompt = item.instruction
     || (item.type === "vocab" ? `Explain what "${item.english}" means, in your own words.` : "");
 
   const handlePaste = (e) => {
     e.preventDefault();
     setPasteBlocked(true);
+    setPasteAttempted(true);
     setTimeout(() => setPasteBlocked(false), 2500);
   };
 
@@ -37,7 +53,7 @@ export default function OpenGateItem({
             <p className="text-xs text-amber-500 mb-2">Please type your own answer — pasting isn't allowed here.</p>
           )}
           <button
-            onClick={onSubmit}
+            onClick={() => onSubmit(pasteAttempted)}
             disabled={grading || !answer.trim()}
             className="h-12 rounded-xl bg-gradient-to-b from-blue-500 to-blue-700 text-white font-semibold shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 select-none mt-2"
           >
