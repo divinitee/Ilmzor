@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Play, Loader2 } from "lucide-react";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import {
-  B1_VOCAB, B1_GRAMMAR, B2_VOCAB, B2_GRAMMAR, C1_VOCAB, C1_GRAMMAR,
+  B1_OPEN_VOCAB, B1_OPEN_GRAMMAR, B2_OPEN_VOCAB, B2_OPEN_GRAMMAR, C1_OPEN_VOCAB, C1_OPEN_GRAMMAR,
 } from "@/lib/placementContent";
 
 // The B1/B2 gates were one combined "Tier 2" pool when these batteries were
 // written. Flattening them back into one lookup list keeps every existing
 // case valid — the batteries validate the rubric, not the gate boundaries.
-const OPEN_VOCAB = [...B1_VOCAB, ...B2_VOCAB];
-const OPEN_GRAMMAR = [...B1_GRAMMAR, ...B2_GRAMMAR];
+const OPEN_VOCAB = [...B1_OPEN_VOCAB, ...B2_OPEN_VOCAB];
+const OPEN_GRAMMAR = [...B1_OPEN_GRAMMAR, ...B2_OPEN_GRAMMAR];
 
 // Internal lab page — not linked in nav. Visit /assessor-lab directly.
 // Round 2: breadth test. Round 1 proved the mechanism works (near-copy,
@@ -281,7 +281,7 @@ const TIER3_VOCAB_FLAWS = [
   { flawLabel: "Confuses with 'careless' (opposite meaning)", good: "extremely careful and precise, paying close attention to every detail", flaw: "quick and careless, not worried about small details" },
   { flawLabel: "Confuses with 'systematic' (opposite meaning)", good: "decided randomly or by personal preference, without a clear reason or system", flaw: "carefully planned according to a strict logical system" },
 ];
-const TIER3_VOCAB_ITEMS = C1_VOCAB.map((word, i) => ({ word, ...TIER3_VOCAB_FLAWS[i] }));
+const TIER3_VOCAB_ITEMS = C1_OPEN_VOCAB.map((word, i) => ({ word, ...TIER3_VOCAB_FLAWS[i] }));
 
 const TIER3_GRAMMAR_FLAWS = [
   { flawLabel: "Auxiliary not correctly inverted before the subject", good: "Never have I seen such a beautiful sunset.", flaw: "Never I have seen such a beautiful sunset." },
@@ -294,7 +294,7 @@ const TIER3_GRAMMAR_FLAWS = [
   { flawLabel: "Repeated and over-explained instead of using ellipsis", good: "Some students prefer tea, others coffee.", flaw: "Some students prefer tea, others prefer coffee to drink instead of it." },
   { flawLabel: "Auxiliary not correctly inverted after the fronted expression", good: "Little did she know what awaited her.", flaw: "Little she did know what awaited her." },
 ];
-const TIER3_GRAMMAR_ITEMS = C1_GRAMMAR.map((task, i) => ({ topic: task.topic, task, ...TIER3_GRAMMAR_FLAWS[i] }));
+const TIER3_GRAMMAR_ITEMS = C1_OPEN_GRAMMAR.map((task, i) => ({ topic: task.topic, task, ...TIER3_GRAMMAR_FLAWS[i] }));
 
 function Tier3VocabSection() {
   const [results, setResults] = useState({});
