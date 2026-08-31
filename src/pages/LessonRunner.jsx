@@ -5,12 +5,37 @@ import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { recordAssessmentResult } from "@/lib/placementTest";
 import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
+import TeachExperience from "@/components/lesson/TeachExperience";
 import McqGateItem from "@/components/placement/McqGateItem";
 import OpenGateItem from "@/components/placement/OpenGateItem";
 
 // Student-facing runner for one Lesson: Orientation -> Teach -> Practice ->
 // Check -> Mastery -> Pass/Retry. Standalone route, not yet wired into
 // Mission Control. Visit /lesson/:lessonId directly to try it.
+
+// Prototype scope boundary: beat content for the one lesson this is being
+// tested on, hardcoded here rather than fetched — no schema change yet.
+// Keyed by lesson id so any other lesson correctly falls through to the
+// plain content_body rendering below, proving the fallback path works.
+const TEACH_BEATS_BY_LESSON = {
+  "6a9562a427021c1279709e25": [
+    { type: "concept", english: "Some things happen regularly." },
+    { type: "example", english: "I wake up at 7 every day.", emphasis: "every day" },
+    {
+      type: "contrast",
+      left: { label: "ROUTINE", english: "I wake up at 7." },
+      right: { label: "NOW", english: "I am waking up." },
+    },
+    {
+      type: "micro_check",
+      prompt: "Which sentence describes a routine?",
+      options: [
+        { english: "I wake up at 7.", correct: true },
+        { english: "I am waking up.", correct: false },
+      ],
+    },
+  ],
+};
 
 function itemLabelOf(item) {
   return item.type === "vocab" ? item.english : (item.topic || item.question);
@@ -201,6 +226,10 @@ export default function LessonRunner() {
   }
 
   if (phase === "teach") {
+    const beats = TEACH_BEATS_BY_LESSON[lesson.id];
+    if (beats) {
+      return <TeachExperience beats={beats} onComplete={startPractice} />;
+    }
     return (
       <div className="min-h-screen bg-background flex flex-col justify-center px-6 max-w-sm mx-auto">
         <p className="text-base text-foreground leading-relaxed mb-8">{lesson.content_body}</p>
