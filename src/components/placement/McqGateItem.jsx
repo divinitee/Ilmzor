@@ -9,10 +9,13 @@ const INSTRUCTION_SUPPORT = {
 
 // One multiple-choice item (A1 / A2 gates) — answer-key scored, no grading
 // round-trip, so selecting an option advances immediately.
-export default function McqGateItem({ item, onSelect }) {
+// explainKey is optional — only the Lesson Runner passes it (scope
+// decision: Explain/Help launches on lessons first, not the placement
+// test, which keeps using this same component unchanged).
+export default function McqGateItem({ item, onSelect, explainKey }) {
   return (
     <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
-      <ExplainHelp contentKey="practice_mcq" />
+      {explainKey && <ExplainHelp contentKey={explainKey} />}
       <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Choose the correct answer</p>
       <div className="mb-4"><SupportSubtitle support={INSTRUCTION_SUPPORT} /></div>
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
