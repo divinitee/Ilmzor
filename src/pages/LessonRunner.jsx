@@ -172,7 +172,7 @@ export default function LessonRunner() {
     finishQueueItem();
   };
 
-  const handleOpenSubmit = async () => {
+  const handleOpenSubmit = async (pasteAttempted) => {
     if (!answer.trim() || !current) return;
     setGrading(true);
     const item = current.item;
@@ -189,7 +189,7 @@ export default function LessonRunner() {
       axisScores: item.type === "vocab"
         ? { accuracy: result.accuracy, completeness: result.completeness, own_words: result.own_words }
         : { structureUsed: result.structureUsed, correctness: result.correctness, naturalness: result.naturalness },
-      diagnosis: result.diagnosis, tip: result.tip,
+      diagnosis: result.diagnosis, tip: result.tip, pasteAttempted,
     });
     setFeedback({ score: result.score, tip: result.tip });
     setGrading(false);
