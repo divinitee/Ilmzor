@@ -1,10 +1,18 @@
 import React from "react";
+import SupportSubtitle from "@/components/lesson/SupportSubtitle";
+
+const INSTRUCTION_SUPPORT = {
+  uz: "To'g'ri javobni tanlang.",
+  ru: "Выберите правильный ответ.",
+};
 
 // One multiple-choice item (A1 / A2 gates) — answer-key scored, no grading
 // round-trip, so selecting an option advances immediately.
 export default function McqGateItem({ item, onSelect }) {
   return (
     <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
+      <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Choose the correct answer</p>
+      <div className="mb-4"><SupportSubtitle support={INSTRUCTION_SUPPORT} /></div>
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
         <p className="text-base text-foreground leading-relaxed">{item.question}</p>
       </div>
