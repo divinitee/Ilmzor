@@ -6,6 +6,7 @@ import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/as
 import { recordAssessmentResult } from "@/lib/placementTest";
 import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
 import TeachExperience from "@/components/lesson/TeachExperience";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 import McqGateItem from "@/components/placement/McqGateItem";
 import OpenGateItem from "@/components/placement/OpenGateItem";
 
@@ -211,6 +212,7 @@ export default function LessonRunner() {
   if (phase === "orientation") {
     return (
       <div className="min-h-screen bg-background flex flex-col justify-center px-6 max-w-sm mx-auto">
+        <ExplainHelp contentKey="orientation" />
         <Target className="w-9 h-9 text-blue-500 mb-4" />
         <h1 className="text-xl font-bold text-foreground mb-4">{lesson.title}</h1>
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">By the end of this lesson, you'll be able to:</p>
@@ -242,15 +244,17 @@ export default function LessonRunner() {
   }
 
   if (phase === "queue" && current) {
+    const explainKey = current.item.format === "mcq" ? "practice_mcq" : "practice_open";
     return (
       <div className="min-h-screen bg-background flex flex-col">
         <LessonProgress idx={qIdx} total={queue.length} />
         {current.item.format === "mcq" ? (
-          <McqGateItem item={current.item} onSelect={handleMcqSelect} />
+          <McqGateItem item={current.item} onSelect={handleMcqSelect} explainKey={explainKey} />
         ) : (
           <OpenGateItem
             item={current.item} answer={answer} onAnswerChange={setAnswer}
             grading={grading} feedback={feedback} onSubmit={handleOpenSubmit} onNext={finishQueueItem}
+            explainKey={explainKey}
           />
         )}
       </div>
@@ -260,6 +264,7 @@ export default function LessonRunner() {
   if (phase === "check-result") {
     return (
       <div className="min-h-screen bg-background flex flex-col justify-center px-6 max-w-sm mx-auto text-center">
+        <ExplainHelp contentKey="check_result" />
         {checkOutcome.allPassed ? (
           <>
             <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-4" />
