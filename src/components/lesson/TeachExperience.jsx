@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
+import { useAppLang } from "@/hooks/useAppLang";
 
 // Prototype only — typed-beat renderer for Lesson 1's Teach phase, testing
 // whether "concept -> example -> contrast -> micro-check" actually feels
@@ -10,6 +11,30 @@ import { ArrowRight, Check, X } from "lucide-react";
 // transform (framer-motion), no canvas, no continuous animation loops —
 // per the locked animation rule: every effect must serve comprehension or
 // orientation, nothing decorative.
+//
+// Support-language subtitles: reuses useAppLang as the single source of
+// truth (no second localization mechanism). English always renders first
+// and stays visually dominant; a beat's `support` object (keyed by the
+// same language codes as the rest of the app — uz/ru) renders beneath it,
+// smaller and unbolded, only when the selected language isn't English and
+// a translation exists for it. Applied selectively — only Concept and the
+// micro-check prompt carry a `support` field; Example and Contrast are
+// deliberately left English-only, since they're the example/practice
+// content that's supposed to stay predominantly English.
+function SupportSubtitle({ support }) {
+  const { lang } = useAppLang();
+  if (lang === "en" || !support || !support[lang]) return null;
+  return (
+    <motion.p
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.3, duration: 0.5 }}
+      className="text-sm font-normal text-muted-foreground/80 mt-2"
+    >
+      {support[lang]}
+    </motion.p>
+  );
+}
 
 const EASE = [0.22, 1, 0.36, 1]; // calm, restrained — no bounce/overshoot
 
