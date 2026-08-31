@@ -186,6 +186,7 @@ export default function TeachExperience({ beats, onComplete }) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6">
+      <ExplainHelp contentKey={`teach_${beat.type}`} />
       <BeatDots idx={idx} total={beats.length} />
       <AnimatePresence mode="wait">
         <motion.div
