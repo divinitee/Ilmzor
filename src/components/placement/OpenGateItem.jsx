@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import SupportSubtitle from "@/components/lesson/SupportSubtitle";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 
 // One open-ended item (B1 / B2 / C1 gates, and every lesson check/practice
 // that reuses this component) — the student writes an answer, it's
@@ -16,8 +17,10 @@ import SupportSubtitle from "@/components/lesson/SupportSubtitle";
 // translate once. The hundreds of custom item.instruction strings across
 // the grammar/vocab pools are NOT translated here; that's real content
 // authoring, not a quick code addition, and isn't silently faked.
+// explainKey is optional — only the Lesson Runner passes it, same scope
+// decision as McqGateItem. PlacementTest's usage is untouched.
 export default function OpenGateItem({
-  item, answer, onAnswerChange, grading, feedback, onSubmit, onNext,
+  item, answer, onAnswerChange, grading, feedback, onSubmit, onNext, explainKey,
 }) {
   const [pasteBlocked, setPasteBlocked] = useState(false);
   const [pasteAttempted, setPasteAttempted] = useState(false);
@@ -47,6 +50,7 @@ export default function OpenGateItem({
 
   return (
     <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
+      {explainKey && <ExplainHelp contentKey={explainKey} />}
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
         <p className="text-base text-foreground leading-relaxed">{prompt}</p>
         <SupportSubtitle support={promptSupport} className="mt-2" />
