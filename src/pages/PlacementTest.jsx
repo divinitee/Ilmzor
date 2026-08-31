@@ -90,7 +90,7 @@ export default function PlacementTest() {
   };
 
   // ---------- Open-ended gates (B1 / B2 / C1) ----------
-  const handleSubmit = async () => {
+  const handleSubmit = async (pasteAttempted) => {
     if (!answer.trim() || !item) return;
     setGrading(true);
     const result = item.type === "vocab"
@@ -115,6 +115,7 @@ export default function PlacementTest() {
         : { structureUsed: result.structureUsed, correctness: result.correctness, naturalness: result.naturalness },
       diagnosis: result.diagnosis,
       tip: result.tip,
+      pasteAttempted,
     });
 
     const entry = { skill, subskill, itemLabel, score: result.score, diagnosis: result.diagnosis, tip: result.tip };
