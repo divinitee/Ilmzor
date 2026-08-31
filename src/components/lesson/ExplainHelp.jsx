@@ -41,7 +41,7 @@ export default function ExplainHelp({ contentKey }) {
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-card border border-border rounded-2xl p-5 max-w-sm w-full"
+              className="bg-background border border-border shadow-xl rounded-2xl p-5 max-w-sm w-full"
             >
               <div className="flex items-start justify-between mb-3">
                 <p className="text-xs font-bold text-blue-500 uppercase tracking-wide">
@@ -68,9 +68,7 @@ export default function ExplainHelp({ contentKey }) {
 
               {stage === "nudge" && (
                 <>
-                  <p className="text-sm text-foreground leading-relaxed mb-5">
-                    Try reading it in English first \u2014 you might understand more than you think! \ud83d\udcaa
-                  </p>
+                  <p className="text-sm text-foreground leading-relaxed mb-5">{NUDGE_MESSAGE}</p>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setStage("explain")}
