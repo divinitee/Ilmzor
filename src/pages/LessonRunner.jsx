@@ -4,7 +4,7 @@ import { Loader2, Target, CheckCircle2, RotateCcw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { recordAssessmentResult } from "@/lib/placementTest";
-import { resolveActivityItems, getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
+import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
 import McqGateItem from "@/components/placement/McqGateItem";
 import OpenGateItem from "@/components/placement/OpenGateItem";
 
@@ -14,6 +14,27 @@ import OpenGateItem from "@/components/placement/OpenGateItem";
 
 function itemLabelOf(item) {
   return item.type === "vocab" ? item.english : (item.topic || item.question);
+}
+
+// Subtle progress readout for the current randomized queue — reflects the
+// actual sampled set size (queue.length), not the source pool's total item
+// count. Mirrors GateHeader's visual language (thin gradient bar, small
+// muted text) for consistency, without the placement test's gate-level
+// staircase, which doesn't apply inside a single lesson.
+function LessonProgress({ idx, total }) {
+  return (
+    <div className="px-4 pt-3 pb-1 max-w-lg mx-auto w-full">
+      <div className="flex items-center justify-between mb-1.5">
+        <span className="text-xs text-muted-foreground">Question {idx + 1} of {total}</span>
+      </div>
+      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+        <div
+          className="h-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500"
+          style={{ width: `${((idx + 1) / total) * 100}%` }}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function LessonRunner() {
@@ -191,13 +212,18 @@ export default function LessonRunner() {
   }
 
   if (phase === "queue" && current) {
-    return current.item.format === "mcq" ? (
-      <McqGateItem item={current.item} onSelect={handleMcqSelect} />
-    ) : (
-      <OpenGateItem
-        item={current.item} answer={answer} onAnswerChange={setAnswer}
-        grading={grading} feedback={feedback} onSubmit={handleOpenSubmit} onNext={finishQueueItem}
-      />
+    return (
+      <div className="min-h-screen bg-background flex flex-col">
+        <LessonProgress idx={qIdx} total={queue.length} />
+        {current.item.format === "mcq" ? (
+          <McqGateItem item={current.item} onSelect={handleMcqSelect} />
+        ) : (
+          <OpenGateItem
+            item={current.item} answer={answer} onAnswerChange={setAnswer}
+            grading={grading} feedback={feedback} onSubmit={handleOpenSubmit} onNext={finishQueueItem}
+          />
+        )}
+      </div>
     );
   }
 
