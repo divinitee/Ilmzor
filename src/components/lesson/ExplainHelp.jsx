@@ -4,6 +4,11 @@ import { HelpCircle, X } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import { EXPLAIN_CONTENT, HELP_LABEL, LANG_NAME } from "@/lib/explainContent";
 
+// A real JS string, not bare JSX text — unicode escapes only interpret
+// correctly inside an actual string literal. Bare-text escapes in JSX have
+// broken twice already this session; keeping this constant, not inline.
+const NUDGE_MESSAGE = "Try reading it in English first \u2014 you might understand more than you think! \uD83D\uDCAA";
+
 // Two-tier contextual help, Lesson Runner only for now (not "on all pages"
 // yet, per explicit scope). Tier 1: an always-visible Explain button, plain
 // English, explaining what to do on the current screen. Tier 2: only if
