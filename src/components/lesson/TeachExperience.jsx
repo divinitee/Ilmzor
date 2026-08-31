@@ -163,7 +163,8 @@ function MicroCheckBeat({ beat, onNext }) {
 
   return (
     <div className="flex flex-col items-center text-center max-w-sm w-full">
-      <p className="text-base font-medium text-foreground mb-6">{beat.prompt}</p>
+      <p className="text-base font-medium text-foreground">{beat.prompt}</p>
+      <div className="mb-6"><SupportSubtitle support={beat.support} /></div>
       <div className="space-y-3 w-full">
         {beat.options.map((opt) => {
           const isPicked = picked === opt;
