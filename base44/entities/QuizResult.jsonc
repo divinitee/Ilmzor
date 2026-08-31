@@ -25,6 +25,14 @@
       "type": "string",
       "maxLength": 1000,
       "description": "Optional additional description"
+    },
+    "lesson_id": {
+      "type": "string",
+      "description": "references Lesson.id, populated only when this result came from a Learning Path lesson activity"
+    },
+    "activity_id": {
+      "type": "string",
+      "description": "references Activity.id, identifies exactly which check/practice activity produced this result"
     }
   },
   "required": [
