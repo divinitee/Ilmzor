@@ -77,12 +77,18 @@ export function getRandomizedItems(activity) {
 // attempt per item" rule), returning which check activities still need
 // attempting/retrying and which have already passed. Computed live from
 // AssessmentResult on every entry — nothing about retry state is stored.
-export async function computeCheckStatus(userEmail, checkActivities) {
-  const results = await Promise.all(checkActivities.map(async (activity) => {
+//
+// Takes {activity, items}[] rather than re-resolving items itself: since
+// items are now randomized per attempt (getRandomizedItems), status must be
+// checked against the exact set actually shown this session, not a freshly
+// re-sampled one — otherwise a passed check could re-sample different
+// items on the next check and never resolve. The mastery math itself
+// (average of latest per-item scores, 3.5 threshold) is unchanged.
+export async function computeCheckStatus(userEmail, checkActivitiesWithItems) {
+  const results = await Promise.all(checkActivitiesWithItems.map(async ({ activity, items }) => {
     const rows = await base44.entities.AssessmentResult.filter(
       { user_email: userEmail, activity_id: activity.id }, "-created_date"
     );
-    const items = resolveActivityItems(activity);
     const latestByItem = {};
     for (const row of rows) {
       const label = row.item_label;
