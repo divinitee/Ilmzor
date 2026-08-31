@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, X } from "lucide-react";
 import SupportSubtitle from "@/components/lesson/SupportSubtitle";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 
 // Prototype only — typed-beat renderer for Lesson 1's Teach phase, testing
 // whether "concept -> example -> contrast -> micro-check" actually feels
