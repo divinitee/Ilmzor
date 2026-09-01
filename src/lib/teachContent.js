@@ -15,6 +15,7 @@ export const TEACH_BEATS_BY_LESSON = {
     { type: "example", english: "I wake up at 7 every day.", emphasis: "every day" },
     {
       type: "contrast",
+      visual_behavior: "cycle_vs_moment",
       left: { label: "ROUTINE", english: "I wake up at 7.", support: { uz: "ODATIY", ru: "ОБЫЧНО" } },
       right: { label: "NOW", english: "I am waking up.", support: { uz: "HOZIR", ru: "СЕЙЧАС" } },
     },
