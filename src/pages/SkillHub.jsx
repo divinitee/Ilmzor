@@ -130,12 +130,22 @@ export default function SkillHub({ isActive = true, user = null }) {
           </p>
         </motion.div>
 
-        {/* Coins chip */}
+        {/* Coins chip + My Words entry point (lives inside Skill Hub, not a
+            new top-level nav item — the real Skill Hub UI is a spatial
+            mind-map, not a flat subskill list, so this sits in the header
+            rather than nested under a "Vocabulary" list that doesn't exist
+            as such in the rendered UI). */}
         {user && (
-          <div className="flex justify-center mb-2">
+          <div className="flex justify-center items-center gap-2 mb-2">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-xs font-semibold select-none">
               <Star className="w-3.5 h-3.5" /> {userCoins?.coins || 0} XP
             </div>
+            <Link
+              to="/my-words"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-xs font-semibold select-none"
+            >
+              <BookmarkPlus className="w-3.5 h-3.5" /> My Words
+            </Link>
           </div>
         )}
 
