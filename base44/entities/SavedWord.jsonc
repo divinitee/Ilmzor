@@ -1,0 +1,79 @@
+{
+  "properties": {
+    "definition": {
+      "description": "captured at save time, stays stable even if a pool definition later changes",
+      "type": "string"
+    },
+    "saved_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "source": {
+      "default": "curated",
+      "description": "curated = from ILMZOR's own vocab pools (all v1 saves). external reserved for a future live-lookup fallback \u2014 not used yet.",
+      "enum": [
+        "curated",
+        "external"
+      ],
+      "type": "string"
+    },
+    "source_lesson_id": {
+      "description": "references Lesson.id, nullable \u2014 which lesson this was encountered in, if applicable",
+      "type": "string"
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "word": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "word",
+    "definition"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "name": "SavedWord"
+}
