@@ -40,10 +40,12 @@ export default function OpenGateItem({
   const isGeneratedPrompt = !item.instruction && item.type === "vocab";
   const prompt = item.instruction
     || (item.type === "vocab" ? `Explain what "${item.english}" means, in your own words.` : "");
-  const promptSupport = isGeneratedPrompt ? {
-    uz: `"${item.english}" so'zi yoki iborasi nimani anglatishini o'z so'zlaringiz bilan tushuntiring.`,
-    ru: `Объясните своими словами, что означает "${item.english}".`,
-  } : null;
+  const promptSupport = isGeneratedPrompt
+    ? {
+        uz: `"${item.english}" so'zi yoki iborasi nimani anglatishini o'z so'zlaringiz bilan tushuntiring.`,
+        ru: `Объясните своими словами, что означает "${item.english}".`,
+      }
+    : (INSTRUCTION_SUPPORT[item.instruction] || null);
 
   const handlePaste = (e) => {
     e.preventDefault();
