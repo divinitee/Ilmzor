@@ -3,11 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BookmarkPlus, Check, X } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
-// v1 vertical slice: tap the target word on a vocab item -> see its
-// (already-known, curated) definition -> optionally save it. No arbitrary-
-// word scanning, no live lookup, no SRS fields — exactly as scoped. Only
-// rendered for vocab-type items where word/definition are already directly
-// available from the item itself; nothing here searches or matches text.
+// v1 vertical slice: tap the target word on a vocab item -> bookmark it for
+// later, without ever showing its definition here. The definition is
+// still captured accurately into SavedWord at save time (the system
+// already knows it from item.definition) — it's just never displayed
+// during a question, since showing it here would hand a student the exact
+// answer to the "explain in your own words" prompt they're actively
+// working on, graded or not. Reviewing the real definition is what "My
+// Words" is for; this is a testing/practice context, not a review one.
 export default function VocabWordChip({ word, definition, userEmail, lessonId }) {
   const [open, setOpen] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -63,13 +66,13 @@ export default function VocabWordChip({ word, definition, userEmail, lessonId })
               onClick={(e) => e.stopPropagation()}
               className="bg-background border border-border shadow-xl rounded-2xl p-5 max-w-sm w-full"
             >
-              <div className="flex items-start justify-between mb-3">
-                <p className="text-base font-bold text-foreground">{word}</p>
+              <div className="flex items-start justify-between mb-4">
+                <p className="text-base font-bold text-foreground">Save "{word}" to My Words?</p>
                 <button onClick={() => setOpen(false)} className="text-muted-foreground select-none">
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-5">{definition}</p>
+              <p className="text-xs text-muted-foreground mb-5">You can review its meaning anytime in My Words — it won't be shown here, so it doesn't give away the answer.</p>
               <button
                 onClick={handleSave}
                 disabled={!checked || saving || saved}
