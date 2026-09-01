@@ -255,7 +255,7 @@ export default function LessonRunner() {
             item={current.item} answer={answer} onAnswerChange={setAnswer}
             grading={grading} feedback={feedback} onSubmit={handleOpenSubmit} onNext={finishQueueItem}
             explainKey={explainKey}
-            enableVault={current.role !== "check"} userEmail={userEmail} lessonId={lesson.id}
+            enableVault userEmail={userEmail} lessonId={lesson.id}
           />
         )}
       </div>
