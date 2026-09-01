@@ -107,7 +107,18 @@ function ContrastBeat({ beat, onNext }) {
           transition={{ duration: 0.6, ease: EASE }}
           className="bg-card border border-border rounded-2xl p-4"
         >
-          <p className="text-[11px] font-bold text-blue-500 tracking-wide mb-2">{beat.left.label}</p>
+          <div className="flex items-center justify-center gap-1.5 mb-2">
+            {/* Repeating pulse — motion itself signals "this happens again
+                and again," the actual semantic of routine/habit, not
+                decoration. Cheap: one small div, opacity+scale only. */}
+            <motion.span
+              animate={{ opacity: [1, 0.4, 1], scale: [1, 1.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1.5 h-1.5 rounded-full bg-blue-500"
+            />
+            <p className="text-[11px] font-bold text-blue-500 tracking-wide">{beat.left.label}</p>
+          </div>
+          <SupportSubtitle support={beat.left.support} className="mb-1" />
           <p className="text-sm text-foreground leading-snug">{beat.left.english}</p>
         </motion.div>
         <motion.div
@@ -116,7 +127,19 @@ function ContrastBeat({ beat, onNext }) {
           transition={{ duration: 0.6, ease: EASE, delay: 0.15 }}
           className="bg-card border border-border rounded-2xl p-4"
         >
-          <p className="text-[11px] font-bold text-indigo-400 tracking-wide mb-2">{beat.right.label}</p>
+          <div className="flex items-center justify-center gap-1.5 mb-2">
+            {/* Fires once, settles — "this is happening, one active
+                moment," contrasting directly with the repeating dot beside
+                it. No overshoot/bounce, per the restrained-motion rule. */}
+            <motion.span
+              initial={{ scale: 0.4, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
+              className="w-1.5 h-1.5 rounded-full bg-indigo-400"
+            />
+            <p className="text-[11px] font-bold text-indigo-400 tracking-wide">{beat.right.label}</p>
+          </div>
+          <SupportSubtitle support={beat.right.support} className="mb-1" />
           <p className="text-sm text-foreground leading-snug">{beat.right.english}</p>
         </motion.div>
       </div>
