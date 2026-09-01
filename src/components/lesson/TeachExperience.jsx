@@ -170,12 +170,13 @@ function MicroCheckBeat({ beat, onNext }) {
       <p className="text-base font-medium text-foreground">{beat.prompt}</p>
       <div className="mb-6"><SupportSubtitle support={beat.support} /></div>
       <div className="space-y-3 w-full">
-        {beat.options.map((opt) => {
+        {beat.options.map((opt, i) => {
           const isPicked = picked === opt;
           const showState = picked && (isPicked || opt.correct);
           return (
             <motion.button
               key={opt.english}
+              layoutId={i === 0 ? "teach-sentence" : undefined}
               onClick={() => pick(opt)}
               whileTap={{ scale: 0.98 }}
               className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors duration-300 ${
