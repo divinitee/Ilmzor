@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import SupportSubtitle from "@/components/lesson/SupportSubtitle";
 import ExplainHelp from "@/components/lesson/ExplainHelp";
 import VocabWordChip from "@/components/lesson/VocabWordChip";
+import { INSTRUCTION_SUPPORT } from "@/lib/instructionSupport";
 
 // One open-ended item (B1 / B2 / C1 gates, and every lesson check/practice
 // that reuses this component) — the student writes an answer, it's
@@ -13,11 +14,11 @@ import VocabWordChip from "@/components/lesson/VocabWordChip";
 // alongside the graded result. Paste is blocked outright (never actually
 // inserted); this is a pure observed-behavior flag, not a scoring input.
 //
-// Support-language subtitle only covers the auto-generated fallback prompt
-// ("Explain what X means...") — a single reusable template, safe to
-// translate once. The hundreds of custom item.instruction strings across
-// the grammar/vocab pools are NOT translated here; that's real content
-// authoring, not a quick code addition, and isn't silently faked.
+// Support-language subtitle covers the auto-generated vocab fallback
+// prompt (translated once, reusable template) AND any custom instruction
+// present in INSTRUCTION_SUPPORT (small, deliberately scoped lookup for
+// prompts actually reachable in a check/practice flow today — not every
+// instruction across every pool, which remains real, deferred work).
 // explainKey and vault (enableVault + userEmail + lessonId) are both
 // optional — only the Lesson Runner passes them. PlacementTest's usage is
 // untouched.
