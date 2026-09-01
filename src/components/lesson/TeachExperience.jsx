@@ -97,6 +97,14 @@ function ExampleBeat({ beat, onNext }) {
 }
 
 function ContrastBeat({ beat, onNext }) {
+  // No semantic animation without semantic meaning: the pulsing/settling
+  // dots only render when the content actually specifies a matching
+  // visual_behavior. Undefined (the default) gets the neutral elegant
+  // transition below — fade/slide entrance, no claimed meaning. Lesson 1's
+  // real content explicitly opts into "cycle_vs_moment" in teachContent.js;
+  // it's never inherited silently.
+  const isCycleVsMoment = beat.visual_behavior === "cycle_vs_moment";
+
   return (
     <div className="flex flex-col items-center text-center max-w-md w-full">
       <div className="grid grid-cols-2 gap-4 w-full mb-10">
@@ -108,14 +116,13 @@ function ContrastBeat({ beat, onNext }) {
           className="bg-card border border-border rounded-2xl p-4"
         >
           <div className="flex items-center justify-center gap-1.5 mb-2">
-            {/* Repeating pulse — motion itself signals "this happens again
-                and again," the actual semantic of routine/habit, not
-                decoration. Cheap: one small div, opacity+scale only. */}
-            <motion.span
-              animate={{ opacity: [1, 0.4, 1], scale: [1, 1.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1.5 h-1.5 rounded-full bg-blue-500"
-            />
+            {isCycleVsMoment && (
+              <motion.span
+                animate={{ opacity: [1, 0.4, 1], scale: [1, 1.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1.5 h-1.5 rounded-full bg-blue-500"
+              />
+            )}
             <p className="text-[11px] font-bold text-blue-500 tracking-wide">{beat.left.label}</p>
           </div>
           <SupportSubtitle support={beat.left.support} className="mb-1" />
@@ -128,15 +135,14 @@ function ContrastBeat({ beat, onNext }) {
           className="bg-card border border-border rounded-2xl p-4"
         >
           <div className="flex items-center justify-center gap-1.5 mb-2">
-            {/* Fires once, settles — "this is happening, one active
-                moment," contrasting directly with the repeating dot beside
-                it. No overshoot/bounce, per the restrained-motion rule. */}
-            <motion.span
-              initial={{ scale: 0.4, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
-              className="w-1.5 h-1.5 rounded-full bg-indigo-400"
-            />
+            {isCycleVsMoment && (
+              <motion.span
+                initial={{ scale: 0.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5, ease: EASE }}
+                className="w-1.5 h-1.5 rounded-full bg-indigo-400"
+              />
+            )}
             <p className="text-[11px] font-bold text-indigo-400 tracking-wide">{beat.right.label}</p>
           </div>
           <SupportSubtitle support={beat.right.support} className="mb-1" />
