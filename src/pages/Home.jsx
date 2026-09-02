@@ -16,7 +16,6 @@ import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
-import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -404,84 +403,6 @@ function TrialHomeScreen({ isAdmin, subscription }) {
           </Button>
         </Link>
       )}
-    </div>
-  );
-}
-
-function PaywallScreen({ user, subscription, onSubmitted }) {
-  const { t } = useAppLang();
-  const [paymentRef, setPaymentRef] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(subscription?.status === "pending");
-
-  const handleSubmit = async () => {
-    if (!paymentRef.trim()) return;
-    setSubmitting(true);
-    try {
-      if (subscription) {
-        await base44.entities.StudentSubscription.update(subscription.id, { payment_ref: paymentRef, status: "pending" });
-      } else {
-        await base44.entities.StudentSubscription.create({
-          student_name: user.full_name || user.email,
-          phone: user.email,
-          payment_ref: paymentRef,
-          status: "pending"
-        });
-      }
-      setSubmitted(true);
-      onSubmitted();
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  return (
-    <div className="max-w-lg mx-auto px-4 py-8">
-      <div className="bg-background rounded-2xl shadow-sm border border-border p-6">
-        <h2 className="text-xl font-bold text-primary text-center mb-2">{t("home.paywall_title")}</h2>
-        <p className="text-center text-sm text-muted-foreground mb-6">
-          {t("home.paywall_desc")}<br />
-          <strong className="text-foreground">{t("home.paywall_price")}</strong>
-        </p>
-        <div className="text-center mb-6">
-          <p className="text-xs text-muted-foreground mb-2 font-medium">{t("home.qr_prompt")}</p>
-          <img
-            src="https://media.base44.com/images/public/6a40f974860993eff3634df0/4ef59e6e7_paymentqr.jpg"
-            alt="To'lov QR Kodi"
-            className="w-44 h-44 mx-auto rounded-xl border-4 border-white shadow-md object-contain bg-white"
-          />
-        </div>
-        <div className="mb-4">
-          <TelegramPaymentLink />
-        </div>
-        {submitted ? (
-          <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center">
-            <p className="text-amber-700 dark:text-amber-400 font-medium text-sm">{t("home.submitted_msg")}</p>
-          </div>
-        ) : (
-          <>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold text-foreground mb-2">{t("home.ref_label")}</label>
-              <input
-                type="text"
-                value={paymentRef}
-                onChange={e => setPaymentRef(e.target.value)}
-                placeholder={t("home.ref_placeholder")}
-                className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-              />
-            </div>
-            <Button
-              onClick={handleSubmit}
-              disabled={submitting || !paymentRef.trim()}
-              className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-base font-semibold select-none"
-            >
-              {submitting ? t("home.submitting") : t("home.submit_payment")}
-            </Button>
-          </>
-        )}
-      </div>
     </div>
   );
 }
