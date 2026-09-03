@@ -32,13 +32,13 @@ function computeStreak(results) {
   return streak;
 }
 
+// units/selectedUnit/selectedUnitName/onOpenUnitDrawer are still passed down
+// from Home.jsx (the old unit-quiz system they describe still exists) but
+// the dashboard no longer surfaces an entry point to it — Vocab Journey was
+// removed as redundant, see project handoff doc.
 export default function MissionControl({
   user,
   results,
-  units,
-  selectedUnit,
-  selectedUnitName,
-  onOpenUnitDrawer,
   onNavigate,
 }) {
   const { lang, t } = useAppLang();
