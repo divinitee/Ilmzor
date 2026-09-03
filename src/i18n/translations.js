@@ -798,6 +798,7 @@ export const translations = {
       journeyVocab: "Словарь", journeyModule: "Модуль {n}", journeyPickUnit: "Выберите раздел", journeyToday: "Сегодняшний урок",
       quickActions: "Быстрые действия",
       qaReview: "Повторить слова", qaDeep: "Режим глубины", qaRandom: "Случайное задание", qaAi: "Спросить ИИ-учителя", qaLibrary: "Библиотека слов",
+      comingSoon: "Скоро появится",
       premiumAnalytics: "Премиум-аналитика", premiumAnalyticsDesc: "Тепловые карты, графики и ИИ-отчёты",
       freeLessonBadge: "БЕСПЛАТНО", freeLessonTitle: "Попробуйте новый Learning Path бесплатно",
       freeLessonDesc: "Подписка не нужна — начните Урок 1 прямо сейчас", freeLessonCta: "Начать Урок 1",
