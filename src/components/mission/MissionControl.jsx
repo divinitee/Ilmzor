@@ -5,7 +5,6 @@ import { DASH_STR, getLearningGoal, getGreetingKey } from "@/lib/dashboardData";
 import HeroCard from "./HeroCard";
 import FreeLessonCard from "./FreeLessonCard";
 import MissionsCard from "./MissionsCard";
-import AICoachCard from "./AICoachCard";
 import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import LearningJourney from "./LearningJourney";
@@ -125,23 +124,8 @@ export default function MissionControl({
     { id: "streak", label: t("dashboard.missionStreak"), icon: "Flame", progress: data.streak > 0 ? 1 : 0, target: 1, done: data.streak > 0 },
   ];
 
-  const aiRecs = useMemo(() => {
-    const r = [];
-    if (data.quizzesToday === 0)
-      r.push(t("dashboard.recNoStudy"));
-    if (data.bestAccuracyToday >= 80)
-      r.push(t("dashboard.recHighAcc"));
-    else if (data.bestAccuracyToday > 0 && data.bestAccuracyToday < 70)
-      r.push(t("dashboard.recLowAcc", { pct: data.bestAccuracyToday }));
-    if (data.streak >= 5)
-      r.push(t("dashboard.recStreak", { n: data.streak }));
-    if (data.totalCorrect > 0 && data.totalCorrect < 50)
-      r.push(t("dashboard.recTotal", { n: data.totalCorrect }));
-    if (data.totalQuizzes === 0)
-      r.push(t("dashboard.recNoQuiz"));
-    if (r.length === 0) r.push(t("dashboard.recDefault"));
-    return r.slice(0, 3);
-  }, [data]);
+  // AI Coach card removed for now (see project handoff doc) — to be
+  // rebuilt alongside the SRS system for reminders/active suggestions.
 
   const achievement = useMemo(() => {
     if (data.streak >= 30) return { title: t("dashboard.achUnbreakable"), desc: t("dashboard.achUnbreakableDesc"), tint: "#f59e0b", icon: "Flame" };
@@ -176,7 +160,6 @@ export default function MissionControl({
       <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={{ rows: skillHubRows, overall: skillHubOverall }} />
       <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
-      <AICoachCard recs={aiRecs} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
       <RecentAchievement achievement={achievement} />
       <LearningJourney path={goal} unit={selectedUnitName} selectedUnit={selectedUnit} moduleNum={data.moduleNum} accent={ACCENT} onOpenUnitDrawer={onOpenUnitDrawer} />
