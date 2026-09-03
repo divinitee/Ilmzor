@@ -166,6 +166,7 @@ export const translations = {
     },
     dashboard: {
       missionControl: "Boshqaruv markazi",
+      defaultLearnerName: "O'quvchi",
       continueLearning: "Davom etish",
       currentPath: "Joriy yo'nalish", currentUnit: "Joriy unit",
       estSession: "Mashq davomiyligi · 5 daqiqa",
