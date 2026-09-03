@@ -4,6 +4,7 @@ import { Loader2, Target, CheckCircle2, RotateCcw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { FREE_LESSON_ID } from "@/lib/freeLesson";
 import { recordAssessmentResult } from "@/lib/placementTest";
 import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
 import TeachExperience from "@/components/lesson/TeachExperience";
@@ -160,15 +161,27 @@ export default function LessonRunner() {
     setGrading(true);
     const item = current.item;
 
-    const gate = await checkAiGate(userEmail, userId, isAdmin);
-    if (!gate.allowed) {
-      // Daily AI-graded practice allowance used up: don't fabricate a score
-      // (it would wrongly count against the locked mastery rollup) and don't
-      // record an attempt at all — the item just stays ungraded until the
-      // allowance resets, same as never having answered it. See aiLimits.js.
-      setFeedback({ score: null, tip: "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more." });
-      setGrading(false);
-      return;
+    // Lesson 1 is the free, no-subscription-required demo hook (see
+    // FreeLessonCard.jsx / freeLesson.js) — a first-time visitor hitting a
+    // "come back tomorrow" wall mid-demo defeats the entire point of giving
+    // it away, and its exposure is bounded (one lesson, a handful of check
+    // activities) so the AI-cost risk the fair-use gate exists for doesn't
+    // apply here the way it does to unlimited daily practice. Everything
+    // else about grading stays identical — still a real AI-graded score,
+    // still recorded normally — this only skips the allowance check/spend.
+    const isFreeDemoLesson = lessonId === FREE_LESSON_ID;
+
+    if (!isFreeDemoLesson) {
+      const gate = await checkAiGate(userEmail, userId, isAdmin);
+      if (!gate.allowed) {
+        // Daily AI-graded practice allowance used up: don't fabricate a score
+        // (it would wrongly count against the locked mastery rollup) and don't
+        // record an attempt at all — the item just stays ungraded until the
+        // allowance resets, same as never having answered it. See aiLimits.js.
+        setFeedback({ score: null, tip: "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more." });
+        setGrading(false);
+        return;
+      }
     }
 
     const result = item.type === "vocab"
@@ -176,7 +189,7 @@ export default function LessonRunner() {
       : await evaluateGrammarConstruction(
           { instruction: item.instruction, requiredElement: item.requiredElement, topic: item.topic }, answer
         );
-    await incrementAiUsage(userEmail, userId, "");
+    if (!isFreeDemoLesson) await incrementAiUsage(userEmail, userId, "");
     await recordAssessmentResult({
       userEmail, lessonId: lesson.id, activityId: current.activityId,
       source: "practice", skill: item.skill || (item.type === "vocab" ? "vocabulary" : "grammar"),
