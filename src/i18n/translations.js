@@ -465,6 +465,7 @@ export const translations = {
     },
     dashboard: {
       missionControl: "Mission Control",
+      defaultLearnerName: "Learner",
       continueLearning: "Continue Learning",
       currentPath: "Current Path", currentUnit: "Current Unit",
       estSession: "Estimated session · 5 min",
