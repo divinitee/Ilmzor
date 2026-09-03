@@ -66,7 +66,7 @@ function Panel({ title, children, right }) {
 export default function Analytics() {
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState([]);
-  const [coins, setCoins] = useState(null);
+  const [xpRecord, setXpRecord] = useState(null);
   const [user, setUser] = useState(null);
   const [report, setReport] = useState("");
   const [generating, setGenerating] = useState(false);
@@ -81,7 +81,7 @@ export default function Analytics() {
           base44.entities.UserCoins.filter({ user_id: me.id }),
         ]);
         setResults(r);
-        if (c && c[0]) setCoins(c[0]);
+        if (c && c[0]) setXpRecord(c[0]);
       } catch (e) {
         console.error(e);
       } finally {
@@ -96,9 +96,9 @@ export default function Analytics() {
     const totalQuestions = results.reduce((a, r) => a + (r.total_questions || 30), 0);
     const accuracy = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
     const streak = computeStreak(results);
-    const xp = coins?.coins || 0;
+    const xp = xpRecord?.coins || 0;
     return { totalQuizzes, totalCorrect, accuracy, streak, xp };
-  }, [results, coins]);
+  }, [results, xpRecord]);
 
   const activity14 = useMemo(() => {
     const arr = [];
