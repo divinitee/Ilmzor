@@ -640,6 +640,7 @@ export const translations = {
     },
     profile: {
       full_name: "Имя и фамилия", full_name_placeholder: "Введите ваше имя",
+      no_name: "Имя не указано", save_error: "Не удалось сохранить. Попробуйте ещё раз.",
       room_code: "Код класса", room_code_placeholder: "Напр. ABC123",
       room_code_desc: "Введите код класса, выданный учителем",
       cancel: "Отмена", save: "Сохранить", saving: "Сохранение...", saved: "Сохранено!", edit: "Редактировать",
