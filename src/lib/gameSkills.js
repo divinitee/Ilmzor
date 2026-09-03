@@ -22,15 +22,14 @@ export const GAME_SKILL_MAP = {
   definition: "comprehension",
   sentence: "creativity",
   odd_one_out: "vocabulary",
-  // GrammarQuizGame's id — was missing entirely, which meant every one of
-  // the 8 dedicated grammar categories (Verb Tenses, Articles, Prepositions,
-  // Punctuation, Question Formation, Active vs Passive, Conditionals,
-  // Reported Speech — 16 challenge nodes total) silently recorded nothing:
-  // recordGameResult() early-returns when GAME_SKILL_MAP[gameId] is
-  // undefined. That's why grammar nodes never showed a completion % and
-  // grammar progress never appeared anywhere. definition_match,
-  // picture_match, context_guess, memory_flip intentionally still fall
-  // through to vocabulary below, same as before.
+  // "grammar" (GrammarQuizGame) and these 4 "Meaning" games were all
+  // missing from this map entirely — recordGameResult() early-returns
+  // when GAME_SKILL_MAP[gameId] is undefined, so every completion of any
+  // of these silently recorded nothing. That's 8 dedicated grammar
+  // categories (16 challenge nodes) plus Definition Match / Picture Match /
+  // Context Guess / Memory Flip under Vocabulary > Meaning — none of them
+  // ever showed a completion % or counted toward any stat, local or
+  // server-synced, since Skill Hub shipped.
   grammar: "grammar",
   definition_match: "vocabulary",
   picture_match: "vocabulary",
