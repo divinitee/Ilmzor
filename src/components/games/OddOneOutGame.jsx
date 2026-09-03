@@ -36,7 +36,7 @@ const ROUND_COUNT = 8;
 // as the target; one means the opposite. Trains discrimination among
 // similar options, not just recognition — deliberately different from
 // Synonym Sprint's straight multiple-choice recall.
-export default function OddOneOutGame({ onBack, onCoinsEarned, onGameComplete }) {
+export default function OddOneOutGame({ onBack, onXpEarned, onGameComplete }) {
   const [round, setRound] = useState(0);
 
   const rounds = useMemo(() => {
@@ -70,7 +70,7 @@ export default function OddOneOutGame({ onBack, onCoinsEarned, onGameComplete })
       const pct = count ? Math.round((score / count) * 100) : 0;
       setFinished(true);
       onGameComplete?.({ scorePct: pct });
-      if (score > 0) onCoinsEarned?.(score * 10, score);
+      if (score > 0) onXpEarned?.(score * 10, score);
     } else {
       setIdx((i) => i + 1);
       setSelected(null);
