@@ -4,7 +4,7 @@ import SkillRadar from "@/components/games/SkillRadar";
 import { getOverallStats, getSkillStats, SKILLS } from "@/lib/gameSkills";
 import { useAppLang } from "@/hooks/useAppLang";
 
-export default function ProgressOverview({ coins = 0 }) {
+export default function ProgressOverview({ xp = 0 }) {
   const { t } = useAppLang();
   const overall = getOverallStats();
   const all = getSkillStats();
@@ -29,7 +29,7 @@ export default function ProgressOverview({ coins = 0 }) {
 
       <div className="grid grid-cols-3 gap-2 mt-2">
         <div className="bg-amber-500/10 rounded-xl py-2 text-center">
-          <p className="text-base font-bold text-amber-600">🪙 {coins}</p>
+          <p className="text-base font-bold text-amber-600">⚡ {xp}</p>
           <p className="text-[10px] text-muted-foreground">{t("games.coins")}</p>
         </div>
         <div className="bg-emerald-500/10 rounded-xl py-2 text-center">
