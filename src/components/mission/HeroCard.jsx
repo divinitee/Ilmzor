@@ -1,25 +1,52 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Play, Clock, Compass, BookOpen, ArrowRight, Layers } from "lucide-react";
+import { Sparkles, Play, ArrowRight } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 
-function Field({ label, value, icon: Icon }) {
+const SKILL_LABEL_KEY = {
+  vocabulary: "skillVocabulary",
+  grammar: "skillGrammar",
+  spelling: "skillSpelling",
+  comprehension: "skillComprehension",
+  creativity: "skillCreativity",
+};
+
+function SkillRow({ row, t, index }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-3">
-      <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">
-        <Icon className="w-3 h-3" /> {label}
+    <motion.div
+      initial={{ opacity: 0, x: -8 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.15 + index * 0.06 }}
+      className="flex items-center gap-2.5"
+    >
+      <span className="text-base leading-none flex-shrink-0" aria-hidden="true">{row.emoji}</span>
+      <span className="text-xs font-medium text-foreground/85 w-24 flex-shrink-0 truncate">
+        {t(`dashboard.${SKILL_LABEL_KEY[row.key]}`)}
+      </span>
+      <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${row.best}%` }}
+          transition={{ delay: 0.2 + index * 0.06, duration: 0.6 }}
+          className="h-full rounded-full"
+          style={{ background: row.color }}
+        />
       </div>
-      <p className="text-sm font-semibold text-foreground leading-tight truncate">{value || "—"}</p>
-    </div>
+      <span className="text-xs font-semibold text-foreground/70 w-8 text-right flex-shrink-0">{row.best}%</span>
+    </motion.div>
   );
 }
 
-export default function HeroCard({ path, unit, accent, accentGlow, onContinue, skillHub, onOpenSkillHub }) {
+export default function HeroCard({ accent, accentGlow, onContinue, skillHub }) {
   const { t } = useAppLang();
-  // skillHub: { plays, avgMastery, skillsTrained } from SkillHubProgress
-  // (getRemoteOverallStats) — real, cross-device Skill Hub progress, not a
-  // static label. null while loading, so we don't flash "0 rounds" first.
-  const hasPlays = skillHub && skillHub.plays > 0;
+  // skillHub: { rows, overall } — rows from getRemoteSkillProgress (always
+  // all 5 SKILLS, zero-filled), overall from summarizeSkillProgress. Both
+  // null while loading. This is real, cross-device Skill Hub mastery, not a
+  // static/generic label — the hero used to show the old unit-vocab-quiz
+  // system's current path/unit here; that system still exists but is no
+  // longer the dashboard's headline feature, see LearningJourney instead.
+  const rows = skillHub?.rows;
+  const hasPlays = (skillHub?.overall?.plays || 0) > 0;
   return (
     <div className="relative">
       <span className="neo-bloom neo-bloom-blue" aria-hidden="true" />
@@ -35,38 +62,25 @@ export default function HeroCard({ path, unit, accent, accentGlow, onContinue, s
           </span>
         </div>
         <h2 className="relative text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-          {t("dashboard.continueLearning")}
+          {t("dashboard.skillHubHeroTitle")}
         </h2>
-        <div className="relative mt-4 grid grid-cols-2 gap-3">
-          <Field label={t("dashboard.currentPath")} value={path} icon={Compass} />
-          <Field label={t("dashboard.currentUnit")} value={unit} icon={BookOpen} />
-        </div>
-        <div className="relative mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-          <Clock className="w-3.5 h-3.5" /> <span>{t("dashboard.estSession")}</span>
-        </div>
 
-        {skillHub && (
-          <button
-            type="button"
-            onClick={onOpenSkillHub}
-            className="relative mt-3 w-full rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-3 text-left select-none hover:bg-white/[0.07] transition-colors"
-          >
-            <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
-              <Layers className="w-3 h-3" /> {t("dashboard.skillHubLabel")}
-            </div>
-            {hasPlays ? (
-              <>
-                <p className="text-sm font-semibold text-foreground leading-tight">
-                  {t("dashboard.skillHubStat", { pct: skillHub.avgMastery, n: skillHub.plays })}
-                </p>
-                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mt-2">
-                  <div className="h-full rounded-full" style={{ width: `${skillHub.avgMastery}%`, background: accent }} />
-                </div>
-              </>
-            ) : (
-              <p className="text-sm font-semibold text-foreground leading-tight">{t("dashboard.skillHubEmpty")}</p>
+        {rows ? (
+          <div className="relative mt-4 space-y-2.5">
+            {!hasPlays && (
+              <p className="text-xs text-muted-foreground mb-1">{t("dashboard.skillHubHeroEmpty")}</p>
             )}
-          </button>
+            {rows.map((row, i) => (
+              <SkillRow key={row.key} row={row} t={t} index={i} />
+            ))}
+            {hasPlays && (
+              <p className="text-[11px] text-muted-foreground pt-0.5">
+                {t("dashboard.skillHubStat", { pct: skillHub.overall.avgMastery, n: skillHub.overall.plays })}
+              </p>
+            )}
+          </div>
+        ) : (
+          <div className="relative mt-4 h-24 rounded-2xl border border-white/10 bg-white/[0.03] animate-pulse" />
         )}
         <button
           onClick={onContinue}
