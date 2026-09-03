@@ -764,6 +764,7 @@ export const translations = {
     },
     dashboard: {
       missionControl: "Пульт управления",
+      defaultLearnerName: "Ученик",
       continueLearning: "Продолжить обучение",
       currentPath: "Текущий путь", currentUnit: "Текущий раздел",
       estSession: "Занятие · около 5 мин",
