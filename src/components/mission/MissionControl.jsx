@@ -11,6 +11,7 @@ import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import LearningJourney from "./LearningJourney";
 import QuickActions from "./QuickActions";
+import { getRemoteOverallStats } from "@/lib/gameSkills";
 
 export const ACCENT = "#3b82f6";
 export const ACCENT_GLOW = "rgba(59,130,246,0.5)";
@@ -46,6 +47,7 @@ export default function MissionControl({
   const s = DASH_STR[lang] || DASH_STR.en;
   const navigate = useNavigate();
   const [coins, setCoins] = useState(null);
+  const [skillHubStats, setSkillHubStats] = useState(null); // null = still loading
 
   useEffect(() => {
     if (!user) return;
@@ -55,6 +57,11 @@ export default function MissionControl({
         if (r && r[0]) setCoins(r[0]);
       })
       .catch(() => {});
+  }, [user]);
+
+  useEffect(() => {
+    if (!user?.email) return;
+    getRemoteOverallStats(user.email).then(setSkillHubStats);
   }, [user]);
 
   const data = useMemo(() => {
@@ -139,7 +146,7 @@ export default function MissionControl({
         <h1 className="text-2xl font-bold text-foreground tracking-tight">{name}</h1>
       </div>
 
-      <HeroCard path={goal} unit={selectedUnitName} accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} />
+      <HeroCard path={goal} unit={selectedUnitName} accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={skillHubStats} onOpenSkillHub={() => onNavigate?.("skillhub")} />
       <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <AICoachCard recs={aiRecs} accent={ACCENT} accentGlow={ACCENT_GLOW} />
