@@ -141,9 +141,9 @@ export default function VocabTutorChat() {
         <span className={`text-[11px] font-semibold px-2 py-1 rounded-full select-none ${
           limitReached ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"
         }`}>
-          {limitReached
-            ? (usage.unlimited ? t("tutor.fair_use_badge") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit }))
-            : (usage.unlimited ? t("tutor.unlimited") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit }))}
+          {limitReached && usage.unlimited
+            ? t("tutor.fair_use_badge")
+            : usage.unlimited ? t("tutor.unlimited") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit })}
         </span>
       </div>
 
