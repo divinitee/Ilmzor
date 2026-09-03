@@ -45,7 +45,7 @@ async function generateDefinitions(words) {
   return map;
 }
 
-// Evaluate a user-written definition and award 1-5 coins.
+// Evaluate a user-written definition and award 1-5 XP.
 async function evaluateDefinition(userDef, word, cfg) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
@@ -63,7 +63,7 @@ async function evaluateDefinition(userDef, word, cfg) {
         `- completeness: does it capture the key idea, not just a vague synonym?`,
         `- own_words: did the student paraphrase rather than copy the reference almost word-for-word? (near-copy = 0-30)`,
         ``,
-        `Then reward coins (integer 1-5) from the AVERAGE of the three scores:`,
+        `Then reward XP (integer 1-5) from the AVERAGE of the three scores:`,
         `>=85 → 5, 70-84 → 4, 55-69 → 3, 35-54 → 2, <35 → 1.`,
         `Minimum ${cfg.minWords} words expected; much shorter answers subtract ~10 from each score.`,
         `Also give ONE concrete, specific tip (max 15 words) pointing out exactly what to improve — not generic praise.`,
@@ -75,27 +75,27 @@ async function evaluateDefinition(userDef, word, cfg) {
           accuracy: { type: "number" },
           completeness: { type: "number" },
           own_words: { type: "number" },
-          coins: { type: "number" },
+          xp: { type: "number" },
           tip: { type: "string" },
         },
       },
     });
     const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
-    let coins = Math.round(Number(res.coins) || 0);
-    coins = Math.max(1, Math.min(5, coins));
+    let xp = Math.round(Number(res.xp) || 0);
+    xp = Math.max(1, Math.min(5, xp));
     return {
       accuracy: clamp(res.accuracy),
       completeness: clamp(res.completeness),
       own_words: clamp(res.own_words),
-      coins,
+      xp,
       tip: res.tip || "",
     };
   } catch {
-    return { accuracy: 0, completeness: 0, own_words: 0, coins: 1, tip: "" };
+    return { accuracy: 0, completeness: 0, own_words: 0, xp: 1, tip: "" };
   }
 }
 
-export default function DefinitionGame({ words, unitName, onBack, user, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
+export default function DefinitionGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
 
@@ -106,9 +106,9 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState(null);
   const [checking, setChecking] = useState(false);
-  const [totalCoins, setTotalCoins] = useState(0);
+  const [totalXp, setTotalXp] = useState(0);
   const [done, setDone] = useState(false);
-  // Capture words once on mount so a parent re-render (e.g. coin update) does NOT
+  // Capture words once on mount so a parent re-render (e.g. XP update) does NOT
   // re-run start() and reset the in-progress round.
   const wordsRef = useRef(words);
   wordsRef.current = words;
@@ -125,7 +125,7 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     setQIndex(0);
     setAnswer("");
     setResult(null);
-    setTotalCoins(0);
+    setTotalXp(0);
     setDone(false);
     setGateBlocked(false);
 
@@ -160,7 +160,7 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     if (user) {
       const gate = await checkAiGate(user.email, user.id, user.role === "admin");
       if (!gate.allowed) {
-        // Don't fabricate a score/coins for an ungraded answer — same rule
+        // Don't fabricate a score/XP for an ungraded answer — same rule
         // as LessonRunner: no allowance left means this attempt just stays
         // ungraded, not silently wrong.
         setResult({ blocked: true });
@@ -172,8 +172,8 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     const res = await evaluateDefinition(answer, enriched, cfg);
     if (user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     setResult(res);
-    setTotalCoins(c => c + res.coins);
-    if (onCoinsEarned && user) onCoinsEarned(res.coins, res.coins);
+    setTotalXp(c => c + res.xp);
+    if (onXpEarned && user) onXpEarned(res.xp, res.xp);
     setChecking(false);
   };
 
@@ -188,8 +188,8 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   useEffect(() => {
     if (!done || pool.length === 0) return;
     const max = pool.length * 5;
-    const pct = max ? Math.round((totalCoins / max) * 100) : 0;
-    if (onGameComplete) onGameComplete({ scorePct: pct, correct: totalCoins, total: max });
+    const pct = max ? Math.round((totalXp / max) * 100) : 0;
+    if (onGameComplete) onGameComplete({ scorePct: pct, correct: totalXp, total: max });
   }, [done]); /* eslint-disable-next-line */
 
   if (!words.length) {
@@ -213,16 +213,16 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   if (done) {
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
-        <div className="text-6xl mb-4">{totalCoins >= pool.length * 4 ? "🏆" : totalCoins >= pool.length * 2 ? "👍" : "📚"}</div>
+        <div className="text-6xl mb-4">{totalXp >= pool.length * 4 ? "🏆" : totalXp >= pool.length * 2 ? "👍" : "📚"}</div>
         <h2 className="text-2xl font-bold text-foreground mb-2">{t("gameui.def_done")}</h2>
         <p className="text-muted-foreground mb-1">{unitName}</p>
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-5 mb-5 mt-4 flex items-center justify-center gap-3"
         >
-          <span className="text-3xl">🪙</span>
+          <span className="text-3xl">⚡</span>
           <div>
-            <p className="text-3xl font-bold text-amber-600">+{totalCoins}</p>
+            <p className="text-3xl font-bold text-amber-600">+{totalXp}</p>
             <p className="text-xs text-muted-foreground">{t("gameui.def_total_coins")}</p>
           </div>
         </motion.div>
@@ -240,7 +240,7 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
           <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
         </button>
         <span className="text-xs text-muted-foreground font-medium">{qIndex + 1} / {pool.length}</span>
-        <span className="text-xs bg-rose-500/10 text-rose-700 dark:text-rose-400 font-semibold px-2.5 py-1 rounded-full">🪙 {totalCoins}</span>
+        <span className="text-xs bg-rose-500/10 text-rose-700 dark:text-rose-400 font-semibold px-2.5 py-1 rounded-full">⚡ {totalXp}</span>
       </div>
 
       {loadingDefs && (
@@ -300,11 +300,11 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-background border border-border rounded-2xl p-5 mb-4">
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-semibold text-foreground">
-                    {result.coins >= 4 ? t("gameui.def_reward_great") : result.coins >= 2 ? t("gameui.def_reward_ok") : t("gameui.def_reward_low")}
+                    {result.xp >= 4 ? t("gameui.def_reward_great") : result.xp >= 2 ? t("gameui.def_reward_ok") : t("gameui.def_reward_low")}
                   </span>
                   <motion.div initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="flex items-center gap-1 bg-amber-500/10 px-3 py-1.5 rounded-full">
-                    <span className="text-lg">🪙</span>
-                    <span className="text-xl font-bold text-amber-600">+{result.coins}</span>
+                    <span className="text-lg">⚡</span>
+                    <span className="text-xl font-bold text-amber-600">+{result.xp}</span>
                     <span className="text-xs text-muted-foreground">/ 5</span>
                   </motion.div>
                 </div>
