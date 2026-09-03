@@ -13,7 +13,7 @@ const DIFF_CONFIG = {
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
+export default function SpellingGame({ words, unitName, onBack, onXpEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
 
@@ -32,7 +32,7 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
   const [status, setStatus] = useState(null); // "correct" | "wrong" | null
   const [scores, setScores] = useState([]);
   const [done, setDone] = useState(false);
-  const [coinAnim, setCoinAnim] = useState(null);
+  const [xpAnim, setXpAnim] = useState(null);
 
   const buildRound = () => {
     const pool = eligible.length > 0 ? eligible : words;
@@ -97,8 +97,8 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
     setStatus(ok ? "correct" : "wrong");
     setScores(s => [...s, ok ? 1 : 0]);
     if (ok) {
-      setCoinAnim("+1 🪙");
-      setTimeout(() => setCoinAnim(null), 900);
+      setXpAnim("+1 ⚡");
+      setTimeout(() => setXpAnim(null), 900);
     }
     // Reveal the correct spelling in the slots so the learner can review it before moving on.
     setPlaced(cleanTarget.split(""));
@@ -110,12 +110,12 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
     loadWord(round[idx + 1], idx + 1);
   };
 
-  // award coins once on completion
+  // award XP once on completion
   useEffect(() => {
     if (!done || scores.length === 0) return;
     const correctCount = scores.filter(Boolean).length;
     const pct = scores.length ? Math.round((correctCount / scores.length) * 100) : 0;
-    if (onCoinsEarned) onCoinsEarned(correctCount, correctCount);
+    if (onXpEarned) onXpEarned(correctCount, correctCount);
     if (onGameComplete) onGameComplete({ scorePct: pct, correct: correctCount, total: scores.length });
   }, [done]); /* eslint-disable-next-line */
 
@@ -131,7 +131,7 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
         <p className="text-xs text-muted-foreground mb-4 capitalize">{t("gameui.level_label", { level: difficulty })}</p>
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3">
-          <span className="text-3xl">🪙</span>
+          <span className="text-3xl">⚡</span>
           <div>
             <p className="text-2xl font-bold text-amber-600">+{correctCount}</p>
             <p className="text-xs text-muted-foreground">{t("gameui.coins_added")}</p>
@@ -154,10 +154,10 @@ export default function SpellingGame({ words, unitName, onBack, onCoinsEarned, o
   return (
     <div className="max-w-sm mx-auto px-4 py-6 relative">
       <AnimatePresence>
-        {coinAnim && (
+        {xpAnim && (
           <motion.div initial={{ opacity: 1, y: 0, scale: 1 }} animate={{ opacity: 0, y: -60, scale: 1.4 }}
             className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-xl font-bold text-amber-500 pointer-events-none">
-            {coinAnim}
+            {xpAnim}
           </motion.div>
         )}
       </AnimatePresence>
