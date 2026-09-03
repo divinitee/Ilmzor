@@ -4,6 +4,9 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Sparkles } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
+import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+
+const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
 
 const DIFF_CONFIG = {
   beginner:     { count: 5,  minWords: 5 },
@@ -111,7 +114,9 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   wordsRef.current = words;
   const startedRef = useRef(false);
 
-  const start = useCallback(() => {
+  const [gateBlocked, setGateBlocked] = useState(false);
+
+  const start = useCallback(async () => {
     const ws = wordsRef.current;
     if (!ws.length) return;
     const target = Math.min(cfg.count, ws.length);
@@ -122,11 +127,23 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     setResult(null);
     setTotalCoins(0);
     setDone(false);
+    setGateBlocked(false);
+
+    // Building the round's definitions is itself an AI call (one per
+    // session, not per answer) — no local fallback content source exists
+    // for it, so if today's allowance is already gone there's nothing
+    // honest to show; block before spending anything rather than starting
+    // a game that can never finish.
+    if (user) {
+      const gate = await checkAiGate(user.email, user.id, user.role === "admin");
+      if (!gate.allowed) { setGateBlocked(true); return; }
+    }
+
     setLoadingDefs(true);
     generateDefinitions(picked)
-      .then(map => setDefs(map))
+      .then(map => { setDefs(map); if (user) incrementAiUsage(user.email, user.id, "").catch(() => {}); })
       .finally(() => setLoadingDefs(false));
-  }, [cfg.count]);
+  }, [cfg.count, user]);
 
   useEffect(() => {
     if (startedRef.current) return;
@@ -140,8 +157,20 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
   const handleSubmit = async () => {
     if (!answer.trim() || checking || !current) return;
     setChecking(true);
+    if (user) {
+      const gate = await checkAiGate(user.email, user.id, user.role === "admin");
+      if (!gate.allowed) {
+        // Don't fabricate a score/coins for an ungraded answer — same rule
+        // as LessonRunner: no allowance left means this attempt just stays
+        // ungraded, not silently wrong.
+        setResult({ blocked: true });
+        setChecking(false);
+        return;
+      }
+    }
     const enriched = { ...current, definition: currentDef?.definition || current.description || "" };
     const res = await evaluateDefinition(answer, enriched, cfg);
+    if (user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     setResult(res);
     setTotalCoins(c => c + res.coins);
     if (onCoinsEarned && user) onCoinsEarned(res.coins, res.coins);
@@ -167,6 +196,15 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
     return (
       <div className="max-w-sm mx-auto px-4 py-16 text-center">
         <p className="text-muted-foreground text-sm mb-4">{t("gameui.def_no_words")}</p>
+        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
+      </div>
+    );
+  }
+
+  if (gateBlocked) {
+    return (
+      <div className="max-w-sm mx-auto px-4 py-16 text-center">
+        <p className="text-muted-foreground text-sm mb-4">{AI_LIMIT_MSG}</p>
         <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
       </div>
     );
@@ -253,6 +291,11 @@ export default function DefinitionGame({ words, unitName, onBack, user, onCoinsE
                   {checking ? t("gameui.checking") : t("gameui.def_submit")}
                 </Button>
               </>
+            ) : result.blocked ? (
+              <div className="bg-background border border-border rounded-2xl p-5 mb-4 text-center">
+                <p className="text-sm text-muted-foreground mb-4">{AI_LIMIT_MSG}</p>
+                <Button variant="outline" onClick={onBack} className="w-full select-none">{t("gameui.back")}</Button>
+              </div>
             ) : (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-background border border-border rounded-2xl p-5 mb-4">
                 <div className="flex items-center justify-between mb-4">
