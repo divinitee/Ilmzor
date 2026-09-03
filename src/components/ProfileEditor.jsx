@@ -121,6 +121,12 @@ export default function ProfileEditor({ user, onSaved }) {
             <p className="text-xs text-muted-foreground">{t("profile.room_code_desc")}</p>
           </div>
 
+          {error && (
+            <p className="flex items-center gap-1.5 text-xs text-destructive font-medium">
+              <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" /> {t("profile.save_error")}
+            </p>
+          )}
+
           <div className="flex gap-2">
             <Button variant="outline" onClick={handleCancel} className="flex-1 h-10 font-semibold select-none">
               {t("profile.cancel")}
@@ -132,7 +138,7 @@ export default function ProfileEditor({ user, onSaved }) {
         </>
       ) : (
         <div className="text-center space-y-2">
-          <p className="text-base font-semibold text-foreground">{username || "—"}</p>
+          <p className="text-base font-semibold text-foreground">{username || t("profile.no_name")}</p>
           {roomCode ? (
             <div className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted px-3 py-1 rounded-full">
               <Hash className="w-3 h-3" />
