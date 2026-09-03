@@ -342,6 +342,7 @@ export const translations = {
     },
     profile: {
       full_name: "Full name", full_name_placeholder: "Enter your name",
+      no_name: "No name set", save_error: "Couldn't save. Please try again.",
       room_code: "Classroom code", room_code_placeholder: "e.g. ABC123",
       room_code_desc: "Enter the classroom code given by your teacher",
       cancel: "Cancel", save: "Save", saving: "Saving...", saved: "Saved!", edit: "Edit",
