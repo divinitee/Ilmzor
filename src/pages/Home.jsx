@@ -33,11 +33,18 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "home";
+  // Bumped whenever the dashboard's Random Challenge quick action fires, so
+  // SkillHub (which stays mounted only while activeTab === "skillhub") can
+  // tell "open the tab" apart from "open the tab AND launch a random game".
+  const [randomLaunch, setRandomLaunch] = useState(0);
   const navigateTab = (tab) => {
     const next = new URLSearchParams(searchParams);
     ["game", "play", "difficulty", "timePerQ", "autoAdvance"].forEach(k => next.delete(k));
-    if (tab === "home") next.delete("tab"); else next.set("tab", tab);
+    const isRandom = tab === "skillhub-random";
+    const targetTab = isRandom ? "skillhub" : tab;
+    if (targetTab === "home") next.delete("tab"); else next.set("tab", targetTab);
     setSearchParams(next);
+    if (isRandom) setRandomLaunch((n) => n + 1);
   };
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -196,7 +203,7 @@ export default function Home() {
           )
         )}
 
-        {activeTab === "skillhub" && <SkillHub isActive={isActive} user={user} />}
+        {activeTab === "skillhub" && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} />}
 
         {activeTab === "tutor" && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
 
