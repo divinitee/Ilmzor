@@ -145,3 +145,17 @@ export function summarizeSkillProgress(rows) {
 export async function getRemoteOverallStats(userEmail) {
   return summarizeSkillProgress(await getRemoteSkillProgress(userEmail));
 }
+
+// SkillHubProgress keeps one row per skill (plays/best/last are cumulative,
+// overwritten on every round) rather than a per-round log, so "today" can
+// only be read off each row's updated_date — true exactly when that skill's
+// most recent round happened today, in which case `last` is that round's
+// score. Used to give "Today's Mission" real Skill Hub-sourced daily targets.
+export function getTodaySkillActivity(rows) {
+  const todayStr = new Date().toDateString();
+  const today = (rows || []).filter(
+    (r) => r.updated_date && new Date(r.updated_date).toDateString() === todayStr
+  );
+  const bestToday = today.reduce((m, r) => Math.max(m, r.last || 0), 0);
+  return { playedToday: today.length > 0, skillsToday: today.length, bestToday };
+}
