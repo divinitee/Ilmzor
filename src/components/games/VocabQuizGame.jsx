@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
+import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
 
 const DIFF_CONFIG = {
   beginner:     { count: 20, types: ["multiple_choice"], hints: true },
@@ -43,6 +44,24 @@ async function aiSimilarity(userInput, word) {
     const sim = similarityScore(userInput, word.english);
     return sim >= 80 ? 100 : 0;
   }
+}
+
+// Fair-use-gated wrapper around aiSimilarity. This game already treats the
+// local Levenshtein check as an acceptable degrade path on API failure (see
+// the catch above), so a spent daily AI allowance degrades the same way—no
+// blocking screen needed, just a less nuanced (but still real) grade, and no
+// AI credit spent when we fall back.
+async function gradeDefine(userInput, word, user) {
+  if (user) {
+    const gate = await checkAiGate(user.email, user.id, user.role === "admin");
+    if (gate.allowed) {
+      const score = await aiSimilarity(userInput, word);
+      incrementAiUsage(user.email, user.id, "").catch(() => {});
+      return score;
+    }
+  }
+  const sim = similarityScore(userInput, word.english);
+  return sim >= 80 ? 100 : 0;
 }
 
 export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
@@ -165,7 +184,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     if (!defineInput.trim() || checking) return;
     clearInterval(timerRef.current);
     setChecking(true);
-    const score = await aiSimilarity(defineInput, questions[qIndex].word);
+    const score = await gradeDefine(defineInput, questions[qIndex].word, user);
     setDefineScore(score);
     setScores(s => [...s, score]);
     if (score === 100) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
