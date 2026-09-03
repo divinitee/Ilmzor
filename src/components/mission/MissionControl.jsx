@@ -132,8 +132,9 @@ export default function MissionControl({
   // The hero card is Skill Hub's own mastery, not the old unit-quiz system —
   // "continue" now always means "go practice in Skill Hub". The unit-based
   // vocab quiz still exists (that was this project's original focus before
-  // Skill Hub/Learning Path took over) but it's a secondary path now, owned
-  // by LearningJourney's own click handler below, not the hero.
+  // Skill Hub/Learning Path took over) but the dashboard no longer links to
+  // it at all — Vocab Journey (its old entry point here) was removed as
+  // redundant.
   const onContinue = () => onNavigate?.("skillhub");
 
   return (
@@ -156,8 +157,7 @@ export default function MissionControl({
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
       <RecentAchievement achievement={achievement} />
-      <LearningJourney path={goal} unit={selectedUnitName} selectedUnit={selectedUnit} moduleNum={data.moduleNum} accent={ACCENT} onOpenUnitDrawer={onOpenUnitDrawer} />
-      <QuickActions onNavigate={onNavigate} onOpenUnitDrawer={onOpenUnitDrawer} accent={ACCENT} />
+      <QuickActions onNavigate={onNavigate} accent={ACCENT} />
 
     </div>
   );
