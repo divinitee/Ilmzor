@@ -122,6 +122,7 @@ export async function getRemoteSkillProgress(userEmail) {
       plays: bySkill[s.key]?.plays || 0,
       best: bySkill[s.key]?.best || 0,
       last: bySkill[s.key]?.last || 0,
+      updated_date: bySkill[s.key]?.updated_date || null,
     }));
   } catch (e) {
     console.error(e);
