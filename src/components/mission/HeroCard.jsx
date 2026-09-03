@@ -11,7 +11,8 @@ export default function HeroCard({ accent, accentGlow, onContinue, skillHub }) {
   // null while loading. This is real, cross-device Skill Hub mastery, not a
   // static/generic label — the hero used to show the old unit-vocab-quiz
   // system's current path/unit here; that system still exists but is no
-  // longer the dashboard's headline feature, see LearningJourney instead.
+  // longer the dashboard's headline feature (nor linked from the dashboard
+  // at all anymore — the old Vocab Journey entry point was removed).
   const rows = skillHub?.rows;
   const hasPlays = (skillHub?.overall?.plays || 0) > 0;
   return (
