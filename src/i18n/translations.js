@@ -47,6 +47,7 @@ export const translations = {
       room_code: "Sinf xona kodi", room_code_placeholder: "Masalan: ABC123",
       room_code_desc: "O'qituvchingiz bergan sinf kodini kiriting",
       cancel: "Bekor qilish", save: "Saqlash", saving: "Saqlanmoqda...", saved: "Saqlandi!", edit: "Tahrirlash",
+      no_name: "Ism kiritilmagan", save_error: "Saqlab bo'lmadi. Qaytadan urinib ko'ring.",
     },
     games: {
       zone_badge: "O'yinlar zonasi 🎮", hero_title: "O'ynang & O'rganing!", hero_sub: "To'g'ri javob = 🪙 tanga",
