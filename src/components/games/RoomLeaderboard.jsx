@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Trophy, Coins, Crown } from "lucide-react";
+import { Trophy, Zap, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function RoomLeaderboard({ user }) {
@@ -54,7 +54,7 @@ export default function RoomLeaderboard({ user }) {
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
                   <span className="text-sm font-bold text-amber-600">{entry.coins}</span>
-                  <span className="text-base">🪙</span>
+                  <span className="text-base">⚡</span>
                 </div>
               </motion.div>
             );
