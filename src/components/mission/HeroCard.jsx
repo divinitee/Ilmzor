@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Play, Clock, Compass, BookOpen, ArrowRight } from "lucide-react";
+import { Sparkles, Play, Clock, Compass, BookOpen, ArrowRight, Layers } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 
 function Field({ label, value, icon: Icon }) {
@@ -14,8 +14,12 @@ function Field({ label, value, icon: Icon }) {
   );
 }
 
-export default function HeroCard({ path, unit, accent, accentGlow, onContinue }) {
+export default function HeroCard({ path, unit, accent, accentGlow, onContinue, skillHub, onOpenSkillHub }) {
   const { t } = useAppLang();
+  // skillHub: { plays, avgMastery, skillsTrained } from SkillHubProgress
+  // (getRemoteOverallStats) — real, cross-device Skill Hub progress, not a
+  // static label. null while loading, so we don't flash "0 rounds" first.
+  const hasPlays = skillHub && skillHub.plays > 0;
   return (
     <div className="relative">
       <span className="neo-bloom neo-bloom-blue" aria-hidden="true" />
@@ -40,6 +44,30 @@ export default function HeroCard({ path, unit, accent, accentGlow, onContinue })
         <div className="relative mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
           <Clock className="w-3.5 h-3.5" /> <span>{t("dashboard.estSession")}</span>
         </div>
+
+        {skillHub && (
+          <button
+            type="button"
+            onClick={onOpenSkillHub}
+            className="relative mt-3 w-full rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-3 text-left select-none hover:bg-white/[0.07] transition-colors"
+          >
+            <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+              <Layers className="w-3 h-3" /> {t("dashboard.skillHubLabel")}
+            </div>
+            {hasPlays ? (
+              <>
+                <p className="text-sm font-semibold text-foreground leading-tight">
+                  {t("dashboard.skillHubStat", { pct: skillHub.avgMastery, n: skillHub.plays })}
+                </p>
+                <div className="h-1.5 bg-white/10 rounded-full overflow-hidden mt-2">
+                  <div className="h-full rounded-full" style={{ width: `${skillHub.avgMastery}%`, background: accent }} />
+                </div>
+              </>
+            ) : (
+              <p className="text-sm font-semibold text-foreground leading-tight">{t("dashboard.skillHubEmpty")}</p>
+            )}
+          </button>
+        )}
         <button
           onClick={onContinue}
           className="hero-continue relative mt-5 w-full h-14 rounded-2xl font-bold text-white text-base flex items-center justify-center gap-2 select-none overflow-hidden"
