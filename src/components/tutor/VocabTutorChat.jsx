@@ -16,7 +16,7 @@ export default function VocabTutorChat() {
   const [sending, setSending] = useState(false);
   const [loading, setLoading] = useState(true);
   const [deletedIds, setDeletedIds] = useState(new Set());
-  const [usage, setUsage] = useState({ limit: 0, used: 0, remaining: 0, unlimited: false });
+  const [usage, setUsage] = useState({ limit: 0, used: 0, remaining: 0, unlimited: false, allowed: true });
   const bottomRef = useRef(null);
 
   const storageKey = (convId) => `tutor_deleted_${convId}`;
@@ -59,7 +59,7 @@ export default function VocabTutorChat() {
       if (subs.length === 0) subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
       const planName = subs?.[0]?.plan;
       const status = await canUseAiToday(planName, me.email, me.role === "admin");
-      setUsage({ limit: status.limit, used: status.used, remaining: status.remaining, unlimited: status.unlimited });
+      setUsage({ limit: status.limit, used: status.used, remaining: status.remaining, unlimited: status.unlimited, allowed: status.allowed });
       const existing = await base44.agents.listConversations({ agent_name: AGENT_NAME });
       const conv = existing?.[0];
       if (conv) {
@@ -93,7 +93,9 @@ export default function VocabTutorChat() {
     setMessages((prev) => prev.filter((m) => m.id !== id));
   };
 
-  const limitReached = !usage.unlimited && usage.remaining <= 0;
+  // Real gate is `allowed`, not `unlimited` — a display-unlimited plan (VIP)
+  // can still hit its real fair-use ceiling underneath (see aiLimits.js).
+  const limitReached = !usage.allowed;
 
   const handleSend = async () => {
     const content = input.trim();
@@ -107,11 +109,10 @@ export default function VocabTutorChat() {
       await base44.agents.addMessage(conv, { role: "user", content: `[${lang}] ${content}` });
       const me = await base44.auth.me();
       await incrementAiUsage(me.email, me.id, me.full_name);
-      setUsage((u) => ({
-        ...u,
-        used: u.used + 1,
-        remaining: u.unlimited ? Infinity : Math.max(0, u.remaining - 1),
-      }));
+      setUsage((u) => {
+        const remaining = Math.max(0, u.remaining - 1);
+        return { ...u, used: u.used + 1, remaining, allowed: remaining > 0 };
+      });
     } catch {
       setMessages((prev) => prev.filter((m) => m.id !== tempId));
     } finally {
@@ -140,7 +141,9 @@ export default function VocabTutorChat() {
         <span className={`text-[11px] font-semibold px-2 py-1 rounded-full select-none ${
           limitReached ? "bg-destructive/10 text-destructive" : "bg-primary/10 text-primary"
         }`}>
-          {usage.unlimited ? t("tutor.unlimited") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit })}
+          {limitReached
+            ? (usage.unlimited ? t("tutor.fair_use_badge") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit }))
+            : (usage.unlimited ? t("tutor.unlimited") : t("tutor.uses_remaining", { used: usage.used, limit: usage.limit }))}
         </span>
       </div>
 
@@ -154,15 +157,19 @@ export default function VocabTutorChat() {
             <div className="w-14 h-14 rounded-2xl bg-destructive/10 flex items-center justify-center mx-auto mb-4">
               <Lock className="w-7 h-7 text-destructive" />
             </div>
-            <h3 className="text-base font-bold text-foreground mb-2">{t("tutor.limit_reached")}</h3>
+            <h3 className="text-base font-bold text-foreground mb-2">
+              {usage.unlimited ? t("tutor.fair_use_title") : t("tutor.limit_reached")}
+            </h3>
             <p className="text-sm text-muted-foreground mb-5">
-              {t("tutor.limit_reached_desc", { limit: usage.limit })}
+              {usage.unlimited ? t("tutor.fair_use_desc") : t("tutor.limit_reached_desc", { limit: usage.limit })}
             </p>
-            <Link to="/pricing" className="inline-block">
-              <button className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold select-none hover:bg-primary/90 transition-colors">
-                {t("tutor.upgrade")}
-              </button>
-            </Link>
+            {!usage.unlimited && (
+              <Link to="/pricing" className="inline-block">
+                <button className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold select-none hover:bg-primary/90 transition-colors">
+                  {t("tutor.upgrade")}
+                </button>
+              </Link>
+            )}
           </div>
         ) : (
           messages.map((m, i) => (
