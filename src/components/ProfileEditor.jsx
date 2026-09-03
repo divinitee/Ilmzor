@@ -1,20 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Camera, Loader2, Check, Pencil, Hash } from "lucide-react";
+import { Camera, Loader2, Check, Pencil, Hash, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAppLang } from "@/hooks/useAppLang";
+import { displayName } from "@/lib/profileName";
 
 export default function ProfileEditor({ user, onSaved }) {
   const { t } = useAppLang();
   const [editing, setEditing] = useState(false);
-  const [username, setUsername] = useState(user?.full_name || "");
+  const [username, setUsername] = useState(() => displayName(user?.full_name, user?.email));
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
   const [roomCode, setRoomCode] = useState(user?.classroom_code || "");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState(false);
+
+  // `user` is refetched after every save (see Settings.jsx / Home.jsx's
+  // onSaved handlers) and this component isn't remounted when that happens —
+  // without this, a stale prop update while not editing would never reach
+  // local state. Skipped while editing so it can't clobber an in-progress edit.
+  useEffect(() => {
+    if (editing) return;
+    setUsername(displayName(user?.full_name, user?.email));
+    setAvatarUrl(user?.avatar_url || "");
+    setRoomCode(user?.classroom_code || "");
+  }, [user?.full_name, user?.email, user?.avatar_url, user?.classroom_code, editing]);
 
   const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0];
