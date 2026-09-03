@@ -1,0 +1,81 @@
+{
+  "name": "SkillHubProgress",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning student's email"
+    },
+    "skill": {
+      "type": "string",
+      "enum": [
+        "vocabulary",
+        "grammar",
+        "spelling",
+        "comprehension",
+        "creativity"
+      ],
+      "description": "One row per (user_email, skill) \u2014 aggregate across every Skill Hub game that trains that skill, per gameSkills.js's GAME_SKILL_MAP"
+    },
+    "plays": {
+      "type": "number",
+      "default": 0,
+      "description": "Total rounds completed for this skill"
+    },
+    "best": {
+      "type": "number",
+      "default": 0,
+      "description": "Best round score, 0-100"
+    },
+    "last": {
+      "type": "number",
+      "default": 0,
+      "description": "Most recent round score, 0-100"
+    }
+  },
+  "required": [
+    "user_email",
+    "skill"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
