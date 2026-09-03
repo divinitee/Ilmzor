@@ -192,6 +192,7 @@ export const translations = {
       journeyVocab: "Vokabular", journeyModule: "Modul {n}", journeyPickUnit: "Unit tanlang", journeyToday: "Bugungi dars",
       quickActions: "Tezkor amallar",
       qaReview: "Takror so'zlar", qaDeep: "Chuqur rejim", qaRandom: "Tasodifiy mashq", qaAi: "AI Ustozdan so'rash", qaLibrary: "So'zlar kutubxonasi",
+      comingSoon: "Tez orada",
       premiumAnalytics: "Premium tahlil", premiumAnalyticsDesc: "Issiqlik xaritalari, mastery grafiklar va AI hisobotlar",
       freeLessonBadge: "BEPUL", freeLessonTitle: "Yangi Learning Path'ni bepul sinab ko'ring",
       freeLessonDesc: "Obuna shart emas — 1-darsni hoziroq boshlang", freeLessonCta: "1-darsni boshlash",
