@@ -22,7 +22,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
   const [selectedEmoji, setSelectedEmoji] = useState(null);
   const [matched, setMatched] = useState(new Set());
   const [wrongPair, setWrongPair] = useState(null);
-  const [coins, setCoins] = useState(0);
+  const [pairsFound, setPairsFound] = useState(0);
   const [moves, setMoves] = useState(0);
   const [finished, setFinished] = useState(false);
 
@@ -34,7 +34,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
     setMatched(new Set());
     setSelectedWord(null);
     setSelectedEmoji(null);
-    setCoins(0);
+    setPairsFound(0);
     setMoves(0);
     setFinished(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,12 +47,12 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
       const next = new Set(matched);
       next.add(word);
       setMatched(next);
-      setCoins((c) => c + 1);
+      setPairsFound((c) => c + 1);
       setSelectedWord(null);
       setSelectedEmoji(null);
       if (next.size === pairs.length) {
         setFinished(true);
-        onResult?.({ coins: coins + 1, correct: next.size, total: pairs.length });
+        onResult?.({ xp: (pairsFound + 1) * 10, correct: next.size, total: pairs.length });
       }
     } else {
       setWrongPair({ word, emoji: emojiWord });
@@ -104,7 +104,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
           <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-1">Picture Match</p>
           <h2 className="text-2xl font-bold text-foreground mb-1">All matched!</h2>
           <p className="text-sm text-muted-foreground mb-6">
-            {coins} pairs · {moves} moves · {coins * 10} XP
+            {pairsFound} pairs · {moves} moves · {pairsFound * 10} XP
           </p>
           <div className="flex gap-3">
             <button onClick={replay} className="flex-1 h-12 rounded-xl border-2 border-border bg-card text-foreground font-semibold flex items-center justify-center gap-2 hover:bg-muted/50 transition-colors select-none">
@@ -127,7 +127,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
         </button>
         <span className="text-xs font-bold text-blue-600">Picture Match</span>
         <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold select-none">
-          <Star className="w-3.5 h-3.5" /> {coins}
+          <Star className="w-3.5 h-3.5" /> {pairsFound}
         </div>
       </header>
 
@@ -204,7 +204,7 @@ export default function PictureMatchGame({ words = [], onBack, onResult, user, i
           <span>Moves: {moves}</span>
           <span aria-hidden>·</span>
           <span className="flex items-center gap-1">
-            <Star className="w-3 h-3 text-amber-400" /> {coins}/{pairs.length}
+            <Star className="w-3 h-3 text-amber-400" /> {pairsFound}/{pairs.length}
           </span>
         </div>
       </div>
