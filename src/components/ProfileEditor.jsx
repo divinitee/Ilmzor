@@ -45,23 +45,28 @@ export default function ProfileEditor({ user, onSaved }) {
 
   const handleSave = async () => {
     setSaving(true);
+    setError(false);
+    const trimmedName = username.trim();
     try {
-      await base44.auth.updateMe({ full_name: username, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
+      await base44.auth.updateMe({ full_name: trimmedName, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
+      setUsername(trimmedName);
       setSaved(true);
       setEditing(false);
       setTimeout(() => setSaved(false), 2000);
       onSaved?.();
     } catch (err) {
       console.error(err);
+      setError(true);
     } finally {
       setSaving(false);
     }
   };
 
   const handleCancel = () => {
-    setUsername(user?.full_name || "");
+    setUsername(displayName(user?.full_name, user?.email));
     setAvatarUrl(user?.avatar_url || "");
     setRoomCode(user?.classroom_code || "");
+    setError(false);
     setEditing(false);
   };
 
