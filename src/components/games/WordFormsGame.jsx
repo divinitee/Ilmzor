@@ -16,7 +16,7 @@ const FORM_EMOJI = { noun: "📌", verb: "⚡", adjective: "🎨", adverb: "💨
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-export default function WordFormsGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
+export default function WordFormsGame({ words, unitName, onBack, onXpEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const [formsData, setFormsData] = useState([]); // [{word, noun, verb, adjective, adverb}]
@@ -28,7 +28,7 @@ export default function WordFormsGame({ words, unitName, onBack, onCoinsEarned, 
   const [loading, setLoading] = useState(true);
   const [scores, setScores] = useState([]);
   const [done, setDone] = useState(false);
-  const [coinAnim, setCoinAnim] = useState(null);
+  const [xpAnim, setXpAnim] = useState(null);
   const [showHint, setShowHint] = useState(false);
 
   const buildGame = async () => {
@@ -107,7 +107,7 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
       : t("gameui.form_wrong_explain", { word: current.english, form: formLabel, expected });
     setStatus({ correct, expected, explanation });
     setScores(s => [...s, correct ? 1 : 0]);
-    if (correct) { setCoinAnim("+1 🪙"); setTimeout(() => setCoinAnim(null), 900); }
+    if (correct) { setXpAnim("+1 ⚡"); setTimeout(() => setXpAnim(null), 900); }
     setChecking(false);
   };
 
@@ -117,12 +117,12 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
     pickAsk(idx + 1);
   };
 
-  // award coins once on completion
+  // award XP once on completion
   useEffect(() => {
     if (!done || scores.length === 0) return;
     const correctCount = scores.filter(Boolean).length;
     const pct = scores.length ? Math.round((correctCount / scores.length) * 100) : 0;
-    if (onCoinsEarned) onCoinsEarned(correctCount, correctCount);
+    if (onXpEarned) onXpEarned(correctCount, correctCount);
     if (onGameComplete) onGameComplete({ scorePct: pct, correct: correctCount, total: scores.length });
   }, [done]); /* eslint-disable-next-line */
 
@@ -144,7 +144,7 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
         <p className="text-muted-foreground text-sm mb-1">{unitName}</p>
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3">
-          <span className="text-3xl">🪙</span>
+          <span className="text-3xl">⚡</span>
           <div><p className="text-2xl font-bold text-amber-600">+{correctCount}</p><p className="text-xs text-muted-foreground">{t("gameui.coins_added")}</p></div>
         </motion.div>
         <div className="bg-primary/10 rounded-2xl p-5 mb-5">
@@ -164,10 +164,10 @@ Words: ${JSON.stringify(picked.map(w => w.english))}`,
   return (
     <div className="max-w-sm mx-auto px-4 py-6 relative">
       <AnimatePresence>
-        {coinAnim && (
+        {xpAnim && (
           <motion.div initial={{ opacity: 1, y: 0, scale: 1 }} animate={{ opacity: 0, y: -60, scale: 1.4 }}
             className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-xl font-bold text-amber-500 pointer-events-none">
-            {coinAnim}
+            {xpAnim}
           </motion.div>
         )}
       </AnimatePresence>
