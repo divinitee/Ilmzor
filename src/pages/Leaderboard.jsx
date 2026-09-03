@@ -65,7 +65,7 @@ export default function Leaderboard() {
                   </div>
                   <div className="flex items-center gap-1 flex-shrink-0">
                     <span className="text-sm font-bold text-amber-600">{entry.coins || 0}</span>
-                    <span className="text-base">🪙</span>
+                    <span className="text-base">⚡</span>
                   </div>
                 </motion.div>
               );
