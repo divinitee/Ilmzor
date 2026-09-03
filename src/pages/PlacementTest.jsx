@@ -101,8 +101,8 @@ export default function PlacementTest() {
     if (!answer.trim() || !item) return;
     setGrading(true);
 
-    const gate = await checkAiGate(userEmail, userId, isAdmin);
-    if (!gate.allowed) {
+    const aiGate = await checkAiGate(userEmail, userId, isAdmin);
+    if (!aiGate.allowed) {
       // Daily AI-graded practice allowance used up: don't fabricate a score
       // and don't record an attempt — this item just won't count toward the
       // gate's average, same as if it were never answered. See aiLimits.js.
