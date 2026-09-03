@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { DASH_STR, getLearningGoal, getGreetingKey } from "@/lib/dashboardData";
 import HeroCard from "./HeroCard";
+import FreeLessonCard from "./FreeLessonCard";
 import MissionsCard from "./MissionsCard";
 import AICoachCard from "./AICoachCard";
 import ProgressSnapshot from "./ProgressSnapshot";
@@ -139,6 +140,7 @@ export default function MissionControl({
       </div>
 
       <HeroCard path={goal} unit={selectedUnitName} accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} />
+      <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <AICoachCard recs={aiRecs} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
