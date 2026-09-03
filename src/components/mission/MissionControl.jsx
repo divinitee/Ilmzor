@@ -11,6 +11,7 @@ import RecentAchievement from "./RecentAchievement";
 import LearningJourney from "./LearningJourney";
 import QuickActions from "./QuickActions";
 import { getRemoteSkillProgress, summarizeSkillProgress } from "@/lib/gameSkills";
+import { displayName } from "@/lib/profileName";
 
 export const ACCENT = "#3b82f6";
 export const ACCENT_GLOW = "rgba(59,130,246,0.5)";
@@ -100,9 +101,11 @@ export default function MissionControl({
   }, [results, units, selectedUnit, coins]);
 
   const greeting = s[getGreetingKey()];
-  const name =
-    (user?.full_name || user?.email || "").split(" ")[0] || "Learner";
-  const goal = getLearningGoal(lang);
+  // An email-derived full_name (Base44's own default when no name was
+  // collected at signup, e.g. via Google) is never shown as if it were a
+  // real name — see src/lib/profileName.js.
+  const realName = displayName(user?.full_name, user?.email);
+  const name = realName ? realName.split(" ")[0] : t("dashboard.defaultLearnerName");
 
   const missions = [
     { id: "words", label: t("dashboard.missionWords"), icon: "BookOpen", progress: Math.min(data.wordsCorrectToday, 8), target: 8, done: data.wordsCorrectToday >= 8 },
