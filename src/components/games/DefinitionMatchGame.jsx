@@ -67,7 +67,7 @@ export default function DefinitionMatchGame({
   words = [],
   unitName = "Definition Match",
   onBack,
-  onCoinsEarned,
+  onXpEarned,
   onGameComplete,
 }) {
   const pool = useMemo(() => usableWords(words), [words]);
@@ -208,7 +208,7 @@ export default function DefinitionMatchGame({
       const pct = Math.round((totalScore / totalPairs) * 100);
       setFinished(true);
       onGameComplete?.({ scorePct: pct });
-      if (totalScore > 0) onCoinsEarned?.(totalScore * 10, totalScore);
+      if (totalScore > 0) onXpEarned?.(totalScore * 10, totalScore);
     } else {
       setRound((r) => r + 1);
       fetchBoard(round + 1);
