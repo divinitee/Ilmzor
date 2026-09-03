@@ -494,6 +494,7 @@ export const translations = {
       journeyVocab: "Vocabulary", journeyModule: "Module {n}", journeyPickUnit: "Pick a unit", journeyToday: "Today's Lesson",
       quickActions: "Quick Actions",
       qaReview: "Review Due Words", qaDeep: "Deep Mode", qaRandom: "Random Challenge", qaAi: "Ask AI Teacher", qaLibrary: "Vocabulary Library",
+      comingSoon: "Coming Soon",
       premiumAnalytics: "Premium Analytics", premiumAnalyticsDesc: "Heatmaps, mastery graphs & AI reports",
       freeLessonBadge: "FREE", freeLessonTitle: "Try the new Learning Path — free",
       freeLessonDesc: "No subscription needed — start Lesson 1 right now", freeLessonCta: "Start Lesson 1",
