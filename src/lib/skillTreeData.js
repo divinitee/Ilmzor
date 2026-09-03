@@ -87,6 +87,31 @@ export const SKILL_CHILDREN = {
   ],
 };
 
+// Every challenge under a top skill that isn't itself marked comingSoon
+// (top-level TOP_SKILLS.comingSoon, or a category's own comingSoon) — i.e.
+// everything actually playable right now. Used by the dashboard's Random
+// Challenge action to pull a real random game from Skill Hub instead of
+// just navigating to the tab.
+export function getAllPlayableChallenges() {
+  const out = [];
+  TOP_SKILLS.forEach((skill) => {
+    if (skill.comingSoon) return;
+    (SKILL_CHILDREN[skill.id] || []).forEach((category) => {
+      if (category.comingSoon) return;
+      (category.challenges || []).forEach((ch) => {
+        out.push({ game: ch.game, difficulty: ch.difficulty, bank: ch.bank, skillLabel: category.label });
+      });
+    });
+  });
+  return out;
+}
+
+export function getRandomChallenge() {
+  const all = getAllPlayableChallenges();
+  if (all.length === 0) return null;
+  return all[Math.floor(Math.random() * all.length)];
+}
+
 export const DIFF_STYLE = {
   Easy: "text-emerald-300 bg-emerald-500/10 border-emerald-400/30",
   Medium: "text-amber-300 bg-amber-500/10 border-amber-400/30",
