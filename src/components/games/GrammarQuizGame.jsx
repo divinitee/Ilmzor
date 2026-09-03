@@ -79,7 +79,7 @@ export default function GrammarQuizGame({
   bankKey = "articles",
   skillLabel = "Grammar",
   onBack,
-  onCoinsEarned,
+  onXpEarned,
   onGameComplete,
 }) {
   const [round, setRound] = useState(0);
@@ -114,7 +114,7 @@ export default function GrammarQuizGame({
       const earned = finalScore * 10;
       setFinished(true);
       onGameComplete?.({ scorePct: pct });
-      if (earned > 0) onCoinsEarned?.(earned, finalScore);
+      if (earned > 0) onXpEarned?.(earned, finalScore);
     } else {
       setIdx((i) => i + 1);
       setSelected(null);
