@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { DASH_STR, getLearningGoal, getGreetingKey } from "@/lib/dashboardData";
 import HeroCard from "./HeroCard";
@@ -45,7 +44,6 @@ export default function MissionControl({
 }) {
   const { lang, t } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
-  const navigate = useNavigate();
   const [coins, setCoins] = useState(null);
   const [skillHubRows, setSkillHubRows] = useState(null); // null = still loading
 
