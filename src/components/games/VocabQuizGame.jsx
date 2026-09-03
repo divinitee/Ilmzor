@@ -64,7 +64,7 @@ async function gradeDefine(userInput, word, user) {
   return sim >= 80 ? 100 : 0;
 }
 
-export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
+export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const timed = timePerQ && timePerQ > 0;
 
@@ -78,7 +78,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   const [scores, setScores] = useState([]);
   const [done, setDone] = useState(false);
   const [waitingNext, setWaitingNext] = useState(false);
-  const [coinAnimation, setCoinAnimation] = useState(null);
+  const [xpAnimation, setXpAnimation] = useState(null);
   const timerRef = useRef(null);
   const { t, lang } = useAppLang();
   // Supplementary Russian hint — useful unless Russian is already the
@@ -138,7 +138,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   useEffect(() => {
     if (!done || !user || scores.length === 0) return;
     const correctCount = scores.filter(s => s === 100).length;
-    const coinsEarned = correctCount * 1;
+    const xpEarned = correctCount * 1;
     const avg = scores.length ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
     if (onGameComplete) onGameComplete({ scorePct: avg, correct: correctCount, total: scores.length });
     const now = new Date();
@@ -151,7 +151,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
       total_questions: scores.length,
       date: dateStr
     }).catch(() => {});
-    if (coinsEarned > 0 && onCoinsEarned) onCoinsEarned(coinsEarned, correctCount);
+    if (xpEarned > 0 && onXpEarned) onXpEarned(xpEarned, correctCount);
   }, [done]);
 
   const goNext = () => {
@@ -176,7 +176,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const q = questions[qIndex];
     const correct = q.type === "multiple_choice" ? opt === q.word.uzbek : opt === q.word.english;
     setScores(s => [...s, correct ? 100 : 0]);
-    if (correct) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
+    if (correct) { setXpAnimation("+1 ⚡"); setTimeout(() => setXpAnimation(null), 1000); }
     afterAnswer();
   };
 
@@ -187,7 +187,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const score = await gradeDefine(defineInput, questions[qIndex].word, user);
     setDefineScore(score);
     setScores(s => [...s, score]);
-    if (score === 100) { setCoinAnimation("+1 🪙"); setTimeout(() => setCoinAnimation(null), 1000); }
+    if (score === 100) { setXpAnimation("+1 ⚡"); setTimeout(() => setXpAnimation(null), 1000); }
     setChecking(false);
     afterAnswer();
   };
@@ -200,7 +200,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
     const total = scores.reduce((a, b) => a + b, 0);
     const avg = Math.round(total / scores.length);
     const correctCount = scores.filter(s => s === 100).length;
-    const coinsEarned = correctCount * 1;
+    const xpEarned = correctCount * 1;
     return (
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
         <div className="text-6xl mb-4">{avg >= 70 ? "🏆" : avg >= 40 ? "👍" : "📚"}</div>
@@ -212,9 +212,9 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
           initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
           className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 mb-4 flex items-center justify-center gap-3"
         >
-          <span className="text-3xl">🪙</span>
+          <span className="text-3xl">⚡</span>
           <div>
-            <p className="text-2xl font-bold text-amber-600">+{coinsEarned}</p>
+            <p className="text-2xl font-bold text-amber-600">+{xpEarned}</p>
             <p className="text-xs text-muted-foreground">{t("gameui.coins_added_x", { n: correctCount })}</p>
           </div>
         </motion.div>
@@ -228,7 +228,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             <div key={i} className="flex items-center justify-between text-sm px-2">
               <span className="text-muted-foreground">{t("gameui.question_n", { n: i + 1 })}</span>
               <div className="flex items-center gap-2">
-                {s === 100 && <span className="text-xs text-amber-600 font-semibold">+1 🪙</span>}
+                {s === 100 && <span className="text-xs text-amber-600 font-semibold">+1 ⚡</span>}
                 <span className={`font-semibold ${s === 100 ? "text-emerald-600" : "text-destructive"}`}>{s === 100 ? "100%" : "0%"}</span>
               </div>
             </div>
@@ -246,7 +246,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
   return (
     <div className="max-w-sm mx-auto px-4 py-6 relative">
       <AnimatePresence>
-        {coinAnimation && (
+        {xpAnimation && (
           <motion.div
             initial={{ opacity: 1, y: 0, scale: 1 }}
             animate={{ opacity: 0, y: -60, scale: 1.4 }}
@@ -254,7 +254,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onCoinsEa
             transition={{ duration: 0.9 }}
             className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-xl font-bold text-amber-500 pointer-events-none"
           >
-            {coinAnimation}
+            {xpAnimation}
           </motion.div>
         )}
       </AnimatePresence>
