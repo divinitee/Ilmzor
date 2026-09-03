@@ -7,7 +7,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 const PAIR_COUNT = 6;
 
 // "Memory Flip" — flip cards two at a time to match each word with its meaning.
-export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGameComplete }) {
+export default function MemoryFlipGame({ words = [], onBack, onXpEarned, onGameComplete }) {
   const [round, setRound] = useState(0);
   const { lang } = useAppLang();
 
@@ -46,8 +46,8 @@ export default function MemoryFlipGame({ words = [], onBack, onCoinsEarned, onGa
       const extra = Math.max(0, moves - PAIR_COUNT);
       const pct = Math.max(40, 100 - extra * 8);
       onGameComplete?.({ scorePct: pct });
-      const coins = Math.max(0, PAIR_COUNT * 5 - extra * 2);
-      if (coins > 0) onCoinsEarned?.(coins, PAIR_COUNT);
+      const xp = Math.max(0, PAIR_COUNT * 5 - extra * 2);
+      if (xp > 0) onXpEarned?.(xp, PAIR_COUNT);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matched]);
