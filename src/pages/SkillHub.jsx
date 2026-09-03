@@ -18,11 +18,14 @@ import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
-import { DIFF_TO_GAME } from "@/lib/skillTreeData";
+import { DIFF_TO_GAME, getRandomChallenge } from "@/lib/skillTreeData";
 
 /* ---------- Page ---------- */
 
-export default function SkillHub({ isActive = true, user = null }) {
+// autoRandomToken: bumped by the dashboard's Random Challenge quick action
+// (see Home.jsx's navigateTab "skillhub-random" handling) to launch straight
+// into a random playable game instead of just opening the Skill Hub tab.
+export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0 }) {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userCoins, setUserCoins] = useState(null);
@@ -35,6 +38,12 @@ export default function SkillHub({ isActive = true, user = null }) {
       .then((all) => setWords(all))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (!autoRandomToken || loading) return;
+    const challenge = getRandomChallenge();
+    if (challenge) setActiveGame(challenge);
+  }, [autoRandomToken, loading]);
 
   useEffect(() => {
     if (!user) return;
