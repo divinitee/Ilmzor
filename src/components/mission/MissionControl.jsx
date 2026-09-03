@@ -43,15 +43,18 @@ export default function MissionControl({
 }) {
   const { lang, t } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
-  const [coins, setCoins] = useState(null);
+  const [xpRecord, setXpRecord] = useState(null);
   const [skillHubRows, setSkillHubRows] = useState(null); // null = still loading
 
   useEffect(() => {
     if (!user) return;
+    // UserCoins is the underlying storage entity for XP — kept unchanged
+    // internally to avoid a data migration; the dashboard presents it
+    // purely as XP.
     base44.entities.UserCoins
       .filter({ user_id: user.id })
       .then((r) => {
-        if (r && r[0]) setCoins(r[0]);
+        if (r && r[0]) setXpRecord(r[0]);
       })
       .catch(() => {});
   }, [user]);
@@ -85,7 +88,7 @@ export default function MissionControl({
     const totalCorrect = (results || []).reduce((a, r) => a + (r.score || 0), 0);
     const totalQuizzes = (results || []).length;
     const streak = computeStreak(results);
-    const xp = coins?.coins || 0;
+    const xp = xpRecord?.coins || 0;
     return {
       wordsCorrectToday,
       quizzesToday,
@@ -95,7 +98,7 @@ export default function MissionControl({
       streak,
       xp,
     };
-  }, [results, coins]);
+  }, [results, xpRecord]);
 
   const greeting = s[getGreetingKey()];
   // An email-derived full_name (Base44's own default when no name was
