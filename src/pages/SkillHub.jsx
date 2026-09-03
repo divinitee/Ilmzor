@@ -16,7 +16,7 @@ import ContextGuessGame from "@/components/games/ContextGuessGame";
 import MemoryFlipGame from "@/components/games/MemoryFlipGame";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
-import { recordGameResult } from "@/lib/gameSkills";
+import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { DIFF_TO_GAME } from "@/lib/skillTreeData";
 
@@ -72,7 +72,8 @@ export default function SkillHub({ isActive = true, user = null }) {
   const handleGameComplete = (result) => {
     if (!activeGame) return;
     const pct = Math.max(0, Math.min(100, Math.round(result?.scorePct ?? 0)));
-    recordGameResult(activeGame.game, pct);
+    recordGameResult(activeGame.game, pct); // instant local UI (completion chips)
+    syncGameResultToServer(user?.email, activeGame.game, pct); // fire-and-forget DB sync for the dashboard
   };
 
   if (activeGame) {
@@ -81,7 +82,7 @@ export default function SkillHub({ isActive = true, user = null }) {
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
-      return <SentenceBuilderGame {...base} />;
+      return <SentenceBuilderGame {...base} user={user} />;
     if (activeGame.game === "spelling")
       return <SpellingGame {...base} />;
     if (activeGame.game === "wordforms")
