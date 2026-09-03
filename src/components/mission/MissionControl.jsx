@@ -152,6 +152,14 @@ export default function MissionControl({
       <div className="text-center">
         <p className="text-sm text-muted-foreground">{greeting},</p>
         <h1 className="text-2xl font-bold text-foreground tracking-tight">{name}</h1>
+        {!realName && (
+          <button
+            onClick={() => onNavigate?.("settings")}
+            className="mt-1 text-xs font-medium text-primary/80 hover:text-primary underline underline-offset-2 select-none"
+          >
+            {t("dashboard.setYourName")}
+          </button>
+        )}
       </div>
 
       <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={{ rows: skillHubRows, overall: skillHubOverall }} />
