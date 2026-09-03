@@ -90,7 +90,7 @@ export default function OpenGateItem({
         </>
       ) : (
         <div className="bg-card border border-border rounded-2xl p-5">
-          <p className="text-sm font-semibold text-foreground mb-1">Score: {feedback.score}/5</p>
+          {feedback.score != null && <p className="text-sm font-semibold text-foreground mb-1">Score: {feedback.score}/5</p>}
           {feedback.tip && <p className="text-sm text-muted-foreground mb-4">{feedback.tip}</p>}
           <button
             onClick={onNext}
