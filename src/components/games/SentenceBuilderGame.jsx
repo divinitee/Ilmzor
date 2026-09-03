@@ -299,7 +299,7 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
             <Shuffle className="w-4 h-4 mr-1" /> {t("gameui.new_round")}
           </Button>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
