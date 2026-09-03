@@ -10,7 +10,7 @@ import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import LearningJourney from "./LearningJourney";
 import QuickActions from "./QuickActions";
-import { getRemoteSkillProgress, summarizeSkillProgress } from "@/lib/gameSkills";
+import { getRemoteSkillProgress, summarizeSkillProgress, getTodaySkillActivity } from "@/lib/gameSkills";
 import { displayName } from "@/lib/profileName";
 
 export const ACCENT = "#3b82f6";
@@ -67,6 +67,10 @@ export default function MissionControl({
     () => (skillHubRows ? summarizeSkillProgress(skillHubRows) : null),
     [skillHubRows]
   );
+  const skillHubToday = useMemo(
+    () => getTodaySkillActivity(skillHubRows || []),
+    [skillHubRows]
+  );
 
   const data = useMemo(() => {
     const tk = todayKey();
@@ -107,10 +111,17 @@ export default function MissionControl({
   const realName = displayName(user?.full_name, user?.email);
   const name = realName ? realName.split(" ")[0] : t("dashboard.defaultLearnerName");
 
+  // Today's Mission is Skill Hub-sourced for now (lessons/other systems fold
+  // in later): a round played, two different skills trained, and a strong
+  // score, all read off SkillHubProgress's per-skill "updated today" rows.
+  // Streak still comes from QuizResult (`results`) since that's the only
+  // entity with real per-round day history — Skill Hub's own "quiz" game
+  // writes there too, so it still tracks real activity, just not the full
+  // Skill Hub picture yet.
   const missions = [
-    { id: "words", label: t("dashboard.missionWords"), icon: "BookOpen", progress: Math.min(data.wordsCorrectToday, 8), target: 8, done: data.wordsCorrectToday >= 8 },
-    { id: "challenge", label: t("dashboard.missionChallenge"), icon: "Zap", progress: Math.min(data.quizzesToday, 1), target: 1, done: data.quizzesToday >= 1 },
-    { id: "score", label: t("dashboard.missionScore"), icon: "Target", progress: Math.min(Math.round(data.bestAccuracyToday), 80), target: 80, done: data.bestAccuracyToday >= 80 },
+    { id: "play", label: t("dashboard.missionPlay"), icon: "Zap", progress: skillHubToday.playedToday ? 1 : 0, target: 1, done: skillHubToday.playedToday },
+    { id: "variety", label: t("dashboard.missionVariety"), icon: "BookOpen", progress: Math.min(skillHubToday.skillsToday, 2), target: 2, done: skillHubToday.skillsToday >= 2 },
+    { id: "score", label: t("dashboard.missionScore"), icon: "Target", progress: Math.min(Math.round(skillHubToday.bestToday), 80), target: 80, done: skillHubToday.bestToday >= 80 },
     { id: "streak", label: t("dashboard.missionStreak"), icon: "Flame", progress: data.streak > 0 ? 1 : 0, target: 1, done: data.streak > 0 },
   ];
 
