@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
+import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
 import { GATES } from "@/lib/placementContent";
 import {
   recordAssessmentResult, pickGateSet, scoreMcqGate, scoreOpenGate,
@@ -23,6 +24,8 @@ const FIRST_GATE = GATES[0];
 
 export default function PlacementTest() {
   const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [done, setDone] = useState(false);
   const [finalLevel, setFinalLevel] = useState("");
 
@@ -41,7 +44,11 @@ export default function PlacementTest() {
   const [allResults, setAllResults] = useState([]);
 
   useEffect(() => {
-    base44.auth.me().then((me) => setUserEmail(me?.email || "")).catch(() => {});
+    base44.auth.me().then((me) => {
+      setUserEmail(me?.email || "");
+      setUserId(me?.id || "");
+      setIsAdmin(me?.role === "admin");
+    }).catch(() => {});
   }, []);
 
   const format = gateFormat(gate);
@@ -93,12 +100,24 @@ export default function PlacementTest() {
   const handleSubmit = async (pasteAttempted) => {
     if (!answer.trim() || !item) return;
     setGrading(true);
+
+    const gate = await checkAiGate(userEmail, userId, isAdmin);
+    if (!gate.allowed) {
+      // Daily AI-graded practice allowance used up: don't fabricate a score
+      // and don't record an attempt — this item just won't count toward the
+      // gate's average, same as if it were never answered. See aiLimits.js.
+      setFeedback({ score: null, tip: "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more." });
+      setGrading(false);
+      return;
+    }
+
     const result = item.type === "vocab"
       ? await evaluateVocabArticulation({ english: item.english, definition: item.definition }, answer)
       : await evaluateGrammarConstruction(
           { instruction: item.instruction, requiredElement: item.requiredElement, topic: item.topic },
           answer
         );
+    await incrementAiUsage(userEmail, userId, "");
 
     const skill = item.type === "vocab" ? "vocabulary" : "grammar";
     const subskill = item.type === "vocab" ? "Word Meaning" : item.topic;
