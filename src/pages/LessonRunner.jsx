@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Loader2, Target, CheckCircle2, RotateCcw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
+import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
 import { recordAssessmentResult } from "@/lib/placementTest";
 import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
 import TeachExperience from "@/components/lesson/TeachExperience";
@@ -45,6 +46,8 @@ export default function LessonRunner() {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [lesson, setLesson] = useState(null);
   const [unit, setUnit] = useState(null);
@@ -66,6 +69,8 @@ export default function LessonRunner() {
     (async () => {
       const me = await base44.auth.me().catch(() => null);
       setUserEmail(me?.email || "");
+      setUserId(me?.id || "");
+      setIsAdmin(me?.role === "admin");
       const l = (await base44.entities.Lesson.filter({ id: lessonId }))[0];
       if (!l) { setLoading(false); return; }
       const u = (await base44.entities.Unit.filter({ id: l.unit_id }))[0];
@@ -154,11 +159,24 @@ export default function LessonRunner() {
     if (!answer.trim() || !current) return;
     setGrading(true);
     const item = current.item;
+
+    const gate = await checkAiGate(userEmail, userId, isAdmin);
+    if (!gate.allowed) {
+      // Daily AI-graded practice allowance used up: don't fabricate a score
+      // (it would wrongly count against the locked mastery rollup) and don't
+      // record an attempt at all — the item just stays ungraded until the
+      // allowance resets, same as never having answered it. See aiLimits.js.
+      setFeedback({ score: null, tip: "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more." });
+      setGrading(false);
+      return;
+    }
+
     const result = item.type === "vocab"
       ? await evaluateVocabArticulation({ english: item.english, definition: item.definition }, answer)
       : await evaluateGrammarConstruction(
           { instruction: item.instruction, requiredElement: item.requiredElement, topic: item.topic }, answer
         );
+    await incrementAiUsage(userEmail, userId, "");
     await recordAssessmentResult({
       userEmail, lessonId: lesson.id, activityId: current.activityId,
       source: "practice", skill: item.skill || (item.type === "vocab" ? "vocabulary" : "grammar"),
