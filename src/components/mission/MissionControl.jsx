@@ -86,9 +86,6 @@ export default function MissionControl({
     const totalQuizzes = (results || []).length;
     const streak = computeStreak(results);
     const xp = coins?.coins || 0;
-    const unitObj = (units || []).find((u) => u.key === selectedUnit);
-    const unitNum = unitObj?.num || 1;
-    const moduleNum = Math.max(1, Math.ceil(unitNum / 4));
     return {
       wordsCorrectToday,
       quizzesToday,
@@ -97,10 +94,8 @@ export default function MissionControl({
       totalQuizzes,
       streak,
       xp,
-      unitNum,
-      moduleNum,
     };
-  }, [results, units, selectedUnit, coins]);
+  }, [results, coins]);
 
   const greeting = s[getGreetingKey()];
   // An email-derived full_name (Base44's own default when no name was
