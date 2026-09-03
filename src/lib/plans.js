@@ -67,3 +67,9 @@ export const resolvePlan = (planNameOrId) => {
 };
 
 export const getAiDailyLimit = (planNameOrId) => resolvePlan(planNameOrId).aiLimit;
+
+// Display-only hint: true for a plan marketed as "unlimited (fair use)" (VIP).
+// Never use this for enforcement — aiLimit above is the real, always-checked
+// ceiling; this only tells the UI to show "unlimited" instead of a raw count
+// while the real limit isn't hit.
+export const isAiDisplayUnlimited = (planNameOrId) => !!resolvePlan(planNameOrId).aiDisplayUnlimited;
