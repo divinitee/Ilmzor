@@ -1,17 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { RotateCw, Layers, Shuffle, MessageCircle, Library, BarChart3 } from "lucide-react";
+import { RotateCw, Layers, Shuffle, BarChart3, Clock } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 
-export default function QuickActions({ onNavigate, onOpenUnitDrawer }) {
+// Ask AI Teacher and Vocabulary Library were removed for now (unclear value
+// / not wired to anything yet). Review Due Words and Deep Mode both depend
+// on systems that don't exist yet (SRS, Deep Mode itself) so they show as
+// Coming Soon instead of silently doing nothing. Random Challenge is the
+// only fully live action — it launches a real random Skill Hub game.
+export default function QuickActions({ onNavigate, accent }) {
   const { t } = useAppLang();
   const actions = [
-    { label: t("dashboard.qaReview"), icon: RotateCw, onClick: () => onNavigate("skillhub") },
-    { label: t("dashboard.qaDeep"), icon: Layers, onClick: () => onNavigate("skillhub") },
-    { label: t("dashboard.qaRandom"), icon: Shuffle, onClick: () => onNavigate("skillhub") },
-    { label: t("dashboard.qaAi"), icon: MessageCircle, onClick: () => onNavigate("tutor") },
-    { label: t("dashboard.qaLibrary"), icon: Library, onClick: () => onOpenUnitDrawer() },
+    { id: "review", label: t("dashboard.qaReview"), icon: RotateCw, comingSoon: true },
+    { id: "deep", label: t("dashboard.qaDeep"), icon: Layers, comingSoon: true },
+    { id: "random", label: t("dashboard.qaRandom"), icon: Shuffle, comingSoon: false, onClick: () => onNavigate("skillhub-random") },
   ];
   return (
     <section>
@@ -21,15 +24,25 @@ export default function QuickActions({ onNavigate, onOpenUnitDrawer }) {
           const Icon = a.icon;
           return (
             <motion.button
-              key={a.label}
+              key={a.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              onClick={a.onClick}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="group rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-3.5 flex flex-col items-start gap-2 transition-colors hover:border-white/25 hover:bg-white/[0.07] select-none"
+              onClick={a.comingSoon ? undefined : a.onClick}
+              disabled={a.comingSoon}
+              whileHover={a.comingSoon ? undefined : { y: -2 }}
+              whileTap={a.comingSoon ? undefined : { scale: 0.97 }}
+              className={`relative group rounded-2xl border p-3.5 flex flex-col items-start gap-2 transition-colors select-none ${
+                a.comingSoon
+                  ? "border-white/5 bg-white/[0.02] opacity-60 cursor-default"
+                  : "border-white/10 bg-white/[0.04] backdrop-blur-md hover:border-white/25 hover:bg-white/[0.07]"
+              }`}
             >
+              {a.comingSoon && (
+                <span className="absolute top-2 right-2 flex items-center gap-1 text-[9px] font-semibold uppercase tracking-wide text-muted-foreground/80 bg-white/5 rounded-full px-1.5 py-0.5">
+                  <Clock className="w-2.5 h-2.5" /> {t("dashboard.comingSoon")}
+                </span>
+              )}
               <span className="w-8 h-8 rounded-xl bg-white/5 flex items-center justify-center transition-colors group-hover:bg-white/10">
                 <Icon className="w-4 h-4 text-foreground/80 group-hover:text-foreground" />
               </span>
@@ -41,7 +54,7 @@ export default function QuickActions({ onNavigate, onOpenUnitDrawer }) {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
+            transition={{ delay: 0.2 }}
             whileHover={{ y: -2 }}
             className="rounded-2xl border p-4 flex items-center gap-3 select-none"
             style={{ borderColor: "rgba(167,139,250,0.4)", background: "linear-gradient(180deg, rgba(167,139,250,0.14), rgba(167,139,250,0.04))" }}
