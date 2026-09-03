@@ -40,7 +40,14 @@ export const PLAN_LIST = [
     iconColor: "text-amber-600",
     badgeKey: null,
     hasAI: true,
-    aiLimit: Infinity,
+    // Real enforced daily ceiling, not a literal Infinity. VIP is marketed and
+    // displayed as "unlimited (fair use)" — see aiDisplayUnlimited below — but
+    // AI calls still draw from one shared Base44 integration-credit pool across
+    // every user, so a true Infinity here would have zero backstop against a
+    // runaway account or bug. 300/day is a placeholder sized to be far above any
+    // genuine study session; tune once real usage data exists (see aiLimits.js).
+    aiLimit: 300,
+    aiDisplayUnlimited: true,
     featureKeys: ["all_units", "full_test", "all_games", "early_access", "priority_support", "ai_unlimited", "personalized_vocab"],
   },
 ];
