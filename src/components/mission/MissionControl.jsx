@@ -11,7 +11,7 @@ import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import LearningJourney from "./LearningJourney";
 import QuickActions from "./QuickActions";
-import { getRemoteOverallStats } from "@/lib/gameSkills";
+import { getRemoteSkillProgress, summarizeSkillProgress } from "@/lib/gameSkills";
 
 export const ACCENT = "#3b82f6";
 export const ACCENT_GLOW = "rgba(59,130,246,0.5)";
@@ -47,7 +47,7 @@ export default function MissionControl({
   const s = DASH_STR[lang] || DASH_STR.en;
   const navigate = useNavigate();
   const [coins, setCoins] = useState(null);
-  const [skillHubStats, setSkillHubStats] = useState(null); // null = still loading
+  const [skillHubRows, setSkillHubRows] = useState(null); // null = still loading
 
   useEffect(() => {
     if (!user) return;
@@ -61,8 +61,13 @@ export default function MissionControl({
 
   useEffect(() => {
     if (!user?.email) return;
-    getRemoteOverallStats(user.email).then(setSkillHubStats);
+    getRemoteSkillProgress(user.email).then(setSkillHubRows);
   }, [user]);
+
+  const skillHubOverall = useMemo(
+    () => (skillHubRows ? summarizeSkillProgress(skillHubRows) : null),
+    [skillHubRows]
+  );
 
   const data = useMemo(() => {
     const tk = todayKey();
@@ -134,10 +139,12 @@ export default function MissionControl({
     return null;
   }, [data]);
 
-  const onContinue = () => {
-    if (selectedUnit) navigate(`/quiz/${selectedUnit}`);
-    else onNavigate?.("skillhub");
-  };
+  // The hero card is Skill Hub's own mastery, not the old unit-quiz system —
+  // "continue" now always means "go practice in Skill Hub". The unit-based
+  // vocab quiz still exists (that was this project's original focus before
+  // Skill Hub/Learning Path took over) but it's a secondary path now, owned
+  // by LearningJourney's own click handler below, not the hero.
+  const onContinue = () => onNavigate?.("skillhub");
 
   return (
     <div className="max-w-xl mx-auto px-4 pt-6 pb-10 space-y-5">
@@ -146,13 +153,13 @@ export default function MissionControl({
         <h1 className="text-2xl font-bold text-foreground tracking-tight">{name}</h1>
       </div>
 
-      <HeroCard path={goal} unit={selectedUnitName} accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={skillHubStats} onOpenSkillHub={() => onNavigate?.("skillhub")} />
+      <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={{ rows: skillHubRows, overall: skillHubOverall }} />
       <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <AICoachCard recs={aiRecs} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
       <RecentAchievement achievement={achievement} />
-      <LearningJourney path={goal} unit={selectedUnitName} moduleNum={data.moduleNum} accent={ACCENT} />
+      <LearningJourney path={goal} unit={selectedUnitName} selectedUnit={selectedUnit} moduleNum={data.moduleNum} accent={ACCENT} onOpenUnitDrawer={onOpenUnitDrawer} />
       <QuickActions onNavigate={onNavigate} onOpenUnitDrawer={onOpenUnitDrawer} accent={ACCENT} />
 
     </div>
