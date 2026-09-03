@@ -106,21 +106,41 @@ export async function syncGameResultToServer(userEmail, gameId, scorePct) {
   }
 }
 
-// Real, cross-device Skill Hub progress for the given user — what the
-// dashboard hero card reads, as opposed to getOverallStats() above which is
-// this browser's localStorage only.
-export async function getRemoteOverallStats(userEmail) {
-  if (!userEmail) return { plays: 0, avgMastery: 0, skillsTrained: 0 };
+// Per-skill breakdown for the given user, one entry per SKILLS entry (always
+// all 5, zero-filled for anything never played) — what the dashboard hero
+// card reads, as opposed to getSkillStats() above which is this browser's
+// localStorage only.
+export async function getRemoteSkillProgress(userEmail) {
+  const zeroed = () => SKILLS.map(s => ({ ...s, plays: 0, best: 0, last: 0 }));
+  if (!userEmail) return zeroed();
   try {
     const rows = await base44.entities.SkillHubProgress.filter({ user_email: userEmail });
-    let plays = 0, bestSum = 0, trained = 0;
-    rows.forEach(r => {
-      plays += r.plays || 0;
-      if ((r.best || 0) > 0) { bestSum += r.best; trained += 1; }
-    });
-    return { plays, avgMastery: trained ? Math.round(bestSum / trained) : 0, skillsTrained: trained };
+    const bySkill = {};
+    rows.forEach(r => { bySkill[r.skill] = r; });
+    return SKILLS.map(s => ({
+      ...s,
+      plays: bySkill[s.key]?.plays || 0,
+      best: bySkill[s.key]?.best || 0,
+      last: bySkill[s.key]?.last || 0,
+    }));
   } catch (e) {
     console.error(e);
-    return { plays: 0, avgMastery: 0, skillsTrained: 0 };
+    return zeroed();
   }
+}
+
+// Collapse a per-skill breakdown (from getRemoteSkillProgress) into one
+// overall number, e.g. for a compact summary line.
+export function summarizeSkillProgress(rows) {
+  let plays = 0, bestSum = 0, trained = 0;
+  (rows || []).forEach(r => {
+    plays += r.plays || 0;
+    if ((r.best || 0) > 0) { bestSum += r.best; trained += 1; }
+  });
+  return { plays, avgMastery: trained ? Math.round(bestSum / trained) : 0, skillsTrained: trained };
+}
+
+// Thin convenience wrapper for call sites that only want the overall number.
+export async function getRemoteOverallStats(userEmail) {
+  return summarizeSkillProgress(await getRemoteSkillProgress(userEmail));
 }
