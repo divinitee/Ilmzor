@@ -150,7 +150,7 @@ function buildCrossword(wordList, difficulty = "intermediate") {
   return { grid, rows, cols, across, down };
 }
 
-export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, onGameComplete, difficulty = "intermediate" }) {
+export default function CrosswordGame({ words, unitName, onBack, onXpEarned, onGameComplete, difficulty = "intermediate" }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const puzzle = useMemo(() => buildCrossword(words, cfg.count), [words, difficulty]);
@@ -159,7 +159,7 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
   const [checked, setChecked] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const [done, setDone] = useState(false);
-  const [coinAnim, setCoinAnim] = useState(null);
+  const [xpAnim, setXpAnim] = useState(null);
   const inputRefs = useRef({});
 
   useEffect(() => {
@@ -278,11 +278,11 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
   const complete = () => {
     if (done) return;
     setDone(true);
-    const coins = puzzle.across.length + puzzle.down.length;
-    setCoinAnim(`+${coins} 🪙`);
-    setTimeout(() => setCoinAnim(null), 1200);
-    if (onCoinsEarned) onCoinsEarned(coins, coins);
-    if (onGameComplete) onGameComplete({ scorePct: 100, correct: coins, total: coins });
+    const xp = puzzle.across.length + puzzle.down.length;
+    setXpAnim(`+${xp} ⚡`);
+    setTimeout(() => setXpAnim(null), 1200);
+    if (onXpEarned) onXpEarned(xp, xp);
+    if (onGameComplete) onGameComplete({ scorePct: 100, correct: xp, total: xp });
   };
 
   const handleReveal = () => {
@@ -304,10 +304,10 @@ export default function CrosswordGame({ words, unitName, onBack, onCoinsEarned, 
   return (
     <div className="max-w-sm mx-auto px-4 py-6 relative">
       <AnimatePresence>
-        {coinAnim && (
+        {xpAnim && (
           <motion.div initial={{ opacity: 1, y: 0, scale: 1 }} animate={{ opacity: 0, y: -60, scale: 1.4 }}
             className="absolute top-12 left-1/2 -translate-x-1/2 z-50 text-xl font-bold text-amber-500 pointer-events-none">
-            {coinAnim}
+            {xpAnim}
           </motion.div>
         )}
       </AnimatePresence>
