@@ -28,7 +28,7 @@ import { DIFF_TO_GAME, getRandomChallenge } from "@/lib/skillTreeData";
 export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0 }) {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userCoins, setUserCoins] = useState(null);
+  const [userXp, setUserXp] = useState(null);
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty, bank, skillLabel }
   const [soonLabel, setSoonLabel] = useState(null);
   const loc = useSkillLoc();
@@ -47,21 +47,24 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
 
   useEffect(() => {
     if (!user) return;
+    // UserCoins is the underlying storage entity for XP — kept unchanged
+    // internally to avoid a data migration; every user-facing surface
+    // presents it purely as XP now (see i18n + game components).
     base44.entities.UserCoins.filter({ user_id: user.id }).then((res) => {
-      if (res.length > 0) setUserCoins(res[0]);
+      if (res.length > 0) setUserXp(res[0]);
     });
   }, [user]);
 
-  const handleCoinsEarned = async (earned, correctCount) => {
+  const handleXpEarned = async (earned, correctCount) => {
     if (!user || earned === 0) return;
     try {
-      if (userCoins) {
-        const updated = await base44.entities.UserCoins.update(userCoins.id, {
-          coins: (userCoins.coins || 0) + earned,
-          total_correct: (userCoins.total_correct || 0) + correctCount,
+      if (userXp) {
+        const updated = await base44.entities.UserCoins.update(userXp.id, {
+          coins: (userXp.coins || 0) + earned,
+          total_correct: (userXp.total_correct || 0) + correctCount,
           user_name: user.full_name || user.email,
         });
-        setUserCoins(updated);
+        setUserXp(updated);
       } else {
         const created = await base44.entities.UserCoins.create({
           user_id: user.id,
@@ -71,7 +74,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
           coins: earned,
           total_correct: correctCount,
         });
-        setUserCoins(created);
+        setUserXp(created);
       }
     } catch (e) {
       console.error(e);
@@ -87,7 +90,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
 
   if (activeGame) {
     const diff = DIFF_TO_GAME[activeGame.difficulty] || "intermediate";
-    const base = { words, unitName: "Skill Hub", onBack: () => setActiveGame(null), onCoinsEarned: handleCoinsEarned, onGameComplete: handleGameComplete, difficulty: diff };
+    const base = { words, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
@@ -141,7 +144,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
           </p>
         </motion.div>
 
-        {/* Coins chip + My Words entry point (lives inside Skill Hub, not a
+        {/* XP chip + My Words entry point (lives inside Skill Hub, not a
             new top-level nav item — the real Skill Hub UI is a spatial
             mind-map, not a flat subskill list, so this sits in the header
             rather than nested under a "Vocabulary" list that doesn't exist
@@ -149,7 +152,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
         {user && (
           <div className="flex justify-center items-center gap-2 mb-2">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-xs font-semibold select-none">
-              <Star className="w-3.5 h-3.5" /> {userCoins?.coins || 0} XP
+              <Star className="w-3.5 h-3.5" /> {userXp?.coins || 0} XP
             </div>
             <Link
               to="/my-words"
