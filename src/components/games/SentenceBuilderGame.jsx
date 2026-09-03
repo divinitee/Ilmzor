@@ -4,6 +4,9 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Shuffle, CheckCircle2 } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
+import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+
+const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
 
 // Difficulty drives sentence-complexity targets.
 const DIFFICULTY = {
@@ -116,7 +119,7 @@ async function evaluateSentence(sentence, theme, themeWords, difficulty) {
   }
 }
 
-export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameComplete, trialExhausted, difficulty = "beginner" }) {
+export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameComplete, trialExhausted, difficulty = "beginner", user }) {
   const { t } = useAppLang();
   const cfg = DIFFICULTY[difficulty] || DIFFICULTY.beginner;
   const [groupIdx, setGroupIdx] = useState(null);
@@ -124,6 +127,7 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
   const [result, setResult] = useState(null);
   const [checking, setChecking] = useState(false);
   const [round, setRound] = useState(0);
+  const [gateBlocked, setGateBlocked] = useState(false);
 
   const getGroup = (idx) => {
     const g = WORD_GROUPS[idx % WORD_GROUPS.length];
@@ -136,6 +140,7 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
     setGroupIdx(idx);
     setSentence("");
     setResult(null);
+    setGateBlocked(false);
   };
 
   useEffect(() => { startRound(); }, []);
@@ -146,7 +151,19 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
   const handleSubmit = async () => {
     if (!sentence.trim() || checking) return;
     setChecking(true);
+    // quickFail (typed junk, empty, etc.) is still free — only gate the real
+    // LLM grading path, and only for users we can actually meter.
+    const willNeedAi = !quickFail(sentence, theme);
+    if (willNeedAi && user) {
+      const gate = await checkAiGate(user.email, user.id, user.role === "admin");
+      if (!gate.allowed) {
+        setGateBlocked(true);
+        setChecking(false);
+        return;
+      }
+    }
     const res = await evaluateSentence(sentence, theme, currentGroup, difficulty);
+    if (willNeedAi && user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     setResult(res);
     setChecking(false);
     const avg = Math.round((res.grammar + res.relevance + res.creativity) / 3);
@@ -221,9 +238,22 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
         disabled={!!result}
       />
 
+      {/* AI fair-use limit reached */}
+      <AnimatePresence>
+        {gateBlocked && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+            className="bg-background border border-border rounded-2xl p-5 mb-4 text-center"
+          >
+            <p className="text-sm text-muted-foreground mb-4">{AI_LIMIT_MSG}</p>
+            <Button variant="outline" onClick={onBack} className="w-full select-none">{t("gameui.exit")}</Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Result */}
       <AnimatePresence>
-        {result && (
+        {result && !gateBlocked && (
           <motion.div
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
             className="bg-background border border-border rounded-2xl p-5 mb-4"
@@ -258,11 +288,11 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
         )}
       </AnimatePresence>
 
-      {!result ? (
+      {!result && !gateBlocked ? (
         <Button onClick={handleSubmit} disabled={!sentence.trim() || checking} className="w-full">
           {checking ? t("gameui.checking") : t("gameui.check_sentence")}
         </Button>
-      ) : (
+      ) : !gateBlocked ? (
         <div className="flex gap-3">
           <Button variant="outline" onClick={onBack} className="flex-1 select-none">{t("gameui.exit")}</Button>
           <Button onClick={nextRound} className="flex-1 select-none">
