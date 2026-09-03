@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Gift, ArrowRight } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-
-// Lesson.id for "Talking About Your Day" — Lesson 1 of the new Learning Path,
-// deliberately given away free (no subscription check in LessonRunner) as a
-// conversion hook. This card is the only in-app discovery path to it today;
-// see LessonRunner.jsx's header comment.
-const FREE_LESSON_ID = "6a9562a427021c1279709e25";
+import { FREE_LESSON_ID } from "@/lib/freeLesson";
 
 export default function FreeLessonCard() {
   const { t } = useAppLang();
