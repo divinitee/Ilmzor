@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { useAppLang } from "@/hooks/useAppLang";
-import { DASH_STR, getLearningGoal, getGreetingKey } from "@/lib/dashboardData";
+import { DASH_STR, getGreetingKey } from "@/lib/dashboardData";
 import HeroCard from "./HeroCard";
 import FreeLessonCard from "./FreeLessonCard";
 import MissionsCard from "./MissionsCard";
 import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
-import LearningJourney from "./LearningJourney";
 import QuickActions from "./QuickActions";
 import { getRemoteSkillProgress, summarizeSkillProgress, getTodaySkillActivity } from "@/lib/gameSkills";
 import { displayName } from "@/lib/profileName";
