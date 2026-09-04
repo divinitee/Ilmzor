@@ -19,6 +19,7 @@ export default function VocabMcqShell({
   onBack,
   onXpEarned,
   onGameComplete,
+  cognitiveDemand,
 }) {
   const { lang } = useAppLang();
   const pool = useMemo(() => {
@@ -34,7 +35,7 @@ export default function VocabMcqShell({
   const questions = useMemo(() => {
     if (pool.length < 4) return [];
     const targets = pickN(pool, Math.min(roundCount, pool.length));
-    return targets.map((t) => buildQuestion(pool, t));
+    return targets.map((t) => buildQuestion(pool, t, cognitiveDemand));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round, pool.length]);
 
