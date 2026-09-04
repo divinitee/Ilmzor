@@ -267,28 +267,30 @@ export default function Register() {
         }
       }
 
-      if (username.trim()) {
-        // display_name, not full_name — the platform accepts a write to
-        // full_name and quietly discards it (see src/lib/profileName.js), which
-        // is why every account registered before this kept the email's local
-        // part as its name no matter what the student typed here.
-        try { await base44.auth.updateMe({ display_name: username.trim() }); }
-        catch (nameErr) { console.error("Could not save display name:", nameErr); }
+      // Everything the form collected, in one write now that there's a session
+      // to write it with.
+      //
+      // display_name, not full_name — the platform accepts a write to full_name
+      // and quietly discards it (see src/lib/profileName.js), which is why every
+      // account registered before this kept the email's local part as its name
+      // no matter what the student typed.
+      //
+      // goals used to go to localStorage only, so they never reached the account
+      // and were lost on any other device — the User entity has had a goals
+      // field all along.
+      const profile = {};
+      if (username.trim()) profile.display_name = username.trim();
+      if (role === "student" && goals.length > 0) profile.goals = goals;
+      if (role === "student" && referralCode.trim()) profile.classroom_code = referralCode.trim().toUpperCase();
+      if (Object.keys(profile).length > 0) {
+        try { await base44.auth.updateMe(profile); }
+        catch (profileErr) { console.error("Could not save profile details:", profileErr); }
       }
 
-      // The self-selected level, written now that there's a session to write
-      // it with. Source "self" so a later placement test or silent calibration
-      // can tell an answered question from a guess and overwrite it freely.
+      // Source "self" so a later placement test or silent calibration can tell
+      // an answered question from a guess and overwrite it freely.
       if (role === "student" && level) {
         await setUserLevel(level, "self");
-      }
-
-      // Goals were only ever written to localStorage, so they never reached the
-      // account and were lost on any other device. The User entity has had a
-      // goals field all along.
-      if (role === "student" && goals.length > 0) {
-        try { await base44.auth.updateMe({ goals }); }
-        catch (goalsErr) { console.error("Could not save goals:", goalsErr); }
       }
 
       if (role === "student" && referralCode.trim()) {
