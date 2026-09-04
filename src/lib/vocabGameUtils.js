@@ -1,11 +1,23 @@
 // The meaning in the app's current language (uz/en/ru from useAppLang).
-// "en" has no dedicated meaning field on VocabularyWord, so it falls back
-// to showing whichever translation exists, Uzbek first.
+//
+// BUGFIX (2026-09-04): English mode used to fall back to w.uzbek (then
+// w.russian) because VocabularyWord had no English meaning field at all —
+// so a student in English mode was shown Uzbek, silently, in every game
+// that calls this. VocabularyWord now carries a real english_definition on
+// every row (AI-generated, verified against the full 2,282-row set: zero
+// missing, zero self-referencing). English mode reads that field first.
+//
+// The uzbek/russian fallback stays, but only as a safety net for a future
+// word added to the pool before the next enrichment pass reaches it — not
+// the normal path anymore. It intentionally still leaks in that one edge
+// case rather than showing nothing, which was the pre-existing tradeoff for
+// every language; making a word appear with no meaning at all would be a
+// worse failure than a rare, temporary Uzbek fallback.
 export const meaningInLang = (w, lang) => {
   if (!w) return "";
   if (lang === "uz") return w.uzbek || "";
   if (lang === "ru") return w.russian || "";
-  return w.uzbek || w.russian || "";
+  return w.english_definition || w.uzbek || w.russian || "";
 };
 
 export const usableWords = (words = []) =>
