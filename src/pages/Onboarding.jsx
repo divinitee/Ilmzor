@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Sparkles, BookOpen, MessageSquareText, TrendingUp, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { chooseFreePlan, TRIAL_DAYS, TRIAL_ENABLED } from "@/lib/subscription";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
+import ProfileSetup from "@/components/onboarding/ProfileSetup";
+import { needsProfileSetup } from "@/lib/profileStatus";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 // Post-registration flow for students: choose a plan (with a soft nudge
@@ -152,13 +154,41 @@ function SuggestTestStep({ onTakeIt, onLater }) {
 
 export default function Onboarding() {
   const [step, setStep] = useState("plan");
+  // null = still checking. A Google signup reaches the app without ever having
+  // seen the registration form, so the four profile questions run here first.
+  const [setupUser, setSetupUser] = useState(null);
+  const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const me = await base44.auth.me().catch(() => null);
+      if (cancelled) return;
+      if (me && needsProfileSetup(me)) setSetupUser(me);
+      setChecked(true);
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
   const handleChooseFree = async () => {
     const me = await base44.auth.me().catch(() => null);
     if (me) await chooseFreePlan(me.email, resolveUserNameOrEmail(me));
     setStep("tutorial");
   };
+
+  // Hold the plan pitch back until we know whether the profile questions are
+  // owed — otherwise a Google student sees "Start free" flash before being
+  // asked their name.
+  if (!checked) return <div className="min-h-screen bg-background" />;
+
+  if (setupUser) {
+    return (
+      <div className="min-h-screen bg-background flex flex-col py-8">
+        <ProfileSetup user={setupUser} onDone={() => setSetupUser(null)} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex flex-col py-8">
