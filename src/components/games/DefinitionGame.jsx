@@ -47,7 +47,7 @@ async function generateDefinitions(words, level) {
 }
 
 // Evaluate a user-written definition and award 1-5 XP.
-async function evaluateDefinition(userDef, word, cfg) {
+async function evaluateDefinition(userDef, word, cfg, level) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
       prompt: [
