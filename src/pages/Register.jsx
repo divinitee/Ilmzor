@@ -35,6 +35,7 @@ const STR = {
     google: "Google orqali davom etish", or: "yoki",
     haveAccount: "Hisob bormi?", login: "Kirish",
     registerFail: "Ro'yxatdan o'tish muvaffaqiyatsiz", otpFail: "Tasdiqlash kodi noto'g'ri", resendFail: "Kodni qayta yuborib bo'lmadi",
+    sessionFail: "Email tasdiqlandi, lekin tizimga kira olmadik. Iltimos, kirish sahifasidan foydalaning.",
     goals: { work: "Ish", ielts: "IELTS", travel: "Sayohat", university: "Universitet", movies: "Kino", daily: "Kundalik suhbat" },
   },
   en: {
@@ -59,6 +60,7 @@ const STR = {
     google: "Continue with Google", or: "or",
     haveAccount: "Already have an account?", login: "Log in",
     registerFail: "Registration failed", otpFail: "Invalid verification code", resendFail: "Couldn't resend code",
+    sessionFail: "Your email is verified, but we couldn't sign you in. Please log in.",
     goals: { work: "Work", ielts: "IELTS", travel: "Travel", university: "University", movies: "Movies", daily: "Daily conversation" },
   },
   ru: {
@@ -83,6 +85,7 @@ const STR = {
     google: "Продолжить через Google", or: "или",
     haveAccount: "Уже есть аккаунт?", login: "Войти",
     registerFail: "Регистрация не удалась", otpFail: "Неверный код подтверждения", resendFail: "Не удалось отправить код снова",
+    sessionFail: "Email подтверждẻн, но войти не получилось. Пожалуйста, войдите в аккаунт.",
     goals: { work: "Работа", ielts: "IELTS", travel: "Путешествия", university: "Университет", movies: "Кино", daily: "Повседневное общение" },
   },
 };
