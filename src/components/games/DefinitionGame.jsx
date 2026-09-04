@@ -51,7 +51,7 @@ async function evaluateDefinition(userDef, word, cfg, level) {
   try {
     const res = await base44.integrations.Core.InvokeLLM({
       prompt: [
-        `You are a strict but fair English vocabulary examiner for B1 learners.`,
+        `You are a strict but fair English vocabulary examiner for ${level || "B1"}-level learners.`,
         `Target word (English): "${word.english}" — Uzbek: "${word.uzbek}".`,
         `Reference definition: "${word.definition || ""}".`,
         `The student rewrote the definition in their own words:`,
