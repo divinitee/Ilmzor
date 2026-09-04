@@ -204,10 +204,39 @@ export default function Register() {
     setLoading(true);
     try {
       const result = await base44.auth.verifyOtp({ email, otpCode });
-      if (result?.access_token) base44.auth.setToken(result.access_token);
+
+      // verifyOtp confirms the email; it does NOT reliably hand back a session.
+      // The SDK types it `Promise<any>` and every one of its own examples
+      // follows it with an explicit login. The old code assumed a token came
+      // back, so when it didn't, nothing was ever stored under
+      // base44_access_token — and the hard redirect below landed on a
+      // ProtectedRoute with no session, which bounced the brand-new student
+      // straight back to /landing. Silently, because every call in between was
+      // wrapped in an empty catch.
+      let signedIn = false;
+      const token = result?.access_token || result?.token;
+      if (token) {
+        base44.auth.setToken(token);
+        try { await base44.auth.me(); signedIn = true; } catch { signedIn = false; }
+      }
+      if (!signedIn) {
+        try {
+          await base44.auth.loginViaEmailPassword(email, password);
+          await base44.auth.me(); // prove the session works before navigating
+          signedIn = true;
+        } catch (loginErr) {
+          console.error("Post-verification sign-in failed:", loginErr);
+          setError(s.sessionFail);
+          return;
+        }
+      }
 
       if (username.trim()) {
-        try { await base44.auth.updateMe({ full_name: username.trim() }); } catch { /* ignore */ }
+        // Was a silent catch. It failing is exactly how the missing-session bug
+        // stayed invisible — new accounts kept the server's default full_name
+        // (the email's local part) and nobody saw why.
+        try { await base44.auth.updateMe({ full_name: username.trim() }); }
+        catch (nameErr) { console.error("Could not save full name:", nameErr); }
       }
 
       if (role === "student" && referralCode.trim()) {
