@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { GraduationCap, BookOpen, Mail, Lock, Loader2 } from "lucide-react";
 import GoogleIcon from "@/components/GoogleIcon";
+import { useAppLang } from "@/hooks/useAppLang";
 
 export default function Login() {
+  const { t } = useAppLang();
   const [role, setRole] = useState("student"); // "student" | "teacher"
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,7 @@ export default function Login() {
       await base44.auth.loginViaEmailPassword(email, password);
       window.location.href = "/";
     } catch (err) {
-      setError(err.message || "Email yoki parol noto'g'ri");
+      setError(err.message || t("login.failed"));
     } finally {
       setLoading(false);
     }
@@ -41,7 +43,7 @@ export default function Login() {
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Vocabulary A2·B1·B2</h1>
-          <p className="text-sm text-muted-foreground mt-1">Hisobingizga kiring</p>
+          <p className="text-sm text-muted-foreground mt-1">{t("login.subtitle")}</p>
         </div>
 
         {/* Role tabs */}
@@ -55,7 +57,7 @@ export default function Login() {
             }`}
           >
             <GraduationCap className="w-4 h-4" />
-            O'quvchi
+            {t("login.student")}
           </button>
           <button
             onClick={() => { setRole("teacher"); setError(""); }}
@@ -66,7 +68,7 @@ export default function Login() {
             }`}
           >
             <BookOpen className="w-4 h-4" />
-            O'qituvchi
+            {t("login.teacher")}
           </button>
         </div>
 
@@ -74,12 +76,12 @@ export default function Login() {
         <div className="bg-card border border-border rounded-3xl shadow-sm p-6">
           {role === "student" && (
             <p className="text-xs text-muted-foreground bg-indigo-500/10 text-indigo-300 rounded-xl px-3 py-2 mb-5">
-              O'quvchi sifatida kirish uchun quyidagi formani to'ldiring
+              {t("login.studentHint")}
             </p>
           )}
           {role === "teacher" && (
             <p className="text-xs bg-violet-500/10 text-violet-300 rounded-xl px-3 py-2 mb-5">
-              O'qituvchi hisobi bilan kirish — o'quvchilaringizni kuzatib boring
+              {t("login.teacherHint")}
             </p>
           )}
 
@@ -89,7 +91,7 @@ export default function Login() {
             onClick={handleGoogle}
           >
             <GoogleIcon className="w-5 h-5 mr-2" />
-            Google orqali kirish
+            {t("login.google")}
           </Button>
 
           <div className="relative mb-5">
@@ -97,7 +99,7 @@ export default function Login() {
               <div className="w-full border-t border-border" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-3 text-muted-foreground">yoki</span>
+              <span className="bg-card px-3 text-muted-foreground">{t("login.or")}</span>
             </div>
           </div>
 
@@ -109,7 +111,7 @@ export default function Login() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t("login.email")}</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <Input
@@ -117,7 +119,7 @@ export default function Login() {
                   type="email"
                   autoComplete="email"
                   autoFocus
-                  placeholder="you@example.com"
+                  placeholder={t("login.emailPh")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10 h-11"
@@ -127,9 +129,9 @@ export default function Login() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Parol</Label>
+                <Label htmlFor="password">{t("login.password")}</Label>
                 <Link to="/forgot-password" className="text-xs text-primary hover:underline">
-                  Parolni unutdingizmi?
+                  {t("login.forgot")}
                 </Link>
               </div>
               <div className="relative">
@@ -148,23 +150,23 @@ export default function Login() {
             </div>
             <Button type="submit" className="w-full h-11 font-semibold" disabled={loading}>
               {loading ? (
-                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Kirish...</>
-              ) : "Kirish"}
+                <><Loader2 className="w-4 h-4 mr-2 animate-spin" />{t("login.submitting")}</>
+              ) : t("login.submit")}
             </Button>
           </form>
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-5">
-          Hisob yo'qmi?{" "}
+          {t("login.noAccount")}{" "}
           <Link to="/register" className="text-primary font-medium hover:underline">
-            Ro'yxatdan o'ting
+            {t("login.register")}
           </Link>
         </p>
 
         <div className="flex items-center justify-center gap-4 mt-6 text-xs text-muted-foreground">
-          <Link to="/about" className="hover:text-foreground hover:underline">Ilova haqida</Link>
+          <Link to="/about" className="hover:text-foreground hover:underline">{t("landing.nav.about")}</Link>
           <span>·</span>
-          <Link to="/contact" className="hover:text-foreground hover:underline">Bog'lanish</Link>
+          <Link to="/contact" className="hover:text-foreground hover:underline">{t("landing.nav.contact")}</Link>
         </div>
       </div>
     </div>
