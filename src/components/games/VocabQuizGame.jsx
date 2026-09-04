@@ -5,6 +5,7 @@ import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const DIFF_CONFIG = {
   beginner:     { count: 20, types: ["multiple_choice"], hints: true },
@@ -144,7 +145,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     base44.entities.QuizResult.create({
-      student_name: user.full_name || user.email,
+      student_name: resolveUserNameOrEmail(user),
       student_phone: user.email,
       unit_name: unitName,
       score: correctCount,

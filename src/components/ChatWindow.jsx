@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { X, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 export default function ChatWindow({ user, roomId, partnerName, onClose }) {
   const [messages, setMessages] = useState([]);
@@ -33,7 +34,7 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
       id: tempId,
       room_id: roomId,
       sender_id: user.id,
-      sender_name: user.full_name || user.email,
+      sender_name: resolveUserNameOrEmail(user),
       sender_role: user.role,
       text: content,
       created_date: new Date().toISOString(),
@@ -45,7 +46,7 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
       await base44.entities.ChatMessage.create({
         room_id: roomId,
         sender_id: user.id,
-        sender_name: user.full_name || user.email,
+        sender_name: resolveUserNameOrEmail(user),
         sender_role: user.role,
         text: content,
       });

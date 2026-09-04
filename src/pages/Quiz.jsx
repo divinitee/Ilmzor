@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, CheckCircle, XCircle, ArrowRight, Trophy, ChevronLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -99,7 +100,7 @@ export default function Quiz() {
     const now = new Date();
     const dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString().slice(0, 5);
     await base44.entities.QuizResult.create({
-      student_name: user.full_name || user.email,
+      student_name: resolveUserNameOrEmail(user),
       student_phone: user.email,
       unit_name: unitName,
       score: finalScore,

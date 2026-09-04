@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { BookOpen, LogOut, CheckCircle, Clock, Users, ChevronLeft, RefreshCw, Plus, Copy, Hash, ChevronDown, MessageCircle } from "lucide-react";
 import ChatWindow from "@/components/ChatWindow";
 import { motion, AnimatePresence } from "framer-motion";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -109,7 +110,7 @@ export default function TeacherDashboard() {
       const code = generateCode();
       await base44.entities.TeacherReferral.create({
         teacher_id: user.id,
-        teacher_name: user.full_name || user.email,
+        teacher_name: resolveUserNameOrEmail(user),
         teacher_email: user.email,
         code,
         label: newCodeLabel.trim() || `Group ${referrals.length + 1}`,

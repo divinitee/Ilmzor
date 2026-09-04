@@ -4,6 +4,7 @@ import { Sparkles, BookOpen, MessageSquareText, TrendingUp, ChevronRight } from 
 import { base44 } from "@/api/base44Client";
 import { chooseFreePlan, TRIAL_DAYS, TRIAL_ENABLED } from "@/lib/subscription";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 // Post-registration flow for students: choose a plan (with a soft nudge
 // before committing to free) -> quick tutorial -> a warm, skippable
@@ -155,7 +156,7 @@ export default function Onboarding() {
 
   const handleChooseFree = async () => {
     const me = await base44.auth.me().catch(() => null);
-    if (me) await chooseFreePlan(me.email, me.full_name);
+    if (me) await chooseFreePlan(me.email, resolveUserNameOrEmail(me));
     setStep("tutorial");
   };
 

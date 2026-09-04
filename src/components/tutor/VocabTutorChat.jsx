@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import MessageBubble from "@/components/tutor/MessageBubble";
 import { useAppLang } from "@/hooks/useAppLang";
 import { canUseAiToday, incrementAiUsage } from "@/lib/aiLimits";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const AGENT_NAME = "vocabulary_tutor";
 
@@ -108,7 +109,7 @@ export default function VocabTutorChat() {
       const conv = await ensureConversation();
       await base44.agents.addMessage(conv, { role: "user", content: `[${lang}] ${content}` });
       const me = await base44.auth.me();
-      await incrementAiUsage(me.email, me.id, me.full_name);
+      await incrementAiUsage(me.email, me.id, resolveUserNameOrEmail(me));
       setUsage((u) => {
         const remaining = Math.max(0, u.remaining - 1);
         return { ...u, used: u.used + 1, remaining, allowed: remaining > 0 };

@@ -21,6 +21,7 @@ import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
 import { getRandomChallenge } from "@/lib/skillTreeData";
 import { levelOf, difficultyFor, wordsForLevel } from "@/lib/levels";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 /* ---------- Page ---------- */
 
@@ -95,13 +96,13 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
         const updated = await base44.entities.UserCoins.update(userXp.id, {
           coins: (userXp.coins || 0) + earned,
           total_correct: (userXp.total_correct || 0) + correctCount,
-          user_name: user.full_name || user.email,
+          user_name: resolveUserNameOrEmail(user),
         });
         setUserXp(updated);
       } else {
         const created = await base44.entities.UserCoins.create({
           user_id: user.id,
-          user_name: user.full_name || user.email,
+          user_name: resolveUserNameOrEmail(user),
           email: user.email,
           classroom_code: user.classroom_code || "",
           coins: earned,
