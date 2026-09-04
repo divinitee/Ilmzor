@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, ArrowLeft, Sparkles, Zap, Clock } from "lucide-react";
+import { Brain, ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
 import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
+import { useAppLang } from "@/hooks/useAppLang";
 import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, PULSE_PHASES } from "@/lib/skillTreeData";
 import { isGameUnlocked, minLevelFor } from "@/lib/levels";
 
