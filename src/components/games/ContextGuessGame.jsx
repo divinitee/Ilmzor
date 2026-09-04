@@ -42,8 +42,8 @@ export default function ContextGuessGame(props) {
       {...props}
       headerLabel="Context Guess"
       poolFilter={(w) => !!w.description && w.description.trim().length >= 5}
-      buildQuestion={(pool, t) => {
-        const m = buildMeaningMcq(pool, t, lang);
+      buildQuestion={(pool, t, demand) => {
+        const m = buildMeaningMcq(pool, t, lang, demand);
         return {
           context: t.description,
           word: t.english,
