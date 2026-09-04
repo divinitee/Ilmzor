@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAppLang } from "@/hooks/useAppLang";
-import { displayName } from "@/lib/profileName";
+import { resolveUserName } from "@/lib/profileName";
 
 export default function ProfileEditor({ user, onSaved }) {
   const { t } = useAppLang();
   const [editing, setEditing] = useState(false);
-  const [username, setUsername] = useState(() => displayName(user?.full_name, user?.email));
+  const [username, setUsername] = useState(() => resolveUserName(user));
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
   const [roomCode, setRoomCode] = useState(user?.classroom_code || "");
   const [uploading, setUploading] = useState(false);
@@ -24,10 +24,10 @@ export default function ProfileEditor({ user, onSaved }) {
   // local state. Skipped while editing so it can't clobber an in-progress edit.
   useEffect(() => {
     if (editing) return;
-    setUsername(displayName(user?.full_name, user?.email));
+    setUsername(resolveUserName(user));
     setAvatarUrl(user?.avatar_url || "");
     setRoomCode(user?.classroom_code || "");
-  }, [user?.full_name, user?.email, user?.avatar_url, user?.classroom_code, editing]);
+  }, [user?.display_name, user?.full_name, user?.email, user?.avatar_url, user?.classroom_code, editing]);
 
   const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0];
@@ -48,7 +48,10 @@ export default function ProfileEditor({ user, onSaved }) {
     setError(false);
     const trimmedName = username.trim();
     try {
-      await base44.auth.updateMe({ full_name: trimmedName, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
+      // display_name, not full_name: the platform ignores writes to full_name
+      // (see src/lib/profileName.js), which is why saving here used to revert
+      // to "No name set" the moment the user was refetched.
+      await base44.auth.updateMe({ display_name: trimmedName, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
       setUsername(trimmedName);
       setSaved(true);
       setEditing(false);
@@ -63,7 +66,7 @@ export default function ProfileEditor({ user, onSaved }) {
   };
 
   const handleCancel = () => {
-    setUsername(displayName(user?.full_name, user?.email));
+    setUsername(resolveUserName(user));
     setAvatarUrl(user?.avatar_url || "");
     setRoomCode(user?.classroom_code || "");
     setError(false);
