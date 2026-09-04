@@ -274,6 +274,13 @@ export default function Register() {
         catch (nameErr) { console.error("Could not save full name:", nameErr); }
       }
 
+      // The self-selected level, written now that there's a session to write
+      // it with. Source "self" so a later placement test or silent calibration
+      // can tell an answered question from a guess and overwrite it freely.
+      if (role === "student" && level) {
+        await setUserLevel(level, "self");
+      }
+
       if (role === "student" && referralCode.trim()) {
         try {
           const me = await base44.auth.me();
@@ -428,6 +435,33 @@ export default function Register() {
                     })}
                   </div>
                   <NavButtons onBack={back} onNext={next} nextLabel={s.next} backLabel={s.back} />
+                </>
+              )}
+
+              {/* Step: Level (students only) */}
+              {currentKey === "level" && (
+                <>
+                  <StepHeader icon={Gauge} title={s.levelTitle} sub={s.levelSub} />
+                  <div className="space-y-2 flex-1">
+                    {LEVELS.map((id) => {
+                      const selected = level === id;
+                      return (
+                        <button
+                          key={id} onClick={() => setLevel(id)}
+                          className={`w-full flex items-center gap-3 p-3 rounded-2xl border-2 transition-all select-none text-left ${
+                            selected ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
+                          }`}
+                        >
+                          <span className="flex-1 text-sm font-medium text-foreground leading-snug">{s.levelOpts[id]}</span>
+                          <span className={`text-[10px] font-bold font-mono px-2 py-1 rounded-full border flex-shrink-0 ${
+                            selected ? "border-primary/40 bg-primary/10 text-primary" : "border-border text-muted-foreground"
+                          }`}>{id}</span>
+                          {selected && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  <NavButtons onBack={back} onNext={next} nextLabel={s.next} backLabel={s.back} disabled={!canNext()} />
                 </>
               )}
 
