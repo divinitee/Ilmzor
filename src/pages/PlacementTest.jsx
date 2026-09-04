@@ -3,6 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
 import { GATES } from "@/lib/placementContent";
+import { setUserLevel } from "@/lib/levelStore";
 import {
   recordAssessmentResult, pickGateSet, scoreMcqGate, scoreOpenGate,
   gateOutcome, gateFormat, summarizeWeakAreas,
@@ -66,6 +67,12 @@ export default function PlacementTest() {
       setFeedback(null);
       return;
     }
+    // Persist it. Until now settleAt was computed, rendered on the results
+    // screen, and thrown away on unmount — every placement test taken since
+    // this feature shipped was discarded. A placement result is the
+    // highest-trust level signal there is, so it overwrites whatever the
+    // student self-selected during onboarding.
+    setUserLevel(outcome.settleAt, "placement");
     setFinalLevel(outcome.settleAt);
     setDone(true);
   };
