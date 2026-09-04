@@ -32,9 +32,18 @@ export const SKILL_CHILDREN = {
       { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
       { name: "Memory Flip", game: "memory_flip", difficulty: "Easy", time: "3 min", xp: 40 },
+      // Was fully built but only ever referenced under Reading, which is
+      // comingSoon — unreachable in the live UI despite working. Wired in
+      // here per the founder's confirmed placement (2026-09-04).
+      { name: "Definition", game: "definition", difficulty: "Hard", time: "8 min", xp: 100 },
     ]),
     C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
-    C("Spelling", ["Typing", "Letter order", "Missing letters"], gen(["Typing", "Letter Order", "Missing Letters"], "spelling")),
+    C("Spelling", ["Typing", "Letter order", "Missing letters"], [
+      ...gen(["Typing", "Letter Order", "Missing Letters"], "spelling"),
+      // Same as Definition above — fully built, was orphaned under the
+      // comingSoon Reading skill. Founder's confirmed placement.
+      { name: "Crossword", game: "crossword", difficulty: "Hard", time: "8 min", xp: 100 },
+    ]),
     C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
     C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
     C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
