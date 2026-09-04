@@ -147,15 +147,25 @@ export function isGameUnlocked(game, bank, level) {
 // Difficulty
 // ---------------------------------------------------------------------------
 
-const DIFF_ORDER = ["beginner", "intermediate", "advanced"];
+const DIFF_ORDER = ["beginner", "intermediate", "advanced", "proficient"];
 
 // The baseline intensity a student plays at. This is the knob every game
 // already reads through its own DIFF_CONFIG (word counts, timers).
+//
+// FIXED 2026-09-05: this used to top out at "advanced" for B2 *and* C1, even
+// though six engines (VocabQuizGame, WordFormsGame, SpellingGame,
+// DefinitionGame, CrosswordGame, SentenceBuilderGame) already ship a fully
+// built "proficient" DIFF_CONFIG tier — bigger rounds, longer minimums,
+// harder question types. It was dead code: nothing in the live app could
+// ever select it (GameSetup.jsx, the only UI that lists "proficient" as an
+// option, is orphaned — unreferenced anywhere). C1 students were playing at
+// the same intensity as B2. This carves C1 out on its own.
 export function difficultyForLevel(level) {
   const i = levelIndex(level);
   if (i <= 1) return "beginner";      // Starter, A1
   if (i <= 3) return "intermediate";  // A2, B1
-  return "advanced";                  // B2, C1
+  if (i <= 4) return "advanced";      // B2
+  return "proficient";                // C1
 }
 
 // A challenge's own Easy/Medium/Hard label now nudges one step either side of
