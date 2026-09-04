@@ -9,7 +9,7 @@ import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import QuickActions from "./QuickActions";
 import { getRemoteSkillProgress, summarizeSkillProgress, getTodaySkillActivity } from "@/lib/gameSkills";
-import { displayName } from "@/lib/profileName";
+import { resolveUserName } from "@/lib/profileName";
 
 export const ACCENT = "#3b82f6";
 export const ACCENT_GLOW = "rgba(59,130,246,0.5)";
@@ -101,10 +101,11 @@ export default function MissionControl({
   }, [results, xpRecord]);
 
   const greeting = s[getGreetingKey()];
-  // An email-derived full_name (Base44's own default when no name was
-  // collected at signup, e.g. via Google) is never shown as if it were a
-  // real name — see src/lib/profileName.js.
-  const realName = displayName(user?.full_name, user?.email);
+  // The student's own display_name, falling back to a provider-supplied
+  // full_name. An email-derived full_name (Base44's default when no name was
+  // collected) is never shown as if it were a real name — see
+  // src/lib/profileName.js.
+  const realName = resolveUserName(user);
   const name = realName ? realName.split(" ")[0] : t("dashboard.defaultLearnerName");
 
   // Today's Mission is Skill Hub-sourced for now (lessons/other systems fold
