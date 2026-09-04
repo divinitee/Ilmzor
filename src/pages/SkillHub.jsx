@@ -18,6 +18,7 @@ import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
+import { useAppLang } from "@/hooks/useAppLang";
 import { getRandomChallenge } from "@/lib/skillTreeData";
 import { levelOf, difficultyFor, wordsForLevel } from "@/lib/levels";
 
@@ -32,7 +33,9 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const [userXp, setUserXp] = useState(null);
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty, bank, skillLabel }
   const [soonLabel, setSoonLabel] = useState(null);
+  const [lockedInfo, setLockedInfo] = useState(null); // { label, minLevel } — distinct from soonLabel: "not unlocked for you" vs "not built yet"
   const loc = useSkillLoc();
+  const { t } = useAppLang();
 
   useEffect(() => {
     // Paginated, not a single list(..., 2000) call — the collection is
@@ -82,7 +85,8 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   // band plus one below, never above; new material is the Learning Path's
   // job (see levels.js). Falls back toward the full pool if a band is thin,
   // so this only ever narrows what a student sees, never empties a game.
-  const poolWords = useMemo(() => wordsForLevel(words, levelOf(user)), [words, user]);
+  const studentLevel = useMemo(() => levelOf(user), [user]);
+  const poolWords = useMemo(() => wordsForLevel(words, studentLevel), [words, studentLevel]);
 
   const handleXpEarned = async (earned, correctCount) => {
     if (!user || earned === 0) return;
@@ -123,7 +127,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     // setting difficulty outright — so "Hard" means hard for this student,
     // not "third node in the category," and two students at different
     // levels playing the same node get different intensity.
-    const diff = difficultyFor(levelOf(user), activeGame.difficulty);
+    const diff = difficultyFor(studentLevel, activeGame.difficulty);
     const base = { words: poolWords, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
@@ -217,9 +221,44 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
           <SkillStage
             onPlayGame={(g) => setActiveGame(g)}
             onComingSoon={(label) => setSoonLabel(label)}
+            studentLevel={studentLevel}
+            onLocked={(info) => setLockedInfo(info)}
           />
         </div>
       </div>
+
+      {/* Level-locked notice — a game that exists and works, just not
+          unlocked for this student yet. Kept as its own modal (not reusing
+          soonLabel) so the copy and mental model stay distinct from
+          "not built yet". */}
+      <AnimatePresence>
+        {lockedInfo && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setLockedInfo(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ y: 20, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 20, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 26 }}
+              className="premium-card relative w-full max-w-sm rounded-[28px] p-6 text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="w-14 h-14 rounded-2xl bg-primary/15 border border-primary/25 flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-lg font-bold text-foreground">
+                {t("gameui.reach_level_title", { level: lockedInfo.minLevel })}
+              </h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-5">{t("gameui.reach_level_body", { level: lockedInfo.minLevel })}</p>
+              <button onClick={() => setLockedInfo(null)} className="neo-pill px-5 py-2 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
+                {loc("ui.gotIt")}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Coming-soon notice */}
       <AnimatePresence>
