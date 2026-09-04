@@ -14,11 +14,6 @@ export { STARTER_LEVEL };
 // Starter, A1, A2, B1, B2, C1
 export const LEVELS = [STARTER_LEVEL, ...GATES];
 
-// Where accounts that predate the level system land. B1 is the app's
-// historical implicit default: every game already falls back to
-// difficulty "intermediate", so B1 is effectively what existing students have
-// been playing at all along. Defaulting them to Starter would lock working
-// students out of games they used yesterday.
 // Two different "defaults", and conflating them is what made the whole level
 // system invisible on fresh accounts:
 //
