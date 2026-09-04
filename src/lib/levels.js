@@ -179,6 +179,83 @@ export function difficultyFor(level, challengeDifficulty) {
 }
 
 // ---------------------------------------------------------------------------
+// Cognitive demand — Step 1 of the game-architecture plan (2026-09-04 doc).
+//
+// Everything above this point answers "how much" (word band, round length,
+// timers). This answers "what kind of thinking the task requires" —
+// recognition vs. controlled understanding vs. independent application vs.
+// nuance vs. precision-under-ambiguity. It's a second, independent axis, not
+// a rename of difficultyForLevel(): a C1 word in Picture Match is still
+// recognition; an A2 sentence read for implied meaning would be inference.
+// Today only the AI-generating engines consume it (via demandPromptHint),
+// because they're the only ones that can act on "how the task should feel"
+// without new data — see the plan's §2.2 on the AI-generating vs DB-reading
+// split.
+// ---------------------------------------------------------------------------
+
+export const COGNITIVE_DEMAND = {
+  [STARTER_LEVEL]: "recognition",
+  A1: "recognition",
+  A2: "controlled",
+  B1: "application",
+  B2: "nuance",
+  C1: "precision",
+};
+
+export const cognitiveDemandForLevel = (level) =>
+  COGNITIVE_DEMAND[isKnownLevel(level) ? level : DEFAULT_LEVEL];
+
+// Prompt language per demand tier, for engines that generate content via AI
+// (DefinitionMatchGame, DefinitionGame today). These used to hardcode "for
+// B1 learners" regardless of who was actually playing — an A1 student in
+// Definition Match got the same subtly-different, B1-styled definitions as
+// a C1 student in DefinitionGame. This is the fix: thread the real level's
+// demand into the prompt instead. No new AI calls, no new data — same
+// request, better-targeted instructions.
+export const DEMAND_PROMPT_HINT = {
+  recognition: "Keep language simple and literal. Make the correct answer and any wrong options obviously different from each other — no subtle traps.",
+  controlled: "Use everyday, common vocabulary. Wrong options should be clearly incorrect but plausible enough that the student has to read the whole thing, not just pattern-match a keyword.",
+  application: "Write like you would for someone who can follow context, not just recognise words. Wrong options may share a general topic with the right answer but must not be genuinely confusable with it.",
+  nuance: "Use precise, natural language. Wrong options should be near-synonyms or share a subtle shade of meaning with the right answer, so the student has to think about nuance, not just topic.",
+  precision: "Use nuanced, register-aware language, the way a fluent speaker would. Wrong options should be very close in meaning — near-synonyms, connotation, or context-dependent usage — so only careful reading distinguishes the right answer.",
+};
+
+export const demandPromptHint = (level) =>
+  DEMAND_PROMPT_HINT[cognitiveDemandForLevel(level)];
+
+// ---------------------------------------------------------------------------
+// Distractor strength — Step 3 of the plan. Needs no new data: every word
+// already carries a `cefr` band, so wrong-answer choice can be biased by how
+// close a candidate's band is to the target's, scaled by cognitive demand.
+// Recognition-level rounds get obviously-wrong distractors (far band);
+// nuance/precision rounds get distractors from the target's own
+// neighbourhood, which is what actually makes a B2/C1 multiple-choice round
+// feel harder than a B1 one, instead of just "more words, same task".
+// ---------------------------------------------------------------------------
+
+const CEFR_ORDER = ["A1", "A2", "B1", "B2", "C1"];
+
+function cefrDistance(a, b) {
+  const ia = CEFR_ORDER.indexOf(a);
+  const ib = CEFR_ORDER.indexOf(b);
+  if (ia === -1 || ib === -1) return 99; // unknown band — treat as safely far (easiest)
+  return Math.abs(ia - ib);
+}
+
+// Order `candidates` by how good a distractor each is for `target` at the
+// given cognitive demand. Callers still shuffle within the returned order
+// (or slice a window of it) rather than always taking the exact top N —
+// this ranks, it doesn't hand back a fixed round.
+export function rankDistractors(candidates, target, demand) {
+  const wantClose = demand === "nuance" || demand === "precision";
+  return [...candidates].sort((a, b) => {
+    const da = cefrDistance(a?.cefr, target?.cefr);
+    const db = cefrDistance(b?.cefr, target?.cefr);
+    return wantClose ? da - db : db - da;
+  });
+}
+
+// ---------------------------------------------------------------------------
 // Hint pricing
 // ---------------------------------------------------------------------------
 
