@@ -96,7 +96,7 @@ async function evaluateDefinition(userDef, word, cfg, level) {
   }
 }
 
-export default function DefinitionGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate" }) {
+export default function DefinitionGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", level }) {
   const { t } = useAppLang();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
 
