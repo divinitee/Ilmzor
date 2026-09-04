@@ -170,7 +170,7 @@ export default function DefinitionGame({ words, unitName, onBack, user, onXpEarn
       }
     }
     const enriched = { ...current, definition: currentDef?.definition || current.description || "" };
-    const res = await evaluateDefinition(answer, enriched, cfg);
+    const res = await evaluateDefinition(answer, enriched, cfg, level);
     if (user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     setResult(res);
     setTotalXp(c => c + res.xp);
