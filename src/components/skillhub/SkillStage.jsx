@@ -382,7 +382,9 @@ function ChildNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
 
 function GameNode({ node, active, onClick, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
+  const { t } = useAppLang();
   const soon = node.comingSoon;
+  const locked = !soon && node.locked;
   const completion = getGameStats(node.game).best || 0;
   return (
     <div className={`absolute z-10 hub-node ${dim ? "dim" : ""}`} style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
@@ -397,19 +399,30 @@ function GameNode({ node, active, onClick, hot, dim, glow, delay = 0, onHoverSta
           className="group relative min-w-[96px] max-w-[128px]"
           style={{ transformPerspective: 700 }}
         >
-          {!soon && (
+          {!soon && !locked && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-2xl pointer-events-none hub-glow-pulse"
               style={{ width: "150%", height: "155%", background: `radial-gradient(closest-side, ${glow || "rgba(99,102,241,0.5)"}, transparent 72%)`, filter: "blur(16px)", opacity: 0.5 }} />
           )}
-          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-50" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
+          <span className={`relative block text-center rounded-2xl px-3 py-2.5 border backdrop-blur-xl transition-colors ${soon || locked ? "border-white/10 bg-white/[0.03] opacity-50 group-hover:opacity-75" : "border-white/15 bg-white/[0.06] group-hover:border-white/30 group-hover:bg-white/[0.11]"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": glow || "rgba(99,102,241,0.5)" } : undefined}>
+            {locked && (
+              <Lock className="w-3.5 h-3.5 mx-auto mb-1 text-muted-foreground" />
+            )}
             <span className="block text-[11px] font-bold text-foreground leading-tight">{loc(node.name)}</span>
-            <span className={`mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${DIFF_STYLE[node.difficulty]}`}>{loc(node.difficulty)}</span>
-            <span className="mt-1 flex items-center justify-center gap-2 text-[8px] text-muted-foreground leading-tight">
-              <span className="flex items-center gap-0.5"><Clock className="w-2.5 h-2.5" />{loc(node.time)}</span>
-              <span className="flex items-center gap-0.5"><Zap className="w-2.5 h-2.5 text-amber-400" />{node.xp}</span>
-            </span>
-            {!soon && completion > 0 && (
+            {locked ? (
+              <span className="mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border text-muted-foreground bg-white/5 border-white/15">
+                {t("gameui.locked_badge", { level: node.minLevel })}
+              </span>
+            ) : (
+              <span className={`mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border ${DIFF_STYLE[node.difficulty]}`}>{loc(node.difficulty)}</span>
+            )}
+            {!locked && (
+              <span className="mt-1 flex items-center justify-center gap-2 text-[8px] text-muted-foreground leading-tight">
+                <span className="flex items-center gap-0.5"><Clock className="w-2.5 h-2.5" />{loc(node.time)}</span>
+                <span className="flex items-center gap-0.5"><Zap className="w-2.5 h-2.5 text-amber-400" />{node.xp}</span>
+              </span>
+            )}
+            {!soon && !locked && completion > 0 && (
               <span className="block text-[8px] text-muted-foreground/70 mt-0.5">{completion}%</span>
             )}
           </span>
