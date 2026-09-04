@@ -66,7 +66,7 @@ async function gradeDefine(userInput, word, user) {
   return sim >= 80 ? 100 : 0;
 }
 
-export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true }) {
+export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", timePerQ = 30, autoAdvance = true, cognitiveDemand }) {
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
   const timed = timePerQ && timePerQ > 0;
 
