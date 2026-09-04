@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Play, ArrowRight, Target, ChevronDown } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import { DASH_STR, getLearningGoal, getGreetingKey } from "@/lib/dashboardData";
+import { resolveUserName } from "@/lib/profileName";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -11,7 +12,9 @@ export default function DashboardHeader({ user, selectedUnit, selectedUnitName, 
   const { lang } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
   const greeting = s[getGreetingKey()];
-  const name = (user?.full_name || user?.email || "").split(" ")[0] || "Learner";
+  // Never falls back to the email: an email-derived name is a placeholder, not
+  // something the student chose (see profileName.js).
+  const name = (resolveUserName(user).split(" ")[0]) || "Learner";
   const goal = getLearningGoal(lang);
 
   return (
