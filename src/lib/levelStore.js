@@ -1,5 +1,5 @@
 import { base44 } from "@/api/base44Client";
-import { DEFAULT_LEVEL, isKnownLevel } from "@/lib/levels";
+import { LEGACY_DEFAULT_LEVEL, isKnownLevel, isLegacyAccount } from "@/lib/levels";
 
 // Reads and writes of User.cefr_level live here rather than in levels.js so
 // that levels.js stays a pure policy module — it's imported by skillTreeData,
@@ -30,11 +30,20 @@ export async function setUserLevel(level, source) {
 //
 // Deliberately lazy rather than a bulk migration: writing over every live
 // student row buys nothing that this doesn't, and can't half-fail.
+// Backfill for students who predate the level system ONLY. It used to fire for
+// anyone without a level, which meant every brand-new account was quietly
+// stamped B1/legacy_default the first time it loaded Home — and at B1 virtually
+// nothing in the Skill Hub locks, so the entire unlock ladder was invisible on
+// exactly the accounts it was built for. New accounts get their level from the
+// registration level step (source "self") or the placement test instead; if
+// neither has happened yet, levelOf() falls back to DEFAULT_LEVEL without
+// writing anything, so the real answer can still land later.
 export async function ensureUserLevel(user) {
   if (!user || isKnownLevel(user.cefr_level)) return user;
+  if (!isLegacyAccount(user)) return user;
   try {
     return await base44.auth.updateMe({
-      cefr_level: DEFAULT_LEVEL,
+      cefr_level: LEGACY_DEFAULT_LEVEL,
       level_source: "legacy_default",
       level_set_at: new Date().toISOString(),
     });
