@@ -5,12 +5,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe, Briefcase, Award, Plane, Film, MessageCircle, Target } from "lucide-react";
+import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe, Briefcase, Award, Plane, Film, MessageCircle, Target, Gauge } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import GoogleIcon from "@/components/GoogleIcon";
 import { toast } from "@/components/ui/use-toast";
 import { useAppLang } from "@/hooks/useAppLang";
 import { APP_LANGS } from "@/i18n/translations";
+import { LEVELS } from "@/lib/levels";
+import { setUserLevel } from "@/lib/levelStore";
 
 const STR = {
   uz: {
@@ -172,6 +174,7 @@ export default function Register() {
   const [dir, setDir] = useState(1);
   const [role, setRole] = useState("student");
   const [goals, setGoals] = useState([]);
+  const [level, setLevel] = useState(""); // no default — the student has to answer
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -181,9 +184,10 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [otpCode, setOtpCode] = useState("");
 
-  // Step sequence — students get an extra "goals" step after role selection
+  // Step sequence — students get "goals" and "level" after role selection.
+  // Teachers get neither: they aren't the ones being levelled.
   const STEPS = role === "student"
-    ? ["lang", "role", "goals", "name", "creds", "code", "otp"]
+    ? ["lang", "role", "goals", "level", "name", "creds", "code", "otp"]
     : ["lang", "role", "name", "creds", "code", "otp"];
   const TOTAL = STEPS.length;
   const currentKey = STEPS[step];
@@ -204,6 +208,10 @@ export default function Register() {
   const canNext = () => {
     if (currentKey === "name") return username.trim().length > 0;
     if (currentKey === "creds") return email.trim() && password && confirmPassword;
+    // Unskippable by design: the level drives the word pool, game difficulty
+    // and which modes are unlocked, so guessing it for them is worse than
+    // asking once. There is no "skip" and no pre-selected option.
+    if (currentKey === "level") return !!level;
     return true;
   };
 
