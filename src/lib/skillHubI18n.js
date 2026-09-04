@@ -88,6 +88,7 @@ const SKILL = {
 
   // ---- vocabulary challenges ----
   "Definition Match": { uz: "Ta'rif moslash", ru: "Сопоставление определений" },
+  "Definition": { uz: "Ta'rif", ru: "Определение" },
   "Picture Match": { uz: "Rasm moslash", ru: "Сопоставление картинок" },
   "Context Guess": { uz: "Kontekstdan topish", ru: "Угадывание по контексту" },
   "Memory Flip": { uz: "Xotira kartalari", ru: "Карточки памяти" },
@@ -98,6 +99,7 @@ const SKILL = {
   Typing: { uz: "Yozish", ru: "Набор" },
   "Letter Order": { uz: "Harf tartibi", ru: "Порядок букв" },
   "Missing Letters": { uz: "Yetishmayotgan harflar", ru: "Пропущенные буквы" },
+  "Crossword": { uz: "Krossvord", ru: "Кроссворд" },
   "Word Family Builder": { uz: "So'z oilasi qurish", ru: "Семья слов" },
   "Prefix Match": { uz: "Prefiks moslash", ru: "Сопоставление приставок" },
   "Suffix Builder": { uz: "Suffiks qurish", ru: "Суффиксы" },
