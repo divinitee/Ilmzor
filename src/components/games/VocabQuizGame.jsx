@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
+import { rankDistractors } from "@/lib/levels";
 
 const DIFF_CONFIG = {
   beginner:     { count: 20, types: ["multiple_choice"], hints: true },
