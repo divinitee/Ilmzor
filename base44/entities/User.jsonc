@@ -1,4 +1,6 @@
 {
+  "name": "User",
+  "type": "object",
   "properties": {
     "role": {
       "type": "string",
@@ -14,11 +16,46 @@
         "type": "string"
       },
       "description": "Why the student is learning English, selected at signup e.g. work, ielts, travel, university, movies, daily"
+    },
+    "cefr_level": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "The student's current CEFR level. Same ladder as GATES + STARTER_LEVEL in src/lib/placementContent.js \u2014 do not introduce a second level vocabulary. Drives Skill Hub word-pool filtering and game-mode unlocking via src/lib/levels.js."
+    },
+    "level_source": {
+      "type": "string",
+      "enum": [
+        "self",
+        "placement",
+        "calibrated",
+        "legacy_default"
+      ],
+      "description": "How cefr_level was arrived at. self = picked during Onboarding; placement = settleAt from the placement test (highest trust); calibrated = adjusted by Skill Hub round performance; legacy_default = backfilled to B1 for accounts that predate the level system."
+    },
+    "level_set_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When cefr_level was last written. Lets a stale self-assessment be re-prompted later without re-testing."
+    },
+    "cal_up": {
+      "type": "number",
+      "default": 0,
+      "description": "Silent-calibration counter: consecutive Skill Hub rounds scored well above the student's current band. Reaching the promotion threshold proposes a level-up (announced, with undo \u2014 never applied silently, because locked game modes are visible)."
+    },
+    "cal_down": {
+      "type": "number",
+      "default": 0,
+      "description": "Silent-calibration counter: consecutive rounds scored well below the current band. Counterpart to cal_up."
     }
   },
   "required": [
     "role"
-  ],
-  "name": "User",
-  "type": "object"
+  ]
 }
