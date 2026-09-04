@@ -20,7 +20,7 @@ import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
 import { getRandomChallenge } from "@/lib/skillTreeData";
-import { levelOf, difficultyFor, wordsForLevel } from "@/lib/levels";
+import { levelOf, difficultyFor, wordsForLevel, cognitiveDemandForLevel } from "@/lib/levels";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 /* ---------- Page ---------- */
@@ -129,7 +129,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     // not "third node in the category," and two students at different
     // levels playing the same node get different intensity.
     const diff = difficultyFor(studentLevel, activeGame.difficulty);
-    const base = { words: poolWords, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
+    // level + cognitiveDemand ride alongside difficulty (round intensity) as
+    // a separate signal — "how hard the language is" vs "what kind of
+    // thinking the task requires". Every engine gets them; only the
+    // AI-generating ones (definition_match, definition today) act on them
+    // so far. See levels.js's "Cognitive demand" section.
+    const base = { words: poolWords, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff, level: studentLevel, cognitiveDemand: cognitiveDemandForLevel(studentLevel) };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
