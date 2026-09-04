@@ -18,6 +18,8 @@ import { isKnownLevel, isLegacyAccount } from "@/lib/levels";
 // question that didn't exist when they signed up.
 export function needsProfileSetup(user) {
   if (!user) return false;
+  // Admins run the app, they don't get placed in it.
+  if (user.role === "admin") return false;
   if (isLegacyAccount(user)) return false;
   return !isKnownLevel(user.cefr_level);
 }
