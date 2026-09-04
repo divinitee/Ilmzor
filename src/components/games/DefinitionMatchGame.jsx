@@ -16,7 +16,7 @@ const BAD = "#f43f5e";
 async function buildBoard(pool, level) {
   const targets = pickN(pool, PAIRS);
   const wordList = targets.map((t) => t.english).join(", ");
-  // FIXED 2026-09-05: this prompt used to hardcode "B1 English learners"
+  // FIXED 2026-09-04: this prompt used to hardcode "B1 English learners"
   // regardless of who was actually playing — Definition Match unlocks at A1,
   // so an A1 student was getting the same subtly-different, B1-styled
   // definitions as a B2/C1 student. Now it reflects the real level and the
