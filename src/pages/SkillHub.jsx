@@ -18,7 +18,8 @@ import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
-import { DIFF_TO_GAME, getRandomChallenge } from "@/lib/skillTreeData";
+import { getRandomChallenge } from "@/lib/skillTreeData";
+import { levelOf, difficultyFor } from "@/lib/levels";
 
 /* ---------- Page ---------- */
 
@@ -34,9 +35,31 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const loc = useSkillLoc();
 
   useEffect(() => {
-    base44.entities.VocabularyWord.list("unit_number", 2000)
-      .then((all) => setWords(all))
-      .finally(() => setLoading(false));
+    // Paginated, not a single list(..., 2000) call — the collection is
+    // ~2,282 rows and climbing (the enrichment batch only adds rows, never
+    // removes them), so a fixed cap silently drops words forever. Sorted
+    // and deduped by id rather than unit_number: most rows have no
+    // unit_number, which makes that sort non-deterministic and was
+    // producing duplicate pages (the same bug VocabReview.jsx hit and
+    // fixed the same way).
+    let cancelled = false;
+    (async () => {
+      const byId = new Map();
+      let skip = 0;
+      const PAGE = 500;
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const page = await base44.entities.VocabularyWord.list("id", PAGE, skip);
+        page.forEach((w) => byId.set(w.id, w));
+        if (page.length < PAGE) break;
+        skip += PAGE;
+      }
+      if (!cancelled) {
+        setWords([...byId.values()]);
+        setLoading(false);
+      }
+    })();
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
@@ -89,7 +112,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   };
 
   if (activeGame) {
-    const diff = DIFF_TO_GAME[activeGame.difficulty] || "intermediate";
+    // The node's own Easy/Medium/Hard nudges one step either side of the
+    // student's actual level (difficultyFor in levels.js) rather than
+    // setting difficulty outright — so "Hard" means hard for this student,
+    // not "third node in the category," and two students at different
+    // levels playing the same node get different intensity.
+    const diff = difficultyFor(levelOf(user), activeGame.difficulty);
     const base = { words, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
@@ -112,7 +140,22 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     if (activeGame.game === "memory_flip")
       return <MemoryFlipGame {...base} />;
     if (activeGame.game === "picture_match")
-      return <PictureMatchGame {...base} />;
+      // PictureMatchGame takes onResult, not onXpEarned/onGameComplete —
+      // base's versions of those were never being called, so this game's
+      // XP and completion silently never recorded. Adapt onResult into both
+      // rather than changing the component itself, which other call sites
+      // (there are none today, but the shape is worth keeping general) might
+      // reasonably expect to stay as-is.
+      return (
+        <PictureMatchGame
+          {...base}
+          user={user}
+          onResult={(r) => {
+            handleXpEarned(r?.xp || 0, r?.correct || 0);
+            handleGameComplete({ scorePct: r?.total ? (r.correct / r.total) * 100 : 0 });
+          }}
+        />
+      );
     if (activeGame.game === "odd_one_out")
       return <OddOneOutGame {...base} />;
   }
