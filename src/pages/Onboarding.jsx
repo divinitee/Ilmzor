@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Sparkles, BookOpen, MessageSquareText, TrendingUp, ChevronRight } from "lucide-react";
 import { base44 } from "@/api/base44Client";
-import { chooseFreePlan } from "@/lib/subscription";
+import { chooseFreePlan, TRIAL_DAYS, TRIAL_ENABLED } from "@/lib/subscription";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
 
 // Post-registration flow for students: choose a plan (with a soft nudge
@@ -39,8 +39,9 @@ function ConfirmFreeStep({ onConfirm, onSeePlans }) {
     <div className="flex-1 flex flex-col justify-center px-6 max-w-sm mx-auto w-full text-center">
       <h2 className="text-xl font-bold text-foreground mb-2">Continue with the free plan?</h2>
       <p className="text-sm text-muted-foreground mb-8">
-        You'll get full access for one week as a welcome gift, then settle onto the free tier —
-        flashcards and a few AI turns a day. You can upgrade any time.
+        {TRIAL_ENABLED
+          ? `You'll get full access for ${TRIAL_DAYS} days as a welcome gift, then settle onto the free tier — flashcards and a few AI turns a day. You can upgrade any time.`
+          : "You'll be on the free tier — flashcards and a few AI turns a day. You can upgrade any time."}
       </p>
       <button
         onClick={onConfirm}
