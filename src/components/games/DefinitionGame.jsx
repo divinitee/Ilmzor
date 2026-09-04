@@ -141,10 +141,10 @@ export default function DefinitionGame({ words, unitName, onBack, user, onXpEarn
     }
 
     setLoadingDefs(true);
-    generateDefinitions(picked)
+    generateDefinitions(picked, level)
       .then(map => { setDefs(map); if (user) incrementAiUsage(user.email, user.id, "").catch(() => {}); })
       .finally(() => setLoadingDefs(false));
-  }, [cfg.count, user]);
+  }, [cfg.count, user, level]);
 
   useEffect(() => {
     if (startedRef.current) return;
