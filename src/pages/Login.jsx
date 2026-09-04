@@ -164,9 +164,9 @@ export default function Login() {
         </p>
 
         <div className="flex items-center justify-center gap-4 mt-6 text-xs text-muted-foreground">
-          <Link to="/about" className="hover:text-foreground hover:underline">{t("landing.nav.about")}</Link>
+          <Link to="/about" className="hover:text-foreground hover:underline">{t("login.about")}</Link>
           <span>·</span>
-          <Link to="/contact" className="hover:text-foreground hover:underline">{t("landing.nav.contact")}</Link>
+          <Link to="/contact" className="hover:text-foreground hover:underline">{t("login.contact")}</Link>
         </div>
       </div>
     </div>

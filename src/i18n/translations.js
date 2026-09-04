@@ -105,6 +105,7 @@ export const translations = {
       submit: "Kirish", submitting: "Kirilmoqda...",
       failed: "Email yoki parol noto'g'ri",
       noAccount: "Hisob yo'qmi?", register: "Ro'yxatdan o'ting",
+      about: "Ilova haqida", contact: "Bog'lanish",
     },
     gameui: {
       back: "Orqaga", cancel: "Bekor qilish", start: "Boshlash", retry: "Qayta urinib ko'ring",
@@ -448,6 +449,7 @@ export const translations = {
       submit: "Log in", submitting: "Logging in...",
       failed: "Incorrect email or password",
       noAccount: "No account yet?", register: "Sign up",
+      about: "About the app", contact: "Contact",
     },
     gameui: {
       back: "Back", cancel: "Cancel", start: "Start", retry: "Try again",
@@ -791,6 +793,7 @@ export const translations = {
       submit: "Войти", submitting: "Вход...",
       failed: "Неверный email или пароль",
       noAccount: "Нет аккаунта?", register: "Зарегистрируйтесь",
+      about: "О приложении", contact: "Связаться",
     },
     gameui: {
       back: "Назад", cancel: "Отмена", start: "Начать", retry: "Попробовать снова",
