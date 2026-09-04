@@ -4,12 +4,30 @@ import { translations, DEFAULT_LANG, VALID_LANGS, resolveKey } from "@/i18n/tran
 const STORAGE_KEY = "app_lang";
 const EVENT_NAME = "applangchange";
 
+// What the browser says the person reads, for a first-time visitor who hasn't
+// chosen yet. Only ever a fallback: an explicit choice is stored and always
+// wins, so this can never override someone who picked a language.
+//
+// Matches on the primary subtag, so "ru-RU", "ru" and "ru-UA" all land on
+// Russian. Anything we don't publish falls through to DEFAULT_LANG, which is
+// the right home for this audience anyway.
+function detectLang() {
+  try {
+    const candidates = [navigator.language, ...(navigator.languages || [])].filter(Boolean);
+    for (const tag of candidates) {
+      const primary = String(tag).toLowerCase().split("-")[0];
+      if (VALID_LANGS.includes(primary)) return primary;
+    }
+  } catch { /* no navigator, or a locked-down browser */ }
+  return DEFAULT_LANG;
+}
+
 function readStored() {
   try {
     const v = localStorage.getItem(STORAGE_KEY);
     if (v && VALID_LANGS.includes(v)) return v;
   } catch { /* ignore */ }
-  return DEFAULT_LANG;
+  return detectLang();
 }
 
 function persist(lang) {
