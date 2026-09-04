@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Sparkles } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { demandPromptHint } from "@/lib/levels";
 
 const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
 
