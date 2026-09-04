@@ -1,7 +1,7 @@
 import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
 import {
-  GATES, GATE_POOLS, STARTER_LEVEL, MCQ_PASS_RATIO, OPEN_PASS_AVG,
+  GATES, GATE_POOLS, STARTER_LEVEL, MCQ_PASS_RATIO, OPEN_PASS_AVG, isMixedGate,
 } from "@/lib/placementContent";
 
 // Saves one graded result to the AssessmentResult entity. Always stamps
@@ -33,7 +33,19 @@ export async function recordAssessmentResult({
   }
 }
 
-export const gateFormat = (level) => GATE_POOLS[level]?.format || "open";
+// BUGFIX (2026-09-04): this used to read GATE_POOLS[level]?.format, a field
+// that has never existed on any pool (verified against the live object —
+// every pool has only `mcq` and, for B1/B2/C1, `open`). That always fell
+// through to the "open" default, and pickGateSet below made the identical
+// mistake, which crashed on `shuffle(pool.vocab)` (pool.vocab is undefined
+// for every gate) the instant the page tried to build its first round. Every
+// visit to /placement-test has rendered blank since this file was last
+// touched — predates this session, not introduced by it.
+//
+// A1/A2 have no `open` pool, so they're the mcq format; B1/B2/C1 do, so they
+// render as open-ended production — reusing isMixedGate rather than
+// reintroducing a second, disconnected way to ask the same question.
+export const gateFormat = (level) => (isMixedGate(level) ? "open" : "mcq");
 
 export const nextGate = (level) => GATES[GATES.indexOf(level) + 1] || null;
 
@@ -48,13 +60,20 @@ export const previousGate = (level) => GATES[GATES.indexOf(level) - 1] || STARTE
 export function pickGateSet(level) {
   const pool = GATE_POOLS[level];
   if (!pool) return [];
-  if (pool.format === "mcq") {
+  if (!isMixedGate(level)) {
+    // A1/A2: pure MCQ, drawn straight from pool.mcq.
     const vocab = shuffle(pool.mcq.filter((q) => q.type === "vocab")).slice(0, 5);
     const grammar = shuffle(pool.mcq.filter((q) => q.type === "grammar")).slice(0, 5);
     return shuffle([...vocab, ...grammar]);
   }
-  const vocab = shuffle(pool.vocab).slice(0, 5).map((w) => ({ type: "vocab", ...w }));
-  const grammar = shuffle(pool.grammar).slice(0, 5).map((g) => ({ type: "grammar", ...g }));
+  // B1/B2/C1: open-ended production, from the nested pool.open.{vocab,grammar}
+  // — not pool.vocab/pool.grammar, which don't exist at that level. Each
+  // gate's pool.mcq (recognition-format content for the same band) stays
+  // unused for now — wiring per-item mixed rendering into one round is a
+  // real product decision (interleaving MCQ and production items inside a
+  // single round), not a bug fix, and is out of scope here.
+  const vocab = shuffle(pool.open.vocab).slice(0, 5).map((w) => ({ type: "vocab", ...w }));
+  const grammar = shuffle(pool.open.grammar).slice(0, 5).map((g) => ({ type: "grammar", ...g }));
   return shuffle([...vocab, ...grammar]);
 }
 
