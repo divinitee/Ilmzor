@@ -124,7 +124,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     // not "third node in the category," and two students at different
     // levels playing the same node get different intensity.
     const diff = difficultyFor(levelOf(user), activeGame.difficulty);
-    const base = { words, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
+    const base = { words: poolWords, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
