@@ -6,7 +6,8 @@ import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, S
 import { AnimatePresence as AP } from "framer-motion";
 import ChatWindow from "@/components/ChatWindow";
 import ProfileEditor from "@/components/ProfileEditor";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useSearchParams } from "react-router-dom";
+import { needsProfileSetup } from "@/lib/profileStatus";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
@@ -32,6 +33,10 @@ export default function Home() {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
   const [loading, setLoading] = useState(true);
+  // A Google signup lands straight here without ever seeing the registration
+  // form, so it arrives with no level, no goals and no class code. Send it to
+  // onboarding to answer those four questions instead of silently defaulting.
+  const [needsSetup, setNeedsSetup] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "home";
   // Bumped whenever the dashboard's Random Challenge quick action fires, so
@@ -63,6 +68,12 @@ export default function Home() {
     if (!isRefresh) setLoading(true);
     try {
       const me = await base44.auth.me();
+      if (needsProfileSetup(me)) {
+        // Bail before the rest of the dashboard's fetches — they'd all be
+        // thrown away by the redirect below.
+        setNeedsSetup(true);
+        return;
+      }
       // Accounts created before the level system have no cefr_level. Give
       // them the B1 default concretely before anything downstream reads it —
       // a no-op (and no extra request) for everyone who already has one.
@@ -130,6 +141,8 @@ export default function Home() {
       </div>
     );
   }
+
+  if (needsSetup) return <Navigate to="/onboarding" replace />;
 
   const isAdmin = user?.role === "admin";
   const isActive = subscription?.status === "active";
