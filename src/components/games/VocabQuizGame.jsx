@@ -97,12 +97,20 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
     const qs = pool.map(word => {
       const type = cfg.types[Math.floor(Math.random() * cfg.types.length)];
       let options = [];
+      // Distractors ranked by CEFR-band proximity to `word` (levels.js's
+      // rankDistractors), then a wide window shuffled for variety — at
+      // nuance/precision demand this pulls wrong answers from the target's
+      // own band instead of pure random, which is what makes a B2/C1 round
+      // feel harder than "same task, more words" (see levels.js).
+      const others = words.filter(w => w.id !== word.id);
+      const ranked = rankDistractors(others, word, cognitiveDemand);
+      const pickWindow = shuffle(ranked.slice(0, Math.max(6, Math.ceil(ranked.length * 0.4))));
       if (type === "multiple_choice") {
-        const distractors = shuffle(words.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.uzbek);
+        const distractors = pickWindow.slice(0, 3).map(w => w.uzbek);
         options = shuffle([word.uzbek, ...distractors]);
       }
       if (type === "translation") {
-        const distractors = shuffle(words.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.english);
+        const distractors = pickWindow.slice(0, 3).map(w => w.english);
         options = shuffle([word.english, ...distractors]);
       }
       return { word, type, options };
