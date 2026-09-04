@@ -36,11 +36,28 @@ export const pickN = (arr, n) => shuffle(arr).slice(0, n);
 
 // Build a multiple-choice question: pick the correct meaning of `target`
 // from 4 options (1 correct + 3 distractors from the pool), in `lang`.
-export function buildMeaningMcq(pool, target, lang) {
+//
+// `demand` (a cognitiveDemandForLevel() value, see levels.js) biases which
+// wrong answers get used: at "nuance"/"precision" it prefers words from the
+// target's own CEFR band (harder to tell apart); otherwise it searches the
+// pool in its normal shuffled order. Optional and backward-compatible —
+// callers that don't pass it get the old pure-random behaviour.
+export function buildMeaningMcq(pool, target, lang, demand) {
   const correct = meaningInLang(target, lang);
   const distractors = [];
   const used = new Set([correct]);
-  for (const w of shuffle(pool)) {
+  const wantClose = demand === "nuance" || demand === "precision";
+  const candidates = wantClose
+    ? [...pool].sort((a, b) => {
+        const da = a?.cefr === target?.cefr ? 0 : 1;
+        const db = b?.cefr === target?.cefr ? 0 : 1;
+        return da - db;
+      })
+    : shuffle(pool);
+  // Shuffle within same-priority groups so "prefer close band" doesn't mean
+  // "always the same three words" — take a wider window, then shuffle it.
+  const searchOrder = wantClose ? shuffle(candidates.slice(0, Math.max(8, Math.ceil(candidates.length * 0.5)))).concat(candidates) : candidates;
+  for (const w of searchOrder) {
     const m = meaningInLang(w, lang);
     if (m && !used.has(m)) {
       used.add(m);
