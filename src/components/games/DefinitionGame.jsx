@@ -19,7 +19,7 @@ const DIFF_CONFIG = {
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
 // Generate definitions for a batch of words via LLM.
-async function generateDefinitions(words) {
+async function generateDefinitions(words, level) {
   const wordList = words.map(w => ({ uzbek: w.uzbek, english: w.english, russian: w.russian || "" }));
   const res = await base44.integrations.Core.InvokeLLM({
     prompt: `You are an English vocabulary teacher for B1 learners. For each word below, write a clear, simple English definition (one sentence, max 18 words). Reply as a JSON array where each item has "english" (the word), "definition" (your definition), and "example" (a short example sentence using the word). Words: ${JSON.stringify(wordList)}`,
