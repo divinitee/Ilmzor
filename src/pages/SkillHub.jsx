@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,7 +19,7 @@ import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { getRandomChallenge } from "@/lib/skillTreeData";
-import { levelOf, difficultyFor } from "@/lib/levels";
+import { levelOf, difficultyFor, wordsForLevel } from "@/lib/levels";
 
 /* ---------- Page ---------- */
 
@@ -27,7 +27,7 @@ import { levelOf, difficultyFor } from "@/lib/levels";
 // (see Home.jsx's navigateTab "skillhub-random" handling) to launch straight
 // into a random playable game instead of just opening the Skill Hub tab.
 export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0 }) {
-  const [words, setWords] = useState([]);
+  const [words, setWords] = useState([]); // raw pool, all levels
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(null);
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty, bank, skillLabel }
@@ -77,6 +77,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       if (res.length > 0) setUserXp(res[0]);
     });
   }, [user]);
+
+  // What games actually get. Skill Hub is consolidation — a student's own
+  // band plus one below, never above; new material is the Learning Path's
+  // job (see levels.js). Falls back toward the full pool if a band is thin,
+  // so this only ever narrows what a student sees, never empties a game.
+  const poolWords = useMemo(() => wordsForLevel(words, levelOf(user)), [words, user]);
 
   const handleXpEarned = async (earned, correctCount) => {
     if (!user || earned === 0) return;
