@@ -24,6 +24,27 @@
     "english": {
       "type": "string"
     },
+    "english_definition": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Learner-facing English definition of the word. AI-generated, readable one CEFR band below the word's own level, and never containing the target word itself. This is what games show in English mode \u2014 it exists so meaningInLang() no longer falls back to the Uzbek translation."
+    },
+    "cefr": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "CEFR band of the WORD (not of its definition). Drives Skill Hub word-pool filtering via bandForLevel() in src/lib/levels.js."
+    },
+    "example_en": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "One natural English sentence using the word, max ~12 words. Used for context-based games and future tappable-word features."
+    },
     "pronunciation": {
       "type": "string",
       "description": "Phonetic pronunciation e.g. /\u02c8pi\u02d0pl/"
