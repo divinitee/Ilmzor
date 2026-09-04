@@ -19,7 +19,34 @@ export const LEVELS = [STARTER_LEVEL, ...GATES];
 // difficulty "intermediate", so B1 is effectively what existing students have
 // been playing at all along. Defaulting them to Starter would lock working
 // students out of games they used yesterday.
-export const DEFAULT_LEVEL = "B1";
+// Two different "defaults", and conflating them is what made the whole level
+// system invisible on fresh accounts:
+//
+// DEFAULT_LEVEL is the fallback for a user whose level we genuinely don't know
+// yet. It has to be low enough that the unlock ladder is actually visible — at
+// B1 almost nothing locks, so a new student saw a fully open Skill Hub and no
+// sense of progression at all.
+//
+// LEGACY_DEFAULT_LEVEL is only for accounts that predate the level system.
+// Those students have been playing at the app's historical implicit default
+// (every game shipped with difficulty: "intermediate"), so dropping them to A2
+// overnight would shrink a hub they already use. That's risk R4 in the plan.
+export const DEFAULT_LEVEL = "A2";
+export const LEGACY_DEFAULT_LEVEL = "B1";
+
+// Accounts created before this picked no level at signup, because the step
+// didn't exist yet. Anything created after it went through the registration
+// level step (or the placement test) and should never be silently backfilled.
+export const LEVEL_SYSTEM_LAUNCH = "2026-09-04T00:00:00.000Z";
+
+// Defaults to legacy when created_date is missing or unparseable — deliberately
+// the safe direction: the worst case is an old student keeps B1, versus a real
+// student losing access to games they already play.
+export function isLegacyAccount(user) {
+  const created = Date.parse(user?.created_date ?? "");
+  if (Number.isNaN(created)) return true;
+  return created < Date.parse(LEVEL_SYSTEM_LAUNCH);
+}
 
 export const levelIndex = (level) => {
   const i = LEVELS.indexOf(level);
