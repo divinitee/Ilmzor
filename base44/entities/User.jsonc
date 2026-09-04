@@ -17,6 +17,11 @@
       },
       "description": "Why the student is learning English, selected at signup e.g. work, ielts, travel, university, movies, daily"
     },
+    "display_name": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "The name the student chose for themselves, shown in the greeting, profile and leaderboard. Exists because the platform's built-in full_name silently ignores writes from the app (updateMe accepts the call and persists every other field in the same payload, but full_name comes back unchanged) \u2014 so full_name is READ-ONLY here and only ever carries what the auth provider supplied. Always read a name via resolveUserName() in src/lib/profileName.js, never full_name directly."
+    },
     "cefr_level": {
       "type": "string",
       "enum": [
@@ -37,7 +42,7 @@
         "calibrated",
         "legacy_default"
       ],
-      "description": "How cefr_level was arrived at. self = picked during Onboarding; placement = settleAt from the placement test (highest trust); calibrated = adjusted by Skill Hub round performance; legacy_default = backfilled to B1 for accounts that predate the level system."
+      "description": "How cefr_level was arrived at. self = picked during registration; placement = settleAt from the placement test (highest trust); calibrated = adjusted by Skill Hub round performance; legacy_default = backfilled to B1 for accounts that predate the level system (pre 2026-09-04 only)."
     },
     "level_set_at": {
       "type": "string",
