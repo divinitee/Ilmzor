@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
+import { resolveUserName } from "@/lib/profileName";
 import { base44 } from "@/api/base44Client";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -140,7 +141,7 @@ export default function AdminDashboard() {
   ];
 
   const filteredUsers = users.filter((u) =>
-    !query || `${u.full_name || ""} ${u.email || ""}`.toLowerCase().includes(query.toLowerCase())
+    !query || `${resolveUserName(u)} ${u.full_name || ""} ${u.email || ""}`.toLowerCase().includes(query.toLowerCase())
   );
   const filteredSubs = subs.filter((x) =>
     !query || `${x.student_name || ""} ${x.phone || ""} ${x.plan || ""} ${x.teacher_name || ""}`.toLowerCase().includes(query.toLowerCase())
@@ -242,7 +243,7 @@ export default function AdminDashboard() {
                     )}
                     {filteredUsers.map((u) => (
                       <tr key={u.id} className="border-t border-border hover:bg-muted/30">
-                        <td className="px-4 py-3 font-medium text-foreground">{u.full_name || "—"}</td>
+                        <td className="px-4 py-3 font-medium text-foreground">{resolveUserName(u) || "—"}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{u.email || "—"}</td>
                         <td className="px-4 py-3">{roleBadge(u.role)}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
