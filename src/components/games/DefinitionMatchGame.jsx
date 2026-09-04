@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { usableWords, pickN, shuffle } from "@/lib/vocabGameUtils";
+import { demandPromptHint } from "@/lib/levels";
 
 const ROUNDS = 4;
 const PAIRS = 4;
@@ -12,11 +13,16 @@ const ACCENT = "#3b82f6";
 const OK = "#10b981";
 const BAD = "#f43f5e";
 
-async function buildBoard(pool) {
+async function buildBoard(pool, level) {
   const targets = pickN(pool, PAIRS);
   const wordList = targets.map((t) => t.english).join(", ");
+  // FIXED 2026-09-05: this prompt used to hardcode "B1 English learners"
+  // regardless of who was actually playing — Definition Match unlocks at A1,
+  // so an A1 student was getting the same subtly-different, B1-styled
+  // definitions as a B2/C1 student. Now it reflects the real level and the
+  // cognitive demand appropriate to it (see levels.js).
   const res = await base44.integrations.Core.InvokeLLM({
-    prompt: `You are a vocabulary quiz designer for B1 English learners. For each of these words, write a concise English definition (max 10 words). Make the four definitions precise and subtly different from each other, so the learner must read carefully to match each word to its correct definition. Do not use the word itself in its definition.\nWords: ${wordList}\nReturn JSON only.`,
+    prompt: `You are a vocabulary quiz designer for ${level || "B1"}-level English learners. For each of these words, write a concise English definition (max 10 words). ${demandPromptHint(level)} Do not use the word itself in its definition.\nWords: ${wordList}\nReturn JSON only.`,
     response_json_schema: {
       type: "object",
       properties: {
@@ -69,6 +75,7 @@ export default function DefinitionMatchGame({
   onBack,
   onXpEarned,
   onGameComplete,
+  level,
 }) {
   const pool = useMemo(() => usableWords(words), [words]);
 
@@ -97,7 +104,7 @@ export default function DefinitionMatchGame({
       setLoading(true);
       setError("");
       try {
-        const b = await buildBoard(pool);
+        const b = await buildBoard(pool, level);
         setBoard(b);
         setConnections({});
         setSelected(null);
@@ -110,7 +117,7 @@ export default function DefinitionMatchGame({
         setLoading(false);
       }
     },
-    [pool]
+    [pool, level]
   );
 
   useLayoutEffect(() => {
