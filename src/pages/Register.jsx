@@ -13,6 +13,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { APP_LANGS } from "@/i18n/translations";
 import { LEVELS } from "@/lib/levels";
 import { setUserLevel } from "@/lib/levelStore";
+import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const STR = {
   uz: {
@@ -267,11 +268,12 @@ export default function Register() {
       }
 
       if (username.trim()) {
-        // Was a silent catch. It failing is exactly how the missing-session bug
-        // stayed invisible — new accounts kept the server's default full_name
-        // (the email's local part) and nobody saw why.
-        try { await base44.auth.updateMe({ full_name: username.trim() }); }
-        catch (nameErr) { console.error("Could not save full name:", nameErr); }
+        // display_name, not full_name — the platform accepts a write to
+        // full_name and quietly discards it (see src/lib/profileName.js), which
+        // is why every account registered before this kept the email's local
+        // part as its name no matter what the student typed here.
+        try { await base44.auth.updateMe({ display_name: username.trim() }); }
+        catch (nameErr) { console.error("Could not save display name:", nameErr); }
       }
 
       // The self-selected level, written now that there's a session to write
@@ -288,7 +290,7 @@ export default function Register() {
           if (refs.length > 0) {
             const ref = refs[0];
             await base44.entities.StudentSubscription.create({
-              student_name: me.full_name || email,
+              student_name: resolveUserNameOrEmail(me) || email,
               phone: email,
               status: "inactive",
               referral_code: ref.code,
