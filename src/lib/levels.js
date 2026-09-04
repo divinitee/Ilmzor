@@ -152,7 +152,7 @@ const DIFF_ORDER = ["beginner", "intermediate", "advanced", "proficient"];
 // The baseline intensity a student plays at. This is the knob every game
 // already reads through its own DIFF_CONFIG (word counts, timers).
 //
-// FIXED 2026-09-05: this used to top out at "advanced" for B2 *and* C1, even
+// FIXED 2026-09-04: this used to top out at "advanced" for B2 *and* C1, even
 // though six engines (VocabQuizGame, WordFormsGame, SpellingGame,
 // DefinitionGame, CrosswordGame, SentenceBuilderGame) already ship a fully
 // built "proficient" DIFF_CONFIG tier — bigger rounds, longer minimums,
