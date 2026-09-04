@@ -33,6 +33,7 @@ import AdminWipeUsers from '@/pages/AdminWipeUsers';
 import Onboarding from '@/pages/Onboarding';
 import LessonRunner from '@/pages/LessonRunner';
 import MyWords from '@/pages/MyWords';
+import VocabReview from '@/pages/VocabReview';
 import TeachStressTest from '@/pages/TeachStressTest';
 import AppLoader from '@/components/AppLoader';
 
@@ -83,6 +84,7 @@ const AuthenticatedApp = () => {
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/lesson/:lessonId" element={<LessonRunner />} />
         <Route path="/my-words" element={<MyWords />} />
+        <Route path="/vocab-review" element={<VocabReview />} />
         <Route path="/teach-stress-test" element={<TeachStressTest />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
