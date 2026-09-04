@@ -6,7 +6,12 @@ import { base44 } from "@/api/base44Client";
 // when off, chooseFreePlan() below just grants the real Free Plan directly,
 // no code restructuring needed.
 export const TRIAL_ENABLED = true;
-export const TRIAL_DAYS = 7;
+// Cut from 7 to 3 on 2026-09-04. The trial still hands out full Learner access
+// (25 AI calls/day), so every throwaway signup draws on the same shared Base44
+// credit pool — shortening the window caps that exposure per farmed account
+// while keeping a strong first impression for real students. If abuse keeps
+// growing, TRIAL_ENABLED above is the kill switch.
+export const TRIAL_DAYS = 3;
 
 async function findSubscription(userEmail) {
   const existing = await base44.entities.StudentSubscription.filter({ phone: userEmail });
