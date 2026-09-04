@@ -283,6 +283,14 @@ export default function Register() {
         await setUserLevel(level, "self");
       }
 
+      // Goals were only ever written to localStorage, so they never reached the
+      // account and were lost on any other device. The User entity has had a
+      // goals field all along.
+      if (role === "student" && goals.length > 0) {
+        try { await base44.auth.updateMe({ goals }); }
+        catch (goalsErr) { console.error("Could not save goals:", goalsErr); }
+      }
+
       if (role === "student" && referralCode.trim()) {
         try {
           const me = await base44.auth.me();
@@ -322,7 +330,11 @@ export default function Register() {
     }
   };
 
-  const handleGoogle = () => base44.auth.loginWithProvider("google", "/");
+  // "/onboarding", not "/": Google skips this whole form, so the account comes
+  // back with no name, goals, level or class code. Onboarding asks those four
+  // via ProfileSetup. (Home guards the same case for anyone who lands there by
+  // another route.)
+  const handleGoogle = () => base44.auth.loginWithProvider("google", "/onboarding");
 
   const isTeacher = role === "teacher";
 
