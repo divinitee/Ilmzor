@@ -130,13 +130,20 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
   const challenges = activeChild ? (activeChild.challenges || []) : [];
   const gn = challenges.length;
-  // A node locks only when the student is under its required level AND has
-  // never played it before — so nobody loses access to a game they've
-  // already been playing just because the unlock ladder shifts under them.
+  // The student's level is the only thing that decides this.
+  //
+  // There used to be an "unless they've already played it" escape hatch here,
+  // meant to stop the B1 backfill yanking games away from existing students.
+  // It was wrong twice over: getGameStats() is keyed by SKILL, not by game, and
+  // it reads localStorage, which belongs to the BROWSER rather than the
+  // account. One finished vocabulary round therefore unlocked all seven
+  // vocabulary games, permanently, for every account that browser ever signed
+  // in with — which is how a brand-new Starter account came up fully unlocked.
+  // The case it defended barely exists (legacy accounts land on B1, where
+  // almost nothing locks), so it's gone rather than patched.
   const gameNodes = challenges.map((c, i) => {
     const minLevel = minLevelFor(c.game, c.bank);
-    const alreadyPlayed = (getGameStats(c.game).plays || 0) > 0;
-    const locked = !alreadyPlayed && !isGameUnlocked(c.game, c.bank, studentLevel);
+    const locked = !isGameUnlocked(c.game, c.bank, studentLevel);
     return { ...c, ...pos(i, gn, gn > 6 ? 42 : 38, gn > 6 ? 40 : 36), _i: i, minLevel, locked };
   });
 
