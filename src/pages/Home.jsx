@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
+import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, MessageCircle, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
 import { AnimatePresence as AP } from "framer-motion";
@@ -62,7 +63,10 @@ export default function Home() {
     if (!isRefresh) setLoading(true);
     try {
       const me = await base44.auth.me();
-      setUser(me);
+      // Accounts created before the level system have no cefr_level. Give
+      // them the B1 default concretely before anything downstream reads it —
+      // a no-op (and no extra request) for everyone who already has one.
+      setUser(await ensureUserLevel(me));
       let subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
       if (subs.length === 0) {
         // fallback: find subscription created by this user
