@@ -4,6 +4,7 @@ import { Brain, ArrowLeft, Sparkles, Zap, Clock } from "lucide-react";
 import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, PULSE_PHASES } from "@/lib/skillTreeData";
+import { isGameUnlocked, minLevelFor } from "@/lib/levels";
 
 const EASE = [0.16, 1, 0.3, 1]; // premium ease-out-expo — slow, smooth settle
 const RM = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -79,7 +80,7 @@ function NodeGroup({ active, delay = 0, children }) {
 
 /* ---------- Stage ---------- */
 
-export default function SkillStage({ onPlayGame, onComingSoon }) {
+export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked }) {
   const loc = useSkillLoc();
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
@@ -128,7 +129,15 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
 
   const challenges = activeChild ? (activeChild.challenges || []) : [];
   const gn = challenges.length;
-  const gameNodes = challenges.map((c, i) => ({ ...c, ...pos(i, gn, gn > 6 ? 42 : 38, gn > 6 ? 40 : 36), _i: i }));
+  // A node locks only when the student is under its required level AND has
+  // never played it before — so nobody loses access to a game they've
+  // already been playing just because the unlock ladder shifts under them.
+  const gameNodes = challenges.map((c, i) => {
+    const minLevel = minLevelFor(c.game, c.bank);
+    const alreadyPlayed = (getGameStats(c.game).plays || 0) > 0;
+    const locked = !alreadyPlayed && !isGameUnlocked(c.game, c.bank, studentLevel);
+    return { ...c, ...pos(i, gn, gn > 6 ? 42 : 38, gn > 6 ? 40 : 36), _i: i, minLevel, locked };
+  });
 
   /* hub face */
   const hubFace =
@@ -225,7 +234,11 @@ export default function SkillStage({ onPlayGame, onComingSoon }) {
         <Lines nodes={gameNodes} color={skill?.color || "#a78bfa"} hovered={hovered?.group === "game" ? hovered.key : null} filterId="gmPulse" />
         {gameNodes.map((c) => (
           <GameNode key={c.name + c._i} node={c} active={level === 2} glow={skill?.glow || skill?.color} delay={diveDelay}
-            onClick={() => onPlayGame({ game: c.game, difficulty: c.difficulty, bank: c.bank, skillLabel: activeChild.label })}
+            onClick={() =>
+              c.locked
+                ? onLocked?.({ label: c.name, minLevel: c.minLevel })
+                : onPlayGame({ game: c.game, difficulty: c.difficulty, bank: c.bank, skillLabel: activeChild.label })
+            }
             hot={hovered?.group === "game" && hovered.key === c._i}
             dim={hovered?.group === "game" && hovered.key !== c._i}
             onHoverStart={() => setHovered({ group: "game", key: c._i })} onHoverEnd={() => setHovered(null)} />
