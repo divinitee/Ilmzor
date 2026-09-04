@@ -126,7 +126,15 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
   const children = selected ? (SKILL_CHILDREN[selected] || []) : [];
   const cn = children.length;
-  const childNodes = children.map((c, i) => ({ ...c, ...pos(i, cn, cn > 6 ? 42 : 38, cn > 6 ? 40 : 36), _i: i }));
+  // Categories are never blocked — a student can always look inside and see
+  // what's coming, which reads as a ladder rather than a wall. They just carry
+  // a count of how many challenges are open to them right now, so nobody taps
+  // into a category to find every single node locked with no warning.
+  const childNodes = children.map((c, i) => {
+    const list = c.challenges || [];
+    const open = list.filter((ch) => isGameUnlocked(ch.game, ch.bank, studentLevel)).length;
+    return { ...c, ...pos(i, cn, cn > 6 ? 42 : 38, cn > 6 ? 40 : 36), _i: i, openCount: open, totalCount: list.length };
+  });
 
   const challenges = activeChild ? (activeChild.challenges || []) : [];
   const gn = challenges.length;
@@ -354,6 +362,7 @@ function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
 
 function ChildNode({ node, index, active, hidden, onClick, onComingSoon, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
+  const { t } = useAppLang();
   const soon = node.comingSoon;
   const g = glow || "rgba(99,102,241,0.5)";
   return (
@@ -381,6 +390,11 @@ function ChildNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
             ) : node.subs.length > 0 ? (
               <span className="block text-[8px] text-muted-foreground mt-0.5 leading-tight">{node.subs.slice(0, 3).map(loc).join(" · ")}</span>
             ) : null}
+            {!soon && node.totalCount > 0 && (
+              <span className={`block text-[8px] mt-1 font-semibold leading-tight ${node.openCount === 0 ? "text-muted-foreground/60" : "text-primary/80"}`}>
+                {t("gameui.unlocked_count", { open: node.openCount, total: node.totalCount })}
+              </span>
+            )}
           </span>
         </motion.button>
       </div>
