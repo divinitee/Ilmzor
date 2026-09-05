@@ -89,7 +89,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   useEffect(() => { startRound(0); }, [startRound]);
 
   const finishRound = useCallback((finalMoves, finalStreakBest) => {
-    if (finishing.current) return;
+    if (finishing.current || !pairs.length) return;
     finishing.current = true;
     const itemsCorrect = pairs.length;
     const mult = hintMultiplier;
