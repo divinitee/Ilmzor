@@ -1,0 +1,76 @@
+{
+  "name": "WordAttempt",
+  "type": "object",
+  "description": "One row per vocabulary item a student answers in a Skill Hub game. This is the per-word history the app had no record of before 2026-09-04 \u2014 SkillHubProgress only ever stored a per-SKILL aggregate (plays/best/last), so 'the words this student keeps missing' was unanswerable and personalization was impossible. Read on the hot path when composing a round (see the round recipe in claude/ilmzor-game-template.md: ~40% previously-wrong, ~20% saved, ~40% fresh in-band). ALWAYS query bounded \u2014 filter by user_email, most recent first, with a limit. Never list() this collection unbounded; it grows at roughly one row per item per round and the codebase already has history with unbounded reads against growing collections.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning student's email. Matches the convention used by SkillHubProgress, SavedWord, AssessmentResult and StudentProgress \u2014 deliberately not user_id, which only UserCoins uses."
+    },
+    "word": {
+      "type": "string",
+      "description": "The English word as shown. Stored as a string so it cross-references SavedWord.word (also a string) and survives the VocabularyWord row later being deleted or re-imported."
+    },
+    "word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id. Stored alongside `word` so joins do not depend on string/case matching. Either may be missing for a word that came from a hardcoded bank rather than the vocabulary table."
+    },
+    "game": {
+      "type": "string",
+      "description": "Game key as used by GAME_SKILL_MAP in src/lib/gameSkills.js, e.g. memory_flip, definition_match, context_guess. Per-game, NOT per-skill \u2014 the per-skill conflation in SkillHubProgress is exactly what this entity exists to get past."
+    },
+    "correct": {
+      "type": "boolean",
+      "description": "Whether the student got this item right. NOTE the per-game semantics decision (2026-09-04): a matching game only writes positive signal. In Memory Flip a found pair writes correct:true and a card mismatch writes NOTHING, because a mismatch usually means the student forgot a card position rather than the word \u2014 logging it would mark words weak for the wrong reason and poison every later game's round composition."
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "The student's CEFR level at the time of play, so a miss recorded at B2 is distinguishable from a miss recorded at A2 after a level change."
+    },
+    "round_id": {
+      "type": "string",
+      "description": "Client-generated at round start. Links every item of one round to each other and to that round's RewardEvent row."
+    }
+  },
+  "required": [
+    "user_email",
+    "word",
+    "game",
+    "correct"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

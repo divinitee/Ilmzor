@@ -1,0 +1,88 @@
+{
+  "name": "RewardEvent",
+  "type": "object",
+  "description": "One row per completed Skill Hub round that awards XP. The reward ledger the app lacked before 2026-09-04: UserCoins stores only an aggregate `coins` total with no record of which game, round or moment produced it, which is why the historical 1x-vs-10x XP unfairness between games could never be corrected retroactively. Policy (decided 2026-09-04): existing UserCoins balances are legacy and are NEVER rescaled or migrated; the centralized formula in src/lib/gameScoring.js is the standard going forward, starting with Memory Flip, and other games migrate as the revamp reaches them. Grain is per ROUND, not per item, because the streak bonus and hint multiplier are round-level modifiers that per-item rows could not express honestly; round_id reaches the per-item detail in WordAttempt. TRUST MODEL: the client writes this row, and UserCoins RLS already lets a client write balances directly, so this ledger reliably surfaces farming PATTERNS (one student, impossible round counts or score distributions) but cannot prevent a determined forger. Genuinely tamper-proof rewards would need a server-side function issuing them; recording history now is what makes that move possible later.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning student's email, matching SkillHubProgress / SavedWord / WordAttempt."
+    },
+    "game": {
+      "type": "string",
+      "description": "Game key as used by GAME_SKILL_MAP in src/lib/gameSkills.js, e.g. memory_flip. Per-game, so 'which games actually generate rewards' is finally answerable."
+    },
+    "amount": {
+      "type": "number",
+      "description": "XP awarded for this round, after all modifiers. This is the number added to UserCoins.coins for this round."
+    },
+    "round_id": {
+      "type": "string",
+      "description": "Client-generated at round start. Join key to this round's WordAttempt rows."
+    },
+    "items_total": {
+      "type": "number",
+      "description": "Items presented in the round."
+    },
+    "items_correct": {
+      "type": "number",
+      "description": "Items answered correctly."
+    },
+    "base_xp": {
+      "type": "number",
+      "description": "XP before the streak bonus and hint multiplier, so each round's arithmetic is auditable from the ledger alone without needing per-item rows."
+    },
+    "streak_best": {
+      "type": "number",
+      "description": "Longest correct streak in the round."
+    },
+    "hint_multiplier": {
+      "type": "number",
+      "description": "The HINT_XP_MULTIPLIER value applied (see src/lib/levels.js) \u2014 full XP for solving from the English definition, reduced when the uz/ru translation is revealed, free at Starter/A1. Always presented to students as a bonus for going English-only, never as a penalty."
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Student's CEFR level at the time of the round."
+    }
+  },
+  "required": [
+    "user_email",
+    "game",
+    "amount",
+    "round_id"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
