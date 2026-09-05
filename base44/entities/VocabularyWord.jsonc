@@ -29,6 +29,26 @@
       "maxLength": 300,
       "description": "Learner-facing English definition of the word. AI-generated, readable one CEFR band below the word's own level, and never containing the target word itself. This is what games show in English mode \u2014 it exists so meaningInLang() no longer falls back to the Uzbek translation."
     },
+    "def_a2": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by A2 students. Written with A1-A2 metalanguage only, ~12 words or fewer. Reader-relative register, not word-relative: this is how the word is explained TO an A2 student, whatever the word's own band."
+    },
+    "def_b1": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by B1 students. Written with A2-B1 metalanguage only, ~15 words or fewer. States the word's main sense as plainly as possible \u2014 one sense, no hedging."
+    },
+    "def_b2": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by B2 students. Written with B1-B2 metalanguage only, ~25 words or fewer. A proper dictionary-style definition."
+    },
+    "def_c1": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Read by C1 students. Natural fluent register with no metalanguage constraint, ~40 words or fewer. Covers sense distinctions, register, connotation and near-synonym contrast."
+    },
     "cefr": {
       "type": "string",
       "enum": [
