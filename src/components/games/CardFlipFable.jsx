@@ -7,6 +7,8 @@ import { hintXpMultiplier } from "@/lib/levels";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { buildPersonalizedRound, logWordAttempts } from "@/lib/roundComposition";
 import { buildOpeningBoard, dealInto, isDead } from "@/components/games/cardFlipFableBoard";
+import { meaningForLevel, usesSupportLanguage } from "@/components/games/cardFlipFableMeaning";
+import { studyMsForBoard } from "@/components/games/cardFlipFableStudy";
 import { useFableCopy } from "@/components/games/cardFlipFableCopy";
 import CardFlipFableHud from "@/components/games/CardFlipFableHud";
 import CardFlipFableCard from "@/components/games/CardFlipFableCard";
@@ -18,12 +20,17 @@ import CardFlipFableResult from "@/components/games/CardFlipFableResult";
 //   onBack(), onXpEarned(amount, correctCount), onGameComplete({ scorePct, correct, total })
 //
 // Round shape: a large board (Tee's pick) as a window over a deeper stream.
-// A peek shows the whole opening board face-up, scaled to board size; then a
-// 90-second clock runs. A matched pair leaves and fresh cards deal into the
-// freed slots under the invariants in cardFlipFableBoard.js. The block ends
-// on the clock, on a full clear, or — as a guard that should be unreachable —
-// on a dead board. itemsCorrect = pairs matched out of pairs in the round, so
+// A study reveal shows the whole opening board face-up, for a length set by the
+// information on it (cardFlipFableStudy.js) — never shortened by CEFR level.
+// A matched pair leaves and fresh cards deal into the freed slots under the
+// invariants in cardFlipFableBoard.js. The block ends on a full clear, or — as
+// a guard that should be unreachable — on a dead board. No round clock in this
+// iteration. itemsCorrect = pairs matched out of pairs in the round, so
 // PASS_THRESHOLD is a real bar.
+//
+// Meaning cards are CEFR-aware via cardFlipFableMeaning.js: Starter/A1 anchor
+// on the support-language translation, A2 on a shortened English definition,
+// B1+ on the full definition.
 //
 // Scoring: gameScoring.js only. Logging: positive signal only — a found pair
 // logs correct:true, a mismatch logs nothing.
@@ -31,21 +38,16 @@ import CardFlipFableResult from "@/components/games/CardFlipFableResult";
 const GAME = "memory_flip";
 const ACCENT = SKILLS.find((s) => s.key === "vocabulary")?.color || "#6366f1";
 // boardPairs = how much of the round is on screen (Tee liked the big board);
-// roundPairs = the stream the board rotates through in 90 seconds.
+// roundPairs = the stream the board rotates through.
 const TIER = {
   beginner: { boardPairs: 8, roundPairs: 12 },
   intermediate: { boardPairs: 10, roundPairs: 15 },
   advanced: { boardPairs: 12, roundPairs: 18 },
   proficient: { boardPairs: 14, roundPairs: 21 },
 };
-const ROUND_SECONDS = 90;
 const MIN_PAIRS = 8;
 const MATCH_MS = 350;
 const MISS_MS = 850;
-// Peek scales with the board: a 28-card board needs longer than 16 to be a
-// fair encoding opportunity. Not shortened under reduced motion — the peek
-// is content, not animation.
-const peekMsFor = (slots) => Math.min(7000, Math.max(3000, slots * 250));
 const GRID_CLASS = { 8: "grid-cols-4 sm:grid-cols-4", 10: "grid-cols-4 sm:grid-cols-5", 12: "grid-cols-4 sm:grid-cols-6", 14: "grid-cols-4 sm:grid-cols-7" };
 
 export default function CardFlipFable({ words = [], level, difficulty = "intermediate", user, onBack, onXpEarned, onGameComplete }) {
@@ -70,7 +72,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   const [matchedCount, setMatchedCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [streakBest, setStreakBest] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(ROUND_SECONDS);
+  const [studyMs, setStudyMs] = useState(0);
   const [summary, setSummary] = useState(null);
   const [flyups, setFlyups] = useState([]);
   // Refs mirror the values finishRound needs, so the clock (an interval
@@ -85,10 +87,11 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   const streakBestRef = useRef(0);
   const finishRef = useRef(null);
 
-  // Translation reveal: A2+ start English-only (definition) and can reveal
-  // uz/ru at the cost of the hint multiplier; Starter/A1 (multiplier 1) start
-  // revealed. In English UI there is nothing to reveal.
-  const canReveal = lang !== "en";
+  // Translation reveal: A2+ read an English definition and can reveal the
+  // uz/ru translation at the cost of the hint multiplier. Starter/A1 already
+  // read the support-language translation on the card, and an English UI has
+  // no support language, so neither offers a reveal.
+  const canReveal = lang !== "en" && !usesSupportLanguage(level);
   const baseMultiplier = hintXpMultiplier(level);
   const [revealed, setRevealed] = useState(baseMultiplier === 1);
   const revealUsed = useRef(baseMultiplier === 1);
@@ -106,37 +109,26 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
     const list = [];
     chosen.forEach((w, i) => {
       list.push({ id: `${i}-w`, pairId: i, type: "word", content: w.english, provenance: w._provenance });
-      list.push({ id: `${i}-m`, pairId: i, type: "meaning", content: w.english_definition || meaningInLang(w, lang), translation: meaningInLang(w, lang) });
+      list.push({ id: `${i}-m`, pairId: i, type: "meaning", content: meaningForLevel(w, level, lang), translation: meaningInLang(w, lang) });
     });
     pairsRef.current = chosen; setPairs(chosen);
-    setDeckBoth(buildOpeningBoard(list, slots));
+    const opening = buildOpeningBoard(list, slots);
+    setDeckBoth(opening);
+    setStudyMs(studyMsForBoard(opening.board));
     matchedRef.current = 0; movesRef.current = 0; streakBestRef.current = startStreak;
     setMatchedCount(0); setStreak(startStreak); setStreakBest(startStreak);
     setFlipped([]); setFeedback(null); setSummary(null); setFlyups([]);
-    setSecondsLeft(ROUND_SECONDS);
     setPhase("peek");
-  }, [pool, roundPairs, slots, user?.email, lang]);
+  }, [pool, roundPairs, slots, user?.email, lang, level]);
 
   useEffect(() => { startRound(0); }, [startRound]);
 
-  // Peek beat → play.
+  // Study reveal → play. Length comes from the board's information load.
   useEffect(() => {
-    if (phase !== "peek") return;
-    const id = setTimeout(() => setPhase("playing"), peekMsFor(slots));
+    if (phase !== "peek" || !studyMs) return;
+    const id = setTimeout(() => setPhase("playing"), studyMs);
     return () => clearTimeout(id);
-  }, [phase, slots]);
-
-  // The clock. Ends the block through the same finish path as a clear.
-  useEffect(() => {
-    if (phase !== "playing") return;
-    const id = setInterval(() => {
-      setSecondsLeft((s) => {
-        if (s <= 1) { clearInterval(id); finishRef.current?.("time"); return 0; }
-        return s - 1;
-      });
-    }, 1000);
-    return () => clearInterval(id);
-  }, [phase]);
+  }, [phase, studyMs]);
 
   const finishRound = useCallback((reason) => {
     if (finishing.current || !pairsRef.current.length) return;
@@ -216,7 +208,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
 
   return (
     <div className="min-h-screen bg-background premium-mesh flex flex-col">
-      <CardFlipFableHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} secondsLeft={secondsLeft} showTimer={onBoard} />
+      <CardFlipFableHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} />
 
       <div className="h-1 bg-white/5" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
         <motion.div className="h-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT}aa)` }} animate={{ width: `${progress * 100}%` }} transition={{ duration: rm ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} />
