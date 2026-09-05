@@ -35,6 +35,7 @@ import LessonRunner from '@/pages/LessonRunner';
 import MyWords from '@/pages/MyWords';
 import VocabReview from '@/pages/VocabReview';
 import TeachStressTest from '@/pages/TeachStressTest';
+import DevCardFlipBakeoff from '@/pages/DevCardFlipBakeoff';
 import AppLoader from '@/components/AppLoader';
 
 const AuthenticatedApp = () => {
@@ -86,6 +87,7 @@ const AuthenticatedApp = () => {
         <Route path="/my-words" element={<MyWords />} />
         <Route path="/vocab-review" element={<VocabReview />} />
         <Route path="/teach-stress-test" element={<TeachStressTest />} />
+        <Route path="/dev-cardflip-bakeoff" element={<DevCardFlipBakeoff />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
