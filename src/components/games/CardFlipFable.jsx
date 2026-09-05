@@ -1,62 +1,89 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowLeft, Star, Flame, Loader2, BookOpen, Check, X, Languages } from "lucide-react";
-import { usableWords, meaningInLang, shuffle } from "@/lib/vocabGameUtils";
+import { Loader2, BookOpen, Check, X, Languages } from "lucide-react";
+import { usableWords, meaningInLang } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { hintXpMultiplier } from "@/lib/levels";
-import { computeRoundXp, recordRoundReward, generateRoundId, PASS_THRESHOLD } from "@/lib/gameScoring";
+import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { buildPersonalizedRound, logWordAttempts } from "@/lib/roundComposition";
+import { buildOpeningBoard, dealInto, isDead } from "@/components/games/cardFlipFableBoard";
 import { useFableCopy } from "@/components/games/cardFlipFableCopy";
+import CardFlipFableHud from "@/components/games/CardFlipFableHud";
 import CardFlipFableCard from "@/components/games/CardFlipFableCard";
 import CardFlipFableResult from "@/components/games/CardFlipFableResult";
 
-// "CardFlip Fable" — independent Memory Flip implementation for the bake-off.
-//
-// Props contract (identical to every Skill Hub game):
+// "CardFlip Fable" — the Memory Flip implementation that continues after the
+// bake-off. Props contract (identical to every Skill Hub game):
 //   words, unitName, level, cognitiveDemand, difficulty, user,
 //   onBack(), onXpEarned(amount, correctCount), onGameComplete({ scorePct, correct, total })
 //
-// Scoring: gameScoring.js only (items = found pairs; streak = consecutive
-// matches without a miss). Logging: positive signal only — a found pair logs
-// correct:true, a mismatch logs nothing (Layer 4.1).
-// A mismatch breaks the streak but does not reduce base XP; it shows up in
-// the round's accuracy (pairs / moves), which is also what onGameComplete
-// reports as scorePct.
+// Round shape: a large board (Tee's pick) as a window over a deeper stream.
+// A peek shows the whole opening board face-up, scaled to board size; then a
+// 90-second clock runs. A matched pair leaves and fresh cards deal into the
+// freed slots under the invariants in cardFlipFableBoard.js. The block ends
+// on the clock, on a full clear, or — as a guard that should be unreachable —
+// on a dead board. itemsCorrect = pairs matched out of pairs in the round, so
+// PASS_THRESHOLD is a real bar.
+//
+// Scoring: gameScoring.js only. Logging: positive signal only — a found pair
+// logs correct:true, a mismatch logs nothing.
 
 const GAME = "memory_flip";
 const ACCENT = SKILLS.find((s) => s.key === "vocabulary")?.color || "#6366f1";
-const PAIRS_BY_DIFFICULTY = { beginner: 8, intermediate: 10, advanced: 12, proficient: 14 };
+// boardPairs = how much of the round is on screen (Tee liked the big board);
+// roundPairs = the stream the board rotates through in 90 seconds.
+const TIER = {
+  beginner: { boardPairs: 8, roundPairs: 12 },
+  intermediate: { boardPairs: 10, roundPairs: 15 },
+  advanced: { boardPairs: 12, roundPairs: 18 },
+  proficient: { boardPairs: 14, roundPairs: 21 },
+};
+const ROUND_SECONDS = 90;
 const MIN_PAIRS = 8;
 const MATCH_MS = 350;
 const MISS_MS = 850;
+// Peek scales with the board: a 28-card board needs longer than 16 to be a
+// fair encoding opportunity. Not shortened under reduced motion — the peek
+// is content, not animation.
+const peekMsFor = (slots) => Math.min(7000, Math.max(3000, slots * 250));
 const GRID_CLASS = { 8: "grid-cols-4 sm:grid-cols-4", 10: "grid-cols-4 sm:grid-cols-5", 12: "grid-cols-4 sm:grid-cols-6", 14: "grid-cols-4 sm:grid-cols-7" };
 
 export default function CardFlipFable({ words = [], level, difficulty = "intermediate", user, onBack, onXpEarned, onGameComplete }) {
   const { c, t, lang } = useFableCopy();
   const rm = useReducedMotion();
   const pool = useMemo(() => usableWords(words), [words]);
-  const targetPairs = PAIRS_BY_DIFFICULTY[difficulty] || PAIRS_BY_DIFFICULTY.intermediate;
-  const pairCount = Math.min(targetPairs, pool.length);
+  const tier = TIER[difficulty] || TIER.intermediate;
+  const roundPairs = Math.min(tier.roundPairs, pool.length);
+  const boardPairs = Math.min(tier.boardPairs, roundPairs);
+  const slots = boardPairs * 2;
 
   // Session (persists across "Keep going" blocks)
   const [sessionXp, setSessionXp] = useState(0);
   const [block, setBlock] = useState(1);
 
   // Round
-  const [phase, setPhase] = useState(pool.length < MIN_PAIRS ? "empty" : "loading"); // loading | playing | result | empty
+  const [phase, setPhase] = useState(pool.length < MIN_PAIRS ? "empty" : "loading"); // loading | peek | playing | result | empty
   const [pairs, setPairs] = useState([]);
-  const [cards, setCards] = useState([]);
+  const [deck, setDeck] = useState({ board: [], pile: [], dealSeq: 0 });
   const [flipped, setFlipped] = useState([]);
-  const [matched, setMatched] = useState(() => new Set());
   const [feedback, setFeedback] = useState(null); // { type: match|miss, ids }
-  const [moves, setMoves] = useState(0);
+  const [matchedCount, setMatchedCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [streakBest, setStreakBest] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(ROUND_SECONDS);
   const [summary, setSummary] = useState(null);
   const [flyups, setFlyups] = useState([]);
+  // Refs mirror the values finishRound needs, so the clock (an interval
+  // closure) and the terminal guard always bank the live numbers.
   const roundId = useRef(null);
   const foundItems = useRef([]);
   const finishing = useRef(false);
+  const pairsRef = useRef([]);
+  const deckRef = useRef(deck);
+  const matchedRef = useRef(0);
+  const movesRef = useRef(0);
+  const streakBestRef = useRef(0);
+  const finishRef = useRef(null);
 
   // Translation reveal: A2+ start English-only (definition) and can reveal
   // uz/ru at the cost of the hint multiplier; Starter/A1 (multiplier 1) start
@@ -65,7 +92,9 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   const baseMultiplier = hintXpMultiplier(level);
   const [revealed, setRevealed] = useState(baseMultiplier === 1);
   const revealUsed = useRef(baseMultiplier === 1);
-  const hintMultiplier = revealUsed.current && canReveal ? baseMultiplier : 1;
+  const currentMultiplier = () => (revealUsed.current && canReveal ? baseMultiplier : 1);
+
+  const setDeckBoth = (d) => { deckRef.current = d; setDeck(d); };
 
   const startRound = useCallback(async (startStreak) => {
     if (pool.length < MIN_PAIRS) { setPhase("empty"); return; }
@@ -73,64 +102,95 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
     finishing.current = false;
     roundId.current = generateRoundId();
     foundItems.current = [];
-    const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: pairCount });
+    const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: roundPairs });
     const list = [];
     chosen.forEach((w, i) => {
       list.push({ id: `${i}-w`, pairId: i, type: "word", content: w.english, provenance: w._provenance });
       list.push({ id: `${i}-m`, pairId: i, type: "meaning", content: w.english_definition || meaningInLang(w, lang), translation: meaningInLang(w, lang) });
     });
-    setPairs(chosen);
-    setCards(shuffle(list));
-    setFlipped([]); setMatched(new Set()); setFeedback(null); setMoves(0);
-    setStreak(startStreak); setStreakBest(startStreak); setSummary(null); setFlyups([]);
-    setPhase("playing");
-  }, [pool, pairCount, user?.email, lang]);
+    pairsRef.current = chosen; setPairs(chosen);
+    setDeckBoth(buildOpeningBoard(list, slots));
+    matchedRef.current = 0; movesRef.current = 0; streakBestRef.current = startStreak;
+    setMatchedCount(0); setStreak(startStreak); setStreakBest(startStreak);
+    setFlipped([]); setFeedback(null); setSummary(null); setFlyups([]);
+    setSecondsLeft(ROUND_SECONDS);
+    setPhase("peek");
+  }, [pool, roundPairs, slots, user?.email, lang]);
 
   useEffect(() => { startRound(0); }, [startRound]);
 
-  const finishRound = useCallback((finalMoves, finalStreakBest) => {
-    if (finishing.current || !pairs.length) return;
+  // Peek beat → play.
+  useEffect(() => {
+    if (phase !== "peek") return;
+    const id = setTimeout(() => setPhase("playing"), peekMsFor(slots));
+    return () => clearTimeout(id);
+  }, [phase, slots]);
+
+  // The clock. Ends the block through the same finish path as a clear.
+  useEffect(() => {
+    if (phase !== "playing") return;
+    const id = setInterval(() => {
+      setSecondsLeft((s) => {
+        if (s <= 1) { clearInterval(id); finishRef.current?.("time"); return 0; }
+        return s - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [phase]);
+
+  const finishRound = useCallback((reason) => {
+    if (finishing.current || !pairsRef.current.length) return;
     finishing.current = true;
-    const itemsCorrect = pairs.length;
-    const mult = hintMultiplier;
+    const itemsTotal = pairsRef.current.length;
+    const itemsCorrect = matchedRef.current;
+    const finalStreakBest = streakBestRef.current;
+    const finalMoves = movesRef.current;
+    const mult = currentMultiplier();
     const { amount, streakBonus } = computeRoundXp({ itemsCorrect, streakBest: finalStreakBest, hintMultiplier: mult });
-    const accuracy = finalMoves ? itemsCorrect / finalMoves : 0;
-    recordRoundReward({ userEmail: user?.email, game: GAME, roundId: roundId.current, itemsTotal: itemsCorrect, itemsCorrect, streakBest: finalStreakBest, hintMultiplier: mult, level });
+    recordRoundReward({ userEmail: user?.email, game: GAME, roundId: roundId.current, itemsTotal, itemsCorrect, streakBest: finalStreakBest, hintMultiplier: mult, level });
     logWordAttempts({ userEmail: user?.email, game: GAME, level, roundId: roundId.current, items: foundItems.current });
+    const scorePct = Math.round((itemsCorrect / itemsTotal) * 100);
     onXpEarned?.(amount, itemsCorrect);
-    onGameComplete?.({ scorePct: Math.round(accuracy * 100), correct: itemsCorrect, total: itemsCorrect });
+    onGameComplete?.({ scorePct, correct: itemsCorrect, total: itemsTotal });
     setSessionXp((v) => v + amount);
-    setSummary({ passed: accuracy >= PASS_THRESHOLD, moves: finalMoves, accuracyPct: Math.round(accuracy * 100), streakBest: finalStreakBest, amount, streakBonus, itemsCorrect, hintMultiplier: mult });
+    setSummary({ passed: roundPassed(itemsCorrect, itemsTotal), reason, found: foundItems.current.map((i) => i.word), moves: finalMoves, accuracyPct: finalMoves ? Math.round((itemsCorrect / finalMoves) * 100) : 0, streakBest: finalStreakBest, amount, streakBonus, itemsCorrect, itemsTotal, hintMultiplier: mult });
     setPhase("result");
-  }, [pairs.length, hintMultiplier, user?.email, level, onXpEarned, onGameComplete]);
+  }, [user?.email, level, onXpEarned, onGameComplete, canReveal, baseMultiplier]);
+  finishRef.current = finishRound;
 
   const handleFlip = (card) => {
-    if (phase !== "playing" || feedback || flipped.length >= 2) return;
-    if (matched.has(card.pairId) || flipped.includes(card.id)) return;
+    if (phase !== "playing" || feedback || flipped.length >= 2 || flipped.includes(card.id)) return;
     const next = [...flipped, card.id];
     setFlipped(next);
     if (next.length < 2) return;
 
-    const a = cards.find((x) => x.id === next[0]);
-    const b = cards.find((x) => x.id === next[1]);
-    const nextMoves = moves + 1;
-    setMoves(nextMoves);
+    const a = deckRef.current.board.find((x) => x?.id === next[0]);
+    movesRef.current += 1;
 
-    if (a.pairId === b.pairId) {
+    if (a.pairId === card.pairId) {
       const s = streak + 1;
-      const best = Math.max(streakBest, s);
-      setStreak(s); setStreakBest(best);
+      streakBestRef.current = Math.max(streakBestRef.current, s);
+      setStreak(s); setStreakBest(streakBestRef.current);
       setFeedback({ type: "match", ids: next });
-      const w = pairs[a.pairId];
+      const w = pairsRef.current[a.pairId];
       foundItems.current.push({ word: w.english, wordId: w.id, correct: true });
-      const gain = computeRoundXp({ itemsCorrect: 1 }).amount;
       const fid = `${roundId.current}-${a.pairId}`;
-      setFlyups((f) => [...f, { id: fid, amount: gain }]);
+      setFlyups((f) => [...f, { id: fid, amount: computeRoundXp({ itemsCorrect: 1 }).amount }]);
       setTimeout(() => setFlyups((f) => f.filter((x) => x.id !== fid)), 900);
       setTimeout(() => {
-        const m = new Set(matched).add(a.pairId);
-        setMatched(m); setFlipped([]); setFeedback(null);
-        if (m.size === pairs.length) finishRound(nextMoves, best);
+        if (finishing.current) return;
+        matchedRef.current += 1; setMatchedCount(matchedRef.current);
+        setFlipped([]); setFeedback(null);
+        if (matchedRef.current === pairsRef.current.length) { finishRound("clear"); return; }
+        // Rotate: the pair leaves, fresh cards deal into the freed slots.
+        const board = [...deckRef.current.board];
+        const freed = [];
+        next.forEach((id) => { const i = board.findIndex((x) => x?.id === id); if (i >= 0) { board[i] = null; freed.push(i); } });
+        const d = dealInto({ board, pile: deckRef.current.pile, dealSeq: deckRef.current.dealSeq }, freed);
+        setDeckBoth(d);
+        // Terminal guard — unreachable while the invariant holds; degrades a
+        // logic error into a banked round instead of a dead board.
+        if (isDead(d.board, d.pile)) finishRound("dead");
       }, MATCH_MS);
     } else {
       setStreak(0);
@@ -143,38 +203,26 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
     setRevealed((v) => { if (!v) revealUsed.current = true; return !v; });
   };
 
+  const peeking = phase === "peek";
   const cardState = (card) => {
-    if (matched.has(card.pairId)) return "matched";
+    if (peeking) return "up";
     if (feedback?.ids.includes(card.id)) return feedback.type;
     return flipped.includes(card.id) ? "up" : "down";
   };
 
-  const liveXp = sessionXp + (phase === "playing" ? computeRoundXp({ itemsCorrect: matched.size, streakBest, hintMultiplier }).amount : 0);
-  const progress = pairs.length ? matched.size / pairs.length : 0;
+  const onBoard = peeking || phase === "playing";
+  const liveXp = sessionXp + (onBoard ? computeRoundXp({ itemsCorrect: matchedCount, streakBest, hintMultiplier: currentMultiplier() }).amount : 0);
+  const progress = pairs.length ? matchedCount / pairs.length : 0;
 
   return (
     <div className="min-h-screen bg-background premium-mesh flex flex-col">
-      <header className="bg-background/70 backdrop-blur-xl border-b border-white/10 px-3 py-2 flex items-center justify-between safe-header gap-2">
-        <button onClick={onBack} className="min-h-[44px] min-w-[44px] flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground select-none px-1">
-          <ArrowLeft className="w-4 h-4" aria-hidden="true" /> {t("gameui.back")}
-        </button>
-        <span className="text-xs font-bold truncate" style={{ color: ACCENT }}>{c("title")}</span>
-        <div className="flex items-center gap-1.5 text-xs font-bold select-none">
-          <span className="neo-pill px-2.5 h-8 text-amber-300" aria-label={c("xp")}>
-            <Star className="w-3.5 h-3.5" aria-hidden="true" /> {liveXp}
-          </span>
-          <span className={`neo-pill px-2.5 h-8 ${streak > 0 ? "text-orange-300" : "text-muted-foreground"}`} aria-label={c("streak")}>
-            <Flame className="w-3.5 h-3.5" aria-hidden="true" /> {streak}
-          </span>
-        </div>
-      </header>
+      <CardFlipFableHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} secondsLeft={secondsLeft} showTimer={onBoard} />
 
       <div className="h-1 bg-white/5" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
         <motion.div className="h-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT}aa)` }} animate={{ width: `${progress * 100}%` }} transition={{ duration: rm ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} />
       </div>
 
       <div className="flex-1 flex flex-col px-3 py-4 max-w-2xl mx-auto w-full relative">
-        {/* XP fly-ups */}
         <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center z-20" aria-live="polite">
           <AnimatePresence>
             {flyups.map((f) => (
@@ -200,29 +248,33 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
           </div>
         )}
 
-        {phase === "playing" && (
+        {onBoard && (
           <>
             <div className="flex items-center justify-between gap-2 mb-3 text-[11px] text-muted-foreground">
-              <span>{c("block", { n: block })} · {c("pairs_progress", { n: matched.size, total: pairs.length })}</span>
+              <span>{c("block", { n: block })} · {c("pairs_progress", { n: matchedCount, total: pairs.length })}</span>
               {canReveal && (
                 <button onClick={toggleReveal} className="min-h-[44px] flex items-center gap-1 font-semibold select-none px-2" style={{ color: revealed ? undefined : ACCENT }}>
                   <Languages className="w-3.5 h-3.5" aria-hidden="true" /> {revealed ? c("english_only") : c("show_translation")}
                 </button>
               )}
             </div>
-            <p className="text-xs text-muted-foreground text-center mb-3">{c("instruction")}</p>
+            <p className="text-xs text-muted-foreground text-center mb-3" aria-live="polite">{peeking ? c("peek") : c("instruction")}</p>
 
-            <div className={`grid gap-2 ${GRID_CLASS[pairCount] || "grid-cols-4"}`}>
-              {cards.map((card, i) => (
-                <CardFlipFableCard
-                  key={card.id}
-                  index={i}
-                  accent={ACCENT}
-                  card={card.type === "meaning" && revealed && canReveal ? { ...card, content: card.translation || card.content } : card}
-                  state={cardState(card)}
-                  onClick={() => handleFlip(card)}
-                />
-              ))}
+            <div className={`grid gap-2 ${GRID_CLASS[boardPairs] || "grid-cols-4"}`}>
+              {deck.board.map((card, i) =>
+                card ? (
+                  <CardFlipFableCard
+                    key={card.id}
+                    index={card.dealtAt === 0 ? i : 0}
+                    accent={ACCENT}
+                    card={card.type === "meaning" && revealed && canReveal ? { ...card, content: card.translation || card.content } : card}
+                    state={cardState(card)}
+                    onClick={() => handleFlip(card)}
+                  />
+                ) : (
+                  <div key={`slot-${i}`} className="min-h-[64px] sm:min-h-[76px] rounded-2xl border border-dashed border-white/10" aria-hidden="true" />
+                )
+              )}
             </div>
 
             <div className="h-8 mt-3 flex items-center justify-center" aria-live="polite">
