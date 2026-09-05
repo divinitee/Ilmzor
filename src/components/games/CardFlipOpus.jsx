@@ -158,7 +158,11 @@ export default function CardFlipOpus({
 
   // ---- round setup -------------------------------------------------------
 
-  const startBlock = (signals) => {
+  // carryStreak is passed explicitly rather than read off state: "Play
+  // again" resets the streak and then starts a block in the same tick, so a
+  // closure over `streak` would carry the old value into the new block's
+  // streak_best and overstate it in the RewardEvent row.
+  const startBlock = (signals, carryStreak = 0) => {
     const pool = usableWords(words).filter((w) => !usedEnglishRef.current.has(w.english));
     const picked = composeRound({ words: pool, signals, count: cfg.pairs });
     if (picked.length < 4) {
@@ -188,7 +192,7 @@ export default function CardFlipOpus({
     setRevealedKeys(new Set());
     setLastOutcome(null);
     setSecondsLeft(cfg.seconds);
-    setBlockStreakBest(streak); // streak carries across blocks (Layer 1)
+    setBlockStreakBest(carryStreak); // streak carries across blocks (Layer 1)
     setResult(null);
     setPhase("peek");
   };
@@ -205,7 +209,7 @@ export default function CardFlipOpus({
       const signals = await fetchPersonalizationSignals(user?.email);
       if (cancelled) return;
       signalsRef.current = signals;
-      startBlock(signals);
+      startBlock(signals, 0);
     })();
     return () => { cancelled = true; };
   }, [words, difficulty, user?.email]);
@@ -365,14 +369,14 @@ export default function CardFlipOpus({
     setRevealedKeys((prev) => new Set(prev).add(pairKey));
   };
 
-  const keepGoing = () => startBlock(signalsRef.current);
+  const keepGoing = () => startBlock(signalsRef.current, streak);
 
   const playAgain = () => {
     usedEnglishRef.current = new Set();
     usedRevealRef.current = false;
     setCumulativeXp(0);
     setStreak(0);
-    startBlock(signalsRef.current);
+    startBlock(signalsRef.current, 0);
   };
 
   // ---- chrome ------------------------------------------------------------
