@@ -33,13 +33,15 @@ export function simplifyDefinition(def = "", maxWords = A2_MAX_WORDS) {
 // The text a meaning card shows for this student. `lang` is the app's current
 // language, which is also the support language.
 export function meaningForLevel(word, level, lang) {
-  if (usesSupportLanguage(level) && lang !== "en") {
-    const support = meaningInLang(word, lang);
+  if (usesSupportLanguage(level)) {
+    // Always a translation at Starter/A1 — never an English definition. The
+    // app language picks which one; an English interface still falls back to
+    // the stored uzbek (then russian) translation, because a beginner card is
+    // meant to anchor on the student's own language.
+    const support = (lang !== "en" && meaningInLang(word, lang)) || word?.uzbek || word?.russian;
     if (support) return support;
   }
   const def = word?.english_definition || meaningInLang(word, lang) || "";
-  // Starter/A1 with an English interface has no translation to anchor to, so
-  // it gets the simplified English line rather than the full definition.
   if (level === "A2" || usesSupportLanguage(level)) return simplifyDefinition(def);
   return def;
 }
