@@ -14,7 +14,12 @@ import { AlertTriangle, Loader2, CheckCircle2 } from "lucide-react";
 
 const TARGET_ENTITIES = [
   "StudentSubscription", "UserCoins", "AssessmentResult",
-  "QuizResult", "ChatMessage", "AiUsageLog", "TeacherReferral", "User",
+  "QuizResult", "ChatMessage", "AiUsageLog", "TeacherReferral",
+  // Added 2026-09-05 — these were live entities missing from this list,
+  // so wiping a user left orphaned progress/history rows behind:
+  "SkillHubProgress", "SavedWord", "StudentProgress",
+  "WordAttempt", "RewardEvent",
+  "User",
 ];
 
 const CONFIRM_PHRASE = "DELETE ALL USERS";
