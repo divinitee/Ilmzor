@@ -62,6 +62,56 @@ const DIFF_CONFIG = {
 
 const AUTO_TRANSLATE_LEVELS = ["Starter", "A1"];
 
+// Layer 2's shared chrome: header (back / title / live score / streak, always
+// in that order and position) + one progress bar + the body container. Every
+// phase renders through it, so loading and empty states live inside the same
+// shell rather than as bespoke centred paragraphs.
+//
+// Defined at module scope on purpose: as a function declared inside
+// CardFlipOpus it would be a new component type on every render, remounting
+// the whole board — and therefore restarting every card's flip animation —
+// on each state change.
+function Chrome({ copy, t, onBack, xp, streak, progressPct, reduced, children }) {
+  return (
+    <div className="min-h-screen premium-mesh flex flex-col">
+      <header className="bg-background/70 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
+        <button
+          onClick={onBack}
+          aria-label={t("gameui.back")}
+          className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground select-none min-h-[44px] px-1"
+        >
+          <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
+        </button>
+        <span className="text-xs font-bold tracking-wide" style={{ color: ACCENT }}>
+          {copy.title}
+        </span>
+        <div className="flex items-center gap-2 text-xs font-bold select-none">
+          <span className="neo-pill px-2.5 py-1 flex items-center gap-1 text-amber-300">
+            <Star className="w-3.5 h-3.5" /> {xp}
+          </span>
+          <span
+            className={`neo-pill px-2.5 py-1 flex items-center gap-1 ${streak > 1 ? "text-orange-300" : "text-muted-foreground"}`}
+            aria-label={copy.streak}
+          >
+            <Flame className="w-3.5 h-3.5" /> {streak}
+          </span>
+        </div>
+      </header>
+
+      <div className="h-1 bg-muted/40">
+        <motion.div
+          className="h-full"
+          style={{ background: ACCENT }}
+          animate={{ width: `${progressPct}%` }}
+          transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 30 }}
+        />
+      </div>
+
+      <div className="flex-1 px-4 py-5 max-w-lg mx-auto w-full">{children}</div>
+    </div>
+  );
+}
+
 export default function CardFlipOpus({
   words = [],
   unitName,
@@ -158,7 +208,6 @@ export default function CardFlipOpus({
       startBlock(signals);
     })();
     return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [words, difficulty, user?.email]);
 
   // Peek beat: the whole board face-up before it flips down. An encoding
@@ -335,50 +384,21 @@ export default function CardFlipOpus({
   });
   const progressPct = blockWords.length ? (matchedKeys.size / blockWords.length) * 100 : 0;
 
-  const Chrome = ({ children }) => (
-    <div className="min-h-screen premium-mesh flex flex-col">
-      <header className="bg-background/70 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
-        <button
-          onClick={onBack}
-          aria-label={t("gameui.back")}
-          className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground select-none min-h-[44px] px-1"
-        >
-          <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
-        </button>
-        <span className="text-xs font-bold tracking-wide" style={{ color: ACCENT }}>
-          {copy.title}
-        </span>
-        <div className="flex items-center gap-2 text-xs font-bold select-none">
-          <span className="neo-pill px-2.5 py-1 flex items-center gap-1 text-amber-300">
-            <Star className="w-3.5 h-3.5" /> {cumulativeXp + (phase === "result" ? 0 : livePreview.amount)}
-          </span>
-          <span
-            className={`neo-pill px-2.5 py-1 flex items-center gap-1 ${streak > 1 ? "text-orange-300" : "text-muted-foreground"}`}
-            aria-label={copy.streak}
-          >
-            <Flame className="w-3.5 h-3.5" /> {streak}
-          </span>
-        </div>
-      </header>
-
-      <div className="h-1 bg-muted/40">
-        <motion.div
-          className="h-full"
-          style={{ background: ACCENT }}
-          animate={{ width: `${progressPct}%` }}
-          transition={reduced ? { duration: 0 } : { type: "spring", stiffness: 200, damping: 30 }}
-        />
-      </div>
-
-      <div className="flex-1 px-4 py-5 max-w-lg mx-auto w-full">{children}</div>
-    </div>
-  );
+  const chromeProps = {
+    copy,
+    t,
+    onBack,
+    xp: cumulativeXp + (phase === "result" ? 0 : livePreview.amount),
+    streak,
+    progressPct,
+    reduced,
+  };
 
   // ---- states ------------------------------------------------------------
 
   if (phase === "loading") {
     return (
-      <Chrome>
+      <Chrome {...chromeProps}>
         <div className="flex flex-col items-center justify-center py-24 gap-3">
           <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin" />
           <p className="text-sm text-muted-foreground">{copy.dealing}</p>
@@ -389,7 +409,7 @@ export default function CardFlipOpus({
 
   if (phase === "empty") {
     return (
-      <Chrome>
+      <Chrome {...chromeProps}>
         <div className="premium-card rounded-[24px] p-8 text-center mt-10">
           <BookOpen className="w-10 h-10 text-muted-foreground/40 mx-auto mb-3" />
           <p className="text-sm text-muted-foreground mb-5">{copy.notEnough}</p>
@@ -414,7 +434,7 @@ export default function CardFlipOpus({
     const rematches = blockWords.filter((w) => w._provenance === PROVENANCE.WRONG);
 
     return (
-      <Chrome>
+      <Chrome {...chromeProps}>
         <motion.div
           initial={reduced ? { opacity: 0 } : { scale: 0.9, opacity: 0 }}
           animate={reduced ? { opacity: 1 } : { scale: 1, opacity: 1 }}
@@ -512,7 +532,7 @@ export default function CardFlipOpus({
   const peeking = phase === "peek";
 
   return (
-    <Chrome>
+    <Chrome {...chromeProps}>
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs text-muted-foreground font-medium">
           {peeking ? copy.peek : copy.howTo}

@@ -1,0 +1,108 @@
+import { useCallback } from "react";
+import { useAppLang } from "@/hooks/useAppLang";
+
+// Local copy for CardFlip Fable only. Deliberately NOT in
+// src/i18n/translations.js — the bake-off winner's strings get folded in
+// later. Badge wording is provisional pending approval; change it here only.
+const COPY = {
+  en: {
+    title: "CardFlip Fable",
+    instruction: "Flip two cards — match each word with its meaning.",
+    xp: "XP",
+    streak: "Streak",
+    pairs_progress: "{n}/{total} pairs",
+    block: "Block {n}",
+    match: "Match!",
+    miss: "Not a match",
+    badge_saved: "Saved by you",
+    badge_wrong_before: "This one beat you last time",
+    badge_wrong_after: "You beat it",
+    show_translation: "Show translation",
+    english_only: "English only",
+    english_bonus: "English-only bonus",
+    loading: "Building your round…",
+    empty: "Not enough words for this game yet.",
+    result_title: "Round complete",
+    result_pass: "Great memory!",
+    result_fail: "Keep practicing",
+    pairs_found: "Pairs found",
+    moves: "Moves",
+    accuracy: "Accuracy",
+    best_streak: "Best streak",
+    xp_earned: "XP earned",
+    streak_bonus: "Streak bonus +{n}",
+    words_this_round: "Words in this round",
+    keep_going: "Keep going",
+    play_again: "Play again",
+  },
+  uz: {
+    title: "CardFlip Fable",
+    instruction: "Ikki kartani oching — har bir so'zni ma'nosi bilan juftlang.",
+    xp: "XP",
+    streak: "Ketma-ketlik",
+    pairs_progress: "{n}/{total} juftlik",
+    block: "{n}-blok",
+    match: "Topildi!",
+    miss: "Mos kelmadi",
+    badge_saved: "Siz saqlagansiz",
+    badge_wrong_before: "O'tgan safar adashtirgan so'z",
+    badge_wrong_after: "Endi yengdingiz",
+    show_translation: "Tarjimani ko'rsat",
+    english_only: "Faqat inglizcha",
+    english_bonus: "Inglizcha bonus",
+    loading: "Tur tayyorlanmoqda…",
+    empty: "Bu o'yin uchun hozircha so'zlar yetarli emas.",
+    result_title: "Tur yakunlandi",
+    result_pass: "Zo'r xotira!",
+    result_fail: "Mashq qilishda davom eting",
+    pairs_found: "Topilgan juftliklar",
+    moves: "Urinishlar",
+    accuracy: "Aniqlik",
+    best_streak: "Eng uzun ketma-ketlik",
+    xp_earned: "Olingan XP",
+    streak_bonus: "Ketma-ketlik bonusi +{n}",
+    words_this_round: "Bu turdagi so'zlar",
+    keep_going: "Davom etish",
+    play_again: "Qayta o'ynash",
+  },
+  ru: {
+    title: "CardFlip Fable",
+    instruction: "Откройте две карты — соедините слово с его значением.",
+    xp: "XP",
+    streak: "Серия",
+    pairs_progress: "{n}/{total} пар",
+    block: "Блок {n}",
+    match: "Совпадение!",
+    miss: "Не совпало",
+    badge_saved: "Вы сохранили",
+    badge_wrong_before: "В прошлый раз не получилось",
+    badge_wrong_after: "Вы справились",
+    show_translation: "Показать перевод",
+    english_only: "Только английский",
+    english_bonus: "Бонус за английский",
+    loading: "Готовим раунд…",
+    empty: "Пока недостаточно слов для этой игры.",
+    result_title: "Раунд завершён",
+    result_pass: "Отличная память!",
+    result_fail: "Продолжайте тренироваться",
+    pairs_found: "Найдено пар",
+    moves: "Ходы",
+    accuracy: "Точность",
+    best_streak: "Лучшая серия",
+    xp_earned: "Получено XP",
+    streak_bonus: "Бонус за серию +{n}",
+    words_this_round: "Слова этого раунда",
+    keep_going: "Продолжить",
+    play_again: "Играть снова",
+  },
+};
+
+export function useFableCopy() {
+  const { lang, t } = useAppLang();
+  const c = useCallback((key, vars) => {
+    let s = (COPY[lang] || COPY.en)[key] ?? COPY.en[key] ?? key;
+    if (vars) for (const [k, v] of Object.entries(vars)) s = s.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+    return s;
+  }, [lang]);
+  return { c, t, lang };
+}
