@@ -37,8 +37,10 @@ import CardFlipFableResult from "@/components/games/CardFlipFableResult";
 // forever. FLIPS_PER_PAIR is the one number to tune.
 //
 // Meaning cards are CEFR-aware via cardFlipFableMeaning.js: Starter/A1 anchor
-// on the support-language translation, A2 on a shortened English definition,
-// B1+ on the full definition.
+// on the support-language translation; A2 and up resolve through
+// definitionForLevel() in src/lib/definitionTiers.js, which reads the student's
+// own definition tier and falls back to english_definition on any row the
+// enrichment batch has not filled yet.
 //
 // Scoring: gameScoring.js only. Logging: positive signal only — a found pair
 // logs correct:true, a mismatch logs nothing.
