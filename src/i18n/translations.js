@@ -15,7 +15,7 @@ export const translations = {
     nav: { home: "Bosh sahifa", words: "So'zlar", games: "O'yinlar", ai_teacher: "AI Ustoz", settings: "Sozlamalar", skill_hub: "Skill Hub" },
     common: { back: "Orqaga", save: "Saqlash", cancel: "Bekor qilish", continue: "Davom etish", search: "Qidirish", select_unit_title: "Unit tanlang" },
     home: {
-      app_name: "Ilmzor",
+      app_name: "VIRORA",
       teacher_badge: "O'qituvchi", student_badge: "O'quvchi",
       teacher_panel_title: "O'qituvchi Paneli", go_to_dashboard: "Nazorat Paneliga o'tish",
       premium_badge: "Premium", quiz_reading_title: "Test va Reading",
@@ -307,7 +307,7 @@ export const translations = {
       hero: {
         badge: "AI yordamida so'z boyligi, siz uchun shaxsiylashtirilgan",
         title: "Tartibsiz so'zlarni yodlashni to'xtating. Sizga kerakli ingliz tilini o'rganing.",
-        subtitle: "VocabApp sizning maqsadlaringiz, qiziqishlaringiz va ingliz tili darajangiz asosida shaxsiy so'z mashqini yaratadi.",
+        subtitle: "VIRORA sizning maqsadlaringiz, qiziqishlaringiz va ingliz tili darajangiz asosida shaxsiy so'z mashqini yaratadi.",
         cta_primary: "Bepul boshlash", cta_secondary: "Qanday ishlaydi",
         caption: "Bepul boshlash · Karta kerak emas",
         preview_topic: "Biznes ingliz tili", preview_level: "O'rta",
@@ -359,7 +359,7 @@ export const translations = {
     nav: { home: "Home", words: "Words", games: "Games", ai_teacher: "AI Teacher", settings: "Settings", skill_hub: "Skill Hub" },
     common: { back: "Back", save: "Save", cancel: "Cancel", continue: "Continue", search: "Search", select_unit_title: "Select unit" },
     home: {
-      app_name: "Ilmzor",
+      app_name: "VIRORA",
       teacher_badge: "Teacher", student_badge: "Student",
       teacher_panel_title: "Teacher Panel", go_to_dashboard: "Go to Dashboard",
       premium_badge: "Premium", quiz_reading_title: "Tests & Reading",
@@ -651,7 +651,7 @@ export const translations = {
       hero: {
         badge: "AI-powered vocabulary, personalized for you",
         title: "Stop memorizing random words. Learn the English you actually need.",
-        subtitle: "VocabApp creates personalized vocabulary practice based on your goals, interests, and English level.",
+        subtitle: "VIRORA creates personalized vocabulary practice based on your goals, interests, and English level.",
         cta_primary: "Start for free", cta_secondary: "See how it works",
         caption: "Free to start · No credit card required",
         preview_topic: "Business English", preview_level: "Intermediate",
@@ -703,7 +703,7 @@ export const translations = {
     nav: { home: "Главная", words: "Слова", games: "Игры", ai_teacher: "ИИ Учитель", settings: "Настройки", skill_hub: "Skill Hub" },
     common: { back: "Назад", save: "Сохранить", cancel: "Отмена", continue: "Продолжить", search: "Поиск", select_unit_title: "Выберите раздел" },
     home: {
-      app_name: "Ilmzor",
+      app_name: "VIRORA",
       teacher_badge: "Учитель", student_badge: "Ученик",
       teacher_panel_title: "Панель учителя", go_to_dashboard: "Перейти к панели",
       premium_badge: "Premium", quiz_reading_title: "Тесты и чтение",
@@ -995,7 +995,7 @@ export const translations = {
       hero: {
         badge: "Словарь на базе ИИ, персонально для вас",
         title: "Хватит учить случайные слова. Учите английский, который вам действительно нужен.",
-        subtitle: "VocabApp создаёт персональную практику словаря на основе ваших целей, интересов и уровня английского.",
+        subtitle: "VIRORA создаёт персональную практику словаря на основе ваших целей, интересов и уровня английского.",
         cta_primary: "Начать бесплатно", cta_secondary: "Как это работает",
         caption: "Начните бесплатно · Без карты",
         preview_topic: "Деловой английский", preview_level: "Средний",
