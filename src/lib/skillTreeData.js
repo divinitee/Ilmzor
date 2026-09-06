@@ -28,7 +28,11 @@ const grammarCh = (names, bank) => names.map((name, i) => ({
 export const SKILL_CHILDREN = {
   vocabulary: [
     C("Meaning", ["Definitions", "Context", "Multiple meanings"], [
-      { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "3 min", xp: 40 },
+      // Honest label, 2026-09-06: the rebuilt engine reads definitions from the
+      // database (no AI wait) and runs 8-14 words in sets, with an attempt
+      // budget instead of a clock — measured around 2-4 min. XP is the floor
+      // (8 first-try matches × 10 base at the beginner tier), not the ceiling.
+      { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "2-4 min", xp: 80 },
       { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
       // Honest label, 2026-09-06: the rebuilt engine runs 12–21 pairs by tier

@@ -150,7 +150,10 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     if (activeGame.game === "grammar")
       return <GrammarQuizGame {...base} bankKey={activeGame.bank} skillLabel={activeGame.skillLabel} />;
     if (activeGame.game === "definition_match")
-      return <DefinitionMatchGame {...base} />;
+      // Takes `user` on top of base: the rebuilt engine (2026-09-06) reads
+      // user.email for personalized round composition and for its own
+      // RewardEvent / WordAttempt logging.
+      return <DefinitionMatchGame {...base} user={user} />;
     if (activeGame.game === "context_guess")
       return <ContextGuessGame {...base} />;
     // Memory Flip's production engine as of 2026-09-06 (bake-off winner; the
