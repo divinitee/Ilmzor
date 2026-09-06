@@ -23,10 +23,18 @@ import CardFlipFableResult from "@/components/games/CardFlipFableResult";
 // A study reveal shows the whole opening board face-up, for a length set by the
 // information on it (cardFlipFableStudy.js) — never shortened by CEFR level.
 // A matched pair leaves and fresh cards deal into the freed slots under the
-// invariants in cardFlipFableBoard.js. The block ends on a full clear, or — as
-// a guard that should be unreachable — on a dead board. No round clock in this
-// iteration. itemsCorrect = pairs matched out of pairs in the round, so
-// PASS_THRESHOLD is a real bar.
+// invariants in cardFlipFableBoard.js. The block ends on a full clear, on the
+// flip budget running out, or — as a guard that should be unreachable — on a
+// dead board.
+//
+// FAILABILITY (added 2026-09-06). There is deliberately no clock: a countdown
+// tests reading speed and raises anxiety, which is not what this game is
+// measuring. But without SOME limit the round could only ever end on a full
+// clear, so itemsCorrect always equalled itemsTotal, every round scored 100%,
+// roundPassed() was always true and every RewardEvent row carried an identical
+// perfect score — PASS_THRESHOLD was decoration. A flip budget fixes that with
+// no time pressure at all: take as long as you like, you just can't guess
+// forever. FLIPS_PER_PAIR is the one number to tune.
 //
 // Meaning cards are CEFR-aware via cardFlipFableMeaning.js: Starter/A1 anchor
 // on the support-language translation, A2 on a shortened English definition,
@@ -48,6 +56,12 @@ const TIER = {
 const MIN_PAIRS = 8;
 const MATCH_MS = 350;
 const MISS_MS = 850;
+// Attempts allowed per pair in the round. Perfect play with full knowledge is
+// 1.0; realistic memory play on a rotating board runs nearer 2, and some wasted
+// flips are structural (an orphan card whose partner is still in the pile), not
+// the student's fault. 3 is therefore generous on purpose — failing should be
+// possible and uncommon, not routine.
+const FLIPS_PER_PAIR = 3;
 const GRID_CLASS = { 8: "grid-cols-4 sm:grid-cols-4", 10: "grid-cols-4 sm:grid-cols-5", 12: "grid-cols-4 sm:grid-cols-6", 14: "grid-cols-4 sm:grid-cols-7" };
 
 export default function CardFlipFable({ words = [], level, difficulty = "intermediate", user, onBack, onXpEarned, onGameComplete }) {
@@ -72,6 +86,8 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   const [matchedCount, setMatchedCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [streakBest, setStreakBest] = useState(0);
+  const [moves, setMoves] = useState(0);
+  const [flipBudget, setFlipBudget] = useState(0);
   const [studyMs, setStudyMs] = useState(0);
   const [summary, setSummary] = useState(null);
   const [flyups, setFlyups] = useState([]);
@@ -84,6 +100,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
   const deckRef = useRef(deck);
   const matchedRef = useRef(0);
   const movesRef = useRef(0);
+  const budgetRef = useRef(0);
   const streakBestRef = useRef(0);
   const finishRef = useRef(null);
 
@@ -112,11 +129,13 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
       list.push({ id: `${i}-m`, pairId: i, type: "meaning", content: meaningForLevel(w, level, lang), translation: meaningInLang(w, lang) });
     });
     pairsRef.current = chosen; setPairs(chosen);
+    budgetRef.current = chosen.length * FLIPS_PER_PAIR;
+    setFlipBudget(budgetRef.current);
     const opening = buildOpeningBoard(list, slots);
     setDeckBoth(opening);
     setStudyMs(studyMsForBoard(opening.board));
     matchedRef.current = 0; movesRef.current = 0; streakBestRef.current = startStreak;
-    setMatchedCount(0); setStreak(startStreak); setStreakBest(startStreak);
+    setMatchedCount(0); setMoves(0); setStreak(startStreak); setStreakBest(startStreak);
     setFlipped([]); setFeedback(null); setSummary(null); setFlyups([]);
     setPhase("peek");
   }, [pool, roundPairs, slots, user?.email, lang, level]);
@@ -145,7 +164,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
     onXpEarned?.(amount, itemsCorrect);
     onGameComplete?.({ scorePct, correct: itemsCorrect, total: itemsTotal });
     setSessionXp((v) => v + amount);
-    setSummary({ passed: roundPassed(itemsCorrect, itemsTotal), reason, found: foundItems.current.map((i) => i.word), moves: finalMoves, accuracyPct: finalMoves ? Math.round((itemsCorrect / finalMoves) * 100) : 0, streakBest: finalStreakBest, amount, streakBonus, itemsCorrect, itemsTotal, hintMultiplier: mult });
+    setSummary({ passed: roundPassed(itemsCorrect, itemsTotal), reason, found: foundItems.current.map((i) => i.word), moves: finalMoves, accuracyPct: finalMoves ? Math.round((itemsCorrect / finalMoves) * 100) : 0, streakBest: finalStreakBest, amount, streakBonus, itemsCorrect, itemsTotal, hintMultiplier: mult, flipBudget: budgetRef.current });
     setPhase("result");
   }, [user?.email, level, onXpEarned, onGameComplete, canReveal, baseMultiplier]);
   finishRef.current = finishRound;
@@ -158,6 +177,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
 
     const a = deckRef.current.board.find((x) => x?.id === next[0]);
     movesRef.current += 1;
+    setMoves(movesRef.current);
 
     if (a.pairId === card.pairId) {
       const s = streak + 1;
@@ -183,11 +203,15 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
         // Terminal guard — unreachable while the invariant holds; degrades a
         // logic error into a banked round instead of a dead board.
         if (isDead(d.board, d.pile)) finishRound("dead");
+        else if (movesRef.current >= budgetRef.current) finishRound("budget");
       }, MATCH_MS);
     } else {
       setStreak(0);
       setFeedback({ type: "miss", ids: next });
-      setTimeout(() => { setFlipped([]); setFeedback(null); }, MISS_MS);
+      setTimeout(() => {
+        setFlipped([]); setFeedback(null);
+        if (movesRef.current >= budgetRef.current) finishRound("budget");
+      }, MISS_MS);
     }
   };
 
@@ -208,7 +232,7 @@ export default function CardFlipFable({ words = [], level, difficulty = "interme
 
   return (
     <div className="min-h-screen bg-background premium-mesh flex flex-col">
-      <CardFlipFableHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} />
+      <CardFlipFableHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} flipsLeft={Math.max(0, flipBudget - moves)} showFlips={onBoard && flipBudget > 0} lowFlips={flipBudget > 0 && flipBudget - moves <= Math.ceil(flipBudget * 0.25)} />
 
       <div className="h-1 bg-white/5" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
         <motion.div className="h-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT}aa)` }} animate={{ width: `${progress * 100}%` }} transition={{ duration: rm ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} />
