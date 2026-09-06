@@ -13,7 +13,7 @@ import DefinitionGame from "@/components/games/DefinitionGame";
 import GrammarQuizGame from "@/components/games/GrammarQuizGame";
 import DefinitionMatchGame from "@/components/games/DefinitionMatchGame";
 import ContextGuessGame from "@/components/games/ContextGuessGame";
-import MemoryFlipGame from "@/components/games/MemoryFlipGame";
+import CardFlipFable from "@/components/games/CardFlipFable";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
@@ -153,8 +153,13 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       return <DefinitionMatchGame {...base} />;
     if (activeGame.game === "context_guess")
       return <ContextGuessGame {...base} />;
+    // Memory Flip's production engine as of 2026-09-06 (bake-off winner; the
+    // previous MemoryFlipGame.jsx and the CardFlipOpus entry were removed with
+    // it, and remain in git history and the checkpoints if ever needed).
+    // Takes `user` on top of base: it reads user.email for round composition
+    // (WordAttempt / SavedWord) and for its reward + attempt logging.
     if (activeGame.game === "memory_flip")
-      return <MemoryFlipGame {...base} />;
+      return <CardFlipFable {...base} user={user} />;
     if (activeGame.game === "picture_match")
       // PictureMatchGame takes onResult, not onXpEarned/onGameComplete —
       // base's versions of those were never being called, so this game's
