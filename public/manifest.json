@@ -1,0 +1,26 @@
+{
+  "name": "VIRORA",
+  "short_name": "VIRORA",
+  "description": "Ingliz tilini o'rganish uchun shaxsiylashtirilgan mashqlar, o'yinlar va darajangizga moslashgan darslar.",
+  "lang": "uz",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#08060C",
+  "theme_color": "#08060C",
+  "icons": [
+    {
+      "src": "/virora-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/virora-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
