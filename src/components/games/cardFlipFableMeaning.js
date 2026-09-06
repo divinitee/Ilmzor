@@ -23,21 +23,13 @@ import { definitionForLevel } from "@/lib/definitionTiers";
 // further code change.
 
 export const SUPPORT_LEVELS = ["Starter", "A1"];
-export const A2_MAX_WORDS = 8;
 
 export const usesSupportLanguage = (level) => SUPPORT_LEVELS.includes(level);
 
-// Retained as an exported utility (deterministic: same input, same output) but
-// no longer on the meaning-card path — see the header note. Truncating a
-// definition is not the same as writing a simpler one; the tier fields are how
-// A2 gets genuinely simpler text.
-export function simplifyDefinition(def = "", maxWords = A2_MAX_WORDS) {
-  let s = String(def).replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
-  s = s.split(/[;.]|\s[—–-]\s|,\s(?:or|and|especially|which|that)\s/i)[0].trim();
-  const parts = s.split(" ").filter(Boolean);
-  if (parts.length > maxWords) return parts.slice(0, maxWords).join(" ") + "…";
-  return s;
-}
+// The truncating simplifyDefinition() helper that used to live here was removed
+// on 2026-09-06 along with its A2_MAX_WORDS cap. Nothing referenced it once the
+// tier fields landed, and leaving it in place invited someone to put definition
+// truncation back on the card path — which is what it was doing wrong.
 
 // The text a meaning card shows for this student. `lang` is the app's current
 // language, which is also the support language.
