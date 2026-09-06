@@ -6,69 +6,80 @@
 
 @layer base {
   :root {
-    /* Liquid-glass / VisionOS surface tokens */
-    --background: 255 20% 3%;          /* deep space, opaque */
-    --foreground: 0 0% 97%;
-    --card: 255 18% 9% / 0.5;         /* translucent dark glass */
-    --card-foreground: 0 0% 97%;
-    --popover: 255 20% 10% / 0.72;
-    --popover-foreground: 0 0% 97%;
-    --primary: 217 91% 60%;           /* electric blue */
+    /* VIRORA — Midnight Purple. The reference is R34-era Midnight Purple: a
+       paint that reads near-black in shade, royal violet in open light, and
+       turns bronze-gold where the flake catches. Surfaces carry the violet
+       hue rather than sitting neutral; beige ("cabin") is the text system,
+       because pure white glares on a violet near-black ground. See
+       claude/virora-brand-direction.md. */
+    --background: 260 33% 4%;         /* Paint 000  #08060C */
+    --foreground: 39 45% 89%;         /* Cabin 100  #EFE6D5 */
+    --card: 261 42% 9% / 0.5;         /* Paint 100  #150E22, translucent */
+    --card-foreground: 39 45% 89%;
+    --popover: 261 42% 11% / 0.72;
+    --popover-foreground: 39 45% 89%;
+    /* Mid-violet on purpose: --primary is used BOTH as a fill (white text on
+       top) and as `text-primary`. MP Core #5B2E91 is only 2.1:1 on the ground
+       and cannot hold text, so primary sits between core and flare. */
+    --primary: 267 55% 55%;           /* MP Signal  #8348C9 */
     --primary-foreground: 0 0% 100%;
-    --brand: 280 85% 64%;             /* purple accent */
-    --secondary: 255 16% 12% / 0.5;
-    --secondary-foreground: 0 0% 90%;
-    --muted: 255 16% 12% / 0.5;
-    --muted-foreground: 255 10% 60%;
-    --accent: 280 60% 22%;
-    --accent-foreground: 0 0% 96%;
-    --destructive: 0 84% 60%;         /* rose */
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 100% / 0.10;       /* thin white, very low opacity */
-    --input: 0 0% 100% / 0.10;
-    --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 280 85% 64%;
-    --chart-3: 0 84% 60%;
-    --chart-4: 160 84% 50%;
-    --chart-5: 0 0% 72%;
+    --brand: 266 67% 63%;             /* MP Flare   #9A63E0 */
+    --secondary: 264 38% 15% / 0.5;   /* Paint 200  #221733 */
+    --secondary-foreground: 39 28% 73%;
+    --muted: 264 38% 15% / 0.5;
+    --muted-foreground: 35 10% 49%;   /* Cabin 400  #8B8071 */
+    --accent: 36 36% 52%;             /* Bronze     #B08D57 */
+    --accent-foreground: 260 33% 4%;
+    --destructive: 349 50% 46%;       /* deepened crimson #B03A50 */
+    --destructive-foreground: 39 45% 89%;
+    --border: 39 45% 89% / 0.10;      /* warm-white hairline, not cold white */
+    --input: 39 45% 89% / 0.10;
+    --ring: 266 67% 63%;
+    --chart-1: 267 55% 55%;
+    --chart-2: 266 67% 63%;
+    --chart-3: 36 36% 52%;
+    --chart-4: 173 44% 43%;
+    --chart-5: 38 28% 73%;
     --radius: 1.5rem;
     --font-heading: 'Barlow', ui-sans-serif, system-ui, sans-serif;
     --font-body: 'Barlow', ui-sans-serif, system-ui, sans-serif;
     --font-display: 'Albert Sans', sans-serif;
     --font-mono: 'Albert Sans', sans-serif;
-    --sidebar-background: 255 22% 4%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 217 91% 60%;
+    --sidebar-background: 261 40% 5%;
+    --sidebar-foreground: 38 28% 73%;
+    --sidebar-primary: 267 55% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 255 16% 12%;
-    --sidebar-accent-foreground: 0 0% 92%;
-    --sidebar-border: 0 0% 100% / 0.1;
-    --sidebar-ring: 217 91% 60%;
+    --sidebar-accent: 264 38% 15%;
+    --sidebar-accent-foreground: 39 45% 89%;
+    --sidebar-border: 39 45% 89% / 0.1;
+    --sidebar-ring: 266 67% 63%;
   }
 
   .dark {
-    /* Even deeper, more cinematic in dark mode */
-    --background: 255 25% 2%;
-    --foreground: 0 0% 98%;
-    --card: 255 22% 7% / 0.5;
-    --card-foreground: 0 0% 98%;
-    --popover: 255 24% 9% / 0.74;
-    --popover-foreground: 0 0% 98%;
-    --primary: 217 91% 62%;
+    /* Even deeper, more cinematic in dark mode. NOTE: this block and :root are
+       near-identical because the product has only ever shipped a dark theme —
+       a real light theme was never built. Deciding whether VIRORA needs one is
+       still open; until then, do not treat this as a working light/dark pair. */
+    --background: 261 40% 3%;
+    --foreground: 39 45% 91%;
+    --card: 261 42% 8% / 0.5;
+    --card-foreground: 39 45% 91%;
+    --popover: 261 42% 10% / 0.74;
+    --popover-foreground: 39 45% 91%;
+    --primary: 267 57% 57%;
     --primary-foreground: 0 0% 100%;
-    --brand: 280 88% 66%;
-    --secondary: 255 20% 11% / 0.5;
-    --secondary-foreground: 0 0% 92%;
-    --muted: 255 20% 11% / 0.5;
-    --muted-foreground: 255 12% 58%;
-    --accent: 280 55% 22%;
-    --accent-foreground: 0 0% 97%;
-    --destructive: 0 80% 56%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 100% / 0.10;
-    --input: 0 0% 100% / 0.10;
-    --ring: 217 91% 62%;
+    --brand: 266 70% 65%;
+    --secondary: 264 38% 13% / 0.5;
+    --secondary-foreground: 38 28% 75%;
+    --muted: 264 38% 13% / 0.5;
+    --muted-foreground: 35 11% 51%;
+    --accent: 36 38% 54%;
+    --accent-foreground: 261 40% 3%;
+    --destructive: 349 52% 48%;
+    --destructive-foreground: 39 45% 91%;
+    --border: 39 45% 89% / 0.10;
+    --input: 39 45% 89% / 0.10;
+    --ring: 266 70% 65%;
   }
 
   @keyframes neo-breathe {
@@ -93,12 +104,14 @@
   body {
     @apply text-foreground font-body;
     background-color: hsl(var(--background));
-    /* Deep-space gradient with extremely subtle purple / blue / crimson bloom */
+    /* The Midnight Purple bloom: MP Shadow and MP Flare above, Bronze below.
+       This is most of what makes a screenshot read as VIRORA — the old blooms
+       were violet / electric blue / crimson, which read as a different brand. */
     background-image:
-      radial-gradient(60% 50% at 10% -8%, rgba(124,58,237,0.16), transparent 60%),
-      radial-gradient(55% 48% at 92% 6%, rgba(37,99,235,0.14), transparent 60%),
-      radial-gradient(48% 42% at 78% 104%, rgba(220,38,38,0.10), transparent 60%),
-      radial-gradient(52% 46% at 18% 108%, rgba(139,92,246,0.10), transparent 62%);
+      radial-gradient(60% 50% at 10% -8%, rgba(91,46,145,0.30), transparent 60%),
+      radial-gradient(55% 48% at 92% 6%, rgba(154,99,224,0.15), transparent 60%),
+      radial-gradient(48% 42% at 78% 104%, rgba(176,141,87,0.10), transparent 60%),
+      radial-gradient(52% 46% at 18% 108%, rgba(91,46,145,0.14), transparent 62%);
     background-attachment: fixed;
     -webkit-user-select: none;
     user-select: none;
