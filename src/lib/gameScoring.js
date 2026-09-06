@@ -1,7 +1,7 @@
 import { base44 } from "@/api/base44Client";
 
 // ---------------------------------------------------------------------------
-// Layer 3.2 of claude/ilmzor-game-template.md — the single source of truth
+// Layer 3.2 of claude/virora-game-template.md — the single source of truth
 // for round XP. "No migrated game computes XP inline" is the acceptance
 // criterion this file exists to satisfy: every migrated game calls these
 // functions instead of writing its own arithmetic (the 1x-vs-10x-per-correct
