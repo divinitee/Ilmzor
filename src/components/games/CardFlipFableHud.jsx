@@ -1,9 +1,12 @@
 import React from "react";
-import { ArrowLeft, Star, Flame } from "lucide-react";
+import { ArrowLeft, Star, Flame, Repeat2 } from "lucide-react";
 import { useFableCopy } from "@/components/games/cardFlipFableCopy";
 
-// Header chrome: back / title / XP / streak. No round clock in this iteration.
-export default function CardFlipFableHud({ accent, onBack, xp, streak }) {
+// Header chrome: back / title / XP / streak / flips left. No round clock — the
+// limit is a flip budget, shown here so it is never a surprise ending. The
+// number itself carries the information, so the low-budget state does not rely
+// on colour alone.
+export default function CardFlipFableHud({ accent, onBack, xp, streak, flipsLeft, showFlips, lowFlips }) {
   const { c, t } = useFableCopy();
   return (
     <header className="bg-background/70 backdrop-blur-xl border-b border-white/10 px-3 py-2 flex items-center justify-between safe-header gap-2">
@@ -18,6 +21,11 @@ export default function CardFlipFableHud({ accent, onBack, xp, streak }) {
         <span className={`neo-pill px-2.5 h-8 ${streak > 0 ? "text-orange-300" : "text-muted-foreground"}`} aria-label={c("streak")}>
           <Flame className="w-3.5 h-3.5" aria-hidden="true" /> {streak}
         </span>
+        {showFlips && (
+          <span className={`neo-pill px-2.5 h-8 ${lowFlips ? "text-rose-300" : "text-muted-foreground"}`} aria-label={c("flips_left")}>
+            <Repeat2 className="w-3.5 h-3.5" aria-hidden="true" /> {flipsLeft}
+          </span>
+        )}
       </div>
     </header>
   );
