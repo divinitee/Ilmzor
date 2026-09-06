@@ -5,12 +5,19 @@
 // on the dashboard — see syncGameResultToServer / getRemoteOverallStats.
 import { base44 } from "@/api/base44Client";
 
+// VIRORA skill hues (2026-09-06). Same hue families as the originals
+// (#6366f1 / #14b8a6 / #f59e0b / #f43f5e / #8b5cf6) so nothing becomes
+// unrecognisable — deepened and desaturated to sit on the Midnight Purple
+// ground instead of glowing against it. Two real fixes ride along:
+// Comprehension was the SAME rose as --destructive, so a skill colour and
+// "you got it wrong" were indistinguishable; and Creativity read as a second
+// Vocabulary. Every game reads its accent from here — no engine invents a hex.
 export const SKILLS = [
-  { key: "vocabulary", emoji: "📚", color: "#6366f1" },
-  { key: "grammar", emoji: "🧩", color: "#14b8a6" },
-  { key: "spelling", emoji: "🔤", color: "#f59e0b" },
-  { key: "comprehension", emoji: "📖", color: "#f43f5e" },
-  { key: "creativity", emoji: "💬", color: "#8b5cf6" },
+  { key: "vocabulary", emoji: "📚", color: "#7C6BE8" },
+  { key: "grammar", emoji: "🧩", color: "#3E9E92" },
+  { key: "spelling", emoji: "🔤", color: "#B08D57" },
+  { key: "comprehension", emoji: "📖", color: "#CE6A86" },
+  { key: "creativity", emoji: "💬", color: "#B678C9" },
 ];
 
 // Each game trains one primary skill (quiz + crossword both train vocabulary).
