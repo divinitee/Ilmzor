@@ -2,7 +2,7 @@ import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
 
 // ---------------------------------------------------------------------------
-// Layer 4.2 of claude/ilmzor-game-template.md — identical round-composition
+// Layer 4.2 of claude/virora-game-template.md — identical round-composition
 // recipe for every migrated game, so "personalized" means the same thing
 // everywhere instead of each engine inventing its own priorities:
 //
