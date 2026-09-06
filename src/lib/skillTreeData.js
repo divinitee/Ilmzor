@@ -31,7 +31,13 @@ export const SKILL_CHILDREN = {
       { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "3 min", xp: 40 },
       { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
-      { name: "Memory Flip", game: "memory_flip", difficulty: "Easy", time: "3 min", xp: 40 },
+      // Honest label, 2026-09-06: the rebuilt engine runs 12–21 pairs by tier
+      // with a study reveal and no clock, which measured out around 3–5 min
+      // rather than the 3 min this node used to advertise. XP is the floor
+      // (12 pairs × 10 base at the beginner tier) rather than the ceiling —
+      // under-promise, since the real award scales with tier and streak via
+      // gameScoring.js.
+      { name: "Memory Flip", game: "memory_flip", difficulty: "Easy", time: "3-5 min", xp: 120 },
       // Was fully built but only ever referenced under Reading, which is
       // comingSoon — unreachable in the live UI despite working. Wired in
       // here per the founder's confirmed placement (2026-09-04).
