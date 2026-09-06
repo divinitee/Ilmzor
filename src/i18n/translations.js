@@ -191,7 +191,7 @@ export const translations = {
       english: "English", uzbek: "O'zbekcha", russian: "Русский",
     },
     quiz: {
-      result_header: "Destination B1 Quiz", finished_title: "Test Yakunlandi!",
+      result_header: "VIRORA Quiz", finished_title: "Test Yakunlandi!",
       correct_pct: "{n}% to'g'ri", back_to_dashboard: "Dashboardga qaytish",
       time: "Vaqt", uzbek_word: "O'zbekcha so'z", answer_placeholder: "Inglizcha javobni yozing...",
       next: "Keyingisi", correct: "To'g'ri!", wrong: "Noto'g'ri. Javob:",
@@ -535,7 +535,7 @@ export const translations = {
       english: "English", uzbek: "Uzbek", russian: "Russian",
     },
     quiz: {
-      result_header: "Destination B1 Quiz", finished_title: "Test Finished!",
+      result_header: "VIRORA Quiz", finished_title: "Test Finished!",
       correct_pct: "{n}% correct", back_to_dashboard: "Back to dashboard",
       time: "Time", uzbek_word: "Uzbek word", answer_placeholder: "Type the English answer...",
       next: "Next", correct: "Correct!", wrong: "Wrong. Answer:",
@@ -879,7 +879,7 @@ export const translations = {
       english: "English", uzbek: "Узбекский", russian: "Русский",
     },
     quiz: {
-      result_header: "Destination B1 Quiz", finished_title: "Тест завершён!",
+      result_header: "VIRORA Quiz", finished_title: "Тест завершён!",
       correct_pct: "{n}% правильно", back_to_dashboard: "На главную",
       time: "Время", uzbek_word: "Узбекское слово", answer_placeholder: "Введите ответ на английском...",
       next: "Далее", correct: "Правильно!", wrong: "Неверно. Ответ:",
