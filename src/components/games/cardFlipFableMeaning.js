@@ -1,27 +1,36 @@
 import { meaningInLang } from "@/lib/vocabGameUtils";
+import { definitionForLevel } from "@/lib/definitionTiers";
 
 // CEFR-aware meaning representation for CardFlip Fable only.
 //
-// DATA REALITY (checked against VocabularyWord, 2026-09-05): a word row has
-// `uzbek`, `russian` and ONE `english_definition`. There is no separate
-// "simple" definition field and no per-level definition variants. So instead
-// of inventing a second content system:
+// DATA REALITY, updated 2026-09-06: the reader-relative tier fields
+// (`def_a2` / `def_b1` / `def_b2` / `def_c1`) now exist on VocabularyWord, and
+// `src/lib/definitionTiers.js` resolves them. So:
 //   Starter/A1 -> the support-language translation the app already stores
 //                 (uzbek / russian), chosen by the app's current language.
-//   A2         -> the same english_definition, deterministically shortened to
-//                 its first clause and a word cap, so it reads simpler than
-//                 the full dictionary-style string B1+ sees.
-//   B1+        -> unchanged: the full english_definition.
-// The A2 path is a rendering rule over existing data, not new content — a
-// genuinely re-authored A2 definition set would need an enrichment pass.
+//   A2+        -> definitionForLevel(), which reads the student's own tier and
+//                 falls back to english_definition, then to meaningInLang.
+//
+// This replaces the previous A2 path, which truncated the single
+// english_definition to its first clause and ~8 words. That was written before
+// the tier fields existed and it amputated rather than simplified — "The person
+// who is the leader of a sports group." became "The person who is the leader of
+// a…", which is harder to learn from than the original, not easier.
+//
+// The tier fields are still EMPTY pending the enrichment batch, so today every
+// level resolves to english_definition — identical to what the app has always
+// shown, with no truncation. Each row the batch fills upgrades itself with no
+// further code change.
 
 export const SUPPORT_LEVELS = ["Starter", "A1"];
 export const A2_MAX_WORDS = 8;
 
 export const usesSupportLanguage = (level) => SUPPORT_LEVELS.includes(level);
 
-// Deterministic simplification: drop parentheticals, keep the first clause,
-// cap the word count. Same input always gives the same output.
+// Retained as an exported utility (deterministic: same input, same output) but
+// no longer on the meaning-card path — see the header note. Truncating a
+// definition is not the same as writing a simpler one; the tier fields are how
+// A2 gets genuinely simpler text.
 export function simplifyDefinition(def = "", maxWords = A2_MAX_WORDS) {
   let s = String(def).replace(/\([^)]*\)/g, " ").replace(/\s+/g, " ").trim();
   s = s.split(/[;.]|\s[—–-]\s|,\s(?:or|and|especially|which|that)\s/i)[0].trim();
@@ -41,7 +50,5 @@ export function meaningForLevel(word, level, lang) {
     const support = (lang !== "en" && meaningInLang(word, lang)) || word?.uzbek || word?.russian;
     if (support) return support;
   }
-  const def = word?.english_definition || meaningInLang(word, lang) || "";
-  if (level === "A2" || usesSupportLanguage(level)) return simplifyDefinition(def);
-  return def;
+  return definitionForLevel(word, level, lang);
 }
