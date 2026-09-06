@@ -1,25 +1,27 @@
 {
+  "name": "SavedWord",
+  "type": "object",
   "properties": {
     "definition": {
-      "description": "captured at save time, stays stable even if a pool definition later changes",
-      "type": "string"
+      "type": "string",
+      "description": "captured at save time, stays stable even if a pool definition later changes"
     },
     "saved_at": {
-      "format": "date-time",
-      "type": "string"
+      "type": "string",
+      "format": "date-time"
     },
     "source": {
+      "type": "string",
       "default": "curated",
-      "description": "curated = from ILMZOR's own vocab pools (all v1 saves). external reserved for a future live-lookup fallback \u2014 not used yet.",
       "enum": [
         "curated",
         "external"
       ],
-      "type": "string"
+      "description": "curated = from VIRORA's own vocab pools (all v1 saves). external reserved for a future live-lookup fallback \u2014 not used yet."
     },
     "source_lesson_id": {
-      "description": "references Lesson.id, nullable \u2014 which lesson this was encountered in, if applicable",
-      "type": "string"
+      "type": "string",
+      "description": "references Lesson.id, nullable \u2014 which lesson this was encountered in, if applicable"
     },
     "user_email": {
       "type": "string"
@@ -73,7 +75,5 @@
         }
       ]
     }
-  },
-  "type": "object",
-  "name": "SavedWord"
+  }
 }
