@@ -1,7 +1,7 @@
 {
   "name": "WordAttempt",
   "type": "object",
-  "description": "One row per vocabulary item a student answers in a Skill Hub game. This is the per-word history the app had no record of before 2026-09-04 \u2014 SkillHubProgress only ever stored a per-SKILL aggregate (plays/best/last), so 'the words this student keeps missing' was unanswerable and personalization was impossible. Read on the hot path when composing a round (see the round recipe in claude/ilmzor-game-template.md: ~40% previously-wrong, ~20% saved, ~40% fresh in-band). ALWAYS query bounded \u2014 filter by user_email, most recent first, with a limit. Never list() this collection unbounded; it grows at roughly one row per item per round and the codebase already has history with unbounded reads against growing collections.",
+  "description": "One row per vocabulary item a student answers in a Skill Hub game. This is the per-word history the app had no record of before 2026-09-04 \u2014 SkillHubProgress only ever stored a per-SKILL aggregate (plays/best/last), so 'the words this student keeps missing' was unanswerable and personalization was impossible. Read on the hot path when composing a round (see the round recipe in claude/virora-game-template.md: ~40% previously-wrong, ~20% saved, ~40% fresh in-band). ALWAYS query bounded \u2014 filter by user_email, most recent first, with a limit. Never list() this collection unbounded; it grows at roughly one row per item per round and the codebase already has history with unbounded reads against growing collections.",
   "properties": {
     "user_email": {
       "type": "string",
