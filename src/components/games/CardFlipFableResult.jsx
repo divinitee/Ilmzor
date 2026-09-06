@@ -14,7 +14,7 @@ const Stat = ({ label, value }) => (
 export default function CardFlipFableResult({ summary, pairs, accent, onKeepGoing, onPlayAgain, onExit }) {
   const { c, t } = useFableCopy();
   const rm = useReducedMotion();
-  const { passed, reason, found = [], moves, accuracyPct, streakBest, amount, streakBonus, itemsCorrect, itemsTotal, hintMultiplier } = summary;
+  const { passed, reason, found = [], moves, accuracyPct, streakBest, amount, streakBonus, itemsCorrect, itemsTotal, hintMultiplier, flipBudget } = summary;
   const foundSet = new Set(found);
 
   return (
@@ -22,7 +22,7 @@ export default function CardFlipFableResult({ summary, pairs, accent, onKeepGoin
       <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3 ${passed ? "bg-emerald-500/15" : "bg-amber-500/15"}`}>
         <Trophy className={`w-8 h-8 ${passed ? "text-emerald-400" : "text-amber-400"}`} aria-hidden="true" />
       </div>
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-center mb-1" style={{ color: accent }}>{reason === "time" ? c("result_time_up") : c("result_title")}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-center mb-1" style={{ color: accent }}>{reason === "budget" ? c("result_out_of_flips") : reason === "time" ? c("result_time_up") : c("result_title")}</p>
       <h2 className="text-xl font-bold text-foreground text-center flex items-center justify-center gap-1.5">
         {passed ? <Check className="w-5 h-5 text-emerald-400" aria-hidden="true" /> : <X className="w-5 h-5 text-amber-400" aria-hidden="true" />}
         {passed ? c("result_pass") : c("result_fail")}
@@ -36,7 +36,7 @@ export default function CardFlipFableResult({ summary, pairs, accent, onKeepGoin
 
       <div className="grid grid-cols-2 gap-2 mt-4">
         <Stat label={c("pairs_found")} value={`${itemsCorrect}/${itemsTotal}`} />
-        <Stat label={c("moves")} value={moves} />
+        <Stat label={c("moves")} value={flipBudget ? `${moves}/${flipBudget}` : moves} />
         <Stat label={c("accuracy")} value={`${accuracyPct}%`} />
         <Stat label={c("best_streak")} value={streakBest} />
       </div>
