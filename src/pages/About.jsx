@@ -6,21 +6,21 @@ import { useAppLang } from "@/hooks/useAppLang";
 const STR = {
   uz: {
     back: "Orqaga", title: "Ilova haqida",
-    p1: "Vocabulary A2·B1·B2 — bu ingliz tilini o'rganayotgan o'quvchilar uchun mo'ljallangan interaktiv, o'yinlashtirilgan lug'at trenajyoridir. Ilova A2 dan B2 darajasigacha bo'lgan minglab so'zlarni unitlar bo'yicha tartiblangan holda taqdim etadi, har bir so'z uchun inglizcha, o'zbekcha va ruscha tarjimalar, shuningdek talaffuz yozuvlarini o'z ichiga oladi.",
+    p1: "VIRORA — bu ingliz tilini o'rganayotgan o'quvchilar uchun mo'ljallangan interaktiv, o'yinlashtirilgan lug'at trenajyoridir. Ilova A2 dan B2 darajasigacha bo'lgan minglab so'zlarni unitlar bo'yicha tartiblangan holda taqdim etadi, har bir so'z uchun inglizcha, o'zbekcha va ruscha tarjimalar, shuningdek talaffuz yozuvlarini o'z ichiga oladi.",
     p2: "O'quvchilar so'z boyligini flashkartalar, viktorinalar va jumla tuzish o'yinlari orqali mustahkamlashlari mumkin. Har bir to'g'ri javob uchun XP yig'ish, sinfdoshlar bilan reyting jadvalida raqobatlashish va sun'iy intellekt asosidagi \"AI Ustoz\" bilan suhbat orqali yangi so'zlarni chuqurroq o'zlashtirish imkoniyati mavjud.",
     p3a: "Ilova ikki turdagi foydalanuvchilar uchun yaratilgan: ", p3Student: "o'quvchilar", p3b: " — o'z bilim darajasini oshirishni istagan har qanday yoshdagi til o'rganuvchilar, va ", p3Teacher: "o'qituvchilar", p3c: " — o'z guruhlarini boshqarish, o'quvchilar natijalarini kuzatish va ular bilan bevosita muloqot qilish imkoniyatiga ega bo'lgan mutaxassislar.",
     p4a: "Ilovani ", p4b: " ishlab chiqishgan va doimiy ravishda yangi so'zlar, o'yinlar va funksiyalar bilan yangilab bormoqda.",
   },
   en: {
     back: "Back", title: "About the app",
-    p1: "Vocabulary A2·B1·B2 is an interactive, gamified vocabulary trainer designed for learners studying English. The app offers thousands of words from A2 to B2 level organized into units, with English, Uzbek, and Russian translations, as well as pronunciation guides for each word.",
+    p1: "VIRORA is an interactive, gamified vocabulary trainer designed for learners studying English. The app offers thousands of words from A2 to B2 level organized into units, with English, Uzbek, and Russian translations, as well as pronunciation guides for each word.",
     p2: "Learners can reinforce their vocabulary through flashcards, quizzes, and sentence-building games. You can earn XP for every correct answer, compete with classmates on the leaderboard, and master new words more deeply by chatting with the AI-powered \"AI Tutor\".",
     p3a: "The app is built for two types of users: ", p3Student: "students", p3b: " — language learners of any age who want to improve their skills, and ", p3Teacher: "teachers", p3c: " — professionals who can manage their groups, track student results, and communicate directly with them.",
     p4a: "The app was developed by ", p4b: " and is constantly updated with new words, games, and features.",
   },
   ru: {
     back: "Назад", title: "О приложении",
-    p1: "Vocabulary A2·B1·B2 — интерактивный, игровой тренажёр словаря, предназначенный для изучающих английский язык. Приложение предлагает тысячи слов от уровня A2 до B2, сгруппированных по разделам, с переводами на английский, узбекский и русский, а также транскрипцией для каждого слова.",
+    p1: "VIRORA — интерактивный, игровой тренажёр словаря, предназначенный для изучающих английский язык. Приложение предлагает тысячи слов от уровня A2 до B2, сгруппированных по разделам, с переводами на английский, узбекский и русский, а также транскрипцией для каждого слова.",
     p2: "Ученики могут закреплять словарный запас с помощью флеш-карт, викторин и игр по построению предложений. За каждый правильный ответ можно получать XP, соревноваться с одноклассниками в таблице лидеров и глубже усваивать новые слова через общение с \"ИИ Учителем\".",
     p3a: "Приложение создано для двух типов пользователей: ", p3Student: "учеников", p3b: " — изучающих язык любого возраста, желающих повысить свой уровень, и ", p3Teacher: "учителей", p3c: " — специалистов, управляющих своими группами, отслеживающих результаты учеников и общающихся с ними напрямую.",
     p4a: "Приложение разработали ", p4b: ", и оно постоянно обновляется новыми словами, играми и функциями.",
