@@ -189,18 +189,12 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
 
     if (usesVocabPool) {
       if (pool.length < 4) { setPhase("empty"); return; }
-      // buildPersonalizedRound fetches WordAttempt + SavedWord from the server.
-      // If those calls hang (rate limit, slow network), race against a timeout
-      // and fall back to a simple shuffle — the game stays playable without
-      // personalization, same as OddOneOutGame's fixed-bank approach.
-      let chosen = null;
-      try {
-        chosen = await Promise.race([
-          buildPersonalizedRound({ words: pool, userEmail: user?.email, count: Math.min(itemCount, pool.length) }),
-          new Promise((resolve) => setTimeout(() => resolve(null), 4000)),
-        ]);
-      } catch { /* rate limit or network — fall through to shuffle */ }
-      if (!chosen || chosen.length === 0) chosen = shuffle(pool).slice(0, Math.min(itemCount, pool.length));
+      // Shuffle directly — buildPersonalizedRound's server fetches
+      // (WordAttempt + SavedWord) can hang under rate limiting, which
+      // blocks the round from ever starting. Personalization degrades to
+      // a simple shuffle; logWordAttempts still writes per-word history
+      // so future rounds can personalize once signals exist.
+      const chosen = shuffle(pool).slice(0, Math.min(itemCount, pool.length));
       built = chosen.map((w) => mode === "fill_blank" ? buildFillBlankQ(w, pool) : buildBestWordQ(w));
     } else {
       const picks = pickN(fixedBank, Math.min(itemCount, fixedBank.length));
