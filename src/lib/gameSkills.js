@@ -51,6 +51,12 @@ export const GAME_SKILL_MAP = {
   // Vocabulary > Relationships, first game (2026-09-07). Its own key rather
   // than the shared "quiz" the node used to point at, so its stats are its own.
   synonym_sprint: "vocabulary",
+  // Vocabulary > Relationships, last two games (2026-09-07). Both moved off
+  // the generic "quiz" engine onto RelatedWordsGame.jsx with a bank/mode
+  // split. Related Words = category recognition; Connection Challenge =
+  // category inference from 3 examples. Both map to "vocabulary".
+  related_words: "vocabulary",
+  connection_challenge: "vocabulary",
 };
 
 const KEY = "vm_skill_stats_v1";

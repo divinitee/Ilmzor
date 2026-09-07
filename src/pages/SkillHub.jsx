@@ -18,6 +18,7 @@ import SynonymSprintGame from "@/components/games/SynonymSprintGame";
 import CardFlipFable from "@/components/games/CardFlipFable";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
+import RelatedWordsGame from "@/components/games/RelatedWordsGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -192,6 +193,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       // Vocabulary games. buildPersonalizedRound is NOT used — the bank is a
       // fixed 20-entry hardcoded set, not sourced from VocabularyWord.
       return <OddOneOutGame {...base} user={user} />;
+    if (activeGame.game === "related_words" || activeGame.game === "connection_challenge")
+      // New 2026-09-07: the last two Relationships nodes, moved off the generic
+      // "quiz" engine. One engine file with a bank/mode split — Related Words
+      // (category recognition) and Connection Challenge (category inference
+      // from 3 examples). Fixed hand-authored bank, same as Antonym Hunt.
+      return <RelatedWordsGame {...base} user={user} bank={activeGame.game} />;
   }
 
   return (

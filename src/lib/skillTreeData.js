@@ -146,8 +146,21 @@ export const SKILL_CHILDREN = {
       // bonus. The bank is thin for repeat play (flagged as a content-authoring
       // followup), but the mechanic is unchanged.
       { name: "Antonym Hunt", game: "odd_one_out", difficulty: "Medium", time: "2-3 min", xp: 80 },
-      { name: "Related Words", game: "quiz", difficulty: "Medium", time: "5 min", xp: 65 },
-      { name: "Connection Challenge", game: "quiz", difficulty: "Hard", time: "8 min", xp: 100 },
+      // Honest label, 2026-09-07: rebuilt onto a new "related_words" game key
+      // (was "quiz" — the generic translation drill). 8 items per round, each
+      // a target word + 4 options where one belongs to the same semantic
+      // category. Attempt budget of 12. Measured around 2-3 min. Floor XP is
+      // 8 first-try picks × 10 base = 80, before any streak bonus.
+      { name: "Related Words", game: "related_words", difficulty: "Medium", time: "2-3 min", xp: 80 },
+      // Honest label, 2026-09-07: rebuilt onto a new "connection_challenge"
+      // game key (was "quiz"). 6 items per round (fewer than Related Words
+      // because each requires an extra inference step: figure out the
+      // category from 3 examples, then pick the 4th). Attempt budget of 9.
+      // Measured around 3-5 min — the reasoning takes longer than recognition.
+      // Floor XP is 6 first-try picks × 10 base = 60, but the streak bonus
+      // scales higher because chaining 6 inference steps in a row is harder
+      // than chaining 8 recognitions.
+      { name: "Connection Challenge", game: "connection_challenge", difficulty: "Hard", time: "3-5 min", xp: 100 },
     ]),
   ],
   grammar: [
