@@ -4,7 +4,7 @@ import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, A
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
-import { buildPersonalizedRound, logWordAttempts, PROVENANCE } from "@/lib/roundComposition";
+import { logWordAttempts, PROVENANCE } from "@/lib/roundComposition";
 import { synonymForLevel } from "@/lib/synonymTiers";
 import { useUsageCopy } from "@/components/games/usageCopy";
 import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK } from "@/lib/usageBank";
@@ -137,7 +137,10 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
   }, [words, mode]);
 
   const usesVocabPool = mode === "fill_blank" || mode === "best_word";
-  const fixedBank = mode === "sentence_repair" ? SENTENCE_REPAIR_BANK : mode === "collocation_match" ? COLLOCATION_BANK : [];
+  const fixedBank = useMemo(() =>
+    mode === "sentence_repair" ? SENTENCE_REPAIR_BANK : mode === "collocation_match" ? COLLOCATION_BANK : [],
+    [mode]
+  );
 
   const [sessionXp, setSessionXp] = useState(0);
   const [phase, setPhase] = useState("loading");
