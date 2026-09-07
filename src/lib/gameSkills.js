@@ -42,6 +42,9 @@ export const GAME_SKILL_MAP = {
   picture_match: "vocabulary",
   context_guess: "vocabulary",
   memory_flip: "vocabulary",
+  // Vocabulary > Relationships, first game (2026-09-07). Its own key rather
+  // than the shared "quiz" the node used to point at, so its stats are its own.
+  synonym_sprint: "vocabulary",
 };
 
 const KEY = "vm_skill_stats_v1";

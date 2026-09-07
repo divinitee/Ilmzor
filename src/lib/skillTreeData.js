@@ -74,7 +74,12 @@ export const SKILL_CHILDREN = {
     C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
     C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
     C("Relationships", ["Synonyms", "Antonyms", "Related words"], [
-      { name: "Synonym Sprint", game: "quiz", difficulty: "Easy", time: "3 min", xp: 40 },
+      // Honest label, 2026-09-07: its own engine now (was pointing at the
+      // generic translation drill). 8 words at the beginner tier, one pick each,
+      // two-column options and no clock — measured around 1-2 min. XP is the
+      // floor (8 first-try picks × 10 base at the beginner tier), before any
+      // streak bonus.
+      { name: "Synonym Sprint", game: "synonym_sprint", difficulty: "Easy", time: "1-2 min", xp: 80 },
       { name: "Antonym Hunt", game: "odd_one_out", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Related Words", game: "quiz", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Connection Challenge", game: "quiz", difficulty: "Hard", time: "8 min", xp: 100 },

@@ -13,6 +13,7 @@ import DefinitionGame from "@/components/games/DefinitionGame";
 import GrammarQuizGame from "@/components/games/GrammarQuizGame";
 import DefinitionMatchGame from "@/components/games/DefinitionMatchGame";
 import ContextGuessGame from "@/components/games/ContextGuessGame";
+import SynonymSprintGame from "@/components/games/SynonymSprintGame";
 import CardFlipFable from "@/components/games/CardFlipFable";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
@@ -169,6 +170,10 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       // Standard signature since the 2026-09-07 expansion — takes `user` on
       // top of base for round composition and reward / attempt logging.
       return <PictureMatchGame {...base} user={user} />;
+    if (activeGame.game === "synonym_sprint")
+      // Vocabulary > Relationships, standard signature — takes `user` on top of
+      // base for round composition and reward / attempt logging.
+      return <SynonymSprintGame {...base} user={user} />;
     if (activeGame.game === "odd_one_out")
       return <OddOneOutGame {...base} />;
   }
