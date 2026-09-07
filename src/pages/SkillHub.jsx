@@ -175,7 +175,11 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       // base for round composition and reward / attempt logging.
       return <SynonymSprintGame {...base} user={user} />;
     if (activeGame.game === "odd_one_out")
-      return <OddOneOutGame {...base} />;
+      // Refined 2026-09-07: now reads user.email for RewardEvent / WordAttempt
+      // logging (gameScoring.js + logWordAttempts), same as the other
+      // Vocabulary games. buildPersonalizedRound is NOT used — the bank is a
+      // fixed 20-entry hardcoded set, not sourced from VocabularyWord.
+      return <OddOneOutGame {...base} user={user} />;
   }
 
   return (

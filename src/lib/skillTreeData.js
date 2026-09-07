@@ -80,7 +80,13 @@ export const SKILL_CHILDREN = {
       // floor (8 first-try picks × 10 base at the beginner tier), before any
       // streak bonus.
       { name: "Synonym Sprint", game: "synonym_sprint", difficulty: "Easy", time: "1-2 min", xp: 80 },
-      { name: "Antonym Hunt", game: "odd_one_out", difficulty: "Medium", time: "5 min", xp: 65 },
+      // Honest label, 2026-09-07: refined to the five-layer standard. 8 words
+      // per round (from a 20-entry fixed bank), 5 options each (4 synonyms + 1
+      // antonym), attempt budget of 12, snappy feedback — measured around 2-3
+      // min. XP is the floor (8 first-try picks × 10 base), before any streak
+      // bonus. The bank is thin for repeat play (flagged as a content-authoring
+      // followup), but the mechanic is unchanged.
+      { name: "Antonym Hunt", game: "odd_one_out", difficulty: "Medium", time: "2-3 min", xp: 80 },
       { name: "Related Words", game: "quiz", difficulty: "Medium", time: "5 min", xp: 65 },
       { name: "Connection Challenge", game: "quiz", difficulty: "Hard", time: "8 min", xp: 100 },
     ]),
