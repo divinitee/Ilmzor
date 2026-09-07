@@ -33,7 +33,12 @@ export const SKILL_CHILDREN = {
       // budget instead of a clock — measured around 2-4 min. XP is the floor
       // (8 first-try matches × 10 base at the beginner tier), not the ceiling.
       { name: "Definition Match", game: "definition_match", difficulty: "Easy", time: "2-4 min", xp: 80 },
-      { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "5 min", xp: 65 },
+      // Honest label, 2026-09-07: the expanded engine runs 8-14 picture pairs
+      // in sets with an attempt budget, no clock — measured around 2-3 min.
+      // XP is the floor (8 first-try matches × 10 base at the beginner tier);
+      // a band thin on concrete nouns can shrink the round, so this is the
+      // full-round floor, not a guarantee.
+      { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "2-3 min", xp: 80 },
       { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
       // Honest label, 2026-09-06: the rebuilt engine runs 12–21 pairs by tier
       // with a study reveal and no clock, which measured out around 3–5 min

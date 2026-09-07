@@ -164,22 +164,9 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     if (activeGame.game === "memory_flip")
       return <CardFlipFable {...base} user={user} />;
     if (activeGame.game === "picture_match")
-      // PictureMatchGame takes onResult, not onXpEarned/onGameComplete —
-      // base's versions of those were never being called, so this game's
-      // XP and completion silently never recorded. Adapt onResult into both
-      // rather than changing the component itself, which other call sites
-      // (there are none today, but the shape is worth keeping general) might
-      // reasonably expect to stay as-is.
-      return (
-        <PictureMatchGame
-          {...base}
-          user={user}
-          onResult={(r) => {
-            handleXpEarned(r?.xp || 0, r?.correct || 0);
-            handleGameComplete({ scorePct: r?.total ? (r.correct / r.total) * 100 : 0 });
-          }}
-        />
-      );
+      // Standard signature since the 2026-09-07 expansion — takes `user` on
+      // top of base for round composition and reward / attempt logging.
+      return <PictureMatchGame {...base} user={user} />;
     if (activeGame.game === "odd_one_out")
       return <OddOneOutGame {...base} />;
   }

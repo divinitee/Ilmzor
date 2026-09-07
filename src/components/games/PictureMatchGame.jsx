@@ -1,212 +1,289 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowLeft, Star, Check, RotateCcw, Trophy, BookOpen } from "lucide-react";
-import { pickEmojiPairs } from "@/lib/wordEmoji";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Loader2, BookOpen, Check, X } from "lucide-react";
+import { shuffle } from "@/lib/vocabGameUtils";
+import { emojiMappable } from "@/lib/wordEmoji";
+import { SKILLS, GAME_SKILL_MAP } from "@/lib/gameSkills";
+import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
+import { buildPersonalizedRound, logWordAttempts } from "@/lib/roundComposition";
+import { usePictureCopy } from "@/components/games/pictureMatchCopy";
+import PictureMatchHud from "@/components/games/PictureMatchHud";
+import PictureMatchSet from "@/components/games/PictureMatchSet";
+import PictureMatchResult from "@/components/games/PictureMatchResult";
+//
+// Picture Match — expanded 2026-09-07 to the five-layer game standard.
+//
+// THE MECHANIC IS UNCHANGED: tap a word, tap the picture (emoji) it matches.
+// What scaled is everything behind it: src/lib/wordEmoji.js grew from ~150 to
+// ~470 correct mappings, the round is composed by roundComposition.js, scored by
+// gameScoring.js, sized by tier, and can now be failed.
+//
+// THE CEILING: only concrete nouns have an emoji. emojiMappable() filters the
+// student's band to those, deduped by picture so no two cards look alike. When
+// a band cannot fill the tier's round the round shrinks toward the old size (4)
+// rather than padding with weak matches; below MIN_PAIRS the game sits out.
+//
+// FAILABILITY: an attempt budget (ATTEMPTS_PER_ITEM × items), shown live.
+// itemsCorrect counts FIRST-TRY matches only.
+//
+// LOGGING: both signals, following Definition Match. A wrong tap here is a
+// direct word→meaning miss (the picture IS the meaning), not a forgotten card
+// position, so correct:false is honest signal for later round composition.
+//
+// Props: the standard {...base} signature every Skill Hub game takes —
+//   words, level, difficulty, user, onBack, onXpEarned(amount, correct),
+//   onGameComplete({ scorePct, correct, total })
 
-const PAIRS_PER_ROUND = 4;
+const GAME = "picture_match";
+const ACCENT = SKILLS.find((s) => s.key === GAME_SKILL_MAP[GAME])?.color || "#7C6BE8";
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+// Same shape as Definition Match: more words AND bigger sets at higher tiers.
+const TIER = {
+  beginner: { items: 8, setSize: 4 },
+  intermediate: { items: 12, setSize: 4 },
+  advanced: { items: 12, setSize: 6 },
+  proficient: { items: 14, setSize: 7 },
+};
+const MIN_PAIRS = 4;
+const ATTEMPTS_PER_ITEM = 1.75;
+const MATCH_MS = 480;
+const MISS_MS = 700;
+const SET_MS = 600;
+
+function chunkSets(list, size) {
+  const sets = [];
+  for (let i = 0; i < list.length; i += size) sets.push(list.slice(i, i + size));
+  if (sets.length > 1 && sets[sets.length - 1].length < 2) sets[sets.length - 2].push(...sets.pop());
+  return sets;
 }
 
-export default function PictureMatchGame({ words = [], onBack, onResult, user, isActive }) {
-  const [seed, setSeed] = useState(0);
-  const [pairs, setPairs] = useState([]);
-  const [emojis, setEmojis] = useState([]);
-  const [selectedWord, setSelectedWord] = useState(null);
-  const [selectedEmoji, setSelectedEmoji] = useState(null);
-  const [matched, setMatched] = useState(new Set());
-  const [wrongPair, setWrongPair] = useState(null);
-  const [pairsFound, setPairsFound] = useState(0);
-  const [moves, setMoves] = useState(0);
-  const [finished, setFinished] = useState(false);
+export default function PictureMatchGame({ words = [], level, difficulty = "intermediate", user, onBack, onXpEarned, onGameComplete }) {
+  const { c, t } = usePictureCopy();
+  const rm = useReducedMotion();
+  const pool = useMemo(() => emojiMappable(words), [words]);
+  const tier = TIER[difficulty] || TIER.intermediate;
 
-  useEffect(() => {
-    const round = pickEmojiPairs(words, PAIRS_PER_ROUND);
-    if (round.length < 2) return;
-    setPairs(shuffle(round));
-    setEmojis(shuffle(round));
-    setMatched(new Set());
-    setSelectedWord(null);
-    setSelectedEmoji(null);
-    setPairsFound(0);
-    setMoves(0);
-    setFinished(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seed]);
+  const [sessionXp, setSessionXp] = useState(0);
+  const [phase, setPhase] = useState(pool.length < MIN_PAIRS ? "empty" : "loading"); // loading | playing | result | empty
+  const [sets, setSets] = useState([]);
+  const [setIndex, setSetIndex] = useState(0);
+  const [picOrder, setPicOrder] = useState([]);
+  const [solved, setSolved] = useState([]);
+  const [selected, setSelected] = useState(null); // { side: word|pic, id }
+  const [feedback, setFeedback] = useState(null); // { type: match|miss, wordId, picId }
+  const [firstTryCount, setFirstTryCount] = useState(0);
+  const [streak, setStreak] = useState(0);
+  const [streakBest, setStreakBest] = useState(0);
+  const [tries, setTries] = useState(0);
+  const [budget, setBudget] = useState(0);
+  const [summary, setSummary] = useState(null);
+  const [flyups, setFlyups] = useState([]);
 
-  const done = pairs.length > 0 && matched.size === pairs.length;
+  const roundId = useRef(null);
+  const roundItems = useRef([]);
+  const firstTry = useRef(new Set());
+  const missedOnce = useRef(new Set());
+  const triesRef = useRef(0);
+  const budgetRef = useRef(0);
+  const streakBestRef = useRef(0);
+  const finishing = useRef(false);
+  const busy = useRef(false);
 
-  const tryCheck = (word, emojiWord) => {
-    if (word === emojiWord) {
-      const next = new Set(matched);
-      next.add(word);
-      setMatched(next);
-      setPairsFound((c) => c + 1);
-      setSelectedWord(null);
-      setSelectedEmoji(null);
-      if (next.size === pairs.length) {
-        setFinished(true);
-        onResult?.({ xp: (pairsFound + 1) * 10, correct: next.size, total: pairs.length });
+  const startRound = useCallback(async (startStreak) => {
+    if (pool.length < MIN_PAIRS) { setPhase("empty"); return; }
+    setPhase("loading");
+    finishing.current = false;
+    busy.current = false;
+    roundId.current = generateRoundId();
+    firstTry.current = new Set();
+    missedOnce.current = new Set();
+
+    const count = Math.min(tier.items, pool.length);
+    const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count });
+    const items = chosen.map((w, i) => ({ id: `${w.english}-${i}`, word: w.english, wordId: w.id, emoji: w.emoji, provenance: w._provenance }));
+    const built = chunkSets(items, tier.setSize);
+
+    roundItems.current = items;
+    budgetRef.current = Math.max(items.length, Math.round(items.length * ATTEMPTS_PER_ITEM));
+    triesRef.current = 0;
+    streakBestRef.current = startStreak;
+
+    setSets(built);
+    setSetIndex(0);
+    setPicOrder(built.length ? shuffle(built[0]).map((it) => it.id) : []);
+    setSolved([]); setSelected(null); setFeedback(null);
+    setFirstTryCount(0); setStreak(startStreak); setStreakBest(startStreak);
+    setTries(0); setBudget(budgetRef.current); setSummary(null); setFlyups([]);
+    setPhase(items.length >= MIN_PAIRS ? "playing" : "empty");
+  }, [pool, tier.items, tier.setSize, user?.email]);
+
+  useEffect(() => { startRound(0); }, [startRound]);
+
+  const finishRound = useCallback((reason) => {
+    if (finishing.current || !roundItems.current.length) return;
+    finishing.current = true;
+    const items = roundItems.current;
+    const itemsTotal = items.length;
+    const itemsCorrect = firstTry.current.size;
+    const finalStreakBest = streakBestRef.current;
+    const usedTries = triesRef.current;
+
+    const { amount, streakBonus } = computeRoundXp({ itemsCorrect, streakBest: finalStreakBest, hintMultiplier: 1 });
+    recordRoundReward({ userEmail: user?.email, game: GAME, roundId: roundId.current, itemsTotal, itemsCorrect, streakBest: finalStreakBest, hintMultiplier: 1, level });
+    logWordAttempts({
+      userEmail: user?.email, game: GAME, level, roundId: roundId.current,
+      items: items.map((it) => ({ word: it.word, wordId: it.wordId, correct: firstTry.current.has(it.word) })),
+    });
+
+    const scorePct = Math.round((itemsCorrect / itemsTotal) * 100);
+    onXpEarned?.(amount, itemsCorrect);
+    onGameComplete?.({ scorePct, correct: itemsCorrect, total: itemsTotal });
+    setSessionXp((v) => v + amount);
+    setSummary({ passed: roundPassed(itemsCorrect, itemsTotal), reason, firstTry: [...firstTry.current], tries: usedTries, budget: budgetRef.current, accuracyPct: usedTries ? Math.round((itemsCorrect / usedTries) * 100) : 0, streakBest: finalStreakBest, amount, streakBonus, itemsCorrect, itemsTotal });
+    setPhase("result");
+  }, [user?.email, level, onXpEarned, onGameComplete]);
+
+  const advanceOrFinish = useCallback((nextSolved) => {
+    const current = sets[setIndex] || [];
+    if (!current.every((it) => nextSolved.includes(it.id))) {
+      if (triesRef.current >= budgetRef.current) finishRound("budget");
+      return;
+    }
+    if (setIndex + 1 >= sets.length) { finishRound("clear"); return; }
+    setTimeout(() => {
+      if (finishing.current) return;
+      const nextIdx = setIndex + 1;
+      setSetIndex(nextIdx);
+      setPicOrder(shuffle(sets[nextIdx]).map((it) => it.id));
+      setSelected(null);
+      if (triesRef.current >= budgetRef.current) finishRound("budget");
+    }, SET_MS);
+  }, [sets, setIndex, finishRound]);
+
+  const resolve = (wordItem, picItem) => {
+    busy.current = true;
+    triesRef.current += 1;
+    setTries(triesRef.current);
+    setSelected(null);
+    if (wordItem.id === picItem.id) {
+      if (!missedOnce.current.has(wordItem.word)) {
+        firstTry.current.add(wordItem.word);
+        setFirstTryCount(firstTry.current.size);
+        const s = streak + 1;
+        streakBestRef.current = Math.max(streakBestRef.current, s);
+        setStreak(s); setStreakBest(streakBestRef.current);
+        const fid = `${roundId.current}-${wordItem.id}`;
+        setFlyups((f) => [...f, { id: fid, amount: computeRoundXp({ itemsCorrect: 1 }).amount }]);
+        setTimeout(() => setFlyups((f) => f.filter((x) => x.id !== fid)), 900);
       }
-    } else {
-      setWrongPair({ word, emoji: emojiWord });
+      setFeedback({ type: "match", wordId: wordItem.id, picId: picItem.id });
       setTimeout(() => {
-        setWrongPair(null);
-        setSelectedWord(null);
-        setSelectedEmoji(null);
-      }, 600);
+        busy.current = false;
+        if (finishing.current) return;
+        setFeedback(null);
+        setSolved((prev) => { const next = [...prev, wordItem.id]; advanceOrFinish(next); return next; });
+      }, MATCH_MS);
+    } else {
+      missedOnce.current.add(wordItem.word);
+      setStreak(0);
+      setFeedback({ type: "miss", wordId: wordItem.id, picId: picItem.id });
+      setTimeout(() => {
+        busy.current = false;
+        if (finishing.current) return;
+        setFeedback(null);
+        if (triesRef.current >= budgetRef.current) finishRound("budget");
+      }, MISS_MS);
     }
   };
 
-  const handleWordPick = (w) => {
-    if (matched.has(w.word) || wrongPair) return;
-    setSelectedWord(w.word);
-    if (selectedEmoji) { setMoves((m) => m + 1); tryCheck(w.word, selectedEmoji); }
+  const onWordTap = (it) => {
+    if (phase !== "playing" || busy.current || solved.includes(it.id)) return;
+    if (selected?.side === "pic") {
+      const pic = (sets[setIndex] || []).find((x) => x.id === selected.id);
+      if (pic) resolve(it, pic);
+      return;
+    }
+    setSelected(selected?.side === "word" && selected.id === it.id ? null : { side: "word", id: it.id });
   };
-  const handleEmojiPick = (w) => {
-    if (matched.has(w.word) || wrongPair) return;
-    setSelectedEmoji(w.word);
-    if (selectedWord) { setMoves((m) => m + 1); tryCheck(selectedWord, w.word); }
+  const onPicTap = (it) => {
+    if (phase !== "playing" || busy.current || solved.includes(it.id)) return;
+    if (selected?.side === "word") {
+      const word = (sets[setIndex] || []).find((x) => x.id === selected.id);
+      if (word) resolve(word, it);
+      return;
+    }
+    setSelected(selected?.side === "pic" && selected.id === it.id ? null : { side: "pic", id: it.id });
   };
 
-  const replay = () => setSeed((s) => s + 1);
+  const stateOfWord = (it) => solved.includes(it.id) ? "solved" : feedback?.wordId === it.id ? feedback.type : selected?.side === "word" && selected.id === it.id ? "selected" : "idle";
+  const stateOfPic = (it) => solved.includes(it.id) ? "solved" : feedback?.picId === it.id ? feedback.type : selected?.side === "pic" && selected.id === it.id ? "selected" : "idle";
 
-  if (pairs.length < 2) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-muted/30 px-4">
-        <BookOpen className="w-10 h-10 text-muted-foreground/40 mb-3" />
-        <p className="text-sm text-muted-foreground mb-5 text-center">
-          Not enough picture-mappable words in this unit yet.
-        </p>
-        <button
-          onClick={onBack}
-          className="h-11 px-5 rounded-xl bg-primary text-primary-foreground font-semibold select-none"
-        >
-          Back to Skill Hub
-        </button>
-      </div>
-    );
-  }
-
-  if (finished) {
-    return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-10">
-        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="w-full max-w-sm text-center">
-          <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/15 flex items-center justify-center mb-5">
-            <Trophy className="w-10 h-10 text-emerald-600" />
-          </div>
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-500 mb-1">Picture Match</p>
-          <h2 className="text-2xl font-bold text-foreground mb-1">All matched!</h2>
-          <p className="text-sm text-muted-foreground mb-6">
-            {pairsFound} pairs · {moves} moves · {pairsFound * 10} XP
-          </p>
-          <div className="flex gap-3">
-            <button onClick={replay} className="flex-1 h-12 rounded-xl border-2 border-border bg-card text-foreground font-semibold flex items-center justify-center gap-2 hover:bg-muted/50 transition-colors select-none">
-              <RotateCcw className="w-4 h-4" /> Play again
-            </button>
-            <button onClick={onBack} className="flex-1 h-12 rounded-xl bg-gradient-to-b from-blue-500 to-blue-700 text-white font-semibold flex items-center justify-center gap-2 shadow-lg select-none">
-              <BookOpen className="w-4 h-4" /> Skill Hub
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
+  const current = sets[setIndex] || [];
+  const pictures = picOrder.map((id) => current.find((x) => x.id === id)).filter(Boolean);
+  const playing = phase === "playing";
+  const liveXp = sessionXp + (playing ? computeRoundXp({ itemsCorrect: firstTryCount, streakBest }).amount : 0);
+  const progress = roundItems.current.length ? solved.length / roundItems.current.length : 0;
+  const triesLeft = Math.max(0, budget - tries);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="bg-background/80 backdrop-blur-xl border-b border-border px-4 py-3 flex items-center justify-between safe-header">
-        <button onClick={onBack} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground select-none">
-          <ArrowLeft className="w-4 h-4" /> Back
-        </button>
-        <span className="text-xs font-bold text-blue-600">Picture Match</span>
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-600 text-xs font-bold select-none">
-          <Star className="w-3.5 h-3.5" /> {pairsFound}
-        </div>
-      </header>
+    <div className="min-h-screen bg-background premium-mesh flex flex-col">
+      <PictureMatchHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} triesLeft={triesLeft} showTries={playing && budget > 0} lowTries={budget > 0 && triesLeft <= Math.ceil(budget * 0.25)} />
 
-      <div className="h-1 bg-muted">
-        <motion.div
-          className="h-full bg-gradient-to-r from-blue-500 to-indigo-600"
-          animate={{ width: `${(matched.size / pairs.length) * 100}%` }}
-        />
+      <div className="h-1 bg-white/5" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <motion.div className="h-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT}aa)` }} animate={{ width: `${progress * 100}%` }} transition={{ duration: rm ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} />
       </div>
 
-      <div className="flex-1 flex flex-col px-4 py-6 max-w-lg mx-auto w-full">
-        <p className="text-xs text-muted-foreground mb-4 text-center">
-          Tap a word, then tap its matching picture.
-        </p>
-
-        <div className="grid grid-cols-2 gap-3">
-          {/* words */}
-          <div className="flex flex-col gap-2.5">
-            {pairs.map((p) => {
-              const isMatched = matched.has(p.word);
-              const isSelected = selectedWord === p.word;
-              const isWrong = wrongPair && wrongPair.word === p.word;
-              return (
-                <motion.button
-                  key={p.word}
-                  onClick={() => handleWordPick(p)}
-                  disabled={isMatched || wrongPair}
-                  whileTap={isMatched || wrongPair ? undefined : { scale: 0.96 }}
-                  animate={isWrong ? { x: [0, -6, 6, -4, 0] } : {}}
-                  className={`relative rounded-xl border-2 px-3 py-3 text-sm font-semibold transition-colors select-none min-h-[56px] flex items-center justify-center ${
-                    isMatched
-                      ? "bg-emerald-500/15 border-emerald-500/60 text-emerald-700 dark:text-emerald-400"
-                      : isSelected
-                      ? "bg-primary/15 border-primary text-primary"
-                      : "bg-card border-border text-foreground hover:border-primary/50"
-                  }`}
-                >
-                  {p.word}
-                  {isMatched && <Check className="w-3.5 h-3.5 absolute top-1.5 right-1.5 text-emerald-500" />}
-                </motion.button>
-              );
-            })}
-          </div>
-          {/* emojis */}
-          <div className="flex flex-col gap-2.5">
-            {emojis.map((p) => {
-              const isMatched = matched.has(p.word);
-              const isSelected = selectedEmoji === p.word;
-              const isWrong = wrongPair && wrongPair.emoji === p.word;
-              return (
-                <motion.button
-                  key={p.word}
-                  onClick={() => handleEmojiPick(p)}
-                  disabled={isMatched || wrongPair}
-                  whileTap={isMatched || wrongPair ? undefined : { scale: 0.96 }}
-                  animate={isWrong ? { x: [0, 6, -6, 4, 0] } : {}}
-                  className={`relative rounded-xl border-2 px-3 py-2 text-4xl leading-none transition-colors select-none min-h-[56px] flex items-center justify-center ${
-                    isMatched
-                      ? "bg-emerald-500/15 border-emerald-500/60"
-                      : isSelected
-                      ? "bg-primary/15 border-primary"
-                      : "bg-card border-border hover:border-primary/50"
-                  }`}
-                >
-                  <span>{p.emoji}</span>
-                  {isMatched && <Check className="w-3.5 h-3.5 absolute top-1.5 right-1.5 text-emerald-500" />}
-                </motion.button>
-              );
-            })}
-          </div>
+      <div className="flex-1 flex flex-col px-3 py-4 max-w-lg mx-auto w-full relative">
+        <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center z-20" aria-live="polite">
+          <AnimatePresence>
+            {flyups.map((f) => (
+              <motion.span key={f.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: -18 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: rm ? 0.1 : 0.8, ease: "easeOut" }} className="absolute text-sm font-bold text-amber-300 drop-shadow">
+                +{f.amount} {c("xp")}
+              </motion.span>
+            ))}
+          </AnimatePresence>
         </div>
 
-        <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-6">
-          <span>Moves: {moves}</span>
-          <span aria-hidden>·</span>
-          <span className="flex items-center gap-1">
-            <Star className="w-3 h-3 text-amber-400" /> {pairsFound}/{pairs.length}
-          </span>
-        </div>
+        {phase === "empty" && (
+          <div className="premium-card flex-1 flex flex-col items-center justify-center text-center p-8">
+            <BookOpen className="w-10 h-10 text-muted-foreground/40 mb-3" aria-hidden="true" />
+            <p className="text-sm text-muted-foreground mb-5">{c("empty")}</p>
+            <button onClick={onBack} className="h-12 px-6 rounded-xl text-white font-semibold select-none" style={{ background: ACCENT }}>{t("nav.skill_hub")}</button>
+          </div>
+        )}
+
+        {phase === "loading" && (
+          <div className="premium-card flex-1 flex flex-col items-center justify-center text-center p-8">
+            <Loader2 className="w-8 h-8 animate-spin mb-3" style={{ color: ACCENT }} aria-hidden="true" />
+            <p className="text-sm text-muted-foreground">{c("loading")}</p>
+          </div>
+        )}
+
+        {playing && (
+          <>
+            <p className="text-[11px] text-muted-foreground mb-3">{c("panel", { n: setIndex + 1, total: sets.length })} · {c("item_progress", { n: firstTryCount, total: roundItems.current.length })}</p>
+            <p className="text-xs text-muted-foreground text-center mb-3">{c("instruction")}</p>
+
+            <PictureMatchSet items={current} pictures={pictures} accent={ACCENT} stateOfWord={stateOfWord} stateOfPic={stateOfPic} onWordTap={onWordTap} onPicTap={onPicTap} />
+
+            <div className="h-8 mt-3 flex items-center justify-center" aria-live="polite">
+              <AnimatePresence mode="wait">
+                {feedback && (
+                  <motion.span key={feedback.type + feedback.wordId} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: rm ? 0 : 0.2 }} className={`flex items-center gap-1.5 text-sm font-semibold ${feedback.type === "match" ? "text-emerald-400" : "text-rose-400"}`}>
+                    {feedback.type === "match" ? <Check className="w-4 h-4" aria-hidden="true" /> : <X className="w-4 h-4" aria-hidden="true" />}
+                    {feedback.type === "match" ? c("match") : c("miss")}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </div>
+          </>
+        )}
+
+        {phase === "result" && summary && (
+          <div className="flex-1 flex items-center">
+            <PictureMatchResult summary={summary} items={roundItems.current} accent={ACCENT} onKeepGoing={() => startRound(streak)} onPlayAgain={() => { setSessionXp(0); startRound(0); }} onExit={onBack} />
+          </div>
+        )}
       </div>
     </div>
   );

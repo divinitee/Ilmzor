@@ -1,0 +1,100 @@
+import { useCallback } from "react";
+import { useAppLang } from "@/hooks/useAppLang";
+
+// Local copy for Picture Match only, following definitionMatchCopy.js.
+const COPY = {
+  en: {
+    title: "Picture Match",
+    instruction: "Tap a word, then tap its matching picture.",
+    xp: "XP",
+    streak: "Streak",
+    attempts: "Tries left",
+    panel: "Set {n} of {total}",
+    item_progress: "{n}/{total} words",
+    match: "Correct!",
+    miss: "Not that one",
+    badge_saved: "Saved by you",
+    badge_wrong_before: "This one beat you last time",
+    badge_wrong_after: "You beat it",
+    loading: "Building your round…",
+    empty: "Not enough picture-mappable words for this game yet.",
+    result_title: "Round complete",
+    result_out_of_attempts: "Out of tries",
+    result_pass: "Sharp eyes!",
+    result_fail: "Keep practicing",
+    matched: "First-try correct",
+    tries_used: "Tries used",
+    accuracy: "Accuracy",
+    best_streak: "Best streak",
+    streak_bonus: "Streak bonus +{n}",
+    words_this_round: "Words in this round",
+    keep_going: "Keep going",
+    play_again: "Play again",
+  },
+  uz: {
+    title: "Rasm Mosla",
+    instruction: "So'zni tanlang, so'ng unga mos rasmni tanlang.",
+    xp: "XP",
+    streak: "Ketma-ketlik",
+    attempts: "Qolgan urinish",
+    panel: "{total} tadan {n}-to'plam",
+    item_progress: "{n}/{total} so'z",
+    match: "To'g'ri!",
+    miss: "Bu emas",
+    badge_saved: "Siz saqlagansiz",
+    badge_wrong_before: "O'tgan safar adashtirgan so'z",
+    badge_wrong_after: "Endi yengdingiz",
+    loading: "Tur tayyorlanmoqda…",
+    empty: "Bu o'yin uchun rasmli so'zlar hozircha yetarli emas.",
+    result_title: "Tur yakunlandi",
+    result_out_of_attempts: "Urinishlar tugadi",
+    result_pass: "Ko'zingiz o'tkir!",
+    result_fail: "Mashq qilishda davom eting",
+    matched: "Birinchi urinishda to'g'ri",
+    tries_used: "Ishlatilgan urinish",
+    accuracy: "Aniqlik",
+    best_streak: "Eng uzun ketma-ketlik",
+    streak_bonus: "Ketma-ketlik bonusi +{n}",
+    words_this_round: "Bu turdagi so'zlar",
+    keep_going: "Davom etish",
+    play_again: "Qayta o'ynash",
+  },
+  ru: {
+    title: "Подбор картинок",
+    instruction: "Нажмите на слово, затем на подходящую картинку.",
+    xp: "XP",
+    streak: "Серия",
+    attempts: "Попыток осталось",
+    panel: "Набор {n} из {total}",
+    item_progress: "{n}/{total} слов",
+    match: "Верно!",
+    miss: "Не то",
+    badge_saved: "Вы сохранили",
+    badge_wrong_before: "В прошлый раз не получилось",
+    badge_wrong_after: "Вы справились",
+    loading: "Готовим раунд…",
+    empty: "Пока недостаточно слов с картинками для этой игры.",
+    result_title: "Раунд завершён",
+    result_out_of_attempts: "Попытки закончились",
+    result_pass: "Острый глаз!",
+    result_fail: "Продолжайте тренироваться",
+    matched: "Верно с первой попытки",
+    tries_used: "Использовано попыток",
+    accuracy: "Точность",
+    best_streak: "Лучшая серия",
+    streak_bonus: "Бонус за серию +{n}",
+    words_this_round: "Слова этого раунда",
+    keep_going: "Продолжить",
+    play_again: "Играть снова",
+  },
+};
+
+export function usePictureCopy() {
+  const { lang, t } = useAppLang();
+  const c = useCallback((key, vars) => {
+    let s = (COPY[lang] || COPY.en)[key] ?? COPY.en[key] ?? key;
+    if (vars) for (const [k, v] of Object.entries(vars)) s = s.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+    return s;
+  }, [lang]);
+  return { c, t, lang };
+}
