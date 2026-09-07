@@ -39,7 +39,12 @@ export const SKILL_CHILDREN = {
       // a band thin on concrete nouns can shrink the round, so this is the
       // full-round floor, not a guarantee.
       { name: "Picture Match", game: "picture_match", difficulty: "Medium", time: "2-3 min", xp: 80 },
-      { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "8 min", xp: 100 },
+      // Honest label, 2026-09-07: the rebuilt engine runs 8-12 words, one
+      // sentence each, with an attempt budget and no clock — measured around
+      // 3-4 min. XP is the floor (8 first-try picks × 10 base at the beginner
+      // tier); the clue escalates by the student's own level, so the same node
+      // is a translation choice at A1 and a near-synonym discrimination at C1.
+      { name: "Context Guess", game: "context_guess", difficulty: "Hard", time: "3-4 min", xp: 80 },
       // Honest label, 2026-09-06: the rebuilt engine runs 12–21 pairs by tier
       // with a study reveal and no clock, which measured out around 3–5 min
       // rather than the 3 min this node used to advertise. XP is the floor

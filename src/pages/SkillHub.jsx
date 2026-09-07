@@ -155,7 +155,9 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       // RewardEvent / WordAttempt logging.
       return <DefinitionMatchGame {...base} user={user} />;
     if (activeGame.game === "context_guess")
-      return <ContextGuessGame {...base} />;
+      // Standard signature since the 2026-09-07 rebuild — takes `user` on top
+      // of base for round composition and reward / attempt logging.
+      return <ContextGuessGame {...base} user={user} />;
     // Memory Flip's production engine as of 2026-09-06 (bake-off winner; the
     // previous MemoryFlipGame.jsx and the CardFlipOpus entry were removed with
     // it, and remain in git history and the checkpoints if ever needed).
