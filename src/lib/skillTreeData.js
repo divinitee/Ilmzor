@@ -45,7 +45,13 @@ export const SKILL_CHILDREN = {
       // Was fully built but only ever referenced under Reading, which is
       // comingSoon — unreachable in the live UI despite working. Wired in
       // here per the founder's confirmed placement (2026-09-04).
-      { name: "Definition", game: "definition", difficulty: "Hard", time: "8 min", xp: 100 },
+      // Honest label, 2026-09-07: the refined engine reads the shown definition
+      // from the database (no AI wait) and grades each written answer with one
+      // AI call. This node is "Hard" and the game unlocks at B1, so the lowest
+      // tier it can ever run at is advanced (7 answers) — floor XP is
+      // 7 cleared × 10 base = 70, before any streak bonus. Seven written
+      // answers plus grading measured around 6–9 min.
+      { name: "Definition", game: "definition", difficulty: "Hard", time: "6-9 min", xp: 70 },
     ]),
     C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
     C("Spelling", ["Typing", "Letter order", "Missing letters"], [

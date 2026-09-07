@@ -1,13 +1,47 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { base44 } from "@/api/base44Client";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Loader2, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Sparkles } from "lucide-react";
-import { useAppLang } from "@/hooks/useAppLang";
 import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
-import { demandPromptHint } from "@/lib/levels";
+import { definitionForLevel } from "@/lib/definitionTiers";
+import { SKILLS, GAME_SKILL_MAP } from "@/lib/gameSkills";
+import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
+import { buildPersonalizedRound, logWordAttempts } from "@/lib/roundComposition";
+import { evaluateDefinition, averageScore, clearedBar } from "@/components/games/definitionGrader";
+import { useDefinitionCopy } from "@/components/games/definitionCopy";
+import DefinitionHud from "@/components/games/DefinitionHud";
+import DefinitionPrompt from "@/components/games/DefinitionPrompt";
+import DefinitionFeedback from "@/components/games/DefinitionFeedback";
+import DefinitionResult from "@/components/games/DefinitionResult";
+//
+// Definition — refined 2026-09-07 to the five-layer game standard.
+//
+// THE MECHANIC IS UNCHANGED: the student reads a word + definition + example and
+// writes the meaning in their own words; evaluateDefinition() (definitionGrader.js,
+// prompt untouched) scores it on accuracy / completeness / own-words and gives
+// one tip. This is the app's only free-text engine and stays that way.
+//
+// WHAT CHANGED: the round's SHOWN definitions no longer come from a second LLM
+// call at round start. They resolve through definitionForLevel() — the
+// student's own def_a2/def_b1/def_b2/def_c1 tier — and the example is the
+// word's own example_en. So: no "preparing round" AI wait, one AI call per
+// answer instead of one-plus-one-per-session, and text written for the
+// student's level rather than "approximately B1 for everyone". Consequently the
+// AI gate only applies at submit time — a student with no allowance left can
+// still open the round (nothing is spent building it); they just can't be
+// graded until it resets.
+//
+// SCORING: gameScoring.js only. "Correct" for a free-text answer = the grader's
+// average clears CLEAR_AVG (definitionGrader.js). The grader's own 1-5 `xp`
+// is still returned but no longer drives the economy. Pass/fail on the result
+// screen is roundPassed(), not a pool×4 threshold invented here.
+//
+// LOGGING: both signals. A cleared answer is correct:true, a below-bar answer
+// is correct:false — unlike a matching game there is no "forgot a position"
+// ambiguity; the student read the word and could not explain it.
 
-const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
+const GAME = "definition";
+const ACCENT = SKILLS.find((s) => s.key === GAME_SKILL_MAP[GAME])?.color || "#CE6A86";
 
 const DIFF_CONFIG = {
   beginner:     { count: 5,  minWords: 5 },
@@ -16,144 +50,56 @@ const DIFF_CONFIG = {
   proficient:   { count: 8,  minWords: 16 },
 };
 
-function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-
-// Generate definitions for a batch of words via LLM.
-async function generateDefinitions(words, level) {
-  const wordList = words.map(w => ({ uzbek: w.uzbek, english: w.english, russian: w.russian || "" }));
-  const res = await base44.integrations.Core.InvokeLLM({
-    prompt: `You are an English vocabulary teacher for ${level || "B1"}-level learners. For each word below, write a clear English definition (one sentence, max 18 words). ${demandPromptHint(level)} Reply as a JSON array where each item has "english" (the word), "definition" (your definition), and "example" (a short example sentence using the word). Words: ${JSON.stringify(wordList)}`,
-    response_json_schema: {
-      type: "object",
-      properties: {
-        items: {
-          type: "array",
-          items: {
-            type: "object",
-            properties: {
-              english: { type: "string" },
-              definition: { type: "string" },
-              example: { type: "string" },
-            },
-          },
-        },
-      },
-    },
-  });
-  const items = res.items || [];
-  const map = {};
-  items.forEach(it => { map[it.english?.toLowerCase()] = it; });
-  return map;
-}
-
-// Evaluate a user-written definition and award 1-5 XP.
-async function evaluateDefinition(userDef, word, cfg, level) {
-  try {
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: [
-        `You are a strict but fair English vocabulary examiner for ${level || "B1"}-level learners.`,
-        `Target word (English): "${word.english}" — Uzbek: "${word.uzbek}".`,
-        `Reference definition: "${word.definition || ""}".`,
-        `The student rewrote the definition in their own words:`,
-        `"${userDef}".`,
-        ``,
-        `Evaluate the student's text ONLY on meaning, not wording. A paraphrase that uses completely different words but keeps the correct meaning is EXCELLENT (accuracy 90-100). A definition that is factually wrong scores 0-20 on accuracy.`,
-        ``,
-        `Score these criteria each 0-100 (whole numbers):`,
-        `- accuracy: does it convey the CORRECT meaning of "${word.english}"? (synonyms/paraphrase = high; wrong meaning = low)`,
-        `- completeness: does it capture the key idea, not just a vague synonym?`,
-        `- own_words: did the student paraphrase rather than copy the reference almost word-for-word? (near-copy = 0-30)`,
-        ``,
-        `Then reward XP (integer 1-5) from the AVERAGE of the three scores:`,
-        `>=85 → 5, 70-84 → 4, 55-69 → 3, 35-54 → 2, <35 → 1.`,
-        `Minimum ${cfg.minWords} words expected; much shorter answers subtract ~10 from each score.`,
-        `Also give ONE concrete, specific tip (max 15 words) pointing out exactly what to improve — not generic praise.`,
-        `Reply as JSON only.`,
-      ].join("\n"),
-      response_json_schema: {
-        type: "object",
-        properties: {
-          accuracy: { type: "number" },
-          completeness: { type: "number" },
-          own_words: { type: "number" },
-          xp: { type: "number" },
-          tip: { type: "string" },
-        },
-      },
-    });
-    const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
-    let xp = Math.round(Number(res.xp) || 0);
-    xp = Math.max(1, Math.min(5, xp));
-    return {
-      accuracy: clamp(res.accuracy),
-      completeness: clamp(res.completeness),
-      own_words: clamp(res.own_words),
-      xp,
-      tip: res.tip || "",
-    };
-  } catch {
-    return { accuracy: 0, completeness: 0, own_words: 0, xp: 1, tip: "" };
-  }
-}
-
-export default function DefinitionGame({ words, unitName, onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", level }) {
-  const { t } = useAppLang();
+export default function DefinitionGame({ words = [], onBack, user, onXpEarned, onGameComplete, difficulty = "intermediate", level }) {
+  const { c, t, lang } = useDefinitionCopy();
+  const rm = useReducedMotion();
   const cfg = DIFF_CONFIG[difficulty] || DIFF_CONFIG.intermediate;
+  // Only words that resolve to a shown definition at this student's tier.
+  const pool = useMemo(() => words.filter((w) => w?.english && definitionForLevel(w, level, lang)), [words, level, lang]);
 
-  const [pool, setPool] = useState([]);
-  const [defs, setDefs] = useState({});
-  const [loadingDefs, setLoadingDefs] = useState(true);
+  const [phase, setPhase] = useState(pool.length ? "loading" : "empty"); // loading | playing | result | empty
+  const [items, setItems] = useState([]);
   const [qIndex, setQIndex] = useState(0);
   const [answer, setAnswer] = useState("");
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState(null); // grader output | { blocked: true }
   const [checking, setChecking] = useState(false);
-  const [totalXp, setTotalXp] = useState(0);
-  const [done, setDone] = useState(false);
-  // Capture words once on mount so a parent re-render (e.g. XP update) does NOT
-  // re-run start() and reset the in-progress round.
-  const wordsRef = useRef(words);
-  wordsRef.current = words;
+  const [streak, setStreak] = useState(0);
+  const [streakBest, setStreakBest] = useState(0);
+  const [clearedCount, setClearedCount] = useState(0);
+  const [summary, setSummary] = useState(null);
+  const [flyup, setFlyup] = useState(null);
+
+  const roundId = useRef(null);
+  const cleared = useRef(new Set());
+  const scores = useRef([]);
+  const streakBestRef = useRef(0);
   const startedRef = useRef(false);
 
-  const [gateBlocked, setGateBlocked] = useState(false);
+  const startRound = useCallback(async () => {
+    if (!pool.length) { setPhase("empty"); return; }
+    setPhase("loading");
+    roundId.current = generateRoundId();
+    cleared.current = new Set();
+    scores.current = [];
+    streakBestRef.current = 0;
+    const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: Math.min(cfg.count, pool.length) });
+    setItems(chosen.map((w) => ({
+      english: w.english, uzbek: w.uzbek, wordId: w.id, provenance: w._provenance,
+      definition: definitionForLevel(w, level, lang), example: w.example_en || "",
+    })));
+    setQIndex(0); setAnswer(""); setResult(null); setSummary(null); setFlyup(null);
+    setStreak(0); setStreakBest(0); setClearedCount(0);
+    setPhase("playing");
+  }, [pool, cfg.count, user?.email, level, lang]);
 
-  const start = useCallback(async () => {
-    const ws = wordsRef.current;
-    if (!ws.length) return;
-    const target = Math.min(cfg.count, ws.length);
-    const picked = shuffle(ws).slice(0, target);
-    setPool(picked);
-    setQIndex(0);
-    setAnswer("");
-    setResult(null);
-    setTotalXp(0);
-    setDone(false);
-    setGateBlocked(false);
-
-    // Building the round's definitions is itself an AI call (one per
-    // session, not per answer) — no local fallback content source exists
-    // for it, so if today's allowance is already gone there's nothing
-    // honest to show; block before spending anything rather than starting
-    // a game that can never finish.
-    if (user) {
-      const gate = await checkAiGate(user.email, user.id, user.role === "admin");
-      if (!gate.allowed) { setGateBlocked(true); return; }
-    }
-
-    setLoadingDefs(true);
-    generateDefinitions(picked, level)
-      .then(map => { setDefs(map); if (user) incrementAiUsage(user.email, user.id, "").catch(() => {}); })
-      .finally(() => setLoadingDefs(false));
-  }, [cfg.count, user, level]);
-
+  // Words prop re-renders (e.g. after an XP update) must not restart the round.
   useEffect(() => {
     if (startedRef.current) return;
     startedRef.current = true;
-    start();
-  }, [start]);
+    startRound();
+  }, [startRound]);
 
-  const current = pool[qIndex];
-  const currentDef = current ? defs[current.english?.toLowerCase()] : null;
+  const current = items[qIndex];
 
   const handleSubmit = async () => {
     if (!answer.trim() || checking || !current) return;
@@ -161,181 +107,130 @@ export default function DefinitionGame({ words, unitName, onBack, user, onXpEarn
     if (user) {
       const gate = await checkAiGate(user.email, user.id, user.role === "admin");
       if (!gate.allowed) {
-        // Don't fabricate a score/XP for an ungraded answer — same rule
-        // as LessonRunner: no allowance left means this attempt just stays
-        // ungraded, not silently wrong.
+        // No allowance left means this attempt stays ungraded — never a
+        // fabricated score (same rule as LessonRunner).
         setResult({ blocked: true });
         setChecking(false);
         return;
       }
     }
-    const enriched = { ...current, definition: currentDef?.definition || current.description || "" };
-    const res = await evaluateDefinition(answer, enriched, cfg, level);
+    const res = await evaluateDefinition(answer, { english: current.english, uzbek: current.uzbek, definition: current.definition }, cfg, level);
     if (user) incrementAiUsage(user.email, user.id, "").catch(() => {});
+    scores.current.push(averageScore(res));
+    if (clearedBar(res)) {
+      cleared.current.add(current.english);
+      setClearedCount(cleared.current.size);
+      const s = streak + 1;
+      streakBestRef.current = Math.max(streakBestRef.current, s);
+      setStreak(s); setStreakBest(streakBestRef.current);
+      setFlyup({ id: `${roundId.current}-${qIndex}`, amount: computeRoundXp({ itemsCorrect: 1 }).amount });
+      setTimeout(() => setFlyup(null), 900);
+    } else {
+      setStreak(0);
+    }
     setResult(res);
-    setTotalXp(c => c + res.xp);
-    if (onXpEarned && user) onXpEarned(res.xp, res.xp);
     setChecking(false);
   };
 
+  const finishRound = () => {
+    const itemsTotal = items.length;
+    const itemsCorrect = cleared.current.size;
+    const finalStreakBest = streakBestRef.current;
+    const { amount, streakBonus } = computeRoundXp({ itemsCorrect, streakBest: finalStreakBest, hintMultiplier: 1 });
+    recordRoundReward({ userEmail: user?.email, game: GAME, roundId: roundId.current, itemsTotal, itemsCorrect, streakBest: finalStreakBest, hintMultiplier: 1, level });
+    logWordAttempts({
+      userEmail: user?.email, game: GAME, level, roundId: roundId.current,
+      items: items.map((it) => ({ word: it.english, wordId: it.wordId, correct: cleared.current.has(it.english) })),
+    });
+    const scorePct = itemsTotal ? Math.round((itemsCorrect / itemsTotal) * 100) : 0;
+    onXpEarned?.(amount, itemsCorrect);
+    onGameComplete?.({ scorePct, correct: itemsCorrect, total: itemsTotal });
+    const avgPct = scores.current.length ? Math.round(scores.current.reduce((a, b) => a + b, 0) / scores.current.length) : 0;
+    setSummary({ passed: roundPassed(itemsCorrect, itemsTotal), amount, streakBonus, itemsCorrect, itemsTotal, avgPct, streakBest: finalStreakBest, cleared: [...cleared.current] });
+    setPhase("result");
+  };
+
   const handleNext = () => {
-    if (qIndex + 1 >= pool.length) { setDone(true); return; }
-    setQIndex(i => i + 1);
+    if (qIndex + 1 >= items.length) { finishRound(); return; }
+    setQIndex((i) => i + 1);
     setAnswer("");
     setResult(null);
   };
 
-  // record skill progress once on completion
-  useEffect(() => {
-    if (!done || pool.length === 0) return;
-    const max = pool.length * 5;
-    const pct = max ? Math.round((totalXp / max) * 100) : 0;
-    if (onGameComplete) onGameComplete({ scorePct: pct, correct: totalXp, total: max });
-  }, [done]); /* eslint-disable-next-line */
-
-  if (!words.length) {
-    return (
-      <div className="max-w-sm mx-auto px-4 py-16 text-center">
-        <p className="text-muted-foreground text-sm mb-4">{t("gameui.def_no_words")}</p>
-        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
-      </div>
-    );
-  }
-
-  if (gateBlocked) {
-    return (
-      <div className="max-w-sm mx-auto px-4 py-16 text-center">
-        <p className="text-muted-foreground text-sm mb-4">{AI_LIMIT_MSG}</p>
-        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
-      </div>
-    );
-  }
-
-  if (done) {
-    return (
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto px-4 py-10 text-center">
-        <div className="text-6xl mb-4">{totalXp >= pool.length * 4 ? "🏆" : totalXp >= pool.length * 2 ? "👍" : "📚"}</div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">{t("gameui.def_done")}</h2>
-        <p className="text-muted-foreground mb-1">{unitName}</p>
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.2 }}
-          className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-5 mb-5 mt-4 flex items-center justify-center gap-3"
-        >
-          <span className="text-3xl">⚡</span>
-          <div>
-            <p className="text-3xl font-bold text-amber-600">+{totalXp}</p>
-            <p className="text-xs text-muted-foreground">{t("gameui.def_total_coins")}</p>
-          </div>
-        </motion.div>
-        <p className="text-sm text-muted-foreground mb-6">{t("gameui.def_max_possible", { max: pool.length * 5 })}</p>
-        <Button onClick={start} className="w-full mb-2">{t("gameui.retry")}</Button>
-        <Button variant="outline" onClick={onBack} className="w-full">{t("gameui.back")}</Button>
-      </motion.div>
-    );
-  }
+  const playing = phase === "playing";
+  const liveXp = playing ? computeRoundXp({ itemsCorrect: clearedCount, streakBest }).amount : summary?.amount || 0;
+  const progress = items.length ? qIndex / items.length : 0;
 
   return (
-    <div className="max-w-sm mx-auto px-4 py-6">
-      <div className="flex items-center justify-between mb-5">
-        <button onClick={onBack} className="text-muted-foreground text-sm hover:text-foreground flex items-center gap-1 select-none">
-          <ArrowLeft className="w-4 h-4" /> {t("gameui.back")}
-        </button>
-        <span className="text-xs text-muted-foreground font-medium">{qIndex + 1} / {pool.length}</span>
-        <span className="text-xs bg-rose-500/10 text-rose-700 dark:text-rose-400 font-semibold px-2.5 py-1 rounded-full">⚡ {totalXp}</span>
+    <div className="min-h-screen bg-background premium-mesh flex flex-col">
+      <DefinitionHud accent={ACCENT} onBack={onBack} xp={liveXp} streak={streak} qIndex={qIndex} total={items.length} showProgress={playing} />
+
+      <div className="h-1 bg-white/5" role="progressbar" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
+        <motion.div className="h-full" style={{ background: `linear-gradient(90deg, ${ACCENT}, ${ACCENT}aa)` }} animate={{ width: `${progress * 100}%` }} transition={{ duration: rm ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }} />
       </div>
 
-      {loadingDefs && (
-        <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin mb-3" />
-          <p className="text-xs text-muted-foreground">{t("gameui.def_preparing")}</p>
-        </div>
-      )}
-
-      {!loadingDefs && current && (
-        <AnimatePresence mode="wait">
-          <motion.div key={qIndex} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.2 }}>
-            <div className="bg-gradient-to-br from-rose-500/10 to-pink-500/10 border border-rose-200 dark:border-rose-800 rounded-2xl p-5 mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <BookOpen className="w-4 h-4 text-rose-600" />
-                <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">{t("gameui.def_word")}</p>
-              </div>
-              <p className="text-2xl font-bold text-foreground">{current.english}</p>
-              {current.uzbek && <p className="text-sm text-muted-foreground mt-1">{current.uzbek}</p>}
-              {currentDef?.definition && (
-                <div className="mt-3 pt-3 border-t border-rose-200 dark:border-rose-800">
-                  <p className="text-xs font-semibold text-rose-700 dark:text-rose-400 mb-1">📖 {t("gameui.def_given")}</p>
-                  <p className="text-sm text-foreground/90">{currentDef.definition}</p>
-                </div>
-              )}
-              {currentDef?.example && (
-                <p className="text-xs italic text-muted-foreground mt-2">“{currentDef.example}”</p>
-              )}
-            </div>
-
-            <div className="bg-amber-500/10 border border-amber-300 dark:border-amber-700 rounded-xl p-3 mb-4">
-              <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">
-                <Sparkles className="inline w-3.5 h-3.5 mr-1" />{t("gameui.def_task")}
-              </p>
-              <p className="text-xs text-foreground/80">{t("gameui.def_task_desc", { min: cfg.minWords })}</p>
-            </div>
-
-            {!result ? (
-              <>
-                <textarea
-                  value={answer}
-                  onChange={e => setAnswer(e.target.value)}
-                  placeholder={t("gameui.def_placeholder")}
-                  className="w-full h-32 px-4 py-3 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors resize-none mb-4"
-                  disabled={checking}
-                />
-                <Button onClick={handleSubmit} disabled={!answer.trim() || checking} className="w-full select-none">
-                  {checking ? t("gameui.checking") : t("gameui.def_submit")}
-                </Button>
-              </>
-            ) : result.blocked ? (
-              <div className="bg-background border border-border rounded-2xl p-5 mb-4 text-center">
-                <p className="text-sm text-muted-foreground mb-4">{AI_LIMIT_MSG}</p>
-                <Button variant="outline" onClick={onBack} className="w-full select-none">{t("gameui.back")}</Button>
-              </div>
-            ) : (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-background border border-border rounded-2xl p-5 mb-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-semibold text-foreground">
-                    {result.xp >= 4 ? t("gameui.def_reward_great") : result.xp >= 2 ? t("gameui.def_reward_ok") : t("gameui.def_reward_low")}
-                  </span>
-                  <motion.div initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="flex items-center gap-1 bg-amber-500/10 px-3 py-1.5 rounded-full">
-                    <span className="text-lg">⚡</span>
-                    <span className="text-xl font-bold text-amber-600">+{result.xp}</span>
-                    <span className="text-xs text-muted-foreground">/ 5</span>
-                  </motion.div>
-                </div>
-                <div className="space-y-2 mb-4">
-                  {[
-                    { label: t("gameui.def_accuracy"), val: result.accuracy },
-                    { label: t("gameui.def_completeness"), val: result.completeness },
-                    { label: t("gameui.def_own_words"), val: result.own_words },
-                  ].map(({ label, val }) => (
-                    <div key={label}>
-                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                        <span>{label}</span><span className="font-semibold text-foreground">{val}%</span>
-                      </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
-                        <motion.div initial={{ width: 0 }} animate={{ width: `${val}%` }} className="h-full rounded-full bg-rose-500" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {result.tip && (
-                  <p className="text-xs text-muted-foreground bg-muted/40 rounded-lg px-3 py-2">💬 {result.tip}</p>
-                )}
-                <Button onClick={handleNext} className="w-full mt-4 select-none">
-                  {qIndex + 1 >= pool.length ? t("gameui.finish") : t("gameui.next_question")}
-                </Button>
-              </motion.div>
+      <div className="flex-1 flex flex-col px-3 py-4 max-w-md mx-auto w-full relative">
+        <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center z-20" aria-live="polite">
+          <AnimatePresence>
+            {flyup && (
+              <motion.span key={flyup.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: -18 }} exit={{ opacity: 0, y: -40 }} transition={{ duration: rm ? 0.1 : 0.8, ease: "easeOut" }} className="absolute text-sm font-bold text-amber-300 drop-shadow">
+                +{flyup.amount} {c("xp")}
+              </motion.span>
             )}
-          </motion.div>
-        </AnimatePresence>
-      )}
+          </AnimatePresence>
+        </div>
+
+        {phase === "empty" && (
+          <div className="premium-card flex-1 flex flex-col items-center justify-center text-center p-8">
+            <BookOpen className="w-10 h-10 text-muted-foreground/40 mb-3" aria-hidden="true" />
+            <p className="text-sm text-muted-foreground mb-5">{t("gameui.def_no_words")}</p>
+            <button onClick={onBack} className="h-12 px-6 rounded-xl text-white font-semibold select-none" style={{ background: ACCENT }}>{t("nav.skill_hub")}</button>
+          </div>
+        )}
+
+        {phase === "loading" && (
+          <div className="premium-card flex-1 flex flex-col items-center justify-center text-center p-8">
+            <Loader2 className="w-8 h-8 animate-spin mb-3" style={{ color: ACCENT }} aria-hidden="true" />
+            <p className="text-sm text-muted-foreground">{c("loading")}</p>
+          </div>
+        )}
+
+        {playing && current && (
+          <AnimatePresence mode="wait">
+            <motion.div key={qIndex} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: rm ? 0 : 0.2 }}>
+              <DefinitionPrompt item={current} accent={ACCENT} minWords={cfg.minWords} />
+
+              {!result ? (
+                <>
+                  <textarea
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    placeholder={t("gameui.def_placeholder")}
+                    className="w-full h-32 px-4 py-3 border border-white/10 rounded-xl text-sm bg-white/[0.04] text-foreground focus:border-white/30 focus:outline-none transition-colors resize-none mb-4"
+                    disabled={checking}
+                  />
+                  <Button onClick={handleSubmit} disabled={!answer.trim() || checking} className="w-full select-none">
+                    {checking ? t("gameui.checking") : t("gameui.def_submit")}
+                  </Button>
+                </>
+              ) : result.blocked ? (
+                <div className="premium-card p-5 mb-4 text-center">
+                  <p className="text-sm text-muted-foreground mb-4">{c("ai_limit")}</p>
+                  <Button variant="outline" onClick={onBack} className="w-full select-none">{t("gameui.back")}</Button>
+                </div>
+              ) : (
+                <DefinitionFeedback result={result} accent={ACCENT} isLast={qIndex + 1 >= items.length} onNext={handleNext} />
+              )}
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {phase === "result" && summary && (
+          <div className="flex-1 flex items-center">
+            <DefinitionResult summary={summary} items={items} accent={ACCENT} onPlayAgain={startRound} onExit={onBack} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
