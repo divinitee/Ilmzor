@@ -108,8 +108,30 @@ export const SKILL_CHILDREN = {
       // groups × 10 base = 50. Recognition task, not production.
       { name: "Root Hunt", game: "wordforms", bank: "root_hunt", difficulty: "Medium", time: "3-4 min", xp: 50 },
     ]),
-    C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
-    C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
+    C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], [
+      // Honest label, 2026-09-07: rebuilt onto a new "usage" game key (was
+      // "sentence" — SentenceBuilderGame's "write a sentence from theme
+      // words" mechanic, which none of these four labels actually do).
+      // fill_blank: 8 words at intermediate tier, sentence from example_en
+      // with the word blanked, 4 MCQ options — measured around 2-3 min.
+      // Floor XP is 8 first-try picks × 10 base = 80.
+      { name: "Fill the Blank", game: "usage", bank: "fill_blank", difficulty: "Easy", time: "2-3 min", xp: 80 },
+      // best_word: 8 words at intermediate tier, same sentence but distractors
+      // are synonyms from synonymTiers.js — a register/nuance test — measured
+      // around 2-3 min. Floor XP is 8 first-try picks × 10 base = 80.
+      { name: "Choose the Best Word", game: "usage", bank: "best_word", difficulty: "Medium", time: "2-3 min", xp: 80 },
+      // sentence_repair: 8 entries at intermediate tier from a 20-entry
+      // hand-authored bank, sentence with wrong word choice + 4 MCQ options
+      // — measured around 2-3 min. Floor XP is 8 first-try picks × 10 base = 80.
+      { name: "Sentence Repair", game: "usage", bank: "sentence_repair", difficulty: "Hard", time: "2-3 min", xp: 80 },
+    ]),
+    C("Phrases & Chunks", ["Collocations", "Fixed expressions"], [
+      // collocation_match: 8 entries at intermediate tier from a 20-entry
+      // hand-authored bank, "make a ___" → pick the word that forms a natural
+      // fixed expression — measured around 2-3 min. Floor XP is 8 first-try
+      // picks × 10 base = 80.
+      { name: "Collocation Match", game: "usage", bank: "collocation_match", difficulty: "Medium", time: "2-3 min", xp: 80 },
+    ]),
     C("Relationships", ["Synonyms", "Antonyms", "Related words"], [
       // Honest label, 2026-09-07: its own engine now (was pointing at the
       // generic translation drill). 8 words at the beginner tier, one pick each,

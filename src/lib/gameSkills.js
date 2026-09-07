@@ -28,6 +28,12 @@ export const GAME_SKILL_MAP = {
   spelling: "spelling",
   definition: "comprehension",
   sentence: "creativity",
+  // Vocabulary > Usage + Phrases & Chunks (2026-09-07). New key, not "sentence"
+  // — these four modes are word-selection tasks (pick the word that fills a
+  // blank, fits a context, fixes a wrong word, or completes a collocation),
+  // not free-text sentence creation. Mapped to "vocabulary" (not
+  // "creativity" like sentence) because the student selects, not writes.
+  usage: "vocabulary",
   odd_one_out: "vocabulary",
   // "grammar" (GrammarQuizGame) and these 4 "Meaning" games were all
   // missing from this map entirely — recordGameResult() early-returns

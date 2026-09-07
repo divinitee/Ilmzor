@@ -6,6 +6,7 @@ import { Star, Sparkles, BookmarkPlus } from "lucide-react";
 import SkillStage from "@/components/skillhub/SkillStage";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
+import UsageGame from "@/components/games/UsageGame";
 import SpellingGame from "@/components/games/SpellingGame";
 import WordFormsGame from "@/components/games/WordFormsGame";
 import CrosswordGame from "@/components/games/CrosswordGame";
@@ -140,6 +141,11 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
       return <SentenceBuilderGame {...base} user={user} />;
+    if (activeGame.game === "usage")
+      // New engine (2026-09-07): four Vocabulary modes branched on `bank`
+      // (fill_blank / best_word / sentence_repair / collocation_match).
+      // SentenceBuilderGame and Grammar's Sentence Structure keep "sentence".
+      return <UsageGame {...base} user={user} bank={activeGame.bank} />;
     if (activeGame.game === "spelling")
       // Rebuilt 2026-09-07: three distinct mechanics branched on `bank`
       // (missing_letters / letter_order / typing), same shape as
