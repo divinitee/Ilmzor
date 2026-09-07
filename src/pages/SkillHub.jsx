@@ -146,7 +146,10 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       // GrammarQuizGame's bankKey. Takes `user` for personalization + logging.
       return <SpellingGame {...base} user={user} bank={activeGame.bank} />;
     if (activeGame.game === "wordforms")
-      return <WordFormsGame {...base} />;
+      // Rebuilt 2026-09-07: four distinct mechanics branched on `bank`
+      // (word_family / prefix_match / suffix_builder / root_hunt). Takes
+      // `user` for logWordAttempts. No InvokeLLM — hand-authored banks.
+      return <WordFormsGame {...base} user={user} bank={activeGame.bank} />;
     if (activeGame.game === "crossword")
       return <CrosswordGame {...base} />;
     if (activeGame.game === "definition")

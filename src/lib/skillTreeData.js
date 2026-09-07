@@ -85,7 +85,29 @@ export const SKILL_CHILDREN = {
       // comingSoon Reading skill. Founder's confirmed placement.
       { name: "Crossword", game: "crossword", difficulty: "Hard", time: "8 min", xp: 100 },
     ]),
-    C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], gen(["Word Family Builder", "Prefix Match", "Suffix Builder", "Root Hunt"], "wordforms")),
+    C("Word Forms", ["Noun", "Verb", "Adjective", "Adverb", "Prefixes", "Suffixes", "Root words"], [
+      // Honest label, 2026-09-07: rebuilt to four genuinely distinct mechanics
+      // (was four labels over one "type the requested form" mechanic). Each
+      // entry carries a `bank` field the engine branches on, same shape as
+      // Spelling/Grammar. Hand-authored banks in wordFormsBank.js — no
+      // InvokeLLM call (the old engine's per-round AI cost bug is gone).
+      // word_family: 4 words at intermediate tier, 4 form-picks each (16 picks),
+      // attempt budget of 24 — measured around 3-5 min. Floor XP is 4 first-try
+      // words × 10 base = 40.
+      { name: "Word Family Builder", game: "wordforms", bank: "word_family", difficulty: "Easy", time: "3-5 min", xp: 40 },
+      // prefix_match: 6 words at intermediate tier, 1 pick each, 6 prefix
+      // options, attempt budget of 9 — measured around 2-3 min. Floor XP is
+      // 6 first-try picks × 10 base = 60.
+      { name: "Prefix Match", game: "wordforms", bank: "prefix_match", difficulty: "Medium", time: "2-3 min", xp: 60 },
+      // suffix_builder: 6 words at intermediate tier, 1 pick each, 6 suffix
+      // options, attempt budget of 9 — measured around 2-3 min. Floor XP is
+      // 6 first-try picks × 10 base = 60.
+      { name: "Suffix Builder", game: "wordforms", bank: "suffix_builder", difficulty: "Hard", time: "2-3 min", xp: 60 },
+      // root_hunt: 5 groups at intermediate tier, 4 word-taps each (20 taps),
+      // attempt budget of 15 — measured around 3-4 min. Floor XP is 5 first-try
+      // groups × 10 base = 50. Recognition task, not production.
+      { name: "Root Hunt", game: "wordforms", bank: "root_hunt", difficulty: "Medium", time: "3-4 min", xp: 50 },
+    ]),
     C("Usage", ["Example sentences", "Fill in the blank", "Common mistakes"], gen(["Fill the Blank", "Choose the Best Word", "Sentence Repair"], "sentence")),
     C("Phrases & Chunks", ["Collocations", "Fixed expressions"], gen(["Collocation Match"], "sentence")),
     C("Relationships", ["Synonyms", "Antonyms", "Related words"], [
