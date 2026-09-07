@@ -734,6 +734,23 @@ export function playableWords(words = [], studentLevel, lang) {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Synonym Sprint's resolution (2026-09-07). Same ladder, one rule different:
+// Tee's spec pairs A1 with A2 at the simplest, "less nuanced" tier, so
+// Starter/A1 fall THROUGH to the A2 rung instead of reading a translation the
+// way Context Guess has them do. Kept here rather than in the game file so
+// tier resolution stays single-sourced.
+export function sprintSynonymForLevel(word, studentLevel) {
+  return synonymForLevel(word, usesTranslationClue(studentLevel) ? "A2" : studentLevel);
+}
+
+// Words playable in a word-only synonym round: a headword plus a synonym at
+// (or below) the student's tier. Deliberately NO sentence requirement — the
+// word is shown on its own, unlike playableWords() above.
+export function synonymPlayableWords(words = [], studentLevel) {
+  return words.filter((w) => clean(w?.english) && !!sprintSynonymForLevel(w, studentLevel));
+}
+
 // Diagnostics only — how many rows of a pool have pilot synonym coverage.
 export function synonymCoverage(words = []) {
   return words.filter((w) => !!synonymForLevel(w, "A2")).length;
