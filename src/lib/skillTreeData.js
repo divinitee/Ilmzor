@@ -65,7 +65,22 @@ export const SKILL_CHILDREN = {
     ]),
     C("Pronunciation", ["Word stress", "IPA"], gen(["Hear & Choose", "Stress Battle", "Minimal Pairs", "Shadow Me"], "spelling"), true),
     C("Spelling", ["Typing", "Letter order", "Missing letters"], [
-      ...gen(["Typing", "Letter Order", "Missing Letters"], "spelling"),
+      // Honest label, 2026-09-07: rebuilt to three genuinely distinct mechanics
+      // (was three labels over one component). Each entry now carries a `bank`
+      // field the engine branches on, same shape as GrammarQuizGame.
+      // missing_letters: word shown with 1-2 gaps, fill just the blanks.
+      // 6 words at beginner tier, one check each, attempt budget of 9 —
+      // measured around 2-3 min. Floor XP is 6 first-try × 10 base = 60.
+      { name: "Missing Letters", game: "spelling", bank: "missing_letters", difficulty: "Easy", time: "2-3 min", xp: 60 },
+      // letter_order: hear the word, unscramble letter tiles into slots.
+      // 6 words at beginner tier, one check each, attempt budget of 9 —
+      // measured around 3-4 min. Floor XP is 6 first-try × 10 base = 60.
+      { name: "Letter Order", game: "spelling", bank: "letter_order", difficulty: "Medium", time: "3-4 min", xp: 60 },
+      // typing: hear the word, type the whole thing from memory. No letters
+      // shown. 6 words at beginner tier, one check each, attempt budget of 9
+      // — measured around 3-5 min (typing is slower than tapping tiles).
+      // Floor XP is 6 first-try × 10 base = 60.
+      { name: "Typing", game: "spelling", bank: "typing", difficulty: "Hard", time: "3-5 min", xp: 60 },
       // Same as Definition above — fully built, was orphaned under the
       // comingSoon Reading skill. Founder's confirmed placement.
       { name: "Crossword", game: "crossword", difficulty: "Hard", time: "8 min", xp: 100 },

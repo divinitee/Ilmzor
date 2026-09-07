@@ -141,7 +141,10 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     if (activeGame.game === "sentence")
       return <SentenceBuilderGame {...base} user={user} />;
     if (activeGame.game === "spelling")
-      return <SpellingGame {...base} />;
+      // Rebuilt 2026-09-07: three distinct mechanics branched on `bank`
+      // (missing_letters / letter_order / typing), same shape as
+      // GrammarQuizGame's bankKey. Takes `user` for personalization + logging.
+      return <SpellingGame {...base} user={user} bank={activeGame.bank} />;
     if (activeGame.game === "wordforms")
       return <WordFormsGame {...base} />;
     if (activeGame.game === "crossword")
