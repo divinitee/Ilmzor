@@ -14,7 +14,7 @@
 // index.remainingItems(), which excludes every id already served. An item
 // cannot repeat.
 
-import { levelIndex, levelAbove, levelBelow } from "@/lib/grammarPlacement/levels";
+import { PLACEMENT_LEVELS, levelIndex } from "@/lib/grammarPlacement/levels";
 import { cellKey } from "@/lib/grammarPlacement/evidence";
 
 // Small deterministic PRNG. Used only to break ties between candidates the
@@ -61,6 +61,41 @@ export function analyzeDomain(domain, cells, index) {
     floor: ladder[0] ?? null,
     ceiling: ladder[ladder.length - 1] ?? null,
   };
+}
+
+/**
+ * A domain is RESOLVED when more questions in it could not change its
+ * placement. This is what makes genuine early stopping possible: without it
+ * the selector always finds some next rung worth a token amount of value and
+ * every run runs to the cap.
+ *
+ * Note what this does NOT require: it never asks for rungs below the cleared
+ * one to be tested. A bracketed boundary is a complete answer, and probing
+ * downward from it would buy nothing (requirement 2 — skipping the probe is an
+ * efficiency decision, and the untested rungs stay untested in the record).
+ */
+export function domainResolved(an, cells) {
+  if (an.contradiction) return false;
+  const at = (l) => cells.get(cellKey(an.domain, l));
+
+  if (an.highestCleared) {
+    const above = nextInLadder(an.ladder, an.highestCleared);
+    if (!above) return true;                       // at this domain's ceiling
+    const c = at(above);
+    if (c?.outcome === "failed") return true;      // boundary bracketed
+    if (c?.atMax || c?.remainingSupply <= 0) return true; // nothing more to ask up there
+    return false;
+  }
+
+  if (an.lowestFailed) {
+    const below = prevInLadder(an.ladder, an.lowestFailed);
+    if (!below) return true;                       // failed the floor: below floor
+    const c = at(below);
+    if (c?.atMax || c?.remainingSupply <= 0) return true;
+    return false;
+  }
+
+  return false;
 }
 
 /**
@@ -116,6 +151,7 @@ export function cellValue(domain, level, cells, index, an, config, ctx) {
   if (!cell) return 0;
   if (cell.remainingSupply <= 0) return 0;   // nothing left to ask (no repeats)
   if (cell.atMax) return 0;                  // spent enough here
+  if (domainResolved(an, cells)) return 0;   // more questions cannot change the answer
   if (level === "C2" && !c2Allowed(an, cells, config)) return 0;
 
   const need = config.selection.needWeight[cell.state] ?? 0;
@@ -233,25 +269,25 @@ export function selectCalibrationItem(state, index, config, ctx) {
  */
 export function advanceCalibration(state, config, probeRatio) {
   const cal = { ...state.calibration };
-  const { ratios } = config.evidence;
   const idx = levelIndex(cal.probeLevel);
 
-  if (probeRatio >= ratios.confirm) cal.lo = idx + 1;
-  else if (probeRatio <= ratios.negative) cal.hi = idx - 1;
-  else {
-    // Ambiguous at this rung — this is the band. Stop searching.
-    cal.done = true;
-    cal.anchorIndex = idx;
-    return cal;
-  }
+  // Simple majority, not the placement thresholds. Calibration only decides
+  // where to START looking; the evidence model still has to do the real work,
+  // and it re-examines calibration's own observations when it does.
+  if (probeRatio >= config.calibration.passRatio) cal.lo = idx + 1;
+  else cal.hi = idx - 1;
+
+  // `hi` is always the highest rung not yet ruled out from above, which is the
+  // best current estimate. Refreshing it on every step means a run that hits
+  // the calibration item budget mid-search still anchors on what it learned,
+  // instead of falling back to the configured start level.
+  cal.anchorIndex = Math.max(0, Math.min(cal.hi, PLACEMENT_LEVELS.length - 1));
 
   if (cal.lo > cal.hi) {
     cal.done = true;
-    // lo-1 is the highest rung the learner actually cleared during calibration.
-    cal.anchorIndex = Math.max(0, Math.min(cal.lo, 5));
     return cal;
   }
-  cal.probeLevel = ["A1", "A2", "B1", "B2", "C1", "C2"][Math.floor((cal.lo + cal.hi) / 2)];
+  cal.probeLevel = PLACEMENT_LEVELS[Math.floor((cal.lo + cal.hi) / 2)];
   cal.servedAtProbe = 0;
   return cal;
 }
@@ -260,11 +296,20 @@ export function advanceCalibration(state, config, probeRatio) {
 // Phase 2 — screening
 // ---------------------------------------------------------------------------
 
-/** One probe per domain at the anchor, for domains with no evidence yet. */
+/**
+ * Bring every domain up to `screening.itemsPerDomain` observations at the
+ * anchor. Evidence a bellwether domain already gathered during calibration
+ * counts toward that quota rather than being collected twice.
+ */
 export function selectScreeningItem(state, index, config, ctx) {
+  const counts = {};
+  for (const o of state.ledger.observations) {
+    counts[o.domain] = (counts[o.domain] ?? 0) + 1;
+  }
   for (const domain of index.domainIds) {
+    if ((counts[domain] ?? 0) >= config.screening.itemsPerDomain) continue;
     const an = analyzeDomain(domain, ctx.cells, index);
-    if (an.hasAnyEvidence) continue;
+    if (domainResolved(an, ctx.cells)) continue;
     const level = index.nearestLevel(domain, ctx.anchorLevel);
     if (!level) continue;
     const item = chooseItemInCell(domain, level, ctx.cells, index, state.ledger, config, ctx, {
@@ -311,4 +356,4 @@ export function selectResolutionItem(state, index, config, ctx) {
   return { item, domain: best.domain, level: best.level, value: best.value, contradiction: best.an.contradiction };
 }
 
-export const _internal = { frontierWeight, nextInLadder, prevInLadder, c2Allowed };
+export const _internal = { frontierWeight, nextInLadder, prevInLadder, c2Allowed, domainResolved };
