@@ -26,7 +26,15 @@ export const DEFAULT_CONFIG = {
     // automatically to whatever the dataset can actually supply for that cell
     // — see effectiveMinObservations() in evidence.js. 12 real buckets hold
     // fewer than 3 items, so a rigid 3 would make them permanently unusable.
-    minObservations: 3,
+    //
+    // WHY 2, not 3: there are 13 domains and a ~45-item ceiling. Requiring 3
+    // observations before a rung can be read at all costs 39 items to give
+    // every domain one readable rung, before a single boundary is probed — so
+    // a 3-minimum leaves most domains unplaced within any acceptable test
+    // length. At n=2 the read is a clean three-way split (1.0 clears, 0.0
+    // fails, 0.5 is borderline and attracts another probe), and confidence
+    // reporting already carries the thinness of that evidence.
+    minObservations: 2,
     // Never spend more than this on one cell, however uncertain it stays.
     maxObservations: 6,
     // Positive-evidence ratios. `credit` is normalised 0..1 per observation.
@@ -43,7 +51,7 @@ export const DEFAULT_CONFIG = {
   // is clear and expands while it is not. These bound that behaviour.
   // -------------------------------------------------------------------------
   length: {
-    minItems: 25,      // never stop for "sufficient evidence" before this
+    minItems: 22,      // never stop for "sufficient evidence" before this
     softTarget: 34,    // where the value threshold starts tightening
     hardCap: 45,       // normal ceiling
     absoluteCap: 60,   // safety stop; a bug, not a plan, gets you here
@@ -72,7 +80,14 @@ export const DEFAULT_CONFIG = {
   calibration: {
     startLevel: "B1",
     itemsPerProbe: 2,
-    maxItems: 8,
+    maxItems: 10,
+    // Calibration is a coarse band search, not a placement, so it uses its own
+    // simple majority rule rather than the evidence model's thresholds: more
+    // right than wrong at a rung means "try higher". Applying the placement
+    // thresholds here was a real bug — at a 2-item probe a single unlucky
+    // answer scores 0.5, which fell in the ambiguous band and ended the search
+    // immediately, anchoring a C1 learner at B1.
+    passRatio: 0.5,
     // Bellwether domains: chosen because each spans A1..C2 in the real dataset
     // and each is broad enough that performance correlates with general
     // grammatical control. PROVISIONAL — a curriculum decision, not a
@@ -86,7 +101,12 @@ export const DEFAULT_CONFIG = {
   // Phase 2 — domain screening. One probe per domain at the anchor level.
   // -------------------------------------------------------------------------
   screening: {
-    itemsPerDomain: 1,
+    // Two per domain, so every domain reaches the minimum observation count
+    // and becomes readable. 13 x 2 = 26 items, plus ~6-8 of calibration, lands
+    // a typical run near the soft target with budget left for resolution.
+    // Evidence a domain already gathered during calibration counts toward this
+    // — bellwether domains are not re-probed.
+    itemsPerDomain: 2,
     evidenceClasses: ["recognition", "controlled_construction"],
   },
 
