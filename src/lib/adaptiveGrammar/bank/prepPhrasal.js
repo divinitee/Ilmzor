@@ -71,7 +71,7 @@ export default [
   d.mcq({ b: "stranding", t: "relative-preposition", L: "B2", diff: 2, focus: "Stranded preposition at the end of a relative clause (informal)", pre: ["preposition-stranding", "relative-pronouns"],
     prompt: "This is the colleague ______.", options: ["I told you about", "about I told you", "whom I told you", "I told about you"], key: 0, why: "Relative clause with stranded 'about'.", overlaps: ["sentence-structure"] }),
   d.rewrite({ b: "stranding", t: "fronted-preposition", L: "B2", diff: 3, focus: "Formal fronting: preposition + which/whom", pre: ["preposition-stranding", "relative-pronouns"],
-    instr: "Rewrite the relative clause in a more formal style, starting with the words given.", source: "The company I work for is expanding.", hint: "The company ______ is expanding.", key: "for which I work", why: "Fronted preposition + which.", overlaps: ["sentence-structure"] }),
+    instr: "Rewrite the relative clause in a more formal style, starting with the words given.", source: "The hotel we stayed at was excellent.", hint: "The hotel ______ was excellent.", key: "at which we stayed", why: "Fronted preposition + which.", overlaps: ["sentence-structure"] }),
   d.mcq({ b: "phrasal-verbs", t: "phrasal-noun-position", L: "B2", diff: 2, focus: "Long noun object goes after the particle, pronoun before it", pre: ["phrasal-verb-separability"],
     prompt: "Which sentence is NOT correct?", options: ["She gave back the money she owed.", "She gave the money back.", "She gave it back.", "She gave back it."], key: 3, why: "Pronoun cannot follow the particle." }),
   d.gap({ b: "time", t: "in-time-on-time", L: "B2", diff: 2, focus: "on time (punctual) vs in time (before it's too late)", pre: ["prepositions-time"],
