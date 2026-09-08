@@ -1,118 +1,71 @@
 // Adaptive Grammar Placement Test — taxonomy layer (CONTENT ONLY).
 //
-// The 13 VIRORA Grammar Domains, their branches, and the stable concept IDs
-// that items use for `prerequisites`. These are the only identifiers Claude's
-// adaptive engine needs to consume this dataset; nothing here selects items,
-// scores answers, or decides levels.
+// The 13 VIRORA Grammar Domains (authoritative, fixed), their branches, and
+// the stable concept ids items use for `prerequisites`. Nothing here selects
+// items, scores answers or decides levels.
 //
-// ID conventions (see README.md in this folder):
-//   domain id   kebab-case, short          e.g. "tenses"
-//   branch id   kebab-case, per domain     e.g. "past"
-//   topic id    kebab-case, per branch     e.g. "past-perfect-sequence"
-//   concept id  kebab-case, global         e.g. "past-participle"
+// Locked ownership rulings (2026-09-08):
+//   relative clauses → sentence-structure     passive reporting → passive-causative
+//   "be": predication → sentence-structure · progressive aux → tenses · passive aux → passive-causative
+// Provisional rulings: there is/are → sentence-structure · imperatives → sentence-structure ·
+//   have got → verb-patterns · used to → tenses · negative inversion → sentence-structure
 //
-// Do NOT rename, merge, or add domains here — the 13 are fixed by curriculum.
+// Do NOT rename, merge, or add domains. Branches may grow; never rename existing ones.
 
 export const CEFR_LEVELS = ["A1", "A2", "B1", "B2", "C1", "C2"];
 
 export const DOMAINS = [
-  { id: "tenses", name: "Tenses & Time", branches: ["present", "past", "future", "perfect"] },
-  { id: "nouns-articles", name: "Nouns & Articles", branches: ["articles", "plurals-agreement", "quantifiers", "countability"] },
-  { id: "pronouns", name: "Pronouns", branches: ["personal", "possessive", "reflexive", "indefinite", "demonstrative"] },
-  { id: "verb-patterns", name: "Verb Patterns", branches: ["gerund-infinitive", "meaning-change-verbs", "object-infinitive", "used-to"] },
-  { id: "adj-adv", name: "Adjectives & Adverbs", branches: ["adjective-form", "adverb-form", "frequency", "order-position"] },
-  { id: "comparison", name: "Comparison", branches: ["comparative", "superlative", "equality", "parallel-comparison", "modified-comparison"] },
-  { id: "questions-negation", name: "Questions & Negation", branches: ["yes-no", "wh-questions", "indirect-questions", "tag-questions", "negation"] },
-  { id: "modals", name: "Modals & Attitude", branches: ["ability-permission", "obligation", "deduction", "past-modals", "hedging"] },
-  { id: "prep-phrasal", name: "Prepositions & Phrasal Verbs", branches: ["time", "place", "dependent-prepositions", "phrasal-verbs"] },
-  { id: "sentence-structure", name: "Sentence Structure", branches: ["word-order", "conjunctions", "relative-clauses", "participle-clauses", "emphasis-inversion", "cleft"] },
-  { id: "conditionals-wishes", name: "Conditionals & Wishes", branches: ["zero-first", "second", "third", "mixed", "inverted", "wishes-preference"] },
-  { id: "passive-causative", name: "Passive & Causative", branches: ["simple-passive", "perfect-progressive-passive", "reporting-passive", "causative"] },
-  { id: "reported-speech", name: "Reported Speech", branches: ["statements", "questions", "reporting-verbs", "backshift-exceptions"] },
+  { id: "tenses", name: "Tenses & Time", branches: ["present", "past", "future", "perfect", "used-to"] },
+  { id: "nouns-articles", name: "Nouns & Articles", branches: ["articles", "plurals-agreement", "quantifiers", "countability", "possession"] },
+  { id: "pronouns", name: "Pronouns", branches: ["personal", "possessive", "reflexive", "indefinite", "demonstrative", "substitution"] },
+  { id: "verb-patterns", name: "Verb Patterns", branches: ["gerund-infinitive", "meaning-change-verbs", "object-infinitive", "have-got", "perfect-forms"] },
+  { id: "adj-adv", name: "Adjectives & Adverbs", branches: ["adjective-form", "adverb-form", "frequency", "order-position", "intensifiers", "gradability"] },
+  { id: "comparison", name: "Comparison", branches: ["comparative", "superlative", "equality", "parallel-comparison", "modified-comparison", "like-as"] },
+  { id: "questions-negation", name: "Questions & Negation", branches: ["yes-no", "wh-questions", "indirect-questions", "tag-questions", "negation", "subject-questions", "short-responses"] },
+  { id: "modals", name: "Modals & Attitude", branches: ["ability-permission", "obligation", "deduction", "past-modals", "hedging", "advice", "semi-modals"] },
+  { id: "prep-phrasal", name: "Prepositions & Phrasal Verbs", branches: ["time", "place", "movement", "dependent-prepositions", "phrasal-verbs", "stranding"] },
+  { id: "sentence-structure", name: "Sentence Structure", branches: ["word-order", "conjunctions", "relative-clauses", "participle-clauses", "emphasis-inversion", "cleft", "existential", "imperatives", "predication", "subjunctive", "clause-linkers"] },
+  { id: "conditionals-wishes", name: "Conditionals & Wishes", branches: ["zero-first", "second", "third", "mixed", "inverted", "wishes-preference", "linkers"] },
+  { id: "passive-causative", name: "Passive & Causative", branches: ["simple-passive", "perfect-progressive-passive", "modal-passive", "reporting-passive", "causative", "get-passive", "passive-infinitive"] },
+  { id: "reported-speech", name: "Reported Speech", branches: ["statements", "questions", "commands-requests", "reporting-verbs", "backshift-exceptions", "modals-reported"] },
 ];
 
 export const DOMAIN_IDS = DOMAINS.map((d) => d.id);
 
-// Stable concept registry. `owner` is the domain that TEACHES the concept;
-// any domain's item may list it as a prerequisite. Only concepts referenced
-// by the sample set are registered — extend as the bank grows, never rename.
+// Stable concept registry. `owner` = the domain that TEACHES the concept; any
+// domain's item may list it as a prerequisite. Extend, never rename.
+const C = (owner, ...ids) => ids.map((id) => ({ id, owner }));
 export const CONCEPTS = [
-  // tenses
-  { id: "be-forms", owner: "tenses" },
-  { id: "present-simple", owner: "tenses" },
-  { id: "present-continuous", owner: "tenses" },
-  { id: "past-simple", owner: "tenses" },
-  { id: "past-continuous", owner: "tenses" },
-  { id: "past-participle", owner: "tenses" },
-  { id: "present-perfect", owner: "tenses" },
-  { id: "present-perfect-continuous", owner: "tenses" },
-  { id: "past-perfect", owner: "tenses" },
-  { id: "future-will", owner: "tenses" },
-  { id: "future-perfect", owner: "tenses" },
-  { id: "time-adverbials", owner: "tenses" },
-  // nouns-articles
-  { id: "indefinite-article", owner: "nouns-articles" },
-  { id: "definite-article", owner: "nouns-articles" },
-  { id: "zero-article", owner: "nouns-articles" },
-  { id: "countable-uncountable", owner: "nouns-articles" },
-  { id: "some-any", owner: "nouns-articles" },
-  { id: "subject-verb-agreement", owner: "nouns-articles" },
-  { id: "collective-nouns", owner: "nouns-articles" },
-  // pronouns
-  { id: "subject-pronouns", owner: "pronouns" },
-  { id: "object-pronouns", owner: "pronouns" },
-  { id: "reflexive-pronouns", owner: "pronouns" },
-  { id: "one-ones-another", owner: "pronouns" },
-  // verb-patterns
-  { id: "gerund", owner: "verb-patterns" },
-  { id: "to-infinitive", owner: "verb-patterns" },
-  { id: "bare-infinitive", owner: "verb-patterns" },
-  { id: "verb-object-infinitive", owner: "verb-patterns" },
-  // adj-adv
-  { id: "adjective-adverb-distinction", owner: "adj-adv" },
-  { id: "ed-ing-adjectives", owner: "adj-adv" },
-  { id: "frequency-adverbs", owner: "adj-adv" },
-  { id: "adjective-order", owner: "adj-adv" },
-  // comparison
-  { id: "comparative-form", owner: "comparison" },
-  { id: "superlative-form", owner: "comparison" },
-  { id: "as-as", owner: "comparison" },
-  // questions-negation
-  { id: "auxiliary-do", owner: "questions-negation" },
-  { id: "subject-auxiliary-inversion", owner: "questions-negation" },
-  { id: "wh-words", owner: "questions-negation" },
-  { id: "indirect-question-order", owner: "questions-negation" },
-  { id: "negative-subjects", owner: "questions-negation" },
-  // modals
-  { id: "modal-base-form", owner: "modals" },
-  { id: "modal-perfect", owner: "modals" },
-  { id: "deduction-modals", owner: "modals" },
-  // prep-phrasal
-  { id: "prepositions-time", owner: "prep-phrasal" },
-  { id: "prepositions-place", owner: "prep-phrasal" },
-  { id: "dependent-prepositions", owner: "prep-phrasal" },
-  { id: "phrasal-verb-separability", owner: "prep-phrasal" },
-  // sentence-structure
-  { id: "svo-order", owner: "sentence-structure" },
-  { id: "coordinating-conjunctions", owner: "sentence-structure" },
-  { id: "relative-pronouns", owner: "sentence-structure" },
-  { id: "negative-adverbial-inversion", owner: "sentence-structure" },
-  { id: "cleft-what", owner: "sentence-structure" },
-  // conditionals-wishes
-  { id: "first-conditional", owner: "conditionals-wishes" },
-  { id: "second-conditional", owner: "conditionals-wishes" },
-  { id: "third-conditional", owner: "conditionals-wishes" },
-  { id: "wish-unreal-past", owner: "conditionals-wishes" },
-  // passive-causative
-  { id: "passive-be-participle", owner: "passive-causative" },
-  { id: "perfect-passive", owner: "passive-causative" },
-  { id: "causative-have-get", owner: "passive-causative" },
-  { id: "passive-reporting", owner: "passive-causative" },
-  // reported-speech
-  { id: "tense-backshift", owner: "reported-speech" },
-  { id: "pronoun-time-shift", owner: "reported-speech" },
-  { id: "reported-question-order", owner: "reported-speech" },
-  { id: "reporting-verb-patterns", owner: "reported-speech" },
+  ...C("tenses", "be-auxiliary", "present-simple", "third-person-s", "present-continuous", "stative-verbs", "past-simple", "past-continuous",
+    "past-participle", "present-perfect", "present-perfect-continuous", "past-perfect", "past-perfect-continuous", "future-will", "future-going-to",
+    "future-continuous", "future-perfect", "future-perfect-continuous", "future-in-the-past", "time-adverbials", "used-to", "be-to"),
+  ...C("nouns-articles", "indefinite-article", "definite-article", "zero-article", "countable-uncountable", "some-any", "much-many", "few-little",
+    "plural-formation", "possessive-s", "subject-verb-agreement", "collective-nouns", "both-either-neither", "each-every"),
+  ...C("pronouns", "subject-pronouns", "object-pronouns", "possessive-determiners", "possessive-pronouns", "demonstratives", "reflexive-pronouns",
+    "one-ones-another", "indefinite-pronouns", "reciprocal-pronouns", "generic-pronouns", "dummy-it"),
+  ...C("verb-patterns", "gerund", "to-infinitive", "bare-infinitive", "verb-object-infinitive", "meaning-change-verbs", "have-got",
+    "perfect-infinitive", "perfect-gerund", "verb-that-clause"),
+  ...C("adj-adv", "adjective-adverb-distinction", "ed-ing-adjectives", "frequency-adverbs", "adjective-order", "irregular-adverbs",
+    "gradable-ungradable", "adverb-position", "so-such", "too-enough", "compound-adjectives"),
+  ...C("comparison", "comparative-form", "superlative-form", "as-as", "less-fewer", "comparative-modifiers", "double-comparative",
+    "superlative-modifiers", "like-vs-as", "progressive-comparative"),
+  ...C("questions-negation", "auxiliary-do", "subject-auxiliary-inversion", "wh-words", "indirect-question-order", "negative-subjects",
+    "tag-questions", "subject-questions", "question-prepositions", "negative-questions", "no-not-none", "so-neither-responses"),
+  ...C("modals", "modal-base-form", "modal-perfect", "deduction-modals", "obligation-modals", "ability-modals", "permission-modals",
+    "advice-modals", "hedging-modals", "semi-modals", "need-modal"),
+  ...C("prep-phrasal", "prepositions-time", "prepositions-place", "prepositions-movement", "dependent-prepositions", "phrasal-verb-separability",
+    "prepositional-verbs", "preposition-gerund", "three-part-phrasal", "preposition-stranding"),
+  ...C("sentence-structure", "svo-order", "coordinating-conjunctions", "subordinating-conjunctions", "relative-pronouns", "defining-relative",
+    "non-defining-relative", "reduced-relative", "participle-clauses", "negative-adverbial-inversion", "cleft-what", "cleft-it",
+    "there-existential", "imperatives", "be-copula", "mandative-subjunctive", "result-clauses", "concession-linkers", "purpose-clauses",
+    "fronting", "ellipsis-substitution"),
+  ...C("conditionals-wishes", "zero-conditional", "first-conditional", "second-conditional", "third-conditional", "mixed-conditional",
+    "unless", "conditional-linkers", "inverted-conditional", "wish-unreal-present", "wish-unreal-past", "wish-would", "would-rather",
+    "if-only", "as-if", "implied-conditional"),
+  ...C("passive-causative", "passive-be-participle", "agent-by", "perfect-passive", "progressive-passive", "modal-passive", "passive-reporting",
+    "causative-have-get", "get-passive", "two-object-passive", "passive-infinitive-gerund", "causative-get-to", "prepositional-passive"),
+  ...C("reported-speech", "tense-backshift", "pronoun-time-shift", "reported-question-order", "reporting-verb-patterns", "reported-commands",
+    "reported-modals", "backshift-exceptions", "say-tell"),
 ];
 
 export const CONCEPT_IDS = CONCEPTS.map((c) => c.id);

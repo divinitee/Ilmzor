@@ -1,0 +1,88 @@
+import { domainBuilder, leg } from "@/lib/adaptiveGrammar/build";
+const d = domainBuilder("passive-causative");
+const A2 = leg("A2_MCQ"), B1 = leg("B1_MCQ"), B2 = leg("B2_MCQ"), C1 = leg("C1_MCQ");
+const B1O = leg("B1_OPEN_GRAMMAR"), B2O = leg("B2_OPEN_GRAMMAR"), C1O = leg("C1_OPEN_GRAMMAR");
+
+export default [
+  // ---------------- A2 ----------------
+  d.mcq({ b: "simple-passive", t: "present-passive", L: "A2", diff: 1, focus: "Present simple passive: is/are + past participle", pre: ["passive-be-participle", "past-participle"],
+    prompt: "English ______ in many countries.", options: ["speaks", "is spoken", "spoke", "is speaking"], key: 1, why: "Subject receives the action → is spoken.", legacy: A2("English ______ in many countries.") }),
+  d.mcq({ b: "simple-passive", t: "past-passive", L: "A2", diff: 1, focus: "Past simple passive: was/were + past participle", pre: ["passive-be-participle"],
+    prompt: "The house ______ last year.", options: ["built", "was built", "is built", "builds"], key: 1, why: "Past + passive → was built.", legacy: A2("The house ______ last year.") }),
+  d.mcq({ b: "simple-passive", t: "plural-agreement-passive", L: "A2", diff: 2, focus: "Passive auxiliary agrees with a plural subject", pre: ["passive-be-participle", "subject-verb-agreement"],
+    prompt: "The letters ______ every morning.", options: ["deliver", "are delivered", "delivered", "are delivering"], key: 1, why: "Plural subject → are + pp.", legacy: A2("The letters ______ every morning.") }),
+  d.gap({ b: "simple-passive", t: "past-passive", L: "A2", diff: 2, focus: "Producing a past passive form", pre: ["passive-be-participle"],
+    source: "This bridge ______ (build) in 1965.", key: "was built", why: "Singular past passive." }),
+
+  // ---------------- B1 ----------------
+  d.mcq({ b: "simple-passive", t: "past-passive", L: "B1", diff: 1, focus: "Past passive with a stated past time", pre: ["passive-be-participle"],
+    prompt: "The new hospital ______ last year.", options: ["built", "was built", "has built", "was building"], key: 1, why: "Past passive → was built.", legacy: B1("The new hospital ______ last year.") }),
+  d.gap({ b: "perfect-progressive-passive", t: "present-perfect-passive", L: "B1", diff: 2, focus: "Present perfect passive: have/has been + past participle", pre: ["perfect-passive", "present-perfect"],
+    source: "The documents ______ already ______ (send) to the manager.", key: ["have", "been sent"], why: "have + been + past participle.",
+    legacy: B1("The documents ______ already ______ to the manager.", "Two-gap paired-option MCQ ('have been / sent') rewritten as a two-gap fill so the auxiliary chain is produced, not selected as a pre-joined string.") }),
+  d.mcq({ b: "modal-passive", t: "must-be-done", L: "B1", diff: 2, focus: "Modal passive: modal + be + past participle", pre: ["modal-passive", "passive-be-participle"],
+    prompt: "All visitors ______ show identification at the entrance.", options: ["must be", "must", "must to", "are must"], key: 1, why: "Active meaning: visitors perform the action → plain 'must'.",
+    legacy: B1("All visitors ______ show identification at the entrance.", "The legacy key was 'must be', which is ungrammatical before 'show'. The correct answer is 'must'; the distractor 'must be' now tests exactly the overgeneralisation the original item accidentally taught."),
+    overlaps: ["modals"] }),
+  d.mcq({ b: "simple-passive", t: "agent-by", L: "B1", diff: 2, focus: "by + agent in a passive clause", pre: ["agent-by", "passive-be-participle"],
+    prompt: "The window was broken ______ a football.", options: ["from", "with", "by", "of"], key: 2, why: "Agent/cause → by." }),
+  d.rewrite({ b: "simple-passive", t: "active-to-passive", L: "B1", diff: 2, focus: "Converting an active past sentence into the passive", pre: ["passive-be-participle", "agent-by"],
+    source: "Someone stole my bicycle last night.", hint: "My bicycle ______ last night.", key: "was stolen", why: "Unknown agent → passive without 'by'." }),
+  d.guided({ b: "simple-passive", t: "past-passive", L: "B1", diff: 1, focus: "Productive past passive", pre: ["passive-be-participle"],
+    prompt: "Write one sentence about something that was built, made, discovered, or invented. Use the past passive.", required: "past passive (was/were + past participle) for something built/made/discovered/invented",
+    legacy: B1O("Write one sentence about something that was built, made, discovered, or invented. Use the past passive.") }),
+  d.guided({ b: "modal-passive", t: "must-be-done", L: "B1", diff: 3, focus: "Productive modal passive", pre: ["modal-passive"],
+    prompt: "Write one sentence explaining something that must or must not be done. Use a modal passive.", required: "modal + be + past participle (modal passive) correctly formed",
+    legacy: B1O("Write one sentence explaining something that must or must not be done. Use a modal passive."), overlaps: ["modals"] }),
+
+  // ---------------- B2 ----------------
+  d.mcq({ b: "perfect-progressive-passive", t: "past-perfect-passive", L: "B2", diff: 2, focus: "Past perfect passive: had been + past participle", pre: ["perfect-passive", "past-perfect"],
+    prompt: "The documents ______ before the meeting began.", options: ["had been prepared", "had prepared", "were preparing", "have prepared"], key: 0, why: "Earlier + passive → had been prepared.", legacy: B2("The documents ______ before the meeting began.") }),
+  d.mcq({ b: "perfect-progressive-passive", t: "past-progressive-passive", L: "B2", diff: 3, focus: "Past progressive passive: was/were being + past participle", pre: ["progressive-passive"],
+    prompt: "At the time of the inspection, the building ______.", options: ["was being repaired", "was repaired", "repaired", "has been repairing"], key: 0, why: "In progress + passive → was being repaired.", legacy: B2("At the time of the inspection, the building ______.") }),
+  d.mcq({ b: "causative", t: "have-something-done", L: "B2", diff: 2, focus: "have + object + past participle (arranged for someone else)", pre: ["causative-have-get"],
+    prompt: "I didn't repair my car myself. I ______ yesterday.", options: ["had it repaired", "had repaired it", "repaired it", "got repairing"], key: 0, why: "Causative → have + object + pp.", legacy: B2("I didn't repair my car myself. I ______ yesterday.") }),
+  d.gap({ b: "causative", t: "get-something-done", L: "B2", diff: 2, focus: "get + object + past participle (informal causative)", pre: ["causative-have-get"],
+    instr: "Complete the gap with THREE words using the verb in brackets.", source: "I need to ______ (my hair / cut) before the wedding.", key: "get my hair cut", alt: ["have my hair cut"], why: "get/have + object + past participle." }),
+  d.mcq({ b: "get-passive", t: "get-passive-informal", L: "B2", diff: 2, focus: "get-passive for an unplanned event", pre: ["get-passive"],
+    prompt: "My phone ______ on the bus yesterday.", options: ["got stolen", "got stealing", "was stealing", "got steal"], key: 0, why: "Informal/unplanned passive → got + past participle." }),
+  d.rewrite({ b: "perfect-progressive-passive", t: "present-perfect-passive", L: "B2", diff: 2, focus: "Active present perfect → passive", pre: ["perfect-passive"],
+    source: "They have cancelled all flights to the region.", hint: "All flights to the region ______.", key: "have been cancelled", why: "have + been + past participle." }),
+  d.guided({ b: "causative", t: "have-something-done", L: "B2", diff: 2, focus: "Productive causative structure", pre: ["causative-have-get"],
+    prompt: "Write one sentence explaining that you arranged for someone else to repair, clean, cut, or check something for you.", required: "causative structure (have/get + object + past participle) correctly formed",
+    legacy: B2O("Write one sentence explaining that you arranged for someone else to repair, clean, cut, or check something for you.") }),
+  d.guided({ b: "perfect-progressive-passive", t: "past-progressive-passive", L: "B2", diff: 3, focus: "Productive past progressive passive", pre: ["progressive-passive"],
+    prompt: "Write one sentence describing an action that was in progress and being performed on something at a particular past time.", required: "past progressive passive (was/were being + past participle) for an action in progress and done to something",
+    legacy: B2O("Write one sentence describing an action that was in progress and being performed on something at a particular past time.") }),
+
+  // ---------------- C1 ---------------- (passive reporting: provisional C1 per ruling §4)
+  d.mcq({ b: "reporting-passive", t: "is-believed-to", L: "C1", diff: 2, focus: "Passive reporting structure: is believed + to-infinitive", pre: ["passive-reporting", "perfect-infinitive"],
+    prompt: "The company ______ to have lost millions of dollars.", options: ["believes", "is believed", "is believing", "has believed"], key: 1, why: "Impersonal report → is believed to + perfect infinitive.", legacy: B2("The company ______ to have lost millions of dollars.") }),
+  d.rewrite({ b: "reporting-passive", t: "it-is-said-that", L: "C1", diff: 3, focus: "Converting 'It is said that X...' into 'X is said to...'", pre: ["passive-reporting"],
+    instr: "Rewrite the sentence beginning with the words given, keeping the meaning.", source: "It is thought that the manuscript dates from the twelfth century.", hint: "The manuscript ______",
+    key: "is thought to date from the twelfth century", why: "Subject-raising passive reporting." }),
+  d.mcq({ b: "perfect-progressive-passive", t: "present-perfect-passive-duration", L: "C1", diff: 2, focus: "Present perfect passive for an ongoing process with present relevance", pre: ["perfect-passive"],
+    prompt: "The study is based on data that ______ continuously since 2018.", options: ["has been collected", "has collected", "was collecting", "had collected"], key: 0, why: "Passive + unfinished period → has been collected.", legacy: C1("The study is based on data that ______ continuously since 2018.") }),
+  d.mcq({ b: "passive-infinitive", t: "passive-infinitive-after-modal", L: "C1", diff: 2, focus: "Passive perfect infinitive after a modal", pre: ["passive-infinitive-gerund", "modal-perfect"],
+    prompt: "The samples ______ before the power failure, but nobody can confirm it.", options: ["may have been analysed", "may be analysed", "may have analysed", "may being analysed"], key: 0, why: "Uncertain past + passive → may have been + pp.", overlaps: ["modals"] }),
+  d.mcq({ b: "causative", t: "causative-get-to", L: "C1", diff: 3, focus: "get + person + to-infinitive vs have + person + bare infinitive", pre: ["causative-get-to", "verb-object-infinitive"],
+    prompt: "It took a while, but I finally got the technician ______ at the wiring.", options: ["to look", "look", "looking at it", "looked"], key: 0, why: "get + person + to-infinitive.", overlaps: ["verb-patterns"] }),
+  d.gap({ b: "two-object-passive", t: "indirect-object-passive", L: "C1", diff: 2, focus: "Two-object verbs allow the indirect object as passive subject", pre: ["two-object-passive"],
+    instr: "Complete the gap with THREE words so the meaning is kept.", source: "Somebody gave her a full refund. → She ______ a full refund.", key: "was given", why: "The indirect object becomes the passive subject.",
+    flags: ["Instruction says THREE words but the natural answer is two ('was given'). Correct the instruction wording at review."] }),
+  d.guided({ b: "reporting-passive", t: "is-believed-to", L: "C1", diff: 2, focus: "Productive passive reporting structure", pre: ["passive-reporting"],
+    prompt: "Write a sentence reporting a belief about another person or situation. Use a passive reporting structure such as is believed to...", required: "a passive reporting structure (e.g. is believed to / is thought to) used correctly",
+    legacy: B2O("Write a sentence reporting a belief about another person or situation. Use a passive reporting structure such as is believed to...") }),
+  d.guided({ b: "perfect-progressive-passive", t: "present-perfect-passive-duration", L: "C1", diff: 2, focus: "Productive present perfect passive for an ongoing process", pre: ["perfect-passive"],
+    prompt: "Write a sentence using the present perfect passive to describe a process that began in the past and remains relevant now.", required: "present perfect passive (has been + past participle) for a process begun in the past and still relevant",
+    legacy: C1O("Write a sentence using the present perfect passive to describe a process that began in the past and remains relevant now.") }),
+
+  // ---------------- C2 ----------------
+  d.mcq({ b: "reporting-passive", t: "passive-reporting-progressive", L: "C2", diff: 3, focus: "Passive reporting with a progressive infinitive for a currently unfolding situation", pre: ["passive-reporting", "passive-infinitive-gerund"],
+    prompt: "Several senior officials ______ to be considering resignation.", options: ["are understood", "understand", "are understanding", "have understood"], key: 0, why: "Impersonal report of an ongoing state → are understood to be + -ing.",
+    flags: ["c2-check: combines subject-raising passive reporting with a progressive infinitive — two structural layers, no rare vocabulary. C2 provisional."] }),
+  d.rewrite({ b: "causative", t: "causative-with-adverse-meaning", L: "C2", diff: 3, focus: "have + object + past participle for something adverse that happened to the subject", pre: ["causative-have-get"],
+    instr: "Rewrite the sentence beginning with the words given, keeping the meaning.", source: "Someone stole her passport while she was travelling.", hint: "She ______ while she was travelling.",
+    key: "had her passport stolen", why: "The 'have something done' pattern also expresses adverse experience, not only arrangement.",
+    flags: ["c2-check: the adversative reading of the causative is a genuine second grammatical function of the same structure taught at B2. C2 provisional."] }),
+];
