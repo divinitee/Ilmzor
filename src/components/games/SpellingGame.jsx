@@ -62,7 +62,13 @@ const TIER = {
   proficient: { items: 12, minLen: 6, maxLen: 14 },
 };
 const MIN_POOL = 6;
-const ATTEMPTS_PER_ITEM = 1.5;
+// One attempt per word, so the budget must equal the item count to be
+// reachable. At 1.5× items, tries can never exceed items (one per word),
+// making the budget check dead code — a student getting every word wrong
+// uses `items` tries, never reaching the 1.5×items ceiling. At 1.0× items,
+// a student who gets every word wrong exhausts the budget on the last word
+// and finishRound("budget") fires — roundPassed then determines pass/fail.
+const ATTEMPTS_PER_ITEM = 1.0;
 const REVEAL_MS = 1100;
 
 // How many letters to blank in missing_letters mode, scaled by difficulty.
@@ -116,6 +122,7 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
   const streakBestRef = useRef(0);
   const idxRef = useRef(0);
   const finishing = useRef(false);
+  const busy = useRef(false);
 
   // Translation reveal (available at all levels for spelling — the meaning
   // is shown as support, not as the answer). Always framed as a bonus for
@@ -151,6 +158,7 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
     if (pool.length < MIN_POOL) { setPhase("empty"); return; }
     setPhase("loading");
     finishing.current = false;
+    busy.current = false;
     roundId.current = generateRoundId();
     firstTry.current = new Set();
     missedOnce.current = new Set();
@@ -251,6 +259,15 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
     if (triesRef.current >= budgetRef.current) finishRound("budget");
   }, [finishRound]);
 
+  // Double-advance guard entry point for the manually-tapped Next button.
+  // The timeout in checkAnswer calls advance() directly (after clearing
+  // busy); the Next button goes through here so both paths respect the guard.
+  const handleNext = useCallback(() => {
+    if (!busy.current) return;
+    busy.current = false;
+    advance();
+  }, [advance]);
+
   // ---- letter_order handlers ----
   const pickLetter = (li) => {
     if (status || letters[li].used) return;
@@ -320,8 +337,16 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
     }
     if (mode === "typing") setTyped(target);
 
+    // Double-advance guard: set busy when the answer is checked. The
+    // REVEAL_MS auto-advance timeout and the manually-tapped Next button
+    // both go through handleNext — whichever fires first clears busy and
+    // advances; the other sees busy is already false and returns. Same
+    // pattern as SynonymSprintGame and OddOneOutGame.
+    busy.current = true;
     setTimeout(() => {
       if (finishing.current) return;
+      if (!busy.current) return; // already advanced by Next button
+      busy.current = false;
       if (triesRef.current >= budgetRef.current && !ok) { finishRound("budget"); return; }
       advance();
     }, REVEAL_MS);
@@ -456,7 +481,7 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
             <div className="flex items-center justify-between gap-2 mb-3 text-[11px] text-muted-foreground">
               <span>{c("question", { n: idx + 1, total: round.length })} · {c("item_progress", { n: firstTryCount, total: round.length })}</span>
               <button onClick={toggleMeaning} className="min-h-[44px] flex items-center gap-1 font-semibold select-none px-2" style={{ color: showMeaning ? undefined : ACCENT }}>
-                <BookOpen className="w-3.5 h-3.5" aria-hidden="true" /> {showMeaning ? c("meaning") : c("meaning")}
+                <BookOpen className="w-3.5 h-3.5" aria-hidden="true" /> {showMeaning ? c("hide_meaning") : c("show_meaning")}
               </button>
             </div>
             <p className="text-xs text-muted-foreground text-center mb-3">{c(instructionKey)}</p>
@@ -594,7 +619,7 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
                     </button>
                   </div>
                 ) : (
-                  <button onClick={advance} className="w-full h-12 rounded-xl text-white font-semibold flex items-center justify-center gap-2 select-none" style={{ background: `linear-gradient(180deg, ${ACCENT}, ${ACCENT}cc)` }}>
+                  <button onClick={handleNext} className="w-full h-12 rounded-xl text-white font-semibold flex items-center justify-center gap-2 select-none" style={{ background: `linear-gradient(180deg, ${ACCENT}, ${ACCENT}cc)` }}>
                     {idx + 1 >= round.length ? c("keep_going") : c("question", { n: idx + 2, total: round.length })} <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </button>
                 )}

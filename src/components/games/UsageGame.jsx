@@ -5,9 +5,8 @@ import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { logWordAttempts, PROVENANCE } from "@/lib/roundComposition";
-import { synonymForLevel } from "@/lib/synonymTiers";
 import { useUsageCopy } from "@/components/games/usageCopy";
-import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK } from "@/lib/usageBank";
+import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK, BEST_WORD_BANK } from "@/lib/usageBank";
 
 // ---------------------------------------------------------------------------
 // Usage — new engine for the four Vocabulary labels that used to point at
@@ -42,8 +41,9 @@ import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK } from "@/lib/usageBank";
 // SHARED INFRASTRUCTURE FLOOR:
 // 1. gameScoring.js — computeRoundXp / recordRoundReward / roundPassed
 // 2. Attempt budget (ATTEMPTS_PER_ITEM = 1.5)
-// 3. buildPersonalizedRound (fill_blank, best_word) + logWordAttempts (all)
-// 4. Provenance badges (fill_blank, best_word only — fixed banks have none)
+// 3. Personalization skipped — see inline comment in startRound for why.
+//    logWordAttempts (all modes) still writes per-word history.
+// 4. Provenance badges (fill_blank only — fixed banks have none)
 // 5. premium-mesh / premium-card / neo-pill, accent #7C6BE8
 // 6. usageCopy.js — full en/uz/ru
 // 7. Mini blitz lesson — 1 screen (fb/bw/sr), 2 screens (cm)
@@ -78,19 +78,6 @@ function fillBlankPool(words) {
   });
 }
 
-// best_word: same as fill_blank but also needs 3+ unique synonyms from the ladder
-function bestWordPool(words) {
-  return fillBlankPool(words).filter((w) => {
-    const en = (w.english || "").trim().toLowerCase();
-    const syns = new Set();
-    for (const tier of ["A2", "B1", "B2", "C1"]) {
-      const s = synonymForLevel(w, tier);
-      if (s && s.toLowerCase() !== en) syns.add(s);
-    }
-    return syns.size >= 3;
-  });
-}
-
 // ---- question builders ----
 
 function buildFillBlankQ(word, pool) {
@@ -101,17 +88,12 @@ function buildFillBlankQ(word, pool) {
   return { id: `${en}-${Math.random()}`, sentence, correct: en, options: shuffle([en, ...distractors]), word: en, _provenance: word._provenance };
 }
 
-function buildBestWordQ(word) {
-  const en = word.english;
-  const escaped = en.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const sentence = word.example_en.replace(new RegExp(`\\b${escaped}\\b`, "i"), "_____");
-  const syns = new Set();
-  for (const tier of ["A2", "B1", "B2", "C1"]) {
-    const s = synonymForLevel(word, tier);
-    if (s && s.toLowerCase() !== en.toLowerCase()) syns.add(s);
-  }
-  const distractors = shuffle([...syns]).slice(0, 3);
-  return { id: `${en}-${Math.random()}`, sentence, correct: en, options: shuffle([en, ...distractors]), word: en, _provenance: word._provenance };
+// best_word: hand-authored bank (BEST_WORD_BANK in usageBank.js). Each entry
+// has a sentence with a blank and 3 hand-picked distractors that are genuinely
+// wrong in context — not raw synonyms from the ladder, which were often all
+// acceptable. Same shape as buildRepairQ but without the `wrong` field.
+function buildBestWordBankQ(entry) {
+  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.sentence, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct };
 }
 
 function buildRepairQ(entry) {
@@ -132,13 +114,12 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
   // Pool for VocabularyWord-based modes
   const pool = useMemo(() => {
     if (mode === "fill_blank") return fillBlankPool(words);
-    if (mode === "best_word") return bestWordPool(words);
     return [];
   }, [words, mode]);
 
-  const usesVocabPool = mode === "fill_blank" || mode === "best_word";
+  const usesVocabPool = mode === "fill_blank";
   const fixedBank = useMemo(() =>
-    mode === "sentence_repair" ? SENTENCE_REPAIR_BANK : mode === "collocation_match" ? COLLOCATION_BANK : [],
+    mode === "sentence_repair" ? SENTENCE_REPAIR_BANK : mode === "collocation_match" ? COLLOCATION_BANK : mode === "best_word" ? BEST_WORD_BANK : [],
     [mode]
   );
 
@@ -198,10 +179,10 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
       // a simple shuffle; logWordAttempts still writes per-word history
       // so future rounds can personalize once signals exist.
       const chosen = shuffle(pool).slice(0, Math.min(itemCount, pool.length));
-      built = chosen.map((w) => mode === "fill_blank" ? buildFillBlankQ(w, pool) : buildBestWordQ(w));
+      built = chosen.map((w) => buildFillBlankQ(w, pool));
     } else {
       const picks = pickN(fixedBank, Math.min(itemCount, fixedBank.length));
-      built = picks.map((e) => mode === "sentence_repair" ? buildRepairQ(e) : buildCollocationQ(e));
+      built = picks.map((e) => mode === "sentence_repair" ? buildRepairQ(e) : mode === "best_word" ? buildBestWordBankQ(e) : buildCollocationQ(e));
     }
 
     if (built.length === 0) { setPhase("empty"); return; }
