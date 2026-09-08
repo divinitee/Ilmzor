@@ -1,12 +1,18 @@
 import { BookOpen, SpellCheck, FileText, Headphones, PenLine, Mic } from "lucide-react";
 
+// VIRORA skill colours — `color` matches the shared SKILLS system in
+// gameSkills.js so the hub node and the game screen use the same accent.
+// comingSoon skills (reading/listening/writing/speaking) have no SKILLS entry;
+// their colours are chosen from the VIRORA palette to sit on the Midnight
+// Purple ground: reading → comprehension rose, writing → creativity lavender,
+// listening/speaking → muted palette-consistent teal/blue/green.
 export const TOP_SKILLS = [
-  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-blue-500 to-indigo-600", ring: "ring-blue-400/50", glow: "rgba(59,130,246,0.55)", color: "#3b82f6" },
-  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-rose-500 to-red-600", ring: "ring-rose-400/50", glow: "rgba(239,68,68,0.55)", color: "#ef4444" },
-  { id: "reading", label: "Reading", icon: FileText, hue: "from-amber-400 to-yellow-500", ring: "ring-amber-400/50", glow: "rgba(250,204,21,0.5)", comingSoon: true, color: "#facc15" },
-  { id: "listening", label: "Listening", icon: Headphones, hue: "from-slate-200 to-white", ring: "ring-slate-200/50", glow: "rgba(248,250,252,0.55)", comingSoon: true, color: "#f8fafc" },
-  { id: "writing", label: "Writing", icon: PenLine, hue: "from-blue-700 to-indigo-800", ring: "ring-blue-500/50", glow: "rgba(37,99,235,0.5)", comingSoon: true, color: "#1d4ed8" },
-  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-emerald-500 to-green-600", ring: "ring-emerald-400/50", glow: "rgba(34,197,94,0.55)", comingSoon: true, color: "#22c55e" },
+  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-violet-500 to-purple-600", ring: "ring-violet-400/50", glow: "rgba(124,107,232,0.55)", color: "#7C6BE8" },
+  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(62,158,146,0.55)", color: "#3E9E92" },
+  { id: "reading", label: "Reading", icon: FileText, hue: "from-rose-400 to-pink-500", ring: "ring-rose-400/50", glow: "rgba(206,106,134,0.5)", comingSoon: true, color: "#CE6A86" },
+  { id: "listening", label: "Listening", icon: Headphones, hue: "from-sky-400 to-blue-500", ring: "ring-sky-400/50", glow: "rgba(107,158,196,0.5)", comingSoon: true, color: "#6B9EC4" },
+  { id: "writing", label: "Writing", icon: PenLine, hue: "from-purple-400 to-fuchsia-500", ring: "ring-purple-400/50", glow: "rgba(182,120,201,0.5)", comingSoon: true, color: "#B678C9" },
+  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-emerald-400 to-green-500", ring: "ring-emerald-400/50", glow: "rgba(91,155,126,0.5)", comingSoon: true, color: "#5B9B7E" },
 ];
 
 const gen = (names, game) => names.map((name, i) => ({

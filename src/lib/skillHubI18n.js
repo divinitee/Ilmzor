@@ -14,6 +14,7 @@ const SKILL = {
   },
   "ui.center": { en: "English Skills", uz: "Ingliz ko'nikmalari", ru: "Навыки английского" },
   "ui.allSkills": { en: "All Skills", uz: "Barcha ko'nikmalar", ru: "Все навыки" },
+  "ui.skillHub": { en: "Skill Hub", uz: "Ko'nikmalar markazi", ru: "Центр навыков" },
   "ui.chooseChallenge": { en: "Choose a Challenge", uz: "Mashqni tanlang", ru: "Выберите задание" },
   "ui.soon": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
   "ui.comingSoonTitle": { en: "This skill is coming soon — stay tuned!", uz: "Bu ko'nikma tez orada qo'shiladi — kuting!", ru: "Этот навык скоро появится — следите за новостями!" },
@@ -29,6 +30,12 @@ const SKILL = {
   "3 min": { uz: "3 daq", ru: "3 мин" },
   "5 min": { uz: "5 daq", ru: "5 мин" },
   "8 min": { uz: "8 daq", ru: "8 мин" },
+  "1-2 min": { uz: "1-2 daq", ru: "1-2 мин" },
+  "2-3 min": { uz: "2-3 daq", ru: "2-3 мин" },
+  "2-4 min": { uz: "2-4 daq", ru: "2-4 мин" },
+  "3-4 min": { uz: "3-4 daq", ru: "3-4 мин" },
+  "3-5 min": { uz: "3-5 daq", ru: "3-5 мин" },
+  "6-9 min": { uz: "6-9 daq", ru: "6-9 мин" },
 
   // ---- top skills ----
   Vocabulary: { uz: "Vokabular", ru: "Словарный запас" },

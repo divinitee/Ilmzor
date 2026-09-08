@@ -221,7 +221,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            Skill Hub
+            {loc("ui.skillHub")}
           </h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
             {loc("ui.sub")}
@@ -242,7 +242,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
               to="/my-words"
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-blue-400 text-xs font-semibold select-none"
             >
-              <BookmarkPlus className="w-3.5 h-3.5" /> My Words
+              <BookmarkPlus className="w-3.5 h-3.5" /> {t("nav.my_words")}
             </Link>
           </div>
         )}
