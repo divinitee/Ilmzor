@@ -57,10 +57,10 @@ export default [
   d.mcq({ b: "relative-clauses", t: "object-relative-omission", L: "B1", diff: 2, focus: "Object relative pronoun optional; 'where' impossible for a thing", pre: ["relative-pronouns", "defining-relative"],
     prompt: "Which option is NOT possible in this sentence?  The book ______ I bought yesterday is excellent.", options: ["that", "which", "(nothing)", "where"], key: 3, why: "where is for places; that/which/omission all work.",
     legacy: B1("The book ______ I bought yesterday is excellent.", "Legacy key 'no relative pronoun is necessary' was one of two valid answers ('that' also fits). Reframed as 'which option is NOT possible' so exactly one option is correct."), overlaps: ["pronouns"] }),
-  d.mcq({ b: "relative-clauses", t: "who-people", L: "B1", diff: 1, focus: "who (not which) for a person, defining clause", pre: ["relative-pronouns", "defining-relative"],
-    prompt: "The woman ______ lives next door is a doctor.", options: ["which", "where", "who", "whose"], key: 2, why: "Person → who.", legacy: B1("The woman ______ lives next door is a doctor.") }),
-  d.mcq({ b: "relative-clauses", t: "where-place", L: "B1", diff: 1, focus: "where vs what/whose after a place noun", pre: ["relative-pronouns"],
-    prompt: "This is the restaurant ______ we had dinner last night.", options: ["who", "where", "whose", "what"], key: 1, why: "Place → where.", legacy: B1("This is the restaurant ______ we had dinner last night.") }),
+  // Legacy B1 'The woman ______ lives next door is a doctor.' and 'This is the restaurant ______ we had
+  // dinner last night.' are near-duplicates of the A2 items above and were NOT reused.
+  d.mcq({ b: "relative-clauses", t: "which-vs-what", L: "B1", diff: 2, focus: "which (relative) vs what (not a relative pronoun) after a noun", pre: ["relative-pronouns", "defining-relative"],
+    prompt: "I couldn't find the file ______ you sent me.", options: ["which", "what", "who", "whose"], key: 0, why: "'what' cannot follow a noun as a relative pronoun." }),
   d.mcq({ b: "conjunctions", t: "although-despite", L: "B1", diff: 2, focus: "although + clause for concession", pre: ["concession-linkers", "subordinating-conjunctions"],
     prompt: "______ it was raining, we went for a walk.", options: ["Although", "Despite", "Because", "However"], key: 0, why: "Followed by a clause → Although." }),
   d.mcq({ b: "clause-linkers", t: "purpose-so-that", L: "B1", diff: 2, focus: "so that + clause for purpose (vs so + result)", pre: ["purpose-clauses"],
