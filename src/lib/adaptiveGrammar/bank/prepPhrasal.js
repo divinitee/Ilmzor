@@ -93,7 +93,9 @@ export default [
     instr: "Complete each gap with ONE preposition.", source: "The study offers fresh insight ______ the causes of the decline, with particular emphasis ______ rural areas.", key: ["into", "on"], why: "insight into; emphasis on." }),
 
   // ---------------- C2 ----------------
-  d.mcq({ b: "stranding", t: "pied-piping-whose", L: "C2", diff: 3, focus: "Fronted preposition with 'whose' phrase (pied-piping of a whole noun phrase)", pre: ["preposition-stranding", "relative-pronouns"],
+  // No C2 items: no defensible grammatical (as opposed to lexical/collocational) C2 expansion was
+  // identified for prepositions or phrasal verbs. Flagged in the completion report.
+  d.mcq({ b: "stranding", t: "pied-piping-whose", L: "C1", diff: 3, focus: "Fronted preposition with 'whose' phrase (pied-piping of a whole noun phrase)", pre: ["preposition-stranding", "relative-pronouns"],
     prompt: "Which sentence is the correct formal version of 'the author — I reviewed his book'?", options: ["the author whose book I reviewed", "the author, the book of whom I reviewed", "the author whose I reviewed book", "the author of whose book reviewed I"], key: 0, why: "'whose book' moves as a unit; the marked 'of whom' variant is stilted and misplaced here.", overlaps: ["sentence-structure"],
-    flags: ["c2-check: possessive-relative pied-piping is structurally complex but the correct answer here is arguably C1. Kept as C2 difficulty-1 candidate only if the engine needs a C2 probe in this domain; otherwise demote to C1 diff 3."] }),
+    flags: ["Originally drafted as a C2 probe; demoted to C1 difficulty 3 because the distinction is upper-C1 in standard references."] }),
 ];
