@@ -9,10 +9,10 @@ import { meaningInLang } from "@/lib/vocabGameUtils";
 // the support-language translation, which is the game's decision, not this
 // module's.
 //
-// Built but NOT wired: meaningInLang() and every existing game are untouched.
-// The only intended consumer for now is CardFlipFable. Resolution always
-// degrades safely, so a row this enrichment pass hasn't reached behaves exactly
-// as it does today.
+// Wired through definitionForLevel(): DefinitionGame, DefinitionMatchGame,
+// CardFlipFable (via cardFlipFableMeaning.js), and SpellingGame's English-mode
+// meaning hint. meaningInLang() remains the low-level fallback for
+// support-language (uz/ru) display and for any caller without a student level.
 
 export const TIER_FIELD = {
   A2: "def_a2",

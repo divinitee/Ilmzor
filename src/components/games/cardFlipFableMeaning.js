@@ -17,10 +17,9 @@ import { definitionForLevel } from "@/lib/definitionTiers";
 // who is the leader of a sports group." became "The person who is the leader of
 // a…", which is harder to learn from than the original, not easier.
 //
-// The tier fields are still EMPTY pending the enrichment batch, so today every
-// level resolves to english_definition — identical to what the app has always
-// shown, with no truncation. Each row the batch fills upgrades itself with no
-// further code change.
+// The tier fields (def_a2 / def_b1 / def_b2 / def_c1) are now fully populated
+// across the 2,282-row VocabularyWord set, so A2+ students receive their own
+// CEFR-readable definition through definitionForLevel().
 
 export const SUPPORT_LEVELS = ["Starter", "A1"];
 

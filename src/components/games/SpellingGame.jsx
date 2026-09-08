@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, ArrowRight, Check, X, Volume2, Eraser, HelpCircle } from "lucide-react";
-import { usableWords, shuffle } from "@/lib/vocabGameUtils";
-import { meaningInLang } from "@/lib/vocabGameUtils";
+import { usableWords, shuffle, meaningInLang } from "@/lib/vocabGameUtils";
+import { definitionForLevel } from "@/lib/definitionTiers";
 import { SKILLS } from "@/lib/gameSkills";
 import { hintXpMultiplier } from "@/lib/levels";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
@@ -355,7 +355,14 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
   const triesLeft = Math.max(0, budget - tries);
   const titleKey = `title_${mode}`;
   const instructionKey = `${mode === "missing_letters" ? "ml" : mode === "letter_order" ? "lo" : "ty"}_instruction`;
-  const meaningText = currentWord ? meaningInLang(currentWord, lang) : "";
+  // English mode reads the student's CEFR-tiered definition through the shared
+  // resolver (definitionForLevel) rather than the raw word-relative
+  // english_definition. Support-language modes (uz/ru) keep meaningInLang, which
+  // returns the translation — definitionForLevel would wrongly return the
+  // English tier field to an Uzbek-interface student.
+  const meaningText = currentWord
+    ? (lang === "en" ? definitionForLevel(currentWord, level, lang) : meaningInLang(currentWord, lang))
+    : "";
 
   // ---- Blitz lesson ----
   const blitzScreens = useMemo(() => {
