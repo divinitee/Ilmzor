@@ -1,0 +1,93 @@
+{
+  "name": "GrammarProfile",
+  "type": "object",
+  "description": "The learner's CURRENT grammar domain profile, derived from their most recent GrammarAssessmentRun. One row per student, rewritten on each completed assessment (the run history stays immutable in GrammarAssessmentRun). Exists so consumers can read a learner's grammar position cheaply without loading and re-deriving a full run's item log. GRAMMAR ONLY \u2014 not authoritative for any other skill, and never written to User.cefr_level.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning student's email; one row per student"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "The GrammarAssessmentRun this profile was derived from"
+    },
+    "scope": {
+      "type": "string",
+      "default": "grammar",
+      "description": "Always 'grammar'. Present so a future profile for another skill cannot be confused with this one."
+    },
+    "overall_level": {
+      "type": "string",
+      "description": "Grammar-only summary level. A summary of the domain profile, not a replacement for it \u2014 consumers that can read domains should prefer domains."
+    },
+    "overall_confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "overall_bound_by": {
+      "type": "string",
+      "description": "Which aggregation rule set the summary: floor_share | core_guard | no_evidence"
+    },
+    "domains": {
+      "type": "object",
+      "description": "domainId -> {estimatedLevel, basis, verifiedLevel, belowFloor, atCoverageCeiling, confidence, untestedBelow, contradictionCount}. `basis` distinguishes a directly observed placement from an inferred one; `untestedBelow` names the rungs never asked about."
+    },
+    "core_guard_provisional": {
+      "type": "boolean",
+      "default": true,
+      "description": "True while the core-domain set used by the aggregation remains a provisional engine default rather than a ratified curriculum decision."
+    },
+    "engine_version": {
+      "type": "string"
+    },
+    "config_version": {
+      "type": "string"
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_email",
+    "run_id"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

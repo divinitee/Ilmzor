@@ -1,0 +1,135 @@
+{
+  "name": "GrammarAssessmentRun",
+  "type": "object",
+  "description": "One completed Adaptive Grammar Placement run. Immutable audit record: what was asked, at what level, how it was evaluated, and what was concluded. GRAMMAR ONLY \u2014 never authoritative for vocabulary, reading, listening, writing or speaking, and never written to User.cefr_level. Raw history lives here; the derived current profile lives in GrammarProfile.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning student's email"
+    },
+    "run_id": {
+      "type": "string",
+      "description": "Engine-generated run id, also referenced by GrammarProfile.run_id"
+    },
+    "engine_version": {
+      "type": "string"
+    },
+    "config_version": {
+      "type": "string",
+      "description": "Which threshold set produced this result. Stored so a past run can be re-scored against new thresholds without re-testing the learner."
+    },
+    "seed": {
+      "type": "number",
+      "description": "Deterministic tie-break seed. With engine_version + config_version + item_log this makes the run replayable."
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "stopped_because": {
+      "type": "string",
+      "description": "sufficient_evidence | no_further_value | dataset_exhausted | hard_cap | absolute_cap | abandoned"
+    },
+    "anchor_level": {
+      "type": "string",
+      "description": "Band the rapid calibration phase settled on before screening"
+    },
+    "items_served": {
+      "type": "number"
+    },
+    "ai_items_attempted": {
+      "type": "number"
+    },
+    "ai_items_failed": {
+      "type": "number",
+      "description": "AI/infrastructure failures. These contributed no evidence in either direction \u2014 never treated as learner errors."
+    },
+    "overall_level": {
+      "type": "string",
+      "description": "Grammar-only summary level, or empty when nothing could be assessed"
+    },
+    "overall_confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "description": "Full grammar profile as generated: per-domain estimate, basis, observed rungs, untested rungs, confidence, contradictions, plus the overall summary and its rationale."
+    },
+    "item_log": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Every observation in order, including evaluation failures. Required for audit and re-scoring."
+    },
+    "evaluation_failures": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Infrastructure failures preserved for debugging, kept distinguishable from learner performance."
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Lower-rung failure sitting under a higher-rung success, with both sides' evidence preserved."
+    },
+    "coverage": {
+      "type": "object",
+      "description": "Dataset density per domain x level at the time of the run. Explains a coverage-ceiling result later, once the bank has grown."
+    },
+    "dataset_items": {
+      "type": "number",
+      "description": "Dataset size at run time"
+    }
+  },
+  "required": [
+    "user_email",
+    "run_id"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
