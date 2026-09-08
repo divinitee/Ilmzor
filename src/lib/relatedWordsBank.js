@@ -17,31 +17,50 @@
 // ---------------------------------------------------------------------------
 
 export const CATEGORY_BANK = {
-  Kitchen:    ["stove", "fridge", "sink", "oven", "pot", "plate", "knife", "spoon"],
+  // "pot" → "pan", "knife" → "bowl": pot is also Garden (plant pot), knife is
+  // also Tools. Replacements are unambiguously kitchen-only.
+  Kitchen:    ["stove", "fridge", "sink", "oven", "pan", "plate", "bowl", "spoon"],
   Weather:    ["rain", "snow", "wind", "storm", "cloud", "sun", "fog", "ice"],
   Family:     ["mother", "father", "sister", "brother", "aunt", "uncle", "cousin", "parent"],
-  Colors:     ["red", "blue", "green", "yellow", "purple", "orange", "brown", "pink"],
+  // "orange" → "black": orange is also Food (the fruit). Black is unambiguously a color.
+  Colors:     ["red", "blue", "green", "yellow", "purple", "black", "brown", "pink"],
   Animals:    ["dog", "cat", "horse", "cow", "sheep", "goat", "duck", "rabbit"],
   Body:       ["head", "hand", "foot", "arm", "leg", "eye", "ear", "nose"],
   Clothes:    ["shirt", "dress", "pants", "shoes", "hat", "coat", "skirt", "socks"],
-  Food:       ["bread", "rice", "meat", "fish", "fruit", "cheese", "egg", "soup"],
+  // "fish" → "butter": fish is also Animals. Butter is unambiguously food.
+  Food:       ["bread", "rice", "meat", "butter", "fruit", "cheese", "egg", "soup"],
   School:     ["desk", "book", "pen", "pencil", "ruler", "eraser", "notebook", "lesson"],
   Transport:  ["car", "bus", "train", "plane", "bike", "boat", "truck", "taxi"],
-  Jobs:       ["doctor", "teacher", "engineer", "lawyer", "nurse", "chef", "pilot", "artist"],
+  // doctor→builder, nurse→painter, pilot→baker, teacher→farmer: doctor/nurse
+  // are also Health, pilot is also Transport, teacher is also School.
+  // Replacements are unambiguously jobs with no secondary category.
+  Jobs:       ["builder", "farmer", "engineer", "lawyer", "painter", "chef", "baker", "artist"],
   Sports:     ["football", "tennis", "swimming", "boxing", "running", "cycling", "golf", "rugby"],
   Nature:     ["mountain", "river", "forest", "desert", "valley", "cliff", "waterfall", "ocean"],
   Music:      ["guitar", "piano", "violin", "drum", "flute", "trumpet", "melody", "rhythm"],
   Emotions:   ["joy", "anger", "fear", "sadness", "surprise", "pride", "shame", "jealousy"],
-  Travel:     ["passport", "suitcase", "ticket", "hotel", "airport", "tourist", "visa", "souvenir"],
-  Technology:  ["computer", "phone", "screen", "keyboard", "battery", "software", "network", "password"],
+  // ticket→guidebook: ticket is also Transport (bus/train ticket).
+  Travel:     ["passport", "suitcase", "guidebook", "hotel", "airport", "tourist", "visa", "souvenir"],
+  // keyboard→charger: keyboard is also Music (keyboard instrument).
+  Technology:  ["computer", "phone", "screen", "charger", "battery", "software", "network", "password"],
   Health:     ["medicine", "hospital", "patient", "treatment", "symptom", "disease", "vaccine", "recovery"],
   House:      ["roof", "wall", "door", "window", "stairs", "ceiling", "chimney", "balcony"],
   Shopping:   ["price", "discount", "receipt", "customer", "cashier", "product", "brand", "market"],
-  Garden:     ["flower", "tree", "grass", "leaf", "root", "seed", "soil", "branch"],
-  Office:     ["printer", "folder", "meeting", "schedule", "report", "contract", "employee", "salary"],
-  City:       ["street", "building", "park", "bridge", "tower", "square", "subway", "traffic"],
-  Tools:      ["hammer", "screwdriver", "nail", "saw", "wrench", "pliers", "drill", "tape"],
-  Money:      ["cash", "coin", "bank", "wallet", "budget", "loan", "profit", "debt"],
+  // Entire category replaced: every original word (flower, tree, grass, leaf,
+  // root, seed, soil, branch) also fits Nature. Replacements are garden
+  // structures/equipment that are unambiguously garden, not nature or tools.
+  Garden:     ["fence", "greenhouse", "sprinkler", "planter", "patio", "trellis", "gazebo", "flowerbed"],
+  // employee→paperclip, salary→briefcase: employee is also Jobs, salary is also
+  // Money. Replacements are unambiguously office supplies.
+  Office:     ["printer", "folder", "meeting", "schedule", "report", "contract", "paperclip", "briefcase"],
+  // subway→statue, traffic→streetlight, park→monument: subway/traffic are also
+  // Transport, park is also Nature. Replacements are unambiguously city.
+  City:       ["street", "building", "monument", "bridge", "tower", "square", "statue", "streetlight"],
+  // nail→bolt: nail is also Body (fingernail). Bolt is unambiguously hardware.
+  Tools:      ["hammer", "screwdriver", "bolt", "saw", "wrench", "pliers", "drill", "tape"],
+  // cash→deposit: cash is also Shopping (you pay with cash). Deposit is
+  // unambiguously money/banking.
+  Money:      ["deposit", "coin", "bank", "wallet", "budget", "loan", "profit", "debt"],
 };
 
 // Flat list of [category, words] pairs for easy random access

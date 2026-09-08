@@ -194,7 +194,14 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
     if (built.length === 0) { setPhase("empty"); return; }
 
     roundItems.current = built;
-    budgetRef.current = Math.max(built.length, Math.round(built.length * cfg.picksPerItem * ATTEMPTS_MULTIPLIER));
+    // Budget is items × ATTEMPTS_MULTIPLIER for ALL modes — picksPerItem is
+    // NOT in the formula. The old formula (items × picksPerItem × 1.5) gave
+    // wildly different failability per mode: prefix/suffix (picksPerItem=1)
+    // exhausted the budget almost instantly, while word_family
+    // (picksPerItem=4) and root_hunt (picksPerItem=2) could almost never reach
+    // it. Same multiplier for all modes means the same budget number represents
+    // comparable difficulty — a below-average student can fail in all 4.
+    budgetRef.current = Math.max(built.length, Math.round(built.length * ATTEMPTS_MULTIPLIER));
     triesRef.current = 0;
     streakBestRef.current = startStreak;
     idxRef.current = 0;
