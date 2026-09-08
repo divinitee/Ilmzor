@@ -79,8 +79,7 @@ export default [
   d.gap({ b: "reflexive", t: "emphatic-reflexive", L: "B2", diff: 2, focus: "Emphatic reflexive meaning 'personally / without help'", pre: ["reflexive-pronouns"],
     instr: "Complete the gap with one word.", source: "Nobody helped her — she painted the whole flat ______.", key: "herself", why: "Emphasis on doing it personally → herself." }),
   d.mcq({ b: "possessive", t: "possessive-before-gerund", L: "B2", diff: 3, focus: "Possessive determiner before a gerund (formal)", pre: ["possessive-determiners", "gerund"],
-    prompt: "I hope you don't mind ______ asking, but how old are you?", options: ["my", "me", "I", "mine"], key: 0, why: "Formal gerund subject → possessive 'my' (object 'me' is informal but the question targets the formal form).", overlaps: ["verb-patterns"],
-    flags: ["'me asking' is acceptable in informal English; the stem's 'I hope you don't mind' formal frame supports 'my' but this is register-sensitive. Review before mass use."] }),
+    prompt: "In formal written English: The delay was caused by ______ misreading the instructions.", options: ["my", "me", "I", "mine"], key: 0, why: "Formal register requires the possessive determiner before a gerund; the object form belongs to informal speech and is excluded by the stated register.", overlaps: ["verb-patterns"] }),
   d.correct({ b: "personal", t: "whom-object", L: "B2", diff: 3, focus: "Object pronoun (not subject) after 'than' in comparative clauses in formal writing", pre: ["object-pronouns", "subject-pronouns"],
     instr: "Make the sentence formally correct. Write the whole sentence.", source: "The manager is much more experienced than me am.", key: "The manager is much more experienced than I am.", why: "With a following verb 'am', the subject form 'I' is required." }),
 

@@ -17,8 +17,8 @@ export default [
 
   // ---------------- B1 ----------------
   d.mcq({ b: "zero-first", t: "zero-general-truth", L: "B1", diff: 1, focus: "Zero (not first) conditional for a general consequence", pre: ["zero-conditional"],
-    prompt: "If you don't water plants, they ______.", options: ["will die", "died", "die", "are dying"], key: 2, why: "Always true → present simple.", legacy: B1("If you don't water plants, they ______."),
-    flags: ["'will die' is also natural here (first conditional reading). Legacy key kept; stem would benefit from an 'in general' anchor before mass use."] }),
+    prompt: "As a general rule, if you don't water plants, they ______.", options: ["will die", "died", "die", "are dying"], key: 2, why: "'As a general rule' marks a timeless truth, which requires the present simple; 'will die' would refer to one specific future case.",
+    legacy: B1("If you don't water plants, they ______.", "Bare stem allowed both a zero-conditional (general truth) and a first-conditional (specific future) reading. 'As a general rule' added to fix the generic reading, leaving the present simple as the only defensible answer. Same branch, topic, level and difficulty.") }),
   d.mcq({ b: "second", t: "if-i-were-you", L: "B1", diff: 1, focus: "would + base in the second conditional result", pre: ["second-conditional", "past-simple"],
     prompt: "If I were you, I ______ for that job.", options: ["apply", "will apply", "would apply", "applied"], key: 2, why: "Hypothetical → would.", legacy: B1("If I were you, I ______ for that job.") }),
   d.mcq({ b: "second", t: "second-if-clause", L: "B1", diff: 2, focus: "Past simple in the second-conditional if-clause", pre: ["second-conditional", "past-simple"],

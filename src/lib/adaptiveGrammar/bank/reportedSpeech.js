@@ -54,8 +54,7 @@ export default [
 
   // ---------------- C1 ----------------
   d.mcq({ b: "backshift-exceptions", t: "general-truth-no-backshift", L: "C1", diff: 2, focus: "No backshift for a general truth", pre: ["backshift-exceptions", "present-simple"],
-    prompt: "The teacher explained that water ______ at 100°C.", options: ["boils", "boiled", "had boiled", "would boil"], key: 0, why: "General truth stays present (backshift also possible but the present is the marked correct choice here).",
-    flags: ["'boiled' is grammatically acceptable (optional backshift); the diagnostic is knowing that no-backshift is available. Consider phrasing the question as 'Which form shows the fact is still true?' before mass use."] }),
+    prompt: "My doctor told me that I ______ allergic to penicillin, and I still am.", options: ["am", "was", "had been", "would be"], key: 0, why: "'and I still am' asserts present validity, so the backshifted forms create a false implication that the fact no longer holds; only the unshifted present is defensible." }),
   d.mcq({ b: "backshift-exceptions", t: "still-true-no-backshift", L: "C1", diff: 2, focus: "Choice of no-backshift signals the statement is still true", pre: ["backshift-exceptions"],
     prompt: "Which reported sentence most clearly implies that Sara STILL lives in Bukhara?", options: ["Sara told me she lives in Bukhara.", "Sara told me she lived in Bukhara.", "Sara told me she had lived in Bukhara.", "Sara told me she would live in Bukhara."], key: 0, why: "Present tense in the reported clause = still true." }),
   d.mcq({ b: "modals-reported", t: "modals-no-backshift", L: "C1", diff: 2, focus: "would/could/might/should/ought do not backshift", pre: ["reported-modals"],

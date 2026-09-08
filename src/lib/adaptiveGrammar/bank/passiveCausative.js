@@ -26,7 +26,7 @@ export default [
   d.mcq({ b: "modal-passive", t: "modal-be-pp", L: "B1", diff: 2, focus: "Modal + be + pp", pre: ["modal-passive", "modal-base-form"],
     prompt: "This form ______ in black ink.", options: ["must complete", "must be completed", "must completed", "must be complete"], key: 1, why: "The form receives the action → must be completed.", overlaps: ["modals"] }),
   d.mcq({ b: "simple-passive", t: "agent-by", L: "B1", diff: 1, focus: "by introduces the agent; with introduces an instrument", pre: ["agent-by"],
-    prompt: "The window was broken ______ a stone.", options: ["by", "with", "from", "of"], key: 1, why: "Instrument → with.", flags: ["'by a stone' is also acceptable if the stone is treated as agent; key follows the instrument reading. Review."] }),
+    prompt: "The lock was forced ______ a screwdriver by one of the thieves.", options: ["by", "with", "from", "of"], key: 1, why: "The agent slot is already filled by 'by one of the thieves', so the instrument must take 'with'." }),
   d.correct({ b: "simple-passive", t: "no-passive-intransitive", L: "B1", diff: 3, focus: "Intransitive verbs (happen, arrive) have no passive", pre: ["passive-be-participle"],
     source: "The accident was happened at six o'clock.", key: "The accident happened at six o'clock.", why: "'happen' is intransitive." }),
   d.guided({ b: "simple-passive", t: "past-passive", L: "B1", diff: 1, focus: "Productive past passive", pre: ["passive-be-participle"],

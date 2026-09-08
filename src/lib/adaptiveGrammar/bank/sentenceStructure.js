@@ -113,8 +113,8 @@ export default [
 
   // ---------------- C1 ----------------
   d.mcq({ b: "participle-clauses", t: "present-participle-cause", L: "C1", diff: 2, focus: "Present participle clause (simultaneous/causal) vs perfect participle", pre: ["participle-clauses"],
-    prompt: "______ the limitations of the sample, the authors avoided making broad conclusions.", options: ["Acknowledging", "Having acknowledged", "Acknowledged", "To acknowledge"], key: 0, why: "Simultaneous stance → present participle.", legacy: C1("______ the limitations of the sample, the authors avoided making broad conclusions."),
-    flags: ["'Having acknowledged' is also grammatical (prior action). Legacy key kept; consider tightening context before mass use."] }),
+    prompt: "______ that the funding was limited, the team designed a smaller study.", options: ["Knowing", "Having known", "Known", "To know"], key: 0, why: "A stative verb in a causal participle clause takes the present participle; 'Having known' forces a completed prior event reading that a continuing state cannot carry.",
+    legacy: C1("______ the limitations of the sample, the authors avoided making broad conclusions.", "With 'acknowledge' (a dynamic verb) both the present and the perfect participle were defensible. Verb changed to the stative 'know', which blocks the perfect participle while keeping the causal present-participle clause as the target. Same branch, topic, level and difficulty.") }),
   d.mcq({ b: "participle-clauses", t: "reduced-relative-passive", L: "C1", diff: 1, focus: "Reduced passive relative in academic prose", pre: ["reduced-relative"],
     prompt: "The measures ______ to reduce energy consumption were implemented across all departments.", options: ["designed", "designing", "were designing", "which designing"], key: 0, why: "'which were designed' → designed.", legacy: C1("The measures ______ to reduce energy consumption were implemented across all departments.") }),
   d.mcq({ b: "emphasis-inversion", t: "only-after-inversion", L: "C1", diff: 2, focus: "Inversion in the main clause after fronted 'Only after ...'", pre: ["negative-adverbial-inversion", "auxiliary-do"],

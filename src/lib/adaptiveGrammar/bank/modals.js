@@ -100,7 +100,7 @@ export default [
   d.mcq({ b: "hedging", t: "would-tentative", L: "C1", diff: 3, focus: "'would' softening an assertion (tentative would)", pre: ["hedging-modals"],
     prompt: "This ______ appear to be the first recorded case of its kind.", options: ["would", "will", "must", "shall"], key: 0, why: "Tentative 'would appear' hedges the claim." }),
   d.mcq({ b: "semi-modals", t: "dare-need-bare", L: "C1", diff: 3, focus: "'dare' as a modal takes bare infinitive in negatives/questions", pre: ["semi-modals", "modal-base-form"],
-    prompt: "Nobody ______ question the director's decision.", options: ["dared", "dare", "dares to", "dare to"], key: 1, why: "Modal 'dare' → bare infinitive, no -s in negative context.", flags: ["'dared' (as a lexical verb with bare infinitive) is also attested; the modal form is the target. Review."] }),
+    prompt: "He ______ admit the truth, even to his closest colleagues.", options: ["dare not", "dares not to", "dare not to", "not dares"], key: 0, why: "Modal 'dare' in the negative takes no -s and a bare infinitive: dare not admit. The other three forms are ungrammatical." }),
   d.guided({ b: "hedging", t: "might-academic", L: "C1", diff: 2, focus: "Productive academic hedging with a modal", pre: ["hedging-modals"],
     prompt: "Write an academic-style sentence using a modal verb to hedge a claim rather than state it as certain.", required: "a hedging modal (e.g. may/might/could/would seem to) softening an academic claim rather than stating it as fact",
     constraints: ["exactly one sentence", "the modal must express tentativeness, not ability or obligation"],
