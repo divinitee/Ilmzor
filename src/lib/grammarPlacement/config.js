@@ -36,7 +36,11 @@ export const DEFAULT_CONFIG = {
     // reporting already carries the thinness of that evidence.
     minObservations: 2,
     // Never spend more than this on one cell, however uncertain it stays.
-    maxObservations: 6,
+    // At n=4 the reachable ratios are 0, .25, .5, .75, 1 — a cell still sitting
+    // at .5 after four items is a genuine coin flip, and further items buy
+    // very little. Leaving this at 6 let borderline rungs absorb budget that
+    // other domains needed more.
+    maxObservations: 4,
     // Positive-evidence ratios. `credit` is normalised 0..1 per observation.
     // WHY 0.65 for confirm rather than 0.70: at the small samples this budget
     // allows, the threshold has to land between reachable fractions. With 3
@@ -173,6 +177,12 @@ export const DEFAULT_CONFIG = {
     // Cap on the share of the total item budget contradictions may consume, so
     // two messy domains cannot starve the other eleven.
     maxBudgetShare: 0.25,
+    // Need-weight applied to the two contradicted rungs, overriding whatever
+    // their cell state would normally imply. Without this a strongly-failed
+    // lower rung and a strongly-cleared upper rung both score need 0 — the
+    // state machine considers each settled on its own — and the contradiction
+    // between them could never be re-probed at all.
+    reprobeNeedWeight: 1.4,
   },
 
   // -------------------------------------------------------------------------
