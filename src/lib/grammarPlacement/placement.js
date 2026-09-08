@@ -18,9 +18,15 @@ import { cellKey } from "@/lib/grammarPlacement/evidence";
 
 export const BASIS = {
   VERIFIED: "verified",           // highest cleared rung was directly observed
+  // A rung above was observed as FAILED, nothing below it was observed as
+  // cleared, so the estimate one rung down is a reasoned inference from a real
+  // observation — not a measurement, and not nothing. Kept distinct from
+  // UNASSESSED precisely because conflating the two would either throw away a
+  // usable signal or dress an inference up as a verified result.
+  INFERRED: "inferred",
   CONTRADICTED: "contradicted",   // placed conservatively below an unresolved gap
   BELOW_FLOOR: "below_floor",     // failed the lowest rung this domain can assess
-  UNASSESSED: "unassessed",       // not enough observed evidence to place at all
+  UNASSESSED: "unassessed",       // no usable observed evidence at all
 };
 
 const band = (score, config) =>
@@ -53,6 +59,9 @@ function computeConfidence(domain, result, ladder, cells, config) {
 
   if (result.basis === BASIS.UNASSESSED) {
     return { score: 0.1, band: "low", reasons: ["no decisive evidence observed"] };
+  }
+  if (result.basis === BASIS.INFERRED) {
+    reasons.push("estimate inferred from a failure above; no rung was observed as cleared");
   }
 
   const est = result.estimatedLevel;
@@ -177,9 +186,10 @@ export function placeDomain(domain, cells, index, config) {
       basis = BASIS.BELOW_FLOOR;
     } else {
       // Failed a rung with nothing cleared beneath it: the level below is a
-      // working estimate, but it was NOT observed. Say so.
+      // working estimate inferred from a real observation, but it was never
+      // itself observed. Say exactly that.
       estimatedLevel = below;
-      basis = BASIS.UNASSESSED;
+      basis = BASIS.INFERRED;
     }
   }
 
@@ -206,6 +216,9 @@ export function placeDomain(domain, cells, index, config) {
     // The highest rung whose clearance was DIRECTLY OBSERVED. Null means the
     // estimate is inferred, not measured — the distinction requirement 2 is about.
     verifiedLevel: basis === BASIS.VERIFIED || basis === BASIS.CONTRADICTED ? verifiedLevel : null,
+    // True when estimatedLevel rests on inference rather than an observed
+    // clearance at that rung. Consumers rendering a level should surface this.
+    inferred: basis === BASIS.INFERRED,
     floorLevel,
     maxAssessableLevel,
     atCoverageCeiling,
@@ -236,6 +249,12 @@ export function placeDomain(domain, cells, index, config) {
       `Performance was below ${floorLevel}, the lowest level this domain has content for.`
     );
   }
+  if (basis === BASIS.INFERRED) {
+    result.notes.push(
+      `${lowestFailed} was not passed and no lower rung was tested, so ${estimatedLevel} is ` +
+      `inferred rather than directly observed.`
+    );
+  }
 
   result.confidence = computeConfidence(domain, result, ladder, cells, config);
   return result;
@@ -253,6 +272,9 @@ export function placeDomain(domain, cells, index, config) {
  * configuration, not a curriculum ruling — see config.js.
  */
 export function aggregateOverall(domainResults, config) {
+  // Inferred placements count toward the summary: they rest on a real observed
+  // failure, and excluding them would quietly drop the weakest domains from the
+  // aggregate, biasing every summary upward.
   const assessed = domainResults.filter((d) => d.basis !== BASIS.UNASSESSED || d.belowFloor);
   const unassessed = domainResults.filter((d) => !assessed.includes(d)).map((d) => d.domain);
 
