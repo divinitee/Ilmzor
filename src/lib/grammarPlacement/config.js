@@ -38,9 +38,16 @@ export const DEFAULT_CONFIG = {
     // Never spend more than this on one cell, however uncertain it stays.
     maxObservations: 6,
     // Positive-evidence ratios. `credit` is normalised 0..1 per observation.
+    // WHY 0.65 for confirm rather than 0.70: at the small samples this budget
+    // allows, the threshold has to land between reachable fractions. With 3
+    // observations the possible ratios are 0, 0.33, 0.67, 1.0 — a 0.70 line
+    // leaves 2-of-3 permanently borderline, so a domain could never resolve no
+    // matter how many items it was given. 0.65 also sits alongside the app's
+    // existing 0.6 pass convention (gameScoring.PASS_THRESHOLD, MCQ_PASS_RATIO)
+    // rather than introducing a third, unrelated standard.
     ratios: {
       tentative: 0.50, // >= this and < confirm  -> ambiguous middle
-      confirm: 0.70,   // >= this               -> cleared
+      confirm: 0.65,   // >= this               -> cleared
       strong: 0.85,    // >= this               -> strong
       negative: 0.40,  // <= this               -> failed
     },
