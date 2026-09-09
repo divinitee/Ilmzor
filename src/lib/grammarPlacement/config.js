@@ -141,6 +141,10 @@ export const DEFAULT_CONFIG = {
     // A C2 success is real evidence but cannot be "confirmed" on this little
     // data — cap what the cell may claim and what confidence may be reported.
     maxState: "tentative",
+    // Applies only when the domain's ESTIMATE IS C2, i.e. the placement itself
+    // rests on sparse C2 evidence. It deliberately does NOT apply just because
+    // C2 was sampled: failing a C2 probe brackets a C1 placement and should
+    // raise confidence in it, not lower it.
     confidenceCap: 0.45,     // -> "low" band
     // Only probe C2 at all once C1 is cleared for that domain.
     requiresClearedBelow: true,
