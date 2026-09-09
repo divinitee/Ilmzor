@@ -114,6 +114,15 @@ function frontierWeight(level, an, index, anchorLevel, config) {
     return decay * decay;
   }
 
+  // Nothing above a failed rung can raise the placement, so probing up there
+  // buys nothing. (Evidence that WOULD contradict a failure is handled by the
+  // contradiction branch above, when it arises naturally from calibration or
+  // screening — the engine does not go hunting for it at the cost of domains
+  // that still have no evidence at all.) Leaving this at a small non-zero
+  // weight measurably wasted budget: runs probed C1 and C2 in domains already
+  // failed at B2, while three other domains sat entirely unprobed below.
+  if (an.lowestFailed && levelIndex(level) > levelIndex(an.lowestFailed)) return 0;
+
   // Boundary already bracketed — only an unresolved gap between them matters.
   if (an.highestCleared && an.lowestFailed) {
     const inGap =
