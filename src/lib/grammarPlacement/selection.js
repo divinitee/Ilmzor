@@ -43,19 +43,52 @@ const prevInLadder = (ladder, level) => {
  * Read a domain's current shape off the derived cells.
  * Pure summary — computes nothing about levels nobody answered.
  */
-export function analyzeDomain(domain, cells, index) {
+export function analyzeDomain(domain, cells, index, deps = null) {
   const ladder = index.levelsForDomain(domain);
   const at = (l) => cells.get(cellKey(domain, l));
   const cleared = ladder.filter((l) => at(l)?.outcome === "cleared");
   const failed = ladder.filter((l) => at(l)?.outcome === "failed");
   const highestCleared = cleared.length ? cleared[cleared.length - 1] : null;
   const lowestFailed = failed.length ? failed[0] : null;
-  const contradiction = Boolean(
-    highestCleared && lowestFailed && levelIndex(lowestFailed) < levelIndex(highestCleared)
-  );
+
+  // The rung that caps this domain from above: the lowest failure sitting ABOVE
+  // the highest cleared rung. This is the real boundary, and it is what upward
+  // probing, resolution and placement key off.
+  //
+  // Deliberately NOT "the lowest failed rung anywhere". A failure below a
+  // cleared rung is ordinary branch variation inside a broad domain; treating
+  // it as the ceiling would stop the engine probing upward at all.
+  const ceilingFailed = highestCleared
+    ? (failed.find((l) => levelIndex(l) > levelIndex(highestCleared)) ?? null)
+    : lowestFailed;
+
+  // Failed rungs sitting BELOW a cleared one. On their own these mean nothing:
+  // a learner can fail an A2 topic in one branch and clear a C1 topic in
+  // another without contradicting themselves. Only the dependency analysis can
+  // promote any of this to a contradiction.
+  const lowerFailures = highestCleared
+    ? failed.filter((l) => levelIndex(l) < levelIndex(highestCleared))
+    : [];
+
+  // CEFR ordering alone can no longer create a contradiction. A contradiction
+  // exists only where evidence conflicts across a dependency the dataset
+  // explicitly declares (see prerequisites.js).
+  const dependencyContradictions = deps?.byDomain?.[domain] ?? [];
+  const contradiction = dependencyContradictions.length > 0;
+
+  // The rungs a contradiction actually implicates, used to keep re-probing
+  // local to the conflict rather than spraying it across the whole domain.
+  const contradictedLevels = new Set();
+  for (const c of dependencyContradictions) {
+    contradictedLevels.add(c.clearedAt);
+    contradictedLevels.add(c.failingLevel);
+  }
+
   const observed = ladder.filter((l) => (at(l)?.observed ?? 0) > 0);
   return {
-    domain, ladder, cleared, failed, highestCleared, lowestFailed, contradiction,
+    domain, ladder, cleared, failed, highestCleared, lowestFailed,
+    ceilingFailed, lowerFailures,
+    contradiction, dependencyContradictions, contradictedLevels,
     observedLevels: observed,
     hasAnyEvidence: observed.length > 0,
     floor: ladder[0] ?? null,
@@ -107,33 +140,34 @@ export function domainResolved(an, cells) {
 function frontierWeight(level, an, index, anchorLevel, config) {
   const decay = config.selection.offFrontierDecay;
 
-  // A contradiction outranks everything else in that domain: both the failed
-  // lower rung and the cleared higher rung need another look.
+  // A dependency contradiction outranks everything else in that domain — but
+  // only at the rungs it actually implicates (the cleared rung and the rung
+  // where the failing prerequisite lives). Keeping it to those rungs is what
+  // stops one conflict pulling budget across the whole domain.
   if (an.contradiction) {
-    if (level === an.lowestFailed || level === an.highestCleared) return 1.0;
+    if (an.contradictedLevels.has(level)) return 1.0;
     return decay * decay;
   }
 
-  // Nothing above a failed rung can raise the placement, so probing up there
-  // buys nothing. (Evidence that WOULD contradict a failure is handled by the
-  // contradiction branch above, when it arises naturally from calibration or
-  // screening — the engine does not go hunting for it at the cost of domains
-  // that still have no evidence at all.) Leaving this at a small non-zero
-  // weight measurably wasted budget: runs probed C1 and C2 in domains already
-  // failed at B2, while three other domains sat entirely unprobed below.
-  if (an.lowestFailed && levelIndex(level) > levelIndex(an.lowestFailed)) return 0;
+  // Nothing above the CEILING failure can raise the placement, so probing up
+  // there buys nothing. Keyed to ceilingFailed rather than any failed rung:
+  // a failure below a cleared rung is independent branch variation, and using
+  // it here would wrongly forbid all upward probing. Leaving this at a small
+  // non-zero weight measurably wasted budget — runs probed C1 and C2 in
+  // domains already failed at B2 while other domains sat entirely unprobed.
+  if (an.ceilingFailed && levelIndex(level) > levelIndex(an.ceilingFailed)) return 0;
 
   // Boundary already bracketed — only an unresolved gap between them matters.
-  if (an.highestCleared && an.lowestFailed) {
+  if (an.highestCleared && an.ceilingFailed) {
     const inGap =
       levelIndex(level) > levelIndex(an.highestCleared) &&
-      levelIndex(level) < levelIndex(an.lowestFailed);
+      levelIndex(level) < levelIndex(an.ceilingFailed);
     return inGap ? 1.0 : decay * decay;
   }
 
   let target;
   if (an.highestCleared) target = nextInLadder(an.ladder, an.highestCleared);
-  else if (an.lowestFailed) target = prevInLadder(an.ladder, an.lowestFailed);
+  else if (an.ceilingFailed) target = prevInLadder(an.ladder, an.ceilingFailed);
   else target = index.nearestLevel(an.domain, anchorLevel);
 
   // Cleared the top of what this domain can assess: nothing above to probe.
@@ -169,8 +203,7 @@ export function cellValue(domain, level, cells, index, an, config, ctx) {
   // scores need 0 — so without this override the engine would detect the
   // contradiction, refuse to call the domain resolved, and then never actually
   // probe either side of it.
-  const contradictedRung =
-    an.contradiction && (level === an.lowestFailed || level === an.highestCleared);
+  const contradictedRung = an.contradiction && an.contradictedLevels.has(level);
 
   const need = contradictedRung
     ? config.contradiction.reprobeNeedWeight
@@ -328,7 +361,7 @@ export function selectScreeningItem(state, index, config, ctx) {
   }
   for (const domain of index.domainIds) {
     if ((counts[domain] ?? 0) >= config.screening.itemsPerDomain) continue;
-    const an = analyzeDomain(domain, ctx.cells, index);
+    const an = analyzeDomain(domain, ctx.cells, index, ctx.deps);
     if (domainResolved(an, ctx.cells)) continue;
     const level = index.nearestLevel(domain, ctx.anchorLevel);
     if (!level) continue;
@@ -352,7 +385,7 @@ export function selectScreeningItem(state, index, config, ctx) {
 export function selectResolutionItem(state, index, config, ctx) {
   let best = null;
   for (const domain of index.domainIds) {
-    const an = analyzeDomain(domain, ctx.cells, index);
+    const an = analyzeDomain(domain, ctx.cells, index, ctx.deps);
     for (const level of an.ladder) {
       const v = cellValue(domain, level, ctx.cells, index, an, config, ctx);
       if (v <= config.selection.minValue) continue;
