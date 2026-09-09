@@ -29,6 +29,8 @@ import Analytics from '@/pages/Analytics';
 import Landing from '@/pages/Landing';
 import AssessorLab from '@/pages/AssessorLab';
 import PlacementTest from '@/pages/PlacementTest';
+import Grammar from '@/pages/Grammar';
+import GrammarAssessment from '@/pages/GrammarAssessment';
 import AdminWipeUsers from '@/pages/AdminWipeUsers';
 import Onboarding from '@/pages/Onboarding';
 import LessonRunner from '@/pages/LessonRunner';
@@ -80,6 +82,8 @@ const AuthenticatedApp = () => {
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/assessor-lab" element={<AssessorLab />} />
         <Route path="/placement-test" element={<PlacementTest />} />
+        <Route path="/grammar" element={<Grammar />} />
+        <Route path="/grammar/assessment" element={<GrammarAssessment />} />
         <Route path="/admin-wipe-users" element={<AdminWipeUsers />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/lesson/:lessonId" element={<LessonRunner />} />

@@ -81,7 +81,11 @@ function NodeGroup({ active, delay = 0, children }) {
 
 /* ---------- Stage ---------- */
 
-export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked }) {
+// onEnterSkill: lets the parent intercept a top-level skill before the stage
+// dives into it. Returning true means the parent took over (e.g. a skill with a
+// diagnostic that has not been taken yet). Anything else keeps the existing
+// dive-into-subskills behaviour untouched.
+export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill }) {
   const loc = useSkillLoc();
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
@@ -226,7 +230,10 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
         <Lines nodes={skillNodes} color="#a78bfa" hovered={hovered?.group === "skill" ? hovered.key : null} filterId="ovPulse" />
         {skillNodes.map((n, i) => (
           <SkillNode key={n.id} node={n} index={i} active={level === 0} hidden={divingId === n.id}
-            onClick={() => triggerDive(n, n.glow, () => setSelected(n.id))} onComingSoon={() => onComingSoon(n.label)}
+            onClick={() => {
+              if (onEnterSkill?.(n.id)) return;
+              triggerDive(n, n.glow, () => setSelected(n.id));
+            }} onComingSoon={() => onComingSoon(n.label)}
             hot={hovered?.group === "skill" && hovered.key === n.id}
             dim={hovered?.group === "skill" && hovered.key !== n.id}
             onHoverStart={() => setHovered({ group: "skill", key: n.id })} onHoverEnd={() => setHovered(null)} />

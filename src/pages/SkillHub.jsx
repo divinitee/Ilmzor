@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Sparkles, BookmarkPlus } from "lucide-react";
@@ -25,6 +25,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { getRandomChallenge } from "@/lib/skillTreeData";
 import { levelOf, difficultyFor, wordsForLevel, cognitiveDemandForLevel } from "@/lib/levels";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
+import { hasDiagnostic, resolveSkillEntry } from "@/lib/skillDiagnostics";
 
 /* ---------- Page ---------- */
 
@@ -40,6 +41,19 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const [lockedInfo, setLockedInfo] = useState(null); // { label, minLevel } — distinct from soonLabel: "not unlocked for you" vs "not built yet"
   const loc = useSkillLoc();
   const { t } = useAppLang();
+  const navigate = useNavigate();
+
+  // Skill Hub entry gate. A skill with a diagnostic routes through its own
+  // entry check instead of diving into subskills: placement complete goes to
+  // the skill's home, anything else goes to its assessment. Skills without a
+  // diagnostic are untouched and keep the original dive behaviour.
+  const handleEnterSkill = (skillId) => {
+    if (!hasDiagnostic(skillId)) return false;
+    resolveSkillEntry(skillId, user?.email)
+      .then((entry) => { if (entry) navigate(entry.route); })
+      .catch((e) => console.error("skill entry resolve failed", e));
+    return true;
+  };
 
   useEffect(() => {
     // Paginated, not a single list(..., 2000) call — the collection is
@@ -254,6 +268,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             onComingSoon={(label) => setSoonLabel(label)}
             studentLevel={studentLevel}
             onLocked={(info) => setLockedInfo(info)}
+            onEnterSkill={handleEnterSkill}
           />
         </div>
       </div>
