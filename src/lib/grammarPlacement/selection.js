@@ -154,7 +154,18 @@ export function cellValue(domain, level, cells, index, an, config, ctx) {
   if (domainResolved(an, cells)) return 0;   // more questions cannot change the answer
   if (level === "C2" && !c2Allowed(an, cells, config)) return 0;
 
-  const need = config.selection.needWeight[cell.state] ?? 0;
+  // A contradiction is the one case where a cell the state machine considers
+  // settled still needs another look. Both contradicted rungs read as `strong`
+  // on their own terms (one strongly failed, one strongly cleared), which
+  // scores need 0 — so without this override the engine would detect the
+  // contradiction, refuse to call the domain resolved, and then never actually
+  // probe either side of it.
+  const contradictedRung =
+    an.contradiction && (level === an.lowestFailed || level === an.highestCleared);
+
+  const need = contradictedRung
+    ? config.contradiction.reprobeNeedWeight
+    : (config.selection.needWeight[cell.state] ?? 0);
   if (need <= 0) return 0;
 
   const frontier = frontierWeight(level, an, index, ctx.anchorLevel, config);
