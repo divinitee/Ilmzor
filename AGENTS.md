@@ -17,6 +17,12 @@ If your agent supports Agent Skills, install or update Base44 skills before Base
 npx skills add base44/skills
 ```
 
+## Architecture Documents
+
+- `docs/grammar-taxonomy.md`: **source of truth** for the grammar taxonomy — 13 domains, 83 branches, concept ownership rulings. Read it before changing anything under `src/lib/adaptiveGrammar/`.
+- `src/lib/adaptiveGrammar/README.md`: the dataset's own item contract and layout.
+- `tools/grammar-placement-sim/README.md`: offline regression harness for the placement engine.
+
 ## Key Files
 
 - `src/`: frontend application source.

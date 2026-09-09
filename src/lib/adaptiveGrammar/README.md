@@ -2,6 +2,8 @@
 
 Owner: content. Consumer: adaptive engine. Status: **V1 full bank produced (2026-09-08).**
 
+Taxonomy source of truth: **`docs/grammar-taxonomy.md`** — the 13 domains, 83 branches and the domain-ownership rulings live there. This README covers the item contract and file layout only.
+
 ## Layout
 
 ```
