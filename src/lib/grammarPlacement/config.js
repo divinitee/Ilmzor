@@ -165,6 +165,34 @@ export const DEFAULT_CONFIG = {
   evidenceClassDiversityBonus: 0.15,
 
   // -------------------------------------------------------------------------
+  // Prerequisite-aware dependency analysis
+  //
+  // CEFR order alone never creates a contradiction. A contradiction requires a
+  // conflict across a dependency the dataset explicitly declares, via each
+  // item's `prerequisites[]`. See prerequisites.js for why a concept graph is
+  // derived from item->concept edges rather than concept co-occurrence.
+  // -------------------------------------------------------------------------
+  prerequisite: {
+    enabled: true,
+    // "Repeatedly failing" — a single miss on a prerequisite is uncertainty,
+    // not a contradiction (requirement 5).
+    minConceptObservations: 2,
+    // How far down a declared prerequisite chain to look. 1 = direct only.
+    // Measured against the real bank, depth 3 reaches genuine foundations
+    // without the closure blowing up.
+    maxChainDepth: 3,
+    // 48 concepts are exercised in more than one domain, so a dependency can
+    // genuinely cross a domain boundary. Acting on that would let evidence in
+    // one domain downgrade another, which is a cascade worth opting into
+    // deliberately rather than shipping on by default. Off keeps contradiction
+    // analysis local, per requirement 4.
+    crossDomainEvidence: false,
+    // Minimum credit for an observation to count as "the learner cleared
+    // something that requires this concept".
+    supportingCreditMin: 0.5,
+  },
+
+  // -------------------------------------------------------------------------
   // Contradiction handling
   // -------------------------------------------------------------------------
   contradiction: {
@@ -189,6 +217,10 @@ export const DEFAULT_CONFIG = {
     // state machine considers each settled on its own — and the contradiction
     // between them could never be re-probed at all.
     reprobeNeedWeight: 1.4,
+    // A failed lower rung with NO declared dependency on the cleared rung is
+    // ordinary variation across independent branches, not a conflict. It never
+    // downgrades a placement; it only shades confidence down by this much.
+    independentLowerFailurePenalty: 0.10,
   },
 
   // -------------------------------------------------------------------------
