@@ -1,21 +1,30 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, ArrowLeft, ChevronRight, Sparkles, Crosshair, TrendingUp, ClipboardList } from "lucide-react";
+import { Loader2, ArrowLeft, ChevronRight, Sparkles, Crosshair, TrendingUp, ClipboardList, Layers } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { DOMAINS } from "@/lib/adaptiveGrammar";
+import { GRAMMAR_NAV } from "@/lib/grammarTiers";
 import { fromStoredProfile } from "@/lib/grammarPlacementResult";
 import { useGrammarCopy } from "@/lib/grammarCopy";
 
 // Route: /grammar — the student's Grammar home.
 //
-// Structure follows the taxonomy: Grammar -> Domain -> Branch. Two levels are
-// navigable today; the third (skills and practice activity) is where the
-// practice engines will attach, so branches render as real, ordered targets
-// rather than placeholders.
+// Structure: Tier -> Cluster -> Domain -> Branch, a mind-map-style dive
+// (Tee's 2026-09-09 decision) rather than one flat list of 13 domains.
+// Tier and Cluster are full-screen dive transitions; Domain -> Branch stays
+// the in-place accordion this already shipped with, unchanged, since that
+// interaction was never part of the feedback that prompted this rework.
 //
-// The taxonomy is read from the dataset's public contract, never re-declared
-// here — 13 domains and their branches come from domains.js.
+// The nav TREE itself (src/lib/grammarTiers.js) is pre-computed from the
+// dataset's public contract — nothing here decides which domain belongs to
+// which tier or cluster. This page only walks that tree and overlays the
+// per-domain placement result (level, focus/strong/unassessed) wherever a
+// domain card renders, exactly as before.
+//
+// Practice content per branch still doesn't exist yet — tapping a branch
+// opens the same "In development" modal as before. This pass is navigation
+// only; mastery-gated "Elevate" unlocking is a separate, later decision.
 
 const ACCENT = "#3E9E92";
 
@@ -24,6 +33,8 @@ export default function Grammar() {
   const c = useGrammarCopy();
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState(null);
+  const [tierId, setTierId] = useState(null);
+  const [clusterId, setClusterId] = useState(null);
   const [openDomain, setOpenDomain] = useState(null);
   const [soon, setSoon] = useState(null);
 
@@ -57,7 +68,11 @@ export default function Grammar() {
     [result]
   );
 
-  const ordered = useMemo(() => {
+  const tier = useMemo(() => GRAMMAR_NAV.find((t) => t.id === tierId) || null, [tierId]);
+  const cluster = useMemo(() => tier?.clusters.find((cl) => cl.id === clusterId) || null, [tier, clusterId]);
+
+  const orderedDomains = useMemo(() => {
+    if (!cluster) return [];
     // Focus areas first — the whole point of the diagnostic is that the student
     // does not have to guess where to start.
     const rank = (d) => {
@@ -65,8 +80,16 @@ export default function Grammar() {
       if (!r?.assessed) return 2;
       return r.needsAttention ? 0 : 1;
     };
-    return [...DOMAINS].sort((a, b) => rank(a) - rank(b));
-  }, [byId]);
+    return [...cluster.domains].sort((a, b) => rank(a) - rank(b));
+  }, [cluster, byId]);
+
+  const goBack = () => {
+    if (clusterId) setClusterId(null);
+    else if (tierId) setTierId(null);
+    else navigate("/");
+  };
+
+  const screenKey = clusterId ? `domain:${tierId}:${clusterId}` : tierId ? `cluster:${tierId}` : "tier";
 
   if (loading) {
     return (
@@ -84,10 +107,10 @@ export default function Grammar() {
       <div className="relative z-10 max-w-2xl mx-auto px-4 pt-6 pb-28">
         <div className="flex items-center justify-between mb-5">
           <button
-            onClick={() => navigate("/")}
+            onClick={goBack}
             className="neo-pill px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors select-none"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> {c("home_back")}
+            <ArrowLeft className="w-3.5 h-3.5" /> {tierId ? (clusterId ? tier.name : c("home_levels_back")) : c("home_back")}
           </button>
           {result?.level && (
             <span
@@ -110,75 +133,149 @@ export default function Grammar() {
             </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            {c("home_title")}
+            {cluster ? cluster.name : tier ? tier.name : c("home_title")}
           </h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            {cluster
+              ? c("home_areas", { n: cluster.domains.length })
+              : tier
+                ? c("home_groups", { n: tier.clusters.length })
+                : c("home_pick_level")}
+          </p>
         </div>
 
-        <div className="space-y-2.5">
-          {ordered.map((d) => {
-            const r = byId[d.id];
-            const open = openDomain === d.id;
-            const state = !r?.assessed ? "unknown" : r.needsAttention ? "focus" : "strong";
-            const tone =
-              state === "focus" ? "#E08E60" : state === "strong" ? ACCENT : "#8b95a3";
-            const StateIcon =
-              state === "focus" ? Crosshair : state === "strong" ? TrendingUp : ClipboardList;
-
-            return (
-              <motion.div key={d.id} layout className="premium-card rounded-[24px] overflow-hidden">
-                <button
-                  type="button"
-                  onClick={() => setOpenDomain(open ? null : d.id)}
-                  className="w-full flex items-center gap-3 px-4 py-3.5 text-left select-none hover:bg-white/5 transition-colors"
-                >
-                  <span
-                    className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: `${tone}22`, border: `1px solid ${tone}40` }}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={screenKey}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+          >
+            {/* ---- level 1: tiers ---- */}
+            {!tier && (
+              <div className="space-y-2.5">
+                {GRAMMAR_NAV.map((t) => (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setTierId(t.id)}
+                    className="premium-card w-full flex items-center gap-3 px-4 py-4 text-left select-none hover:bg-white/5 transition-colors rounded-[24px]"
                   >
-                    <StateIcon className="w-4 h-4" style={{ color: tone }} />
-                  </span>
-                  <span className="flex-1 min-w-0">
-                    <span className="block text-sm font-bold text-foreground truncate">{d.name}</span>
-                    <span className="block text-[11px] text-muted-foreground">
-                      {r?.assessed ? c("home_branches", { n: d.branches.length }) : c("home_not_assessed")}
-                    </span>
-                  </span>
-                  {r?.level && (
-                    <span className="text-xs font-bold shrink-0" style={{ color: tone }}>{r.level}</span>
-                  )}
-                  <ChevronRight
-                    className="w-4 h-4 text-muted-foreground shrink-0 transition-transform"
-                    style={{ transform: open ? "rotate(90deg)" : "none" }}
-                  />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {open && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
+                    <span
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ background: `${ACCENT}22`, border: `1px solid ${ACCENT}40` }}
                     >
-                      <div className="px-4 pb-4 pt-1 flex flex-wrap gap-1.5">
-                        {d.branches.map((b) => (
-                          <button
-                            key={b}
-                            type="button"
-                            onClick={() => setSoon(d.name)}
-                            className="neo-pill px-3 py-1.5 text-xs font-medium text-foreground/85 hover:bg-white/10 transition-colors select-none"
+                      <Layers className="w-4.5 h-4.5" style={{ color: ACCENT }} />
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-base font-bold text-foreground truncate">{t.name}</span>
+                      <span className="block text-[11px] text-muted-foreground">
+                        {t.levels.join("–")} · {c("home_groups", { n: t.clusters.length })}
+                      </span>
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* ---- level 2: clusters within a tier ---- */}
+            {tier && !cluster && (
+              <div className="space-y-2.5">
+                {tier.clusters.map((cl) => (
+                  <button
+                    key={cl.id}
+                    type="button"
+                    onClick={() => setClusterId(cl.id)}
+                    className="premium-card w-full flex items-center gap-3 px-4 py-4 text-left select-none hover:bg-white/5 transition-colors rounded-[24px]"
+                  >
+                    <span
+                      className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ background: "rgba(255,255,255,0.06)" }}
+                    >
+                      <Layers className="w-4 h-4 text-foreground/70" />
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-base font-bold text-foreground truncate">{cl.name}</span>
+                      <span className="block text-[11px] text-muted-foreground">
+                        {c("home_areas", { n: cl.domains.length })}
+                      </span>
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-muted-foreground shrink-0" />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* ---- level 3: domains within a cluster, each expanding to its branches ---- */}
+            {cluster && (
+              <div className="space-y-2.5">
+                {orderedDomains.map((d) => {
+                  const r = byId[d.id];
+                  const open = openDomain === d.id;
+                  const state = !r?.assessed ? "unknown" : r.needsAttention ? "focus" : "strong";
+                  const tone = state === "focus" ? "#E08E60" : state === "strong" ? ACCENT : "#8b95a3";
+                  const StateIcon = state === "focus" ? Crosshair : state === "strong" ? TrendingUp : ClipboardList;
+
+                  return (
+                    <motion.div key={d.id} layout className="premium-card rounded-[24px] overflow-hidden">
+                      <button
+                        type="button"
+                        onClick={() => setOpenDomain(open ? null : d.id)}
+                        className="w-full flex items-center gap-3 px-4 py-3.5 text-left select-none hover:bg-white/5 transition-colors"
+                      >
+                        <span
+                          className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                          style={{ background: `${tone}22`, border: `1px solid ${tone}40` }}
+                        >
+                          <StateIcon className="w-4 h-4" style={{ color: tone }} />
+                        </span>
+                        <span className="flex-1 min-w-0">
+                          <span className="block text-sm font-bold text-foreground truncate">{d.name}</span>
+                          <span className="block text-[11px] text-muted-foreground">
+                            {r?.assessed ? c("home_branches", { n: d.branches.length }) : c("home_not_assessed")}
+                          </span>
+                        </span>
+                        {r?.level && (
+                          <span className="text-xs font-bold shrink-0" style={{ color: tone }}>{r.level}</span>
+                        )}
+                        <ChevronRight
+                          className="w-4 h-4 text-muted-foreground shrink-0 transition-transform"
+                          style={{ transform: open ? "rotate(90deg)" : "none" }}
+                        />
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {open && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            {b.replace(/-/g, " ")}
-                          </button>
-                        ))}
-                      </div>
+                            <div className="px-4 pb-4 pt-1 flex flex-wrap gap-1.5">
+                              {d.branches.map((b) => (
+                                <button
+                                  key={b}
+                                  type="button"
+                                  onClick={() => setSoon(d.name)}
+                                  className="neo-pill px-3 py-1.5 text-xs font-medium text-foreground/85 hover:bg-white/10 transition-colors select-none"
+                                >
+                                  {b.replace(/-/g, " ")}
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
-        </div>
+                  );
+                })}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <AnimatePresence>
