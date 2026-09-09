@@ -168,27 +168,24 @@ export const DEFAULT_CONFIG = {
   // Prerequisite-aware dependency analysis
   //
   // CEFR order alone never creates a contradiction. A contradiction requires a
-  // conflict across a dependency the dataset explicitly declares, via each
-  // item's `prerequisites[]`. See prerequisites.js for why a concept graph is
-  // derived from item->concept edges rather than concept co-occurrence.
+  // conflict across a dependency the dataset EXPLICITLY declares, via a cleared
+  // item's own `prerequisites[]`. The dataset has no concept -> concept edges,
+  // so no concept graph is derived and no transitive detection exists in V1 —
+  // see the header of prerequisites.js.
   // -------------------------------------------------------------------------
   prerequisite: {
     enabled: true,
     // "Repeatedly failing" — a single miss on a prerequisite is uncertainty,
-    // not a contradiction (requirement 5).
+    // not a contradiction.
     minConceptObservations: 2,
-    // How far down a declared prerequisite chain to look. 1 = direct only.
-    // Measured against the real bank, depth 3 reaches genuine foundations
-    // without the closure blowing up.
-    maxChainDepth: 3,
-    // 48 concepts are exercised in more than one domain, so a dependency can
-    // genuinely cross a domain boundary. Acting on that would let evidence in
-    // one domain downgrade another, which is a cascade worth opting into
-    // deliberately rather than shipping on by default. Off keeps contradiction
-    // analysis local, per requirement 4.
+    // 48 concepts are exercised in more than one domain, so evidence directly
+    // exercising a declared prerequisite can live in another domain. Counting
+    // it would let one domain downgrade another, which is a cascade worth
+    // opting into deliberately rather than shipping on by default. Off keeps
+    // contradiction analysis local.
     crossDomainEvidence: false,
     // Minimum credit for an observation to count as "the learner cleared
-    // something that requires this concept".
+    // something that explicitly requires this concept".
     supportingCreditMin: 0.5,
   },
 
