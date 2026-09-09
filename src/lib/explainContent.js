@@ -76,6 +76,20 @@ export const EXPLAIN_CONTENT = {
       ru: "Здесь показаны результаты проверок этого урока. Если что-то получит низкую оценку, мы точно покажем, что нужно повторить.",
     },
   },
+  grammar_intro: {
+    explain: "These screens explain why we check your grammar level before you start. Read each one, then tap Continue. You can leave at any point — nothing is lost.",
+    help: {
+      uz: "Bu sahifalar boshlashdan oldin nima uchun grammatika darajangizni tekshirishimizni tushuntiradi. Har birini o'qib, \"Continue\" tugmasini bosing. Istalgan vaqtda chiqishingiz mumkin — hech narsa yo'qolmaydi.",
+      ru: "Эти экраны объясняют, почему мы проверяем ваш уровень грамматики перед началом. Прочитайте каждый экран и нажмите \"Continue\". Вы можете уйти в любой момент — ничего не потеряется.",
+    },
+  },
+  grammar_question: {
+    explain: "Answer as best you can. Multiple-choice questions have one correct option. Fill-in-the-blank questions only need the missing word or words — not the whole sentence. If you need to stop, tap \"Save & exit\": you can continue later from exactly where you left off.",
+    help: {
+      uz: "Imkoningiz boricha javob bering. Ko'p tanlovli savollarda faqat bitta to'g'ri javob bo'ladi. Bo'sh joyni to'ldirish savollarida faqat yetishmayotgan so'z yoki so'zlarni yozish kifoya — butun gapni emas. To'xtashingiz kerak bo'lsa, \"Save & exit\" tugmasini bosing: keyinroq aynan to'xtagan joyingizdan davom etasiz.",
+      ru: "Отвечайте как можете лучше. В вопросах с выбором ответа только один правильный вариант. В вопросах на заполнение пропуска нужно ввести только пропущенное слово или слова — не всё предложение. Если нужно остановиться, нажмите \"Save & exit\": вы сможете продолжить позже с того же места.",
+    },
+  },
 };
 
 export const HELP_LABEL = { uz: "Yordam", ru: "Помощь" };
