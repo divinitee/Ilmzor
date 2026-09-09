@@ -15,6 +15,7 @@ import {
   comparableIndex, levelFromComparableIndex,
 } from "@/lib/grammarPlacement/levels";
 import { cellKey } from "@/lib/grammarPlacement/evidence";
+import { independentLowerFailures } from "@/lib/grammarPlacement/prerequisites";
 
 export const BASIS = {
   VERIFIED: "verified",           // highest cleared rung was directly observed
@@ -110,10 +111,17 @@ function computeConfidence(domain, result, ladder, cells, config) {
     if (aiShare >= 0.5) reasons.push("decisive evidence leans on AI-graded production");
   }
 
+  // Independent lower-rung failures are uncertainty, not conflict: they shade
+  // confidence down, they never cap it and never move the placement.
+  if (result.independentLowerFailures?.length) {
+    score -= config.contradiction.independentLowerFailurePenalty;
+    reasons.push(`mixed performance at ${result.independentLowerFailures.join(", ")} in other branches`);
+  }
+
   // Hard caps.
   if (result.contradictions.length) {
     score = Math.min(score, 0.40);
-    reasons.push("unresolved contradiction between rungs");
+    reasons.push("unresolved conflict across a declared prerequisite");
   }
   if (est === "C2" || result.c2Probed) {
     score = Math.min(score, config.c2.confidenceCap);
@@ -127,8 +135,14 @@ function computeConfidence(domain, result, ladder, cells, config) {
   return { score: Number(score.toFixed(3)), band: band(score, config), reasons };
 }
 
-/** Place one domain from observed evidence only. */
-export function placeDomain(domain, cells, index, config) {
+/**
+ * Place one domain from observed evidence only.
+ *
+ * @param {object} [deps] whole-run dependency analysis from
+ *        prerequisites.analyzeDependencies(). Omitted, no contradiction can be
+ *        raised — CEFR ordering by itself never creates one.
+ */
+export function placeDomain(domain, cells, index, config, deps = null) {
   const ladder = index.levelsForDomain(domain);
   const at = (l) => cells.get(cellKey(domain, l));
   const floorLevel = ladder[0] ?? null;
@@ -139,34 +153,41 @@ export function placeDomain(domain, cells, index, config) {
   const highestCleared = cleared.length ? cleared[cleared.length - 1] : null;
   const lowestFailed = failed.length ? failed[0] : null;
 
-  const contradictions = [];
+  // The boundary above the cleared rung. A failure BELOW a cleared rung is not
+  // a ceiling and must not be read as one — see analyzeDomain for why.
+  const ceilingFailed = highestCleared
+    ? (failed.find((l) => levelIndex(l) > levelIndex(highestCleared)) ?? null)
+    : lowestFailed;
+
+  // Contradictions come from the dependency analysis, never from CEFR order.
+  const contradictions = (deps?.byDomain?.[domain] ?? []).map((c) => ({ ...c }));
+
+  // Lower-rung failures with no declared dependency on what was cleared. These
+  // are the normal shape of a broad domain — a weak branch beside a strong one.
+  // They are uncertainty, not conflict, and never downgrade the placement.
+  const independentFailures = independentLowerFailures({
+    domain, cells, index, contradictions, highestCleared,
+  });
+
   let estimatedLevel = null;
   let basis = BASIS.UNASSESSED;
   let belowFloor = false;
   let verifiedLevel = highestCleared;
 
-  if (highestCleared && lowestFailed && levelIndex(lowestFailed) < levelIndex(highestCleared)) {
-    // A cleared rung sitting above a failed one. Do not average, do not
-    // silently prefer either reading — record it and place per config.
-    contradictions.push({
-      type: "prerequisite_contradiction",
-      failedAt: lowestFailed,
-      clearedAt: highestCleared,
-      failedEvidence: at(lowestFailed),
-      clearedEvidence: at(highestCleared),
-      resolution: config.contradiction.resolution,
-      detail:
-        `Cleared ${highestCleared} (ratio ${at(highestCleared).ratio}) while failing ` +
-        `${lowestFailed} (ratio ${at(lowestFailed).ratio}). Additional probes did not ` +
-        `resolve it. CEFR rungs are cumulative, so the lower failure is treated as the ` +
-        `binding constraint; the higher result is preserved as a strength signal.`,
-    });
-
+  if (highestCleared && contradictions.length) {
+    // A genuine conflict across a declared learning dependency. Do not average,
+    // do not silently prefer either reading — both sides stay on the record and
+    // placement follows the configured resolution.
     if (config.contradiction.resolution === "optimistic") {
       estimatedLevel = highestCleared;
       basis = BASIS.CONTRADICTED;
     } else {
-      const below = levelBelow(lowestFailed);
+      // Fall below the highest rung at which a declared prerequisite is
+      // actually failing — not below some unrelated lower failure.
+      const bindingLevel = contradictions
+        .map((c) => c.failingLevel)
+        .reduce((a, b) => (levelIndex(b) > levelIndex(a) ? b : a));
+      const below = levelBelow(bindingLevel);
       if (!below || !ladder.includes(below)) {
         belowFloor = true;
         estimatedLevel = null;
@@ -229,6 +250,11 @@ export function placeDomain(domain, cells, index, config) {
     untestedBelow,
     untestedAbove,
     contradictions,
+    // Failed rungs below the estimate with no declared dependency on it.
+    // Reported so the profile stays honest about mixed performance, without
+    // that mixture being mistaken for a logical conflict.
+    independentLowerFailures: independentFailures,
+    ceilingFailed,
     notes: [],
   };
 
@@ -253,6 +279,20 @@ export function placeDomain(domain, cells, index, config) {
     result.notes.push(
       `${lowestFailed} was not passed and no lower rung was tested, so ${estimatedLevel} is ` +
       `inferred rather than directly observed.`
+    );
+  }
+  if (independentFailures.length) {
+    result.notes.push(
+      `Weaker performance at ${independentFailures.join(", ")} sits below the estimate, but ` +
+      `nothing cleared here declares a prerequisite that those results contradict — in a domain ` +
+      `this broad that is ordinary variation between branches, not a conflict. Recorded as ` +
+      `uncertainty; it lowers confidence but does not lower the placement.`
+    );
+  }
+  if (contradictions.length) {
+    result.notes.push(
+      `A declared prerequisite (${contradictions.map((c) => c.concept).join(", ")}) is failing ` +
+      `beneath cleared higher-level evidence. Placement is conservative until that resolves.`
     );
   }
 
@@ -349,7 +389,7 @@ export function aggregateOverall(domainResults, config) {
 
 /** Full grammar profile: per-domain results plus the grammar-only summary. */
 export function buildProfile(cells, index, config, meta = {}) {
-  const domains = index.domainIds.map((d) => placeDomain(d, cells, index, config));
+  const domains = index.domainIds.map((d) => placeDomain(d, cells, index, config, meta.deps ?? null));
   const overall = aggregateOverall(domains, config);
   return {
     scope: "grammar",
