@@ -48,7 +48,10 @@ export default function GrammarAssessmentRunner({ user, onComplete, onExit }) {
     }
     setItem(step.item);
     setValue(emptyAnswer(step.item));
-    setServed((n) => n + 1);
+    // Read the count off engine state rather than a local tally, so a resumed
+    // run continues numbering from where the student left off instead of
+    // restarting at 1.
+    setServed((step.runner.state?.itemsServed ?? 0) + 1);
     return step.runner;
   }, [onComplete]);
 
