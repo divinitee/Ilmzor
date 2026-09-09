@@ -90,15 +90,21 @@ export const DEFAULT_CONFIG = {
   // -------------------------------------------------------------------------
   calibration: {
     startLevel: "B1",
-    itemsPerProbe: 2,
-    maxItems: 10,
+    // WHY 3 items per probe, not 2: a 2-item probe is too noisy to steer a
+    // binary search. A learner who gets a rung right 30% of the time still
+    // scores 1-of-2 about half the time, so the search climbed past them and
+    // anchored high — which then wasted screening items across all 13 domains
+    // at rungs the learner could not reach. At 3 items the same learner clears
+    // the bar ~22% of the time while a learner genuinely at the rung clears it
+    // ~91%. The extra items are repaid several times over in screening.
+    itemsPerProbe: 3,
+    maxItems: 12,
     // Calibration is a coarse band search, not a placement, so it uses its own
-    // simple majority rule rather than the evidence model's thresholds: more
-    // right than wrong at a rung means "try higher". Applying the placement
-    // thresholds here was a real bug — at a 2-item probe a single unlucky
-    // answer scores 0.5, which fell in the ambiguous band and ended the search
-    // immediately, anchoring a C1 learner at B1.
-    passRatio: 0.5,
+    // rule rather than the evidence model's thresholds: 2 of 3 right at a rung
+    // means "try higher". Applying the placement thresholds here was a real
+    // bug — a single unlucky answer landed in the ambiguous band and ended the
+    // search immediately, anchoring a C1 learner at B1.
+    passRatio: 0.66,
     // Bellwether domains: chosen because each spans A1..C2 in the real dataset
     // and each is broad enough that performance correlates with general
     // grammatical control. PROVISIONAL — a curriculum decision, not a
