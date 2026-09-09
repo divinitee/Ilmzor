@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, ArrowLeft, Sparkles } from "lucide-react";
@@ -32,6 +32,7 @@ export default function Grammar() {
   const [clusterId, setClusterId] = useState(null);
   const [domainId, setDomainId] = useState(null);
   const [soon, setSoon] = useState(null);
+  const backRef = useRef(null); // stage's animated back, see GrammarStage
 
   const names = useMemo(() => Object.fromEntries(DOMAINS.map((d) => [d.id, d.name])), []);
 
@@ -88,12 +89,10 @@ export default function Grammar() {
     <div className="premium-mesh min-h-screen overflow-hidden">
       <div className="relative z-10 max-w-3xl mx-auto px-4 pt-6 pb-28">
         <div className="flex items-center justify-between mb-4 min-h-[32px]">
-          {level === 0 ? (
-            <button onClick={goBack}
-              className="neo-pill px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors select-none">
-              <ArrowLeft className="w-3.5 h-3.5" /> {c("home_back")}
-            </button>
-          ) : <span />}
+          <button onClick={() => (level > 0 && backRef.current ? backRef.current() : goBack())}
+            className="neo-pill px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors select-none">
+            <ArrowLeft className="w-3.5 h-3.5" /> {level === 2 ? tier?.name : level === 1 ? c("home_levels_back") : c("home_back")}
+          </button>
           {result?.level && (
             <span className="neo-pill px-3 py-1.5 text-xs font-bold" style={{ color: ACCENT, borderColor: `${ACCENT}55` }}>
               {c("home_level", { level: result.level })}
@@ -126,6 +125,7 @@ export default function Grammar() {
             onSelectCluster={setClusterId}
             onSelectDomain={(id) => setDomainId((prev) => (prev === id ? null : id))}
             onBack={goBack}
+            backRef={backRef}
             c={c}
           />
         </div>

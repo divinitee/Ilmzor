@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Layers } from "lucide-react";
+import { Layers } from "lucide-react";
 import { pos } from "@/lib/skillTreeData";
 import { EASE, RM, Lines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
 import { GRAMMAR_NAV } from "@/lib/grammarTiers";
@@ -19,7 +19,10 @@ import GrammarDomainNode from "./GrammarDomainNode";
 //   layer 2  a cluster's domains around the hub (leaf; selects, no dive)
 // The parent owns tierId / clusterId / selectedDomainId; this component owns
 // only the transient hover + dive animation state.
-export default function GrammarStage({ result, byId, tierId, clusterId, selectedDomainId, onSelectTier, onSelectCluster, onSelectDomain, onBack, c }) {
+// backRef: the page's header Back pill calls through this so it gets the same
+// reverse-dive as the hub, and the stage needs no pill of its own (which
+// collided with the top node on narrow screens).
+export default function GrammarStage({ result, byId, tierId, clusterId, selectedDomainId, onSelectTier, onSelectCluster, onSelectDomain, onBack, backRef, c }) {
   const [hovered, setHovered] = useState(null);
   const [dive, setDive] = useState(null);
   const [divingId, setDivingId] = useState(null);
@@ -59,10 +62,12 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
   };
 
   const handleBack = () => {
+    if (dive || backDive) return;
     if (level === 2 && cluster) triggerBackDive(cluster, glow, onBack);
     else if (level === 1 && tier) triggerBackDive(tier, tier.glow, onBack);
     else onBack();
   };
+  useEffect(() => { if (backRef) backRef.current = handleBack; });
 
   const HubIcon = level === 1 ? tier?.icon || Layers : Layers;
   const hubLabel = level === 2 ? cluster?.name : tier?.name;
@@ -96,17 +101,6 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
           </div>
         </div>
       </div>
-
-      {/* ---------- Back pill ---------- */}
-      <AnimatePresence>
-        {level > 0 && !dive && !backDive && (
-          <motion.button initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }}
-            transition={{ duration: 0.3, ease: EASE }} onClick={handleBack}
-            className="absolute top-2 left-2 z-30 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground bg-card/70 backdrop-blur border border-border rounded-full px-3 py-1.5 select-none">
-            <ArrowLeft className="w-3.5 h-3.5" /> {level === 2 ? tier?.name : c("home_levels_back")}
-          </motion.button>
-        )}
-      </AnimatePresence>
 
       {/* ---------- Layer 0: tier zones on an ascending path ---------- */}
       <NodeGroup active={level === 0}>

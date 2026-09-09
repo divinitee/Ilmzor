@@ -31,7 +31,7 @@ export default function GrammarTierNode({ node, index, active, hidden, onClick, 
             <Icon className="w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.45)]" style={{ color: node.accent }} />
             <span className="text-[11px] font-bold tracking-wide leading-tight text-center px-2">{node.name}</span>
             <span className="text-[9px] text-white/65 mt-0.5 leading-none">
-              {node.levels[0]}–{node.levels[node.levels.length - 1]} · {c("home_groups", { n: node.clusters.length })}
+              {node.levels.length > 1 ? `${node.levels[0]}–${node.levels[node.levels.length - 1]}` : node.levels[0]} · {c("home_groups", { n: node.clusters.length })}
             </span>
             {chip && (
               <span className="mt-1.5 text-[8px] font-bold px-1.5 py-0.5 rounded-full border leading-none"
