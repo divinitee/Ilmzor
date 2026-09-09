@@ -123,9 +123,18 @@ function computeConfidence(domain, result, ladder, cells, config) {
     score = Math.min(score, 0.40);
     reasons.push("unresolved conflict across a declared prerequisite");
   }
-  if (est === "C2" || result.c2Probed) {
+  // The cap applies when the ESTIMATE RESTS ON C2 evidence — not merely because
+  // C2 was sampled. Capping on `c2Probed` was a defect: a C2 probe that fails
+  // brackets the boundary above a C1 placement, which is the strongest evidence
+  // shape this engine can produce, and it was being punished for it. Simulation
+  // P5 (a C1 learner) had 12 of 13 domains pinned to the cap at exactly 0.45
+  // despite every one having C1 cleared AND C2 failed.
+  //
+  // `c2Probed` is still reported on the result, because "C2 was tried" is worth
+  // knowing; it just no longer drives confidence on its own.
+  if (est === "C2") {
     score = Math.min(score, config.c2.confidenceCap);
-    reasons.push("C2 coverage is sparse — confidence is capped by design");
+    reasons.push("C2 coverage is sparse — a C2 placement is capped by design");
   }
   if (result.basis === BASIS.BELOW_FLOOR) {
     reasons.push(`this domain has no content below ${result.floorLevel}`);
