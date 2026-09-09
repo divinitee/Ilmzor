@@ -65,7 +65,7 @@ export default [
 
   // ---------------- C1 ----------------
   d.rewrite({ b: "parallel-comparison", t: "the-more-the-more", L: "C1", diff: 2, focus: "Reduced parallel comparative with ellipsis ('the sooner, the better')", pre: ["double-comparative", "ellipsis-substitution"],
-    instr: "Rewrite the sentence using 'The ..., the ...' and no more than six words.", source: "If we leave sooner, it will be better.", hint: "The ______.", key: "sooner, the better", alt: ["sooner the better"], why: "Elliptical parallel comparative.", overlaps: ["sentence-structure"] }),
+    instr: "Rewrite the sentence using 'The ..., the ...' and no more than six words.", source: "If we leave sooner, it will be better.", hint: "The ______.", key: "sooner, the better", alt: ["sooner the better"], why: "Elliptical parallel comparative.", overlaps: ["pronouns"] }),
   d.mcq({ b: "comparative", t: "comparative-of-adverbs", L: "C1", diff: 2, focus: "Irregular adverb comparatives (better/worse/further) after a verb", pre: ["comparative-form", "irregular-adverbs"],
     prompt: "Since the surgery, he has been able to walk much ______ than before.", options: ["farther", "more far", "farer", "the farthest"], key: 0, why: "far → farther/further.", overlaps: ["adj-adv"] }),
   d.mcq({ b: "equality", t: "as-as-clause-inversion", L: "C1", diff: 3, focus: "Formal inverted 'as' clause of comparison ('as did / as is')", pre: ["as-as", "subject-auxiliary-inversion"],

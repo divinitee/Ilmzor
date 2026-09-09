@@ -1,6 +1,6 @@
 import { domainBuilder, leg } from "@/lib/adaptiveGrammar/build";
 const d = domainBuilder("questions-negation");
-const A1 = leg("A1_MCQ"), A2 = leg("A2_MCQ"), B1O = leg("B1_OPEN_GRAMMAR");
+const A1 = leg("A1_MCQ"), A2 = leg("A2_MCQ"), B1O = leg("B1_OPEN_GRAMMAR"), B2 = leg("B2_MCQ"), C1 = leg("C1_MCQ"), B2O = leg("B2_OPEN_GRAMMAR"), C1O = leg("C1_OPEN_GRAMMAR");
 
 export default [
   // ---------------- A1 ----------------
@@ -62,8 +62,7 @@ export default [
     instr: "Put the words in the correct order to make a question.", tokens: ["talking", "who", "you", "about", "are", "?"], key: ["who", "are", "you", "talking", "about", "?"], why: "Wh + aux + S + V + preposition.", overlaps: ["prep-phrasal"] }),
   d.mcq({ b: "negation", t: "no-vs-not", L: "B1", diff: 2, focus: "no + noun vs not + any", pre: ["no-not-none"],
     prompt: "I'm sorry, there are ______ tickets left for tonight.", options: ["no", "not", "none", "any"], key: 0, why: "Before a noun → no." }),
-  d.mcq({ b: "short-responses", t: "so-neither", L: "B1", diff: 2, focus: "Neither + auxiliary + subject agreeing with a negative", pre: ["so-neither-responses", "subject-auxiliary-inversion"],
-    prompt: "'I don't eat meat.'  '______.'", options: ["Neither do I", "So do I", "Neither I do", "I don't neither"], key: 0, why: "Agreeing with a negative → Neither do I." }),
+  // short-responses (so/neither) moved to pronouns/substitution (2026-09-09 taxonomy correction C2).
   d.guided({ b: "indirect-questions", t: "embedded-order", L: "B1", diff: 2, focus: "Productive indirect question with statement order", pre: ["indirect-question-order"],
     prompt: "Write one indirect question beginning with 'Do you know...' or 'Could you tell me...'", required: "an indirect question with correct statement word order (no inversion) after 'Do you know...' or 'Could you tell me...'",
     legacy: B1O("Write one indirect question beginning with 'Do you know...' or 'Could you tell me...'") }),
@@ -83,18 +82,39 @@ export default [
     source: "Why did they cancel the flight?", hint: "I have no idea why ______.", key: "they cancelled the flight", alt: ["they canceled the flight"], why: "No auxiliary in the embedded clause." }),
   d.mcq({ b: "wh-questions", t: "whom-formal", L: "B2", diff: 3, focus: "Formal 'whom' after a fronted preposition", pre: ["question-prepositions", "wh-words"],
     prompt: "______ should I address the complaint?", options: ["To whom", "To who", "Who to", "Whom"], key: 0, why: "Fronted preposition requires whom.", overlaps: ["prep-phrasal"] }),
+  // emphasis-inversion: moved here from sentence-structure (2026-09-09, correction C1). Fronted-negative
+  // inversion is the same subject-auxiliary inversion mechanic as question formation; the tool is taught
+  // once and applied to two communicative purposes. Do not move back without recording a reason.
+  d.mcq({ b: "emphasis-inversion", t: "never-inversion", L: "B2", diff: 3, focus: "Inversion after fronted 'Never'", pre: ["negative-adverbial-inversion", "subject-auxiliary-inversion", "present-perfect"],
+    prompt: "Never ______ such a difficult exam.", options: ["I have taken", "have I taken", "I took", "did I have taken"], key: 1, why: "Fronted negative → aux + subject.", legacy: B2("Never ______ such a difficult exam."), overlaps: ["sentence-structure"] }),
+  d.mcq({ b: "emphasis-inversion", t: "not-only-inversion", L: "B2", diff: 3, focus: "Inversion after 'Not only'", pre: ["negative-adverbial-inversion", "auxiliary-do"],
+    prompt: "Not only ______ late, but he also forgot the documents.", options: ["he arrived", "did he arrive", "he did arrive", "arrived he"], key: 1, why: "Not only + did + subject + base verb.", legacy: B2("Not only ______ late, but he also forgot the documents.") }),
+  d.guided({ b: "emphasis-inversion", t: "not-only-inversion", L: "B2", diff: 3, focus: "Productive Not only inversion", pre: ["negative-adverbial-inversion"],
+    prompt: "Write a sentence beginning with Not only and use subject-auxiliary inversion.", required: "correct subject-auxiliary inversion after a fronted 'Not only'",
+    legacy: B2O("Write a sentence beginning with Not only and use subject-auxiliary inversion.") }),
 
   // ---------------- C1 ----------------
   d.mcq({ b: "negation", t: "negative-scope", L: "C1", diff: 3, focus: "Scope of negation with 'not' before a to-infinitive vs after the main verb", pre: ["no-not-none"],
     prompt: "Which sentence means the speaker made a deliberate choice to stay silent?", options: ["I decided not to say anything.", "I didn't decide to say anything.", "I decided to say nothing about not it.", "I not decided to say anything."], key: 0, why: "'decided not to' = deliberate negative decision; 'didn't decide to' = no decision made." }),
-  d.mcq({ b: "short-responses", t: "so-neither", L: "C1", diff: 2, focus: "'Nor' with inversion continuing a negative in formal register", pre: ["so-neither-responses", "subject-auxiliary-inversion"],
-    prompt: "The report was never published, ______ its findings shared with the committee.", options: ["nor were", "neither were", "nor was", "and not were"], key: 0, why: "nor + inverted auxiliary agreeing with plural 'findings'.", overlaps: ["sentence-structure"] }),
   d.rewrite({ b: "negation", t: "negative-transfer", L: "C1", diff: 3, focus: "Transferred negation with think/suppose/believe ('I don't think ... will')", pre: ["no-not-none", "verb-that-clause"],
     instr: "Rewrite the sentence in the more natural English form, beginning with the words given.", source: "I think she won't accept the offer.", hint: "I don't ______.", key: "think she will accept the offer", alt: ["think she'll accept the offer"], why: "English prefers negating the reporting verb." }),
   d.mcq({ b: "tag-questions", t: "same-polarity-tag", L: "C1", diff: 3, focus: "Same-polarity (positive–positive) tag to express inference or sarcasm", pre: ["tag-questions"],
     prompt: "'So you've decided to leave, ______?' (said on realising the fact)", options: ["have you", "haven't you", "did you", "do you"], key: 0, why: "Positive–positive tag draws a conclusion from what has just been learned." }),
+  d.mcq({ b: "emphasis-inversion", t: "only-after-inversion", L: "C1", diff: 2, focus: "Inversion in the main clause after fronted 'Only after ...'", pre: ["negative-adverbial-inversion", "auxiliary-do"],
+    prompt: "Only after the results had been independently replicated ______ the researchers accept the hypothesis.", options: ["the researchers did", "did the researchers", "the researchers had", "had the researchers"], key: 1, why: "Only + adverbial → did + subject.", legacy: C1("Only after the results had been independently replicated ______ the researchers accept the hypothesis.") }),
+  d.mcq({ b: "emphasis-inversion", t: "under-no-circumstances", L: "C1", diff: 2, focus: "Inversion after 'Under no circumstances'", pre: ["negative-adverbial-inversion"],
+    prompt: "Under no circumstances ______ be released before the investigation is complete.", options: ["should the data", "the data should", "the data", "should"], key: 0, why: "Negative adverbial → modal + subject.",
+    legacy: C1("Under no circumstances ______ the data be released before the investigation is complete.", "Legacy stem kept 'the data' outside the gap while the key was 'should', making the inverted option unattainable. Gap widened so the inversion itself is the choice.") }),
+  d.rewrite({ b: "emphasis-inversion", t: "so-adj-inversion", L: "C1", diff: 3, focus: "Fronted 'So + adjective' with inversion", pre: ["negative-adverbial-inversion", "result-clauses"],
+    source: "The lecture was so boring that several students fell asleep.", hint: "So ______ that several students fell asleep.", key: "boring was the lecture", why: "So + adj + be + subject." }),
+  d.guided({ b: "emphasis-inversion", t: "only-after-inversion", L: "C1", diff: 3, focus: "Productive Only after inversion", pre: ["negative-adverbial-inversion"],
+    prompt: "Rewrite a sentence beginning with 'Only after...' and use subject-auxiliary inversion.", required: "correct subject-auxiliary inversion after a fronted \"Only after...\"",
+    legacy: C1O("Rewrite a sentence beginning with 'Only after...' and use subject-auxiliary inversion.") }),
 
   // ---------------- C2 ----------------
+  d.rewrite({ b: "emphasis-inversion", t: "barely-when", L: "C2", diff: 1, focus: "Inversion with barely/hardly/scarcely ... when", pre: ["negative-adverbial-inversion", "past-perfect"],
+    instr: "Rewrite the sentence beginning with the word given.", source: "She had barely sat down when the phone rang.", hint: "Barely ______.", key: "had she sat down when the phone rang", why: "Fronted 'Barely' → had + subject + pp ... when.",
+    flags: ["c2-check: literary inversion with correlative 'when'; grammatical, not lexical. C2 provisional (upper C1 possible)."] }),
   d.mcq({ b: "negation", t: "negative-raising-modal", L: "C2", diff: 3, focus: "Litotes / negative scope with 'not un-' and quantifier interaction ('not everyone', 'not any')", pre: ["no-not-none"],
     prompt: "Which sentence means that SOME (but not all) of the members voted?", options: ["Not all the members voted.", "All the members did not vote.", "None of the members voted.", "Not any member voted."], key: 0, why: "'Not all' negates the quantifier (partial); 'All ... did not' is ambiguous/total in standard reading.",
     flags: ["c2-check: quantifier–negation scope is a genuinely syntactic-semantic phenomenon; option 2's ambiguity is the diagnostic. C2 provisional."] }),

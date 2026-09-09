@@ -8,7 +8,16 @@
 //   relative clauses → sentence-structure     passive reporting → passive-causative
 //   "be": predication → sentence-structure · progressive aux → tenses · passive aux → passive-causative
 // Provisional rulings: there is/are → sentence-structure · imperatives → sentence-structure ·
-//   have got → verb-patterns · used to → tenses · negative inversion → sentence-structure
+//   have got → verb-patterns · used to → tenses
+// Ratified rulings (2026-09-09, claude/virora-grammar-taxonomy.md):
+//   emphatic/negative inversion → questions-negation. "Never have I seen…" / "Not only did she…" use the
+//     same subject-auxiliary inversion mechanic as question formation; the syntactic tool is taught once
+//     and applied to two communicative purposes rather than split across domains by surface function.
+//   substitution & ellipsis (so/neither responses, 'so' for a clause, one/ones) → pronouns. Substitution
+//     is referential — the same family as the pronouns already in that domain.
+//   Empty duplicate branches removed: adj-adv/adverb-position (→ order-position),
+//     questions-negation/question-prepositions (→ prep-phrasal/stranding),
+//     passive-causative/two-object-passive (→ simple-passive).
 //
 // Do NOT rename, merge, or add domains. Branches may grow; never rename existing ones.
 
@@ -19,14 +28,14 @@ export const DOMAINS = [
   { id: "nouns-articles", name: "Nouns & Articles", branches: ["articles", "plurals-agreement", "quantifiers", "countability", "possession"] },
   { id: "pronouns", name: "Pronouns", branches: ["personal", "possessive", "reflexive", "indefinite", "demonstrative", "substitution"] },
   { id: "verb-patterns", name: "Verb Patterns", branches: ["gerund-infinitive", "meaning-change-verbs", "object-infinitive", "have-got", "perfect-forms"] },
-  { id: "adj-adv", name: "Adjectives & Adverbs", branches: ["adjective-form", "adverb-form", "frequency", "order-position", "adverb-position", "intensifiers", "gradability"] },
+  { id: "adj-adv", name: "Adjectives & Adverbs", branches: ["adjective-form", "adverb-form", "frequency", "order-position", "intensifiers", "gradability"] },
   { id: "comparison", name: "Comparison", branches: ["comparative", "superlative", "equality", "parallel-comparison", "modified-comparison", "like-as"] },
-  { id: "questions-negation", name: "Questions & Negation", branches: ["yes-no", "wh-questions", "indirect-questions", "tag-questions", "negation", "subject-questions", "short-responses", "question-prepositions"] },
+  { id: "questions-negation", name: "Questions & Negation", branches: ["yes-no", "wh-questions", "indirect-questions", "tag-questions", "negation", "subject-questions", "emphasis-inversion"] },
   { id: "modals", name: "Modals & Attitude", branches: ["ability-permission", "obligation", "deduction", "past-modals", "hedging", "advice", "semi-modals"] },
   { id: "prep-phrasal", name: "Prepositions & Phrasal Verbs", branches: ["time", "place", "movement", "dependent-prepositions", "phrasal-verbs", "stranding"] },
-  { id: "sentence-structure", name: "Sentence Structure", branches: ["word-order", "conjunctions", "relative-clauses", "participle-clauses", "emphasis-inversion", "cleft", "existential", "imperatives", "predication", "subjunctive", "clause-linkers"] },
+  { id: "sentence-structure", name: "Sentence Structure", branches: ["word-order", "conjunctions", "relative-clauses", "participle-clauses", "cleft", "existential", "imperatives", "predication", "subjunctive", "clause-linkers"] },
   { id: "conditionals-wishes", name: "Conditionals & Wishes", branches: ["zero-first", "second", "third", "mixed", "inverted", "wishes-preference", "linkers"] },
-  { id: "passive-causative", name: "Passive & Causative", branches: ["simple-passive", "perfect-progressive-passive", "modal-passive", "reporting-passive", "causative", "get-passive", "passive-infinitive", "two-object-passive"] },
+  { id: "passive-causative", name: "Passive & Causative", branches: ["simple-passive", "perfect-progressive-passive", "modal-passive", "reporting-passive", "causative", "get-passive", "passive-infinitive"] },
   { id: "reported-speech", name: "Reported Speech", branches: ["statements", "questions", "commands-requests", "reporting-verbs", "backshift-exceptions", "modals-reported"] },
 ];
 
@@ -42,7 +51,7 @@ export const CONCEPTS = [
   ...C("nouns-articles", "indefinite-article", "definite-article", "zero-article", "countable-uncountable", "some-any", "much-many", "few-little",
     "plural-formation", "possessive-s", "subject-verb-agreement", "collective-nouns", "both-either-neither", "each-every"),
   ...C("pronouns", "subject-pronouns", "object-pronouns", "possessive-determiners", "possessive-pronouns", "demonstratives", "reflexive-pronouns",
-    "one-ones-another", "indefinite-pronouns", "reciprocal-pronouns", "generic-pronouns", "dummy-it"),
+    "one-ones-another", "indefinite-pronouns", "reciprocal-pronouns", "generic-pronouns", "dummy-it", "ellipsis-substitution", "so-neither-responses"),
   ...C("verb-patterns", "gerund", "to-infinitive", "bare-infinitive", "verb-object-infinitive", "meaning-change-verbs", "have-got",
     "perfect-infinitive", "perfect-gerund", "verb-that-clause"),
   ...C("adj-adv", "adjective-adverb-distinction", "ed-ing-adjectives", "frequency-adverbs", "adjective-order", "irregular-adverbs",
@@ -50,15 +59,15 @@ export const CONCEPTS = [
   ...C("comparison", "comparative-form", "superlative-form", "as-as", "less-fewer", "comparative-modifiers", "double-comparative",
     "superlative-modifiers", "like-vs-as", "progressive-comparative"),
   ...C("questions-negation", "auxiliary-do", "subject-auxiliary-inversion", "wh-words", "indirect-question-order", "negative-subjects",
-    "tag-questions", "subject-questions", "question-prepositions", "negative-questions", "no-not-none", "so-neither-responses"),
+    "tag-questions", "subject-questions", "question-prepositions", "negative-questions", "no-not-none", "negative-adverbial-inversion"),
   ...C("modals", "modal-base-form", "modal-perfect", "deduction-modals", "obligation-modals", "ability-modals", "permission-modals",
     "advice-modals", "hedging-modals", "semi-modals", "need-modal"),
   ...C("prep-phrasal", "prepositions-time", "prepositions-place", "prepositions-movement", "dependent-prepositions", "phrasal-verb-separability",
     "prepositional-verbs", "preposition-gerund", "three-part-phrasal", "preposition-stranding"),
   ...C("sentence-structure", "svo-order", "coordinating-conjunctions", "subordinating-conjunctions", "relative-pronouns", "defining-relative",
-    "non-defining-relative", "reduced-relative", "participle-clauses", "negative-adverbial-inversion", "cleft-what", "cleft-it",
+    "non-defining-relative", "reduced-relative", "participle-clauses", "cleft-what", "cleft-it",
     "there-existential", "imperatives", "be-copula", "mandative-subjunctive", "result-clauses", "concession-linkers", "purpose-clauses",
-    "fronting", "ellipsis-substitution"),
+    "fronting"),
   ...C("conditionals-wishes", "zero-conditional", "first-conditional", "second-conditional", "third-conditional", "mixed-conditional",
     "unless", "conditional-linkers", "inverted-conditional", "wish-unreal-present", "wish-unreal-past", "wish-would", "would-rather",
     "if-only", "as-if", "implied-conditional"),

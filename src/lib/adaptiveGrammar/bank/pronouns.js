@@ -66,6 +66,10 @@ export default [
     prompt: "Nobody ______ what happened to the missing files.", options: ["know", "knows", "are knowing", "have known"], key: 1, why: "nobody → singular." }),
   d.mcq({ b: "personal", t: "dummy-it", L: "B1", diff: 2, focus: "Dummy 'it' as subject for weather/time/distance", pre: ["dummy-it"],
     prompt: "______ is about ten kilometres from here to the airport.", options: ["There", "It", "That", "This"], key: 1, why: "Distance statements use dummy 'it'.", overlaps: ["sentence-structure"] }),
+  // so/neither short responses: moved here from questions-negation/short-responses (2026-09-09, correction C2).
+  // Substitution is referential — 'so', 'neither/nor' stand in for a clause, the same family as one/ones/so.
+  d.mcq({ b: "substitution", t: "so-neither", L: "B1", diff: 2, focus: "Neither + auxiliary + subject agreeing with a negative", pre: ["so-neither-responses", "subject-auxiliary-inversion"],
+    prompt: "'I don't eat meat.'  '______.'", options: ["Neither do I", "So do I", "Neither I do", "I don't neither"], key: 0, why: "Agreeing with a negative → Neither do I.", overlaps: ["questions-negation"] }),
   d.correct({ b: "reflexive", t: "no-reflexive-after-feel", L: "B1", diff: 3, focus: "Some verbs (relax, feel, concentrate) take no reflexive in English", pre: ["reflexive-pronouns"],
     source: "After the exam I sat down and relaxed myself for an hour.", key: "After the exam I sat down and relaxed for an hour.", why: "'relax' is not reflexive in English." }),
 
@@ -93,6 +97,8 @@ export default [
     source: "That he resigned so suddenly surprised everyone.", hint: "It ______.", key: "surprised everyone that he resigned so suddenly", why: "Heavy clausal subject moved to the end; 'it' fills the subject slot." }),
   d.mcq({ b: "substitution", t: "one-ones", L: "C1", diff: 2, focus: "'those' as a formal substitute for 'the ones' before a post-modifier", pre: ["one-ones-another", "demonstratives"],
     prompt: "The results of the second trial were far more reliable than ______ of the first.", options: ["those", "these", "the ones which", "that"], key: 0, why: "Plural 'results' + post-modifier → those." }),
+  d.mcq({ b: "substitution", t: "so-neither", L: "C1", diff: 2, focus: "'Nor' with inversion continuing a negative in formal register", pre: ["so-neither-responses", "subject-auxiliary-inversion"],
+    prompt: "The report was never published, ______ its findings shared with the committee.", options: ["nor were", "neither were", "nor was", "and not were"], key: 0, why: "nor + inverted auxiliary agreeing with plural 'findings'.", overlaps: ["sentence-structure", "questions-negation"] }),
 
   // ---------------- C2 ----------------
   d.mcq({ b: "reflexive", t: "reflexive-after-preposition", L: "C2", diff: 3, focus: "Object vs reflexive after a preposition of place with a co-referential subject", pre: ["reflexive-pronouns", "object-pronouns"],
