@@ -85,6 +85,12 @@ const COPY = {
     home_soon_title: "In development",
     home_gotit: "Got it",
     home_loading: "Loading your Grammar path…",
+
+    // ---- grammar home: tier / cluster navigation ----
+    home_pick_level: "Choose a level to start",
+    home_groups: "{n} groups",
+    home_areas: "{n} areas",
+    home_levels_back: "All levels",
   },
 
   uz: {
@@ -161,6 +167,11 @@ const COPY = {
     home_soon_title: "Ishlanmoqda",
     home_gotit: "Tushunarli",
     home_loading: "Grammatika yo'lingiz yuklanmoqda…",
+
+    home_pick_level: "Boshlash uchun darajani tanlang",
+    home_groups: "{n} ta guruh",
+    home_areas: "{n} ta soha",
+    home_levels_back: "Barcha darajalar",
   },
 
   ru: {
@@ -237,6 +248,11 @@ const COPY = {
     home_soon_title: "В разработке",
     home_gotit: "Понятно",
     home_loading: "Загружаем ваш путь по грамматике…",
+
+    home_pick_level: "Выберите уровень, чтобы начать",
+    home_groups: "Групп: {n}",
+    home_areas: "Областей: {n}",
+    home_levels_back: "Все уровни",
   },
 };
 
