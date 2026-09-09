@@ -21,7 +21,7 @@ export { analyzeDomain, domainResolved, cellValue } from "@/lib/grammarPlacement
 export { BASIS, placeDomain, aggregateOverall, buildProfile } from "@/lib/grammarPlacement/placement";
 export {
   analyzeDependencies, detectDependencyContradictions, buildConceptEvidence,
-  conceptEvidenceBelow, prerequisiteClosure, independentLowerFailures,
+  conceptEvidenceBelow, independentLowerFailures,
 } from "@/lib/grammarPlacement/prerequisites";
 export {
   ENGINE_VERSION, PHASES, STOP_REASONS,
