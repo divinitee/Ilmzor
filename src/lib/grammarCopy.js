@@ -48,6 +48,7 @@ const COPY = {
     // ---- answer inputs ----
     in_choose: "Choose one",
     in_type: "Type your answer",
+    in_type_blank: "Type only the missing word(s)",
     in_type_multi: "Fill each gap",
     in_order: "Tap the words in the correct order",
     in_order_reset: "Clear",
@@ -125,6 +126,7 @@ const COPY = {
 
     in_choose: "Bittasini tanlang",
     in_type: "Javobingizni yozing",
+    in_type_blank: "Faqat yetishmayotgan so'z(lar)ni yozing",
     in_type_multi: "Har bir bo'shliqni to'ldiring",
     in_order: "So'zlarni to'g'ri tartibda bosing",
     in_order_reset: "Tozalash",
@@ -200,6 +202,7 @@ const COPY = {
 
     in_choose: "Выберите один вариант",
     in_type: "Напишите ответ",
+    in_type_blank: "Введите только пропущенное слово(-а)",
     in_type_multi: "Заполните каждый пропуск",
     in_order: "Нажимайте слова в правильном порядке",
     in_order_reset: "Очистить",
