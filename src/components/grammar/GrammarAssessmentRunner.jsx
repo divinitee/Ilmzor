@@ -7,6 +7,7 @@ import {
 import { requiresAiEvaluation } from "@/lib/grammarPlacement/scoring";
 import GrammarItemPrompt, { hasAnswer, emptyAnswer } from "@/components/grammar/GrammarItemPrompt";
 import { useGrammarCopy } from "@/lib/grammarCopy";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 
 // The live assessment. This component owns presentation and the async
 // lifecycle; every decision about WHAT to ask and WHEN TO STOP belongs to the
@@ -202,6 +203,7 @@ function Shell({ children }) {
   const c = useGrammarCopy();
   return (
     <div className="premium-mesh min-h-screen">
+      <ExplainHelp contentKey="grammar_question" />
       <div className="relative z-10 max-w-lg mx-auto px-4 pt-8 pb-28">
         <div className="text-center mb-5">
           <div className="relative inline-flex">
