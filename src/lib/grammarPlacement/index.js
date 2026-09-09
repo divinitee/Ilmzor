@@ -20,6 +20,10 @@ export { buildIndex } from "@/lib/grammarPlacement/datasetIndex";
 export { analyzeDomain, domainResolved, cellValue } from "@/lib/grammarPlacement/selection";
 export { BASIS, placeDomain, aggregateOverall, buildProfile } from "@/lib/grammarPlacement/placement";
 export {
+  analyzeDependencies, detectDependencyContradictions, buildConceptEvidence,
+  conceptEvidenceBelow, prerequisiteClosure, independentLowerFailures,
+} from "@/lib/grammarPlacement/prerequisites";
+export {
   ENGINE_VERSION, PHASES, STOP_REASONS,
   createSession, selectNext, applyResponse, abandon, finalize,
 } from "@/lib/grammarPlacement/engine";
