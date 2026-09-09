@@ -1,0 +1,251 @@
+import { useCallback } from "react";
+import { useAppLang } from "@/hooks/useAppLang";
+
+// Local copy for the Grammar assessment + Grammar home, following the
+// convention the game engines use (synonymSprintCopy.js, wordFormsCopy.js):
+// src/i18n/translations.js is not touched by feature modules.
+
+const COPY = {
+  en: {
+    // ---- introduction ----
+    intro_eyebrow: "Grammar",
+    intro_title: "Let's find your starting point",
+    intro_skip: "Back to Skill Hub",
+    intro_next: "Continue",
+    intro_start: "Start assessment",
+    intro_step: "{n} of {total}",
+
+    s1_title: "First, a quick diagnosis",
+    s1_body: "A doctor doesn't prescribe treatment before examining the patient. VIRORA works the same way. Before we build your Grammar path, we need to see what you already know.",
+
+    s2_title: "So we don't waste your time",
+    s2_body: "Grammar is thirteen different areas — tenses, articles, conditionals, and ten more. You're probably strong in some and shaky in others. Without checking, we'd have to guess, and guessing means teaching you things you already know.",
+
+    s3_title: "The questions adapt to you",
+    s3_body: "Each answer changes what comes next. Get something right and we move up. Get it wrong and we look more closely at that area. Usually 25 to 50 questions — it stops as soon as your level is clear, and asks a few more when the picture is mixed.",
+
+    s4_title: "What you get at the end",
+    s4_body: "Your Grammar level, the areas you're already strong in, and the ones worth your attention first. That becomes your starting point — not a score, a plan.",
+
+    // ---- runner ----
+    run_progress: "Question {n}",
+    run_adaptive_note: "Length adapts to your answers",
+    run_submit: "Submit",
+    run_next: "Next",
+    run_checking: "Checking…",
+    run_ai_checking: "Reading your sentence…",
+    run_exit: "Save & exit",
+    run_resume_title: "Pick up where you left off",
+    run_resume_body: "You have an assessment in progress.",
+    run_resume_continue: "Continue",
+    run_resume_restart: "Start over",
+    run_loading: "Preparing your assessment…",
+    run_error_title: "Something went wrong",
+    run_error_body: "We couldn't continue the assessment just now. Your answers so far are saved.",
+    run_error_retry: "Try again",
+    run_saving: "Saving your result…",
+
+    // ---- answer inputs ----
+    in_choose: "Choose one",
+    in_type: "Type your answer",
+    in_type_multi: "Fill each gap",
+    in_order: "Tap the words in the correct order",
+    in_order_reset: "Clear",
+    in_write: "Write your sentence",
+    in_write_hint: "One sentence is enough.",
+
+    // ---- result ----
+    res_eyebrow: "Your starting point",
+    res_title: "You're starting at {level}",
+    res_title_unknown: "We need a little more to place you",
+    res_certainty_clear: "This is a clear read on your level.",
+    res_certainty_reasonable: "This is a reasonable read on your level.",
+    res_certainty_provisional: "This is a first estimate — it will sharpen as you study.",
+    res_strengths: "Already strong",
+    res_focus: "Worth your attention first",
+    res_unknown: "Not enough seen yet",
+    res_next_title: "What happens next",
+    res_next_body: "Your Grammar path starts from here. We'll focus on the areas that need work and skip what you've already shown you know.",
+    res_enter: "Enter Grammar",
+    res_questions: "{n} questions answered",
+
+    // ---- grammar home ----
+    home_eyebrow: "Grammar",
+    home_title: "Your Grammar path",
+    home_level: "Level {level}",
+    home_all: "All areas",
+    home_focus: "Focus areas",
+    home_strong: "Strong areas",
+    home_branches: "{n} topics",
+    home_not_assessed: "Not assessed yet",
+    home_retake: "View your assessment result",
+    home_back: "Back",
+    home_soon: "Practice for this area is coming soon.",
+    home_soon_title: "In development",
+    home_gotit: "Got it",
+    home_loading: "Loading your Grammar path…",
+  },
+
+  uz: {
+    intro_eyebrow: "Grammatika",
+    intro_title: "Boshlang'ich nuqtangizni aniqlaymiz",
+    intro_skip: "Skill Hub'ga qaytish",
+    intro_next: "Davom etish",
+    intro_start: "Baholashni boshlash",
+    intro_step: "{total} dan {n}",
+
+    s1_title: "Avval qisqa tashxis",
+    s1_body: "Shifokor bemorni ko'rmasdan davolashni boshlamaydi. VIRORA ham shunday ishlaydi. Grammatika yo'lingizni tuzishdan oldin nimani bilishingizni ko'rishimiz kerak.",
+
+    s2_title: "Vaqtingizni tejash uchun",
+    s2_body: "Grammatika — o'n uchta turli soha: zamonlar, artikllar, shart gaplar va yana o'nta. Ba'zilarida kuchli, ba'zilarida zaifsiz. Tekshirmasak, taxmin qilishga majbur bo'lamiz — bu esa siz allaqachon bilgan narsani o'rgatish demakdir.",
+
+    s3_title: "Savollar sizga moslashadi",
+    s3_body: "Har bir javob keyingisini o'zgartiradi. To'g'ri javob bersangiz — yuqoriga chiqamiz. Xato qilsangiz — o'sha sohani chuqurroq tekshiramiz. Odatda 25 tadan 50 tagacha savol: darajangiz aniq bo'lishi bilan to'xtaydi.",
+
+    s4_title: "Oxirida nima olasiz",
+    s4_body: "Grammatika darajangiz, kuchli tomonlaringiz va birinchi navbatda e'tibor berish kerak bo'lgan sohalar. Bu — ball emas, reja.",
+
+    run_progress: "{n}-savol",
+    run_adaptive_note: "Savollar soni javoblaringizga bog'liq",
+    run_submit: "Yuborish",
+    run_next: "Keyingi",
+    run_checking: "Tekshirilmoqda…",
+    run_ai_checking: "Gapingiz o'qilmoqda…",
+    run_exit: "Saqlab chiqish",
+    run_resume_title: "To'xtagan joyingizdan davom eting",
+    run_resume_body: "Sizda tugallanmagan baholash bor.",
+    run_resume_continue: "Davom etish",
+    run_resume_restart: "Boshidan boshlash",
+    run_loading: "Baholash tayyorlanmoqda…",
+    run_error_title: "Xatolik yuz berdi",
+    run_error_body: "Hozir davom eta olmadik. Javoblaringiz saqlangan.",
+    run_error_retry: "Qayta urinish",
+    run_saving: "Natijangiz saqlanmoqda…",
+
+    in_choose: "Bittasini tanlang",
+    in_type: "Javobingizni yozing",
+    in_type_multi: "Har bir bo'shliqni to'ldiring",
+    in_order: "So'zlarni to'g'ri tartibda bosing",
+    in_order_reset: "Tozalash",
+    in_write: "Gapingizni yozing",
+    in_write_hint: "Bitta gap yetarli.",
+
+    res_eyebrow: "Boshlang'ich nuqtangiz",
+    res_title: "Siz {level} darajadan boshlaysiz",
+    res_title_unknown: "Darajani aniqlash uchun yana bir oz kerak",
+    res_certainty_clear: "Bu — darajangizning aniq ko'rsatkichi.",
+    res_certainty_reasonable: "Bu — darajangizning ishonchli ko'rsatkichi.",
+    res_certainty_provisional: "Bu — dastlabki baho, o'qigan sari aniqlashadi.",
+    res_strengths: "Allaqachon kuchli",
+    res_focus: "Avval e'tibor bering",
+    res_unknown: "Hali yetarli ko'rilmadi",
+    res_next_title: "Keyin nima bo'ladi",
+    res_next_body: "Grammatika yo'lingiz shu yerdan boshlanadi. Zaif sohalarga e'tibor beramiz, bilganingizni takrorlamaymiz.",
+    res_enter: "Grammatikaga kirish",
+    res_questions: "{n} ta savolga javob berildi",
+
+    home_eyebrow: "Grammatika",
+    home_title: "Grammatika yo'lingiz",
+    home_level: "{level} daraja",
+    home_all: "Barcha sohalar",
+    home_focus: "Diqqat sohalari",
+    home_strong: "Kuchli sohalar",
+    home_branches: "{n} ta mavzu",
+    home_not_assessed: "Hali baholanmagan",
+    home_retake: "Baholash natijangizni ko'rish",
+    home_back: "Orqaga",
+    home_soon: "Bu soha uchun mashqlar tez orada.",
+    home_soon_title: "Ishlanmoqda",
+    home_gotit: "Tushunarli",
+    home_loading: "Grammatika yo'lingiz yuklanmoqda…",
+  },
+
+  ru: {
+    intro_eyebrow: "Грамматика",
+    intro_title: "Определим вашу отправную точку",
+    intro_skip: "Назад в Skill Hub",
+    intro_next: "Далее",
+    intro_start: "Начать тест",
+    intro_step: "{n} из {total}",
+
+    s1_title: "Сначала короткая диагностика",
+    s1_body: "Врач не назначает лечение, не осмотрев пациента. VIRORA работает так же. Прежде чем строить ваш путь по грамматике, нужно увидеть, что вы уже знаете.",
+
+    s2_title: "Чтобы не тратить ваше время",
+    s2_body: "Грамматика — это тринадцать разных областей: времена, артикли, условные предложения и ещё десять. В чём-то вы сильны, в чём-то нет. Без проверки нам пришлось бы гадать — а это значит учить вас тому, что вы уже знаете.",
+
+    s3_title: "Вопросы подстраиваются под вас",
+    s3_body: "Каждый ответ меняет следующий вопрос. Ответили верно — идём выше. Ошиблись — смотрим эту область внимательнее. Обычно от 25 до 50 вопросов: тест останавливается, как только уровень ясен.",
+
+    s4_title: "Что вы получите в конце",
+    s4_body: "Ваш уровень грамматики, сильные стороны и области, которым стоит уделить внимание в первую очередь. Это не оценка, а план.",
+
+    run_progress: "Вопрос {n}",
+    run_adaptive_note: "Количество вопросов зависит от ваших ответов",
+    run_submit: "Ответить",
+    run_next: "Далее",
+    run_checking: "Проверяем…",
+    run_ai_checking: "Читаем ваше предложение…",
+    run_exit: "Сохранить и выйти",
+    run_resume_title: "Продолжите с того же места",
+    run_resume_body: "У вас есть незавершённый тест.",
+    run_resume_continue: "Продолжить",
+    run_resume_restart: "Начать заново",
+    run_loading: "Готовим тест…",
+    run_error_title: "Что-то пошло не так",
+    run_error_body: "Сейчас не удалось продолжить. Ваши ответы сохранены.",
+    run_error_retry: "Повторить",
+    run_saving: "Сохраняем результат…",
+
+    in_choose: "Выберите один вариант",
+    in_type: "Напишите ответ",
+    in_type_multi: "Заполните каждый пропуск",
+    in_order: "Нажимайте слова в правильном порядке",
+    in_order_reset: "Очистить",
+    in_write: "Напишите предложение",
+    in_write_hint: "Достаточно одного предложения.",
+
+    res_eyebrow: "Ваша отправная точка",
+    res_title: "Вы начинаете с уровня {level}",
+    res_title_unknown: "Нужно чуть больше, чтобы определить уровень",
+    res_certainty_clear: "Это чёткая оценка вашего уровня.",
+    res_certainty_reasonable: "Это обоснованная оценка вашего уровня.",
+    res_certainty_provisional: "Это первая оценка — она уточнится по ходу занятий.",
+    res_strengths: "Уже сильные стороны",
+    res_focus: "Начать стоит с этого",
+    res_unknown: "Пока недостаточно данных",
+    res_next_title: "Что дальше",
+    res_next_body: "Ваш путь по грамматике начинается отсюда. Сосредоточимся на слабых местах и не будем повторять то, что вы уже знаете.",
+    res_enter: "Перейти к грамматике",
+    res_questions: "Отвечено вопросов: {n}",
+
+    home_eyebrow: "Грамматика",
+    home_title: "Ваш путь по грамматике",
+    home_level: "Уровень {level}",
+    home_all: "Все области",
+    home_focus: "Требуют внимания",
+    home_strong: "Сильные области",
+    home_branches: "тем: {n}",
+    home_not_assessed: "Ещё не оценено",
+    home_retake: "Посмотреть результат теста",
+    home_back: "Назад",
+    home_soon: "Практика для этой области скоро появится.",
+    home_soon_title: "В разработке",
+    home_gotit: "Понятно",
+    home_loading: "Загружаем ваш путь по грамматике…",
+  },
+};
+
+export function useGrammarCopy() {
+  const { lang } = useAppLang();
+  return useCallback(
+    (key, vars) => {
+      const table = COPY[lang] || COPY.en;
+      let s = table[key] ?? COPY.en[key] ?? key;
+      if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, String(v));
+      return s;
+    },
+    [lang]
+  );
+}
