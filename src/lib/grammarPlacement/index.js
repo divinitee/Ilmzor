@@ -17,7 +17,7 @@ export { DEFAULT_CONFIG, CONFIG_VERSION, resolveConfig } from "@/lib/grammarPlac
 export { EVAL_STATUS, scoreDeterministic, normalizeAiEvaluation, requiresAiEvaluation } from "@/lib/grammarPlacement/scoring";
 export { CELL_STATES, CELL_OUTCOMES, deriveCells, deriveCell, createLedger } from "@/lib/grammarPlacement/evidence";
 export { buildIndex } from "@/lib/grammarPlacement/datasetIndex";
-export { analyzeDomain } from "@/lib/grammarPlacement/selection";
+export { analyzeDomain, domainResolved, cellValue } from "@/lib/grammarPlacement/selection";
 export { BASIS, placeDomain, aggregateOverall, buildProfile } from "@/lib/grammarPlacement/placement";
 export {
   ENGINE_VERSION, PHASES, STOP_REASONS,
