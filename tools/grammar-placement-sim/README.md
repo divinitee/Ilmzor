@@ -25,6 +25,15 @@ single AI credit.
    app, move it into `src/lib/grammarPlacement/` properly — do not import from
    `tools/`.
 
+## What's here
+
+| File | Purpose |
+|---|---|
+| `simulate.mjs` | Nine deterministic learner profiles run end-to-end against the real bank |
+| `engine-tests.mjs` | 110 behaviour assertions — evidence model, contradictions, C2, AI-failure, stopping, determinism, aggregation |
+
+Run both after any engine change.
+
 ## Running it
 
 The engine uses the `@/` alias, so bundle first with the repo's own esbuild:
@@ -35,6 +44,15 @@ cd /app
   --bundle --platform=node --format=esm \
   --outfile=/tmp/gps-sim.mjs --alias:@=/app/src --log-level=error
 node /tmp/gps-sim.mjs
+```
+
+And the assertion suite:
+
+```bash
+./node_modules/.bin/esbuild tools/grammar-placement-sim/engine-tests.mjs \
+  --bundle --platform=node --format=esm \
+  --outfile=/tmp/gps-tests.mjs --alias:@=/app/src --log-level=error
+node /tmp/gps-tests.mjs        # exits non-zero on any failure
 ```
 
 Full per-item detail is written to `results.json` beside the simulator
