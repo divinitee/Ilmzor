@@ -20,6 +20,15 @@ const ACCENT = "#3E9E92"; // grammar skill accent, per GAME_SKILL_MAP
 const gapCount = (item) =>
   Array.isArray(item?.answer?.expected) ? item.answer.expected.length : 1;
 
+/** Splits text on one or more "_" blank markers into alternating segments.
+ * Returns null when there's no blank marker; otherwise segments.length is
+ * always (blank count + 1). */
+const splitBlanks = (text) => {
+  if (typeof text !== "string" || !text.includes("_")) return null;
+  const parts = text.split(/_+/);
+  return parts.length > 1 ? parts : null;
+};
+
 export default function GrammarItemPrompt({ item, value, onChange, disabled }) {
   const c = useGrammarCopy();
   const type = item?.answer?.type;
@@ -28,6 +37,21 @@ export default function GrammarItemPrompt({ item, value, onChange, disabled }) {
   // The sentence being worked on. gap_fill and sentence_correction put the
   // real sentence in content.source and a generic instruction in content.prompt.
   const source = item?.content?.source;
+  const hint = item?.content?.hint;
+
+  // Multi-gap fill (gap_fill items): render each blank inline in the sentence
+  // itself, rather than a plain paragraph plus a separate stacked list of
+  // inputs below it — so it's visually obvious which word goes where.
+  const sourceBlanks = type === "sequence" && !isWordOrder ? splitBlanks(source) : null;
+  const inlineSourceBlanks = sourceBlanks && sourceBlanks.length - 1 === gapCount(item) ? sourceBlanks : null;
+
+  // Single-blank rewrite items (content.hint is a gapped sentence with one
+  // blank, e.g. "Every summer my grandfather ______ fishing on the lake."):
+  // the student only types the missing word(s), not the whole sentence, so
+  // render the blank inline in the hint instead of a separate full-width
+  // input that looks like it wants the entire sentence retyped.
+  const hintBlanks = type === "exact" ? splitBlanks(hint) : null;
+  const inlineHintBlanks = hintBlanks && hintBlanks.length === 2 ? hintBlanks : null;
 
   const tokens = useMemo(() => item?.content?.tokens ?? [], [item]);
   const picked = Array.isArray(value) ? value : [];
@@ -48,14 +72,14 @@ export default function GrammarItemPrompt({ item, value, onChange, disabled }) {
         {item.content.prompt}
       </p>
 
-      {source && (
+      {source && !inlineSourceBlanks && (
         <p className="mt-3 text-base text-foreground/90 leading-relaxed premium-card rounded-2xl px-4 py-3">
           {source}
         </p>
       )}
 
-      {item.content.hint && (
-        <p className="mt-2 text-xs text-muted-foreground">{item.content.hint}</p>
+      {hint && !inlineHintBlanks && (
+        <p className="mt-2 text-xs text-muted-foreground">{hint}</p>
       )}
 
       {/* ---- index: one of N options ---- */}
@@ -142,50 +166,105 @@ export default function GrammarItemPrompt({ item, value, onChange, disabled }) {
         </div>
       )}
 
-      {/* ---- sequence without tiles: one input per gap ---- */}
+      {/* ---- sequence without tiles: one input per gap, inline in the sentence
+           when the source text has matching blank markers; a stacked list of
+           inputs is the defensive fallback if it doesn't. ---- */}
       {type === "sequence" && !isWordOrder && (
         <div className="mt-5">
           <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">{c("in_type_multi")}</p>
-          <div className="grid gap-2">
-            {Array.from({ length: gapCount(item) }).map((_, i) => (
-              <input
-                key={i}
-                type="text"
-                disabled={disabled}
-                value={picked[i] ?? ""}
-                onChange={(e) => {
-                  const next = [...picked];
-                  while (next.length < gapCount(item)) next.push("");
-                  next[i] = e.target.value;
-                  onChange(next);
-                }}
-                autoComplete="off"
-                autoCapitalize="off"
-                spellCheck={false}
-                placeholder={`${i + 1}`}
-                className="premium-card w-full rounded-2xl px-4 py-3 text-base text-foreground bg-transparent outline-none focus:ring-1 disabled:opacity-60"
-                style={{ "--tw-ring-color": ACCENT }}
-              />
-            ))}
-          </div>
+          {inlineSourceBlanks ? (
+            <p className="premium-card rounded-2xl px-4 py-3 text-base text-foreground/90 leading-relaxed">
+              {inlineSourceBlanks.map((seg, i) => (
+                <React.Fragment key={i}>
+                  {seg}
+                  {i < inlineSourceBlanks.length - 1 && (
+                    <input
+                      type="text"
+                      disabled={disabled}
+                      value={picked[i] ?? ""}
+                      onChange={(e) => {
+                        const next = [...picked];
+                        while (next.length < gapCount(item)) next.push("");
+                        next[i] = e.target.value;
+                        onChange(next);
+                      }}
+                      autoComplete="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      aria-label={`${i + 1}`}
+                      size={Math.max(4, (picked[i] ?? "").length || 4)}
+                      className="inline-block mx-1 px-2 py-0.5 rounded-lg border-b-2 bg-white/5 text-foreground outline-none focus:ring-1 disabled:opacity-60 align-baseline"
+                      style={{ borderColor: ACCENT, "--tw-ring-color": ACCENT, minWidth: "4.5ch" }}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </p>
+          ) : (
+            <div className="grid gap-2">
+              {Array.from({ length: gapCount(item) }).map((_, i) => (
+                <input
+                  key={i}
+                  type="text"
+                  disabled={disabled}
+                  value={picked[i] ?? ""}
+                  onChange={(e) => {
+                    const next = [...picked];
+                    while (next.length < gapCount(item)) next.push("");
+                    next[i] = e.target.value;
+                    onChange(next);
+                  }}
+                  autoComplete="off"
+                  autoCapitalize="off"
+                  spellCheck={false}
+                  placeholder={`${i + 1}`}
+                  className="premium-card w-full rounded-2xl px-4 py-3 text-base text-foreground bg-transparent outline-none focus:ring-1 disabled:opacity-60"
+                  style={{ "--tw-ring-color": ACCENT }}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
-      {/* ---- exact: single free text ---- */}
+      {/* ---- exact: single free text; when content.hint is a one-blank
+           sentence, the blank renders inline so it's clear only the missing
+           word(s) are wanted, not a full retyped sentence ---- */}
       {type === "exact" && (
         <div className="mt-5">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">{c("in_type")}</p>
-          <input
-            type="text"
-            disabled={disabled}
-            value={typeof value === "string" ? value : ""}
-            onChange={(e) => onChange(e.target.value)}
-            autoComplete="off"
-            autoCapitalize="off"
-            spellCheck={false}
-            className="premium-card w-full rounded-2xl px-4 py-3 text-base text-foreground bg-transparent outline-none focus:ring-1 disabled:opacity-60"
-            style={{ "--tw-ring-color": ACCENT }}
-          />
+          <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground mb-2">
+            {inlineHintBlanks ? c("in_type_blank") : c("in_type")}
+          </p>
+          {inlineHintBlanks ? (
+            <p className="premium-card rounded-2xl px-4 py-3 text-base text-foreground/90 leading-relaxed">
+              {inlineHintBlanks[0]}
+              <input
+                type="text"
+                disabled={disabled}
+                value={typeof value === "string" ? value : ""}
+                onChange={(e) => onChange(e.target.value)}
+                autoComplete="off"
+                autoCapitalize="off"
+                spellCheck={false}
+                size={Math.max(6, (typeof value === "string" ? value.length : 0) || 8)}
+                className="inline-block mx-1 px-2 py-0.5 rounded-lg border-b-2 bg-white/5 text-foreground outline-none focus:ring-1 disabled:opacity-60 align-baseline"
+                style={{ borderColor: ACCENT, "--tw-ring-color": ACCENT, minWidth: "8ch" }}
+              />
+              {inlineHintBlanks[1]}
+            </p>
+          ) : (
+            <input
+              type="text"
+              disabled={disabled}
+              value={typeof value === "string" ? value : ""}
+              onChange={(e) => onChange(e.target.value)}
+              autoComplete="off"
+              autoCapitalize="off"
+              spellCheck={false}
+              className="premium-card w-full rounded-2xl px-4 py-3 text-base text-foreground bg-transparent outline-none focus:ring-1 disabled:opacity-60"
+              style={{ "--tw-ring-color": ACCENT }}
+            />
+          )}
         </div>
       )}
 
