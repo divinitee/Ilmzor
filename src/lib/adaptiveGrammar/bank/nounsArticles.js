@@ -59,7 +59,8 @@ export default [
 
   // ---------------- B1 ----------------
   d.mcq({ b: "quantifiers", t: "both-either-neither", L: "B1", diff: 2, focus: "both (two, positive) vs neither/either/none", pre: ["both-either-neither"],
-    prompt: "______ of my parents work from home.", options: ["Neither", "Both", "Either", "None"], key: 1, why: "Plural verb 'work' + two people → Both.", legacy: B1("______ of my parents work from home.") }),
+    prompt: "My mother works from home, and my father does too — ______ of my parents work from home.", options: ["Neither", "Both", "Either", "None"], key: 1, why: "Both facts are confirmed in the setup, so only 'Both' is true; the plural verb 'work' also agrees with it.",
+    legacy: B1("______ of my parents work from home.", "original prompt let a student read 'Neither/Either/None ... work' as informally acceptable (colloquial plural agreement with singular quantifiers is common), making more than one option defensible; added a setup clause that fixes the meaning so only Both is true regardless of that register debate") }),
   d.gap({ b: "plurals-agreement", t: "each-every-singular", L: "B1", diff: 2, focus: "each/every + singular noun + singular verb", pre: ["each-every", "subject-verb-agreement"],
     source: "Every student in the class ______ (have) a laptop.", key: "has", why: "every + singular → has." }),
   d.mcq({ b: "articles", t: "zero-article-general", L: "B1", diff: 2, focus: "Zero article with plural nouns used generally", pre: ["zero-article"],
