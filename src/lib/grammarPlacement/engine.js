@@ -28,6 +28,7 @@ import {
   selectScreeningItem, selectResolutionItem,
 } from "@/lib/grammarPlacement/selection";
 import { buildProfile } from "@/lib/grammarPlacement/placement";
+import { analyzeDependencies } from "@/lib/grammarPlacement/prerequisites";
 
 export const ENGINE_VERSION = "1.0.0";
 
@@ -89,6 +90,9 @@ function buildContext(state, index, config, { allowAi = true } = {}) {
     state.aiItemsServed < config.ai.maxItems && state.aiFailures < config.ai.maxFailures;
   return {
     cells,
+    // Dependency contradictions are recomputed each pass from the ledger; they
+    // are never stored on state, so they can never drift out of sync with it.
+    deps: analyzeDependencies(state.ledger, cells, index, config),
     anchorLevel: state.anchorLevel,
     allowAi: Boolean(allowAi) && aiBudgetLeft,
     rng: mulberry32(state.seed + state.itemsServed * 2654435761),
@@ -218,6 +222,13 @@ export function applyResponse(state, index, config, { itemId, response, evaluati
     seq: state.itemsServed + 1,
     itemId: item.id,
     domain: item.domain,
+    // branch / topic / prerequisites are carried on the observation so that
+    // dependency analysis (and a stored run re-read months later) works from
+    // the ledger alone, without needing the dataset at the exact version that
+    // produced it.
+    branch: item.branch,
+    topic: item.topic,
+    prerequisites: item.prerequisites ?? [],
     level: item.cefrLevel,
     evidenceClass: item.evidenceClass,
     format: item.format,
@@ -277,7 +288,8 @@ export const abandon = (state) => stop(state, STOP_REASONS.ABANDONED);
  */
 export function finalize(state, index, config, { completedAt = null } = {}) {
   const cells = deriveCells(state.ledger, index, config);
-  const profile = buildProfile(cells, index, config, { generatedAt: completedAt });
+  const deps = analyzeDependencies(state.ledger, cells, index, config);
+  const profile = buildProfile(cells, index, config, { generatedAt: completedAt, ledger: state.ledger, deps });
 
   const failures = evaluationFailures(state.ledger).map((o) => ({
     seq: o.seq, itemId: o.itemId, domain: o.domain, level: o.level,
