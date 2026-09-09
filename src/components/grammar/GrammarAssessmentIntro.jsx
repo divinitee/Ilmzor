@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Stethoscope, Target, Shuffle, Map, ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 import { useGrammarCopy } from "@/lib/grammarCopy";
+import ExplainHelp from "@/components/lesson/ExplainHelp";
 
 // Four short stages, one screen each — not a fake onboarding sequence. The
 // student can leave at any point without starting, which is the whole point of
@@ -25,6 +26,7 @@ export default function GrammarAssessmentIntro({ onStart, onExit }) {
 
   return (
     <div className="premium-mesh min-h-screen">
+      <ExplainHelp contentKey="grammar_intro" />
       <div className="relative z-10 max-w-lg mx-auto px-4 pt-8 pb-28 flex flex-col min-h-screen">
         <div className="text-center mb-6">
           <div className="relative inline-flex mb-3">
