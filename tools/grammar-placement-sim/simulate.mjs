@@ -12,6 +12,11 @@ import { analyzeDomain } from "@/lib/grammarPlacement/selection";
 import { deriveCells } from "@/lib/grammarPlacement/evidence";
 import { analyzeDependencies } from "@/lib/grammarPlacement/prerequisites";
 import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const OUT_PATH = process.env.SIM_OUT || path.join(HERE, "results.json");
 
 const index = buildIndex(ITEMS,{datasetLevels:CEFR_LEVELS,domainOrder:DOMAINS.map(d=>d.id)});
 const NAME = Object.fromEntries(DOMAINS.map(d=>[d.id,d.name]));
@@ -204,5 +209,5 @@ console.log(`  rubric (AI-format) items encountered: ${rubricSeen}`);
 console.log(`  deterministic evaluations injected:   ${injectedEvals}`);
 console.log(`  every rubric item injected locally:   ${rubricSeen===injectedEvals}`);
 
-fs.writeFileSync("/tmp/sim/results.json", JSON.stringify(out,null,1));
-console.log("\nfull per-item detail written to /tmp/sim/results.json");
+fs.writeFileSync(OUT_PATH, JSON.stringify(out,null,1));
+console.log(`\nfull per-item detail written to ${OUT_PATH}`);
