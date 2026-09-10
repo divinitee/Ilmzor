@@ -54,6 +54,23 @@ const items = raw.map((it) => {
   return { id, ...rest, ...(alt ? { acceptable: alt } : {}) };
 });
 
+// Distinct sentences per stage. A batch met the 68-item count and the variance
+// floor by shipping four `choose` sentences five times each — 320 claimed
+// variants, 64 real ones. Both of those numbers became targets the moment they
+// were written down, and duplication is the cheapest way to hit a target. So
+// the floor is now computed on DISTINCT sentences and duplicates are refused
+// outright, before the arithmetic that they were inflating.
+const sentence = (it) => `${it.stage}::${it.prompt || it.source || ""}`;
+const dupes = Object.entries(
+  items.reduce((acc, it) => ({ ...acc, [sentence(it)]: (acc[sentence(it)] || 0) + 1 }), {})
+).filter(([, n]) => n > 1);
+if (dupes.length) {
+  console.error(`REFUSED — ${dupes.length} sentence(s) repeated within a stage:`);
+  dupes.forEach(([k, n]) => console.error(`  x${n}  ${k.slice(0, 78)}`));
+  console.error(`  Every item in a stage must be a different sentence.`);
+  process.exit(1);
+}
+
 // Variance floor — the reason slots exist. A stage below this repeats too soon.
 const FLOOR = 200;
 const pools = {};
