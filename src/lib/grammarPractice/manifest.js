@@ -6,6 +6,7 @@ export const PRACTICE_MANIFEST = {
   "domain": "tenses",
   "branch": "present",
   "topic": "continuous-now",
+  "level": "A1",
   "authored": 68,
   "stages": {
    "choose": 320,
@@ -19,6 +20,7 @@ export const PRACTICE_MANIFEST = {
   "domain": "tenses",
   "branch": "present",
   "topic": "simple-negative",
+  "level": "A1",
   "authored": 68,
   "stages": {
    "choose": 320,
@@ -32,6 +34,7 @@ export const PRACTICE_MANIFEST = {
   "domain": "tenses",
   "branch": "present",
   "topic": "simple-routine",
+  "level": "A2",
   "authored": 68,
   "stages": {
    "choose": 320,
@@ -45,6 +48,7 @@ export const PRACTICE_MANIFEST = {
   "domain": "tenses",
   "branch": "present",
   "topic": "third-person-s",
+  "level": "A2",
   "authored": 68,
   "stages": {
    "choose": 20,
