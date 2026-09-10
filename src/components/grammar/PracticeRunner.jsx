@@ -1,9 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, X, ArrowRight, RotateCcw, Trophy } from "lucide-react";
+import { Check, X, ArrowRight } from "lucide-react";
 import PracticeItem from "@/components/grammar/PracticeItem";
 import { composeRound, recordSeen } from "@/lib/grammarPractice/composition";
 import { gradeItem, hasResponse, emptyResponse, scoreRound } from "@/lib/grammarPractice/grading";
+import { summarise } from "@/lib/grammarPractice/feedback";
+import PracticeResult from "@/components/grammar/PracticeResult";
 import { historyFor, saveHistory } from "@/lib/grammarPractice/history";
 
 // One round: compose, ask, mark, summarise. The composer decides WHICH items
@@ -13,7 +15,7 @@ import { historyFor, saveHistory } from "@/lib/grammarPractice/history";
 const ACCENT = "#3E9E92";
 const ROUND_SIZE = 10;
 
-export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain }) {
+export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c }) {
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
 
   const round = useMemo(
@@ -45,38 +47,22 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
   if (!round.items.length) {
     return (
       <div className="premium-card rounded-[28px] p-8 text-center">
-        <p className="text-sm text-muted-foreground">No practice content for this stage yet.</p>
-        <button onClick={onExit} className="neo-pill mt-5 px-5 py-2 text-sm font-semibold text-foreground select-none">Back</button>
+        <p className="text-sm text-muted-foreground">{c("practice_stage_empty")}</p>
+        <button onClick={onExit} className="neo-pill mt-5 px-5 py-2 text-sm font-semibold text-foreground select-none">{c("home_back")}</button>
       </div>
     );
   }
 
   if (done) {
-    const { correct, total, pct } = scoreRound(round.items, responses);
-    return (
-      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="premium-card rounded-[28px] p-6 text-center">
-        <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4"
-             style={{ background: "rgba(62,158,146,0.15)", border: `1px solid ${ACCENT}40` }}>
-          <Trophy className="w-7 h-7" style={{ color: ACCENT }} />
-        </div>
-        <p className="text-3xl font-bold text-foreground">{correct}<span className="text-muted-foreground text-xl"> / {total}</span></p>
-        <p className="text-sm text-muted-foreground mt-1 mb-5">{pct}% this round</p>
-        <div className="flex gap-2 justify-center">
-          <button onClick={onAgain} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl font-semibold text-[#04201d] select-none"
-                  style={{ background: `linear-gradient(180deg, #4fb9ab, ${ACCENT})` }}>
-            <RotateCcw className="w-4 h-4" /> Practise again
-          </button>
-          <button onClick={onExit} className="neo-pill px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">Done</button>
-        </div>
-      </motion.div>
-    );
+    const { graded } = scoreRound(round.items, responses);
+    return <PracticeResult summary={summarise(graded)} c={c} onAgain={onAgain} onExit={onExit} />;
   }
 
   return (
     <>
       <div className="flex items-center justify-between mb-4">
-        <p className="text-sm font-semibold text-foreground">Question {i + 1} <span className="text-muted-foreground font-normal">of {round.items.length}</span></p>
-        <button onClick={onExit} className="neo-pill px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors select-none">Exit</button>
+        <p className="text-sm font-semibold text-foreground">{c("run_progress", { n: i + 1 })} <span className="text-muted-foreground font-normal">/ {round.items.length}</span></p>
+        <button onClick={onExit} className="neo-pill px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors select-none">{c("run_exit_short")}</button>
       </div>
 
       <div className="h-1 rounded-full bg-white/10 mb-5 overflow-hidden">
@@ -102,7 +88,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
             </span>
             <span className="min-w-0">
               <span className="block text-sm font-semibold text-foreground">
-                {marked.correct ? "Correct" : <>Not quite — it&rsquo;s <span style={{ color: ACCENT }}>{marked.expected}</span></>}
+                {marked.correct ? c("fin_correct") : <>{c("fin_not_quite")} <span style={{ color: ACCENT }}>{marked.expected}</span></>}
               </span>
               {item.why && <span className="block text-xs text-muted-foreground mt-0.5">{item.why}</span>}
             </span>
@@ -113,7 +99,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
       <button type="button" disabled={!ready} onClick={marked ? next : submit}
               className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl font-semibold text-[#04201d] select-none transition-all active:scale-[0.99] disabled:opacity-40"
               style={{ background: `linear-gradient(180deg, #4fb9ab, ${ACCENT})` }}>
-        {marked ? <>{i + 1 < round.items.length ? "Next" : "Finish"} <ArrowRight className="w-4 h-4" /></> : "Check"}
+        {marked ? <>{i + 1 < round.items.length ? c("run_next") : c("fin_finish")} <ArrowRight className="w-4 h-4" /></> : c("fin_check")}
       </button>
     </>
   );
