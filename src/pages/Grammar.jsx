@@ -5,28 +5,26 @@ import { Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { DOMAINS } from "@/lib/adaptiveGrammar";
 import { GRAMMAR_NAV } from "@/lib/grammarTiers";
+import { DOMAIN_STATE, domainState } from "@/lib/grammarMapState";
 import { loadTopic, topicKey } from "@/lib/grammarPractice";
-import { branchHasPractice } from "@/lib/grammarPractice/manifest";
 import { PRACTICE_STAGES } from "@/lib/grammarPractice/stages";
 import { fromStoredProfile } from "@/lib/grammarPlacementResult";
 import { useGrammarCopy } from "@/lib/grammarCopy";
 import GrammarStage from "@/components/grammar/map/GrammarStage";
-import GrammarDomainPanel from "@/components/grammar/map/GrammarDomainPanel";
 import PracticeRunner from "@/components/grammar/PracticeRunner";
 import { GRAMMAR_ACCENT as ACCENT } from "@/components/grammar/map/tierMeta";
 
 // Route: /grammar — the student's Grammar world.
 //
-// Node map (2026-09-09), same product language as the Vocabulary Skill Hub:
-//   Tier (zone) -> Cluster -> Domain on the stage, Branch as a panel under it,
-//   then Topic -> Stage as two more node layers, and the round in place.
-// Practice used to live on its own /grammar/practice screen with flat lists;
-// it now stays inside this map so the whole path down to a round is one
-// continuous dive rather than a hand-off to a different kind of screen.
+// One node map, six layers, same gesture the whole way down:
+//   Tier -> Cluster -> Domain -> Branch -> Topic -> Stage -> the round, in place.
+// Branches were pills in a panel and practice lived on its own /grammar/practice
+// screen with flat lists; both are gone. Nothing on the path between the map and
+// a question is a different kind of control.
 //
 // The nav TREE (src/lib/grammarTiers.js) is pre-computed from the dataset and
 // the practice layers come from the auto-generated manifest — nothing here
-// decides what belongs where, and empty nodes are filtered out upstream.
+// decides what belongs where, and empty nodes are locked upstream, not hidden.
 //
 // Placement entry rule is unchanged: no GrammarProfile row -> the assessment.
 
@@ -45,10 +43,8 @@ export default function Grammar() {
   const [stageId, setStageId] = useState(null);
   const [items, setItems] = useState(null);
   const [runKey, setRunKey] = useState(0);
-  const [soon, setSoon] = useState(null);
 
-  const backRef = useRef(null);   // stage's animated back, see GrammarStage
-  const branchRef = useRef(null); // panel -> stage dive into the topic layer
+  const backRef = useRef(null); // stage's animated back, see GrammarStage
 
   const names = useMemo(() => Object.fromEntries(DOMAINS.map((d) => [d.id, d.name])), []);
 
@@ -94,33 +90,50 @@ export default function Grammar() {
     if (stageId) setStageId(null);
     else if (topicId) { setTopicId(null); setStageId(null); }
     else if (branchId) setBranchId(null);
-    else if (clusterId) { setClusterId(null); setDomainId(null); }
+    else if (domainId) setDomainId(null);
+    else if (clusterId) setClusterId(null);
     else if (tierId) setTierId(null);
     else navigate("/");
   };
 
-  const level = topicId ? 4 : branchId ? 3 : clusterId ? 2 : tierId ? 1 : 0;
+  const level = topicId ? 5 : branchId ? 4 : domainId ? 3 : clusterId ? 2 : tierId ? 1 : 0;
   const running = Boolean(stageId);
   const stageMeta = PRACTICE_STAGES.find((s) => s.id === stageId) || null;
 
+  // The domain's placement verdict, shown as the subtitle once you're inside it
+  // — it used to be the header line of the branch panel.
+  const verdict = useMemo(() => {
+    if (!domain) return null;
+    const r = byId[domain.id];
+    const state = domainState(r);
+    return state === DOMAIN_STATE.FOCUS ? c("home_dom_focus", { level: r.level })
+      : state === DOMAIN_STATE.STRONG ? c("home_dom_strong", { level: r.level })
+        : c("home_not_assessed");
+  }, [domain, byId, c]);
+
   // The back pill names its DESTINATION, so it reads as "where this returns to".
   const backLabel = running ? pretty(topicId)
-    : level === 4 ? pretty(branchId)
-      : level === 3 ? cluster?.name
-        : level === 2 ? tier?.name
-          : level === 1 ? c("home_levels_back")
-            : c("home_back");
+    : level === 5 ? pretty(branchId)
+      : level === 4 ? domain?.name
+        : level === 3 ? cluster?.name
+          : level === 2 ? tier?.name
+            : level === 1 ? c("home_levels_back")
+              : c("home_back");
 
   const title = running ? stageMeta?.name
-    : level === 4 ? pretty(topicId)
-      : level === 3 ? pretty(branchId)
-        : cluster ? cluster.name : tier ? tier.name : c("home_title");
+    : level === 5 ? pretty(topicId)
+      : level === 4 ? pretty(branchId)
+        : level === 3 ? domain?.name
+          : cluster ? cluster.name : tier ? tier.name : c("home_title");
 
   const subtitle = running ? null
-    : level === 4 ? c("practice_pick_stage")
-      : level === 3 ? c("practice_pick_topic")
-        : level === 2 ? c("home_hint_domain")
-          : level === 1 ? c("home_hint_cluster") : c("home_pick_level");
+    : level === 5 ? c("practice_pick_stage")
+      : level === 4 ? c("practice_pick_topic")
+        : level === 3 ? verdict
+          : level === 2 ? c("home_hint_domain")
+            : level === 1 ? c("home_hint_cluster") : c("home_pick_level");
+
+  const eyebrow = level >= 3 ? cluster?.name : c("home_eyebrow");
 
   if (loading) {
     return (
@@ -152,11 +165,11 @@ export default function Grammar() {
           <div className="relative inline-flex mb-3">
             <span className="neo-bloom" aria-hidden="true" style={{ background: `radial-gradient(closest-side, ${ACCENT}8c, rgba(107,158,196,0.3) 55%, transparent 76%)` }} />
             <div className="relative neo-pill px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: ACCENT }}>
-              <Sparkles className="w-3.5 h-3.5" /> {domain ? domain.name : c("home_eyebrow")}
+              <Sparkles className="w-3.5 h-3.5" /> {eyebrow}
             </div>
           </div>
           <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={`${tierId}:${clusterId}:${branchId}:${topicId}:${stageId}`}
+            <motion.div key={`${tierId}:${clusterId}:${domainId}:${branchId}:${topicId}:${stageId}`}
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.3 }}>
               <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">{title}</h1>
               {subtitle && <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>}
@@ -183,62 +196,24 @@ export default function Grammar() {
             )}
           </div>
         ) : (
-          <>
-            <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
-              <GrammarStage
-                result={result} byId={byId}
-                tierId={tierId} clusterId={clusterId} selectedDomainId={domainId}
-                branchId={branchId} topicId={topicId}
-                onSelectTier={setTierId}
-                onSelectCluster={setClusterId}
-                onSelectDomain={(id) => setDomainId((prev) => (prev === id ? null : id))}
-                onSelectBranch={setBranchId}
-                onSelectTopic={setTopicId}
-                onSelectStage={setStageId}
-                onBack={goBack}
-                backRef={backRef}
-                branchRef={branchRef}
-                c={c}
-              />
-            </div>
-
-            <div className="max-w-[560px] mx-auto">
-              <AnimatePresence mode="wait">
-                {level === 2 && domain && (
-                  <GrammarDomainPanel key={domain.id} domain={domain} r={byId[domain.id]} c={c}
-                    onBranch={(d, b) =>
-                      branchHasPractice(d.id, b)
-                        ? (branchRef.current ? branchRef.current(b) : setBranchId(b))
-                        : setSoon(d.name)
-                    }
-                    hasPractice={(dom, br) => branchHasPractice(dom, br)} onClose={() => setDomainId(null)} />
-                )}
-              </AnimatePresence>
-            </div>
-          </>
+          <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
+            <GrammarStage
+              result={result} byId={byId}
+              tierId={tierId} clusterId={clusterId} domainId={domainId}
+              branchId={branchId} topicId={topicId}
+              onSelectTier={setTierId}
+              onSelectCluster={setClusterId}
+              onSelectDomain={setDomainId}
+              onSelectBranch={setBranchId}
+              onSelectTopic={setTopicId}
+              onSelectStage={setStageId}
+              onBack={goBack}
+              backRef={backRef}
+              c={c}
+            />
+          </div>
         )}
       </div>
-
-      <AnimatePresence>
-        {soon && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSoon(null)}>
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-            <motion.div initial={{ y: 20, opacity: 0, scale: 0.96 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 20, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 26 }}
-              className="premium-card relative w-full max-w-sm rounded-[28px] p-6 text-center" onClick={(e) => e.stopPropagation()}>
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(62,158,146,0.15)", border: `1px solid ${ACCENT}40` }}>
-                <Sparkles className="w-7 h-7" style={{ color: ACCENT }} />
-              </div>
-              <h3 className="text-lg font-bold text-foreground">{c("home_soon_title")}</h3>
-              <p className="text-sm text-muted-foreground mt-1 mb-5">{c("home_soon")}</p>
-              <button onClick={() => setSoon(null)} className="neo-pill px-5 py-2 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
-                {c("home_gotit")}
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
