@@ -248,9 +248,9 @@ export default function Home() {
           )
         )}
 
-        {activeTab === "skillhub" && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} />}
+        {activeTab === "skillhub" && !isTeacherAccount && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} />}
 
-        {activeTab === "tutor" && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
+        {activeTab === "tutor" && !isTeacherAccount && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
 
         {activeTab === "settings" && (
           <SettingsTab
