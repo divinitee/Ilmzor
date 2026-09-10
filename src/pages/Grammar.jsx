@@ -5,6 +5,7 @@ import { Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { DOMAINS } from "@/lib/adaptiveGrammar";
 import { GRAMMAR_NAV } from "@/lib/grammarTiers";
+import { availableTopics } from "@/lib/grammarPractice";
 import { fromStoredProfile } from "@/lib/grammarPlacementResult";
 import { useGrammarCopy } from "@/lib/grammarCopy";
 import GrammarStage from "@/components/grammar/map/GrammarStage";
@@ -32,6 +33,12 @@ export default function Grammar() {
   const [clusterId, setClusterId] = useState(null);
   const [domainId, setDomainId] = useState(null);
   const [soon, setSoon] = useState(null);
+
+  // Branches that have authored practice content, as "domain.branch" keys.
+  const practiceBranches = useMemo(
+    () => new Set(availableTopics().map((k) => k.split(".").slice(0, 2).join("."))),
+    []
+  );
   const backRef = useRef(null); // stage's animated back, see GrammarStage
 
   const names = useMemo(() => Object.fromEntries(DOMAINS.map((d) => [d.id, d.name])), []);
