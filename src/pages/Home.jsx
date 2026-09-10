@@ -210,12 +210,21 @@ export default function Home() {
         </AnimatePresence>
 
         {activeTab === "home" && (
-          isAdmin ? (
+          showTeacherPanelLink ? (
             <div className="max-w-lg mx-auto px-4 py-10 text-center">
               <h2 className="text-2xl font-bold text-foreground mb-4">{t("home.teacher_panel_title")}</h2>
               <Link to="/teacher">
                 <Button className="w-full h-12 text-base font-semibold select-none">{t("home.go_to_dashboard")}</Button>
               </Link>
+            </div>
+          ) : (isPendingTeacher || isRejectedTeacher) ? (
+            <div className="max-w-lg mx-auto px-4 py-10 text-center">
+              <h2 className="text-2xl font-bold text-foreground mb-2">
+                {isPendingTeacher ? t("home.teacher_pending_title") : t("home.teacher_rejected_title")}
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {isPendingTeacher ? t("home.teacher_pending_desc") : t("home.teacher_rejected_desc")}
+              </p>
             </div>
           ) : (
             <StudentDashboard
