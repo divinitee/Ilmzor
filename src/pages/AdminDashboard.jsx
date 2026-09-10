@@ -81,6 +81,22 @@ export default function AdminDashboard() {
   // one missing piece for non-teacher-referred payments, which is why a
   // pending self-service subscription could get manually flipped to
   // "active" elsewhere without ever getting a real expiry date.
+  const handleApproveTeacher = async (u) => {
+    await base44.entities.User.update(u.id, { teacher_status: "approved" });
+    setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, teacher_status: "approved" } : x)));
+  };
+
+  const handleRejectTeacher = async (u) => {
+    await base44.entities.User.update(u.id, { teacher_status: "rejected" });
+    setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, teacher_status: "rejected" } : x)));
+  };
+
+  const handleSetCommissionRate = async (u, rate) => {
+    const parsed = rate === "" ? null : Number(rate);
+    await base44.entities.User.update(u.id, { teacher_commission_rate_pct: parsed });
+    setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, teacher_commission_rate_pct: parsed } : x)));
+  };
+
   const handleApprove = async (sub) => {
     const expiresAt = new Date();
     if (sub.billing_cycle === "yearly") {
