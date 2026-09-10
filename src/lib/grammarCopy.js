@@ -92,6 +92,15 @@ const COPY = {
     home_areas: "{n} areas",
     home_levels_back: "All levels",
 
+    // ---- grammar home: practice topics + stage ladder ----
+    practice_pick_topic: "Choose a topic to practise",
+    practice_pick_stage: "Choose how you want to practise",
+    practice_exercises: "{n} exercises",
+    practice_stage_ai: "AI marking \u2014 soon",
+    practice_stage_count: "{n} questions",
+    practice_stage_empty: "Coming soon",
+    practice_none: "No practice here yet",
+
     // ---- grammar home: node map states (all derived from placement) ----
     home_here: "You are here",
     home_placed_above: "Placed above",
@@ -192,6 +201,15 @@ const COPY = {
     home_areas: "{n} ta soha",
     home_levels_back: "Barcha darajalar",
 
+    // ---- grammar home: practice topics + stage ladder ----
+    practice_pick_topic: "Mashq qilish uchun mavzuni tanlang",
+    practice_pick_stage: "Qanday mashq qilishni tanlang",
+    practice_exercises: "{n} ta mashq",
+    practice_stage_ai: "AI tekshiruvi \u2014 tez orada",
+    practice_stage_count: "{n} ta savol",
+    practice_stage_empty: "Tez orada",
+    practice_none: "Bu yerda hali mashq yo\u2018q",
+
     home_here: "Siz shu yerdasiz",
     home_placed_above: "Bundan yuqorida",
     home_ahead: "Oldinda",
@@ -290,6 +308,15 @@ const COPY = {
     home_groups: "Групп: {n}",
     home_areas: "Областей: {n}",
     home_levels_back: "Все уровни",
+
+    // ---- grammar home: practice topics + stage ladder ----
+    practice_pick_topic: "Выберите тему для практики",
+    practice_pick_stage: "Выберите формат практики",
+    practice_exercises: "упражнений: {n}",
+    practice_stage_ai: "Проверка ИИ \u2014 скоро",
+    practice_stage_count: "вопросов: {n}",
+    practice_stage_empty: "Скоро",
+    practice_none: "Практики здесь пока нет",
 
     home_here: "Вы здесь",
     home_placed_above: "Уровень выше",
