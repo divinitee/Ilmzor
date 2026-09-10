@@ -1,0 +1,1810 @@
+[
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Right now I ______ {object} in the {place}.",
+  "options": [
+   "am reading",
+   "is reading",
+   "are reading",
+   "read"
+  ],
+  "key": 0,
+  "why": "Use am with I in the present continuous.",
+  "slots": {
+   "object": [
+    "a book",
+    "a magazine",
+    "an article",
+    "a letter"
+   ],
+   "place": [
+    "kitchen",
+    "garden",
+    "library",
+    "classroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Look! Aziza ______ {food} in the {place}.",
+  "options": [
+   "is cooking",
+   "are cooking",
+   "am cooking",
+   "cooks"
+  ],
+  "key": 0,
+  "why": "Aziza is singular, so use is plus the -ing form.",
+  "slots": {
+   "food": [
+    "soup",
+    "plov",
+    "pasta",
+    "rice"
+   ],
+   "place": [
+    "kitchen",
+    "garden",
+    "canteen",
+    "café"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My parents ______ {program} in the {place} right now.",
+  "options": [
+   "are watching",
+   "is watching",
+   "am watching",
+   "watch"
+  ],
+  "key": 0,
+  "why": "My parents is plural, so use are plus the -ing form.",
+  "slots": {
+   "program": [
+    "the news",
+    "a film",
+    "a match",
+    "a documentary"
+   ],
+   "place": [
+    "living room",
+    "kitchen",
+    "bedroom",
+    "hall"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Listen! The children ______ {game} in the {place}.",
+  "options": [
+   "are playing",
+   "is playing",
+   "am playing",
+   "play"
+  ],
+  "key": 0,
+  "why": "The children is plural, so use are plus the -ing form.",
+  "slots": {
+   "game": [
+    "football",
+    "chess",
+    "a card game",
+    "hide and seek"
+   ],
+   "place": [
+    "garden",
+    "park",
+    "yard",
+    "street"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "At the moment Timur ______ {item} at the {place}.",
+  "options": [
+   "is writing",
+   "are writing",
+   "am writing",
+   "writes"
+  ],
+  "key": 0,
+  "why": "Timur is singular, so use is plus the -ing form.",
+  "slots": {
+   "item": [
+    "an email",
+    "a report",
+    "a message",
+    "a list"
+   ],
+   "place": [
+    "desk",
+    "table",
+    "office",
+    "library"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "We ______ for {person} at the {place} right now.",
+  "options": [
+   "are waiting",
+   "is waiting",
+   "am waiting",
+   "wait"
+  ],
+  "key": 0,
+  "why": "We is plural, so use are plus the -ing form.",
+  "slots": {
+   "person": [
+    "the teacher",
+    "my brother",
+    "a friend",
+    "the doctor"
+   ],
+   "place": [
+    "station",
+    "entrance",
+    "bus stop",
+    "gate"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Listen! You ______ to {audio} on your {device}.",
+  "options": [
+   "are listening",
+   "is listening",
+   "am listening",
+   "listen"
+  ],
+  "key": 0,
+  "why": "You is plural, so use are plus the -ing form.",
+  "slots": {
+   "audio": [
+    "music",
+    "a podcast",
+    "the news",
+    "a lesson"
+   ],
+   "device": [
+    "phone",
+    "laptop",
+    "radio",
+    "tablet"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The baby ______ {manner} in the {place} at the moment.",
+  "options": [
+   "is sleeping",
+   "are sleeping",
+   "am sleeping",
+   "sleeps"
+  ],
+  "key": 0,
+  "why": "The baby is singular, so use is plus the -ing form.",
+  "slots": {
+   "manner": [
+    "quietly",
+    "peacefully",
+    "deeply",
+    "well"
+   ],
+   "place": [
+    "bedroom",
+    "car",
+    "living room",
+    "hall"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Look! My brother ______ to {place} in his {vehicle}.",
+  "options": [
+   "is driving",
+   "are driving",
+   "am driving",
+   "drives"
+  ],
+  "key": 0,
+  "why": "My brother is singular, so use is plus the -ing form.",
+  "slots": {
+   "place": [
+    "work",
+    "the airport",
+    "the market",
+    "the village"
+   ],
+   "vehicle": [
+    "car",
+    "van",
+    "truck",
+    "taxi"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The students ______ {subject} in the {place} right now.",
+  "options": [
+   "are studying",
+   "is studying",
+   "am studying",
+   "study"
+  ],
+  "key": 0,
+  "why": "The students is plural, so use are plus the -ing form.",
+  "slots": {
+   "subject": [
+    "English",
+    "history",
+    "biology",
+    "geography"
+   ],
+   "place": [
+    "classroom",
+    "library",
+    "hall",
+    "computer room"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Right now I ______ {person} with the {task}.",
+  "options": [
+   "am helping",
+   "is helping",
+   "are helping",
+   "help"
+  ],
+  "key": 0,
+  "why": "Use am with I in the present continuous.",
+  "slots": {
+   "person": [
+    "my mother",
+    "my sister",
+    "my friend",
+    "my cousin"
+   ],
+   "task": [
+    "cooking",
+    "cleaning",
+    "shopping",
+    "homework"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "At the moment Nargiza ______ the {object} in the {place}.",
+  "options": [
+   "is cleaning",
+   "are cleaning",
+   "am cleaning",
+   "cleans"
+  ],
+  "key": 0,
+  "why": "Nargiza is singular, so use is plus the -ing form.",
+  "slots": {
+   "object": [
+    "table",
+    "window",
+    "floor",
+    "dishes"
+   ],
+   "place": [
+    "kitchen",
+    "bathroom",
+    "hall",
+    "classroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My friends ______ to {place} by {transport} right now.",
+  "options": [
+   "are travelling",
+   "is travelling",
+   "am travelling",
+   "travel"
+  ],
+  "key": 0,
+  "why": "My friends is plural, so use are plus the -ing form.",
+  "slots": {
+   "place": [
+    "Tashkent",
+    "Samarkand",
+    "the capital",
+    "the coast"
+   ],
+   "transport": [
+    "train",
+    "bus",
+    "plane",
+    "car"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Listen! The teacher ______ the {topic} to the {group}.",
+  "options": [
+   "is explaining",
+   "are explaining",
+   "am explaining",
+   "explains"
+  ],
+  "key": 0,
+  "why": "The teacher is singular, so use is plus the -ing form.",
+  "slots": {
+   "topic": [
+    "rule",
+    "exercise",
+    "lesson",
+    "homework"
+   ],
+   "group": [
+    "class",
+    "students",
+    "group",
+    "children"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Look! You ______ a {clothing} in this {weather}.",
+  "options": [
+   "are wearing",
+   "is wearing",
+   "am wearing",
+   "wear"
+  ],
+  "key": 0,
+  "why": "You is plural, so use are plus the -ing form.",
+  "slots": {
+   "clothing": [
+    "coat",
+    "jacket",
+    "scarf",
+    "hat"
+   ],
+   "weather": [
+    "cold weather",
+    "warm weather",
+    "rain",
+    "wind"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Dilshod ______ his {object} in the {place} at the moment.",
+  "options": [
+   "is fixing",
+   "are fixing",
+   "am fixing",
+   "fixes"
+  ],
+  "key": 0,
+  "why": "Dilshod is singular, so use is plus the -ing form.",
+  "slots": {
+   "object": [
+    "bike",
+    "phone",
+    "car",
+    "laptop"
+   ],
+   "place": [
+    "garden",
+    "garage",
+    "yard",
+    "room"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "We ______ {food} for the {event} right now.",
+  "options": [
+   "are preparing",
+   "is preparing",
+   "am preparing",
+   "prepare"
+  ],
+  "key": 0,
+  "why": "We is plural, so use are plus the -ing form.",
+  "slots": {
+   "food": [
+    "dinner",
+    "a salad",
+    "tea",
+    "sandwiches"
+   ],
+   "event": [
+    "guests",
+    "party",
+    "family",
+    "meeting"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Listen! The birds ______ in the {place} outside the {room}.",
+  "options": [
+   "are singing",
+   "is singing",
+   "am singing",
+   "sing"
+  ],
+  "key": 0,
+  "why": "The birds is plural, so use are plus the -ing form.",
+  "slots": {
+   "place": [
+    "trees",
+    "garden",
+    "park",
+    "street"
+   ],
+   "room": [
+    "window",
+    "kitchen",
+    "bedroom",
+    "classroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "At the moment Malika ______ to her {person} on the {device}.",
+  "options": [
+   "is talking",
+   "are talking",
+   "am talking",
+   "talks"
+  ],
+  "key": 0,
+  "why": "Malika is singular, so use is plus the -ing form.",
+  "slots": {
+   "person": [
+    "mother",
+    "teacher",
+    "friend",
+    "sister"
+   ],
+   "device": [
+    "phone",
+    "computer",
+    "tablet",
+    "laptop"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Right now I ______ for my {object} in the {place}.",
+  "options": [
+   "am looking",
+   "is looking",
+   "are looking",
+   "look"
+  ],
+  "key": 0,
+  "why": "Use am with I in the present continuous.",
+  "slots": {
+   "object": [
+    "keys",
+    "bag",
+    "phone",
+    "notebook"
+   ],
+   "place": [
+    "kitchen",
+    "car",
+    "bedroom",
+    "classroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Look! My cat ______ (sleep) on the {furniture} in the {room}.",
+  "key": "is sleeping",
+  "why": "My cat is singular, so use is plus the -ing form. The verb sleep becomes sleeping.",
+  "slots": {
+   "furniture": [
+    "sofa",
+    "chair",
+    "bed",
+    "carpet"
+   ],
+   "room": [
+    "living room",
+    "bedroom",
+    "kitchen",
+    "hall"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "I ______ (drink) {drink} in the {place} right now.",
+  "key": "am drinking",
+  "why": "Use am with I in the present continuous. The verb drink becomes drinking.",
+  "slots": {
+   "drink": [
+    "tea",
+    "coffee",
+    "water",
+    "juice"
+   ],
+   "place": [
+    "kitchen",
+    "canteen",
+    "office",
+    "garden"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Listen! The boys ______ (laugh) at a {thing} in the {place}.",
+  "key": "are laughing",
+  "why": "The boys is plural, so use are plus the -ing form. The verb laugh becomes laughing.",
+  "slots": {
+   "thing": [
+    "joke",
+    "film",
+    "story",
+    "video"
+   ],
+   "place": [
+    "classroom",
+    "garden",
+    "hall",
+    "yard"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "At the moment Elena ______ (draw) a {object} on the {surface}.",
+  "key": "is drawing",
+  "why": "Elena is singular, so use is plus the -ing form. The verb draw becomes drawing.",
+  "slots": {
+   "object": [
+    "house",
+    "tree",
+    "cat",
+    "flower"
+   ],
+   "surface": [
+    "board",
+    "paper",
+    "wall",
+    "notebook"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "We ______ (wait) for the {transport} at the {place} right now.",
+  "key": "are waiting",
+  "why": "We is plural, so use are plus the -ing form. The verb wait becomes waiting.",
+  "slots": {
+   "transport": [
+    "bus",
+    "train",
+    "taxi",
+    "minibus"
+   ],
+   "place": [
+    "station",
+    "corner",
+    "stop",
+    "entrance"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Right now my sister ______ (wash) the {object} in the {place}.",
+  "key": "is washing",
+  "why": "My sister is singular, so use is plus the -ing form. The verb wash becomes washing.",
+  "slots": {
+   "object": [
+    "dishes",
+    "windows",
+    "car",
+    "clothes"
+   ],
+   "place": [
+    "kitchen",
+    "garden",
+    "yard",
+    "bathroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Look! The train ______ (leave) the {place} in this {weather}.",
+  "key": "is leaving",
+  "why": "The train is singular, so use is plus the -ing form. The verb leave becomes leaving.",
+  "slots": {
+   "place": [
+    "station",
+    "platform",
+    "city",
+    "town"
+   ],
+   "weather": [
+    "rain",
+    "snow",
+    "fog",
+    "wind"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "You ______ (use) my {device} in the {place} at the moment.",
+  "key": "are using",
+  "why": "You is plural, so use are plus the -ing form. The verb use becomes using.",
+  "slots": {
+   "device": [
+    "phone",
+    "laptop",
+    "tablet",
+    "camera"
+   ],
+   "place": [
+    "kitchen",
+    "office",
+    "classroom",
+    "garden"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Today my brother ______ (stay) with our {person} in the {place}.",
+  "key": "is staying",
+  "why": "My brother is singular, so use is plus the -ing form. The verb stay becomes staying.",
+  "slots": {
+   "person": [
+    "grandmother",
+    "uncle",
+    "cousin",
+    "aunt"
+   ],
+   "place": [
+    "village",
+    "city",
+    "old house",
+    "new flat"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Listen! Somebody ______ (knock) on the {object} of our {place}.",
+  "key": "is knocking",
+  "why": "Somebody is singular, so use is plus the -ing form. The verb knock becomes knocking.",
+  "slots": {
+   "object": [
+    "door",
+    "window",
+    "gate",
+    "back door"
+   ],
+   "place": [
+    "house",
+    "flat",
+    "office",
+    "shop"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "The workers ______ (build) a {structure} near the {place} right now.",
+  "key": "are building",
+  "why": "The workers is plural, so use are plus the -ing form. The verb build becomes building.",
+  "slots": {
+   "structure": [
+    "house",
+    "wall",
+    "bridge",
+    "school"
+   ],
+   "place": [
+    "park",
+    "river",
+    "market",
+    "station"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "At the moment I ______ (learn) {subject} with my {person}.",
+  "key": "am learning",
+  "why": "Use am with I in the present continuous. The verb learn becomes learning.",
+  "slots": {
+   "subject": [
+    "English",
+    "Russian",
+    "maths",
+    "chess"
+   ],
+   "person": [
+    "teacher",
+    "friend",
+    "brother",
+    "cousin"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Look! The woman ______ (cross) the {place} with a {thing}.",
+  "key": "is crossing",
+  "why": "The woman is singular, so use is plus the -ing form. The verb cross becomes crossing.",
+  "slots": {
+   "place": [
+    "road",
+    "street",
+    "square",
+    "bridge"
+   ],
+   "thing": [
+    "child",
+    "bag",
+    "dog",
+    "suitcase"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "My parents ______ (talk) about the {topic} in the {room} right now.",
+  "key": "are talking",
+  "why": "My parents is plural, so use are plus the -ing form. The verb talk becomes talking.",
+  "slots": {
+   "topic": [
+    "holiday",
+    "wedding",
+    "house",
+    "weekend"
+   ],
+   "room": [
+    "kitchen",
+    "garden",
+    "living room",
+    "car"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Today Lola ______ (prepare) {food} for the {group}.",
+  "key": "is preparing",
+  "why": "Lola is singular, so use is plus the -ing form. The verb prepare becomes preparing.",
+  "slots": {
+   "food": [
+    "plov",
+    "soup",
+    "salad",
+    "tea"
+   ],
+   "group": [
+    "guests",
+    "family",
+    "children",
+    "students"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "The baby ______ (cry) {manner} in the {room} at the moment.",
+  "key": "is crying",
+  "why": "The baby is singular, so use is plus the -ing form. The verb cry becomes crying.",
+  "slots": {
+   "manner": [
+    "loudly",
+    "quietly",
+    "again",
+    "a lot"
+   ],
+   "room": [
+    "bedroom",
+    "car",
+    "hall",
+    "garden"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Right now the students ______ (write) a {task} in their {object}.",
+  "key": "are writing",
+  "why": "The students is plural, so use are plus the -ing form. The verb write becomes writing.",
+  "slots": {
+   "task": [
+    "test",
+    "essay",
+    "letter",
+    "list"
+   ],
+   "object": [
+    "notebooks",
+    "books",
+    "copybooks",
+    "notes"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Look! Rustam ______ (run) towards the {place} with his {person}.",
+  "key": "is running",
+  "why": "Rustam is singular, so use is plus the -ing form. The verb run becomes running.",
+  "slots": {
+   "place": [
+    "park",
+    "school",
+    "station",
+    "house"
+   ],
+   "person": [
+    "brother",
+    "friend",
+    "dog",
+    "cousin"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "At the moment we ______ (watch) a {program} on the {device}.",
+  "key": "are watching",
+  "why": "We is plural, so use are plus the -ing form. The verb watch becomes watching.",
+  "slots": {
+   "program": [
+    "film",
+    "match",
+    "show",
+    "documentary"
+   ],
+   "device": [
+    "TV",
+    "laptop",
+    "phone",
+    "tablet"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present continuous form of the verb in brackets.",
+  "source": "Today my uncle ______ (work) in the {place} with his {colleague}.",
+  "key": "is working",
+  "why": "My uncle is singular, so use is plus the -ing form. The verb work becomes working.",
+  "slots": {
+   "place": [
+    "garden",
+    "office",
+    "shop",
+    "garage"
+   ],
+   "colleague": [
+    "brother",
+    "friend",
+    "son",
+    "partner"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present continuous.",
+  "source": "Kamila is reading {object} in the {place} right now.",
+  "hint": "Kamila ______ (read) {object} in the {place} right now.",
+  "key": "isn't reading",
+  "why": "Use isn't plus the -ing form for a singular negative.",
+  "slots": {
+   "object": [
+    "a book",
+    "a message",
+    "a magazine",
+    "an article"
+   ],
+   "place": [
+    "library",
+    "bedroom",
+    "garden",
+    "office"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present continuous.",
+  "source": "The children are playing {game} in the {place} at the moment.",
+  "hint": "The children ______ (play) {game} in the {place} at the moment.",
+  "key": "aren't playing",
+  "why": "The children is plural, so use aren't plus the -ing form.",
+  "slots": {
+   "game": [
+    "football",
+    "chess",
+    "a game",
+    "cards"
+   ],
+   "place": [
+    "park",
+    "garden",
+    "yard",
+    "street"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present continuous.",
+  "source": "I am waiting for {person} at the {place} right now.",
+  "hint": "I ______ (wait) for {person} at the {place} right now.",
+  "key": "am not waiting",
+  "why": "Use am not plus the -ing form for a negative with I.",
+  "slots": {
+   "person": [
+    "my friend",
+    "the teacher",
+    "the doctor",
+    "my brother"
+   ],
+   "place": [
+    "station",
+    "school",
+    "gate",
+    "entrance"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present continuous.",
+  "source": "My mother is cooking {food} in the {place} at the moment.",
+  "hint": "My mother ______ (cook) {food} in the {place} at the moment.",
+  "key": "isn't cooking",
+  "why": "Use isn't plus the -ing form for a singular negative.",
+  "slots": {
+   "food": [
+    "soup",
+    "plov",
+    "pasta",
+    "rice"
+   ],
+   "place": [
+    "kitchen",
+    "garden",
+    "canteen",
+    "café"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present continuous.",
+  "source": "The workers are fixing the {object} near the {place} right now.",
+  "hint": "The workers ______ (fix) the {object} near the {place} right now.",
+  "key": "aren't fixing",
+  "why": "The workers is plural, so use aren't plus the -ing form.",
+  "slots": {
+   "object": [
+    "road",
+    "roof",
+    "door",
+    "gate"
+   ],
+   "place": [
+    "school",
+    "market",
+    "station",
+    "park"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence with the new subject using the present continuous.",
+  "source": "I am cooking {food} for the {group} at the moment.",
+  "hint": "We ______ (cook) {food} for the {group} at the moment.",
+  "key": "are cooking",
+  "why": "We is plural, so use are plus the -ing form.",
+  "slots": {
+   "food": [
+    "dinner",
+    "soup",
+    "plov",
+    "tea"
+   ],
+   "group": [
+    "guests",
+    "family",
+    "children",
+    "students"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence with the new subject using the present continuous.",
+  "source": "She is writing {item} in the {place} right now.",
+  "hint": "They ______ (write) {item} in the {place} right now.",
+  "key": "are writing",
+  "why": "They is plural, so use are plus the -ing form.",
+  "slots": {
+   "item": [
+    "an email",
+    "a letter",
+    "a message",
+    "a list"
+   ],
+   "place": [
+    "office",
+    "classroom",
+    "library",
+    "kitchen"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence with the new subject using the present continuous.",
+  "source": "The students are studying {subject} in the {place} at the moment.",
+  "hint": "The student ______ (study) {subject} in the {place} at the moment.",
+  "key": "is studying",
+  "why": "The student is singular, so use is plus the -ing form.",
+  "slots": {
+   "subject": [
+    "English",
+    "history",
+    "biology",
+    "maths"
+   ],
+   "place": [
+    "classroom",
+    "library",
+    "hall",
+    "computer room"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence with the new subject using the present continuous.",
+  "source": "You are carrying a {object} to the {place} right now.",
+  "hint": "He ______ (carry) a {object} to the {place} right now.",
+  "key": "is carrying",
+  "why": "He is singular, so use is plus the -ing form.",
+  "slots": {
+   "object": [
+    "box",
+    "bag",
+    "chair",
+    "suitcase"
+   ],
+   "place": [
+    "car",
+    "house",
+    "office",
+    "garden"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence with the new subject using the present continuous.",
+  "source": "My sister is preparing {food} for the {group} at the moment.",
+  "hint": "My sisters ______ (prepare) {food} for the {group} at the moment.",
+  "key": "are preparing",
+  "why": "My sisters is plural, so use are plus the -ing form.",
+  "slots": {
+   "food": [
+    "breakfast",
+    "tea",
+    "a salad",
+    "dinner"
+   ],
+   "group": [
+    "guests",
+    "family",
+    "children",
+    "neighbours"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the present continuous.",
+  "source": "Maksim washes the {object} in the {place} every Sunday.",
+  "hint": "Look! Maksim ______ (wash) the {object} in the {place}.",
+  "key": "is washing",
+  "why": "Look! shows the action is happening now, so use is plus the -ing form.",
+  "slots": {
+   "object": [
+    "car",
+    "dishes",
+    "windows",
+    "floor"
+   ],
+   "place": [
+    "garden",
+    "kitchen",
+    "yard",
+    "bathroom"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the present continuous.",
+  "source": "My father drives the {vehicle} to {place} every day.",
+  "hint": "My father ______ (drive) the {vehicle} to {place} right now.",
+  "key": "is driving",
+  "why": "Right now shows the action is happening now, so use is plus the -ing form.",
+  "slots": {
+   "vehicle": [
+    "car",
+    "bus",
+    "truck",
+    "taxi"
+   ],
+   "place": [
+    "work",
+    "the market",
+    "the city",
+    "the airport"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the present continuous.",
+  "source": "The baby sleeps in the {room} near the {object} every afternoon.",
+  "hint": "The baby ______ (sleep) in the {room} near the {object} at the moment.",
+  "key": "is sleeping",
+  "why": "At the moment shows the action is happening now, so use is plus the -ing form.",
+  "slots": {
+   "room": [
+    "bedroom",
+    "living room",
+    "hall",
+    "car"
+   ],
+   "object": [
+    "window",
+    "door",
+    "sofa",
+    "table"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the present continuous.",
+  "source": "We work on the {task} in the {place} every week.",
+  "hint": "We ______ (work) on the {task} in the {place} today.",
+  "key": "are working",
+  "why": "Today describes a temporary situation, so use are plus the -ing form.",
+  "slots": {
+   "task": [
+    "project",
+    "report",
+    "exercise",
+    "plan"
+   ],
+   "place": [
+    "office",
+    "library",
+    "classroom",
+    "café"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the present continuous.",
+  "source": "The birds sing in the {place} near our {object} every morning.",
+  "hint": "Listen! The birds ______ (sing) in the {place} near our {object}.",
+  "key": "are singing",
+  "why": "Listen! shows the action is happening now, so use are plus the -ing form.",
+  "slots": {
+   "place": [
+    "trees",
+    "garden",
+    "park",
+    "street"
+   ],
+   "object": [
+    "house",
+    "window",
+    "gate",
+    "school"
+   ]
+  }
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about something you are doing right now.",
+  "requiredElement": "I with am plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include right now",
+   "must use I"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about what another person is doing at the moment.",
+  "requiredElement": "a singular subject with is plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include at the moment",
+   "must be about another person"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about what two or more people are doing right now.",
+  "requiredElement": "a plural subject with are plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include right now",
+   "must use a plural subject"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence beginning with Look! about something you can see happening.",
+  "requiredElement": "am, is or are plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must begin with Look!",
+   "must describe a visible action"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence beginning with Listen! about something you can hear happening.",
+  "requiredElement": "am, is or are plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must begin with Listen!",
+   "must describe a sound you can hear"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about what someone in your family is doing at the moment.",
+  "requiredElement": "a singular subject with is plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include at the moment",
+   "must name a family member"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about an animal doing something right now.",
+  "requiredElement": "is plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include right now",
+   "must use an animal as the subject"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about something that is true only today, not every day.",
+  "requiredElement": "am, is or are plus a verb ending in -ing",
+  "constraints": [
+   "exactly one sentence",
+   "must include today",
+   "must describe a temporary situation"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what you are doing right now. Write three or four sentences.",
+  "targetGrammar": "present continuous with am plus -ing",
+  "lookFor": [
+   "am with I",
+   "verbs ending in -ing",
+   "right now or another now marker"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Look around you and describe what other people are doing at the moment. Write three or four sentences.",
+  "targetGrammar": "present continuous with is and are plus -ing",
+  "lookFor": [
+   "is with singular subjects",
+   "are with plural subjects",
+   "actions happening now"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what the people in your home are doing right now. Write three or four sentences.",
+  "targetGrammar": "present continuous for actions happening now",
+  "lookFor": [
+   "different subjects",
+   "correct am, is or are",
+   "verbs ending in -ing"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Imagine you are in a busy park. Describe what different people are doing. Write three or four sentences.",
+  "targetGrammar": "present continuous with singular and plural subjects",
+  "lookFor": [
+   "is with singular subjects",
+   "are with plural subjects",
+   "verbs ending in -ing"
+  ]
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-now",
+  "level": "A1",
+  "pv": "2.5",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what is different about today compared with a normal day. Write three or four sentences.",
+  "targetGrammar": "present continuous for temporary situations happening today",
+  "lookFor": [
+   "today as the time marker",
+   "am, is or are plus -ing",
+   "temporary activities"
+  ]
+ }
+]
