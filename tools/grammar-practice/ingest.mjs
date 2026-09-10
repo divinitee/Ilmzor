@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { validateBank, variantCount } from "../../src/lib/grammarPractice/schema.js";
 
 const src = process.argv[2];
+const LEGACY = process.argv.includes("--allow-legacy");
 if (!src) { console.error("usage: ingest.mjs <file.json>"); process.exit(1); }
 const raw = JSON.parse(readFileSync(src, "utf8"));
 
@@ -34,10 +35,11 @@ function accepted(key) {
 // It is a provenance marker, not content, so it is stripped before the bank.
 const MIN_PV = "2.4";
 const versions = [...new Set(raw.map((it) => it.pv || "(unstamped)"))];
-if (versions.length !== 1 || versions[0] < MIN_PV) {
+if (!LEGACY && (versions.length !== 1 || versions[0] < MIN_PV)) {
   console.error(`REFUSED — prompt version: found ${versions.join(", ")}, expected ${MIN_PV}`);
   console.error(`  An unstamped or older batch was generated from a stale prompt.`);
   console.error(`  Regenerate with the current 1-PASTE-<topic>-v${MIN_PV}.txt file.`);
+  console.error(`  (--allow-legacy re-ingests already-shipped content unchanged.)`);
   process.exit(1);
 }
 console.log(`prompt version ${versions[0]} — ok`);
@@ -60,7 +62,7 @@ for (const it of items) {
     pools[it.stage] = (pools[it.stage] || 0) + variantCount(it);
   }
 }
-const thin = Object.entries(pools).filter(([, n]) => n < FLOOR);
+const thin = LEGACY ? [] : Object.entries(pools).filter(([, n]) => n < FLOOR);
 if (thin.length) {
   console.error(`REFUSED — variance floor is ${FLOOR} surface variants per stage:`);
   thin.forEach(([s, n]) => console.error(`  ${s}: ${n}`));

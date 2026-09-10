@@ -1,74 +1,1810 @@
 [
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"I ______ drink {drink} in the {time}.","options":["don't","doesn't","not","am not"],"key":0,"why":"Use don't with I in the present simple negative.","slots":{"drink":["coffee","tea","milk","juice"],"time":["morning","afternoon","evening","winter"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"My brother ______ play {sport} after {time}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"My brother is third-person singular, so use doesn't in the present simple negative.","slots":{"sport":["football","tennis","basketball","volleyball"],"time":["school","work","lunch","dinner"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"We ______ watch {program} on {day}.","options":["doesn't","don't","aren't","dont"],"key":1,"why":"Use don't with we in the present simple negative.","slots":{"program":["the news","a cooking show","a documentary","a comedy program"],"day":["Monday","Tuesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Madina ______ eat {food} for {meal}.","options":["don't","doesn't","isn't","not"],"key":1,"why":"Madina is third-person singular, so use doesn't before the root verb eat.","slots":{"food":["meat","fish","soup","rice"],"meal":["breakfast","lunch","dinner","school lunch"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"They ______ go to {place} on {day}.","options":["doesn't","don't","isn't","dont"],"key":1,"why":"Use don't with they in the present simple negative.","slots":{"place":["the park","the market","the library","the gym"],"day":["Monday","Wednesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Aziz ______ get up at {time} on {day}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"Aziz is third-person singular, so use doesn't in the present simple negative.","slots":{"time":["six","seven","eight","nine"],"day":["Monday","Tuesday","Saturday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"You ______ need {item} for {activity}.","options":["doesn't","don't","isn't","dont"],"key":1,"why":"Use don't with you in the present simple negative.","slots":{"item":["a pen","a notebook","a laptop","a dictionary"],"activity":["class","work","homework","the lesson"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"My parents ______ drive to {place} on {day}.","options":["doesn't","don't","aren't","dont"],"key":1,"why":"The subject my parents is plural, so use don't in the present simple negative.","slots":{"place":["work","the market","the city centre","the park"],"day":["Monday","Tuesday","Saturday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Sasha ______ like {food} with {meal}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"Sasha is one person, so use doesn't before the root verb like.","slots":{"food":["spicy food","fish","soup","salad"],"meal":["lunch","dinner","breakfast","rice"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Our teacher ______ give {activity} on {day}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"Our teacher is third-person singular, so use doesn't before the root verb give.","slots":{"activity":["homework","tests","projects","extra exercises"],"day":["Monday","Tuesday","Friday","Saturday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Kamila and I ______ buy {item} at {place}.","options":["doesn't","don't","aren't","dont"],"key":1,"why":"Kamila and I means we, so use don't in the present simple negative.","slots":{"item":["clothes","snacks","books","fruit"],"place":["the market","the mall","the shop","the supermarket"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"The baby ______ sleep in the {place} during the {time}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"The baby is third-person singular, so use doesn't before the root verb sleep.","slots":{"place":["bedroom","living room","kitchen","garden"],"time":["morning","afternoon","evening","day"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"You and your friends ______ study at {place} on {day}.","options":["doesn't","don't","isn't","dont"],"key":1,"why":"You and your friends is plural, so use don't in the present simple negative.","slots":{"place":["home","school","the library","the university"],"day":["Monday","Tuesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"My aunt ______ work on {day} in the {time}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"My aunt is third-person singular, so use doesn't in the present simple negative.","slots":{"day":["Monday","Tuesday","Saturday","Sunday"],"time":["morning","afternoon","evening","night"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"I ______ listen to {music} while I {activity}.","options":["doesn't","don't","isn't","dont"],"key":1,"why":"Use don't with I in the present simple negative.","slots":{"music":["pop music","rock music","classical music","jazz"],"activity":["study","work","cook","read"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Timur ______ wear {item} in {weather}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"Timur is third-person singular, so use doesn't before the root verb wear.","slots":{"item":["a hat","a coat","boots","a jacket"],"weather":["summer","spring","warm weather","hot weather"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"The students ______ speak {language} during the {activity}.","options":["doesn't","don't","isn't","dont"],"key":1,"why":"The students is plural, so use don't in the present simple negative.","slots":{"language":["Russian","Uzbek","English","French"],"activity":["lesson","test","meeting","game"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"Her friend ______ walk to {place} after {activity}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"Her friend is third-person singular, so use doesn't before the root verb walk.","slots":{"place":["school","the shop","the park","the station"],"activity":["work","class","dinner","lunch"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"We ______ use {device} during {activity}.","options":["doesn't","don't","aren't","dont"],"key":1,"why":"Use don't with we in the present simple negative.","slots":{"device":["phones","tablets","laptops","computers"],"activity":["class","dinner","meetings","tests"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"choose","format":"mcq","prompt":"The bus ______ stop at {place} after {time}.","options":["don't","doesn't","isn't","doesnt"],"key":1,"why":"The bus is third-person singular, so use doesn't before the root verb stop.","slots":{"place":["the market","the library","the hospital","the station"],"time":["six","seven","eight","nine"]}},
-
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"I ______ (eat) {food} for {meal}.","key":"don't eat","why":"Use don't plus the root verb eat with I.","slots":{"food":["meat","fish","soup","rice"],"meal":["breakfast","lunch","dinner","school lunch"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"My sister ______ (drink) {drink} in the {time}.","key":"doesn't drink","why":"Use doesn't plus the root verb drink with my sister.","slots":{"drink":["coffee","tea","milk","juice"],"time":["morning","afternoon","evening","winter"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"We ______ (play) {sport} on {day}.","key":"don't play","why":"Use don't plus the root verb play with we.","slots":{"sport":["football","tennis","basketball","volleyball"],"day":["Monday","Tuesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Rustam ______ (go) to {place} by {transport}.","key":"doesn't go","why":"Use doesn't plus the root verb go with Rustam.","slots":{"place":["school","the office","university","the market"],"transport":["bus","train","bike","taxi"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"They ______ (watch) {program} on {day}.","key":"don't watch","why":"Use don't plus the root verb watch with they.","slots":{"program":["the news","a cooking show","a documentary","a comedy program"],"day":["Monday","Wednesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Our teacher ______ (give) {activity} on {day}.","key":"doesn't give","why":"Use doesn't plus the root verb give with our teacher.","slots":{"activity":["homework","tests","projects","extra exercises"],"day":["Monday","Tuesday","Friday","Saturday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"You ______ (need) {item} for {activity}.","key":"don't need","why":"Use don't plus the root verb need with you.","slots":{"item":["a pen","a notebook","a laptop","a dictionary"],"activity":["class","work","homework","the lesson"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"My father ______ (drive) to {place} on {day}.","key":"doesn't drive","why":"Use doesn't plus the root verb drive with my father.","slots":{"place":["work","the market","the city centre","the park"],"day":["Monday","Tuesday","Saturday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"The children ______ (sleep) in the {place} during the {time}.","key":"don't sleep","why":"Use don't plus the root verb sleep with the children.","slots":{"place":["bedroom","living room","kitchen","garden"],"time":["morning","afternoon","evening","day"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Elena ______ (like) {food} with {meal}.","key":"doesn't like","why":"Use doesn't plus the root verb like with Elena.","slots":{"food":["spicy food","fish","soup","salad"],"meal":["lunch","dinner","breakfast","rice"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Kamila and I ______ (buy) {item} at {place}.","key":"don't buy","why":"Kamila and I means we, so use don't plus the root verb buy.","slots":{"item":["clothes","snacks","books","fruit"],"place":["the market","the mall","the shop","the supermarket"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"The dog ______ (walk) to {place} after {activity}.","key":"doesn't walk","why":"Use doesn't plus the root verb walk with the dog.","slots":{"place":["the park","the garden","the shop","school"],"activity":["breakfast","lunch","dinner","its nap"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"My friends ______ (use) {device} during {activity}.","key":"don't use","why":"Use don't plus the root verb use with my friends.","slots":{"device":["phones","tablets","laptops","computers"],"activity":["class","dinner","meetings","tests"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Nodira ______ (wear) {item} in {weather}.","key":"doesn't wear","why":"Use doesn't plus the root verb wear with Nodira.","slots":{"item":["a hat","a coat","boots","a jacket"],"weather":["summer","spring","warm weather","hot weather"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"I ______ (listen) to {music} while I {activity}.","key":"don't listen","why":"Use don't plus the root verb listen with I.","slots":{"music":["pop music","rock music","classical music","jazz"],"activity":["study","work","cook","read"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"The bus ______ (stop) at {place} after {time}.","key":"doesn't stop","why":"Use doesn't plus the root verb stop with the bus.","slots":{"place":["the market","the library","the hospital","the station"],"time":["six","seven","eight","nine"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"We ______ (speak) {language} during the {activity}.","key":"don't speak","why":"Use don't plus the root verb speak with we.","slots":{"language":["Russian","Uzbek","English","French"],"activity":["lesson","test","meeting","game"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"My uncle ______ (work) on {day} in the {time}.","key":"doesn't work","why":"Use doesn't plus the root verb work with my uncle.","slots":{"day":["Monday","Tuesday","Saturday","Sunday"],"time":["morning","afternoon","evening","night"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"You and your friends ______ (study) at {place} on {day}.","key":"don't study","why":"You and your friends is plural, so use don't plus the root verb study.","slots":{"place":["home","school","the library","the university"],"day":["Monday","Tuesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple negative form of the verb in brackets.","source":"Her mother ______ (cook) {food} for {meal}.","key":"doesn't cook","why":"Use doesn't plus the root verb cook with her mother.","slots":{"food":["pasta","soup","rice","fish"],"meal":["breakfast","lunch","dinner","school lunch"]}},
-
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"She watches {program} on {day}.","hint":"She ______ (watch) {program} on {day}.","key":"doesn't watch","why":"Use doesn't plus the root verb watch with she.","slots":{"program":["the news","a cooking show","a documentary","a comedy program"],"day":["Monday","Wednesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"They play {sport} on {day}.","hint":"They ______ (play) {sport} on {day}.","key":"don't play","why":"Use don't plus the root verb play with they.","slots":{"sport":["football","tennis","basketball","volleyball"],"day":["Monday","Tuesday","Friday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"My father drives to {place} on {day}.","hint":"My father ______ (drive) to {place} on {day}.","key":"doesn't drive","why":"Use doesn't plus the root verb drive with my father.","slots":{"place":["work","the market","the city centre","the park"],"day":["Monday","Tuesday","Saturday","Sunday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"I eat {food} for {meal}.","hint":"I ______ (eat) {food} for {meal}.","key":"don't eat","why":"Use don't plus the root verb eat with I.","slots":{"food":["meat","fish","soup","rice"],"meal":["breakfast","lunch","dinner","school lunch"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"Dilshod goes to {place} by {transport}.","hint":"Dilshod ______ (go) to {place} by {transport}.","key":"doesn't go","why":"Use doesn't plus the root verb go with Dilshod.","slots":{"place":["school","the office","university","the market"],"transport":["bus","train","bike","taxi"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"We use {device} during {activity}.","hint":"We ______ (use) {device} during {activity}.","key":"don't use","why":"Use don't plus the root verb use with we.","slots":{"device":["phones","tablets","laptops","computers"],"activity":["class","dinner","meetings","tests"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"The baby sleeps in the {place} during the {time}.","hint":"The baby ______ (sleep) in the {place} during the {time}.","key":"doesn't sleep","why":"Use doesn't plus the root verb sleep with the baby.","slots":{"place":["bedroom","living room","kitchen","garden"],"time":["morning","afternoon","evening","day"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"My friends buy {item} at {place}.","hint":"My friends ______ (buy) {item} at {place}.","key":"don't buy","why":"Use don't plus the root verb buy with my friends.","slots":{"item":["clothes","snacks","books","fruit"],"place":["the market","the mall","the shop","the supermarket"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"Elena likes {food} with {meal}.","hint":"Elena ______ (like) {food} with {meal}.","key":"doesn't like","why":"Use doesn't plus the root verb like with Elena.","slots":{"food":["spicy food","fish","soup","salad"],"meal":["lunch","dinner","breakfast","rice"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"You need {item} for {activity}.","hint":"You ______ (need) {item} for {activity}.","key":"don't need","why":"Use don't plus the root verb need with you.","slots":{"item":["a pen","a notebook","a laptop","a dictionary"],"activity":["class","work","homework","the lesson"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"Our teacher gives {activity} on {day}.","hint":"Our teacher ______ (give) {activity} on {day}.","key":"doesn't give","why":"Use doesn't plus the root verb give with our teacher.","slots":{"activity":["homework","tests","projects","extra exercises"],"day":["Monday","Tuesday","Friday","Saturday"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"Nodira wears {item} in {weather}.","hint":"Nodira ______ (wear) {item} in {weather}.","key":"doesn't wear","why":"Use doesn't plus the root verb wear with Nodira.","slots":{"item":["a hat","a coat","boots","a jacket"],"weather":["summer","spring","warm weather","hot weather"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"The students speak {language} during the {activity}.","hint":"The students ______ (speak) {language} during the {activity}.","key":"don't speak","why":"Use don't plus the root verb speak with the students.","slots":{"language":["Russian","Uzbek","English","French"],"activity":["lesson","test","meeting","game"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"My aunt works on {day} in the {time}.","hint":"My aunt ______ (work) on {day} in the {time}.","key":"doesn't work","why":"Use doesn't plus the root verb work with my aunt.","slots":{"day":["Monday","Tuesday","Saturday","Sunday"],"time":["morning","afternoon","evening","night"]}},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"The bus stops at {place} after {time}.","hint":"The bus ______ (stop) at {place} after {time}.","key":"doesn't stop","why":"Use doesn't plus the root verb stop with the bus.","slots":{"place":["the market","the library","the hospital","the station"],"time":["six","seven","eight","nine"]}},
-
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a family member's routine using the present simple negative.","requiredElement":"a third-person singular subject with doesn't plus a root verb","constraints":["exactly one sentence","must describe a regular action or habit","must be about another person"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about your own routine using the present simple negative.","requiredElement":"I with don't plus a root verb","constraints":["exactly one sentence","must describe a regular action or habit","must be negative"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about two friends using the present simple negative.","requiredElement":"a plural subject with don't plus a root verb","constraints":["exactly one sentence","must describe a regular action or habit","must be negative"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a student's study routine using the present simple negative.","requiredElement":"a third-person singular subject with doesn't plus a root verb","constraints":["exactly one sentence","must mention study or school","must describe a regular action or habit"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about food using the present simple negative.","requiredElement":"don't or doesn't plus a root verb","constraints":["exactly one sentence","must describe a regular eating habit","must be negative"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a person's transport routine using the present simple negative.","requiredElement":"a third-person singular subject with doesn't plus a root verb","constraints":["exactly one sentence","must mention transport or travel","must describe a regular action or habit"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about you and another person using the present simple negative.","requiredElement":"a plural subject with don't plus a root verb","constraints":["exactly one sentence","must describe a regular action or habit","must be negative"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a person's weekend routine using the present simple negative.","requiredElement":"a third-person singular subject with doesn't plus a root verb","constraints":["exactly one sentence","must mention a weekend day or weekend activity","must describe a regular action or habit"]},
-
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"express","format":"free_response","prompt":"Describe your daily routine. Write three or four sentences and include two things you do not do regularly.","targetGrammar":"present simple negative with don't plus root verbs","lookFor":["I or we with don't","root verbs after don't","regular actions or habits"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"express","format":"free_response","prompt":"Describe a family member's routine. Write three or four sentences and include at least two negative routines.","targetGrammar":"present simple negative with doesn't plus root verbs","lookFor":["third-person singular subjects","doesn't plus root verbs","regular actions or habits"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"express","format":"free_response","prompt":"Describe what you and your friends do and do not do after school or work. Write three or four sentences.","targetGrammar":"present simple negative with don't plus root verbs","lookFor":["plural subjects","don't plus root verbs","regular actions or habits"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"express","format":"free_response","prompt":"Describe one person's food and drink habits. Write three or four sentences, including things the person does not eat or drink.","targetGrammar":"present simple negative with doesn't plus root verbs","lookFor":["third-person singular subjects","doesn't plus root verbs","food or drink habits"]},
-{"domain":"tenses","branch":"present","topic":"simple-negative","level":"A1","stage":"express","format":"free_response","prompt":"Describe your household's weekend routine. Write three or four sentences and include negative routines for both singular and plural subjects.","targetGrammar":"present simple negative with don't and doesn't plus root verbs","lookFor":["correct use of don't","correct use of doesn't","root verbs after don't and doesn't"]}
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "I ______ drink {drink} in the {time}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "not",
+   "am not"
+  ],
+  "key": 0,
+  "why": "Use don't with I in the present simple negative.",
+  "slots": {
+   "drink": [
+    "coffee",
+    "tea",
+    "milk",
+    "juice"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "winter"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My brother ______ play {sport} after {time}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "My brother is third-person singular, so use doesn't in the present simple negative.",
+  "slots": {
+   "sport": [
+    "football",
+    "tennis",
+    "basketball",
+    "volleyball"
+   ],
+   "time": [
+    "school",
+    "work",
+    "lunch",
+    "dinner"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "We ______ watch {program} on {day}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "aren't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Use don't with we in the present simple negative.",
+  "slots": {
+   "program": [
+    "the news",
+    "a cooking show",
+    "a documentary",
+    "a comedy program"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Madina ______ eat {food} for {meal}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "not"
+  ],
+  "key": 1,
+  "why": "Madina is third-person singular, so use doesn't before the root verb eat.",
+  "slots": {
+   "food": [
+    "meat",
+    "fish",
+    "soup",
+    "rice"
+   ],
+   "meal": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "school lunch"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "They ______ go to {place} on {day}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "isn't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Use don't with they in the present simple negative.",
+  "slots": {
+   "place": [
+    "the park",
+    "the market",
+    "the library",
+    "the gym"
+   ],
+   "day": [
+    "Monday",
+    "Wednesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Aziz ______ get up at {time} on {day}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "Aziz is third-person singular, so use doesn't in the present simple negative.",
+  "slots": {
+   "time": [
+    "six",
+    "seven",
+    "eight",
+    "nine"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "You ______ need {item} for {activity}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "isn't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Use don't with you in the present simple negative.",
+  "slots": {
+   "item": [
+    "a pen",
+    "a notebook",
+    "a laptop",
+    "a dictionary"
+   ],
+   "activity": [
+    "class",
+    "work",
+    "homework",
+    "the lesson"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My parents ______ drive to {place} on {day}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "aren't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "The subject my parents is plural, so use don't in the present simple negative.",
+  "slots": {
+   "place": [
+    "work",
+    "the market",
+    "the city centre",
+    "the park"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Sasha ______ like {food} with {meal}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "Sasha is one person, so use doesn't before the root verb like.",
+  "slots": {
+   "food": [
+    "spicy food",
+    "fish",
+    "soup",
+    "salad"
+   ],
+   "meal": [
+    "lunch",
+    "dinner",
+    "breakfast",
+    "rice"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Our teacher ______ give {activity} on {day}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "Our teacher is third-person singular, so use doesn't before the root verb give.",
+  "slots": {
+   "activity": [
+    "homework",
+    "tests",
+    "projects",
+    "extra exercises"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Saturday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Kamila and I ______ buy {item} at {place}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "aren't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Kamila and I means we, so use don't in the present simple negative.",
+  "slots": {
+   "item": [
+    "clothes",
+    "snacks",
+    "books",
+    "fruit"
+   ],
+   "place": [
+    "the market",
+    "the mall",
+    "the shop",
+    "the supermarket"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The baby ______ sleep in the {place} during the {time}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "The baby is third-person singular, so use doesn't before the root verb sleep.",
+  "slots": {
+   "place": [
+    "bedroom",
+    "living room",
+    "kitchen",
+    "garden"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "day"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "You and your friends ______ study at {place} on {day}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "isn't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "You and your friends is plural, so use don't in the present simple negative.",
+  "slots": {
+   "place": [
+    "home",
+    "school",
+    "the library",
+    "the university"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My aunt ______ work on {day} in the {time}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "My aunt is third-person singular, so use doesn't in the present simple negative.",
+  "slots": {
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "night"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "I ______ listen to {music} while I {activity}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "isn't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Use don't with I in the present simple negative.",
+  "slots": {
+   "music": [
+    "pop music",
+    "rock music",
+    "classical music",
+    "jazz"
+   ],
+   "activity": [
+    "study",
+    "work",
+    "cook",
+    "read"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Timur ______ wear {item} in {weather}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "Timur is third-person singular, so use doesn't before the root verb wear.",
+  "slots": {
+   "item": [
+    "a hat",
+    "a coat",
+    "boots",
+    "a jacket"
+   ],
+   "weather": [
+    "summer",
+    "spring",
+    "warm weather",
+    "hot weather"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The students ______ speak {language} during the {activity}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "isn't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "The students is plural, so use don't in the present simple negative.",
+  "slots": {
+   "language": [
+    "Russian",
+    "Uzbek",
+    "English",
+    "French"
+   ],
+   "activity": [
+    "lesson",
+    "test",
+    "meeting",
+    "game"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Her friend ______ walk to {place} after {activity}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "Her friend is third-person singular, so use doesn't before the root verb walk.",
+  "slots": {
+   "place": [
+    "school",
+    "the shop",
+    "the park",
+    "the station"
+   ],
+   "activity": [
+    "work",
+    "class",
+    "dinner",
+    "lunch"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "We ______ use {device} during {activity}.",
+  "options": [
+   "doesn't",
+   "don't",
+   "aren't",
+   "dont"
+  ],
+  "key": 1,
+  "why": "Use don't with we in the present simple negative.",
+  "slots": {
+   "device": [
+    "phones",
+    "tablets",
+    "laptops",
+    "computers"
+   ],
+   "activity": [
+    "class",
+    "dinner",
+    "meetings",
+    "tests"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The bus ______ stop at {place} after {time}.",
+  "options": [
+   "don't",
+   "doesn't",
+   "isn't",
+   "doesnt"
+  ],
+  "key": 1,
+  "why": "The bus is third-person singular, so use doesn't before the root verb stop.",
+  "slots": {
+   "place": [
+    "the market",
+    "the library",
+    "the hospital",
+    "the station"
+   ],
+   "time": [
+    "six",
+    "seven",
+    "eight",
+    "nine"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "I ______ (eat) {food} for {meal}.",
+  "key": "don't eat",
+  "why": "Use don't plus the root verb eat with I.",
+  "slots": {
+   "food": [
+    "meat",
+    "fish",
+    "soup",
+    "rice"
+   ],
+   "meal": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "school lunch"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "My sister ______ (drink) {drink} in the {time}.",
+  "key": "doesn't drink",
+  "why": "Use doesn't plus the root verb drink with my sister.",
+  "slots": {
+   "drink": [
+    "coffee",
+    "tea",
+    "milk",
+    "juice"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "winter"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "We ______ (play) {sport} on {day}.",
+  "key": "don't play",
+  "why": "Use don't plus the root verb play with we.",
+  "slots": {
+   "sport": [
+    "football",
+    "tennis",
+    "basketball",
+    "volleyball"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Rustam ______ (go) to {place} by {transport}.",
+  "key": "doesn't go",
+  "why": "Use doesn't plus the root verb go with Rustam.",
+  "slots": {
+   "place": [
+    "school",
+    "the office",
+    "university",
+    "the market"
+   ],
+   "transport": [
+    "bus",
+    "train",
+    "bike",
+    "taxi"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "They ______ (watch) {program} on {day}.",
+  "key": "don't watch",
+  "why": "Use don't plus the root verb watch with they.",
+  "slots": {
+   "program": [
+    "the news",
+    "a cooking show",
+    "a documentary",
+    "a comedy program"
+   ],
+   "day": [
+    "Monday",
+    "Wednesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Our teacher ______ (give) {activity} on {day}.",
+  "key": "doesn't give",
+  "why": "Use doesn't plus the root verb give with our teacher.",
+  "slots": {
+   "activity": [
+    "homework",
+    "tests",
+    "projects",
+    "extra exercises"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Saturday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "You ______ (need) {item} for {activity}.",
+  "key": "don't need",
+  "why": "Use don't plus the root verb need with you.",
+  "slots": {
+   "item": [
+    "a pen",
+    "a notebook",
+    "a laptop",
+    "a dictionary"
+   ],
+   "activity": [
+    "class",
+    "work",
+    "homework",
+    "the lesson"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "My father ______ (drive) to {place} on {day}.",
+  "key": "doesn't drive",
+  "why": "Use doesn't plus the root verb drive with my father.",
+  "slots": {
+   "place": [
+    "work",
+    "the market",
+    "the city centre",
+    "the park"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "The children ______ (sleep) in the {place} during the {time}.",
+  "key": "don't sleep",
+  "why": "Use don't plus the root verb sleep with the children.",
+  "slots": {
+   "place": [
+    "bedroom",
+    "living room",
+    "kitchen",
+    "garden"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "day"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Elena ______ (like) {food} with {meal}.",
+  "key": "doesn't like",
+  "why": "Use doesn't plus the root verb like with Elena.",
+  "slots": {
+   "food": [
+    "spicy food",
+    "fish",
+    "soup",
+    "salad"
+   ],
+   "meal": [
+    "lunch",
+    "dinner",
+    "breakfast",
+    "rice"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Kamila and I ______ (buy) {item} at {place}.",
+  "key": "don't buy",
+  "why": "Kamila and I means we, so use don't plus the root verb buy.",
+  "slots": {
+   "item": [
+    "clothes",
+    "snacks",
+    "books",
+    "fruit"
+   ],
+   "place": [
+    "the market",
+    "the mall",
+    "the shop",
+    "the supermarket"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "The dog ______ (walk) to {place} after {activity}.",
+  "key": "doesn't walk",
+  "why": "Use doesn't plus the root verb walk with the dog.",
+  "slots": {
+   "place": [
+    "the park",
+    "the garden",
+    "the shop",
+    "school"
+   ],
+   "activity": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "its nap"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "My friends ______ (use) {device} during {activity}.",
+  "key": "don't use",
+  "why": "Use don't plus the root verb use with my friends.",
+  "slots": {
+   "device": [
+    "phones",
+    "tablets",
+    "laptops",
+    "computers"
+   ],
+   "activity": [
+    "class",
+    "dinner",
+    "meetings",
+    "tests"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Nodira ______ (wear) {item} in {weather}.",
+  "key": "doesn't wear",
+  "why": "Use doesn't plus the root verb wear with Nodira.",
+  "slots": {
+   "item": [
+    "a hat",
+    "a coat",
+    "boots",
+    "a jacket"
+   ],
+   "weather": [
+    "summer",
+    "spring",
+    "warm weather",
+    "hot weather"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "I ______ (listen) to {music} while I {activity}.",
+  "key": "don't listen",
+  "why": "Use don't plus the root verb listen with I.",
+  "slots": {
+   "music": [
+    "pop music",
+    "rock music",
+    "classical music",
+    "jazz"
+   ],
+   "activity": [
+    "study",
+    "work",
+    "cook",
+    "read"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "The bus ______ (stop) at {place} after {time}.",
+  "key": "doesn't stop",
+  "why": "Use doesn't plus the root verb stop with the bus.",
+  "slots": {
+   "place": [
+    "the market",
+    "the library",
+    "the hospital",
+    "the station"
+   ],
+   "time": [
+    "six",
+    "seven",
+    "eight",
+    "nine"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "We ______ (speak) {language} during the {activity}.",
+  "key": "don't speak",
+  "why": "Use don't plus the root verb speak with we.",
+  "slots": {
+   "language": [
+    "Russian",
+    "Uzbek",
+    "English",
+    "French"
+   ],
+   "activity": [
+    "lesson",
+    "test",
+    "meeting",
+    "game"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "My uncle ______ (work) on {day} in the {time}.",
+  "key": "doesn't work",
+  "why": "Use doesn't plus the root verb work with my uncle.",
+  "slots": {
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "night"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "You and your friends ______ (study) at {place} on {day}.",
+  "key": "don't study",
+  "why": "You and your friends is plural, so use don't plus the root verb study.",
+  "slots": {
+   "place": [
+    "home",
+    "school",
+    "the library",
+    "the university"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple negative form of the verb in brackets.",
+  "source": "Her mother ______ (cook) {food} for {meal}.",
+  "key": "doesn't cook",
+  "why": "Use doesn't plus the root verb cook with her mother.",
+  "slots": {
+   "food": [
+    "pasta",
+    "soup",
+    "rice",
+    "fish"
+   ],
+   "meal": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "school lunch"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "She watches {program} on {day}.",
+  "hint": "She ______ (watch) {program} on {day}.",
+  "key": "doesn't watch",
+  "why": "Use doesn't plus the root verb watch with she.",
+  "slots": {
+   "program": [
+    "the news",
+    "a cooking show",
+    "a documentary",
+    "a comedy program"
+   ],
+   "day": [
+    "Monday",
+    "Wednesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "They play {sport} on {day}.",
+  "hint": "They ______ (play) {sport} on {day}.",
+  "key": "don't play",
+  "why": "Use don't plus the root verb play with they.",
+  "slots": {
+   "sport": [
+    "football",
+    "tennis",
+    "basketball",
+    "volleyball"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "My father drives to {place} on {day}.",
+  "hint": "My father ______ (drive) to {place} on {day}.",
+  "key": "doesn't drive",
+  "why": "Use doesn't plus the root verb drive with my father.",
+  "slots": {
+   "place": [
+    "work",
+    "the market",
+    "the city centre",
+    "the park"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "I eat {food} for {meal}.",
+  "hint": "I ______ (eat) {food} for {meal}.",
+  "key": "don't eat",
+  "why": "Use don't plus the root verb eat with I.",
+  "slots": {
+   "food": [
+    "meat",
+    "fish",
+    "soup",
+    "rice"
+   ],
+   "meal": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "school lunch"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "Dilshod goes to {place} by {transport}.",
+  "hint": "Dilshod ______ (go) to {place} by {transport}.",
+  "key": "doesn't go",
+  "why": "Use doesn't plus the root verb go with Dilshod.",
+  "slots": {
+   "place": [
+    "school",
+    "the office",
+    "university",
+    "the market"
+   ],
+   "transport": [
+    "bus",
+    "train",
+    "bike",
+    "taxi"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "We use {device} during {activity}.",
+  "hint": "We ______ (use) {device} during {activity}.",
+  "key": "don't use",
+  "why": "Use don't plus the root verb use with we.",
+  "slots": {
+   "device": [
+    "phones",
+    "tablets",
+    "laptops",
+    "computers"
+   ],
+   "activity": [
+    "class",
+    "dinner",
+    "meetings",
+    "tests"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "The baby sleeps in the {place} during the {time}.",
+  "hint": "The baby ______ (sleep) in the {place} during the {time}.",
+  "key": "doesn't sleep",
+  "why": "Use doesn't plus the root verb sleep with the baby.",
+  "slots": {
+   "place": [
+    "bedroom",
+    "living room",
+    "kitchen",
+    "garden"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "day"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "My friends buy {item} at {place}.",
+  "hint": "My friends ______ (buy) {item} at {place}.",
+  "key": "don't buy",
+  "why": "Use don't plus the root verb buy with my friends.",
+  "slots": {
+   "item": [
+    "clothes",
+    "snacks",
+    "books",
+    "fruit"
+   ],
+   "place": [
+    "the market",
+    "the mall",
+    "the shop",
+    "the supermarket"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "Elena likes {food} with {meal}.",
+  "hint": "Elena ______ (like) {food} with {meal}.",
+  "key": "doesn't like",
+  "why": "Use doesn't plus the root verb like with Elena.",
+  "slots": {
+   "food": [
+    "spicy food",
+    "fish",
+    "soup",
+    "salad"
+   ],
+   "meal": [
+    "lunch",
+    "dinner",
+    "breakfast",
+    "rice"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "You need {item} for {activity}.",
+  "hint": "You ______ (need) {item} for {activity}.",
+  "key": "don't need",
+  "why": "Use don't plus the root verb need with you.",
+  "slots": {
+   "item": [
+    "a pen",
+    "a notebook",
+    "a laptop",
+    "a dictionary"
+   ],
+   "activity": [
+    "class",
+    "work",
+    "homework",
+    "the lesson"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "Our teacher gives {activity} on {day}.",
+  "hint": "Our teacher ______ (give) {activity} on {day}.",
+  "key": "doesn't give",
+  "why": "Use doesn't plus the root verb give with our teacher.",
+  "slots": {
+   "activity": [
+    "homework",
+    "tests",
+    "projects",
+    "extra exercises"
+   ],
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Friday",
+    "Saturday"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "Nodira wears {item} in {weather}.",
+  "hint": "Nodira ______ (wear) {item} in {weather}.",
+  "key": "doesn't wear",
+  "why": "Use doesn't plus the root verb wear with Nodira.",
+  "slots": {
+   "item": [
+    "a hat",
+    "a coat",
+    "boots",
+    "a jacket"
+   ],
+   "weather": [
+    "summer",
+    "spring",
+    "warm weather",
+    "hot weather"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "The students speak {language} during the {activity}.",
+  "hint": "The students ______ (speak) {language} during the {activity}.",
+  "key": "don't speak",
+  "why": "Use don't plus the root verb speak with the students.",
+  "slots": {
+   "language": [
+    "Russian",
+    "Uzbek",
+    "English",
+    "French"
+   ],
+   "activity": [
+    "lesson",
+    "test",
+    "meeting",
+    "game"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "My aunt works on {day} in the {time}.",
+  "hint": "My aunt ______ (work) on {day} in the {time}.",
+  "key": "doesn't work",
+  "why": "Use doesn't plus the root verb work with my aunt.",
+  "slots": {
+   "day": [
+    "Monday",
+    "Tuesday",
+    "Saturday",
+    "Sunday"
+   ],
+   "time": [
+    "morning",
+    "afternoon",
+    "evening",
+    "night"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "The bus stops at {place} after {time}.",
+  "hint": "The bus ______ (stop) at {place} after {time}.",
+  "key": "doesn't stop",
+  "why": "Use doesn't plus the root verb stop with the bus.",
+  "slots": {
+   "place": [
+    "the market",
+    "the library",
+    "the hospital",
+    "the station"
+   ],
+   "time": [
+    "six",
+    "seven",
+    "eight",
+    "nine"
+   ]
+  },
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a family member's routine using the present simple negative.",
+  "requiredElement": "a third-person singular subject with doesn't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular action or habit",
+   "must be about another person"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about your own routine using the present simple negative.",
+  "requiredElement": "I with don't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular action or habit",
+   "must be negative"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about two friends using the present simple negative.",
+  "requiredElement": "a plural subject with don't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular action or habit",
+   "must be negative"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a student's study routine using the present simple negative.",
+  "requiredElement": "a third-person singular subject with doesn't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must mention study or school",
+   "must describe a regular action or habit"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about food using the present simple negative.",
+  "requiredElement": "don't or doesn't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular eating habit",
+   "must be negative"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a person's transport routine using the present simple negative.",
+  "requiredElement": "a third-person singular subject with doesn't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must mention transport or travel",
+   "must describe a regular action or habit"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about you and another person using the present simple negative.",
+  "requiredElement": "a plural subject with don't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular action or habit",
+   "must be negative"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a person's weekend routine using the present simple negative.",
+  "requiredElement": "a third-person singular subject with doesn't plus a root verb",
+  "constraints": [
+   "exactly one sentence",
+   "must mention a weekend day or weekend activity",
+   "must describe a regular action or habit"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe your daily routine. Write three or four sentences and include two things you do not do regularly.",
+  "targetGrammar": "present simple negative with don't plus root verbs",
+  "lookFor": [
+   "I or we with don't",
+   "root verbs after don't",
+   "regular actions or habits"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe a family member's routine. Write three or four sentences and include at least two negative routines.",
+  "targetGrammar": "present simple negative with doesn't plus root verbs",
+  "lookFor": [
+   "third-person singular subjects",
+   "doesn't plus root verbs",
+   "regular actions or habits"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what you and your friends do and do not do after school or work. Write three or four sentences.",
+  "targetGrammar": "present simple negative with don't plus root verbs",
+  "lookFor": [
+   "plural subjects",
+   "don't plus root verbs",
+   "regular actions or habits"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe one person's food and drink habits. Write three or four sentences, including things the person does not eat or drink.",
+  "targetGrammar": "present simple negative with doesn't plus root verbs",
+  "lookFor": [
+   "third-person singular subjects",
+   "doesn't plus root verbs",
+   "food or drink habits"
+  ],
+  "pv": "2.1"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "simple-negative",
+  "level": "A1",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe your household's weekend routine. Write three or four sentences and include negative routines for both singular and plural subjects.",
+  "targetGrammar": "present simple negative with don't and doesn't plus root verbs",
+  "lookFor": [
+   "correct use of don't",
+   "correct use of doesn't",
+   "root verbs after don't and doesn't"
+  ],
+  "pv": "2.1"
+ }
 ]

@@ -1,70 +1,1187 @@
 [
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"Mariam ______ to work by bus every morning.","options":["goes","go","going","gone"],"key":0,"why":"Mariam is third-person singular, so the present simple verb takes -es."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My father ______ coffee before work.","options":["drink","drinks","drinking","drunk"],"key":1,"why":"A third-person singular subject takes the present simple -s form."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The teacher ______ English at our school.","options":["teach","teaching","teaches","has teach"],"key":2,"why":"Teach takes -es with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My little sister ______ loudly when she is hungry.","options":["cry","crying","has cry","cries"],"key":3,"why":"A verb ending in consonant plus y changes y to ies with third-person singular."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The shop ______ at nine o'clock every morning.","options":["opens","open","opening","has open"],"key":0,"why":"The singular subject shop takes opens in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"Aziz ______ his grandmother every Sunday.","options":["visit","visits","visiting","has visit"],"key":1,"why":"Aziz is third-person singular, so visit takes -s."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My mother ______ the news after dinner.","options":["watch","watching","watches","has watch"],"key":2,"why":"Watch takes -es with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The baby ______ a lot during the day.","options":["sleep","sleeping","has sleep","sleeps"],"key":3,"why":"The singular subject baby takes sleeps in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"Dilshod ______ his homework before dinner.","options":["finishes","finish","finishing","has finish"],"key":0,"why":"Finish takes -es with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The train ______ at 7:30 every morning.","options":["leave","leaves","leaving","has leave"],"key":1,"why":"The singular subject train takes leaves in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My cousin ______ tennis on Saturdays.","options":["play","playing","plays","has play"],"key":2,"why":"A third-person singular subject takes the -s form in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The dog ______ at strangers near the gate.","options":["bark","barking","has bark","barks"],"key":3,"why":"The singular subject dog takes barks in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"She ______ a new laptop for her work.","options":["has","have","having","has have"],"key":0,"why":"Has is the irregular present simple form of have for third-person singular subjects."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The student ______ the teacher when he has a question.","options":["ask","asks","asking","has ask"],"key":1,"why":"The singular subject student takes asks in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My aunt ______ her car to work every day.","options":["drive","driving","drives","driven"],"key":2,"why":"My aunt is third-person singular, so drive takes -s."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The child ______ his teeth before bed.","options":["brush","brushing","has brush","brushes"],"key":3,"why":"Brush takes -es with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"Madina ______ French after school.","options":["studies","study","studying","has study"],"key":0,"why":"Study changes y to ies with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The bus ______ outside the station for ten minutes.","options":["wait","waits","waiting","has wait"],"key":1,"why":"The singular subject bus takes waits in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"My uncle ______ his keys in the same drawer.","options":["keep","keeping","keeps","has keep"],"key":2,"why":"My uncle is third-person singular, so keep takes -s."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"choose","format":"mcq","prompt":"The receptionist ______ every visitor politely.","options":["greet","greeting","has greet","greets"],"key":3,"why":"The singular subject receptionist takes greets in the present simple."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My brother ______ (go) to {place} by {transport} every morning.","key":"goes","why":"Go takes -es with a third-person singular subject.","slots":{"place":["school","the office","university"],"transport":["bus","train","bike"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"Laylo ______ (work) at {place} every weekday.","key":"works","why":"Laylo is third-person singular, so work takes -s.","slots":{"place":["a bank","a hospital","a hotel"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The teacher ______ (teach) {schoolSubject} to our class.","key":"teaches","why":"Teach takes -es with a third-person singular subject.","slots":{"schoolSubject":["English","history","mathematics"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My cousin ______ (study) {schoolSubject} after dinner.","key":"studies","why":"Study changes y to ies with a third-person singular subject.","slots":{"schoolSubject":["English","biology","economics"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"She ______ (watch) {program} every evening.","key":"watches","why":"Watch takes -es with a third-person singular subject.","slots":{"program":["the news","a cooking show","a comedy program"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The baby ______ (cry) when he is tired.","key":"cries","why":"Cry changes y to ies with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My father ______ (have) breakfast at {time} every morning.","key":"has","why":"Has is the irregular present simple form of have for third-person singular.","slots":{"time":["seven o'clock","half past seven","eight o'clock"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The shop ______ (close) at {time} on weekdays.","key":"closes","why":"Close takes -s with a third-person singular subject.","slots":{"time":["six o'clock","seven o'clock","eight o'clock"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"Aziza ______ (miss) the bus when she leaves home late.","key":"misses","why":"Miss takes -es with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The dog ______ (try) to catch the ball in {place}.","key":"tries","why":"Try changes y to ies with a third-person singular subject.","slots":{"place":["the garden","the park","the yard"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My aunt ______ (drive) to {place} every day.","key":"drives","why":"Drive takes -s with a third-person singular subject.","slots":{"place":["work","the office","the city center"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The student ______ (ask) the teacher {questionTime}.","key":"asks","why":"Ask takes -s with a third-person singular subject.","slots":{"questionTime":["after class","during the lesson","when he needs help"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My grandmother ______ (cook) {meal} on Sundays.","key":"cooks","why":"Cook takes -s with a third-person singular subject.","slots":{"meal":["lunch","dinner","a large family meal"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The receptionist ______ (answer) every phone call politely.","key":"answers","why":"Answer takes -s with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"Rustam ______ (wash) his car on {day}.","key":"washes","why":"Wash takes -es with a third-person singular subject.","slots":{"day":["Saturday","Sunday","Friday"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The train ______ (leave) from platform {platform} every morning.","key":"leaves","why":"Leave takes -s with a third-person singular subject.","slots":{"platform":["one","two","three"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"My nephew ______ (brush) his teeth before {time}.","key":"brushes","why":"Brush takes -es with a third-person singular subject.","slots":{"time":["bedtime","school","breakfast"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The manager ______ (check) the reports every morning.","key":"checks","why":"Check takes -s with a third-person singular subject."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The child ______ (carry) his bag to {place} every day.","key":"carries","why":"Carry changes y to ies with a third-person singular subject.","slots":{"place":["school","the library","his classroom"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"build","format":"gap_fill","instr":"Complete the sentence with the present simple form of the verb in brackets.","source":"The nurse ______ (help) patients at {place}.","key":"helps","why":"Help takes -s with a third-person singular subject.","slots":{"place":["the clinic","the hospital","the health center"]}},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"She watches the news every evening.","hint":"She ______ (watch) the news every evening.","key":"doesn't watch","why":"Use doesn't plus the root verb for a third-person singular negative."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"My brother studies English after dinner.","hint":"My brother ______ (study) English after dinner.","key":"doesn't study","why":"After doesn't, use the root verb study."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"The shop closes at eight o'clock.","hint":"The shop ______ (close) at eight o'clock.","key":"doesn't close","why":"Use doesn't plus the root verb close."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"Aziz has a bicycle.","hint":"Aziz ______ (have) a bicycle.","key":"doesn't have","why":"After doesn't, irregular has returns to the root verb have."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the sentence in the negative using the present simple.","source":"The baby cries at night.","hint":"The baby ______ (cry) at night.","key":"doesn't cry","why":"After doesn't, use the root verb cry."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a yes/no question in the present simple.","source":"She works at a bank.","hint":"______ she ______ (work) at a bank?","key":["Does","work"],"why":"Use Does plus the subject and the root verb for a third-person singular question."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a yes/no question in the present simple.","source":"The teacher teaches mathematics.","hint":"______ the teacher ______ (teach) mathematics?","key":["Does","teach"],"why":"After Does, use the root verb teach."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a yes/no question in the present simple.","source":"My mother drives to work.","hint":"______ your mother ______ (drive) to work?","key":["Does","drive"],"why":"Use Does plus the root verb drive in a present simple question."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a yes/no question in the present simple.","source":"The child plays outside after school.","hint":"______ the child ______ (play) outside after school?","key":["Does","play"],"why":"After Does, use the root verb play."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a yes/no question in the present simple.","source":"Laylo goes to university by bus.","hint":"______ Laylo ______ (go) to university by bus?","key":["Does","go"],"why":"Use Does plus the root verb go in the question."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a wh-question asking where in the present simple.","source":"Kamola works at a hospital.","hint":"Where ______ Kamola ______ (work)?","key":["does","work"],"why":"A wh-question uses does plus the subject and root verb."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a wh-question asking what in the present simple.","source":"My brother watches the news after dinner.","hint":"What ______ your brother ______ (watch) after dinner?","key":["does","watch"],"why":"Use does plus the root verb watch in the wh-question."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a wh-question asking when in the present simple.","source":"The shop opens at nine o'clock.","hint":"When ______ the shop ______ (open)?","key":["does","open"],"why":"Use does plus the root verb open after the question word."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a wh-question asking why in the present simple.","source":"The baby cries because he is tired.","hint":"Why ______ the baby ______ (cry)?","key":["does","cry"],"why":"The wh-question uses does plus the root verb cry."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"transform","format":"rewrite","instr":"Rewrite the statement as a wh-question asking how in the present simple.","source":"My aunt goes to work by train.","hint":"How ______ your aunt ______ (go) to work?","key":["does","go"],"why":"Use does plus the root verb go after the question word."},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a family member's daily routine, using the present simple.","requiredElement":"a third-person singular subject with a correctly formed -s verb","constraints":["exactly one sentence","must be about another person, not yourself"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a friend using a verb ending in consonant plus y.","requiredElement":"a third-person singular subject with a correctly formed -ies verb","constraints":["exactly one sentence","must use a present simple verb ending in -ies","must be about another person"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence describing a person's job or daily work.","requiredElement":"a third-person singular subject with a correctly formed present simple verb","constraints":["exactly one sentence","must include a job or workplace"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about what a person watches, reads, or listens to regularly.","requiredElement":"a third-person singular subject with a correctly formed present simple verb","constraints":["exactly one sentence","must describe a regular habit","must be about another person"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about an animal's regular behavior.","requiredElement":"a singular animal subject with a correctly formed present simple verb","constraints":["exactly one sentence","must describe something the animal regularly does"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a person using the present simple form of have.","requiredElement":"a third-person singular subject with has","constraints":["exactly one sentence","must use has","must be about another person"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about a person going somewhere regularly.","requiredElement":"a third-person singular subject with goes","constraints":["exactly one sentence","must use goes","must include a destination"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"create","format":"constrained_sentence","prompt":"Write one sentence about another person's daily routine using a verb that takes -es.","requiredElement":"a third-person singular subject with a correctly formed -es verb","constraints":["exactly one sentence","must be about another person","must use a present simple verb ending in -es"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"express","format":"free_response","prompt":"Describe what a person in your family does every day. Write three or four sentences.","targetGrammar":"present simple with third-person singular -s","lookFor":["third-person singular subjects","correct -s endings","no bare base forms after he/she/it"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"express","format":"free_response","prompt":"Describe a friend's typical weekday. Write three or four sentences.","targetGrammar":"present simple with third-person singular -s","lookFor":["a consistent third-person singular subject","correct present simple verb endings","correct use of -s, -es, or -ies where needed"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"express","format":"free_response","prompt":"Describe the daily routine of someone you know. Write four sentences.","targetGrammar":"present simple with third-person singular -s","lookFor":["third-person singular subjects","regular actions or routines","correct verb forms","no bare base forms after a third-person singular subject"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"express","format":"free_response","prompt":"Describe what one person does before, during, and after work or school. Write three or four sentences.","targetGrammar":"present simple with third-person singular -s","lookFor":["one clear third-person singular person","correct present simple forms","accurate use of -s endings","logical daily sequence"]},
-{"domain":"tenses","branch":"present","topic":"third-person-s","level":"A2","stage":"express","format":"free_response","prompt":"Choose a person you know and describe three things they regularly do. Write three or four sentences.","targetGrammar":"present simple with third-person singular -s","lookFor":["third-person singular reference","at least three regular actions","correct present simple verb endings","no missing third-person singular endings"]}
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Mariam ______ to work by bus every morning.",
+  "options": [
+   "goes",
+   "go",
+   "going",
+   "gone"
+  ],
+  "key": 0,
+  "why": "Mariam is third-person singular, so the present simple verb takes -es.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My father ______ coffee before work.",
+  "options": [
+   "drink",
+   "drinks",
+   "drinking",
+   "drunk"
+  ],
+  "key": 1,
+  "why": "A third-person singular subject takes the present simple -s form.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The teacher ______ English at our school.",
+  "options": [
+   "teach",
+   "teaching",
+   "teaches",
+   "has teach"
+  ],
+  "key": 2,
+  "why": "Teach takes -es with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My little sister ______ loudly when she is hungry.",
+  "options": [
+   "cry",
+   "crying",
+   "has cry",
+   "cries"
+  ],
+  "key": 3,
+  "why": "A verb ending in consonant plus y changes y to ies with third-person singular.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The shop ______ at nine o'clock every morning.",
+  "options": [
+   "opens",
+   "open",
+   "opening",
+   "has open"
+  ],
+  "key": 0,
+  "why": "The singular subject shop takes opens in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Aziz ______ his grandmother every Sunday.",
+  "options": [
+   "visit",
+   "visits",
+   "visiting",
+   "has visit"
+  ],
+  "key": 1,
+  "why": "Aziz is third-person singular, so visit takes -s.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My mother ______ the news after dinner.",
+  "options": [
+   "watch",
+   "watching",
+   "watches",
+   "has watch"
+  ],
+  "key": 2,
+  "why": "Watch takes -es with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The baby ______ a lot during the day.",
+  "options": [
+   "sleep",
+   "sleeping",
+   "has sleep",
+   "sleeps"
+  ],
+  "key": 3,
+  "why": "The singular subject baby takes sleeps in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Dilshod ______ his homework before dinner.",
+  "options": [
+   "finishes",
+   "finish",
+   "finishing",
+   "has finish"
+  ],
+  "key": 0,
+  "why": "Finish takes -es with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The train ______ at 7:30 every morning.",
+  "options": [
+   "leave",
+   "leaves",
+   "leaving",
+   "has leave"
+  ],
+  "key": 1,
+  "why": "The singular subject train takes leaves in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My cousin ______ tennis on Saturdays.",
+  "options": [
+   "play",
+   "playing",
+   "plays",
+   "has play"
+  ],
+  "key": 2,
+  "why": "A third-person singular subject takes the -s form in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The dog ______ at strangers near the gate.",
+  "options": [
+   "bark",
+   "barking",
+   "has bark",
+   "barks"
+  ],
+  "key": 3,
+  "why": "The singular subject dog takes barks in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "She ______ a new laptop for her work.",
+  "options": [
+   "has",
+   "have",
+   "having",
+   "has have"
+  ],
+  "key": 0,
+  "why": "Has is the irregular present simple form of have for third-person singular subjects.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The student ______ the teacher when he has a question.",
+  "options": [
+   "ask",
+   "asks",
+   "asking",
+   "has ask"
+  ],
+  "key": 1,
+  "why": "The singular subject student takes asks in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My aunt ______ her car to work every day.",
+  "options": [
+   "drive",
+   "driving",
+   "drives",
+   "driven"
+  ],
+  "key": 2,
+  "why": "My aunt is third-person singular, so drive takes -s.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The child ______ his teeth before bed.",
+  "options": [
+   "brush",
+   "brushing",
+   "has brush",
+   "brushes"
+  ],
+  "key": 3,
+  "why": "Brush takes -es with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "Madina ______ French after school.",
+  "options": [
+   "studies",
+   "study",
+   "studying",
+   "has study"
+  ],
+  "key": 0,
+  "why": "Study changes y to ies with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The bus ______ outside the station for ten minutes.",
+  "options": [
+   "wait",
+   "waits",
+   "waiting",
+   "has wait"
+  ],
+  "key": 1,
+  "why": "The singular subject bus takes waits in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "My uncle ______ his keys in the same drawer.",
+  "options": [
+   "keep",
+   "keeping",
+   "keeps",
+   "has keep"
+  ],
+  "key": 2,
+  "why": "My uncle is third-person singular, so keep takes -s.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "choose",
+  "format": "mcq",
+  "prompt": "The receptionist ______ every visitor politely.",
+  "options": [
+   "greet",
+   "greeting",
+   "has greet",
+   "greets"
+  ],
+  "key": 3,
+  "why": "The singular subject receptionist takes greets in the present simple.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My brother ______ (go) to {place} by {transport} every morning.",
+  "key": "goes",
+  "why": "Go takes -es with a third-person singular subject.",
+  "slots": {
+   "place": [
+    "school",
+    "the office",
+    "university"
+   ],
+   "transport": [
+    "bus",
+    "train",
+    "bike"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "Laylo ______ (work) at {place} every weekday.",
+  "key": "works",
+  "why": "Laylo is third-person singular, so work takes -s.",
+  "slots": {
+   "place": [
+    "a bank",
+    "a hospital",
+    "a hotel"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The teacher ______ (teach) {schoolSubject} to our class.",
+  "key": "teaches",
+  "why": "Teach takes -es with a third-person singular subject.",
+  "slots": {
+   "schoolSubject": [
+    "English",
+    "history",
+    "mathematics"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My cousin ______ (study) {schoolSubject} after dinner.",
+  "key": "studies",
+  "why": "Study changes y to ies with a third-person singular subject.",
+  "slots": {
+   "schoolSubject": [
+    "English",
+    "biology",
+    "economics"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "She ______ (watch) {program} every evening.",
+  "key": "watches",
+  "why": "Watch takes -es with a third-person singular subject.",
+  "slots": {
+   "program": [
+    "the news",
+    "a cooking show",
+    "a comedy program"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The baby ______ (cry) when he is tired.",
+  "key": "cries",
+  "why": "Cry changes y to ies with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My father ______ (have) breakfast at {time} every morning.",
+  "key": "has",
+  "why": "Has is the irregular present simple form of have for third-person singular.",
+  "slots": {
+   "time": [
+    "seven o'clock",
+    "half past seven",
+    "eight o'clock"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The shop ______ (close) at {time} on weekdays.",
+  "key": "closes",
+  "why": "Close takes -s with a third-person singular subject.",
+  "slots": {
+   "time": [
+    "six o'clock",
+    "seven o'clock",
+    "eight o'clock"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "Aziza ______ (miss) the bus when she leaves home late.",
+  "key": "misses",
+  "why": "Miss takes -es with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The dog ______ (try) to catch the ball in {place}.",
+  "key": "tries",
+  "why": "Try changes y to ies with a third-person singular subject.",
+  "slots": {
+   "place": [
+    "the garden",
+    "the park",
+    "the yard"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My aunt ______ (drive) to {place} every day.",
+  "key": "drives",
+  "why": "Drive takes -s with a third-person singular subject.",
+  "slots": {
+   "place": [
+    "work",
+    "the office",
+    "the city center"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The student ______ (ask) the teacher {questionTime}.",
+  "key": "asks",
+  "why": "Ask takes -s with a third-person singular subject.",
+  "slots": {
+   "questionTime": [
+    "after class",
+    "during the lesson",
+    "when he needs help"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My grandmother ______ (cook) {meal} on Sundays.",
+  "key": "cooks",
+  "why": "Cook takes -s with a third-person singular subject.",
+  "slots": {
+   "meal": [
+    "lunch",
+    "dinner",
+    "a large family meal"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The receptionist ______ (answer) every phone call politely.",
+  "key": "answers",
+  "why": "Answer takes -s with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "Rustam ______ (wash) his car on {day}.",
+  "key": "washes",
+  "why": "Wash takes -es with a third-person singular subject.",
+  "slots": {
+   "day": [
+    "Saturday",
+    "Sunday",
+    "Friday"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The train ______ (leave) from platform {platform} every morning.",
+  "key": "leaves",
+  "why": "Leave takes -s with a third-person singular subject.",
+  "slots": {
+   "platform": [
+    "one",
+    "two",
+    "three"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "My nephew ______ (brush) his teeth before {time}.",
+  "key": "brushes",
+  "why": "Brush takes -es with a third-person singular subject.",
+  "slots": {
+   "time": [
+    "bedtime",
+    "school",
+    "breakfast"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The manager ______ (check) the reports every morning.",
+  "key": "checks",
+  "why": "Check takes -s with a third-person singular subject.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The child ______ (carry) his bag to {place} every day.",
+  "key": "carries",
+  "why": "Carry changes y to ies with a third-person singular subject.",
+  "slots": {
+   "place": [
+    "school",
+    "the library",
+    "his classroom"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "build",
+  "format": "gap_fill",
+  "instr": "Complete the sentence with the present simple form of the verb in brackets.",
+  "source": "The nurse ______ (help) patients at {place}.",
+  "key": "helps",
+  "why": "Help takes -s with a third-person singular subject.",
+  "slots": {
+   "place": [
+    "the clinic",
+    "the hospital",
+    "the health center"
+   ]
+  },
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "She watches the news every evening.",
+  "hint": "She ______ (watch) the news every evening.",
+  "key": "doesn't watch",
+  "why": "Use doesn't plus the root verb for a third-person singular negative.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "My brother studies English after dinner.",
+  "hint": "My brother ______ (study) English after dinner.",
+  "key": "doesn't study",
+  "why": "After doesn't, use the root verb study.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "The shop closes at eight o'clock.",
+  "hint": "The shop ______ (close) at eight o'clock.",
+  "key": "doesn't close",
+  "why": "Use doesn't plus the root verb close.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "Aziz has a bicycle.",
+  "hint": "Aziz ______ (have) a bicycle.",
+  "key": "doesn't have",
+  "why": "After doesn't, irregular has returns to the root verb have.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the sentence in the negative using the present simple.",
+  "source": "The baby cries at night.",
+  "hint": "The baby ______ (cry) at night.",
+  "key": "doesn't cry",
+  "why": "After doesn't, use the root verb cry.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a yes/no question in the present simple.",
+  "source": "She works at a bank.",
+  "hint": "______ she ______ (work) at a bank?",
+  "key": [
+   "Does",
+   "work"
+  ],
+  "why": "Use Does plus the subject and the root verb for a third-person singular question.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a yes/no question in the present simple.",
+  "source": "The teacher teaches mathematics.",
+  "hint": "______ the teacher ______ (teach) mathematics?",
+  "key": [
+   "Does",
+   "teach"
+  ],
+  "why": "After Does, use the root verb teach.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a yes/no question in the present simple.",
+  "source": "My mother drives to work.",
+  "hint": "______ your mother ______ (drive) to work?",
+  "key": [
+   "Does",
+   "drive"
+  ],
+  "why": "Use Does plus the root verb drive in a present simple question.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a yes/no question in the present simple.",
+  "source": "The child plays outside after school.",
+  "hint": "______ the child ______ (play) outside after school?",
+  "key": [
+   "Does",
+   "play"
+  ],
+  "why": "After Does, use the root verb play.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a yes/no question in the present simple.",
+  "source": "Laylo goes to university by bus.",
+  "hint": "______ Laylo ______ (go) to university by bus?",
+  "key": [
+   "Does",
+   "go"
+  ],
+  "why": "Use Does plus the root verb go in the question.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a wh-question asking where in the present simple.",
+  "source": "Kamola works at a hospital.",
+  "hint": "Where ______ Kamola ______ (work)?",
+  "key": [
+   "does",
+   "work"
+  ],
+  "why": "A wh-question uses does plus the subject and root verb.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a wh-question asking what in the present simple.",
+  "source": "My brother watches the news after dinner.",
+  "hint": "What ______ your brother ______ (watch) after dinner?",
+  "key": [
+   "does",
+   "watch"
+  ],
+  "why": "Use does plus the root verb watch in the wh-question.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a wh-question asking when in the present simple.",
+  "source": "The shop opens at nine o'clock.",
+  "hint": "When ______ the shop ______ (open)?",
+  "key": [
+   "does",
+   "open"
+  ],
+  "why": "Use does plus the root verb open after the question word.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a wh-question asking why in the present simple.",
+  "source": "The baby cries because he is tired.",
+  "hint": "Why ______ the baby ______ (cry)?",
+  "key": [
+   "does",
+   "cry"
+  ],
+  "why": "The wh-question uses does plus the root verb cry.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "transform",
+  "format": "rewrite",
+  "instr": "Rewrite the statement as a wh-question asking how in the present simple.",
+  "source": "My aunt goes to work by train.",
+  "hint": "How ______ your aunt ______ (go) to work?",
+  "key": [
+   "does",
+   "go"
+  ],
+  "why": "Use does plus the root verb go after the question word.",
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a family member's daily routine, using the present simple.",
+  "requiredElement": "a third-person singular subject with a correctly formed -s verb",
+  "constraints": [
+   "exactly one sentence",
+   "must be about another person, not yourself"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a friend using a verb ending in consonant plus y.",
+  "requiredElement": "a third-person singular subject with a correctly formed -ies verb",
+  "constraints": [
+   "exactly one sentence",
+   "must use a present simple verb ending in -ies",
+   "must be about another person"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence describing a person's job or daily work.",
+  "requiredElement": "a third-person singular subject with a correctly formed present simple verb",
+  "constraints": [
+   "exactly one sentence",
+   "must include a job or workplace"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about what a person watches, reads, or listens to regularly.",
+  "requiredElement": "a third-person singular subject with a correctly formed present simple verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe a regular habit",
+   "must be about another person"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about an animal's regular behavior.",
+  "requiredElement": "a singular animal subject with a correctly formed present simple verb",
+  "constraints": [
+   "exactly one sentence",
+   "must describe something the animal regularly does"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a person using the present simple form of have.",
+  "requiredElement": "a third-person singular subject with has",
+  "constraints": [
+   "exactly one sentence",
+   "must use has",
+   "must be about another person"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about a person going somewhere regularly.",
+  "requiredElement": "a third-person singular subject with goes",
+  "constraints": [
+   "exactly one sentence",
+   "must use goes",
+   "must include a destination"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "create",
+  "format": "constrained_sentence",
+  "prompt": "Write one sentence about another person's daily routine using a verb that takes -es.",
+  "requiredElement": "a third-person singular subject with a correctly formed -es verb",
+  "constraints": [
+   "exactly one sentence",
+   "must be about another person",
+   "must use a present simple verb ending in -es"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what a person in your family does every day. Write three or four sentences.",
+  "targetGrammar": "present simple with third-person singular -s",
+  "lookFor": [
+   "third-person singular subjects",
+   "correct -s endings",
+   "no bare base forms after he/she/it"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe a friend's typical weekday. Write three or four sentences.",
+  "targetGrammar": "present simple with third-person singular -s",
+  "lookFor": [
+   "a consistent third-person singular subject",
+   "correct present simple verb endings",
+   "correct use of -s, -es, or -ies where needed"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe the daily routine of someone you know. Write four sentences.",
+  "targetGrammar": "present simple with third-person singular -s",
+  "lookFor": [
+   "third-person singular subjects",
+   "regular actions or routines",
+   "correct verb forms",
+   "no bare base forms after a third-person singular subject"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Describe what one person does before, during, and after work or school. Write three or four sentences.",
+  "targetGrammar": "present simple with third-person singular -s",
+  "lookFor": [
+   "one clear third-person singular person",
+   "correct present simple forms",
+   "accurate use of -s endings",
+   "logical daily sequence"
+  ],
+  "pv": "2.0"
+ },
+ {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "third-person-s",
+  "level": "A2",
+  "stage": "express",
+  "format": "free_response",
+  "prompt": "Choose a person you know and describe three things they regularly do. Write three or four sentences.",
+  "targetGrammar": "present simple with third-person singular -s",
+  "lookFor": [
+   "third-person singular reference",
+   "at least three regular actions",
+   "correct present simple verb endings",
+   "no missing third-person singular endings"
+  ],
+  "pv": "2.0"
+ }
 ]
