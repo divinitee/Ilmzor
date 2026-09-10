@@ -282,6 +282,12 @@ export default function Register() {
       if (username.trim()) profile.display_name = username.trim();
       if (role === "student" && goals.length > 0) profile.goals = goals;
       if (role === "student" && referralCode.trim()) profile.classroom_code = referralCode.trim().toUpperCase();
+      // Teacher registration doesn't grant a working teacher account by
+      // itself — it files an application. teacher_status starts at "pending"
+      // and only an admin (via /admin) can flip it to "approved", at which
+      // point TeacherDashboard.jsx's access gate lets them in. Deliberately
+      // never touches the platform's own "role" field.
+      if (role === "teacher") profile.teacher_status = "pending";
       if (Object.keys(profile).length > 0) {
         try { await base44.auth.updateMe(profile); }
         catch (profileErr) { console.error("Could not save profile details:", profileErr); }
