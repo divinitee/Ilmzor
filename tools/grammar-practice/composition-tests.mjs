@@ -78,3 +78,15 @@ ok("one topic alone cannot carry an hour of the choose stage", firstRepeat !== n
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
+
+console.log("=== one variant per item within a round ===");
+{
+  const r = composeRound({ items: bank, stage: "build", size: 10, seed: 2024 });
+  const ids = r.items.map((i) => i.id);
+  ok("a 10-question round draws 10 different authored items", new Set(ids).size === ids.length,
+    `${ids.length - new Set(ids).size} duplicated`);
+  const big = composeRound({ items: bank, stage: "express", size: 8, seed: 3 });
+  ok("falls back to repeats only when the item pool is too small", big.items.length === 5);
+  console.log(`\n${pass} passed, ${fail} failed`);
+  process.exit(fail ? 1 : 0);
+}

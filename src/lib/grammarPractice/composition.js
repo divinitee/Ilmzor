@@ -118,7 +118,16 @@ export function composeRound({ items, stage, size = 10, seed = 1, history = {} }
     .filter((p) => history[p.variantId] !== undefined)
     .sort((a, b) => history[a.variantId] - history[b.variantId]);
 
-  const picked = [...unseen, ...seen].slice(0, size);
+  // Prefer one variant per authored item before taking a second from any of
+  // them. Two variants of the same sentence in one round read as a repeat even
+  // though their variantIds differ — "she feels hungry after dinner" followed by
+  // "she feels tired after dinner" is not variety.
+  const spread = (list) => {
+    const used = new Set(); const firstPass = []; const rest = [];
+    for (const p of list) (used.has(p.item.id) ? rest : firstPass).push(p), used.add(p.item.id);
+    return [...firstPass, ...rest];
+  };
+  const picked = [...spread(unseen), ...spread(seen)].slice(0, size);
   return {
     items: picked.map((p) => renderItem(p, rand)),
     variantIds: picked.map((p) => p.variantId),
