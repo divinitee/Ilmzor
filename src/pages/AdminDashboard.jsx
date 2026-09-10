@@ -230,6 +230,14 @@ export default function AdminDashboard() {
             >
               {s.tabSubs} ({subs.length})
             </button>
+            <button
+              onClick={() => setTab("teachers")}
+              className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all select-none ${
+                tab === "teachers" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+              }`}
+            >
+              {s.tabTeachers} ({teacherApplicants.length}){pendingTeacherCount > 0 ? ` · ${pendingTeacherCount} new` : ""}
+            </button>
           </div>
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
