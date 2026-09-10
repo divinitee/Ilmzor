@@ -263,7 +263,7 @@ export default function Home() {
       </div>
 
       {/* Bottom Tab Bar */}
-      <BottomTabBar activeTab={activeTab} onTabChange={navigateTab} />
+      <BottomTabBar activeTab={activeTab} onTabChange={navigateTab} variant={isTeacherAccount ? "teacher" : "student"} />
 
       {/* Unit Drawer */}
       <UnitDrawer
