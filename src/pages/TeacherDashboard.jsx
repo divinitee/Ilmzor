@@ -42,10 +42,18 @@ export default function TeacherDashboard() {
     try {
       const me = await base44.auth.me();
       setUser(me);
-      if (me.role !== "admin") { navigate("/"); return; }
+      // Real (non-admin) teachers only get here once an admin has approved
+      // their application (see User.teacher_status). Admins keep unrestricted
+      // access, same as before. StudentSubscription's RLS now also lets an
+      // approved teacher read/update rows where data.teacher_id === their own
+      // id, so .list() below naturally comes back scoped to just their own
+      // referred students for a non-admin teacher — no separate client-side
+      // filtering needed to keep one teacher from seeing another's.
+      const isApprovedTeacher = me.teacher_status === "approved";
+      if (me.role !== "admin" && !isApprovedTeacher) { navigate("/"); return; }
       const [subs, res, refs] = await Promise.all([
         base44.entities.StudentSubscription.list("-created_date", 100),
-        base44.entities.QuizResult.list("-created_date", 100),
+        base44.entities.QuizResult.list("-created_date", 100).catch(() => []),
         base44.entities.TeacherReferral.filter({ teacher_id: me.id }, "-created_date"),
       ]);
       setSubscriptions(subs);
