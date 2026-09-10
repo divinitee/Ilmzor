@@ -145,6 +145,15 @@ export default function Home() {
   if (needsSetup) return <Navigate to="/onboarding" replace />;
 
   const isAdmin = user?.role === "admin";
+  // A real (non-admin) teacher whose application is approved gets the same
+  // teacher-panel home screen as an admin. Pending/rejected teachers get
+  // their own status screen instead of the paying-student dashboard —
+  // showing them StudentDashboard's trial/paywall flow would be wrong, they
+  // never signed up to be a student. See User.teacher_status.
+  const isApprovedTeacher = user?.teacher_status === "approved";
+  const isPendingTeacher = user?.teacher_status === "pending";
+  const isRejectedTeacher = user?.teacher_status === "rejected";
+  const showTeacherPanelLink = isAdmin || isApprovedTeacher;
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
