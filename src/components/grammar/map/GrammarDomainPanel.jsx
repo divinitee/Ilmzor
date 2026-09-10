@@ -11,7 +11,7 @@ const ICON = { [DOMAIN_STATE.FOCUS]: Crosshair, [DOMAIN_STATE.STRONG]: TrendingU
 // every branch on the node map would turn the screen into a sitemap. Tapping
 // a branch still opens the "In development" notice: there is no practice
 // content or per-branch progress yet, and the panel says so plainly.
-export default function GrammarDomainPanel({ domain, r, onBranch, onClose, c }) {
+export default function GrammarDomainPanel({ domain, r, onBranch, onClose, c, hasPractice }) {
   const state = domainState(r);
   const tone = STATE_TONE[state];
   const Icon = ICON[state];
@@ -45,12 +45,19 @@ export default function GrammarDomainPanel({ domain, r, onBranch, onClose, c }) 
         {c("home_topics")} · {domain.branches.length}
       </p>
       <div className="flex flex-wrap gap-1.5">
-        {domain.branches.map((b) => (
-          <button key={b} type="button" onClick={() => onBranch(domain)}
-            className="neo-pill px-3 py-1.5 text-xs font-medium text-foreground/85 hover:bg-white/10 transition-colors select-none">
-            {b.replace(/-/g, " ")}
-          </button>
-        ))}
+        {domain.branches.map((b) => {
+          // A branch with authored practice is a live target; the rest still
+          // open the "coming soon" note, so the map never promises a dead end.
+          const live = hasPractice?.(domain.id, b);
+          return (
+            <button key={b} type="button" onClick={() => onBranch(domain, b)}
+              className="neo-pill px-3 py-1.5 text-xs font-medium transition-colors select-none hover:bg-white/10"
+              style={live ? { color: GRAMMAR_ACCENT, borderColor: `${GRAMMAR_ACCENT}55` } : undefined}>
+              {live && <Play className="w-3 h-3 mr-1 inline-block align-[-1px]" />}
+              {b.replace(/-/g, " ")}
+            </button>
+          );
+        })}
       </div>
 
       <p className="flex items-start gap-1.5 text-[11px] text-muted-foreground/80 mt-4 leading-snug">
