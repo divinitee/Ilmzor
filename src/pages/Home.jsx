@@ -154,6 +154,12 @@ export default function Home() {
   const isPendingTeacher = user?.teacher_status === "pending";
   const isRejectedTeacher = user?.teacher_status === "rejected";
   const showTeacherPanelLink = isAdmin || isApprovedTeacher;
+  // Any teacher-track account (approved, pending, or rejected) is kept off
+  // the student-facing Skill Hub / AI Teacher tabs entirely — approved
+  // teachers get their own AI Co-Plan inside /teacher instead, and
+  // pending/rejected teachers shouldn't get free student features just for
+  // having applied. Admins are exempt (they're testing the student side).
+  const isTeacherAccount = (isPendingTeacher || isRejectedTeacher || isApprovedTeacher) && !isAdmin;
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
