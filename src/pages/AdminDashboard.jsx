@@ -290,6 +290,77 @@ export default function AdminDashboard() {
               </div>
             )}
 
+            {/* Teacher applications table */}
+            {tab === "teachers" && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-muted/50 text-muted-foreground">
+                    <tr>
+                      <th className="text-left font-medium px-4 py-3">{s.name}</th>
+                      <th className="text-left font-medium px-4 py-3 hidden sm:table-cell">{s.email}</th>
+                      <th className="text-left font-medium px-4 py-3">{s.teacherStatus}</th>
+                      <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.teacherCommissionRate}</th>
+                      <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.teacherAccrued}</th>
+                      <th className="text-left font-medium px-4 py-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredTeachers.length === 0 && (
+                      <tr><td colSpan={6} className="text-center text-muted-foreground py-10">{s.noTeacherApps}</td></tr>
+                    )}
+                    {filteredTeachers.map((u) => {
+                      const statusLabelFor = {
+                        pending: s.teacherStatusPending,
+                        approved: s.teacherStatusApproved,
+                        rejected: s.teacherStatusRejected,
+                      }[u.teacher_status] || u.teacher_status;
+                      const statusClass = {
+                        pending: "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400",
+                        approved: "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400",
+                        rejected: "bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400",
+                      }[u.teacher_status] || "";
+                      return (
+                        <tr key={u.id} className="border-t border-border hover:bg-muted/30">
+                          <td className="px-4 py-3 font-medium text-foreground">{resolveUserName(u) || "—"}</td>
+                          <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{u.email || "—"}</td>
+                          <td className="px-4 py-3"><Badge className={statusClass}>{statusLabelFor}</Badge></td>
+                          <td className="px-4 py-3 hidden md:table-cell">
+                            <input
+                              type="number" step="0.5" min="0" max="100"
+                              defaultValue={u.teacher_commission_rate_pct ?? ""}
+                              onBlur={(e) => handleSetCommissionRate(u, e.target.value)}
+                              className="w-20 h-8 px-2 border border-input rounded-lg text-sm bg-background text-foreground"
+                            />
+                          </td>
+                          <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
+                            ${(u.teacher_commission_accrued_usd || 0).toFixed(2)}
+                          </td>
+                          <td className="px-4 py-3">
+                            {u.teacher_status === "pending" && (
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => handleApproveTeacher(u)}
+                                  className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 border border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 rounded-lg px-2.5 py-1 select-none"
+                                >
+                                  {s.teacherApprove}
+                                </button>
+                                <button
+                                  onClick={() => handleRejectTeacher(u)}
+                                  className="text-xs font-semibold text-destructive hover:text-destructive border border-destructive/30 hover:bg-destructive/10 rounded-lg px-2.5 py-1 select-none"
+                                >
+                                  {s.teacherReject}
+                                </button>
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
             {/* Subscriptions table */}
             {tab === "subs" && (
               <div className="overflow-x-auto">
