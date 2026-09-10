@@ -28,6 +28,52 @@
       "type": "string",
       "maxLength": 1000,
       "description": "Optional additional description"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "CEFR level this group is taught at, e.g. 'B2'. A referral code doubles as a teaching group once this is set."
+    },
+    "days": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thu",
+          "Fri",
+          "Sat",
+          "Sun"
+        ]
+      },
+      "description": "Weekdays this group meets, e.g. [\"Tue\", \"Thu\", \"Sat\"] for a T/T/S schedule"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Class start time, 24h HH:MM, e.g. '09:00'"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "Optional class end time, 24h HH:MM"
+    },
+    "group_status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "paused",
+        "ended"
+      ],
+      "default": "running",
+      "description": "Whether this group is currently meeting. The referral code keeps working while running; paused/ended groups are kept for history and hidden from the active roster view by default."
     }
   },
   "required": [
