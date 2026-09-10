@@ -27,7 +27,7 @@ const STR = {
   },
   en: {
     title: "Admin Panel", sub: "Manage users and subscriptions",
-    tabUsers: "Users", tabSubs: "Subscriptions",
+    tabUsers: "Users", tabSubs: "Subscriptions", tabTeachers: "Teacher applications",
     search: "Search...", totalUsers: "Total users",
     totalSubs: "Total subscriptions", activeSubs: "Active subscriptions", pendingSubs: "Pending",
     name: "Name", email: "Email", role: "Role", joined: "Joined",
@@ -36,6 +36,11 @@ const STR = {
     teacher: "Teacher", phone: "Phone", noData: "No data",
     monthly: "Monthly", yearly: "Yearly", active: "Active", pending: "Pending", inactive: "Inactive",
     accessDenied: "Access denied", deniedDesc: "This page is for admins only",
+    teacherStatus: "Status", teacherApprove: "Approve", teacherReject: "Reject",
+    teacherCommissionRate: "Commission %", teacherAccrued: "Accrued (USD)",
+    teacherStatusNone: "Not a teacher", teacherStatusPending: "Pending review",
+    teacherStatusApproved: "Approved", teacherStatusRejected: "Rejected",
+    noTeacherApps: "No teacher applications yet",
   },
   ru: {
     title: "Админ Панель", sub: "Управление пользователями и подписками",
