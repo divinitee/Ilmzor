@@ -120,6 +120,11 @@ const COPY = {
     fin_again: "Practise again",
     fin_done: "Done",
     fin_new_questions: "New sentences every round",
+    fin_correct: "Correct",
+    fin_not_quite: "Not quite \u2014 it\u2019s",
+    fin_check: "Check",
+    fin_finish: "Finish",
+    run_exit_short: "Exit",
 
     // ---- grammar home: node map states (all derived from placement) ----
     home_here: "You are here",
@@ -249,6 +254,11 @@ const COPY = {
     fin_again: "Yana mashq qilish",
     fin_done: "Tayyor",
     fin_new_questions: "Har turda yangi gaplar",
+    fin_correct: "To\u2018g\u2018ri",
+    fin_not_quite: "Unchalik emas \u2014 to\u2018g\u2018risi:",
+    fin_check: "Tekshirish",
+    fin_finish: "Yakunlash",
+    run_exit_short: "Chiqish",
 
     home_here: "Siz shu yerdasiz",
     home_placed_above: "Bundan yuqorida",
@@ -377,6 +387,11 @@ const COPY = {
     fin_again: "Ещё раз",
     fin_done: "Готово",
     fin_new_questions: "Каждый раунд \u2014 новые предложения",
+    fin_correct: "Верно",
+    fin_not_quite: "Не совсем \u2014 правильно:",
+    fin_check: "Проверить",
+    fin_finish: "Завершить",
+    run_exit_short: "Выйти",
 
     home_here: "Вы здесь",
     home_placed_above: "Уровень выше",

@@ -190,6 +190,7 @@ export default function Grammar() {
                 items={items}
                 stage={stageId}
                 topicKey={topicKey(domainId, branchId, topicId)}
+                c={c}
                 onExit={() => setStageId(null)}
                 onAgain={() => setRunKey((k) => k + 1)}
               />
