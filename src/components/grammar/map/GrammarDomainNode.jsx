@@ -9,8 +9,8 @@ const ICON = { [DOMAIN_STATE.FOCUS]: Crosshair, [DOMAIN_STATE.STRONG]: TrendingU
 
 // A domain is the leaf of the map. It carries the placement verdict (focus /
 // strong / not assessed), the placed level, and where that level sits against
-// the tier being viewed. Selecting it opens the branch panel under the stage.
-export default function GrammarDomainNode({ node, active, selected, onClick, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd, c }) {
+// the tier being viewed. Selecting it dives into the domain's branches.
+export default function GrammarDomainNode({ node, active, selected, hidden, onClick, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd, c }) {
   const tone = STATE_TONE[node.state];
   const Icon = ICON[node.state];
   const rel = node.relative === RELATIVE.ABOVE ? c("home_rel_above")
@@ -22,7 +22,7 @@ export default function GrammarDomainNode({ node, active, selected, onClick, hot
         <motion.button
           onClick={onClick} onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
-          animate={active ? { scale: selected ? 1.06 : 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
+          animate={active ? { scale: selected ? 1.06 : 1, opacity: hidden ? 0 : 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? delay + 0.1 + node._i * 0.06 : 0, duration: 0.7, ease: EASE }}
           whileHover={{ scale: 1.04, transition: { duration: 0.4, ease: EASE } }} whileTap={{ scale: 0.95 }}
           className="group relative min-w-[100px] max-w-[132px]"
