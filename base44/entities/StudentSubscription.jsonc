@@ -102,6 +102,18 @@
           "user_condition": {
             "role": "admin"
           }
+        },
+        {
+          "$and": [
+            {
+              "data.teacher_id": "{{user.id}}"
+            },
+            {
+              "user_condition": {
+                "teacher_status": "approved"
+              }
+            }
+          ]
         }
       ]
     },
@@ -117,6 +129,18 @@
           "user_condition": {
             "role": "admin"
           }
+        },
+        {
+          "$and": [
+            {
+              "data.teacher_id": "{{user.id}}"
+            },
+            {
+              "user_condition": {
+                "teacher_status": "approved"
+              }
+            }
+          ]
         }
       ]
     },
