@@ -5,24 +5,44 @@ import { pos } from "@/lib/skillTreeData";
 import { EASE, RM, Lines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
 import { GRAMMAR_NAV } from "@/lib/grammarTiers";
 import { TIER_STATE, tierState, clusterSummary, recommendedClusterId, domainState, domainRelative } from "@/lib/grammarMapState";
+import { PRACTICE_MANIFEST, topicsInBranch } from "@/lib/grammarPractice/manifest";
+import { PRACTICE_STAGES } from "@/lib/grammarPractice/stages";
 import { TIER_META, TIER_POS, GRAMMAR_GLOW } from "./tierMeta";
 import TierPath from "./TierPath";
 import GrammarTierNode from "./GrammarTierNode";
 import GrammarClusterNode from "./GrammarClusterNode";
 import GrammarDomainNode from "./GrammarDomainNode";
+import GrammarTopicNode from "./GrammarTopicNode";
+import GrammarStageNode from "./GrammarStageNode";
 
 // The Grammar node map — same stage mechanics as Vocabulary's SkillStage
 // (layer bloom/recede, hub card-turn, forward/back dive), walking the
 // pre-computed GRAMMAR_NAV tree instead of SKILL_CHILDREN:
 //   layer 0  tiers as zones on an ascending path
 //   layer 1  a tier's clusters around the hub
-//   layer 2  a cluster's domains around the hub (leaf; selects, no dive)
-// The parent owns tierId / clusterId / selectedDomainId; this component owns
-// only the transient hover + dive animation state.
+//   layer 2  a cluster's domains around the hub
+//   layer 3  a branch's practice topics
+//   layer 4  a topic's five practice stages (leaf; selecting one starts a round)
+// Layers 3-4 exist so practice is reached the same way everything else is —
+// by diving one more step into the same map — rather than by leaving it for a
+// list screen. Their content comes from the auto-generated practice manifest,
+// so a branch with nothing authored can never produce an empty layer.
+//
+// The parent owns tierId / clusterId / selectedDomainId / branchId / topicId;
+// this component owns only the transient hover + dive animation state.
 // backRef: the page's header Back pill calls through this so it gets the same
 // reverse-dive as the hub, and the stage needs no pill of its own (which
 // collided with the top node on narrow screens).
-export default function GrammarStage({ result, byId, tierId, clusterId, selectedDomainId, onSelectTier, onSelectCluster, onSelectDomain, onBack, backRef, c }) {
+// branchRef: the branch panel sits BELOW the stage and has no node of its own,
+// so it calls through this to dive from the domain node it belongs to.
+
+const pretty = (s) => String(s || "").replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+export default function GrammarStage({
+  result, byId, tierId, clusterId, selectedDomainId, branchId, topicId,
+  onSelectTier, onSelectCluster, onSelectDomain, onSelectBranch, onSelectTopic, onSelectStage,
+  onBack, backRef, branchRef, c,
+}) {
   const [hovered, setHovered] = useState(null);
   const [dive, setDive] = useState(null);
   const [divingId, setDivingId] = useState(null);
@@ -43,8 +63,35 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
     const r = byId[d.id];
     return { ...d, ...pos(i, arr.length, 36, 34), _i: i, state: domainState(r), relative: domainRelative(r, tier), level: r?.level || null };
   }), [cluster, byId, tier]);
+  const domain = domains.find((d) => d.id === selectedDomainId) || null;
 
-  const level = clusterId ? 2 : tierId ? 1 : 0;
+  // Layer 3 — the topics a branch has practice content for.
+  const topics = useMemo(() => {
+    if (!selectedDomainId || !branchId) return [];
+    const rows = topicsInBranch(selectedDomainId, branchId);
+    return rows.map((m, i, arr) => ({
+      id: m.topic, name: pretty(m.topic), questions: m.authored,
+      ...pos(i, arr.length, 36, 34), _i: i,
+    }));
+  }, [selectedDomainId, branchId]);
+  const topic = topics.find((t) => t.id === topicId) || null;
+
+  // Layer 4 — the five-stage ladder for one topic. Sizes come from the
+  // manifest, so no bank has to be loaded to draw the nodes.
+  const stages = useMemo(() => {
+    if (!topicId) return [];
+    const m = PRACTICE_MANIFEST[`${selectedDomainId}.${branchId}.${topicId}`];
+    return PRACTICE_STAGES.map((s, i, arr) => {
+      const n = m?.stages?.[s.id] || 0;
+      return {
+        ...s, ...pos(i, arr.length, 38, 36), _i: i,
+        locked: Boolean(s.ai) || !n,
+        sub: s.ai ? c("practice_stage_ai") : n ? c("practice_stage_count", { n }) : c("practice_stage_empty"),
+      };
+    });
+  }, [topicId, selectedDomainId, branchId, c]);
+
+  const level = topicId ? 4 : branchId ? 3 : clusterId ? 2 : tierId ? 1 : 0;
   const glow = tier?.glow || GRAMMAR_GLOW;
   const accent = tier?.accent || "#3E9E92";
   const diveDelay = dive ? 0.55 : 0;
@@ -63,14 +110,26 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
 
   const handleBack = () => {
     if (dive || backDive) return;
-    if (level === 2 && cluster) triggerBackDive(cluster, glow, onBack);
+    if (level === 4 && topic) triggerBackDive(topic, glow, onBack);
+    else if (level === 3 && domain) triggerBackDive({ ...domain, name: pretty(branchId) }, glow, onBack);
+    else if (level === 2 && cluster) triggerBackDive(cluster, glow, onBack);
     else if (level === 1 && tier) triggerBackDive(tier, tier.glow, onBack);
     else onBack();
   };
   useEffect(() => { if (backRef) backRef.current = handleBack; });
 
+  // The branch pill lives in the panel under the stage; dive from its domain.
+  useEffect(() => {
+    if (!branchRef) return;
+    branchRef.current = (b) => {
+      if (dive || backDive) return;
+      if (domain) triggerDive({ ...domain, name: pretty(b) }, glow, () => onSelectBranch(b));
+      else onSelectBranch(b);
+    };
+  });
+
   const HubIcon = level === 1 ? tier?.icon || Layers : Layers;
-  const hubLabel = level === 2 ? cluster?.name : tier?.name;
+  const hubLabel = level === 4 ? topic?.name : level === 3 ? pretty(branchId) : level === 2 ? cluster?.name : tier?.name;
   const hubHidden = level === 0 || !!(dive || backDive);
 
   return (
@@ -126,7 +185,7 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
         ))}
       </NodeGroup>
 
-      {/* ---------- Layer 2: domains (leaf — selects, opens the branch panel) ---------- */}
+      {/* ---------- Layer 2: domains (selects, opens the branch panel) ---------- */}
       <NodeGroup active={level === 2} delay={diveDelay}>
         <Lines nodes={domains} color={accent} hovered={hovered?.group === "domain" ? hovered.key : null} filterId="grDmPulse" />
         {domains.map((d) => (
@@ -135,6 +194,30 @@ export default function GrammarStage({ result, byId, tierId, clusterId, selected
             hot={hovered?.group === "domain" && hovered.key === d.id}
             dim={hovered?.group === "domain" && hovered.key !== d.id}
             onHoverStart={() => setHovered({ group: "domain", key: d.id })} onHoverEnd={() => setHovered(null)} />
+        ))}
+      </NodeGroup>
+
+      {/* ---------- Layer 3: practice topics in the chosen branch ---------- */}
+      <NodeGroup active={level === 3} delay={diveDelay}>
+        <Lines nodes={topics} color={accent} hovered={hovered?.group === "topic" ? hovered.key : null} filterId="grTpPulse" />
+        {topics.map((t) => (
+          <GrammarTopicNode key={t.id} node={t} active={level === 3} glow={glow} accent={accent} delay={diveDelay} c={c}
+            onClick={() => triggerDive(t, glow, () => onSelectTopic(t.id))}
+            hot={hovered?.group === "topic" && hovered.key === t.id}
+            dim={hovered?.group === "topic" && hovered.key !== t.id}
+            onHoverStart={() => setHovered({ group: "topic", key: t.id })} onHoverEnd={() => setHovered(null)} />
+        ))}
+      </NodeGroup>
+
+      {/* ---------- Layer 4: the five-stage ladder (leaf — starts a round) ---------- */}
+      <NodeGroup active={level === 4} delay={diveDelay}>
+        <Lines nodes={stages} color={accent} hovered={hovered?.group === "stage" ? hovered.key : null} filterId="grStPulse" />
+        {stages.map((s) => (
+          <GrammarStageNode key={s.id} node={s} active={level === 4} glow={glow} accent={accent} delay={diveDelay} c={c}
+            onClick={() => triggerDive(s, glow, () => onSelectStage(s.id))}
+            hot={hovered?.group === "stage" && hovered.key === s.id}
+            dim={hovered?.group === "stage" && hovered.key !== s.id}
+            onHoverStart={() => setHovered({ group: "stage", key: s.id })} onHoverEnd={() => setHovered(null)} />
         ))}
       </NodeGroup>
 
