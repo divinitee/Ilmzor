@@ -2,14 +2,18 @@ import React from "react";
 import { Home, Settings, Sparkles, Network } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 
-export default function BottomTabBar({ activeTab, onTabChange }) {
+export default function BottomTabBar({ activeTab, onTabChange, variant = "student" }) {
   const { t } = useAppLang();
-  const tabs = [
+  const allTabs = [
     { id: "home", label: t("nav.home"), icon: Home },
     { id: "skillhub", label: t("nav.skill_hub"), icon: Network },
     { id: "tutor", label: t("nav.ai_teacher"), icon: Sparkles },
     { id: "settings", label: t("nav.settings"), icon: Settings },
   ];
+  // Teacher / pending-teacher / rejected-teacher accounts don't get the
+  // student-facing Skill Hub or AI Teacher tabs here — their own dashboard
+  // has its own AI Co-Plan tab instead. See Home.jsx's isTeacherAccount gate.
+  const tabs = variant === "teacher" ? allTabs.filter((tb) => tb.id === "home" || tb.id === "settings") : allTabs;
 
   return (
     <nav
