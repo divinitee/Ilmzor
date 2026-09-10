@@ -164,6 +164,11 @@ export default function AdminDashboard() {
   const filteredUsers = users.filter((u) =>
     !query || `${resolveUserName(u)} ${u.full_name || ""} ${u.email || ""}`.toLowerCase().includes(query.toLowerCase())
   );
+  const teacherApplicants = users.filter((u) => u.teacher_status && u.teacher_status !== "none");
+  const pendingTeacherCount = teacherApplicants.filter((u) => u.teacher_status === "pending").length;
+  const filteredTeachers = teacherApplicants.filter((u) =>
+    !query || `${resolveUserName(u)} ${u.full_name || ""} ${u.email || ""}`.toLowerCase().includes(query.toLowerCase())
+  );
   const filteredSubs = subs.filter((x) =>
     !query || `${x.student_name || ""} ${x.phone || ""} ${x.plan || ""} ${x.teacher_name || ""}`.toLowerCase().includes(query.toLowerCase())
   );
