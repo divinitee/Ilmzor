@@ -76,8 +76,6 @@ while (draws < 240) {
 console.log(`   240 draws at the choose stage -> first repeat at draw ${firstRepeat}`);
 ok("one topic alone cannot carry an hour of the choose stage", firstRepeat !== null && firstRepeat <= sizes.choose + 1);
 
-console.log(`\n${pass} passed, ${fail} failed`);
-process.exit(fail ? 1 : 0);
 
 console.log("=== one variant per item within a round ===");
 {
