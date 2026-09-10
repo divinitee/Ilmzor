@@ -175,7 +175,11 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
-            {isAdmin ? t("home.teacher_badge") : t("home.student_badge")}
+            {showTeacherPanelLink
+              ? t("home.teacher_badge")
+              : (isPendingTeacher || isRejectedTeacher)
+                ? t("home.teacher_pending_badge")
+                : t("home.student_badge")}
           </span>
           <button onClick={handleLogout} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
             <LogOut className="w-4 h-4" />
