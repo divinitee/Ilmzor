@@ -33,7 +33,7 @@ function accepted(key) {
 // that a later version had already fixed — and both times it cost a full
 // regeneration to discover. The stamp turns that into a one-line check here.
 // It is a provenance marker, not content, so it is stripped before the bank.
-const MIN_PV = "2.4";
+const MIN_PV = "2.5";
 const versions = [...new Set(raw.map((it) => it.pv || "(unstamped)"))];
 if (!LEGACY && (versions.length !== 1 || versions[0] < MIN_PV)) {
   console.error(`REFUSED — prompt version: found ${versions.join(", ")}, expected ${MIN_PV}`);
