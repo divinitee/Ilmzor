@@ -83,6 +83,7 @@ const AuthenticatedApp = () => {
         <Route path="/assessor-lab" element={<AssessorLab />} />
         <Route path="/placement-test" element={<PlacementTest />} />
         <Route path="/grammar" element={<Grammar />} />
+          <Route path="/grammar/practice" element={<GrammarPractice />} />
         <Route path="/grammar/assessment" element={<GrammarAssessment />} />
         <Route path="/admin-wipe-users" element={<AdminWipeUsers />} />
         <Route path="/onboarding" element={<Onboarding />} />
