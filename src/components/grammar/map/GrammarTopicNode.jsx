@@ -6,14 +6,14 @@ import { EASE, RM } from "@/components/skillhub/StagePrimitives";
 // A topic inside a branch. Same node grammar as the domain layer — orbit
 // position, drift, arrival glow — so diving from a branch into its topics reads
 // as one more step down the same map rather than a jump to a different screen.
-export default function GrammarTopicNode({ node, active, onClick, hot, dim, glow, accent, delay = 0, onHoverStart, onHoverEnd, c }) {
+export default function GrammarTopicNode({ node, active, onClick, hidden, hot, dim, glow, accent, delay = 0, onHoverStart, onHoverEnd, c }) {
   return (
     <div className={`absolute z-10 hub-node ${dim ? "dim" : ""}`} style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className={RM ? "" : "hub-drift"} style={{ animationDelay: `${node._i * 0.6}s` }}>
         <motion.button
           onClick={onClick} onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
-          animate={active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
+          animate={active ? { scale: 1, opacity: hidden ? 0 : 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? delay + 0.1 + node._i * 0.06 : 0, duration: 0.7, ease: EASE }}
           whileHover={{ scale: 1.04, transition: { duration: 0.4, ease: EASE } }} whileTap={{ scale: 0.95 }}
           className="group relative min-w-[104px] max-w-[140px]"

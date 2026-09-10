@@ -6,7 +6,7 @@ import { EASE, RM } from "@/components/skillhub/StagePrimitives";
 // One practice stage of the five-step ladder. Locked stages still render as
 // nodes rather than vanishing — a student should be able to see the whole
 // ladder ahead of them, not discover it exists later.
-export default function GrammarStageNode({ node, active, onClick, hot, dim, glow, accent, delay = 0, onHoverStart, onHoverEnd }) {
+export default function GrammarStageNode({ node, active, onClick, hidden, hot, dim, glow, accent, delay = 0, onHoverStart, onHoverEnd }) {
   const Icon = node.locked ? Lock : node.icon;
   const tone = node.locked ? "#8b95a3" : accent;
   return (
@@ -16,7 +16,7 @@ export default function GrammarStageNode({ node, active, onClick, hot, dim, glow
           onClick={node.locked ? undefined : onClick} disabled={node.locked}
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
           initial={{ scale: 0, opacity: 0, z: -220 }}
-          animate={active ? { scale: 1, opacity: node.locked ? 0.55 : 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
+          animate={active ? { scale: 1, opacity: hidden ? 0 : node.locked ? 0.55 : 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={{ delay: active ? delay + 0.1 + node._i * 0.06 : 0, duration: 0.7, ease: EASE }}
           whileHover={node.locked ? undefined : { scale: 1.04, transition: { duration: 0.4, ease: EASE } }}
           whileTap={node.locked ? undefined : { scale: 0.95 }}

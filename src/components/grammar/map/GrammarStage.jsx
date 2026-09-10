@@ -201,7 +201,7 @@ export default function GrammarStage({
       <NodeGroup active={level === 3} delay={diveDelay}>
         <Lines nodes={topics} color={accent} hovered={hovered?.group === "topic" ? hovered.key : null} filterId="grTpPulse" />
         {topics.map((t) => (
-          <GrammarTopicNode key={t.id} node={t} active={level === 3} glow={glow} accent={accent} delay={diveDelay} c={c}
+          <GrammarTopicNode key={t.id} node={t} active={level === 3} hidden={divingId === t.id} glow={glow} accent={accent} delay={diveDelay} c={c}
             onClick={() => triggerDive(t, glow, () => onSelectTopic(t.id))}
             hot={hovered?.group === "topic" && hovered.key === t.id}
             dim={hovered?.group === "topic" && hovered.key !== t.id}
@@ -213,7 +213,7 @@ export default function GrammarStage({
       <NodeGroup active={level === 4} delay={diveDelay}>
         <Lines nodes={stages} color={accent} hovered={hovered?.group === "stage" ? hovered.key : null} filterId="grStPulse" />
         {stages.map((s) => (
-          <GrammarStageNode key={s.id} node={s} active={level === 4} glow={glow} accent={accent} delay={diveDelay} c={c}
+          <GrammarStageNode key={s.id} node={s} active={level === 4} hidden={divingId === s.id} glow={glow} accent={accent} delay={diveDelay} c={c}
             onClick={() => triggerDive(s, glow, () => onSelectStage(s.id))}
             hot={hovered?.group === "stage" && hovered.key === s.id}
             dim={hovered?.group === "stage" && hovered.key !== s.id}
