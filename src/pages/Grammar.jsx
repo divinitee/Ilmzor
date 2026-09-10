@@ -141,7 +141,12 @@ export default function Grammar() {
           <AnimatePresence mode="wait">
             {domain && (
               <GrammarDomainPanel key={domain.id} domain={domain} r={byId[domain.id]} c={c}
-                onBranch={(d) => setSoon(d.name)} onClose={() => setDomainId(null)} />
+                onBranch={(d, b) =>
+                  practiceBranches.has(`${d.id}.${b}`)
+                    ? navigate(`/grammar/practice?domain=${d.id}&branch=${b}`)
+                    : setSoon(d.name)
+                }
+                hasPractice={(dom, br) => practiceBranches.has(`${dom}.${br}`)} onClose={() => setDomainId(null)} />
             )}
           </AnimatePresence>
         </div>

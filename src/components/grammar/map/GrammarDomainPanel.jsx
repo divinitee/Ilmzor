@@ -1,15 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Crosshair, TrendingUp, ClipboardList, X, Info } from "lucide-react";
+import { Crosshair, TrendingUp, ClipboardList, X, Info, Play } from "lucide-react";
 import { EASE } from "@/components/skillhub/StagePrimitives";
 import { DOMAIN_STATE, domainState } from "@/lib/grammarMapState";
-import { STATE_TONE } from "./tierMeta";
+import { STATE_TONE, GRAMMAR_ACCENT } from "./tierMeta";
 
 const ICON = { [DOMAIN_STATE.FOCUS]: Crosshair, [DOMAIN_STATE.STRONG]: TrendingUp, [DOMAIN_STATE.UNKNOWN]: ClipboardList };
 
 // Branch layer. Branches stay a compact pill list under the map — putting
 // every branch on the node map would turn the screen into a sitemap. Tapping
-// a branch still opens the "In development" notice: there is no practice
+// a branch with authored practice starts a round; the rest still open the
+// "In development" notice, so the map never promises a dead end. There is no
 // content or per-branch progress yet, and the panel says so plainly.
 export default function GrammarDomainPanel({ domain, r, onBranch, onClose, c, hasPractice }) {
   const state = domainState(r);
