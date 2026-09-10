@@ -68,6 +68,15 @@
       "type": "string",
       "maxLength": 1000,
       "description": "Optional additional description"
+    },
+    "roster_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "removed"
+      ],
+      "default": "active",
+      "description": "Whether this student still appears on their teacher's group roster. Deliberately separate from `status` (payment/access) \u2014 a teacher removing a student here never touches the student's own app access or subscription; it only hides them from that teacher's roster view once they've stopped attending live lessons. Set manually by the teacher, or auto-flagged in the UI (not this field) from SkillHubProgress staleness."
     }
   },
   "required": [
