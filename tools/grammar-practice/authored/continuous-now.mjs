@@ -112,7 +112,7 @@ const BUILD = [
   ["The baby", "sg", "cry", "is crying", "The baby ______ (cry) {manner} in the {room} at the moment.",
     { manner: ["loudly", "quietly", "again", "a lot"], room: ["bedroom", "car", "hall", "garden"] }],
   ["The students", "pl", "write", "are writing", "Right now the students ______ (write) a {task} in their {object}.",
-    { task: ["test", "essay", "letter", "list"], object: ["notebooks", "books", "copybooks", "notes"] }],
+    { task: ["test", "summary", "letter", "list"], object: ["notebooks", "books", "copybooks", "notes"] }],
   ["Rustam", "sg", "run", "is running", "Look! Rustam ______ (run) towards the {place} with his {person}.",
     { place: ["park", "school", "station", "house"], person: ["brother", "friend", "dog", "cousin"] }],
   ["We", "pl", "watch", "are watching", "At the moment we ______ (watch) a {program} on the {device}.",

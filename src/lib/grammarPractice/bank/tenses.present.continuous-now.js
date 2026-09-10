@@ -1088,7 +1088,7 @@ export default [
   "slots": {
    "task": [
     "test",
-    "essay",
+    "summary",
     "letter",
     "list"
    ],
