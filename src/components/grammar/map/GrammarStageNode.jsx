@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
+import { MAX_DEMAND } from "@/lib/grammarPractice/stages";
 import { EASE, RM } from "@/components/skillhub/StagePrimitives";
 
 // One practice stage of the five-step ladder. Locked stages still render as
@@ -34,6 +35,15 @@ export default function GrammarStageNode({ node, active, onClick, hidden, hot, d
               <Icon className="w-3.5 h-3.5" style={{ color: tone }} />
             </span>
             <span className="block text-[11px] font-bold text-foreground leading-tight">{node.name}</span>
+            {/* How much the stage asks of the student — a filled ramp, not a
+                label, so the ladder reads at a glance without adding words. */}
+            <span className="flex items-end justify-center gap-[2px] h-[9px] mt-1" aria-label={`difficulty ${node.demand} of ${MAX_DEMAND}`}>
+              {Array.from({ length: MAX_DEMAND }, (_, i) => (
+                <span key={i} className="w-[3px] rounded-[1px]"
+                  style={{ height: `${3 + i * 1.5}px`, background: i < node.demand ? tone : "currentColor",
+                           opacity: i < node.demand ? 0.85 : 0.18 }} />
+              ))}
+            </span>
             <span className="block text-[8px] text-muted-foreground/65 mt-1 leading-tight px-0.5">{node.sub}</span>
           </span>
         </motion.button>

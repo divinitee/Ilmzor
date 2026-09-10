@@ -86,7 +86,7 @@ export default function GrammarStage({
     if (!domainId || !branchId) return [];
     const rows = topicsInBranch(domainId, branchId);
     return rows.map((m, i, arr) => ({
-      id: m.topic, name: pretty(m.topic), questions: m.authored,
+      id: m.topic, name: pretty(m.topic), questions: m.authored, level: m.level,
       ...pos(i, arr.length, 36, 34), _i: i,
     }));
   }, [domainId, branchId]);

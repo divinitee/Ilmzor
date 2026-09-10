@@ -25,6 +25,12 @@ export default function GrammarTopicNode({ node, active, onClick, hidden, hot, d
             style={{ "--arrival-color": accent }}>
             <Play className="w-3.5 h-3.5 mx-auto mb-1" style={{ color: accent }} />
             <span className="block text-[11px] font-bold text-foreground leading-tight">{node.name}</span>
+            {node.level && (
+              <span className="mt-1 inline-block text-[8px] font-bold px-1.5 py-0.5 rounded-full border leading-none"
+                style={{ color: accent, borderColor: `${accent}55`, background: `${accent}1f` }}>
+                {node.level}
+              </span>
+            )}
             <span className="block text-[8px] text-muted-foreground/60 mt-1 leading-tight">{c("practice_exercises", { n: node.questions })}</span>
           </span>
         </motion.button>
