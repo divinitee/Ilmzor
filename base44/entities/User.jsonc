@@ -58,6 +58,46 @@
       "type": "number",
       "default": 0,
       "description": "Silent-calibration counter: consecutive rounds scored well below the current band. Counterpart to cal_up."
+    },
+    "teacher_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "none",
+      "description": "Whether this account is a teacher, and where in the approval flow. Set to 'pending' when someone registers choosing the Teacher role on Register.jsx. Only an admin flips it to 'approved' (via /admin) or 'rejected'. Deliberately separate from the platform's own 'role' field (admin|user, used by Base44's RLS engine) \u2014 teacher-ness is an app concept, not a platform permission, so it never touches 'role'. TeacherDashboard.jsx's access gate checks role === 'admin' OR teacher_status === 'approved'."
+    },
+    "teacher_status_note": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Optional admin note on a teacher application, e.g. a reason for rejection. Shown back to the applicant."
+    },
+    "teacher_commission_rate_pct": {
+      "type": "number",
+      "description": "Commission rate (percent of what their referred students pay) once approved. Set per-teacher by an admin \u2014 no platform-wide default, since Founder-era rates may vary teacher to teacher."
+    },
+    "teacher_commission_accrued_usd": {
+      "type": "number",
+      "default": 0,
+      "description": "Running total commission owed to this teacher, in USD. Lives on the teacher's own User row rather than per-TeacherReferral code, because payout happens per teacher, not per code, and a teacher can hold several codes (one per group/class). Incremented when a referred student's payment succeeds \u2014 wiring lands with the Stripe webhook, not yet implemented."
+    },
+    "teacher_payout_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "requested",
+        "paid"
+      ],
+      "default": "none",
+      "description": "Manual payout tracking for MVP \u2014 no automated payout rail yet. An admin marks this 'paid' by hand once a payout is sent, which should also reset teacher_commission_accrued_usd."
+    },
+    "teacher_last_payout_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the most recent commission payout, set by hand by an admin."
     }
   },
   "required": [
