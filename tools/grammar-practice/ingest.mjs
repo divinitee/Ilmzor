@@ -26,14 +26,47 @@ function accepted(key) {
   return alts.size ? [...alts] : null;
 }
 
+// Prompt-version stamp. Every generated item carries "pv" naming the version of
+// the generation prompt that produced it. Batches have twice been generated from
+// a stale copy of the prompt pasted out of chat history, reintroducing defects
+// that a later version had already fixed — and both times it cost a full
+// regeneration to discover. The stamp turns that into a one-line check here.
+// It is a provenance marker, not content, so it is stripped before the bank.
+const MIN_PV = "2.4";
+const versions = [...new Set(raw.map((it) => it.pv || "(unstamped)"))];
+if (versions.length !== 1 || versions[0] < MIN_PV) {
+  console.error(`REFUSED — prompt version: found ${versions.join(", ")}, expected ${MIN_PV}`);
+  console.error(`  An unstamped or older batch was generated from a stale prompt.`);
+  console.error(`  Regenerate with the current 1-PASTE-<topic>-v${MIN_PV}.txt file.`);
+  process.exit(1);
+}
+console.log(`prompt version ${versions[0]} — ok`);
+
 const seq = {};
 const items = raw.map((it) => {
   const k = `${it.stage}`;
   seq[k] = (seq[k] || 0) + 1;
   const id = `gpr.${it.domain}.${it.branch}.${it.topic}.${it.stage}.${String(seq[k]).padStart(3, "0")}`;
   const alt = accepted(it.key);
-  return { id, ...it, ...(alt ? { acceptable: alt } : {}) };
+  const { pv, ...rest } = it;
+  return { id, ...rest, ...(alt ? { acceptable: alt } : {}) };
 });
+
+// Variance floor — the reason slots exist. A stage below this repeats too soon.
+const FLOOR = 200;
+const pools = {};
+for (const it of items) {
+  if (["choose", "build", "transform"].includes(it.stage)) {
+    pools[it.stage] = (pools[it.stage] || 0) + variantCount(it);
+  }
+}
+const thin = Object.entries(pools).filter(([, n]) => n < FLOOR);
+if (thin.length) {
+  console.error(`REFUSED — variance floor is ${FLOOR} surface variants per stage:`);
+  thin.forEach(([s, n]) => console.error(`  ${s}: ${n}`));
+  console.error(`  Most items need two slots of four fillers. Regenerate.`);
+  process.exit(1);
+}
 
 const problems = validateBank(items);
 if (problems.length) {
