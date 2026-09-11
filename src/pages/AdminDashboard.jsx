@@ -363,11 +363,12 @@ export default function AdminDashboard() {
                       <th className="text-left font-medium px-4 py-3 hidden sm:table-cell">{s.email}</th>
                       <th className="text-left font-medium px-4 py-3">{s.role}</th>
                       <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.joined}</th>
+                      <th className="text-left font-medium px-4 py-3">Data</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredUsers.length === 0 && (
-                      <tr><td colSpan={4} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
+                      <tr><td colSpan={5} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
                     )}
                     {filteredUsers.map((u) => (
                       <tr key={u.id} className="border-t border-border hover:bg-muted/30">
@@ -376,6 +377,18 @@ export default function AdminDashboard() {
                         <td className="px-4 py-3">{roleBadge(u)}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
                           {u.created_date ? new Date(u.created_date).toLocaleDateString() : "—"}
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex flex-wrap gap-1.5">
+                            <button onClick={() => openWipe(u, "reset")}
+                              className={`${actionBtn} text-amber-600 border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-500/10`}>
+                              Reset
+                            </button>
+                            <button onClick={() => openWipe(u, "delete")}
+                              className={`${actionBtn} text-destructive border-destructive/30 hover:bg-destructive/10`}>
+                              Delete
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -609,6 +622,117 @@ export default function AdminDashboard() {
             >
               Never mind
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Per-user wipe. Reset keeps the login so you can re-register on the
+          same email; Delete removes the account too. Both sweep all 13
+          user-data entities — see lib/userWipe.js. */}
+      {wipeTarget && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-xl max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle className="w-5 h-5 text-destructive" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-foreground">
+                  {wipeTarget.mode === "delete" ? "Delete account" : "Reset user data"}
+                </h3>
+                <p className="text-xs text-muted-foreground truncate">
+                  {resolveUserName(wipeTarget.user) || wipeTarget.user.email}
+                </p>
+              </div>
+            </div>
+
+            {wipeTarget.blocked ? (
+              <>
+                <p className="text-sm text-muted-foreground mb-5">{wipeTarget.blocked}</p>
+                <button onClick={closeWipe}
+                  className="w-full h-11 rounded-xl border border-border text-sm font-semibold text-foreground select-none hover:bg-muted/50">
+                  Close
+                </button>
+              </>
+            ) : wipeResult ? (
+              <>
+                <p className="text-sm text-foreground mb-2">
+                  Deleted{" "}
+                  <span className="font-bold">
+                    {wipeResult.results.reduce((a, r) => a + r.deleted, 0)}
+                  </span>{" "}
+                  rows across {wipeResult.results.length} entities.
+                </p>
+                {wipeTarget.mode === "delete" && (
+                  <p className={`text-sm mb-2 ${wipeResult.accountDeleted ? "text-emerald-600" : "text-amber-600"}`}>
+                    {wipeResult.accountDeleted
+                      ? "Account removed."
+                      : `Data is gone, but the account itself could not be deleted${wipeResult.accountError ? ` (${wipeResult.accountError})` : ""}. Remove it from Base44's own Users tab.`}
+                  </p>
+                )}
+                {wipeTarget.mode === "reset" && (
+                  <p className={`text-sm mb-2 ${wipeResult.profileError ? "text-amber-600" : "text-emerald-600"}`}>
+                    {wipeResult.profileError
+                      ? `Data wiped, but the profile fields didn't clear (${wipeResult.profileError}).`
+                      : "Profile cleared — this email can register from scratch now."}
+                  </p>
+                )}
+                <div className="text-[11px] font-mono text-muted-foreground space-y-0.5 mt-3 max-h-40 overflow-y-auto">
+                  {wipeResult.results.filter((r) => r.deleted || r.failed).map((r) => (
+                    <div key={r.name} className={r.failed ? "text-amber-600" : ""}>
+                      {r.name}: {r.deleted} deleted{r.failed ? `, ${r.failed} failed` : ""}
+                    </div>
+                  ))}
+                </div>
+                <button onClick={closeWipe}
+                  className="w-full h-11 mt-4 rounded-xl bg-primary text-primary-foreground text-sm font-semibold select-none hover:bg-primary/90">
+                  Done
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {wipeTarget.mode === "delete"
+                    ? `Permanently deletes every row belonging to ${wipeTarget.user.email} across ${USER_DATA_ENTITIES.length} entities, then removes the account. No undo.`
+                    : `Deletes every row belonging to ${wipeTarget.user.email} across ${USER_DATA_ENTITIES.length} entities and clears their profile (level, goals, class code, teacher status). The login survives, so this email can register again from scratch. No undo.`}
+                </p>
+
+                {wipeTarget.mode === "delete" && (
+                  <>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      Type <span className="font-mono font-bold text-foreground">{wipeTarget.user.email}</span> to confirm.
+                    </p>
+                    <input
+                      value={wipeConfirm}
+                      onChange={(e) => setWipeConfirm(e.target.value)}
+                      placeholder={wipeTarget.user.email}
+                      disabled={wipeRunning}
+                      className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none mb-4"
+                    />
+                  </>
+                )}
+
+                {wipeRunning && wipeLog.length > 0 && (
+                  <div className="text-[11px] font-mono text-muted-foreground space-y-0.5 mb-3 max-h-32 overflow-y-auto">
+                    {wipeLog.map((r) => (
+                      <div key={r.name}>{r.name}: {r.deleted} deleted{r.failed ? `, ${r.failed} failed` : ""}</div>
+                    ))}
+                  </div>
+                )}
+
+                <button
+                  onClick={runWipe}
+                  disabled={wipeRunning || (wipeTarget.mode === "delete" && wipeConfirm !== wipeTarget.user.email)}
+                  className="w-full h-11 rounded-xl bg-destructive text-white text-sm font-semibold select-none disabled:opacity-40 hover:bg-destructive/90 flex items-center justify-center gap-2"
+                >
+                  {wipeRunning ? <><Loader2 className="w-4 h-4 animate-spin" /> Wiping…</> : wipeTarget.mode === "delete" ? "Delete permanently" : "Reset this user"}
+                </button>
+                <button onClick={closeWipe} disabled={wipeRunning}
+                  className="w-full mt-2 text-sm text-muted-foreground hover:text-foreground select-none py-2 disabled:opacity-40">
+                  Never mind
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
