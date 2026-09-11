@@ -296,6 +296,8 @@ export const translations = {
       billing_monthly: "Oylik", billing_yearly: "Yillik",
       billing_save: "{pct}% chegirma", per_month: "so'm / oy", per_year: "so'm / yil",
       continue_btn: "— Davom etish", payment_note: "To'lovni bank kartasi yoki QR orqali amalga oshirasiz",
+      card_btn: "Karta bilan to'lash", card_loading: "To'lov sahifasi ochilmoqda...",
+      card_error: "To'lov sahifasini ochib bo'lmadi. Qayta urinib ko'ring yoki quyidagi usuldan foydalaning.",
     },
     studytips: {
       title: "O'rganish maslahatlari", intro: "So'z boyligingizni samaraliroq oshirish uchun ushbu isbotlangan usullardan foydalaning:",
@@ -645,6 +647,8 @@ export const translations = {
       billing_monthly: "Monthly", billing_yearly: "Yearly",
       billing_save: "{pct}% off", per_month: "so'm / mo", per_year: "so'm / yr",
       continue_btn: "— Continue", payment_note: "Pay by bank card or QR code",
+      card_btn: "Pay by card", card_loading: "Opening checkout...",
+      card_error: "Couldn't open checkout. Try again, or use the option below.",
     },
     studytips: {
       title: "Study tips", intro: "Use these proven methods to grow your vocabulary more effectively:",
@@ -994,6 +998,8 @@ export const translations = {
       billing_monthly: "Ежемесячно", billing_yearly: "Ежегодно",
       billing_save: "{pct}% скидка", per_month: "сум / мес", per_year: "сум / год",
       continue_btn: "— Продолжить", payment_note: "Оплата банковской картой или QR-кодом",
+      card_btn: "Оплатить картой", card_loading: "Открываем оплату...",
+      card_error: "Не удалось открыть страницу оплаты. Попробуйте снова или воспользуйтесь вариантом ниже.",
     },
     studytips: {
       title: "Советы по обучению", intro: "Используйте эти проверенные методы, чтобы эффективнее расширять словарный запас:",
