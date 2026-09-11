@@ -13,9 +13,12 @@
       "enum": [
         "inactive",
         "pending",
-        "active"
+        "active",
+        "paused",
+        "cancelled"
       ],
-      "default": "inactive"
+      "default": "inactive",
+      "description": "inactive = lapsed or never started \u00b7 pending = payment submitted, awaiting approval \u00b7 active = has access \u00b7 paused = admin-suspended, resumable (remaining days held in paused_days_remaining) \u00b7 cancelled = admin-ended deliberately, kept distinct from `inactive` so a cancellation can be told apart from a sub that simply lapsed. Only `active` grants app access \u2014 every gate in the app checks for it explicitly, so any other value fails closed."
     },
     "payment_ref": {
       "type": "string"
@@ -68,6 +71,25 @@
       "type": "string",
       "maxLength": 1000,
       "description": "Optional additional description"
+    },
+    "paused_at": {
+      "type": "string",
+      "format": "date",
+      "description": "When an admin paused this subscription. Cleared on resume."
+    },
+    "paused_days_remaining": {
+      "type": "number",
+      "description": "Days of paid access left at the moment of pausing. Resuming sets expires_at to today + this many days, so a student who paused with 20 days left gets 20 days back rather than losing them to the calendar. Null/0 for a subscription with no expiry (e.g. the permanent free plan)."
+    },
+    "cancelled_at": {
+      "type": "string",
+      "format": "date",
+      "description": "When an admin cancelled this subscription."
+    },
+    "admin_note": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Free-text admin note on the last pause/cancel/reactivate action \u2014 why it happened, for later reconciliation against Stripe or a refund dispute."
     },
     "roster_status": {
       "type": "string",
