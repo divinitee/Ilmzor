@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Lightbulb, Repeat, Layers, BookOpenCheck, MessageSquareText, Clock } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
+import BetaBadge from "@/components/BetaBadge";
 
 const tipIcons = [Repeat, Layers, MessageSquareText, BookOpenCheck, Clock];
 
@@ -18,6 +19,7 @@ export default function StudyTips() {
         <div className="flex items-center gap-2 select-none">
           <Lightbulb className="w-5 h-5 text-amber-500" />
           <span className="font-bold text-foreground">{t("studytips.title")}</span>
+          <BetaBadge />
         </div>
       </header>
 

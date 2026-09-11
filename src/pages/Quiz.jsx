@@ -127,6 +127,7 @@ export default function Quiz() {
           </button>
           <BookOpen className="w-5 h-5 text-primary select-none" />
           <span className="font-bold text-foreground">{t("quiz.result_header")}</span>
+          <BetaBadge />
         </header>
         <div className="flex-1 flex items-center justify-center px-4">
           <div className="bg-background rounded-2xl shadow-sm border border-border p-8 max-w-md w-full text-center">
@@ -161,6 +162,7 @@ export default function Quiz() {
           </button>
           <BookOpen className="w-4 h-4 text-primary select-none" />
           <span className="font-bold text-foreground text-sm">{unitName}</span>
+          <BetaBadge className="ml-1" />
         </div>
         <span className="text-sm font-medium text-muted-foreground select-none">
           {currentIndex + 1} / {words.length}

@@ -5,6 +5,8 @@ import { ArrowLeft, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
+import BetaBadge from "@/components/BetaBadge";
+import FounderPriceNote from "@/components/FounderPriceNote";
 
 export default function Plans() {
   const { t } = useAppLang();
@@ -18,6 +20,7 @@ export default function Plans() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <span className="font-bold text-foreground select-none">{t("plans.title")}</span>
+        <BetaBadge />
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-8">
@@ -78,6 +81,7 @@ export default function Plans() {
                     <p className="text-xl font-bold text-foreground">
                       {formatPrice(price)} <span className="text-sm font-normal text-muted-foreground">{period}</span>
                     </p>
+                    <FounderPriceNote className="mt-1" />
                     {isYearly && (
                       <p className="text-[11px] text-rose-600 dark:text-rose-400 font-semibold mt-0.5">
                         {t("pricing.billing_save", { pct: 25 })}

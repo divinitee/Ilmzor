@@ -48,6 +48,7 @@ export default function Settings() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <span className="font-bold text-foreground select-none">{t("settings.title")}</span>
+        <BetaBadge />
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-8 space-y-4">

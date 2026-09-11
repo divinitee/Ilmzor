@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, TrendingUp, Trophy, Target } from "lucide-react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { useAppLang } from "@/hooks/useAppLang";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function MyProgress() {
   const { t } = useAppLang();
@@ -34,6 +35,7 @@ export default function MyProgress() {
         <div className="flex items-center gap-2 select-none">
           <TrendingUp className="w-5 h-5 text-primary" />
           <span className="font-bold text-foreground">{t("myprogress.title")}</span>
+          <BetaBadge />
         </div>
       </header>
 

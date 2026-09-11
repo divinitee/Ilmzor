@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function Leaderboard() {
   const { t } = useAppLang();
@@ -30,6 +31,7 @@ export default function Leaderboard() {
         <div className="flex items-center gap-2 select-none">
           <Trophy className="w-5 h-5 text-amber-500" />
           <span className="font-bold text-foreground">{t("leaderboard.title")}</span>
+          <BetaBadge />
         </div>
       </header>
 

@@ -278,6 +278,10 @@ export const translations = {
       },
     },
     pricing: {
+      beta_badge: "BETA",
+      founder_label: "Founder narxi",
+      founder_info: "VIRORA beta bosqichida. Bu — erta kirish narxi va yangi imkoniyatlar qo'shilgani sari narx oshib boradi.",
+      beta_notice: "VIRORA faol ishlab chiqilmoqda. Yangi imkoniyatlar qo'shilmoqda, ba'zi bo'limlar hali tayyor emas.",
       submitted_title: "To'lov yuborildi!",
       submitted_desc: "Tranzaksiya ID'ingiz qabul qilindi. O'qituvchi tasdiqlagan so'ng platformaga to'liq kirish ochiladi.",
       submitted_wait: "⏳ Odatda 1–24 soat ichida tasdiqlanadi",
@@ -629,6 +633,10 @@ export const translations = {
       },
     },
     pricing: {
+      beta_badge: "BETA",
+      founder_label: "Founder price",
+      founder_info: "VIRORA is in beta. This is an early-access price and it will increase as we add features.",
+      beta_notice: "VIRORA is in active development. New features are being added, and some sections are still marked coming soon.",
       submitted_title: "Payment sent!",
       submitted_desc: "Your transaction ID has been received. Full access will open once the teacher confirms it.",
       submitted_wait: "⏳ Usually confirmed within 1–24 hours",
@@ -980,6 +988,10 @@ export const translations = {
       },
     },
     pricing: {
+      beta_badge: "BETA",
+      founder_label: "Цена основателя",
+      founder_info: "VIRORA в бета-версии. Это цена раннего доступа, она будет расти по мере добавления новых функций.",
+      beta_notice: "VIRORA активно разрабатывается. Мы добавляем новые функции, некоторые разделы пока в разработке.",
       submitted_title: "Платёж отправлен!",
       submitted_desc: "ID вашей транзакции получен. Полный доступ откроется после подтверждения учителем.",
       submitted_wait: "⏳ Обычно подтверждается в течение 1–24 часов",

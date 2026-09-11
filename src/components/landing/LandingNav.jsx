@@ -4,6 +4,7 @@ import { BookOpen, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import LanguageMenu from "@/components/landing/LanguageMenu";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function LandingNav({ dark, setDark }) {
   const { t } = useAppLang();
@@ -30,6 +31,7 @@ export default function LandingNav({ dark, setDark }) {
             <BookOpen className="w-5 h-5 text-white" />
           </div>
           <span className="font-bold text-lg text-slate-900 landing-dark:text-slate-50 tracking-[0.14em]">VIRORA</span>
+          <BetaBadge />
         </Link>
 
         <nav className="hidden sm:flex items-center gap-7 text-sm font-medium text-slate-600 landing-dark:text-slate-300">

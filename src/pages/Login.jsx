@@ -8,6 +8,7 @@ import { GraduationCap, BookOpen, Mail, Lock, Loader2 } from "lucide-react";
 import GoogleIcon from "@/components/GoogleIcon";
 import { useAppLang } from "@/hooks/useAppLang";
 import { safeReturnTo } from "@/lib/authReturnTo";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function Login() {
   const { t } = useAppLang();
@@ -43,7 +44,10 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground tracking-[0.18em]">VIRORA</h1>
+          <div className="flex items-center justify-center gap-2">
+            <h1 className="text-2xl font-bold text-foreground tracking-[0.18em]">VIRORA</h1>
+            <BetaBadge />
+          </div>
           <p className="text-sm text-muted-foreground mt-1">{t("login.subtitle")}</p>
         </div>
 

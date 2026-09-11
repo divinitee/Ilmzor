@@ -178,6 +178,7 @@ export default function Home() {
             <BookOpen className="w-4 h-4 text-fuchsia-300" />
             <span className="font-bold text-foreground tracking-tight text-[13px]">{t("home.app_name")}</span>
           </button>
+          <BetaBadge />
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">

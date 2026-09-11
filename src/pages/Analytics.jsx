@@ -179,6 +179,7 @@ Highlight strengths, weakest skill to focus on, and 2 concrete next steps.`;
         <div className="flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-purple-300" />
           <span className="font-bold text-foreground text-sm">Premium Analytics</span>
+          <BetaBadge />
         </div>
       </header>
 

@@ -284,7 +284,10 @@ export default function AdminDashboard() {
             <Shield className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h1 className="font-bold text-foreground leading-tight">{s.title}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="font-bold text-foreground leading-tight">{s.title}</h1>
+              <BetaBadge />
+            </div>
             <p className="text-xs text-muted-foreground leading-tight">{s.sub}</p>
           </div>
         </div>

@@ -286,6 +286,7 @@ export default function TeacherDashboard() {
           </button>
           <BookOpen className="w-5 h-5 text-primary select-none" />
           <span className="font-bold text-foreground">Teacher Panel</span>
+          <BetaBadge className="ml-1" />
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">Teacher</span>
