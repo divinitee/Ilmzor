@@ -1,4 +1,4 @@
-// i18n dictionaries for VocabularyMaster
+// i18n dictionaries for VIRORA
 // Default language: uz (Uzbek)
 
 export const APP_LANGS = [
