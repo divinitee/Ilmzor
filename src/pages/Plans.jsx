@@ -7,6 +7,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 import BetaBadge from "@/components/BetaBadge";
 import FounderPriceNote from "@/components/FounderPriceNote";
+import FounderCountdown from "@/components/FounderCountdown";
 
 export default function Plans() {
   const { t } = useAppLang();
@@ -52,6 +53,8 @@ export default function Plans() {
           </button>
         </div>
 
+        <FounderCountdown className="mb-6" />
+
         <div className="space-y-4">
           {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
@@ -81,7 +84,7 @@ export default function Plans() {
                     <p className="text-xl font-bold text-foreground">
                       {formatPrice(price)} <span className="text-sm font-normal text-muted-foreground">{period}</span>
                     </p>
-                    <FounderPriceNote className="mt-1" />
+                    <FounderPriceNote className="mt-1" planId={p.id} cycle={cycle} />
                     {isYearly && (
                       <p className="text-[11px] text-rose-600 dark:text-rose-400 font-semibold mt-0.5">
                         {t("pricing.billing_save", { pct: 25 })}
