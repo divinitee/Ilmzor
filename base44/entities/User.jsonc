@@ -99,6 +99,34 @@
       "format": "date",
       "description": "Date of the most recent commission payout, set by hand by an admin."
     },
+    "teaching_center": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "The school or learning centre this teacher is associated with, typed free-form at registration. Optional \u2014 blank means they teach privately. Shown to an admin when reviewing their teacher application."
+    },
+    "teacher_phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Teacher's contact phone number, collected at registration. Used to reach them about their application and commission payouts. Deliberately separate from StudentSubscription.phone, which despite its name actually stores an email address."
+    },
+    "heard_about_us": {
+      "type": "string",
+      "enum": [
+        "instagram",
+        "telegram",
+        "youtube",
+        "friend",
+        "teacher",
+        "search",
+        "other"
+      ],
+      "description": "Acquisition channel, asked of both students and teachers at registration. A fixed option list rather than free text so it stays countable \u2014 the free-text follow-up lives in heard_about_us_detail."
+    },
+    "heard_about_us_detail": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Free-text follow-up captured only when heard_about_us is 'other'."
+    },
     "admin_pin_hash": {
       "type": "string",
       "maxLength": 128,
