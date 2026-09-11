@@ -72,8 +72,11 @@ export default function AppLoader() {
         </motion.p>
       </div>
 
+      {/* Was "VocabularyMaster · A2 · B1 · B2" — the pre-rebrand name, still
+          shown on every app load. The level range was stale too: the ladder
+          in lib/levels.js runs Starter through C1, not just A2–B2. */}
       <p className="absolute bottom-6 text-[11px] text-muted-foreground/70">
-        VocabularyMaster · A2 · B1 · B2
+        VIRORA · Starter – C1
       </p>
     </div>
   );
