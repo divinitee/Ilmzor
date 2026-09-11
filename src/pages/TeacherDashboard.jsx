@@ -43,6 +43,22 @@ function greetingWord() {
   return "Good evening";
 }
 
+// StudentSubscription.status only has 3 values (inactive/pending/active) and
+// "active" alone doesn't mean "paid" — the self-serve onboarding trial
+// (chooseFreePlan() in lib/subscription.js) sets status:"active" the instant
+// someone taps "Start Free", with no teacher/admin step at all, and a lapsed
+// trial quietly rolls onto a permanent free plan that's also status:"active".
+// Both used to render as "✅ Paid" here, which is exactly what looked like an
+// approval nobody performed. Only a real Learner/VIP plan that isn't a trial
+// actually came from someone paying (or a teacher/admin approving a payment).
+function subscriptionKind(sub) {
+  if (sub.status === "pending") return "pending";
+  if (sub.status !== "active") return "unpaid";
+  if (sub.is_trial) return "trial";
+  if (!sub.plan || /free/i.test(sub.plan)) return "free";
+  return "paid";
+}
+
 // "active" = played within the window · "new" = never played yet but joined
 // recently (not flagged) · "inactive" = the thing the teacher actually needs
 // to see — stopped showing up in Skill Hub for 14+ days, or joined 14+ days
