@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { motion, AnimatePresence } from "framer-motion";
-import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe, Briefcase, Award, Plane, Film, MessageCircle, Target, Gauge } from "lucide-react";
+import { GraduationCap, BookOpen, Mail, Lock, Loader2, Hash, User, ArrowRight, ArrowLeft, Check, Globe, Briefcase, Award, Plane, Film, MessageCircle, Target, Gauge, Building2, Phone, Megaphone } from "lucide-react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import GoogleIcon from "@/components/GoogleIcon";
 import { toast } from "@/components/ui/use-toast";
@@ -49,6 +49,14 @@ const STR = {
     registerFail: "Ro'yxatdan o'tish muvaffaqiyatsiz", otpFail: "Tasdiqlash kodi noto'g'ri", resendFail: "Kodni qayta yuborib bo'lmadi",
     sessionFail: "Email tasdiqlandi, lekin tizimga kira olmadik. Iltimos, kirish sahifasidan foydalaning.",
     goals: { work: "Ish", ielts: "IELTS", travel: "Sayohat", university: "Universitet", movies: "Kino", daily: "Kundalik suhbat" },
+    teacherInfoTitle: "O'qituvchilik ma'lumotlari", teacherInfoSub: "Arizangizni ko'rib chiqishga yordam beradi",
+    centerLabel: "O'quv markazi", centerPh: "Masalan: Cambridge o'quv markazi",
+    centerHint: "Siz dars beradigan maktab yoki markaz — repetitor bo'lsangiz, bo'sh qoldiring",
+    phoneLabel: "Telefon raqam", phonePh: "+998 90 123 45 67",
+    phoneHint: "Ariza va to'lovlar bo'yicha siz bilan shu raqam orqali bog'lanamiz",
+    heardTitle: "Biz haqimizda qayerdan bilib qoldingiz?", heardSub: "Bu bizga nima ishlayotganini tushunishga yordam beradi",
+    heardOther: "Batafsil yozing", heardOtherPh: "Bizni qayerdan topdingiz?",
+    heard: { instagram: "Instagram", telegram: "Telegram", youtube: "YouTube", friend: "Do'st yoki oila", teacher: "O'qituvchim", search: "Google qidiruv", other: "Boshqa" },
   },
   en: {
     langTitle: "Choose your language", langSub: "Pick your app language — you can change it later",
@@ -83,6 +91,14 @@ const STR = {
     registerFail: "Registration failed", otpFail: "Invalid verification code", resendFail: "Couldn't resend code",
     sessionFail: "Your email is verified, but we couldn't sign you in. Please log in.",
     goals: { work: "Work", ielts: "IELTS", travel: "Travel", university: "University", movies: "Movies", daily: "Daily conversation" },
+    teacherInfoTitle: "About your teaching", teacherInfoSub: "Helps us review your application",
+    centerLabel: "Teaching center", centerPh: "e.g. Cambridge Learning Centre",
+    centerHint: "The school or centre you teach at — leave blank if you teach privately",
+    phoneLabel: "Contact phone", phonePh: "+998 90 123 45 67",
+    phoneHint: "How we reach you about your application and commission payouts",
+    heardTitle: "How did you hear about us?", heardSub: "Helps us understand what's working",
+    heardOther: "Tell us more", heardOtherPh: "Where did you find us?",
+    heard: { instagram: "Instagram", telegram: "Telegram", youtube: "YouTube", friend: "Friend or family", teacher: "My teacher", search: "Google search", other: "Other" },
   },
   ru: {
     langTitle: "Выберите язык", langSub: "Выберите язык приложения — потом можно изменить",
@@ -117,6 +133,14 @@ const STR = {
     registerFail: "Регистрация не удалась", otpFail: "Неверный код подтверждения", resendFail: "Не удалось отправить код снова",
     sessionFail: "Email подтверждён, но войти не получилось. Пожалуйста, войдите в аккаунт.",
     goals: { work: "Работа", ielts: "IELTS", travel: "Путешествия", university: "Университет", movies: "Кино", daily: "Повседневное общение" },
+    teacherInfoTitle: "О вашем преподавании", teacherInfoSub: "Поможет нам рассмотреть вашу заявку",
+    centerLabel: "Учебный центр", centerPh: "Напр. Учебный центр Cambridge",
+    centerHint: "Школа или центр, где вы преподаёте — оставьте пустым, если частно",
+    phoneLabel: "Контактный телефон", phonePh: "+998 90 123 45 67",
+    phoneHint: "По этому номеру свяжемся по заявке и выплатам",
+    heardTitle: "Откуда вы о нас узнали?", heardSub: "Помогает понять, что работает",
+    heardOther: "Расскажите подробнее", heardOtherPh: "Где вы нас нашли?",
+    heard: { instagram: "Instagram", telegram: "Telegram", youtube: "YouTube", friend: "Друг или семья", teacher: "Мой учитель", search: "Поиск Google", other: "Другое" },
   },
 };
 
@@ -128,6 +152,11 @@ const GOAL_OPTIONS = [
   { key: "movies", icon: Film },
   { key: "daily", icon: MessageCircle },
 ];
+
+// Fixed list so the answer stays countable in the admin panel; "other"
+// opens a free-text follow-up. Ordered roughly by how people actually find
+// things locally — Telegram and Instagram dominate here.
+const HEARD_OPTIONS = ["instagram", "telegram", "youtube", "friend", "teacher", "search", "other"];
 
 const ease = [0.22, 1, 0.36, 1];
 const variants = {
