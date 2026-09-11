@@ -210,15 +210,22 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
   const [referralCode, setReferralCode] = useState("");
+  const [teachingCenter, setTeachingCenter] = useState("");
+  const [teacherPhone, setTeacherPhone] = useState("");
+  const [heardAbout, setHeardAbout] = useState("");
+  const [heardDetail, setHeardDetail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [otpCode, setOtpCode] = useState("");
 
   // Step sequence — students get "goals" and "level" after role selection.
-  // Teachers get neither: they aren't the ones being levelled.
+  // Teachers get neither: they aren't the ones being levelled. Teachers do
+  // get "teacherinfo" (centre + contact phone), which an admin needs when
+  // reviewing their application. "heard" is asked of both and is the last
+  // step before OTP, so account creation fires from there.
   const STEPS = role === "student"
-    ? ["lang", "role", "goals", "level", "name", "creds", "code", "otp"]
-    : ["lang", "role", "name", "creds", "code", "otp"];
+    ? ["lang", "role", "goals", "level", "name", "creds", "code", "heard", "otp"]
+    : ["lang", "role", "name", "teacherinfo", "creds", "code", "heard", "otp"];
   const TOTAL = STEPS.length;
   const currentKey = STEPS[step];
 
@@ -242,6 +249,11 @@ export default function Register() {
     // and which modes are unlocked, so guessing it for them is worse than
     // asking once. There is no "skip" and no pre-selected option.
     if (currentKey === "level") return !!level;
+    // A teacher's phone is how we reach them about their application and
+    // their commission payouts, so it isn't optional. The centre is.
+    if (currentKey === "teacherinfo") return teacherPhone.trim().length > 0;
+    // One tap, and it's the only acquisition data we ever get.
+    if (currentKey === "heard") return !!heardAbout;
     return true;
   };
 
@@ -316,7 +328,17 @@ export default function Register() {
       // and only an admin (via /admin) can flip it to "approved", at which
       // point TeacherDashboard.jsx's access gate lets them in. Deliberately
       // never touches the platform's own "role" field.
-      if (role === "teacher") profile.teacher_status = "pending";
+      if (role === "teacher") {
+        profile.teacher_status = "pending";
+        if (teachingCenter.trim()) profile.teaching_center = teachingCenter.trim();
+        if (teacherPhone.trim()) profile.teacher_phone = teacherPhone.trim();
+      }
+      if (heardAbout) {
+        profile.heard_about_us = heardAbout;
+        if (heardAbout === "other" && heardDetail.trim()) {
+          profile.heard_about_us_detail = heardDetail.trim();
+        }
+      }
       if (Object.keys(profile).length > 0) {
         try { await base44.auth.updateMe(profile); }
         catch (profileErr) { console.error("Could not save profile details:", profileErr); }
@@ -605,7 +627,87 @@ export default function Register() {
                       {isTeacher ? s.codeTeacherHint : s.codeStudentHint}
                     </p>
                   </div>
-                  <NavButtons onBack={back} onNext={handleSubmit} nextLabel={s.create} backLabel={s.back} loading={loading} loadingLabel={s.creating} />
+                  <NavButtons onBack={back} onNext={next} nextLabel={s.next} backLabel={s.back} />
+                </>
+              )}
+
+              {/* Step: Teacher info (teachers only) */}
+              {currentKey === "teacherinfo" && (
+                <>
+                  <StepHeader icon={Building2} title={s.teacherInfoTitle} sub={s.teacherInfoSub} />
+                  {error && <div className="mb-3 p-3 rounded-xl bg-destructive/10 text-destructive text-sm">{error}</div>}
+                  <div className="space-y-4 flex-1">
+                    <div className="space-y-2">
+                      <Label htmlFor="center">
+                        {s.centerLabel}{" "}
+                        <span className="text-muted-foreground font-normal">({s.optional})</span>
+                      </Label>
+                      <div className="relative">
+                        <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input
+                          id="center" type="text" autoFocus placeholder={s.centerPh}
+                          value={teachingCenter}
+                          onChange={(e) => setTeachingCenter(e.target.value)}
+                          className="pl-10 h-11" maxLength={120}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground">{s.centerHint}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="tphone">{s.phoneLabel}</Label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                        <Input
+                          id="tphone" type="tel" placeholder={s.phonePh}
+                          value={teacherPhone}
+                          onChange={(e) => setTeacherPhone(e.target.value)}
+                          className="pl-10 h-11" maxLength={40}
+                        />
+                      </div>
+                      <p className="text-xs text-muted-foreground">{s.phoneHint}</p>
+                    </div>
+                  </div>
+                  <NavButtons onBack={back} onNext={next} nextLabel={s.next} backLabel={s.back} disabled={!canNext()} />
+                </>
+              )}
+
+              {/* Step: How did you hear about us (both roles) */}
+              {currentKey === "heard" && (
+                <>
+                  <StepHeader icon={Megaphone} title={s.heardTitle} sub={s.heardSub} />
+                  {error && <div className="mb-3 p-3 rounded-xl bg-destructive/10 text-destructive text-sm">{error}</div>}
+                  <div className="space-y-2 flex-1">
+                    <div className="grid grid-cols-2 gap-2">
+                      {HEARD_OPTIONS.map((key) => (
+                        <button
+                          key={key} type="button"
+                          onClick={() => setHeardAbout(key)}
+                          className={`p-3 rounded-xl border-2 text-sm font-medium transition-all select-none text-left ${
+                            heardAbout === key
+                              ? "border-primary bg-primary/5 text-primary"
+                              : "border-border text-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          {s.heard[key]}
+                        </button>
+                      ))}
+                    </div>
+                    {heardAbout === "other" && (
+                      <div className="space-y-2 pt-2">
+                        <Label htmlFor="heardDetail">{s.heardOther}</Label>
+                        <Input
+                          id="heardDetail" type="text" autoFocus placeholder={s.heardOtherPh}
+                          value={heardDetail}
+                          onChange={(e) => setHeardDetail(e.target.value)}
+                          className="h-11" maxLength={200}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <NavButtons
+                    onBack={back} onNext={handleSubmit} nextLabel={s.create} backLabel={s.back}
+                    loading={loading} loadingLabel={s.creating} disabled={!canNext()}
+                  />
                 </>
               )}
 
