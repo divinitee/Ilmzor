@@ -363,12 +363,13 @@ export default function AdminDashboard() {
                       <th className="text-left font-medium px-4 py-3 hidden sm:table-cell">{s.email}</th>
                       <th className="text-left font-medium px-4 py-3">{s.role}</th>
                       <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.joined}</th>
+                      <th className="text-left font-medium px-4 py-3 hidden lg:table-cell">Source</th>
                       <th className="text-left font-medium px-4 py-3">Data</th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredUsers.length === 0 && (
-                      <tr><td colSpan={5} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
+                      <tr><td colSpan={6} className="text-center text-muted-foreground py-10">{s.noData}</td></tr>
                     )}
                     {filteredUsers.map((u) => (
                       <tr key={u.id} className="border-t border-border hover:bg-muted/30">
@@ -377,6 +378,18 @@ export default function AdminDashboard() {
                         <td className="px-4 py-3">{roleBadge(u)}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
                           {u.created_date ? new Date(u.created_date).toLocaleDateString() : "—"}
+                        </td>
+                        <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell text-xs">
+                          {u.heard_about_us
+                            ? <>
+                                <span className="capitalize">{u.heard_about_us}</span>
+                                {u.heard_about_us_detail && (
+                                  <span className="block text-[10px] opacity-70 truncate max-w-[140px]">
+                                    {u.heard_about_us_detail}
+                                  </span>
+                                )}
+                              </>
+                            : "—"}
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1.5">
@@ -405,6 +418,7 @@ export default function AdminDashboard() {
                     <tr>
                       <th className="text-left font-medium px-4 py-3">{s.name}</th>
                       <th className="text-left font-medium px-4 py-3 hidden sm:table-cell">{s.email}</th>
+                      <th className="text-left font-medium px-4 py-3 hidden lg:table-cell">Center / phone</th>
                       <th className="text-left font-medium px-4 py-3">{s.teacherStatus}</th>
                       <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.teacherCommissionRate}</th>
                       <th className="text-left font-medium px-4 py-3 hidden md:table-cell">{s.teacherAccrued}</th>
@@ -413,7 +427,7 @@ export default function AdminDashboard() {
                   </thead>
                   <tbody>
                     {filteredTeachers.length === 0 && (
-                      <tr><td colSpan={6} className="text-center text-muted-foreground py-10">{s.noTeacherApps}</td></tr>
+                      <tr><td colSpan={7} className="text-center text-muted-foreground py-10">{s.noTeacherApps}</td></tr>
                     )}
                     {filteredTeachers.map((u) => {
                       const statusLabelFor = {
@@ -430,6 +444,10 @@ export default function AdminDashboard() {
                         <tr key={u.id} className="border-t border-border hover:bg-muted/30">
                           <td className="px-4 py-3 font-medium text-foreground">{resolveUserName(u) || "—"}</td>
                           <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{u.email || "—"}</td>
+                          <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell text-xs">
+                            <span className="block">{u.teaching_center || <span className="opacity-60">Private / none</span>}</span>
+                            <span className="block text-[11px] opacity-70">{u.teacher_phone || "—"}</span>
+                          </td>
                           <td className="px-4 py-3"><Badge className={statusClass}>{statusLabelFor}</Badge></td>
                           <td className="px-4 py-3 hidden md:table-cell">
                             <input
