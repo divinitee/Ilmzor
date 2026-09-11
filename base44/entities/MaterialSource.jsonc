@@ -1,0 +1,115 @@
+{
+  "name": "MaterialSource",
+  "properties": {
+    "detected_language": {
+      "type": "string"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "extracted_text": {
+      "type": "string"
+    },
+    "file_url": {
+      "format": "uri",
+      "type": "string"
+    },
+    "processed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "processing_status": {
+      "default": "uploaded",
+      "enum": [
+        "uploaded",
+        "processing",
+        "ready",
+        "failed"
+      ],
+      "type": "string"
+    },
+    "source_text": {
+      "type": "string"
+    },
+    "source_type": {
+      "enum": [
+        "text",
+        "pdf",
+        "docx",
+        "image"
+      ],
+      "type": "string"
+    },
+    "structure": {
+      "type": "object"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "teacher_id",
+    "source_type",
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  },
+  "type": "object"
+}
