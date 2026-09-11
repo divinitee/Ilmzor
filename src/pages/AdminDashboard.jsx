@@ -9,8 +9,13 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/lib/AuthContext";
 import {
   ArrowLeft, Users, CreditCard, CheckCircle2, Clock, Search, Shield,
-  Loader2, Crown, GraduationCap, BookOpen,
+  Loader2, Crown, GraduationCap, BookOpen, Gift, AlertTriangle,
 } from "lucide-react";
+import {
+  subscriptionKind, SUB_KIND_META, isPaying,
+  approveSubscription, pauseSubscription, resumeSubscription,
+  cancelSubscription, reactivateSubscription,
+} from "@/lib/subscription";
 
 const STR = {
   uz: {
@@ -56,14 +61,14 @@ const STR = {
   },
 };
 
-const statusStyle = (status, s) => {
-  if (status === "active") return "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400";
-  if (status === "pending") return "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400";
-  return "bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400";
-};
+// Status presentation now comes from lib/subscription.js's shared classifier
+// (subscriptionKind + SUB_KIND_META) so this page and the teacher dashboard
+// can never disagree about what "active" means. The old local statusStyle /
+// statusLabel helpers only knew the three original states and reported a
+// free trial as "Active", which read as a payment that never happened.
 
-const statusLabel = (status, s) =>
-  status === "active" ? s.active : status === "pending" ? s.pending : s.inactive;
+const actionBtn =
+  "text-xs font-semibold rounded-lg px-2.5 py-1 border select-none transition-colors disabled:opacity-40";
 
 export default function AdminDashboard() {
   const s = STR.en;
@@ -74,13 +79,12 @@ export default function AdminDashboard() {
   const [subs, setSubs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
+  // Cancelling is the one destructive action, so it goes through a confirm
+  // that also asks whether to cut access now or let the paid period finish.
+  const [confirmCancel, setConfirmCancel] = useState(null);
+  const [cancelNote, setCancelNote] = useState("");
+  const [busy, setBusy] = useState(false);
 
-  // Approve a self-service payment (Pricing.jsx submissions land here as
-  // "pending"). Mirrors TeacherDashboard.jsx's handleAccept exactly — that
-  // path already sets status + expires_at together correctly; this was the
-  // one missing piece for non-teacher-referred payments, which is why a
-  // pending self-service subscription could get manually flipped to
-  // "active" elsewhere without ever getting a real expiry date.
   const handleApproveTeacher = async (u) => {
     await base44.entities.User.update(u.id, { teacher_status: "approved" });
     setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, teacher_status: "approved" } : x)));
@@ -97,17 +101,32 @@ export default function AdminDashboard() {
     setUsers((prev) => prev.map((x) => (x.id === u.id ? { ...x, teacher_commission_rate_pct: parsed } : x)));
   };
 
-  const handleApprove = async (sub) => {
-    const expiresAt = new Date();
-    if (sub.billing_cycle === "yearly") {
-      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
-    } else {
-      expiresAt.setMonth(expiresAt.getMonth() + 1);
+  // Every subscription action runs through lib/subscription.js and folds the
+  // returned patch straight back into local state, so the table reflects the
+  // change without a refetch and the two dashboards stay in lockstep.
+  const runSubAction = async (fn) => {
+    setBusy(true);
+    try {
+      const updated = await fn();
+      setSubs((prev) => prev.map((x) => (x.id === updated.id ? updated : x)));
+    } catch (e) {
+      console.error("Subscription action failed:", e);
+    } finally {
+      setBusy(false);
+      setConfirmCancel(null);
+      setCancelNote("");
     }
-    const expiresAtStr = expiresAt.toISOString().split("T")[0];
-    await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAtStr });
-    setSubs((prev) => prev.map((s) => (s.id === sub.id ? { ...s, status: "active", expires_at: expiresAtStr } : s)));
   };
+
+  // Approve a pending payment (Pricing.jsx submissions land here as
+  // "pending"), or revive a cancelled/lapsed one, with a fresh billing
+  // period. Pause banks the days already paid for; resume hands them back.
+  const handleApprove = (sub) => runSubAction(() => approveSubscription(sub));
+  const handlePause = (sub) => runSubAction(() => pauseSubscription(sub));
+  const handleResume = (sub) => runSubAction(() => resumeSubscription(sub));
+  const handleReactivate = (sub) => runSubAction(() => reactivateSubscription(sub));
+  const handleCancel = (sub, immediate) =>
+    runSubAction(() => cancelSubscription(sub, { immediate, note: cancelNote.trim() }));
 
   useEffect(() => {
     (async () => {
