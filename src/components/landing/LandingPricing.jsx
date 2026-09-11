@@ -5,6 +5,7 @@ import { Check, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
+import FounderPriceNote from "@/components/FounderPriceNote";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -90,6 +91,10 @@ export default function LandingPricing() {
                 {!isFree && isYearly &&
                 <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
                 }
+                {/* The landing's own pricing section — the prices a visitor sees
+                    BEFORE signing up, so the founder-price caveat matters more
+                    here than anywhere else in the product. */}
+                {!isFree && <FounderPriceNote variant="landing" className="mt-1.5" />}
                 <ul className="mt-5 space-y-2.5 flex-1">
                   {p.featureKeys.map((f) =>
                   <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 landing-dark:text-slate-300">
