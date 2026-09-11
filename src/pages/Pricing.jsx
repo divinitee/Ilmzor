@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Check, ArrowLeft } from "lucide-react";
+import { BookOpen, Check, ArrowLeft, CreditCard, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -19,6 +19,8 @@ export default function Pricing() {
   const [phone, setPhone] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [cardLoading, setCardLoading] = useState(false);
+  const [cardError, setCardError] = useState("");
 
   const isYearly = cycle === "yearly";
   const plan = PLAN_LIST.find((p) => p.id === selectedPlan);
@@ -26,6 +28,29 @@ export default function Pricing() {
   const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
 
   const handleContinue = () => setStep("payment");
+
+  // Card payment via Dodo Payments. The backend function derives the buyer
+  // from the authenticated session and builds the checkout — nothing about
+  // who is paying is taken from this component, so a tampered client can't
+  // buy a subscription onto someone else's account. Access is granted by the
+  // dodoWebhook function when Dodo confirms payment, never here.
+  const handleCardCheckout = async () => {
+    setCardError("");
+    setCardLoading(true);
+    try {
+      const res = await base44.functions.invoke("createDodoCheckout", {
+        plan: selectedPlan,
+        billing_cycle: cycle,
+      });
+      const url = res?.data?.url;
+      if (!url) throw new Error(res?.data?.error || "No checkout link returned");
+      window.location.href = url;
+    } catch (err) {
+      console.error("Dodo checkout failed:", err);
+      setCardError(t("pricing.card_error"));
+      setCardLoading(false);
+    }
+  };
 
   const handleSubmit = async () => {
     if (!paymentRef.trim() || !studentName.trim() || !phone.trim()) return;
@@ -238,9 +263,28 @@ export default function Pricing() {
           })}
         </div>
 
-        <Button onClick={handleContinue} className="w-full h-12 text-base font-bold select-none">
-          {plan.name} — {formatPrice(price)} so'm {t("pricing.continue_btn")}
+        {/* Card payment is the primary path; the manual transfer + screenshot
+            flow below stays as a fallback for students paying locally. */}
+        <Button
+          onClick={handleCardCheckout}
+          disabled={cardLoading}
+          className="w-full h-12 text-base font-bold select-none gap-2"
+        >
+          {cardLoading
+            ? <><Loader2 className="w-4 h-4 animate-spin" /> {t("pricing.card_loading")}</>
+            : <><CreditCard className="w-4 h-4" /> {t("pricing.card_btn")}</>}
         </Button>
+
+        {cardError && (
+          <p className="text-center text-xs text-destructive mt-2">{cardError}</p>
+        )}
+
+        <button
+          onClick={handleContinue}
+          className="w-full mt-3 h-11 rounded-xl border border-border text-sm font-semibold text-foreground select-none hover:bg-muted/50 transition-colors"
+        >
+          {plan.name} — {formatPrice(price)} so'm {t("pricing.continue_btn")}
+        </button>
 
         <p className="text-center text-xs text-muted-foreground mt-4">{t("pricing.payment_note")}</p>
       </div>
