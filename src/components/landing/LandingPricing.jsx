@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 import FounderPriceNote from "@/components/FounderPriceNote";
+import FounderCountdown from "@/components/FounderCountdown";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -49,6 +50,8 @@ export default function LandingPricing() {
             <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
           </button>
         </div>
+
+        <FounderCountdown variant="landing" className="max-w-md mx-auto mb-8" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto items-start">
           {PLAN_LIST.map((p, i) => {
@@ -94,7 +97,14 @@ export default function LandingPricing() {
                 {/* The landing's own pricing section — the prices a visitor sees
                     BEFORE signing up, so the founder-price caveat matters more
                     here than anywhere else in the product. */}
-                {!isFree && <FounderPriceNote variant="landing" className="mt-1.5" />}
+                {!isFree && (
+                  <FounderPriceNote
+                    variant="landing"
+                    className="mt-1.5"
+                    planId={p.id}
+                    cycle={cycle}
+                  />
+                )}
                 <ul className="mt-5 space-y-2.5 flex-1">
                   {p.featureKeys.map((f) =>
                   <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 landing-dark:text-slate-300">
