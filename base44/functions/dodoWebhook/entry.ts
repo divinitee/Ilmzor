@@ -123,6 +123,16 @@ Deno.serve(async (req) => {
     if (ACTIVATING.has(type)) {
       patch.status = "active";
       patch.is_trial = false;
+      // The founder-price lock, recorded from what Dodo ACTUALLY charged —
+      // never from anything the browser claimed, or a tampered client could
+      // assert it locked in at a cent. Written once on first activation and
+      // deliberately never overwritten on renewal: if this row's value ever
+      // changed, "locked for life" would stop being true.
+      if (!row?.locked_price_usd) {
+        const cents = Number(data.recurring_pre_tax_amount || 0);
+        if (cents > 0) patch.locked_price_usd = Math.round(cents) / 100;
+        if (metadata.founder_stage) patch.founder_stage = metadata.founder_stage;
+      }
       patch.cancelled_at = "";
       patch.paused_at = "";
       patch.paused_days_remaining = null;
