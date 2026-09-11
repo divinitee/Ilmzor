@@ -8,6 +8,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 import FounderPriceNote from "@/components/FounderPriceNote";
+import FounderCountdown from "@/components/FounderCountdown";
 
 export default function Pricing() {
   const navigate = useNavigate();
@@ -204,6 +205,10 @@ export default function Pricing() {
           </button>
         </div>
 
+        {/* Time pressure sits once above the cards; the price half of it lives
+            on each card, so a VIP buyer never reads a Learner number. */}
+        <FounderCountdown className="mb-6" />
+
         <div className="space-y-4 mb-8">
           {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
@@ -244,7 +249,7 @@ export default function Pricing() {
                     <p className="text-xl font-bold text-foreground">
                       {formatPrice(pPrice)} <span className="text-sm font-normal text-muted-foreground">{pPeriod}</span>
                     </p>
-                    <FounderPriceNote className="mt-1" />
+                    <FounderPriceNote className="mt-1" planId={p.id} cycle={cycle} />
                     <ul className="mt-3 space-y-1.5">
                       {p.featureKeys.map((f, fi) => (
                         <li key={fi} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -285,7 +290,7 @@ export default function Pricing() {
           onClick={handleContinue}
           className="w-full mt-3 h-11 rounded-xl border border-border text-sm font-semibold text-foreground select-none hover:bg-muted/50 transition-colors"
         >
-          {plan.name} — {formatPrice(price)} so'm {t("pricing.continue_btn")}
+          {plan.name} — {formatPrice(price)} {t("pricing.continue_btn")}
         </button>
 
         <p className="text-center text-xs text-muted-foreground mt-4">{t("pricing.payment_note")}</p>
