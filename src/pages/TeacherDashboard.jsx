@@ -10,6 +10,7 @@ import ChatWindow from "@/components/ChatWindow";
 import { motion, AnimatePresence } from "framer-motion";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 import TeacherCoPlanChat from "@/components/teacher/TeacherCoPlanChat";
+import { subscriptionKind, SUB_KIND_META, isPaying, approveSubscription } from "@/lib/subscription";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -43,21 +44,11 @@ function greetingWord() {
   return "Good evening";
 }
 
-// StudentSubscription.status only has 3 values (inactive/pending/active) and
-// "active" alone doesn't mean "paid" — the self-serve onboarding trial
-// (chooseFreePlan() in lib/subscription.js) sets status:"active" the instant
-// someone taps "Start Free", with no teacher/admin step at all, and a lapsed
-// trial quietly rolls onto a permanent free plan that's also status:"active".
-// Both used to render as "✅ Paid" here, which is exactly what looked like an
-// approval nobody performed. Only a real Learner/VIP plan that isn't a trial
-// actually came from someone paying (or a teacher/admin approving a payment).
-function subscriptionKind(sub) {
-  if (sub.status === "pending") return "pending";
-  if (sub.status !== "active") return "unpaid";
-  if (sub.is_trial) return "trial";
-  if (!sub.plan || /free/i.test(sub.plan)) return "free";
-  return "paid";
-}
+// subscriptionKind / SUB_KIND_META / isPaying now live in lib/subscription.js
+// alongside the admin actions, so this page and /admin classify a
+// subscription identically — including the paused and cancelled states an
+// admin can now put one into, which a teacher needs to see rather than
+// having them collapse into a misleading "Unpaid".
 
 // "active" = played within the window · "new" = never played yet but joined
 // recently (not flagged) · "inactive" = the thing the teacher actually needs
@@ -155,13 +146,7 @@ export default function TeacherDashboard() {
   };
 
   const handleAccept = async (sub) => {
-    const expiresAt = new Date();
-    if (sub.billing_cycle === "yearly") {
-      expiresAt.setFullYear(expiresAt.getFullYear() + 1);
-    } else {
-      expiresAt.setMonth(expiresAt.getMonth() + 1);
-    }
-    await base44.entities.StudentSubscription.update(sub.id, { status: "active", expires_at: expiresAt.toISOString().split("T")[0] });
+    await approveSubscription(sub);
     setNotification(`"${sub.student_name}" subscription approved!`);
     setTimeout(() => setNotification(""), 3000);
     loadData(true);
@@ -171,16 +156,7 @@ export default function TeacherDashboard() {
     const verifiedPending = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified);
     if (verifiedPending.length === 0) return;
     for (const sub of verifiedPending) {
-      const expiresAt = new Date();
-      if (sub.billing_cycle === "yearly") {
-        expiresAt.setFullYear(expiresAt.getFullYear() + 1);
-      } else {
-        expiresAt.setMonth(expiresAt.getMonth() + 1);
-      }
-      await base44.entities.StudentSubscription.update(sub.id, {
-        status: "active",
-        expires_at: expiresAt.toISOString().split("T")[0],
-      });
+      await approveSubscription(sub);
     }
     setNotification(`${verifiedPending.length} AI-verified subscriptions approved!`);
     setTimeout(() => setNotification(""), 3000);
@@ -272,12 +248,8 @@ export default function TeacherDashboard() {
   const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
 
   const StatusBadge = ({ sub }) => {
-    const kind = subscriptionKind(sub);
-    if (kind === "paid") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ Paid</span>;
-    if (kind === "trial") return <span className="text-xs font-semibold text-sky-700 bg-sky-500/10 px-2 py-1 rounded-full">🎁 Trial</span>;
-    if (kind === "free") return <span className="text-xs font-semibold text-muted-foreground bg-muted px-2 py-1 rounded-full">Free plan</span>;
-    if (kind === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Pending</span>;
-    return <span className="text-xs font-semibold text-destructive bg-destructive/10 px-2 py-1 rounded-full">❌ Unpaid</span>;
+    const meta = SUB_KIND_META[subscriptionKind(sub)];
+    return <span className={`text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap ${meta.cls}`}>{meta.label}</span>;
   };
 
   if (loading) {
@@ -292,8 +264,8 @@ export default function TeacherDashboard() {
   // Real paid subscriptions only — excludes the self-serve trial and any
   // lapsed-trial-to-free-plan rows, both of which are also status:"active"
   // but never involved anyone paying or a teacher approving anything. See
-  // subscriptionKind() above.
-  const activeCount = subscriptions.filter(s => subscriptionKind(s) === "paid").length;
+  // subscriptionKind() in lib/subscription.js.
+  const activeCount = subscriptions.filter(isPaying).length;
   const pendingCount = subscriptions.filter(s => s.status === "pending").length;
   const verifiedPendingCount = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified).length;
   const attentionCount = subscriptions.filter(
