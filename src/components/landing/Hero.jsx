@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
-import WordOfTheDay from "@/components/landing/WordOfTheDay";
+import RoadmapBeacon from "@/components/landing/RoadmapBeacon";
 import { IS_BETA } from "@/lib/appMeta";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -73,7 +73,7 @@ export default function Hero() {
           )}
         </div>
 
-        <WordOfTheDay />
+        <RoadmapBeacon />
       </div>
     </section>
   );
