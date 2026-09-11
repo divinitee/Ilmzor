@@ -43,6 +43,7 @@ const STR = {
     accessDenied: "Access denied", deniedDesc: "This page is for admins only",
     teacherStatus: "Status", teacherApprove: "Approve", teacherReject: "Reject",
     teacherCommissionRate: "Commission %", teacherAccrued: "Accrued (USD)",
+    payingSubs: "Paying", trialSubs: "On trial", pausedSubs: "Halted",
     teacherStatusNone: "Not a teacher", teacherStatusPending: "Pending review",
     teacherStatusApproved: "Approved", teacherStatusRejected: "Rejected",
     noTeacherApps: "No teacher applications yet",
@@ -170,14 +171,21 @@ export default function AdminDashboard() {
     );
   }
 
-  const activeCount = subs.filter((x) => x.status === "active").length;
+  // "Paying" is real money only. The old "Active subscriptions" number
+  // counted the free trial and the permanent free plan too (both are
+  // status:"active"), which made it a vanity figure rather than something
+  // you could reconcile against Stripe.
+  const payingCount = subs.filter(isPaying).length;
   const pendingCount = subs.filter((x) => x.status === "pending").length;
+  const trialCount = subs.filter((x) => subscriptionKind(x) === "trial").length;
+  const pausedCount = subs.filter((x) => x.status === "paused").length;
 
   const stats = [
     { label: s.totalUsers, value: users.length, icon: Users, color: "from-blue-500 to-indigo-500" },
     { label: s.totalSubs, value: subs.length, icon: CreditCard, color: "from-violet-500 to-purple-500" },
-    { label: s.activeSubs, value: activeCount, icon: CheckCircle2, color: "from-emerald-500 to-teal-500" },
+    { label: s.payingSubs, value: payingCount, icon: CheckCircle2, color: "from-emerald-500 to-teal-500" },
     { label: s.pendingSubs, value: pendingCount, icon: Clock, color: "from-amber-500 to-orange-500" },
+    { label: s.trialSubs, value: trialCount, icon: Gift, color: "from-sky-500 to-cyan-500" },
   ];
 
   const filteredUsers = users.filter((u) =>
@@ -192,9 +200,14 @@ export default function AdminDashboard() {
     !query || `${x.student_name || ""} ${x.phone || ""} ${x.plan || ""} ${x.teacher_name || ""}`.toLowerCase().includes(query.toLowerCase())
   );
 
-  const roleBadge = (role) => {
-    if (role === "admin") return <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400 gap-1"><Crown className="w-3 h-3" />{s.admin}</Badge>;
-    if (role === "teacher") return <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher}</Badge>;
+  // Reads teacher_status, not role. Base44's own `role` enum is only
+  // admin|user — nothing ever sets it to "teacher" — so the old
+  // role === "teacher" branch was unreachable and every real teacher
+  // showed up here badged as a student.
+  const roleBadge = (u) => {
+    if (u.role === "admin") return <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400 gap-1"><Crown className="w-3 h-3" />{s.admin}</Badge>;
+    if (u.teacher_status === "approved") return <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher}</Badge>;
+    if (u.teacher_status === "pending") return <Badge className="bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher} ?</Badge>;
     return <Badge className="bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400 gap-1"><GraduationCap className="w-3 h-3" />{s.student}</Badge>;
   };
 
@@ -217,7 +230,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
           {stats.map((st, i) => {
             const Icon = st.icon;
             return (
@@ -298,7 +311,7 @@ export default function AdminDashboard() {
                       <tr key={u.id} className="border-t border-border hover:bg-muted/30">
                         <td className="px-4 py-3 font-medium text-foreground">{resolveUserName(u) || "—"}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{u.email || "—"}</td>
-                        <td className="px-4 py-3">{roleBadge(u.role)}</td>
+                        <td className="px-4 py-3">{roleBadge(u)}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
                           {u.created_date ? new Date(u.created_date).toLocaleDateString() : "—"}
                         </td>
@@ -407,7 +420,19 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{x.plan || "—"}</td>
                         <td className="px-4 py-3">
-                          <Badge className={statusStyle(x.status, s)}>{statusLabel(x.status, s)}</Badge>
+                          <Badge className={SUB_KIND_META[subscriptionKind(x)].cls}>
+                            {SUB_KIND_META[subscriptionKind(x)].label}
+                          </Badge>
+                          {x.status === "active" && x.cancelled_at && x.expires_at && (
+                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                              ends {new Date(x.expires_at).toLocaleDateString()}
+                            </p>
+                          )}
+                          {x.status === "paused" && (
+                            <p className="text-[10px] text-muted-foreground mt-0.5">
+                              {x.paused_days_remaining ?? 0}d banked
+                            </p>
+                          )}
                         </td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
                           {x.billing_cycle === "yearly" ? s.yearly : s.monthly}
@@ -417,14 +442,38 @@ export default function AdminDashboard() {
                         </td>
                         <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{x.teacher_name || "—"}</td>
                         <td className="px-4 py-3">
-                          {x.status === "pending" && (
-                            <button
-                              onClick={() => handleApprove(x)}
-                              className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 border border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 rounded-lg px-2.5 py-1 select-none"
-                            >
-                              Approve
-                            </button>
-                          )}
+                          <div className="flex flex-wrap gap-1.5">
+                            {(x.status === "pending" || x.status === "inactive") && (
+                              <button onClick={() => handleApprove(x)} disabled={busy}
+                                className={`${actionBtn} text-emerald-600 border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}>
+                                Approve
+                              </button>
+                            )}
+                            {x.status === "active" && !x.cancelled_at && (
+                              <button onClick={() => handlePause(x)} disabled={busy}
+                                className={`${actionBtn} text-amber-600 border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-500/10`}>
+                                Halt
+                              </button>
+                            )}
+                            {x.status === "paused" && (
+                              <button onClick={() => handleResume(x)} disabled={busy}
+                                className={`${actionBtn} text-emerald-600 border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}>
+                                Resume
+                              </button>
+                            )}
+                            {(x.cancelled_at || x.status === "cancelled") && (
+                              <button onClick={() => handleReactivate(x)} disabled={busy}
+                                className={`${actionBtn} text-primary border-primary/30 hover:bg-primary/10`}>
+                                Reactivate
+                              </button>
+                            )}
+                            {x.status !== "cancelled" && (
+                              <button onClick={() => setConfirmCancel(x)} disabled={busy}
+                                className={`${actionBtn} text-destructive border-destructive/30 hover:bg-destructive/10`}>
+                                Cancel
+                              </button>
+                            )}
+                          </div>
                         </td>
                       </tr>
                     ))}
