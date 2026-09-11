@@ -272,8 +272,11 @@ export default function TeacherDashboard() {
   const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
 
   const StatusBadge = ({ sub }) => {
-    if (sub.status === "active") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ Paid</span>;
-    if (sub.status === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Pending</span>;
+    const kind = subscriptionKind(sub);
+    if (kind === "paid") return <span className="text-xs font-semibold text-emerald-700 bg-emerald-500/10 px-2 py-1 rounded-full">✅ Paid</span>;
+    if (kind === "trial") return <span className="text-xs font-semibold text-sky-700 bg-sky-500/10 px-2 py-1 rounded-full">🎁 Trial</span>;
+    if (kind === "free") return <span className="text-xs font-semibold text-muted-foreground bg-muted px-2 py-1 rounded-full">Free plan</span>;
+    if (kind === "pending") return <span className="text-xs font-semibold text-amber-700 bg-amber-500/10 px-2 py-1 rounded-full">⏳ Pending</span>;
     return <span className="text-xs font-semibold text-destructive bg-destructive/10 px-2 py-1 rounded-full">❌ Unpaid</span>;
   };
 
