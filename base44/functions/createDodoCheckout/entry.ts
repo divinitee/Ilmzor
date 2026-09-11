@@ -91,6 +91,11 @@ Deno.serve(async (req) => {
       plan: planId,
       billing_cycle: cycle,
     };
+    // Which founder-ladder rung they bought on. A REPORTING LABEL ONLY — it
+    // comes from the browser, so it is never trusted for anything that grants
+    // value. The binding number (locked_price_usd) is derived in dodoWebhook
+    // from the amount Dodo actually charged.
+    if (body.founder_stage) metadata.founder_stage = String(body.founder_stage).slice(0, 40);
     if (existing?.referral_code) metadata.referral_code = existing.referral_code;
     if (existing?.teacher_id) metadata.teacher_id = existing.teacher_id;
     if (existing?.teacher_name) metadata.teacher_name = existing.teacher_name;
