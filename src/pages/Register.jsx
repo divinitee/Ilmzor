@@ -14,6 +14,7 @@ import { APP_LANGS } from "@/i18n/translations";
 import { LEVELS } from "@/lib/levels";
 import { setUserLevel } from "@/lib/levelStore";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
+import BetaBadge from "@/components/BetaBadge";
 import { safeReturnTo } from "@/lib/authReturnTo";
 
 const STR = {
@@ -410,7 +411,13 @@ export default function Register() {
         {/* Progress */}
         <div className="mb-5">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-medium text-muted-foreground">{step + 1} / {TOTAL}</span>
+            {/* Registration is the moment someone commits to the product, so
+                the beta state has to be visible here — the landing and login
+                both say it, and this screen sat between them saying nothing. */}
+            <span className="flex items-center gap-2">
+              <span className="text-xs font-medium text-muted-foreground">{step + 1} / {TOTAL}</span>
+              <BetaBadge />
+            </span>
             <span className="text-xs font-medium text-muted-foreground">{progress}%</span>
           </div>
           <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
