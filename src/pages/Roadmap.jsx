@@ -32,7 +32,7 @@ const stages = [
 
 export default function Roadmap() {
   return (
-    <div className="min-h-screen bg-slate-50 landing-dark:bg-slate-950 text-slate-900 landing-dark:text-slate-50 overflow-hidden">
+    <div className="landing-dark min-h-screen bg-slate-50 landing-dark:bg-slate-950 text-slate-900 landing-dark:text-slate-50 overflow-hidden">
       <div className="fixed inset-0 -z-10 premium-mesh opacity-60" />
       <div className="fixed inset-0 -z-10 premium-grain opacity-50" />
 
