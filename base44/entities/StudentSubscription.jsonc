@@ -72,6 +72,27 @@
       "maxLength": 1000,
       "description": "Optional additional description"
     },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "dodo"
+      ],
+      "default": "manual",
+      "description": "Which rail owns this subscription. 'manual' = approved by hand by a teacher/admin from a payment screenshot (the legacy Telegram flow). 'dodo' = created and driven by Dodo Payments webhooks. An admin should not hand-edit a 'dodo' row's status: the next webhook will overwrite it, and the two will disagree in the meantime."
+    },
+    "dodo_subscription_id": {
+      "type": "string",
+      "description": "Dodo Payments subscription id (sub_...). The primary key used to match an incoming webhook back to this row \u2014 more reliable than email, which a customer can change at checkout."
+    },
+    "dodo_customer_id": {
+      "type": "string",
+      "description": "Dodo Payments customer id, kept so a returning customer can be matched and for support lookups."
+    },
+    "last_dodo_event_id": {
+      "type": "string",
+      "description": "The webhook-id of the last Dodo event applied to this row. Dodo retries deliveries, so this is checked first and a repeat of the same id is skipped \u2014 without it, a retried subscription.renewed would accrue teacher commission twice."
+    },
     "paused_at": {
       "type": "string",
       "format": "date",
