@@ -1,7 +1,15 @@
 import { Crown, Star, Zap, Sparkles } from "lucide-react";
+import { usdFor, yearlyUsd, formatUsd, YEARLY_DISCOUNT as LADDER_DISCOUNT } from "@/lib/founderPricing";
 
-// Monthly base prices (so'm). Yearly = monthly × 12 × 0.75 (= monthly × 9, a 25% discount).
-export const YEARLY_DISCOUNT = 0.25;
+// Prices moved from so'm to USD when payments moved to Dodo Payments, which
+// charges in USD. The amounts are NOT constants any more: they come from the
+// founder price ladder in lib/founderPricing.js, which is the single place any
+// price or date is defined.
+//
+// monthlyPrice stays a plain property read (p.monthlyPrice) via a getter, so
+// every existing call site keeps working while the value tracks the current
+// ladder stage.
+export const YEARLY_DISCOUNT = LADDER_DISCOUNT;
 
 export const PLAN_LIST = [
   {
@@ -20,7 +28,7 @@ export const PLAN_LIST = [
   {
     id: "learner",
     name: "Learner Plan",
-    monthlyPrice: 24777,
+    get monthlyPrice() { return usdFor("learner"); },
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
     border: "border-indigo-500",
@@ -33,7 +41,7 @@ export const PLAN_LIST = [
   {
     id: "vip",
     name: "VIP Plan",
-    monthlyPrice: 49999,
+    get monthlyPrice() { return usdFor("vip"); },
     icon: Crown,
     color: "from-amber-500/20 to-orange-500/20",
     border: "border-amber-400",
@@ -52,9 +60,11 @@ export const PLAN_LIST = [
   },
 ];
 
-export const yearlyPrice = (monthly) => monthly === 24777 ? 222222 : monthly === 49999 ? 444444 : Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT));
+// Both delegate to the ladder so there is exactly one implementation of "what
+// does a year cost" and "how is money written" in the app.
+export const yearlyPrice = (monthly) => yearlyUsd(monthly);
 
-export const formatPrice = (n) => Number(n).toLocaleString("en-US");
+export const formatPrice = (n) => formatUsd(n);
 
 export const getPlanById = (id) => PLAN_LIST.find((p) => p.id === id);
 
