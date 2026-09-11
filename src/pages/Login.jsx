@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { GraduationCap, BookOpen, Mail, Lock, Loader2 } from "lucide-react";
 import GoogleIcon from "@/components/GoogleIcon";
 import { useAppLang } from "@/hooks/useAppLang";
+import { safeReturnTo } from "@/lib/authReturnTo";
 
 export default function Login() {
   const { t } = useAppLang();
@@ -22,7 +23,7 @@ export default function Login() {
     setLoading(true);
     try {
       await base44.auth.loginViaEmailPassword(email, password);
-      window.location.href = "/";
+      window.location.href = safeReturnTo();
     } catch (err) {
       setError(err.message || t("login.failed"));
     } finally {
@@ -31,7 +32,7 @@ export default function Login() {
   };
 
   const handleGoogle = () => {
-    base44.auth.loginWithProvider("google", "/");
+    base44.auth.loginWithProvider("google", safeReturnTo());
   };
 
   return (

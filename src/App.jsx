@@ -37,6 +37,7 @@ import LessonRunner from '@/pages/LessonRunner';
 import MyWords from '@/pages/MyWords';
 import VocabReview from '@/pages/VocabReview';
 import TeachStressTest from '@/pages/TeachStressTest';
+import OAuthConsent from '@/pages/OAuthConsent';
 import AppLoader from '@/components/AppLoader';
 
 const AuthenticatedApp = () => {
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/landing" element={<Landing />} />
+      <Route path="/oauth/consent" element={<OAuthConsent />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/landing" replace />} />}>
         <Route path="/" element={<Home />} />
         <Route path="/quiz/:unitKey" element={<Quiz />} />

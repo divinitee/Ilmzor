@@ -14,6 +14,7 @@ import { APP_LANGS } from "@/i18n/translations";
 import { LEVELS } from "@/lib/levels";
 import { setUserLevel } from "@/lib/levelStore";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
+import { safeReturnTo } from "@/lib/authReturnTo";
 
 const STR = {
   uz: {
@@ -371,7 +372,10 @@ export default function Register() {
         }
       }
 
-      window.location.href = role === "student" ? "/onboarding" : "/";
+      // A pending ?returnTo (e.g. the MCP OAuth consent page) wins over the
+      // default landing so the flow that sent the user here can resume.
+      const returnTo = safeReturnTo();
+      window.location.href = returnTo !== "/" ? returnTo : role === "student" ? "/onboarding" : "/";
     } catch (err) {
       setError(err.message || s.otpFail);
     } finally {
@@ -393,7 +397,10 @@ export default function Register() {
   // back with no name, goals, level or class code. Onboarding asks those four
   // via ProfileSetup. (Home guards the same case for anyone who lands there by
   // another route.)
-  const handleGoogle = () => base44.auth.loginWithProvider("google", "/onboarding");
+  const handleGoogle = () => {
+    const returnTo = safeReturnTo();
+    base44.auth.loginWithProvider("google", returnTo !== "/" ? returnTo : "/onboarding");
+  };
 
   const isTeacher = role === "teacher";
 
