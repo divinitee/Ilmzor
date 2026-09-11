@@ -17,7 +17,9 @@ import { base44 } from "@/api/base44Client";
 export const USER_DATA_ENTITIES = [
   { name: "AiUsageLog", emailFields: ["user_email"], idFields: ["user_id"] },
   { name: "AssessmentResult", emailFields: ["user_email"], idFields: [] },
-  { name: "ChatMessage", emailFields: ["student_email"], idFields: [] },
+  // teacher_id is deliberately NOT matched: it points at the other party in
+  // the conversation, not the row's owner.
+  { name: "ChatMessage", emailFields: ["student_email"], idFields: [], excluded: ["teacher_id"] },
   { name: "GrammarAssessmentRun", emailFields: ["user_email"], idFields: [] },
   { name: "GrammarProfile", emailFields: ["user_email"], idFields: [] },
   { name: "QuizResult", emailFields: ["student_phone"], idFields: [] },
@@ -25,7 +27,12 @@ export const USER_DATA_ENTITIES = [
   { name: "SavedWord", emailFields: ["user_email"], idFields: [] },
   { name: "SkillHubProgress", emailFields: ["user_email"], idFields: [] },
   { name: "StudentProgress", emailFields: ["user_email"], idFields: [] },
-  { name: "StudentSubscription", emailFields: ["phone"], idFields: [] },
+  // teacher_id is deliberately NOT matched. On a subscription row it names
+  // the REFERRING TEACHER, not the subscriber — matching it would mean that
+  // wiping one teacher deletes every one of their students' paid
+  // subscriptions. Students of a deleted teacher keep their access and are
+  // simply left pointing at a teacher_id that no longer resolves.
+  { name: "StudentSubscription", emailFields: ["phone"], idFields: [], excluded: ["teacher_id"] },
   { name: "TeacherReferral", emailFields: ["teacher_email"], idFields: ["teacher_id"] },
   { name: "UserCoins", emailFields: ["email"], idFields: ["user_id"] },
   { name: "WordAttempt", emailFields: ["user_email"], idFields: [] },
