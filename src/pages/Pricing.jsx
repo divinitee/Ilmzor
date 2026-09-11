@@ -9,6 +9,7 @@ import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
+import { getCurrentStage } from "@/lib/founderPricing";
 
 export default function Pricing() {
   const navigate = useNavigate();
@@ -43,6 +44,9 @@ export default function Pricing() {
       const res = await base44.functions.invoke("createDodoCheckout", {
         plan: selectedPlan,
         billing_cycle: cycle,
+        // Label only — the binding locked price is derived server-side from
+        // what Dodo actually charges (see dodoWebhook).
+        founder_stage: getCurrentStage().id,
       });
       const url = res?.data?.url;
       if (!url) throw new Error(res?.data?.error || "No checkout link returned");
