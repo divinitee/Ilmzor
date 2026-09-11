@@ -8,6 +8,17 @@
 // that has to be kept — the whole thing only works while it stays true.
 //
 // Near-final pricing is announced 2027-01-01 (FINAL_ANNOUNCEMENT below).
+//
+// ⚠ OPERATIONAL RULE THAT KEEPS "LOCKED FOR LIFE" TRUE:
+// When a rung changes, create BRAND NEW products in Dodo Payments at the new
+// price and repoint the DODO_PRODUCT_* secrets at them. Do NOT edit the price
+// of an existing Dodo product — existing subscribers are attached to that
+// product, so editing it raises THEIR price too and breaks the promise for
+// exactly the people who trusted it earliest. New rung = new product, always.
+//
+// The amounts here are display only. What a customer is actually charged is
+// whatever the Dodo product is set to, so these numbers and the Dodo products
+// must be kept in step by hand.
 
 export const CURRENCY = "USD";
 export const YEARLY_DISCOUNT = 0.25;
