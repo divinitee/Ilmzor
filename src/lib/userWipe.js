@@ -28,6 +28,7 @@ export const USER_DATA_ENTITIES = [
   { name: "StudentSubscription", emailFields: ["phone"], idFields: [] },
   { name: "TeacherReferral", emailFields: ["teacher_email"], idFields: ["teacher_id"] },
   { name: "UserCoins", emailFields: ["email"], idFields: ["user_id"] },
+  { name: "WordAttempt", emailFields: ["user_email"], idFields: [] },
 ];
 
 // Profile fields cleared by a reset, so the account walks back through
