@@ -289,7 +289,11 @@ export default function TeacherDashboard() {
   }
 
   const totalCount = subscriptions.filter(s => s.roster_status !== "removed").length;
-  const activeCount = subscriptions.filter(s => s.status === "active").length;
+  // Real paid subscriptions only — excludes the self-serve trial and any
+  // lapsed-trial-to-free-plan rows, both of which are also status:"active"
+  // but never involved anyone paying or a teacher approving anything. See
+  // subscriptionKind() above.
+  const activeCount = subscriptions.filter(s => subscriptionKind(s) === "paid").length;
   const pendingCount = subscriptions.filter(s => s.status === "pending").length;
   const verifiedPendingCount = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified).length;
   const attentionCount = subscriptions.filter(
