@@ -11,10 +11,17 @@ import sys
 
 lib = open("src/lib/userWipe.js").read()
 covered = {}
-pattern = r'\{\s*name:\s*"(\w+)",\s*emailFields:\s*\[([^\]]*)\],\s*idFields:\s*\[([^\]]*)\]'
+# `excluded` fields are ones we deliberately refuse to match because they
+# reference a DIFFERENT person than the row's owner (e.g. a subscription's
+# referring teacher). Counting them as covered keeps this check honest
+# without pressuring anyone into a cascade delete.
+pattern = (
+    r'\{[^}]*name:\s*"(\w+)",\s*emailFields:\s*\[([^\]]*)\],'
+    r'\s*idFields:\s*\[([^\]]*)\](?:,\s*excluded:\s*\[([^\]]*)\])?'
+)
 for m in re.finditer(pattern, lib):
-    name, ef, idf = m.group(1), m.group(2), m.group(3)
-    covered[name] = set(re.findall(r'"(\w+)"', ef + "," + idf))
+    name, ef, idf, exc = m.group(1), m.group(2), m.group(3), m.group(4) or ""
+    covered[name] = set(re.findall(r'"(\w+)"', ef + "," + idf + "," + exc))
 
 USER_FIELD = re.compile(
     r"^(user_email|user_id|student_email|student_phone|teacher_email|teacher_id|phone|email)$"
