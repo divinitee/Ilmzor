@@ -484,6 +484,72 @@ export default function AdminDashboard() {
           </div>
         )}
       </div>
+
+      {/* Cancel confirm. The only destructive action here, so it asks which
+          kind of cancellation this is rather than assuming — cutting a
+          paying student off mid-period and letting them ride out what they
+          paid for are genuinely different decisions. */}
+      {confirmCancel && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-destructive/10 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle className="w-5 h-5 text-destructive" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-bold text-foreground">Cancel subscription</h3>
+                <p className="text-xs text-muted-foreground truncate">
+                  {confirmCancel.student_name || confirmCancel.phone}
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">
+              {confirmCancel.expires_at
+                ? `Currently paid through ${new Date(confirmCancel.expires_at).toLocaleDateString()}.`
+                : "This subscription has no expiry date set."}
+            </p>
+            <textarea
+              value={cancelNote}
+              onChange={(e) => setCancelNote(e.target.value)}
+              placeholder="Reason (optional) — saved on the record for later reconciliation"
+              rows={2}
+              className="w-full px-3 py-2 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none mb-4 resize-none"
+            />
+            <div className="space-y-2">
+              <button
+                onClick={() => handleCancel(confirmCancel, false)}
+                disabled={busy}
+                className="w-full text-left px-4 py-3 rounded-xl border border-border hover:bg-muted/50 transition-colors select-none disabled:opacity-40"
+              >
+                <p className="text-sm font-semibold text-foreground">Let it run to the end</p>
+                <p className="text-xs text-muted-foreground">
+                  Keeps access until{" "}
+                  {confirmCancel.expires_at
+                    ? new Date(confirmCancel.expires_at).toLocaleDateString()
+                    : "expiry"}
+                  , then cancels automatically.
+                </p>
+              </button>
+              <button
+                onClick={() => handleCancel(confirmCancel, true)}
+                disabled={busy}
+                className="w-full text-left px-4 py-3 rounded-xl border border-destructive/30 hover:bg-destructive/10 transition-colors select-none disabled:opacity-40"
+              >
+                <p className="text-sm font-semibold text-destructive">Cut access now</p>
+                <p className="text-xs text-muted-foreground">
+                  Ends immediately. The expiry date stays on record so you can still see what they had left.
+                </p>
+              </button>
+            </div>
+            <button
+              onClick={() => { setConfirmCancel(null); setCancelNote(""); }}
+              className="w-full mt-3 text-sm text-muted-foreground hover:text-foreground select-none py-2"
+            >
+              Never mind
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
