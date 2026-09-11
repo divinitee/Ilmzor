@@ -142,7 +142,7 @@ export default function AdminDashboard() {
   const handleCancel = (sub, immediate) =>
     runSubAction(() => cancelSubscription(sub, { immediate, note: cancelNote.trim() }));
 
-  // Reset = wipe their data across all 13 user-data entities and clear the
+  // Reset = wipe their data across every user-data entity and clear the
   // profile, but keep the login (this is the "wipe me so I can re-register"
   // path). Delete = the same sweep, then remove the account itself. The
   // guards live in lib/userWipe.js: reset is always allowed, delete refuses
@@ -627,8 +627,8 @@ export default function AdminDashboard() {
       )}
 
       {/* Per-user wipe. Reset keeps the login so you can re-register on the
-          same email; Delete removes the account too. Both sweep all 13
-          user-data entities — see lib/userWipe.js. */}
+          same email; Delete removes the account too. Both sweep every
+          user-data entity — see lib/userWipe.js. */}
       {wipeTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
           <div className="bg-card border border-border rounded-2xl p-6 w-full max-w-md shadow-xl max-h-[85vh] overflow-y-auto">
