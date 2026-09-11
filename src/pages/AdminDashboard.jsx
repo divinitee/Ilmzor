@@ -16,6 +16,12 @@ import {
   approveSubscription, pauseSubscription, resumeSubscription,
   cancelSubscription, reactivateSubscription,
 } from "@/lib/subscription";
+import {
+  USER_DATA_ENTITIES, PROFILE_RESET_PATCH, guardReset, guardDelete,
+  resetUser, deleteUserAccount,
+} from "@/lib/userWipe";
+import AdminPinGate from "@/components/admin/AdminPinGate";
+import { isUnlockedThisSession } from "@/lib/adminPin";
 
 const STR = {
   uz: {
@@ -85,6 +91,13 @@ export default function AdminDashboard() {
   const [confirmCancel, setConfirmCancel] = useState(null);
   const [cancelNote, setCancelNote] = useState("");
   const [busy, setBusy] = useState(false);
+  const [unlocked, setUnlocked] = useState(isUnlockedThisSession());
+  // Per-user data wipe: { user, mode: "reset" | "delete", blocked? }
+  const [wipeTarget, setWipeTarget] = useState(null);
+  const [wipeConfirm, setWipeConfirm] = useState("");
+  const [wipeLog, setWipeLog] = useState([]);
+  const [wipeRunning, setWipeRunning] = useState(false);
+  const [wipeResult, setWipeResult] = useState(null);
 
   const handleApproveTeacher = async (u) => {
     await base44.entities.User.update(u.id, { teacher_status: "approved" });
@@ -129,6 +142,51 @@ export default function AdminDashboard() {
   const handleCancel = (sub, immediate) =>
     runSubAction(() => cancelSubscription(sub, { immediate, note: cancelNote.trim() }));
 
+  // Reset = wipe their data across all 13 user-data entities and clear the
+  // profile, but keep the login (this is the "wipe me so I can re-register"
+  // path). Delete = the same sweep, then remove the account itself. The
+  // guards live in lib/userWipe.js: reset is always allowed, delete refuses
+  // on your own account and on other admins.
+  const openWipe = (u, mode) => {
+    const blocked = mode === "delete" ? guardDelete(u, user) : guardReset(u);
+    setWipeConfirm("");
+    setWipeLog([]);
+    setWipeResult(null);
+    setWipeTarget({ user: u, mode, blocked });
+  };
+
+  const closeWipe = () => {
+    if (wipeRunning) return;
+    setWipeTarget(null);
+    setWipeConfirm("");
+    setWipeLog([]);
+    setWipeResult(null);
+  };
+
+  const runWipe = async () => {
+    if (!wipeTarget || wipeTarget.blocked) return;
+    const { user: target, mode } = wipeTarget;
+    setWipeRunning(true);
+    setWipeLog([]);
+    try {
+      if (mode === "delete") {
+        const r = await deleteUserAccount(target, user, setWipeLog);
+        setWipeResult(r);
+        if (r.accountDeleted) setUsers((prev) => prev.filter((x) => x.id !== target.id));
+      } else {
+        const r = await resetUser(target, user, setWipeLog);
+        setWipeResult(r);
+        setUsers((prev) => prev.map((x) => (x.id === target.id ? { ...x, ...PROFILE_RESET_PATCH } : x)));
+      }
+      // Their subscription rows were just deleted by the sweep.
+      setSubs((prev) => prev.filter((sx) => sx.phone !== target.email));
+    } catch (e) {
+      console.error("Wipe failed:", e);
+    } finally {
+      setWipeRunning(false);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -169,6 +227,10 @@ export default function AdminDashboard() {
         </div>
       </div>
     );
+  }
+
+  if (!unlocked) {
+    return <AdminPinGate user={user} onUnlocked={() => setUnlocked(true)} />;
   }
 
   // "Paying" is real money only. The old "Active subscriptions" number
