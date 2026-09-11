@@ -6,6 +6,7 @@ import { BookOpen, CheckCircle, XCircle, ArrowRight, Trophy, ChevronLeft } from 
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
+import BetaBadge from "@/components/BetaBadge";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },

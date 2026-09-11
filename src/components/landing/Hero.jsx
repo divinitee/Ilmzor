@@ -5,6 +5,7 @@ import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import WordOfTheDay from "@/components/landing/WordOfTheDay";
+import { IS_BETA } from "@/lib/appMeta";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -64,6 +65,12 @@ export default function Hero() {
           </motion.div>
 
           <p className="mt-4 text-xs text-slate-400 landing-dark:text-slate-500">{t("landing.hero.caption")}</p>
+
+          {IS_BETA && (
+            <p className="mt-4 max-w-md text-sm text-slate-600 landing-dark:text-slate-300 border border-slate-200 landing-dark:border-slate-700 rounded-xl px-3 py-2">
+              {t("pricing.beta_notice")}
+            </p>
+          )}
         </div>
 
         <WordOfTheDay />

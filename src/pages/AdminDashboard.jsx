@@ -22,6 +22,7 @@ import {
 } from "@/lib/userWipe";
 import AdminPinGate from "@/components/admin/AdminPinGate";
 import { isUnlockedThisSession } from "@/lib/adminPin";
+import BetaBadge from "@/components/BetaBadge";
 
 const STR = {
   uz: {

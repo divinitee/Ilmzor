@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BookOpen } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
+import { IS_BETA } from "@/lib/appMeta";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function LandingFooter() {
   const { t } = useAppLang();
@@ -13,6 +15,7 @@ export default function LandingFooter() {
             <BookOpen className="w-4 h-4 text-white" />
           </div>
           <span className="font-bold text-slate-900 landing-dark:text-slate-50 tracking-[0.14em]">VIRORA</span>
+          <BetaBadge />
         </div>
         <nav className="flex items-center gap-6 text-sm text-slate-500 landing-dark:text-slate-400">
           <a href="#how-it-works" className="hover:text-blue-600 landing-dark:hover:text-blue-400 transition-colors">{t("landing.nav.how_it_works")}</a>
@@ -22,6 +25,13 @@ export default function LandingFooter() {
         </nav>
         <p className="text-xs text-slate-400 landing-dark:text-slate-500">© {new Date().getFullYear()} VIRORA</p>
       </div>
+      {IS_BETA && (
+        <div className="max-w-6xl mx-auto px-5 pb-8 -mt-2">
+          <p className="text-xs text-slate-500 landing-dark:text-slate-400 text-center sm:text-left">
+            {t("pricing.beta_notice")}
+          </p>
+        </div>
+      )}
     </footer>
   );
 }

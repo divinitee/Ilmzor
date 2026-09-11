@@ -6,6 +6,7 @@ import ProfileEditor from "@/components/ProfileEditor";
 import { Switch } from "@/components/ui/switch";
 import { useAppLang } from "@/hooks/useAppLang";
 import LanguageSelector from "@/components/LanguageSelector";
+import BetaBadge from "@/components/BetaBadge";
 
 export default function Settings() {
   const { t } = useAppLang();

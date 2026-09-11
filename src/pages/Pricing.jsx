@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
+import FounderPriceNote from "@/components/FounderPriceNote";
 
 export default function Pricing() {
   const navigate = useNavigate();
@@ -243,6 +244,7 @@ export default function Pricing() {
                     <p className="text-xl font-bold text-foreground">
                       {formatPrice(pPrice)} <span className="text-sm font-normal text-muted-foreground">{pPeriod}</span>
                     </p>
+                    <FounderPriceNote className="mt-1" />
                     <ul className="mt-3 space-y-1.5">
                       {p.featureKeys.map((f, fi) => (
                         <li key={fi} className="flex items-center gap-2 text-xs text-muted-foreground">

@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import ParticleBackground from "@/components/ParticleBackground";
 import { getRadarData, getOverallStats, SKILLS } from "@/lib/gameSkills";
+import BetaBadge from "@/components/BetaBadge";
 
 const ACCENT = "#3b82f6";
 const ttStyle = {

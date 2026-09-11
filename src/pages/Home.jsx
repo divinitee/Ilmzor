@@ -18,6 +18,7 @@ import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
+import BetaBadge from "@/components/BetaBadge";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },

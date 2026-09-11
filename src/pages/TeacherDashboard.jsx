@@ -11,6 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 import TeacherCoPlanChat from "@/components/teacher/TeacherCoPlanChat";
 import { subscriptionKind, SUB_KIND_META, isPaying, approveSubscription } from "@/lib/subscription";
+import BetaBadge from "@/components/BetaBadge";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
