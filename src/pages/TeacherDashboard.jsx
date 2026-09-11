@@ -323,6 +323,10 @@ export default function TeacherDashboard() {
             <BookOpen className="w-4 h-4" /> Material Library
           </Button>
 
+          <Button onClick={() => navigate("/teacher/materials")} variant="outline" className="w-full h-11 gap-2">
+            <BookOpen className="w-4 h-4" /> Material Library
+          </Button>
+
           {/* Stats */}
           <div className="grid grid-cols-4 gap-2">
             <div className="bg-background rounded-xl p-3 border border-border text-center">
