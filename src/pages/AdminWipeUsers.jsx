@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
 import { AlertTriangle, Loader2, CheckCircle2 } from "lucide-react";
+import { USER_DATA_ENTITIES } from "@/lib/userWipe";
 
 // Admin-only, one-time utility. Not linked in nav. Visit /admin-wipe-users
 // directly while logged in as an admin. Factory-resets every registered
@@ -12,15 +13,13 @@ import { AlertTriangle, Loader2, CheckCircle2 } from "lucide-react";
 // themselves can be deleted this way is untested — if any remain after
 // running this, they likely need Base44's own Users tab, not this tool.
 
-const TARGET_ENTITIES = [
-  "StudentSubscription", "UserCoins", "AssessmentResult",
-  "QuizResult", "ChatMessage", "AiUsageLog", "TeacherReferral",
-  // Added 2026-09-05 — these were live entities missing from this list,
-  // so wiping a user left orphaned progress/history rows behind:
-  "SkillHubProgress", "SavedWord", "StudentProgress",
-  "WordAttempt", "RewardEvent",
-  "User",
-];
+// Sourced from lib/userWipe.js so this page and the per-user Reset/Delete in
+// /admin can never disagree about what belongs to a user. That drift had
+// already happened once: GrammarProfile and GrammarAssessmentRun were live
+// entities missing from the hardcoded list that used to live here, so a
+// "factory reset" silently left every user's grammar profile and assessment
+// history behind, and a re-registered account would inherit it.
+const TARGET_ENTITIES = [...USER_DATA_ENTITIES.map((e) => e.name), "User"];
 
 const CONFIRM_PHRASE = "DELETE ALL USERS";
 
