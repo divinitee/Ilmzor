@@ -28,6 +28,7 @@ import StudyTips from '@/pages/StudyTips';
 import AdminDashboard from '@/pages/AdminDashboard';
 import Analytics from '@/pages/Analytics';
 import Landing from '@/pages/Landing';
+import Roadmap from '@/pages/Roadmap';
 import AssessorLab from '@/pages/AssessorLab';
 import PlacementTest from '@/pages/PlacementTest';
 import Grammar from '@/pages/Grammar';
@@ -70,6 +71,7 @@ const AuthenticatedApp = () => {
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/landing" element={<Landing />} />
+      <Route path="/roadmap" element={<Roadmap />} />
       <Route path="/oauth/consent" element={<OAuthConsent />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/landing" replace />} />}>
         <Route path="/" element={<Home />} />
