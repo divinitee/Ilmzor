@@ -67,14 +67,31 @@ export default function Roadmap() {
         </motion.div>
 
         <section className="mt-16">
-          <div className="hidden lg:block relative mb-8 px-16">
-            <div className="absolute left-[12.5%] right-[12.5%] top-5 h-px bg-slate-200 landing-dark:bg-slate-800" />
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 1.1, delay: 0.25 }}
-              className="absolute origin-left left-[12.5%] top-5 w-[50%] h-px bg-gradient-to-r from-violet-500 to-violet-300"
-            />
+          <div className="hidden lg:grid grid-cols-4 gap-5 mb-8">
+            {stages.map((stage, index) => (
+              <div key={stage.name} className="relative flex flex-col items-center">
+                {index < stages.length - 1 && (
+                  <div className="absolute left-1/2 top-4 w-full h-px bg-slate-800" />
+                )}
+                {index < 2 && (
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.55, delay: 0.25 + index * 0.12 }}
+                    className="absolute left-1/2 top-4 w-full h-px origin-left bg-violet-400/80"
+                  />
+                )}
+                <div className={"relative z-10 w-8 h-8 rounded-full border flex items-center justify-center text-[10px] font-bold " + (
+                  stage.status === "complete"
+                    ? "bg-violet-500 border-violet-400 text-white"
+                    : stage.status === "active"
+                    ? "bg-slate-950 border-violet-400 text-violet-300"
+                    : "bg-slate-950 border-slate-700 text-slate-500"
+                )}>
+                  {stage.status === "complete" ? <Check className="w-4 h-4" /> : index + 1}
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
