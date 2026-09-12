@@ -17,6 +17,7 @@ import Home from '@/pages/Home';
 import Quiz from '@/pages/Quiz';
 import TeacherDashboard from '@/pages/TeacherDashboard';
 import TeacherMaterials from '@/pages/TeacherMaterials';
+import TeacherSkillHub from '@/pages/TeacherSkillHub';
 import Pricing from '@/pages/Pricing';
 import About from '@/pages/About';
 import Contact from '@/pages/Contact';
@@ -78,6 +79,7 @@ const AuthenticatedApp = () => {
         <Route path="/quiz/:unitKey" element={<Quiz />} />
         <Route path="/teacher" element={<TeacherDashboard />} />
         <Route path="/teacher/materials" element={<TeacherMaterials />} />
+        <Route path="/teacher/skill-hub" element={<TeacherSkillHub />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/my-progress" element={<MyProgress />} />
