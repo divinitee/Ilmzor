@@ -1,21 +1,24 @@
 import { Crown, Star, Zap, Sparkles } from "lucide-react";
-import { usdFor, yearlyUsd, formatUsd, YEARLY_DISCOUNT as LADDER_DISCOUNT } from "@/lib/founderPricing";
+import { usdFor, usdYearFor, formatUsd } from "@/lib/founderPricing";
 
 // Prices moved from so'm to USD when payments moved to Dodo Payments, which
 // charges in USD. The amounts are NOT constants any more: they come from the
 // founder price ladder in lib/founderPricing.js, which is the single place any
 // price or date is defined.
 //
-// monthlyPrice stays a plain property read (p.monthlyPrice) via a getter, so
-// every existing call site keeps working while the value tracks the current
-// ladder stage.
-export const YEARLY_DISCOUNT = LADDER_DISCOUNT;
+// monthlyPrice and yearlyPrice are both plain property reads via getters, so
+// call sites stay simple while the values track the current ladder rung.
+//
+// Yearly is an explicit price per plan, NOT monthly × 12 × some discount. The
+// old formula produced $26.91 while the real charge is $29.99, and a formula
+// that disagrees with what the customer is billed is worse than no formula.
 
 export const PLAN_LIST = [
   {
     id: "free",
     name: "Free Plan",
     monthlyPrice: 0,
+    yearlyPrice: 0,
     icon: Sparkles,
     color: "from-slate-500/10 to-slate-400/10",
     border: "border-slate-300",
@@ -29,6 +32,7 @@ export const PLAN_LIST = [
     id: "learner",
     name: "Learner Plan",
     get monthlyPrice() { return usdFor("learner"); },
+    get yearlyPrice() { return usdYearFor("learner"); },
     icon: Star,
     color: "from-indigo-500/20 to-violet-500/20",
     border: "border-indigo-500",
@@ -42,6 +46,7 @@ export const PLAN_LIST = [
     id: "vip",
     name: "VIP Plan",
     get monthlyPrice() { return usdFor("vip"); },
+    get yearlyPrice() { return usdYearFor("vip"); },
     icon: Crown,
     color: "from-amber-500/20 to-orange-500/20",
     border: "border-amber-400",
@@ -60,10 +65,9 @@ export const PLAN_LIST = [
   },
 ];
 
-// Both delegate to the ladder so there is exactly one implementation of "what
-// does a year cost" and "how is money written" in the app.
-export const yearlyPrice = (monthly) => yearlyUsd(monthly);
-
+// The old yearlyPrice(monthly) helper is deliberately gone: it took a monthly
+// amount and applied a percentage, which is no longer how yearly is priced.
+// Read p.yearlyPrice instead.
 export const formatPrice = (n) => formatUsd(n);
 
 export const getPlanById = (id) => PLAN_LIST.find((p) => p.id === id);
