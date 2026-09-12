@@ -9,7 +9,7 @@ import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
-import { getCurrentStage } from "@/lib/founderPricing";
+import { getCurrentStage, yearlySavingPct } from "@/lib/founderPricing";
 
 export default function Pricing() {
   const navigate = useNavigate();
@@ -205,7 +205,7 @@ export default function Pricing() {
             }`}
           >
             {t("pricing.billing_yearly")}
-            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
+            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">{yearlySavingPct()}%</span>
           </button>
         </div>
 
