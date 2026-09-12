@@ -87,7 +87,7 @@
     },
     "locked_price_usd": {
       "type": "number",
-      "description": "The monthly/yearly USD amount this subscriber actually locked in, taken from what Dodo really charged (recurring_pre_tax_amount) rather than anything the browser claimed. Written ONCE on first activation and never overwritten on renewal \u2014 that is what makes 'locked for life' an auditable record instead of a marketing line. If prices rise and an existing subscriber's charge ever differs from this, something has gone wrong and the promise has been broken."
+      "description": "The monthly/yearly USD amount this subscriber locked in \u2014 the advertised price they saw and agreed to. Resolved server-side in dodoWebhook by looking up the Dodo product they bought, never from anything the browser claimed. Deliberately NOT read from recurring_pre_tax_amount: VIRORA prices are tax-inclusive, so that figure is the advertised price minus the buyer's local VAT and differs country by country, which would give every subscriber a different 'locked for life' number. Written ONCE on first activation and never overwritten on renewal. If the lookup fails the field is left empty and the next webhook event retries it \u2014 empty is recoverable, a wrong number in a 'for life' field is not."
     },
     "dodo_subscription_id": {
       "type": "string",
