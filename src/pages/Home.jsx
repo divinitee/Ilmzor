@@ -154,10 +154,10 @@ export default function Home() {
   const isApprovedTeacher = user?.teacher_status === "approved";
   const isPendingTeacher = user?.teacher_status === "pending";
   const isRejectedTeacher = user?.teacher_status === "rejected";
-  // Existing teacher accounts are identified by role. Newer approval-based
-  // accounts may still carry the student role until migration, so accept
-  // either signal for the teacher product home.
-  const isTeacher = user?.role === "teacher" || isApprovedTeacher;
+  // A teacher application creates a teacher-track account immediately.
+  // "pending" is an approval state, not a reason to send that teacher back
+  // to the student Home page. Rejected accounts remain outside the panel.
+  const isTeacher = user?.role === "teacher" || isApprovedTeacher || isPendingTeacher;
   const showTeacherPanelLink = isAdmin;
   // Any teacher-track account (approved, pending, or rejected) is kept off
   // the student-facing Skill Hub / AI Teacher tabs entirely — approved
@@ -168,8 +168,8 @@ export default function Home() {
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
-  // An approved teacher should never land on a dead-end student home screen.
-  // Their product home is the Teacher Panel, so redirect immediately.
+  // A teacher's product home is the Teacher Panel. There is no intermediate
+  // teacher Home screen with a button to enter the dashboard.
   if (isTeacher && !isAdmin) return <Navigate to="/teacher" replace />;
 
   // Everyone needs an active subscription — admins are not exempt
