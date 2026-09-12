@@ -57,7 +57,7 @@ function staticPaymentLink(
   const host = secrets.get("DODO_CHECKOUT_HOST") || CHECKOUT_HOSTS[mode];
   const q = new URLSearchParams();
   q.set("quantity", "1");
-  q.set("redirect_url", `${appUrl}/?payment=done`);
+  q.set("redirect_url", `${appUrl}/payment-complete`);
   q.set("email", metadata.user_email);
   q.set("disableEmail", "true");
   if (metadata.user_name) q.set("fullName", metadata.user_name);
@@ -156,7 +156,7 @@ Deno.serve(async (req) => {
           body: JSON.stringify({
             product_cart: [{ product_id: productId, quantity: 1 }],
             customer: { email: me.email, name: metadata.user_name },
-            return_url: `${appUrl}/?payment=done`,
+            return_url: `${appUrl}/payment-complete`,
             metadata,
           }),
         });
