@@ -23,6 +23,37 @@ const DODO_API = {
   live: "https://live.dodopayments.com",
 };
 
+// Which plan and cycle a Dodo product represents, matched against the same
+// DODO_PRODUCT_* secrets createDodoCheckout used to build the checkout.
+//
+// Deliberately NOT taken from metadata.plan. On the hosted payment-link path
+// metadata rides in the query string, which the buyer can edit before paying —
+// swap metadata_plan=vip onto the $2.99 Learner link and they would be granted
+// VIP for Learner money. The product Dodo actually charged cannot be forged, so
+// the tier is derived from that and nothing else.
+const PLAN_SECRETS = [
+  { secret: "DODO_PRODUCT_LEARNER_MONTHLY", plan: "learner", cycle: "monthly" },
+  { secret: "DODO_PRODUCT_VIP_MONTHLY", plan: "vip", cycle: "monthly" },
+  { secret: "DODO_PRODUCT_LEARNER_YEARLY", plan: "learner", cycle: "yearly" },
+  { secret: "DODO_PRODUCT_VIP_YEARLY", plan: "vip", cycle: "yearly" },
+];
+
+// Must match lib/plans.js. subscriptionKind() reads any plan matching /free/i
+// as a free account, so a paid row that keeps its old "Free Plan" label is
+// treated as unpaid no matter what was charged.
+const PLAN_NAMES: Record<string, string> = {
+  learner: "Learner Plan",
+  vip: "VIP Plan",
+};
+
+function planForProduct(productId: string) {
+  if (!productId) return null;
+  for (const entry of PLAN_SECRETS) {
+    if (secrets.get(entry.secret) === productId) return entry;
+  }
+  return null;
+}
+
 // The price the student actually SAW and agreed to, read from Dodo's own
 // product record.
 //
@@ -182,13 +213,31 @@ Deno.serve(async (req) => {
     if (ACTIVATING.has(type)) {
       patch.status = "active";
       patch.is_trial = false;
+      const productId = data.product_id || data.product?.product_id || "";
+
+      // The tier they actually bought. Set on every activating event, not just
+      // the first, so an upgrade (subscription.plan_changed) moves the row too.
+      //
+      // This has to be written even when the row already exists: a student who
+      // started on the free plan keeps a "Free Plan" label otherwise, and the
+      // app reads that as unpaid however much they were charged.
+      const tier = planForProduct(productId);
+      if (tier) {
+        patch.plan = PLAN_NAMES[tier.plan];
+        patch.billing_cycle = tier.cycle;
+      } else {
+        console.error(
+          "No DODO_PRODUCT_* secret matches product", productId,
+          "— leaving plan as-is on", subscriptionId,
+        );
+      }
+
       // The founder-price lock, resolved from the product Dodo says was
       // bought — never from anything the browser claimed, or a tampered
       // client could assert it locked in at a cent. Written once on first
       // activation and deliberately never overwritten on renewal: if this
       // row's value ever changed, "locked for life" would stop being true.
       if (!row?.locked_price_usd) {
-        const productId = data.product_id || data.product?.product_id || "";
         const locked = await advertisedPriceUsd(productId);
         if (locked) {
           patch.locked_price_usd = locked;
