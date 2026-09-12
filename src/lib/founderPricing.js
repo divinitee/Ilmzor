@@ -21,8 +21,20 @@
 // must be kept in step by hand.
 
 export const CURRENCY = "USD";
-export const YEARLY_DISCOUNT = 0.25;
 export const FINAL_ANNOUNCEMENT = "2027-01-01";
+
+// The reference price every discount is measured against: what VIRORA costs
+// once pricing is finalised, from 1 January 2027.
+//
+// This is a FUTURE price, and the UI must always frame it that way — "$9.99
+// from January", never "was $9.99". It has never been charged, so presenting
+// it as a former price would be invented reference pricing: dishonest, and
+// illegal in many markets. Stated as a dated upcoming price it is simply true,
+// and it is the anchor the founder discount is calculated from.
+export const LAUNCH_PRICE = {
+  monthly: { learner: 9.99, vip: 14.99 },
+  yearly: { learner: 99.99, vip: 149.99 },
+};
 
 // Each stage is available while today <= endsOn (inclusive, in the viewer's own
 // timezone). A stage with endsOn null runs until a milestone we can't date yet,
@@ -36,6 +48,7 @@ export const PRICE_STAGES = [
     endsOn: "2026-10-21",
     endsReason: "date",
     usd: { learner: 2.99, vip: 5.99 },
+    usdYear: { learner: 29.99, vip: 59.99 },
   },
   {
     id: "early",
@@ -44,12 +57,17 @@ export const PRICE_STAGES = [
     endsOn: null,
     endsReason: "milestone",
     usd: { learner: 5.55, vip: 9.99 },
+    // DERIVED, not specified: the yearly figures for the two middle rungs were
+    // interpolated at roughly ten months' equivalent, matching the ratio of the
+    // founder and launch prices. Replace with real numbers when decided.
+    usdYear: { learner: 55.99, vip: 99.99 },
   },
   {
     id: "standard",
     endsOn: null,
     endsReason: "announcement",
     usd: { learner: 8.88, vip: 14.99 },
+    usdYear: { learner: 88.88, vip: 149.99 },
   },
 ];
 
@@ -95,9 +113,46 @@ export function usdFor(planId, stageId = null) {
   return stage.usd[planId] ?? 0;
 }
 
-// 25% off twelve months. Kept to two decimals because it is a real charge.
-export const yearlyUsd = (monthly) =>
-  Math.round(monthly * 12 * (1 - YEARLY_DISCOUNT) * 100) / 100;
+// Yearly is now an explicit price per plan per rung, not a formula off the
+// monthly rate — the old "monthly × 12 × 0.75" produced $26.91, and the real
+// price is $29.99. A formula that disagrees with what the customer is actually
+// charged is worse than no formula.
+export function usdYearFor(planId, stageId = null) {
+  const stage = stageId
+    ? PRICE_STAGES.find((s) => s.id === stageId) || getCurrentStage()
+    : getCurrentStage();
+  return stage.usdYear?.[planId] ?? 0;
+}
+
+// Price for a plan on either cycle at the current (or a named) rung.
+export const priceFor = (planId, cycle = "monthly", stageId = null) =>
+  cycle === "yearly" ? usdYearFor(planId, stageId) : usdFor(planId, stageId);
+
+// How far below the January launch price the current price sits. This is what
+// "70% off" on the pricing page means — always computed, never hardcoded, so
+// it cannot drift out of step with the numbers above.
+export function discountVsLaunch(planId, cycle = "monthly") {
+  const now = priceFor(planId, cycle);
+  const launch = (cycle === "yearly" ? LAUNCH_PRICE.yearly : LAUNCH_PRICE.monthly)[planId];
+  if (!now || !launch || now >= launch) return 0;
+  return Math.round((1 - now / launch) * 100);
+}
+
+export const launchPriceFor = (planId, cycle = "monthly") =>
+  (cycle === "yearly" ? LAUNCH_PRICE.yearly : LAUNCH_PRICE.monthly)[planId] ?? 0;
+
+// What a year saves against paying monthly at the SAME rung. Computed from the
+// real prices rather than the old hardcoded 25%, which stopped being true the
+// moment yearly became an explicit number ($2.99 × 12 = $35.88 vs $29.99 is
+// ~16%, not 25%).
+export function yearlySavingPct(planId = "learner") {
+  const monthly = usdFor(planId);
+  const yearly = usdYearFor(planId);
+  if (!monthly || !yearly) return 0;
+  const full = monthly * 12;
+  if (yearly >= full) return 0;
+  return Math.round((1 - yearly / full) * 100);
+}
 
 export const formatUsd = (n) => {
   const num = Number(n) || 0;
@@ -133,9 +188,8 @@ export function countdownParts(ms) {
 // a line of marketing copy — see createDodoCheckout / dodoWebhook.
 export function lockSnapshot(planId, cycle = "monthly") {
   const stage = getCurrentStage();
-  const monthly = usdFor(planId, stage.id);
   return {
     founder_stage: stage.id,
-    locked_price_usd: cycle === "yearly" ? yearlyUsd(monthly) : monthly,
+    locked_price_usd: priceFor(planId, cycle, stage.id),
   };
 }
