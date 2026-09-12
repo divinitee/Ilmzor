@@ -43,6 +43,7 @@ import MyWords from '@/pages/MyWords';
 import VocabReview from '@/pages/VocabReview';
 import TeachStressTest from '@/pages/TeachStressTest';
 import OAuthConsent from '@/pages/OAuthConsent';
+import Achievements from '@/pages/Achievements';
 import AppLoader from '@/components/AppLoader';
 
 const AuthenticatedApp = () => {
@@ -84,6 +85,7 @@ const AuthenticatedApp = () => {
         <Route path="/teacher/skill-hub" element={<TeacherSkillHub />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/achievements" element={<Achievements />} />
         <Route path="/my-progress" element={<MyProgress />} />
         <Route path="/plans" element={<Plans />} />
         <Route path="/settings" element={<Settings />} />

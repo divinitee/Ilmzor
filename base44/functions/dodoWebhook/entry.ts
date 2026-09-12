@@ -253,6 +253,10 @@ Deno.serve(async (req) => {
         }
         if (metadata.founder_stage) patch.founder_stage = metadata.founder_stage;
       }
+      // First day as a paying member. Stamped once and never touched again —
+      // it is what time-boxed achievements (Founding Learner) are judged on,
+      // so it has to outlive any later pause/cancel/lapse of the row.
+      if (!row?.paid_since) patch.paid_since = new Date().toISOString().slice(0, 10);
       patch.cancelled_at = "";
       patch.paused_at = "";
       patch.paused_days_remaining = null;

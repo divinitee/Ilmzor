@@ -328,6 +328,16 @@ export const translations = {
       signed_out_sub: "To'lovingiz amalga oshdi. To'lov qilgan email bilan kiring va ruxsatingiz paydo bo'ladi.",
       login: "Kirish",
     },
+    achievements: {
+      title: "Yutuqlar", all: "Barcha yutuqlar",
+      unlocked: "Ochildi", locked: "Yopiq", permanent: "Umrbod", exclusive: "Faqat pullik a'zolar",
+      earned_on: "{date} da olingan", count: "{n} / {total} ochildi",
+      more_coming: "Yangi yutuqlar tez orada qo'shiladi.",
+      founding_title: "Founding Learner", founding_gen: "Generation One",
+      founding_criteria: "2026-yil 14-oktyabrgacha qo'shilgan",
+      founding_desc: "Siz VIRORAga eng boshida ishondingiz. Bu nishon birinchi avlod a'zolariga beriladi va hech qachon olib qo'yilmaydi.",
+      founding_locked_hint: "2026-yil 14-oktyabrgacha pullik a'zo bo'ling va bu nishonni umrbod saqlang.",
+    },
     studytips: {
       title: "O'rganish maslahatlari", intro: "So'z boyligingizni samaraliroq oshirish uchun ushbu isbotlangan usullardan foydalaning:",
       tips: [
@@ -708,6 +718,16 @@ export const translations = {
       signed_out_sub: "Your payment went through. Log in with the same email you paid with and your access will appear.",
       login: "Log in",
     },
+    achievements: {
+      title: "Achievements", all: "All achievements",
+      unlocked: "Unlocked", locked: "Locked", permanent: "Permanent", exclusive: "Paid members only",
+      earned_on: "Earned {date}", count: "{n} of {total} unlocked",
+      more_coming: "More achievements are on the way.",
+      founding_title: "Founding Learner", founding_gen: "Generation One",
+      founding_criteria: "Joined before 14 October 2026",
+      founding_desc: "You believed in VIRORA at the very beginning. This badge belongs to the first generation of members and is never taken away.",
+      founding_locked_hint: "Become a paid member before 14 October 2026 to keep this badge for life.",
+    },
     studytips: {
       title: "Study tips", intro: "Use these proven methods to grow your vocabulary more effectively:",
       tips: [
@@ -1087,6 +1107,16 @@ export const translations = {
       signed_out_title: "Войдите, чтобы завершить",
       signed_out_sub: "Платёж прошёл. Войдите с тем же email, с которого платили, и доступ появится.",
       login: "Войти",
+    },
+    achievements: {
+      title: "Достижения", all: "Все достижения",
+      unlocked: "Открыто", locked: "Закрыто", permanent: "Навсегда", exclusive: "Только для платных участников",
+      earned_on: "Получено {date}", count: "{n} из {total} открыто",
+      more_coming: "Новые достижения скоро появятся.",
+      founding_title: "Founding Learner", founding_gen: "Generation One",
+      founding_criteria: "Присоединился до 14 октября 2026",
+      founding_desc: "Вы поверили в VIRORA с самого начала. Этот значок принадлежит первому поколению участников и никогда не отзывается.",
+      founding_locked_hint: "Станьте платным участником до 14 октября 2026, чтобы сохранить этот значок навсегда.",
     },
     studytips: {
       title: "Советы по обучению", intro: "Используйте эти проверенные методы, чтобы эффективнее расширять словарный запас:",

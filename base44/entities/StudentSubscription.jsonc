@@ -89,6 +89,11 @@
       "type": "number",
       "description": "The monthly/yearly USD amount this subscriber locked in \u2014 the advertised price they saw and agreed to. Resolved server-side in dodoWebhook by looking up the Dodo product they bought, never from anything the browser claimed. Deliberately NOT read from recurring_pre_tax_amount: VIRORA prices are tax-inclusive, so that figure is the advertised price minus the buyer's local VAT and differs country by country, which would give every subscriber a different 'locked for life' number. Written ONCE on first activation and never overwritten on renewal. If the lookup fails the field is left empty and the next webhook event retries it \u2014 empty is recoverable, a wrong number in a 'for life' field is not."
     },
+    "paid_since": {
+      "type": "string",
+      "format": "date",
+      "description": "The day this person FIRST became a paying member \u2014 stamped once on the first real paid activation (dodoWebhook activating event, or a manual approve/resume/reactivate of a non-free plan) and never overwritten or cleared afterwards, even if the subscription later lapses, pauses or is cancelled. This is the permanent record that drives time-boxed achievements such as Founding Learner (lib/achievements.js): the badge is earned by having paid before a cutoff date, so it must survive the subscription's later state. Never set by a trial or the free plan. Rows that predate this field fall back to created_date while currently paying (see paidSince() in lib/subscription.js)."
+    },
     "dodo_subscription_id": {
       "type": "string",
       "description": "Dodo Payments subscription id (sub_...). The primary key used to match an incoming webhook back to this row \u2014 more reliable than email, which a customer can change at checkout."

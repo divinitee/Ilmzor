@@ -46,6 +46,27 @@ export function subscriptionKind(sub) {
 // Only real money counts as revenue — trial, free and cancelled never do.
 export const isPaying = (sub) => ["paid", "ending"].includes(subscriptionKind(sub));
 
+// A plan that costs money — the free plan and an unset plan never qualify.
+const isRealPlan = (sub) => !!sub?.plan && !/free/i.test(sub.plan);
+
+// Patch fragment that records the first day someone paid. Empty when the
+// stamp already exists or nothing was actually bought, so callers can spread
+// it unconditionally. Once written it is never cleared — see paidSince().
+export function paidSinceStamp(sub) {
+  if (!sub || sub.paid_since || sub.is_trial || !isRealPlan(sub)) return {};
+  return { paid_since: todayStr() };
+}
+
+// When this person first became a paying member, or null if they never have.
+// Reads the permanent paid_since stamp first, so a lapsed or cancelled former
+// subscriber keeps their date. Rows from before the stamp existed fall back
+// to the row's own creation date while they are currently paying.
+export function paidSince(sub) {
+  if (!sub || sub.is_trial) return null;
+  if (sub.paid_since) return sub.paid_since;
+  return isPaying(sub) ? sub.created_date || null : null;
+}
+
 export const SUB_KIND_META = {
   paid: { label: "✅ Paid", cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10" },
   trial: { label: "🎁 Trial", cls: "text-sky-700 dark:text-sky-400 bg-sky-500/10" },
@@ -86,6 +107,7 @@ export async function approveSubscription(sub) {
     cancelled_at: "",
     paused_at: "",
     paused_days_remaining: null,
+    ...paidSinceStamp(sub),
   };
   await base44.entities.StudentSubscription.update(sub.id, patch);
   return { ...sub, ...patch };
@@ -111,7 +133,7 @@ export async function resumeSubscription(sub, note = "") {
   // it comes back already expired rather than silently gaining time.
   const expires_at =
     typeof banked === "number" ? (banked > 0 ? addDays(banked) : todayStr()) : "";
-  const patch = { status: "active", paused_at: "", paused_days_remaining: null, expires_at };
+  const patch = { status: "active", paused_at: "", paused_days_remaining: null, expires_at, ...paidSinceStamp(sub) };
   if (note) patch.admin_note = note;
   await base44.entities.StudentSubscription.update(sub.id, patch);
   return { ...sub, ...patch };
@@ -144,6 +166,7 @@ export async function reactivateSubscription(sub, note = "") {
         paused_at: "",
         paused_days_remaining: null,
         expires_at: periodEnd(sub),
+        ...paidSinceStamp(sub),
       };
   if (note) patch.admin_note = note;
   await base44.entities.StudentSubscription.update(sub.id, patch);

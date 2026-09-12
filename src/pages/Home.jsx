@@ -19,6 +19,8 @@ import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
 import BetaBadge from "@/components/BetaBadge";
+import AchievementsButton from "@/components/AchievementsButton";
+import { hasAnyUnlocked } from "@/lib/achievements";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -194,6 +196,7 @@ export default function Home() {
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
         <div className="relative flex items-center gap-2 select-none">
           <span className="neo-bloom" aria-hidden="true" />
+          <AchievementsButton unlocked={hasAnyUnlocked({ user, subscription })} />
           <button onClick={() => navigateTab("home")} className="relative neo-pill px-3 py-1.5 cursor-pointer select-none">
             <BookOpen className="w-4 h-4 text-fuchsia-300" />
             <span className="font-bold text-foreground tracking-tight text-[13px]">{t("home.app_name")}</span>

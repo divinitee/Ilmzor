@@ -286,6 +286,20 @@
     will-change: transform;
   }
 
+  /* Achievement medal — a slow specular sweep across the metallic ring */
+  @keyframes medalShine {
+    0%   { transform: translateX(-160%) rotate(20deg); }
+    35%, 100% { transform: translateX(220%) rotate(20deg); }
+  }
+  .medal-shine { overflow: hidden; }
+  .medal-shine::before {
+    content: ""; position: absolute; top: -20%; bottom: -20%; left: 0; width: 45%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: translateX(-160%) rotate(20deg);
+    animation: medalShine 5.5s ease-in-out infinite;
+    pointer-events: none; z-index: 1; border-radius: inherit;
+  }
+
   /* Slow traveling light across mission-control cards — light moves, not the content */
   @keyframes missionSweep {
     0%   { transform: translateX(-130%); }
