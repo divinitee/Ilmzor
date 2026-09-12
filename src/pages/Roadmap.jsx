@@ -104,7 +104,7 @@ export default function Roadmap() {
                 className={`relative rounded-3xl border p-6 sm:p-7 min-h-[260px] flex flex-col ${
                   stage.status === "active"
                     ? "border-violet-400/40 bg-violet-500/[0.07] shadow-[0_0_50px_rgba(139,92,246,0.12)]"
-                    : "border-slate-200 landing-dark:border-slate-800 bg-white/70 landing-dark:bg-slate-900/60"
+                    : "border-slate-800 bg-slate-900/60"
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -113,7 +113,7 @@ export default function Roadmap() {
                       ? "bg-violet-500 border-violet-400 text-white"
                       : stage.status === "active"
                       ? "border-violet-400 bg-violet-500/15 text-violet-600 landing-dark:text-violet-300"
-                      : "border-slate-300 landing-dark:border-slate-700 text-slate-400"
+                      : "border-slate-700 text-slate-500"
                   }`}>
                     {stage.status === "complete" ? <Check className="w-5 h-5" /> : <span className="text-sm font-bold">{index + 1}</span>}
                   </div>
@@ -142,7 +142,7 @@ export default function Roadmap() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.75 }}
-          className="mt-16 rounded-3xl border border-slate-200 landing-dark:border-slate-800 bg-white/60 landing-dark:bg-slate-900/50 p-7 sm:p-10 text-center"
+          className="mt-16 rounded-3xl border border-slate-800 bg-slate-900/50 p-7 sm:p-10 text-center"
         >
           <div className="mx-auto max-w-2xl">
             <div className="text-xs uppercase tracking-[0.22em] text-slate-400">The next chapter</div>
