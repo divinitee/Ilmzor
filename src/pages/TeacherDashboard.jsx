@@ -319,9 +319,14 @@ export default function TeacherDashboard() {
             </p>
           </div>
 
-          <Button onClick={() => navigate("/teacher/materials")} variant="outline" className="w-full h-11 gap-2">
-            <BookOpen className="w-4 h-4" /> Material Library
-          </Button>
+          <div className="grid grid-cols-2 gap-3">
+            <Button onClick={() => navigate("/teacher/skill-hub")} className="h-11 gap-2">
+              <Sparkles className="w-4 h-4" /> Assign homework
+            </Button>
+            <Button onClick={() => navigate("/teacher/materials")} variant="outline" className="h-11 gap-2">
+              <BookOpen className="w-4 h-4" /> Material Library
+            </Button>
+          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-4 gap-2">
