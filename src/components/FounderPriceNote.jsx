@@ -3,7 +3,9 @@ import { Info, Lock } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { IS_BETA } from "@/lib/appMeta";
 import { useAppLang } from "@/hooks/useAppLang";
-import { getNextStage, usdFor, yearlyUsd, formatUsd } from "@/lib/founderPricing";
+import {
+  getNextStage, formatUsd, discountVsLaunch, launchPriceFor,
+} from "@/lib/founderPricing";
 
 // Sits directly under a rendered price. Two jobs: say the price is locked if
 // you take it now, and name what it becomes if you don't.
@@ -47,9 +49,15 @@ export default function FounderPriceNote({
   const next = getNextStage();
   let nextPrice = null;
   if (next && planId) {
-    const monthly = next.usd?.[planId];
-    if (monthly) nextPrice = formatUsd(cycle === "yearly" ? yearlyUsd(monthly) : monthly);
+    const amount = cycle === "yearly" ? next.usdYear?.[planId] : next.usd?.[planId];
+    if (amount) nextPrice = formatUsd(amount);
   }
+
+  // How far below the January launch price this sits, computed from the real
+  // numbers rather than hardcoded, so the headline percentage can never drift
+  // out of step with what is actually charged.
+  const off = planId ? discountVsLaunch(planId, cycle) : 0;
+  const launch = planId ? launchPriceFor(planId, cycle) : 0;
 
   return (
     <div className={`space-y-0.5 ${className}`}>
@@ -80,13 +88,23 @@ export default function FounderPriceNote({
         </Popover>
       </div>
 
-      <p className={`text-[10px] font-semibold ${tone.lock}`}>{t("pricing.founder_lock")}</p>
-
-      {nextPrice && (
-        <p className={`text-[10px] ${tone.next}`}>
-          {t("pricing.founder_then", { price: nextPrice })}
+      {off > 0 && (
+        <p className={`text-[11px] font-bold ${tone.lock}`}>
+          {t("pricing.founder_off", { pct: off })}
         </p>
       )}
+
+      <p className={`text-[10px] font-semibold ${tone.lock}`}>{t("pricing.founder_lock")}</p>
+
+      {/* Both future prices, stated forward and never struck through: the next
+          rung is the immediate reason to act, the launch price is the size of
+          the deal. Neither has ever been charged, so neither is ever presented
+          as a former price. */}
+      <p className={`text-[10px] ${tone.next}`}>
+        {nextPrice && t("pricing.founder_then", { price: nextPrice })}
+        {nextPrice && launch > 0 && " · "}
+        {launch > 0 && t("pricing.founder_launch", { price: formatUsd(launch) })}
+      </p>
     </div>
   );
 }
