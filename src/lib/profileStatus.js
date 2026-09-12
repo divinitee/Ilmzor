@@ -20,7 +20,12 @@ export function needsProfileSetup(user) {
   if (!user) return false;
   // Admins and teachers use role-specific product homes. They do not need
   // the student placement/onboarding flow.
-  if (user.role === "admin" || user.role === "teacher" || user.teacher_status === "approved") return false;
+  if (
+    user.role === "admin"
+    || user.role === "teacher"
+    || user.teacher_status === "approved"
+    || user.teacher_status === "pending"
+  ) return false;
   if (isLegacyAccount(user)) return false;
   return !isKnownLevel(user.cefr_level);
 }
