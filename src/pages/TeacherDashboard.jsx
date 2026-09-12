@@ -110,7 +110,8 @@ export default function TeacherDashboard() {
       // referred students for a non-admin teacher — no separate client-side
       // filtering needed to keep one teacher from seeing another's.
       const isApprovedTeacher = me.teacher_status === "approved";
-      if (me.role !== "admin" && !isApprovedTeacher) { navigate("/"); return; }
+      const isTeacher = me.role === "teacher" || isApprovedTeacher;
+      if (me.role !== "admin" && !isTeacher) { navigate("/"); return; }
       const [subs, res, refs, skills] = await Promise.all([
         base44.entities.StudentSubscription.list("-created_date", 200),
         base44.entities.QuizResult.list("-created_date", 100).catch(() => []),
