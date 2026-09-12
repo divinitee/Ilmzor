@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  BookOpen, LogOut, CheckCircle, Clock, Users, ChevronLeft, RefreshCw, Plus,
+  BookOpen, LogOut, CheckCircle, Clock, Users, RefreshCw, Plus,
   Copy, ChevronDown, MessageCircle, UserMinus, AlertTriangle, Sparkles,
 } from "lucide-react";
 import ChatWindow from "@/components/ChatWindow";
@@ -281,10 +281,7 @@ export default function TeacherDashboard() {
     <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
       {/* Header */}
       <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
-        <div className="flex items-center gap-1">
-          <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground p-1 select-none">
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+        <div className="flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-primary select-none" />
           <span className="font-bold text-foreground">Teacher Panel</span>
           <BetaBadge className="ml-1" />
