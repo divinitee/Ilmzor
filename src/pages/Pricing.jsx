@@ -5,7 +5,7 @@ import { BookOpen, Check, ArrowLeft, CreditCard, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
-import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
+import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
@@ -27,7 +27,7 @@ export default function Pricing() {
 
   const isYearly = cycle === "yearly";
   const plan = PLAN_LIST.find((p) => p.id === selectedPlan);
-  const price = isYearly ? yearlyPrice(plan.monthlyPrice) : plan.monthlyPrice;
+  const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
   const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
 
   const handleContinue = () => setStep("payment");
@@ -217,7 +217,7 @@ export default function Pricing() {
           {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
             const isSelected = selectedPlan === p.id;
-            const pPrice = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;
+            const pPrice = isYearly ? p.yearlyPrice : p.monthlyPrice;
             const pPeriod = isYearly ? t("pricing.per_year") : t("pricing.per_month");
             return (
               <motion.button
