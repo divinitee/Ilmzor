@@ -15,6 +15,65 @@ import { Webhook } from 'npm:standardwebhooks@1.0.0';
 //
 // Secrets required (Base44 dashboard → Secrets):
 //   DODO_WEBHOOK_KEY — Dodo dashboard → Developer → Webhooks
+//   DODO_API_KEY     — needed to resolve a product's advertised price
+//   DODO_MODE        — "test" (default) or "live"
+
+const DODO_API = {
+  test: "https://test.dodopayments.com",
+  live: "https://live.dodopayments.com",
+};
+
+// The price the student actually SAW and agreed to, read from Dodo's own
+// product record.
+//
+// Deliberately NOT derived from what the card was charged. VIRORA runs
+// tax-inclusive pricing: the student is charged exactly the $2.99 the site
+// advertises and Dodo carves the VAT back out of that figure, so
+// recurring_pre_tax_amount is $2.99 minus whatever the buyer's country
+// levies — about $2.72 at 10%, $2.67 at Uzbekistan's 12%, the full $2.99
+// where no tax applies. Writing that into a field labelled "locked for life"
+// would hand every student a different, wrong number and make the founder
+// promise untrue for most of them.
+//
+// A product's own price is identical for every buyer, and because the ladder's
+// operating rule is to create NEW products for each rung rather than edit
+// existing ones, a founder subscriber's product keeps reporting 2.99 forever.
+// Under tax-exclusive pricing this returns the same figure, so the fix holds
+// whichever way a future product is configured.
+async function advertisedPriceUsd(productId: string): Promise<number | null> {
+  if (!productId) return null;
+  const apiKey = secrets.get("DODO_API_KEY");
+  if (!apiKey) {
+    console.error("DODO_API_KEY is not set — cannot resolve the advertised price");
+    return null;
+  }
+  const mode = (secrets.get("DODO_MODE") || "test") === "live" ? "live" : "test";
+  try {
+    const res = await fetch(
+      `${DODO_API[mode]}/products/${encodeURIComponent(productId)}`,
+      { headers: { Authorization: `Bearer ${apiKey}` } },
+    );
+    if (!res.ok) {
+      console.error("Dodo product lookup failed:", productId, res.status);
+      return null;
+    }
+    const product = await res.json();
+    // `price` is a discriminated union: a bare minor-unit integer on some
+    // responses, a { price, tax_inclusive, ... } object on others.
+    const raw = product?.price && typeof product.price === "object"
+      ? product.price.price
+      : product?.price;
+    const cents = Number(raw);
+    if (!Number.isFinite(cents) || cents <= 0) {
+      console.error("Dodo product has no usable price:", productId);
+      return null;
+    }
+    return Math.round(cents) / 100;
+  } catch (e) {
+    console.error("Dodo product lookup threw:", productId, e?.message);
+    return null;
+  }
+}
 
 // Events that mean "this person has paid and should have access".
 const ACTIVATING = new Set([
@@ -123,14 +182,26 @@ Deno.serve(async (req) => {
     if (ACTIVATING.has(type)) {
       patch.status = "active";
       patch.is_trial = false;
-      // The founder-price lock, recorded from what Dodo ACTUALLY charged —
-      // never from anything the browser claimed, or a tampered client could
-      // assert it locked in at a cent. Written once on first activation and
-      // deliberately never overwritten on renewal: if this row's value ever
-      // changed, "locked for life" would stop being true.
+      // The founder-price lock, resolved from the product Dodo says was
+      // bought — never from anything the browser claimed, or a tampered
+      // client could assert it locked in at a cent. Written once on first
+      // activation and deliberately never overwritten on renewal: if this
+      // row's value ever changed, "locked for life" would stop being true.
       if (!row?.locked_price_usd) {
-        const cents = Number(data.recurring_pre_tax_amount || 0);
-        if (cents > 0) patch.locked_price_usd = Math.round(cents) / 100;
+        const productId = data.product_id || data.product?.product_id || "";
+        const locked = await advertisedPriceUsd(productId);
+        if (locked) {
+          patch.locked_price_usd = locked;
+        } else {
+          // Left unset ON PURPOSE. The guard above re-runs on the next
+          // subscription event, so a transient Dodo outage self-heals on
+          // renewal — whereas a wrong number in a "for life" field is
+          // permanent and has to be found by hand.
+          console.error(
+            "locked_price_usd unresolved for", subscriptionId,
+            "product", productId, "— will retry on the next event",
+          );
+        }
         if (metadata.founder_stage) patch.founder_stage = metadata.founder_stage;
       }
       patch.cancelled_at = "";
@@ -188,6 +259,9 @@ Deno.serve(async (req) => {
         const teacher = await base44.asServiceRole.entities.User.get(row.teacher_id);
         const rate = Number(teacher?.teacher_commission_rate_pct);
         // Dodo sends minor units (cents); guard against a missing amount.
+        // Under tax-inclusive pricing this is the price net of the buyer's
+        // VAT, which is the right base: commission is owed on revenue, not on
+        // tax that gets remitted to a government.
         const grossCents = Number(data.recurring_pre_tax_amount || 0);
         if (teacher && rate > 0 && grossCents > 0) {
           const commission = (grossCents / 100) * (rate / 100);
