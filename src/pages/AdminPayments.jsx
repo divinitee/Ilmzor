@@ -104,6 +104,16 @@ export default function AdminPayments() {
   const stage = getCurrentStage();
   const rows = data?.products || [];
   const checks = rows.map((r) => ({ row: r, ...checkProduct(r) }));
+
+  // Every configured product failing with the same 401 means Dodo is rejecting
+  // the API KEY, not the products. Worth calling out on its own: the per-product
+  // errors all say the same thing and none of them name the actual cause, and
+  // the "API key set" line above is only a presence check — a placeholder or a
+  // truncated paste is still a non-empty string.
+  const configuredChecks = checks.filter((c) => c.row.configured);
+  const allUnauthorized =
+    configuredChecks.length > 0 &&
+    configuredChecks.every((c) => String(c.row.error || "").includes("401"));
   const allGood =
     checks.length > 0 &&
     checks.every((c) => c.ok) &&
@@ -149,12 +159,37 @@ export default function AdminPayments() {
             )}
           </div>
 
+          {allUnauthorized && (
+            <div className="p-4 rounded-lg bg-rose-500/10 border border-rose-500/30 space-y-2">
+              <div className="flex items-center gap-2 font-semibold">
+                <XCircle className="w-5 h-5 text-rose-500" />
+                Dodo is rejecting the API key
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Every product came back 401, so the products are probably fine — the key is not being
+                accepted. “API key present” above only means the secret is non-empty. Two usual causes:
+              </p>
+              <ul className="text-sm space-y-1 list-disc pl-5">
+                <li>
+                  <span className="font-medium">DODO_API_KEY holds placeholder or partial text.</span>{" "}
+                  It must be the key itself, copied whole, with no surrounding brackets or spaces.
+                </li>
+                <li>
+                  <span className="font-medium">Mode mismatch.</span> DODO_MODE is{" "}
+                  <span className="font-mono">{data.env.mode}</span>, so the key must be a{" "}
+                  <span className="font-mono">{data.env.mode}</span>-mode key. Test and live keys never
+                  work against each other.
+                </li>
+              </ul>
+            </div>
+          )}
+
           <div className="space-y-1 p-4 rounded-lg border">
             <h2 className="font-semibold mb-2">Environment</h2>
             <Row label="Webhook signing key" ok={data.env.webhook_key_set}
                  detail={data.env.webhook_key_set ? "set" : "DODO_WEBHOOK_KEY missing — the webhook rejects every event, so nobody gets access after paying"} />
             <Row label="API key" ok={data.env.api_key_set}
-                 detail={data.env.api_key_set ? "set" : "DODO_API_KEY missing — checkout falls back to payment links and the locked-in price cannot be recorded"} />
+                 detail={data.env.api_key_set ? "present (value not checked here)" : "DODO_API_KEY missing — checkout falls back to payment links and the locked-in price cannot be recorded"} />
             <Row label="Return URL" ok detail={data.env.app_base_url} />
             {data.duplicates?.length > 0 && (
               <Row label="Duplicate product ids" ok={false}
