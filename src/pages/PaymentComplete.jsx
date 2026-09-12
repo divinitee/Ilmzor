@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2, Clock, Lock } from "lucide-react";
 import { isPaying } from "@/lib/subscription";
 import { formatUsd } from "@/lib/founderPricing";
+import { PLAN_LIST } from "@/lib/plans";
 
 // Where Dodo returns a student after checkout.
 //
@@ -96,7 +97,13 @@ export default function PaymentComplete() {
     return clearTimers;
   }, [poll]);
 
-  const planLabel = sub?.plan || "";
+  // A row created by the webhook stores the plan id ("learner"), while one
+  // that already existed from the manual flow stores the display name
+  // ("Learner Plan"). Resolve the id to a name so neither shape reads oddly.
+  const planLabel =
+    PLAN_LIST.find((p) => p.id === String(sub?.plan || "").toLowerCase())?.name
+    || sub?.plan
+    || "";
   const cycleWord = sub?.billing_cycle === "yearly"
     ? t("payment.cycle_year")
     : t("payment.cycle_month");
