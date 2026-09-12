@@ -157,8 +157,11 @@ export default function Home() {
   // A teacher application creates a teacher-track account immediately.
   // "pending" is an approval state, not a reason to send that teacher back
   // to the student Home page. Rejected accounts remain outside the panel.
-  const isTeacher = user?.role === "teacher" || isApprovedTeacher || isPendingTeacher;
-  const showTeacherPanelLink = isAdmin;
+  // The app owner is also the primary teacher. Admin accounts therefore use
+  // the Teacher Dashboard as their product home too, instead of landing on
+  // a dead-end screen that only contains a "Go to Dashboard" button.
+  const isTeacher = user?.role === "teacher" || isApprovedTeacher || isPendingTeacher || isAdmin;
+  const showTeacherPanelLink = false;
   // Any teacher-track account (approved, pending, or rejected) is kept off
   // the student-facing Skill Hub / AI Teacher tabs entirely — approved
   // teachers get their own AI Co-Plan inside /teacher instead, and
@@ -168,9 +171,9 @@ export default function Home() {
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
-  // A teacher's product home is the Teacher Panel. There is no intermediate
-  // teacher Home screen with a button to enter the dashboard.
-  if (isTeacher && !isAdmin) return <Navigate to="/teacher" replace />;
+  // A teacher's product home is the Teacher Dashboard. This includes the
+  // primary admin/teacher account. There is no intermediate Home screen.
+  if (isTeacher) return <Navigate to="/teacher" replace />;
 
   // Everyone needs an active subscription — admins are not exempt
   // They get a free trial (limited vocab + 2 game rounds tracked in localStorage)
