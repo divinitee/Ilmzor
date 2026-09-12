@@ -7,6 +7,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
+import { yearlySavingPct } from "@/lib/founderPricing";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -47,7 +48,7 @@ export default function LandingPricing() {
             }>
             
             {t("pricing.billing_yearly")}
-            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
+            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">{yearlySavingPct()}%</span>
           </button>
         </div>
 
@@ -92,7 +93,7 @@ export default function LandingPricing() {
                   }
                 </div>
                 {!isFree && isYearly &&
-                <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: 25 })}</p>
+                <p className="text-[11px] text-rose-600 landing-dark:text-rose-400 font-semibold mt-1">{t("pricing.billing_save", { pct: yearlySavingPct(p.id) })}</p>
                 }
                 {/* The landing's own pricing section — the prices a visitor sees
                     BEFORE signing up, so the founder-price caveat matters more
