@@ -1,0 +1,106 @@
+{
+  "name": "HomeworkAssignment",
+  "type": "object",
+  "properties": {
+    "teacher_id": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "classroom_code": {
+      "type": "string",
+      "description": "Teacher group/referral code receiving this assignment"
+    },
+    "skill_id": {
+      "type": "string"
+    },
+    "skill_label": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "game": {
+      "type": "string"
+    },
+    "bank": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "closed"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "teacher_id",
+    "classroom_code",
+    "title",
+    "game",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "read": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "data.classroom_code": "{{user.classroom_code}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.teacher_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
