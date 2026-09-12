@@ -102,15 +102,12 @@ export default function TeacherDashboard() {
     try {
       const me = await base44.auth.me();
       setUser(me);
-      // Real (non-admin) teachers only get here once an admin has approved
-      // their application (see User.teacher_status). Admins keep unrestricted
-      // access, same as before. StudentSubscription's RLS now also lets an
-      // approved teacher read/update rows where data.teacher_id === their own
-      // id, so .list() below naturally comes back scoped to just their own
-      // referred students for a non-admin teacher — no separate client-side
-      // filtering needed to keep one teacher from seeing another's.
-      const isApprovedTeacher = me.teacher_status === "approved";
-      const isTeacher = me.role === "teacher" || isApprovedTeacher;
+      // Teacher registration creates a teacher-track account immediately.
+      // Approval remains account state, but the Teacher Panel is the teacher's
+      // home product from first login. Rejected accounts stay outside it.
+      const isTeacher = me.role === "teacher"
+        || me.teacher_status === "approved"
+        || me.teacher_status === "pending";
       if (me.role !== "admin" && !isTeacher) { navigate("/"); return; }
       const [subs, res, refs, skills] = await Promise.all([
         base44.entities.StudentSubscription.list("-created_date", 200),
