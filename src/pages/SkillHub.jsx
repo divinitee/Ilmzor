@@ -313,6 +313,87 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
         </div>
       </div>
 
+      <AnimatePresence>
+        {pendingAssignment && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => !assigning && setPendingAssignment(null)}
+          >
+            <div className="absolute inset-0 bg-black/65 backdrop-blur-sm" />
+            <motion.div
+              initial={{ y: 18, opacity: 0, scale: 0.97 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 18, opacity: 0, scale: 0.97 }}
+              className="premium-card relative w-full max-w-md rounded-[28px] p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Assign homework</div>
+              <h3 className="mt-2 text-xl font-bold text-foreground">{pendingAssignment.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                {pendingAssignment.skillLabel} · {pendingAssignment.difficulty}
+              </p>
+
+              {assignmentGroups.length === 0 ? (
+                <p className="mt-6 text-sm text-amber-500">Create a group first, then you can assign Skill Hub homework to it.</p>
+              ) : (
+                <div className="mt-6 space-y-4">
+                  <label className="block">
+                    <span className="text-xs font-semibold text-muted-foreground">Group</span>
+                    <select
+                      value={assignmentGroup}
+                      onChange={(e) => setAssignmentGroup(e.target.value)}
+                      className="mt-1.5 w-full h-11 rounded-xl bg-background border border-border px-3 text-sm text-foreground"
+                    >
+                      {assignmentGroups.map((group) => (
+                        <option key={group.id} value={group.code}>
+                          {group.label || group.code} · {group.code}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+
+                  <label className="block">
+                    <span className="text-xs font-semibold text-muted-foreground">Due date, optional</span>
+                    <input
+                      type="date"
+                      value={assignmentDueDate}
+                      onChange={(e) => setAssignmentDueDate(e.target.value)}
+                      className="mt-1.5 w-full h-11 rounded-xl bg-background border border-border px-3 text-sm text-foreground"
+                    />
+                  </label>
+                </div>
+              )}
+
+              <div className="mt-6 flex gap-3">
+                <button
+                  onClick={() => setPendingAssignment(null)}
+                  disabled={assigning}
+                  className="flex-1 h-11 rounded-xl border border-border text-sm font-semibold text-foreground hover:bg-muted transition-colors disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={createAssignment}
+                  disabled={assigning || !assignmentGroup || assignmentGroups.length === 0}
+                  className="flex-1 h-11 rounded-xl bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
+                >
+                  {assigning ? "Assigning..." : "Assign"}
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {assignmentMessage && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 rounded-full border border-primary/30 bg-background/95 backdrop-blur px-4 py-2 text-sm font-semibold text-foreground shadow-xl">
+          {assignmentMessage}
+        </div>
+      )}
+
       {/* Level-locked notice — a game that exists and works, just not
           unlocked for this student yet. Kept as its own modal (not reusing
           soonLabel) so the copy and mental model stay distinct from
