@@ -154,19 +154,23 @@ export default function Home() {
   const isApprovedTeacher = user?.teacher_status === "approved";
   const isPendingTeacher = user?.teacher_status === "pending";
   const isRejectedTeacher = user?.teacher_status === "rejected";
+  // Existing teacher accounts are identified by role. Newer approval-based
+  // accounts may still carry the student role until migration, so accept
+  // either signal for the teacher product home.
+  const isTeacher = user?.role === "teacher" || isApprovedTeacher;
   const showTeacherPanelLink = isAdmin;
   // Any teacher-track account (approved, pending, or rejected) is kept off
   // the student-facing Skill Hub / AI Teacher tabs entirely — approved
   // teachers get their own AI Co-Plan inside /teacher instead, and
   // pending/rejected teachers shouldn't get free student features just for
   // having applied. Admins are exempt (they're testing the student side).
-  const isTeacherAccount = (isPendingTeacher || isRejectedTeacher || isApprovedTeacher) && !isAdmin;
+  const isTeacherAccount = (isTeacher || isPendingTeacher || isRejectedTeacher) && !isAdmin;
   const isActive = subscription?.status === "active";
   const selectedUnitName = units.find(u => u.key === selectedUnit)?.name || "";
 
   // An approved teacher should never land on a dead-end student home screen.
   // Their product home is the Teacher Panel, so redirect immediately.
-  if (isApprovedTeacher && !isAdmin) return <Navigate to="/teacher" replace />;
+  if (isTeacher && !isAdmin) return <Navigate to="/teacher" replace />;
 
   // Everyone needs an active subscription — admins are not exempt
   // They get a free trial (limited vocab + 2 game rounds tracked in localStorage)
