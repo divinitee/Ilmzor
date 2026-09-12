@@ -8,6 +8,7 @@ import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import BetaBadge from "@/components/BetaBadge";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
+import { yearlySavingPct } from "@/lib/founderPricing";
 
 export default function Plans() {
   const { t } = useAppLang();
@@ -49,7 +50,7 @@ export default function Plans() {
             }`}
           >
             {t("pricing.billing_yearly")}
-            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">25%</span>
+            <span className="absolute -top-2 -right-2 text-[9px] font-bold bg-rose-500 text-white px-1.5 py-0.5 rounded-full">{yearlySavingPct()}%</span>
           </button>
         </div>
 
@@ -87,7 +88,7 @@ export default function Plans() {
                     <FounderPriceNote className="mt-1" planId={p.id} cycle={cycle} />
                     {isYearly && (
                       <p className="text-[11px] text-rose-600 dark:text-rose-400 font-semibold mt-0.5">
-                        {t("pricing.billing_save", { pct: 25 })}
+                        {t("pricing.billing_save", { pct: yearlySavingPct(p.id) })}
                       </p>
                     )}
                     <ul className="mt-3 space-y-1.5">
