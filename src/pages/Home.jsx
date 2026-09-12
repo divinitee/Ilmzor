@@ -6,7 +6,7 @@ import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, S
 import { AnimatePresence as AP } from "framer-motion";
 import ChatWindow from "@/components/ChatWindow";
 import ProfileEditor from "@/components/ProfileEditor";
-import { Link, Navigate, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -64,6 +64,14 @@ export default function Home() {
   const scrollRef = useRef(null);
 
   useEffect(() => { loadData(); }, []);
+
+  // Older Dodo checkouts were built with a ?payment=done return URL before
+  // /payment-complete existed. Any of those still in flight would land here
+  // with no acknowledgement at all, so forward them to the real screen.
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (searchParams.get("payment") === "done") navigate("/payment-complete", { replace: true });
+  }, [searchParams, navigate]);
 
   const loadData = async (isRefresh = false) => {
     if (!isRefresh) setLoading(true);
