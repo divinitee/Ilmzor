@@ -32,13 +32,18 @@ import { hasDiagnostic, resolveSkillEntry } from "@/lib/skillDiagnostics";
 // autoRandomToken: bumped by the dashboard's Random Challenge quick action
 // (see Home.jsx's navigateTab "skillhub-random" handling) to launch straight
 // into a random playable game instead of just opening the Skill Hub tab.
-export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0 }) {
+export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0, assignmentMode = false, assignmentGroups = [] }) {
   const [words, setWords] = useState([]); // raw pool, all levels
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(null);
   const [activeGame, setActiveGame] = useState(null); // { game, difficulty, bank, skillLabel }
   const [soonLabel, setSoonLabel] = useState(null);
   const [lockedInfo, setLockedInfo] = useState(null); // { label, minLevel } — distinct from soonLabel: "not unlocked for you" vs "not built yet"
+  const [pendingAssignment, setPendingAssignment] = useState(null);
+  const [assignmentGroup, setAssignmentGroup] = useState(assignmentGroups[0]?.code || "");
+  const [assignmentDueDate, setAssignmentDueDate] = useState("");
+  const [assigning, setAssigning] = useState(false);
+  const [assignmentMessage, setAssignmentMessage] = useState("");
   const loc = useSkillLoc();
   const { t } = useAppLang();
   const navigate = useNavigate();
@@ -48,7 +53,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   // the skill's home, anything else goes to its assessment. Skills without a
   // diagnostic are untouched and keep the original dive behaviour.
   const handleEnterSkill = (skillId) => {
-    if (!hasDiagnostic(skillId)) return false;
+    if (assignmentMode || !hasDiagnostic(skillId)) return false;
     resolveSkillEntry(skillId, user?.email)
       .then((entry) => { if (entry) navigate(entry.route); })
       .catch((e) => console.error("skill entry resolve failed", e));
@@ -139,7 +144,41 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     syncGameResultToServer(user?.email, activeGame.game, pct); // fire-and-forget DB sync for the dashboard
   };
 
-  if (activeGame) {
+  const handleAssignGame = (challenge) => {
+    setAssignmentGroup(assignmentGroups[0]?.code || "");
+    setAssignmentDueDate("");
+    setPendingAssignment(challenge);
+  };
+
+  const createAssignment = async () => {
+    if (!pendingAssignment || !assignmentGroup || !user) return;
+    setAssigning(true);
+    try {
+      await base44.entities.HomeworkAssignment.create({
+        teacher_id: user.id,
+        teacher_email: user.email,
+        classroom_code: assignmentGroup,
+        skill_id: pendingAssignment.skillId || "",
+        skill_label: pendingAssignment.skillLabel || "",
+        title: pendingAssignment.title || pendingAssignment.game,
+        game: pendingAssignment.game,
+        bank: pendingAssignment.bank || undefined,
+        difficulty: pendingAssignment.difficulty || undefined,
+        due_date: assignmentDueDate || undefined,
+        status: "active",
+      });
+      setPendingAssignment(null);
+      setAssignmentMessage("Homework assigned.");
+      setTimeout(() => setAssignmentMessage(""), 2500);
+    } catch (error) {
+      console.error("Homework assignment failed", error);
+      setAssignmentMessage("Assignment failed. Please try again.");
+    } finally {
+      setAssigning(false);
+    }
+  };
+
+  if (activeGame && !assignmentMode) {
     // The node's own Easy/Medium/Hard nudges one step either side of the
     // student's actual level (difficultyFor in levels.js) rather than
     // setting difficulty outright — so "Hard" means hard for this student,
@@ -235,10 +274,10 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             </div>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
-            {loc("ui.skillHub")}
+            {assignmentMode ? "Choose homework" : loc("ui.skillHub")}
           </h1>
           <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
-            {loc("ui.sub")}
+            {assignmentMode ? "Open a skill, choose an activity, then assign it to one of your groups." : loc("ui.sub")}
           </p>
         </motion.div>
 
@@ -264,11 +303,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
         {/* 3D mind-map stage */}
         <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
           <SkillStage
-            onPlayGame={(g) => setActiveGame(g)}
+            onPlayGame={assignmentMode ? handleAssignGame : (g) => setActiveGame(g)}
             onComingSoon={(label) => setSoonLabel(label)}
             studentLevel={studentLevel}
             onLocked={(info) => setLockedInfo(info)}
             onEnterSkill={handleEnterSkill}
+            assignmentMode={assignmentMode}
           />
         </div>
       </div>
