@@ -16,7 +16,7 @@ import { EASE, RM, Lines, NodeGroup, ForwardDive, BackDive } from "@/components/
 // dives into it. Returning true means the parent took over (e.g. a skill with a
 // diagnostic that has not been taken yet). Anything else keeps the existing
 // dive-into-subskills behaviour untouched.
-export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill }) {
+export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill, assignmentMode = false }) {
   const loc = useSkillLoc();
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
@@ -86,7 +86,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   // almost nothing locks), so it's gone rather than patched.
   const gameNodes = challenges.map((c, i) => {
     const minLevel = minLevelFor(c.game, c.bank);
-    const locked = !isGameUnlocked(c.game, c.bank, studentLevel);
+    const locked = assignmentMode ? false : !isGameUnlocked(c.game, c.bank, studentLevel);
     return { ...c, ...pos(i, gn, gn > 6 ? 42 : 38, gn > 6 ? 40 : 36), _i: i, minLevel, locked };
   });
 
@@ -191,7 +191,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
             onClick={() =>
               c.locked
                 ? onLocked?.({ label: c.name, minLevel: c.minLevel })
-                : onPlayGame({ game: c.game, difficulty: c.difficulty, bank: c.bank, skillLabel: activeChild.label })
+                : onPlayGame({ game: c.game, difficulty: c.difficulty, bank: c.bank, skillLabel: activeChild.label, title: c.name, skillId: selected })
             }
             hot={hovered?.group === "game" && hovered.key === c._i}
             dim={hovered?.group === "game" && hovered.key !== c._i}
