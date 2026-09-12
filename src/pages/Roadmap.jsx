@@ -32,11 +32,11 @@ const stages = [
 
 export default function Roadmap() {
   return (
-    <div className="landing-dark min-h-screen bg-slate-50 landing-dark:bg-slate-950 text-slate-900 landing-dark:text-slate-50 overflow-hidden">
-      <div className="fixed inset-0 -z-10 premium-mesh opacity-60" />
-      <div className="fixed inset-0 -z-10 premium-grain opacity-50" />
+    <div className="landing-dark min-h-screen bg-slate-950 text-slate-50 overflow-hidden">
+      <div className="fixed inset-0 z-0 premium-mesh opacity-60 pointer-events-none" />
+      <div className="fixed inset-0 z-0 premium-grain opacity-50 pointer-events-none" />
 
-      <header className="max-w-6xl mx-auto px-5 py-6 flex items-center justify-between">
+      <header className="relative z-10 max-w-6xl mx-auto px-5 py-6 flex items-center justify-between">
         <Link to="/landing" className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 landing-dark:text-slate-400 hover:text-violet-600 landing-dark:hover:text-violet-300 transition-colors">
           <ArrowLeft className="w-4 h-4" />
           Back to VIRORA
@@ -49,7 +49,7 @@ export default function Roadmap() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-5 pt-12 pb-24">
+      <main className="relative z-10 max-w-6xl mx-auto px-5 pt-12 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
