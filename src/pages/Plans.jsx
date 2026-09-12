@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
-import { PLAN_LIST, yearlyPrice, formatPrice } from "@/lib/plans";
+import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import BetaBadge from "@/components/BetaBadge";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
@@ -58,7 +58,7 @@ export default function Plans() {
         <div className="space-y-4">
           {PLAN_LIST.filter((p) => p.monthlyPrice > 0).map((p, i) => {
             const Icon = p.icon;
-            const price = isYearly ? yearlyPrice(p.monthlyPrice) : p.monthlyPrice;
+            const price = isYearly ? p.yearlyPrice : p.monthlyPrice;
             const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
             return (
               <motion.div
