@@ -183,13 +183,18 @@ export function countdownParts(ms) {
   };
 }
 
-// What a subscriber locks in at the moment they pay. Stored on their
-// StudentSubscription so "locked for life" is an auditable record and not just
-// a line of marketing copy — see createDodoCheckout / dodoWebhook.
+// What the UI should TELL a subscriber they are locking in, and the rung label
+// to pass to createDodoCheckout as reporting metadata.
+//
+// NOT the stored record. This runs in the browser, so a tampered client could
+// claim any number it liked; the authoritative StudentSubscription.locked_price_usd
+// is resolved server-side in dodoWebhook from Dodo's own product. The key here
+// is deliberately named display_price_usd so this object can never be spread
+// straight into an entity write and silently become the record.
 export function lockSnapshot(planId, cycle = "monthly") {
   const stage = getCurrentStage();
   return {
     founder_stage: stage.id,
-    locked_price_usd: priceFor(planId, cycle, stage.id),
+    display_price_usd: priceFor(planId, cycle, stage.id),
   };
 }
