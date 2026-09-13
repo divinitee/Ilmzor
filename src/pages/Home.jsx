@@ -199,6 +199,9 @@ export default function Home() {
             <span className="font-bold text-foreground tracking-tight text-[13px]">{t("home.app_name")}</span>
           </button>
           <BetaBadge />
+          <span className="hidden sm:inline text-[9px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+            First Public Release · Sep 14, 2026
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">
