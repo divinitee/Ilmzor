@@ -5,7 +5,7 @@ import { ArrowRight, Play, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import RoadmapBeacon from "@/components/landing/RoadmapBeacon";
-import { IS_BETA } from "@/lib/appMeta";
+import { LAUNCH_DATE } from "@/lib/appMeta";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -22,15 +22,27 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.5, ease }}
             whileHover={{ scale: 1.03 }}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-blue-700 landing-dark:text-blue-300 bg-sky-100 landing-dark:bg-blue-950/50 px-3 py-1.5 rounded-full cursor-default"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em] text-blue-700 landing-dark:text-blue-300 bg-sky-100 landing-dark:bg-blue-950/50 px-3 py-1.5 rounded-full cursor-default"
           >
-            <Sparkles className="w-3.5 h-3.5" /> {t("landing.hero.badge")}
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-500 opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-600" />
+            </span>
+            VIRORA IS NOW LIVE
           </motion.span>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            transition={{ duration: 0.5, ease, delay: 0.02 }}
+            className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 landing-dark:text-slate-500"
+          >
+            <Sparkles className="w-3 h-3" /> First Public Release · {LAUNCH_DATE}
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ duration: 0.6, ease, delay: 0.05 }}
-            className="mt-5 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 landing-dark:text-slate-50 leading-[1.1]"
+            className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 landing-dark:text-slate-50 leading-[1.1]"
           >
             {t("landing.hero.title")}
           </motion.h1>
@@ -66,11 +78,11 @@ export default function Hero() {
 
           <p className="mt-4 text-xs text-slate-400 landing-dark:text-slate-500">{t("landing.hero.caption")}</p>
 
-          {IS_BETA && (
-            <p className="mt-4 max-w-md text-sm text-slate-600 landing-dark:text-slate-300 border border-slate-200 landing-dark:border-slate-700 rounded-xl px-3 py-2">
-              {t("pricing.beta_notice")}
-            </p>
-          )}
+          <div className="mt-5 inline-flex items-center gap-2 rounded-xl border border-slate-200 landing-dark:border-slate-700 bg-white/70 landing-dark:bg-slate-900/60 px-3 py-2 text-xs text-slate-500 landing-dark:text-slate-400">
+            <span className="font-semibold text-slate-700 landing-dark:text-slate-200">LAUNCH DAY</span>
+            <span>·</span>
+            <span>September 14, 2026</span>
+          </div>
         </div>
 
         <RoadmapBeacon />
