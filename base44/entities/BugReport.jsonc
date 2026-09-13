@@ -21,8 +21,8 @@
     },
     "screenshot_uri": {
       "type": "string",
-      "format": "uri",
-      "description": "Optional private-storage URI. It is never a public URL."
+      "format": "file",
+      "description": "Optional private-storage file URI. It is never a public URL."
     }
   },
   "required": [
