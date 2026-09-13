@@ -182,6 +182,9 @@ export default function Pricing() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
+          <div className="inline-flex items-center gap-2 mb-3 rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" /> Launch Offer · First Public Release
+          </div>
           <h1 className="text-2xl font-bold text-foreground">{t("pricing.header_title")}</h1>
           <p className="text-sm text-muted-foreground mt-2">{t("pricing.header_sub")}</p>
         </div>
@@ -211,6 +214,10 @@ export default function Pricing() {
 
         {/* Time pressure sits once above the cards; the price half of it lives
             on each card, so a VIP buyer never reads a Learner number. */}
+        <div className="mb-4 rounded-2xl border border-primary/20 bg-primary/[0.05] px-4 py-3 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-primary">Launch Pricing</p>
+          <p className="text-[11px] text-muted-foreground mt-1">Be among the first VIRORA learners.</p>
+        </div>
         <FounderCountdown className="mb-6" />
 
         <div className="space-y-4 mb-8">
