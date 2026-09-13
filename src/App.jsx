@@ -48,6 +48,7 @@ import AppLoader from '@/components/AppLoader';
 import HelpReporter from '@/components/HelpReporter';
 import ActivityTracker from '@/components/ActivityTracker';
 import Developer from '@/pages/Developer';
+import LaunchExperience from '@/components/LaunchExperience';
 
 const AuthenticatedApp = () => {
   const { user, isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -71,6 +72,7 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <>
+      <LaunchExperience user={user} />
       <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
