@@ -1,0 +1,82 @@
+{
+  "name": "ActivitySession",
+  "type": "object",
+  "description": "A visible, active study session recorded for a student. Duration is client-measured, so it is useful for engagement reporting rather than billing or enforcement.",
+  "properties": {
+    "student_email": {
+      "type": "string",
+      "format": "email"
+    },
+    "teacher_id": {
+      "type": "string",
+      "description": "The student's teacher at the time the session was recorded; allows only that approved teacher to read it."
+    },
+    "route": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "activity_label": {
+      "type": "string",
+      "maxLength": 120
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_seconds": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "student_email",
+    "route",
+    "activity_label",
+    "started_at",
+    "ended_at",
+    "duration_seconds"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "$and": [
+            {
+              "data.teacher_id": "{{user.id}}"
+            },
+            {
+              "user_condition": {
+                "teacher_status": "approved"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
