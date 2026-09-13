@@ -2,9 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, MessageCircle, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
-import { AnimatePresence as AP } from "framer-motion";
-import ChatWindow from "@/components/ChatWindow";
+import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
@@ -58,7 +56,6 @@ export default function Home() {
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
 
   // Pull-to-refresh state
   const [refreshing, setRefreshing] = useState(false);
@@ -297,28 +294,6 @@ export default function Home() {
         selectedUnit={selectedUnit}
         onSelect={setSelectedUnit}
       />
-
-      {/* Floating chat button for students */}
-      {!isAdmin && isActive && (
-        <button
-          onClick={() => setChatOpen(true)}
-          className="fixed bottom-24 right-4 z-40 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center select-none hover:bg-primary/90 transition-colors"
-        >
-          <MessageCircle className="w-5 h-5" />
-        </button>
-      )}
-
-      {/* Student chat with teacher */}
-      <AP>
-        {chatOpen && user && (
-          <ChatWindow
-            user={user}
-            roomId={`chat:${user.email}`}
-            partnerName="O'qituvchi"
-            onClose={() => setChatOpen(false)}
-          />
-        )}
-      </AP>
 
       {/* Delete Confirm Dialog */}
       <AnimatePresence>
