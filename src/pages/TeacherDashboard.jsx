@@ -446,6 +446,9 @@ export default function TeacherDashboard() {
                             Approve
                           </Button>
                         )}
+                        <Button variant="outline" size="sm" onClick={() => openActivity(sub)} className="h-7 gap-1 text-xs select-none">
+                          <Activity className="w-3.5 h-3.5" /> Activity
+                        </Button>
                         <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
                           <MessageCircle className="w-4 h-4" />
                         </button>
@@ -742,6 +745,9 @@ function GroupCard({
                         Approve
                       </Button>
                     )}
+                    <Button variant="outline" size="sm" onClick={() => onOpenActivity(sub)} className="h-7 gap-1 text-xs select-none">
+                      <Activity className="w-3.5 h-3.5" /> Activity
+                    </Button>
                     <button onClick={() => onOpenChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
                       <MessageCircle className="w-4 h-4" />
                     </button>
