@@ -1,0 +1,53 @@
+{
+  "name": "BugReport",
+  "type": "object",
+  "description": "Authenticated user bug reports. Base44 created_date and created_by_id are the authoritative submission time and reporter identity.",
+  "properties": {
+    "title": {
+      "type": "string",
+      "maxLength": 160
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 5000
+    },
+    "expected_behavior": {
+      "type": "string",
+      "maxLength": 3000
+    },
+    "current_route": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "screenshot_uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional private-storage URI. It is never a public URL."
+    }
+  },
+  "required": [
+    "title",
+    "details",
+    "current_route"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
