@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   BookOpen, LogOut, CheckCircle, Clock, Users, RefreshCw, Plus,
-  Copy, ChevronDown, MessageCircle, UserMinus, AlertTriangle, Sparkles,
+  Copy, ChevronDown, MessageCircle, UserMinus, AlertTriangle, Sparkles, Activity,
 } from "lucide-react";
 import ChatWindow from "@/components/ChatWindow";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +12,8 @@ import { resolveUserNameOrEmail } from "@/lib/profileName";
 import TeacherCoPlanChat from "@/components/teacher/TeacherCoPlanChat";
 import { subscriptionKind, SUB_KIND_META, isPaying, approveSubscription } from "@/lib/subscription";
 import BetaBadge from "@/components/BetaBadge";
+import ActivityReport from "@/components/ActivityReport";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const pageVariants = {
   initial: { x: "100%", opacity: 0 },
@@ -92,6 +94,7 @@ export default function TeacherDashboard() {
   const [expandedReferral, setExpandedReferral] = useState(null);
   const [showRemovedGroups, setShowRemovedGroups] = useState(new Set());
   const [chatStudent, setChatStudent] = useState(null); // { email, name }
+  const [activityStudent, setActivityStudent] = useState(null); // { email, name }
   const pullStartY = useRef(0);
   const scrollRef = useRef(null);
 
@@ -245,6 +248,7 @@ export default function TeacherDashboard() {
   }, [skillRows]);
 
   const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
+  const openActivity = (sub) => setActivityStudent({ email: sub.phone, name: sub.student_name });
 
   const StatusBadge = ({ sub }) => {
     const meta = SUB_KIND_META[subscriptionKind(sub)];
@@ -414,6 +418,7 @@ export default function TeacherDashboard() {
                     onCopyCode={copyCode}
                     onRemoveStudent={handleRemoveStudent}
                     onOpenChat={openChat}
+                    onOpenActivity={openActivity}
                     onAccept={handleAccept}
                     onEditGroup={() => setEditingGroup(ref)}
                     showRemoved={showRemovedGroups.has(ref.id)}
@@ -537,6 +542,8 @@ export default function TeacherDashboard() {
         </div>
       </div>
 
+      <StudentActivityDialog student={activityStudent} onClose={() => setActivityStudent(null)} />
+
       {/* Chat overlay */}
       <AnimatePresence>
         {chatStudent && user && (
@@ -639,9 +646,42 @@ function GroupForm({ initial, onSubmit, onCancel, submitLabel, submitting }) {
 // CRM-inspired group card: title/level/status at a glance, day-pattern +
 // time, student count, expands into the group's roster with per-student
 // activity state and a manual remove/restore control.
+function StudentActivityDialog({ student, onClose }) {
+  const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!student) return;
+    let active = true;
+    setLoading(true);
+    base44.entities.ActivitySession
+      .filter({ student_email: student.email }, "-ended_at", 100)
+      .then((rows) => { if (active) setSessions(rows || []); })
+      .catch((error) => { console.error("Student activity load failed:", error); if (active) setSessions([]); })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [student?.email]);
+
+  return (
+    <Dialog open={!!student} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-xl sm:rounded-2xl">
+        <DialogHeader>
+          <DialogTitle>{student?.name || "Student"} — Activity</DialogTitle>
+          <DialogDescription>Visible, active learning time recorded in VIRORA.</DialogDescription>
+        </DialogHeader>
+        {loading ? (
+          <div className="flex justify-center py-12"><RefreshCw className="w-5 h-5 animate-spin text-primary" /></div>
+        ) : (
+          <ActivityReport sessions={sessions} compact />
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function GroupCard({
   group, students, lastActiveMap, expanded, onToggle, onCopyCode, onRemoveStudent,
-  onOpenChat, onAccept, onEditGroup, showRemoved, onToggleShowRemoved, StatusBadge,
+  onOpenChat, onOpenActivity, onAccept, onEditGroup, showRemoved, onToggleShowRemoved, StatusBadge,
 }) {
   const activeStudents = students.filter((s) => s.roster_status !== "removed");
   const removedStudents = students.filter((s) => s.roster_status === "removed");
