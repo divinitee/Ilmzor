@@ -45,9 +45,11 @@ import TeachStressTest from '@/pages/TeachStressTest';
 import OAuthConsent from '@/pages/OAuthConsent';
 import Achievements from '@/pages/Achievements';
 import AppLoader from '@/components/AppLoader';
+import HelpReporter from '@/components/HelpReporter';
+import Developer from '@/pages/Developer';
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const { user, isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -67,7 +69,8 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
-    <Routes>
+    <>
+      <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -100,6 +103,7 @@ const AuthenticatedApp = () => {
         <Route path="/grammar/assessment" element={<GrammarAssessment />} />
         <Route path="/admin-wipe-users" element={<AdminWipeUsers />} />
         <Route path="/admin-payments" element={<AdminPayments />} />
+        <Route path="/developer" element={<Developer />} />
         <Route path="/payment-complete" element={<PaymentComplete />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/lesson/:lessonId" element={<LessonRunner />} />
@@ -108,8 +112,10 @@ const AuthenticatedApp = () => {
         <Route path="/teach-stress-test" element={<TeachStressTest />} />
         <Route path="/quiz" element={<Navigate to="/" replace />} />
       </Route>
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <HelpReporter user={user} />
+    </>
   );
 };
 
