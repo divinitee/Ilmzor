@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Bug, ExternalLink, Lightbulb, Loader2, Shield } from "lucide-react";
 
 const formatDate = (date) => date ? new Date(date).toLocaleString() : "—";
