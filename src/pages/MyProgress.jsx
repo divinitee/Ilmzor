@@ -5,16 +5,22 @@ import { ArrowLeft, TrendingUp, Trophy, Target } from "lucide-react";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import { useAppLang } from "@/hooks/useAppLang";
 import BetaBadge from "@/components/BetaBadge";
+import ActivityReport from "@/components/ActivityReport";
 
 export default function MyProgress() {
   const { t } = useAppLang();
   const [results, setResults] = useState([]);
+  const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     base44.auth.me().then(async (me) => {
-      const list = await base44.entities.QuizResult.filter({ student_phone: me.email }, "-created_date", 50);
-      setResults(list);
+      const [quizRows, activityRows] = await Promise.all([
+        base44.entities.QuizResult.filter({ student_phone: me.email }, "-created_date", 50),
+        base44.entities.ActivitySession.filter({ student_email: me.email }, "-ended_at", 100),
+      ]);
+      setResults(quizRows);
+      setSessions(activityRows);
     }).finally(() => setLoading(false));
   }, []);
 
@@ -72,6 +78,10 @@ export default function MyProgress() {
                 </ResponsiveContainer>
               </div>
             )}
+
+            <div className="mb-6">
+              <ActivityReport sessions={sessions} />
+            </div>
 
             <div className="bg-background border border-border rounded-2xl p-5">
               <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-4">{t("myprogress.recent_tests")}</p>
