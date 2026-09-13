@@ -52,6 +52,10 @@ export default function LandingPricing() {
           </button>
         </div>
 
+        <div className="max-w-md mx-auto mb-4 rounded-2xl border border-blue-200 landing-dark:border-blue-900/60 bg-blue-50/70 landing-dark:bg-blue-950/30 px-4 py-3 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-700 landing-dark:text-blue-300">Launch Pricing</p>
+          <p className="text-[11px] text-slate-500 landing-dark:text-slate-400 mt-1">Be among the first VIRORA learners.</p>
+        </div>
         <FounderCountdown variant="landing" className="max-w-md mx-auto mb-8" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto items-start">
