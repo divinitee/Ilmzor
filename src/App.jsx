@@ -46,6 +46,7 @@ import OAuthConsent from '@/pages/OAuthConsent';
 import Achievements from '@/pages/Achievements';
 import AppLoader from '@/components/AppLoader';
 import HelpReporter from '@/components/HelpReporter';
+import ActivityTracker from '@/components/ActivityTracker';
 import Developer from '@/pages/Developer';
 
 const AuthenticatedApp = () => {
@@ -114,6 +115,7 @@ const AuthenticatedApp = () => {
       </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <ActivityTracker user={user} />
       <HelpReporter user={user} />
     </>
   );
