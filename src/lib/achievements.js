@@ -10,7 +10,7 @@ import { paidSince } from "@/lib/subscription";
 // ctx = { user, subscription }
 
 // Founding Learner: paid before this day (exclusive, UTC midnight).
-export const FOUNDING_CUTOFF = "2026-09-21";
+export const FOUNDING_CUTOFF = "2026-10-21";
 
 export const ACHIEVEMENTS = [
   {
