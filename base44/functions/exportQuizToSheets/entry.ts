@@ -6,14 +6,22 @@ const SHEET_NAME = "Sheet1";
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
+    // Invoked by the QuizResult entity workflow (admin identity) or an admin.
+    const caller = await base44.auth.me();
+    if (!caller || caller.role !== "admin") {
+      return Response.json({ error: "Forbidden" }, { status: 403 });
+    }
     const body = await req.json();
 
     // Support both direct call with result data and entity automation payload
-    const result = body.data || body;
-
-    if (!result.student_name) {
-      return Response.json({ error: "No quiz result data provided" }, { status: 400 });
+    const incoming = body.data || body;
+    if (!incoming.id) {
+      return Response.json({ error: "No quiz result id provided" }, { status: 400 });
     }
+    // Write only what is actually stored — never the caller's copy of the row.
+    const result = await base44.asServiceRole.entities.QuizResult.get(incoming.id);
+    if (!result) return Response.json({ error: "Quiz result not found" }, { status: 404 });
+    const cell = (v) => String(v ?? "").replace(/[\r\n]+/g, " ").slice(0, 200);
 
     const { accessToken } = await base44.asServiceRole.connectors.getConnection("googlesheets");
 
@@ -49,12 +57,12 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         values: [[
-          result.date || new Date().toISOString().slice(0, 10),
-          result.student_name || "",
-          result.student_phone || "",
-          result.unit_name || "",
-          result.score ?? "",
-          result.total_questions ?? 30
+          cell(result.date || new Date().toISOString().slice(0, 10)),
+          cell(result.student_name),
+          cell(result.student_phone),
+          cell(result.unit_name),
+          Number(result.score) || 0,
+          Number(result.total_questions) || 30
         ]]
       })
     });

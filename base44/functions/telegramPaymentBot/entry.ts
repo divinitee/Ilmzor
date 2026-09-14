@@ -10,6 +10,16 @@ async function tgCall(token, method, body) {
   return res.json();
 }
 
+// Telegram lets a webhook be registered with a secret_token that it echoes back
+// on every update in the X-Telegram-Bot-Api-Secret-Token header. Deriving it
+// from the bot token (which only we hold) means no extra secret to manage,
+// and the raw token itself never leaves the server.
+async function webhookSecret(token) {
+  const bytes = new TextEncoder().encode("virora-tg-webhook:" + token);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 async function verifyScreenshot(base44, token, fileId) {
   try {
     const fileInfo = await tgCall(token, "getFile", { file_id: fileId });
@@ -67,11 +77,24 @@ export default async function(req) {
       if (!user || user.role !== "admin") {
         return Response.json({ error: "Forbidden" }, { status: 403 });
       }
-      const r = await tgCall(token, "setWebhook", { url: body.webhookUrl });
+      let url = body.webhookUrl;
+      if (!url) {
+        const info = await tgCall(token, "getWebhookInfo", {});
+        url = info.result?.url;
+      }
+      if (!url) return Response.json({ error: "webhookUrl is required" }, { status: 400 });
+      const r = await tgCall(token, "setWebhook", { url, secret_token: await webhookSecret(token) });
       return Response.json({ ok: r.ok, description: r.description });
     }
 
     // --- Telegram webhook update ---
+    // Anyone can reach this URL, so only accept updates that carry the secret
+    // Telegram was registered with. A forged POST is rejected before it can
+    // touch any subscription.
+    const presented = req.headers.get("x-telegram-bot-api-secret-token") || "";
+    if (!presented || presented !== await webhookSecret(token)) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const update = body;
 
     // Handle callback query (admin approve / reject buttons)
@@ -82,6 +105,12 @@ export default async function(req) {
       await tgCall(token, "answerCallbackQuery", { callback_query_id: cq.id });
 
       if (action !== "approve" && action !== "reject") {
+        return Response.json({ ok: true });
+      }
+
+      // Approve/Reject buttons are only ever sent to the admin chat; a press
+      // arriving from any other chat is not a real admin decision.
+      if (!adminChatId || String(cq.message?.chat?.id) !== String(adminChatId)) {
         return Response.json({ ok: true });
       }
 

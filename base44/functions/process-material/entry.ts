@@ -1,6 +1,20 @@
 import { createClientFromRequest } from "npm:@base44/sdk";
+import { secrets } from "base44:runtime";
 import * as pdfjsLib from "npm:pdfjs-dist/legacy/build/pdf.mjs";
 import mammoth from "npm:mammoth";
+
+// The server only ever downloads files this app uploaded through UploadFile.
+// MaterialSource.file_url is writable by any teacher via the entity API, so
+// without this check the function would fetch arbitrary (including internal)
+// URLs on their behalf.
+function isAppOwnedFileUrl(fileUrl) {
+  let u;
+  try { u = new URL(fileUrl); } catch { return false; }
+  const appId = secrets.get("BASE44_APP_ID");
+  return u.protocol === "https:" &&
+    u.hostname === "base44.app" &&
+    u.pathname.startsWith("/api/apps/" + appId + "/files/");
+}
 
 const MAX_TOTAL_CHARS = 400000;
 const CHUNK_SIZE = 35000;
@@ -128,6 +142,9 @@ Deno.serve(async (req) => {
     let extraction = { text: (material.source_text || material.extracted_text || "").trim() };
 
     if (!extraction.text && material.file_url) {
+      if (!isAppOwnedFileUrl(material.file_url)) {
+        throw new Error("This file is not an upload from this app and cannot be processed.");
+      }
       if (material.source_type === "pdf") {
         extraction = await extractPdf(material.file_url);
       } else if (material.source_type === "docx") {

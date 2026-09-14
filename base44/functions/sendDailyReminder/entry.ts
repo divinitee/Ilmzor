@@ -3,6 +3,12 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
+    // Runs from the daily schedule (admin identity) or an admin; nobody else
+    // may trigger a mass email.
+    const caller = await base44.auth.me();
+    if (!caller || caller.role !== 'admin') {
+      return Response.json({ error: 'Forbidden' }, { status: 403 });
+    }
 
     // Fetch all users (service role) — these are the people who installed/registered
     const users = await base44.asServiceRole.entities.User.list();
