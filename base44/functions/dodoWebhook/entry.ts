@@ -390,10 +390,12 @@ Deno.serve(async (req) => {
     const canonical = await findAndReconcileRows(base44, subscriptionId, email, row?.id || "");
     if (canonical) row = canonical;
 
-    // 7. Teacher commission. Only on a real activating event, only when that
-    // teacher has a rate set. Guarded by the idempotency check above so a
-    // retried delivery can't pay a teacher twice for one renewal.
-    if (ACTIVATING.has(type) && row?.teacher_id) {
+    // 7. Teacher commission. Dodo's initial successful subscription normally
+    // emits both subscription.active and subscription.renewed. The renewed
+    // event represents the actual billing-period payment and is also emitted
+    // for each later renewal, so commission belongs there only. Otherwise the
+    // first payment would commission a teacher twice.
+    if (type === "subscription.renewed" && row?.teacher_id) {
       try {
         const teacher = await base44.asServiceRole.entities.User.get(row.teacher_id);
         const rate = Number(teacher?.teacher_commission_rate_pct);
