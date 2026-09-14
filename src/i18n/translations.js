@@ -334,9 +334,9 @@ export const translations = {
       earned_on: "{date} da olingan", count: "{n} / {total} ochildi",
       more_coming: "Yangi yutuqlar tez orada qo'shiladi.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "2026-yil 21-sentyabrgacha qo'shilgan",
+      founding_criteria: "2026-yil 21-oktyabrgacha qo'shilgan",
       founding_desc: "Siz VIRORAga eng boshida ishondingiz. Bu nishon birinchi avlod a'zolariga beriladi va hech qachon olib qo'yilmaydi.",
-      founding_locked_hint: "2026-yil 21-sentyabrgacha pullik a'zo bo'ling va bu nishonni umrbod saqlang.",
+      founding_locked_hint: "2026-yil 21-oktyabrgacha pullik a'zo bo'ling va bu nishonni umrbod saqlang.",
     },
     studytips: {
       title: "O'rganish maslahatlari", intro: "So'z boyligingizni samaraliroq oshirish uchun ushbu isbotlangan usullardan foydalaning:",
@@ -724,9 +724,9 @@ export const translations = {
       earned_on: "Earned {date}", count: "{n} of {total} unlocked",
       more_coming: "More achievements are on the way.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "Joined before 21 September 2026",
+      founding_criteria: "Joined before 21 October 2026",
       founding_desc: "You believed in VIRORA at the very beginning. This badge belongs to the first generation of members and is never taken away.",
-      founding_locked_hint: "Become a paid member before 21 September 2026 to keep this badge for life."
+      founding_locked_hint: "Become a paid member before 21 October 2026 to keep this badge for life."
     },
     studytips: {
       title: "Study tips", intro: "Use these proven methods to grow your vocabulary more effectively:",
@@ -1114,9 +1114,9 @@ export const translations = {
       earned_on: "Получено {date}", count: "{n} из {total} открыто",
       more_coming: "Новые достижения скоро появятся.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "Присоединился до 21 сентября 2026",
+      founding_criteria: "Присоединился до 21 октября 2026",
       founding_desc: "Вы поверили в VIRORA с самого начала. Этот значок принадлежит первому поколению участников и никогда не отзывается.",
-      founding_locked_hint: "Станьте платным участником до 21 сентября 2026, чтобы сохранить этот значок навсегда."
+      founding_locked_hint: "Станьте платным участником до 21 октября 2026, чтобы сохранить этот значок навсегда."
     },
     studytips: {
       title: "Советы по обучению", intro: "Используйте эти проверенные методы, чтобы эффективнее расширять словарный запас:",
