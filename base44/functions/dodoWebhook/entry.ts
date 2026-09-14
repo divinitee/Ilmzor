@@ -131,6 +131,67 @@ const isoDate = (v: unknown): string => {
   return isNaN(d.getTime()) ? "" : d.toISOString().slice(0, 10);
 };
 
+// Dodo may deliver different subscription events for the same subscription at
+// nearly the same time. Two webhook workers can therefore both observe "no
+// row" and both create one before either worker sees the other's insert. The
+// Dodo subscription id is the identity, so reconcile concurrent inserts back
+// to one canonical row after the write. The short retry window covers the
+// normal overlap without introducing a permanent queue or lock service.
+async function findAndReconcileRows(base44: any, subscriptionId: string, email: string, preferredId = "") {
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 150 * attempt));
+
+    let rows: any[] = [];
+    if (subscriptionId) {
+      rows = await base44.asServiceRole.entities.StudentSubscription
+        .filter({ dodo_subscription_id: subscriptionId });
+    }
+    if (email) {
+      const emailRows = await base44.asServiceRole.entities.StudentSubscription
+        .filter({ phone: email });
+      const byId = new Map(rows.map((r) => [r.id, r]));
+      for (const r of emailRows) byId.set(r.id, r);
+      rows = [...byId.values()];
+    }
+
+    if (rows.length <= 1) continue;
+
+    rows.sort((a, b) => String(a.created_date || "").localeCompare(String(b.created_date || "")));
+    const canonical = rows.find((r) => r.id === preferredId) || rows[0];
+    const duplicates = rows.filter((r) => r.id !== canonical.id);
+
+    // Preserve the newest event information on the canonical row before
+    // removing the concurrent duplicates. The webhook that reaches this code
+    // last therefore does not lose its legitimate state update.
+    const freshest = [...rows].sort((a, b) => String(b.updated_date || b.created_date || "").localeCompare(String(a.updated_date || a.created_date || "")))[0];
+    if (freshest && freshest.id !== canonical.id) {
+      const merge: Record<string, unknown> = {};
+      for (const key of [
+        "status", "plan", "billing_cycle", "expires_at", "provider",
+        "dodo_subscription_id", "dodo_customer_id", "last_dodo_event_id",
+        "locked_price_usd", "paid_since", "founder_stage", "cancelled_at",
+        "paused_at", "paused_days_remaining",
+      ]) {
+        if (freshest[key] !== undefined && freshest[key] !== null) merge[key] = freshest[key];
+      }
+      if (Object.keys(merge).length) {
+        await base44.asServiceRole.entities.StudentSubscription.update(canonical.id, merge);
+      }
+    }
+
+    for (const duplicate of duplicates) {
+      try {
+        await base44.asServiceRole.entities.StudentSubscription.delete(duplicate.id);
+      } catch (e) {
+        console.error("Dodo duplicate cleanup failed:", duplicate.id, e?.message);
+      }
+    }
+
+    return canonical;
+  }
+  return null;
+}
+
 Deno.serve(async (req) => {
   const base44 = createClientFromRequest(req);
 
