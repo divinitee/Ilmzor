@@ -724,9 +724,9 @@ export const translations = {
       earned_on: "Earned {date}", count: "{n} of {total} unlocked",
       more_coming: "More achievements are on the way.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "Joined before 14 October 2026",
+      founding_criteria: "Joined before 21 September 2026",
       founding_desc: "You believed in VIRORA at the very beginning. This badge belongs to the first generation of members and is never taken away.",
-      founding_locked_hint: "Become a paid member before 14 October 2026 to keep this badge for life.",
+      founding_locked_hint: "Become a paid member before 21 September 2026 to keep this badge for life."
     },
     studytips: {
       title: "Study tips", intro: "Use these proven methods to grow your vocabulary more effectively:",
@@ -1114,9 +1114,9 @@ export const translations = {
       earned_on: "Получено {date}", count: "{n} из {total} открыто",
       more_coming: "Новые достижения скоро появятся.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "Присоединился до 14 октября 2026",
+      founding_criteria: "Присоединился до 21 сентября 2026",
       founding_desc: "Вы поверили в VIRORA с самого начала. Этот значок принадлежит первому поколению участников и никогда не отзывается.",
-      founding_locked_hint: "Станьте платным участником до 14 октября 2026, чтобы сохранить этот значок навсегда.",
+      founding_locked_hint: "Станьте платным участником до 21 сентября 2026, чтобы сохранить этот значок навсегда."
     },
     studytips: {
       title: "Советы по обучению", intro: "Используйте эти проверенные методы, чтобы эффективнее расширять словарный запас:",
