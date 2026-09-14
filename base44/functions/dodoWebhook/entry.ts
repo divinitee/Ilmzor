@@ -154,7 +154,8 @@ async function findAndReconcileRows(base44: any, subscriptionId: string, email: 
       rows = [...byId.values()];
     }
 
-    if (rows.length <= 1) continue;
+    if (rows.length === 1) return rows[0];
+    if (rows.length === 0) continue;
 
     rows.sort((a, b) => String(a.created_date || "").localeCompare(String(b.created_date || "")));
     const canonical = rows.find((r) => r.id === preferredId) || rows[0];
