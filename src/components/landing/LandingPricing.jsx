@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Sparkles } from "lucide-react";
+import { Check, ArrowRight, Sparkles, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
@@ -19,6 +19,7 @@ export default function LandingPricing() {
   return (
     <section id="pricing" className="py-20">
       <div className="max-w-6xl mx-auto px-5">
+        <div className="relative">
         <motion.div
           initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease }}
@@ -27,6 +28,13 @@ export default function LandingPricing() {
           <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 landing-dark:text-blue-400">{t("landing.pricing.label")}</span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 landing-dark:text-slate-50 tracking-tight">{t("landing.pricing.title")}</h2>
         </motion.div>
+        <div className="absolute right-0 top-0 group">
+          <button type="button" aria-label="Subject to change" title="Subject to change" className="w-7 h-7 rounded-full border border-slate-300 landing-dark:border-slate-700 text-slate-400 landing-dark:text-slate-500 hover:text-slate-600 landing-dark:hover:text-slate-300 hover:border-slate-400 landing-dark:hover:border-slate-500 flex items-center justify-center transition-colors">
+            <Info className="w-3.5 h-3.5" />
+          </button>
+          <span className="pointer-events-none absolute right-0 top-9 z-20 whitespace-nowrap rounded-lg bg-slate-900 px-2.5 py-1.5 text-[10px] font-medium text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Subject to change</span>
+        </div>
+        </div>
 
         <div className="mt-8 flex items-center justify-center gap-2 mb-10">
           <button
