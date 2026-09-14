@@ -195,8 +195,39 @@ export default function AdminDashboard() {
           base44.entities.User.list(),
           base44.entities.StudentSubscription.list(),
         ]);
+
+        // Dodo subscriptions are one-to-one with a provider subscription id.
+        // Older webhook code could create two rows when two different Dodo
+        // events arrived concurrently before either insert was visible. Clean
+        // those historical duplicates when the admin panel loads, keeping the
+        // oldest row as the canonical record. Manual subscriptions are never
+        // touched by this sweep.
+        const dodoGroups = new Map();
+        for (const row of sub || []) {
+          if (row.provider !== "dodo" || !row.dodo_subscription_id) continue;
+          const list = dodoGroups.get(row.dodo_subscription_id) || [];
+          list.push(row);
+          dodoGroups.set(row.dodo_subscription_id, list);
+        }
+
+        const duplicateIds = [];
+        for (const rows of dodoGroups.values()) {
+          if (rows.length < 2) continue;
+          rows.sort((a, b) => String(a.created_date || "").localeCompare(String(b.created_date || "")));
+          for (const duplicate of rows.slice(1)) duplicateIds.push(duplicate.id);
+        }
+
+        if (duplicateIds.length) {
+          await Promise.all(
+            duplicateIds.map((id) => base44.entities.StudentSubscription.delete(id).catch((e) => {
+              console.error("Historical Dodo duplicate cleanup failed:", id, e);
+            }))
+          );
+        }
+
+        const duplicateSet = new Set(duplicateIds);
         setUsers(u || []);
-        setSubs(sub || []);
+        setSubs((sub || []).filter((row) => !duplicateSet.has(row.id)));
       } catch (e) {
         console.error("Admin load error:", e);
       } finally {
