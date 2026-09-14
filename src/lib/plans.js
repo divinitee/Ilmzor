@@ -26,7 +26,7 @@ export const PLAN_LIST = [
     badgeKey: null,
     hasAI: true,
     aiLimit: 3,
-    featureKeys: ["flashcard_only", "ai_daily_3"],
+    featureKeys: ["core_units", "limited_practice", "selected_lessons", "basic_reading", "basic_games", "progress_tracking", "ai_daily_3", "limited_vocab", "classroom_access"],
   },
   {
     id: "learner",
@@ -40,7 +40,7 @@ export const PLAN_LIST = [
     iconColor: "text-indigo-600",
     hasAI: true,
     aiLimit: 25,
-    featureKeys: ["all_units", "full_test", "all_games", "ai_daily_25", "personalized_vocab"],
+    featureKeys: ["all_units", "full_test", "all_games", "progress_unlimited", "personalized_path", "expanded_vocab", "ai_daily_25", "no_practice_limits"],
   },
   {
     id: "vip",
@@ -61,7 +61,7 @@ export const PLAN_LIST = [
     // genuine study session; tune once real usage data exists (see aiLimits.js).
     aiLimit: 300,
     aiDisplayUnlimited: true,
-    featureKeys: ["all_units", "full_test", "all_games", "early_access", "priority_support", "ai_unlimited", "personalized_vocab"],
+    featureKeys: ["all_units", "full_test", "all_games", "early_access", "priority_support", "ai_unlimited", "personalized_vocab", "ai_feedback", "advanced_learning_plans"]
   },
 ];
 
