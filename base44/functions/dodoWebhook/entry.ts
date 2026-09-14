@@ -345,7 +345,9 @@ Deno.serve(async (req) => {
     }
 
     // 6. Apply. If we've never seen this person, create the row so a payment
-    // is never silently dropped on the floor.
+    // is never silently dropped on the floor. Before creating, give a concurrent
+    // webhook a chance to finish its insert. This is not the correctness guard
+    // by itself; findAndReconcileRows below is the final duplicate cleanup.
     if (row) {
       await base44.asServiceRole.entities.StudentSubscription.update(row.id, patch);
     } else {
@@ -353,17 +355,39 @@ Deno.serve(async (req) => {
         console.error("Webhook with no matching row and no email:", type, subscriptionId);
         return Response.json({ ok: false, error: "unmatched, no email" }, { status: 202 });
       }
-      row = await base44.asServiceRole.entities.StudentSubscription.create({
-        student_name: metadata.user_name || email,
-        phone: email,
-        plan: metadata.plan || "",
-        billing_cycle: metadata.billing_cycle || "monthly",
-        referral_code: metadata.referral_code || "",
-        teacher_id: metadata.teacher_id || "",
-        teacher_name: metadata.teacher_name || "",
-        ...patch,
-      });
+
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      const raced = subscriptionId
+        ? await base44.asServiceRole.entities.StudentSubscription.filter({ dodo_subscription_id: subscriptionId })
+        : [];
+      if (raced?.[0]) {
+        row = raced[0];
+        await base44.asServiceRole.entities.StudentSubscription.update(row.id, patch);
+      } else {
+        const emailRows = await base44.asServiceRole.entities.StudentSubscription.filter({ phone: email });
+        if (emailRows?.[0]) {
+          row = emailRows[0];
+          await base44.asServiceRole.entities.StudentSubscription.update(row.id, patch);
+        } else {
+          row = await base44.asServiceRole.entities.StudentSubscription.create({
+            student_name: metadata.user_name || email,
+            phone: email,
+            plan: metadata.plan || "",
+            billing_cycle: metadata.billing_cycle || "monthly",
+            referral_code: metadata.referral_code || "",
+            teacher_id: metadata.teacher_id || "",
+            teacher_name: metadata.teacher_name || "",
+            ...patch,
+          });
+        }
+      }
     }
+
+    // Reconcile any concurrent inserts for this Dodo subscription before
+    // continuing. This also cleans up duplicates produced by an older version
+    // of this handler if the same subscription receives another event.
+    const canonical = await findAndReconcileRows(base44, subscriptionId, email, row?.id || "");
+    if (canonical) row = canonical;
 
     // 7. Teacher commission. Only on a real activating event, only when that
     // teacher has a rate set. Guarded by the idempotency check above so a
