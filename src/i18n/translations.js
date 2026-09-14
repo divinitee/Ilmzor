@@ -334,9 +334,9 @@ export const translations = {
       earned_on: "{date} da olingan", count: "{n} / {total} ochildi",
       more_coming: "Yangi yutuqlar tez orada qo'shiladi.",
       founding_title: "Founding Learner", founding_gen: "Generation One",
-      founding_criteria: "2026-yil 14-oktyabrgacha qo'shilgan",
+      founding_criteria: "2026-yil 21-sentyabrgacha qo'shilgan",
       founding_desc: "Siz VIRORAga eng boshida ishondingiz. Bu nishon birinchi avlod a'zolariga beriladi va hech qachon olib qo'yilmaydi.",
-      founding_locked_hint: "2026-yil 14-oktyabrgacha pullik a'zo bo'ling va bu nishonni umrbod saqlang.",
+      founding_locked_hint: "2026-yil 21-sentyabrgacha pullik a'zo bo'ling va bu nishonni umrbod saqlang.",
     },
     studytips: {
       title: "O'rganish maslahatlari", intro: "So'z boyligingizni samaraliroq oshirish uchun ushbu isbotlangan usullardan foydalaning:",
