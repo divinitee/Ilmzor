@@ -175,7 +175,7 @@
             },
             {
               "user_condition": {
-                "teacher_status": "approved"
+                "data.teacher_status": "approved"
               }
             }
           ]
@@ -202,7 +202,7 @@
             },
             {
               "user_condition": {
-                "teacher_status": "approved"
+                "data.teacher_status": "approved"
               }
             }
           ]

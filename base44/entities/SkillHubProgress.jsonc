@@ -53,7 +53,7 @@
         },
         {
           "user_condition": {
-            "teacher_status": "approved"
+            "data.teacher_status": "approved"
           }
         }
       ]

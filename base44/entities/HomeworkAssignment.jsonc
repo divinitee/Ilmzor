@@ -69,9 +69,6 @@
           "data.teacher_id": "{{user.id}}"
         },
         {
-          "data.classroom_code": "{{user.classroom_code}}"
-        },
-        {
           "user_condition": {
             "role": "admin"
           }
