@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
@@ -26,7 +26,13 @@ export default function Plans() {
       </header>
 
       <div className="max-w-lg mx-auto px-4 py-8">
-        <div className="text-center mb-6">
+        <div className="relative text-center mb-6">
+          <div className="absolute right-0 top-0 group">
+            <button type="button" aria-label="Subject to change" title="Subject to change" className="w-7 h-7 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground flex items-center justify-center transition-colors">
+              <Info className="w-3.5 h-3.5" />
+            </button>
+            <span className="pointer-events-none absolute right-0 top-9 z-20 whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1.5 text-[10px] font-medium text-background opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Subject to change</span>
+          </div>
           <h1 className="text-2xl font-bold text-foreground">{t("plans.all_title")}</h1>
           <p className="text-sm text-muted-foreground mt-2">
             {t("plans.sub", { ai: t("plans.ai_tutor_name") })}
