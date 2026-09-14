@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Check, ArrowLeft, CreditCard, Loader2 } from "lucide-react";
+import { BookOpen, Check, ArrowLeft, CreditCard, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -178,7 +178,13 @@ export default function Pricing() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 px-4 py-12">
       <div className="max-w-lg mx-auto">
-        <div className="text-center mb-8">
+        <div className="relative text-center mb-8">
+          <div className="absolute right-0 top-0 group">
+            <button type="button" aria-label="Subject to change" title="Subject to change" className="w-7 h-7 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground flex items-center justify-center transition-colors">
+              <Info className="w-3.5 h-3.5" />
+            </button>
+            <span className="pointer-events-none absolute right-0 top-9 z-20 whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1.5 text-[10px] font-medium text-background opacity-0 shadow-lg transition-opacity group-hover:opacity-100">Subject to change</span>
+          </div>
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
             <BookOpen className="w-7 h-7 text-primary" />
           </div>
