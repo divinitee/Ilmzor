@@ -374,7 +374,7 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
           { to: "/leaderboard", label: t("settings.leaderboard"), icon: Trophy },
           { to: "/my-progress", label: t("settings.my_progress"), icon: TrendingUp },
           { to: "/pricing", label: t("settings.subscription_plans"), icon: Crown },
-          { to: "/study-tips"}, label: t("settings.study_tips"), icon: Lightbulb },
+          { to: "/study-tips", label: t("settings.study_tips"), icon: Lightbulb },
           { to: "/settings", label: t("settings.full_settings"), icon: SlidersHorizontal },
         ].map(({ to, label, icon: Icon }) => (
           <Link
