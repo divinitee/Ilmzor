@@ -7,7 +7,7 @@ words to 10,000+ as **data** rather than as an architecture change.
 |---|---|---|
 | 1. Master vocabulary | `VocabularyWord` (unchanged) | 2,282 rows, live |
 | 2. Enrichment | `WordSense`, `WordRelation` + `enrichment.js`, `relations.js` | empty, falls back to the master row |
-| 3. Thematic curriculum | `VocabTheme`, `ThemeWord` + `curriculum.js` | empty, no curriculum published |
+| 3. Thematic curriculum | `VocabTheme`, `ThemeWord` + `curriculum.js` | 18 themes, 2,286 memberships, unpublished |
 | 4. Learner state | `LearnerWordState`, `ThemeProgress` + `learnerState.js`, `themeProgress.js` | empty, `WordAttempt`/`SavedWord` still authoritative |
 | 5. Adaptive engine | `adaptive.js` | pure, not yet wired into any game |
 
@@ -42,16 +42,19 @@ still hold. Approval gates (`WordSense.approved`, `WordRelation.approved`,
 `ThemeWord.approved`) mean an unreviewed AI batch can sit in the table without
 reaching a learner.
 
-## Not yet done (next phase)
+## Current state / next phase
 
-1. Seed `VocabTheme` rows and run the assignment pass into `ThemeWord`
-   (rule-derived first, then AI for the ~247 `general`-tagged and 540
-   multi-tagged words, reviewed in batches).
-2. Author `WordSense` rows for polysemous words; migrate `synonymTiers.js`'s
-   ~170 pilot ladders into `WordRelation`.
+1. `VocabTheme` has 18 unpublished themes and `ThemeWord` has 2,286 memberships.
+   Curriculum QA is still required before publication, especially for staged
+   assignments and context-sensitive multi-theme words.
+2. Author `WordSense` rows for high-value polysemous words; then migrate the
+   ~170 pilot synonym ladders into `WordRelation`.
 3. Backfill `LearnerWordState` from existing `WordAttempt` history with
    `rebuildFromAttempts()`, then call `recordRound()` alongside the existing
    `logWordAttempts()`.
-4. Wire `planPractice()` into `SkillHub.jsx` behind a flag; games keep receiving
-   a plain `words` array, so no engine changes.
-5. Theme map UI and mastery board.
+4. Wire `planPractice()` into `SkillHub.jsx` behind a feature flag. Degraded
+   themes now fall back to the complete CEFR band pool, and the themed selector
+   preserves the configured recycle share when the pool has enough candidates.
+5. Add theme-map UI and mastery board after the data path is validated.
+6. Expand the corpus only after the current corpus has adequate sense,
+   relationship, and curriculum coverage.
