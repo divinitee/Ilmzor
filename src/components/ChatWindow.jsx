@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { X, Send } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 export default function ChatWindow({ user, roomId, partnerName, onClose }) {
