@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Check, X, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, ArrowRight, HelpCircle, Sparkles } from "lucide-react";
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { logWordAttempts } from "@/lib/roundComposition";
-import { CATEGORY_BANK, CATEGORY_ENTRIES, ALL_WORDS, WORD_TO_CATEGORY } from "@/lib/relatedWordsBank";
+import { CATEGORY_BANK, CATEGORY_ENTRIES } from "@/lib/relatedWordsBank";
 import { useRelatedWordsCopy } from "@/components/games/relatedWordsCopy";
 
 // ---------------------------------------------------------------------------
