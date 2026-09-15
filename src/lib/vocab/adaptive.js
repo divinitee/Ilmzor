@@ -93,9 +93,53 @@ export function planPractice({ curriculum, progressRows = [], states, index, lev
     return { theme, reason: "empty_theme_pool", words: selectPractice({ words: bandWords, states, count }), pool: bandWords };
   }
 
-  // Theme scope first, learner state second: compose the themed selection
-  // (which honours the recycle share), then order it by what needs work.
-  const themed = composeThemedSelection({ pool, count: Math.max(count * 2, count) });
-  const words = selectPractice({ words: themed.length ? themed : pool.words, states, count });
-  return { theme, reason: pool.degraded ? "theme_pool_degraded" : "theme", words, pool: pool.words, sources: pool.sources };
+  // A degraded theme is diagnostic, not a permission to quietly mix in a thin
+  // themed pool. The caller already has the complete CEFR band pool, so use it
+  // as the playable fallback while retaining the selected theme as the reason
+  // and future curriculum-review signal.
+  if (pool.degraded) {
+    return {
+      theme,
+      reason: "theme_pool_degraded",
+      words: selectPractice({ words: bandWords, states, count }),
+      pool: pool.words,
+      sources: pool.sources,
+      degraded: true,
+    };
+  }
+
+  // Theme scope first, learner state second. Compose a larger themed candidate
+  // set, then select by weakness/new/review. Finally enforce the theme's
+  // recycle share so priority ordering cannot accidentally erase recycling.
+  const candidateCount = Math.min(pool.words.length, Math.max(count * 2, count));
+  const themed = composeThemedSelection({ pool, count: candidateCount });
+  const candidates = themed.length ? themed : pool.words;
+  let words = selectPractice({ words: candidates, states, count });
+
+  const recycleShare = typeof theme.recycle_share === "number" ? theme.recycle_share : 0.25;
+  const recycleTarget = Math.min(Math.round(count * recycleShare), Math.max(0, count - 1));
+  if (recycleTarget > 0) {
+    const recycleLemmas = new Set(
+      candidates
+        .filter((w, i) => pool.sources[candidates.indexOf(w)] === "recycled")
+        .map((w) => normalizeLemma(w?.english))
+        .filter(Boolean)
+    );
+    const currentRecycle = words.filter((w) => recycleLemmas.has(normalizeLemma(w?.english))).length;
+    if (currentRecycle < recycleTarget) {
+      const replacements = candidates.filter(
+        (w) => recycleLemmas.has(normalizeLemma(w?.english)) && !words.some((x) => normalizeLemma(x?.english) === normalizeLemma(w?.english))
+      );
+      const nonRecycle = [...words].reverse();
+      for (const replacement of replacements) {
+        if (words.filter((w) => recycleLemmas.has(normalizeLemma(w?.english))).length >= recycleTarget) break;
+        const indexToReplace = nonRecycle.findIndex((w) => !recycleLemmas.has(normalizeLemma(w?.english)));
+        if (indexToReplace < 0) break;
+        const victim = nonRecycle[indexToReplace];
+        words = words.map((w) => w === victim ? replacement : w);
+      }
+    }
+  }
+
+  return { theme, reason: "theme", words, pool: pool.words, sources: pool.sources, degraded: false };
 }
