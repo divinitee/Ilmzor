@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { resolveUserName } from "@/lib/profileName";
 import { base44 } from "@/api/base44Client";
 import { Input } from "@/components/ui/input";
