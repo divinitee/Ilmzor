@@ -1,0 +1,99 @@
+{
+  "name": "WordRelation",
+  "type": "object",
+  "description": "ONE DIRECTED SEMANTIC RELATION between two lexical items \u2014 synonym, antonym, related word, commonly-confused pair, and so on. Created 2026-09-15. Exists because synonyms are NOT universally interchangeable: 'important \u2192 significant \u2192 crucial \u2192 essential \u2192 vital' is a rising ladder whose right rung depends on the reader's level and on the context the word is being taught in, which a flat synonym field can never express. Today that ladder lives in two places \u2014 VocabularyWord.syn_a2..syn_c1 (0 rows filled) and the ~170 hand-authored ladders in src/lib/synonymTiers.js. Both keep working untouched: src/lib/vocab/relations.js reads this table FIRST and falls back to them, so Context Guess and Synonym Sprint behave exactly as they do today until rows are added here. One row per direction per reader level, which is what makes the relation queryable at 10,000 words without loading the corpus.",
+  "properties": {
+    "from_word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id \u2014 the word the relation is stated FROM."
+    },
+    "from_lemma": {
+      "type": "string",
+      "description": "Normalized headword of the source word (normalizeLemma, src/lib/vocab/lemma.js). The query key: relations are looked up by lemma so a round already holding word objects needs no id round-trip."
+    },
+    "to_word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id of the target word, WHEN the target is itself in the corpus. Deliberately optional: a C1 synonym like 'putrid' may not be a taught word, and forcing it into VocabularyWord would inflate every CEFR pool with words no one is meant to study."
+    },
+    "to_lemma": {
+      "type": "string",
+      "description": "Normalized target word or phrase. Always present \u2014 this is the text a game actually shows, whether or not the target is a corpus word."
+    },
+    "relation": {
+      "type": "string",
+      "description": "Kind of relation: synonym, antonym, related, confusable, collocate, word_form, hypernym, hyponym, translation_of. Free string, not an enum, so a future relation kind is a data change rather than a schema migration. src/lib/vocab/relations.js owns the list the app currently understands and ignores kinds it does not."
+    },
+    "reader_level": {
+      "type": "string",
+      "enum": [
+        "A2",
+        "B1",
+        "B1+",
+        "B2",
+        "C1"
+      ],
+      "description": "Which reader this rung is FOR, matching the reader-relative contract of def_a2..def_c1 and syn_a2..syn_c1: an A2 student meets 'important \u2192 big', a C1 student meets 'important \u2192 paramount'. There is deliberately no A1 rung \u2014 Starter/A1 read the support-language translation, the same rule definitionTiers.js encodes by having no def_a1. Empty means level-independent (true for most antonym and confusable pairs)."
+    },
+    "to_cefr": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Band of the target word, so distractor ranking can prefer near-band options at nuance/precision demand exactly as rankDistractors() in levels.js does today."
+    },
+    "sense_index": {
+      "type": "number",
+      "description": "Which WordSense of the source word this relation belongs to. Empty = the whole word. This is what stops 'issue \u2192 publish' (the verb sense) from ever being offered as a synonym while teaching 'issue \u2192 problem' (the noun sense)."
+    },
+    "context_theme_key": {
+      "type": "string",
+      "description": "References VocabTheme.key when the relation only holds inside one thematic context \u2014 e.g. 'party \u2192 celebration' in Fun & Free Time versus 'party \u2192 political group' in Power & Public Life. Empty = context-free."
+    },
+    "strength": {
+      "type": "number",
+      "description": "0-1 closeness of the relation. 1.0 = near-interchangeable in this context; 0.4 = loosely related. Used to order options and to keep a weak synonym out of a round that needs a precise one."
+    },
+    "note": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Why this pair is worth teaching or watching out for \u2014 most valuable on `confusable` rows ('affect changes something; effect is the result')."
+    },
+    "source": {
+      "type": "string",
+      "default": "manual",
+      "description": "manual, ai, import, or migrated_pilot for a row lifted out of src/lib/synonymTiers.js's hand-authored ladder."
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Human review gate. relations.js reads approved rows only \u2014 a wrong synonym rung teaches something false, which is why the pilot ladder was hand-authored in the first place."
+    }
+  },
+  "required": [
+    "from_lemma",
+    "to_lemma",
+    "relation"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

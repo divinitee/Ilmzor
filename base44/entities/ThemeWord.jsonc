@@ -1,0 +1,73 @@
+{
+  "name": "ThemeWord",
+  "type": "object",
+  "description": "MEMBERSHIP of one word in one theme, with the role it plays there. Created 2026-09-15. This join table is what makes a word reusable: 'issue' is one VocabularyWord row with a ThemeWord row in Education, another in Career & Work, another in Power & Public Life \u2014 never four duplicate words, which is the explicit rule this architecture is built around. A role is per-theme, so the same word can be `core` where it is taught and `recycled` where it is reinforced. Deliberately NOT a theme_key field on VocabularyWord: a single field on the master record would cap every word at one theme forever and force duplication the moment a word belongs in two. Zero rows at creation, so the current CEFR-band pools are unaffected; the assignment pass fills this table in reviewed batches.",
+  "properties": {
+    "theme_key": {
+      "type": "string",
+      "description": "References VocabTheme.key."
+    },
+    "word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id \u2014 the stable master identifier."
+    },
+    "lemma_key": {
+      "type": "string",
+      "description": "Normalized headword (normalizeLemma, src/lib/vocab/lemma.js). Stored alongside word_id for the same reason WordAttempt does: string-keyed learner history joins on it, and a re-imported row with a new id must still resolve."
+    },
+    "sense_index": {
+      "type": "number",
+      "description": "Which WordSense is taught in THIS theme. Empty = the word's primary sense. This is the field that makes multi-sense reuse honest: Education teaches sense 0 of 'issue' (a topic under discussion), Business teaches sense 1 (to formally send out), and each theme's games show that theme's definition and example."
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "core",
+        "supporting",
+        "recycled"
+      ],
+      "default": "core",
+      "description": "core = taught and counted toward this theme's mastery. supporting = present in rounds, needed to use the core words naturally, NOT counted toward mastery. recycled = explicitly carried forward from an earlier theme for reinforcement, never counted toward this theme's mastery. Only `core` rows feed the mastery calculation, which is what keeps a theme completable even when its supporting set is large."
+    },
+    "order_index": {
+      "type": "number",
+      "description": "Teaching order within the theme, when a curator wants one. Empty everywhere is fine \u2014 pool composition falls back to CEFR then frequency."
+    },
+    "source": {
+      "type": "string",
+      "default": "rule",
+      "description": "How this membership was decided: rule (derived from unit_key/tags/cefr), ai (suggested by a model), manual (a curator). Kept per-row so an AI batch is reversible without disturbing curated rows."
+    },
+    "confidence": {
+      "type": "number",
+      "description": "0-1 confidence of a rule- or AI-derived assignment. The review queue sorts on this: the ~247 'general'-tagged and 540 multi-tagged words score low and need a human, and this is where that shows."
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Human review gate. Curriculum resolution reads approved rows only, so suggestions can accumulate in the table without changing a single learner's pool."
+    }
+  },
+  "required": [
+    "theme_key",
+    "lemma_key"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "name": "ThemeProgress",
+  "type": "object",
+  "description": "ONE LEARNER'S progress through ONE curriculum theme: NOT_STARTED \u2192 IN_PROGRESS \u2192 MASTERED, plus the counts that justify the status. Created 2026-09-15. Learner-specific by construction \u2014 nothing about mastery is stored on VocabularyWord or VocabTheme, which are shared records. Sits above LearnerWordState (per-word) the same way SkillHubProgress sits above WordAttempt: one row per (user_email, theme_key) so a 20- or 200-theme progression board is one bounded query instead of a full history scan. It is a CACHE of a computation, never the source of truth: recomputeThemeProgress() in src/lib/vocab/themeProgress.js rebuilds it from LearnerWordState + ThemeWord, so a change to the mastery rule re-derives every learner's board without a migration. Zero rows at creation; SkillHubProgress, RewardEvent, UserCoins and QuizResult are untouched and keep driving every existing screen.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning learner, matching the user_email convention of SkillHubProgress / LearnerWordState / WordAttempt."
+    },
+    "theme_key": {
+      "type": "string",
+      "description": "References VocabTheme.key. Stable slugs are what let this row survive a theme being relabelled or reordered."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "mastered"
+      ],
+      "default": "not_started",
+      "description": "The three-state progression. not_started = no attempt on any of the theme's words. in_progress = at least one attempt. mastered = the theme's own mastery_core_pct and mastery_min_words thresholds are met over its CORE words. Locked-versus-unlocked is NOT stored here: it is derived from VocabTheme.prerequisite_keys against these rows, so changing a prerequisite immediately re-gates the map instead of leaving a stale flag behind."
+    },
+    "core_total": {
+      "type": "number",
+      "default": 0,
+      "description": "Approved core ThemeWord rows in the theme at the time of the last recompute. Stored so a stale board is detectable when the theme grows."
+    },
+    "core_mastered": {
+      "type": "number",
+      "default": 0,
+      "description": "How many of those core words this learner has mastered."
+    },
+    "core_in_progress": {
+      "type": "number",
+      "default": 0,
+      "description": "Core words attempted but not yet mastered \u2014 the honest 'how far in am I' number, which core_mastered alone hides."
+    },
+    "words_practiced": {
+      "type": "number",
+      "default": 0,
+      "description": "Distinct words of this theme the learner has attempted, in any role (core, supporting or recycled)."
+    },
+    "recycled_mastered": {
+      "type": "number",
+      "default": 0,
+      "description": "Mastered words this theme recycles from its prerequisites \u2014 evidence that the recycling is doing its job rather than just adding padding."
+    },
+    "mastery_pct": {
+      "type": "number",
+      "default": 0,
+      "description": "core_mastered / core_total as 0-100, for display. Derived, never authoritative."
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "First attempt on any word in this theme."
+    },
+    "mastered_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the threshold was first met. Kept even if the theme later grows and mastery_pct drops below the threshold again \u2014 the achievement happened, and a later corpus expansion must not silently revoke it."
+    },
+    "last_activity_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Most recent attempt on any of the theme's words. Drives 'continue where you left off' and teacher inactivity views."
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this row was last recomputed, so staleness is detectable \u2014 the same pattern LessonSkill.computed_at already uses."
+    }
+  },
+  "required": [
+    "user_email",
+    "theme_key"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "data.teacher_status": "approved"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

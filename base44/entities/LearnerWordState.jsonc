@@ -1,0 +1,160 @@
+{
+  "name": "LearnerWordState",
+  "type": "object",
+  "description": "ONE LEARNER'S standing with ONE WORD \u2014 the derived, always-current view of exposure, recognition, recall, usage, mistakes and mastery. Created 2026-09-15. Learner state deliberately lives HERE and never on VocabularyWord: mastery is per-person, and a field on the shared word record would be wrong for every learner but one. WordAttempt remains the immutable per-item ledger and is not replaced or migrated \u2014 this row is its rolling summary, and it exists because WordAttempt is read on the hot path with a hard limit of 150 rows (roundComposition.js), which cannot answer 'is this word mastered' for a learner with thousands of attempts. One row per (user_email, lemma_key): bounded per learner by the size of the corpus they have actually met, not by the corpus, so it scales the same at 2,282 and 10,000+ words. Zero rows at creation \u2014 existing personalization keeps running off WordAttempt/SavedWord exactly as today.",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Owning learner. Matches the convention of SkillHubProgress, SavedWord, WordAttempt, AssessmentResult and StudentProgress \u2014 deliberately not user_id, which only UserCoins uses."
+    },
+    "lemma_key": {
+      "type": "string",
+      "description": "Normalized headword (normalizeLemma, src/lib/vocab/lemma.js). The join key, chosen to match WordAttempt.word and SavedWord.word which are both plain strings \u2014 that is what lets this row be rebuilt from existing history for a learner who has been playing for months, with no migration of their records."
+    },
+    "word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id when known. Optional on purpose: a word that came from a hardcoded game bank rather than the table has no id, exactly as WordAttempt.word_id documents."
+    },
+    "exposures": {
+      "type": "number",
+      "default": 0,
+      "description": "Times this learner has been SHOWN the word in any activity, whether or not they answered. The weakest signal, and the one that separates 'never met' from 'met and failed'."
+    },
+    "recognition_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Attempts at tasks where the answer is on screen \u2014 matching, MCQ, picture match."
+    },
+    "recognition_correct": {
+      "type": "number",
+      "default": 0,
+      "description": "Correct recognition attempts."
+    },
+    "recall_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Attempts at tasks where the word must be produced from memory \u2014 spelling, typing, crossword. Strictly harder than recognition, so counted apart."
+    },
+    "recall_correct": {
+      "type": "number",
+      "default": 0,
+      "description": "Correct recall attempts."
+    },
+    "usage_attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Attempts at tasks requiring the word to be USED in context \u2014 written definition, sentence work, fill-the-blank. The strongest evidence of real command."
+    },
+    "usage_correct": {
+      "type": "number",
+      "default": 0,
+      "description": "Correct usage attempts."
+    },
+    "correct_streak": {
+      "type": "number",
+      "default": 0,
+      "description": "Consecutive correct attempts, any mode. Reset to 0 by a miss."
+    },
+    "wrong_streak": {
+      "type": "number",
+      "default": 0,
+      "description": "Consecutive misses. Drives re-surfacing: a word missed twice in a row should come back soon, not in a month."
+    },
+    "last_seen_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time the word was shown. With mastery, this is the whole basis of spaced re-surfacing \u2014 no separate scheduling entity is needed."
+    },
+    "last_correct_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time it was answered correctly."
+    },
+    "last_wrong_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time it was missed."
+    },
+    "mastery": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "in_progress",
+        "mastered"
+      ],
+      "default": "not_started",
+      "description": "The three-state model this system is specified around, stored as a plain string rather than a score so every surface agrees on the words a learner sees. Computed by masteryFor() in src/lib/vocab/learnerState.js from the counters above \u2014 never set by hand, and recomputable from WordAttempt at any time, which is what makes the rule itself safe to tune later."
+    },
+    "weakness_score": {
+      "type": "number",
+      "default": 0,
+      "description": "0-1 how much this word needs work: misses, recency of failure and mode gaps combined. The adaptive engine's ordering key \u2014 a number rather than a boolean so a 10,000-word backlog can be prioritized rather than merely filtered."
+    },
+    "last_game": {
+      "type": "string",
+      "description": "Game key of the most recent attempt (GAME_SKILL_MAP in src/lib/gameSkills.js), so the engine can vary the task type instead of drilling the same word the same way."
+    },
+    "level_at_last_attempt": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Learner's CEFR level at the last attempt, so a miss recorded at B2 is distinguishable from one recorded at A2 \u2014 the same reasoning as WordAttempt.level."
+    }
+  },
+  "required": [
+    "user_email",
+    "lemma_key"
+  ],
+  "rls": {
+    "create": {
+      "data.user_email": "{{user.email}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+          "user_condition": {
+            "data.teacher_status": "approved"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

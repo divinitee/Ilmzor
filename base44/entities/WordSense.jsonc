@@ -1,0 +1,155 @@
+{
+  "name": "WordSense",
+  "type": "object",
+  "description": "ONE MEANING of one lexical item \u2014 the enrichment layer that lets a word be reusable across themes without duplicating the word. Created 2026-09-15 as part of the vocabulary architecture split (master vocabulary / enrichment / curriculum / learner state / adaptive engine). VocabularyWord stays the MASTER record and is not modified: it keeps english, uzbek, russian, english_definition, def_a2..def_c1, syn_a2..syn_c1, example_en, cefr, unit_* and tags, and every existing game keeps reading it exactly as before. A row here is OPTIONAL extra depth: 'issue' can have a business sense, an academic-argument sense and a politics sense as three WordSense rows over ONE VocabularyWord row, instead of three duplicate words. Zero rows exist at creation time, so nothing changes until senses are authored \u2014 resolution in src/lib/vocab/enrichment.js falls back to the VocabularyWord row whenever a word has no senses, which is the current behaviour for all 2,282 words. Scales as data: a 10,000-word corpus adds rows here, never fields or code.",
+  "properties": {
+    "word_id": {
+      "type": "string",
+      "description": "References VocabularyWord.id \u2014 the stable identifier for the master lexical item. Primary join key."
+    },
+    "lemma_key": {
+      "type": "string",
+      "description": "Normalized headword (lowercased, trimmed, collapsed whitespace) as produced by normalizeLemma() in src/lib/vocab/lemma.js. Stored ALONGSIDE word_id, never instead of it, for the same reason WordAttempt stores both `word` and `word_id`: string-keyed history (WordAttempt.word, SavedWord.word) must keep resolving even if a row is re-imported with a new id. Never a rename of VocabularyWord.english \u2014 that field's name and meaning are unchanged."
+    },
+    "sense_index": {
+      "type": "number",
+      "description": "0-based order of this sense for its word. 0 is conventionally the most frequent/most teachable sense. Referenced by WordRelation.sense_index so a synonym can attach to one sense rather than to the whole word."
+    },
+    "is_primary": {
+      "type": "boolean",
+      "default": false,
+      "description": "The sense a game should use when it has no thematic context to choose from. Exactly one sense per word should carry this; resolution falls back to sense_index 0 when none does."
+    },
+    "sense_label": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Short human tag distinguishing this sense from the word's others, e.g. 'a problem or topic under discussion' vs 'to formally send out'. For teacher/admin review UIs, not for learners."
+    },
+    "pos": {
+      "type": "string",
+      "description": "Part of speech for this sense: noun, verb, adjective, adverb, phrase, phrasal_verb, preposition, other. Free string rather than an enum so a new corpus batch cannot be rejected by a tag this list did not anticipate."
+    },
+    "register": {
+      "type": "string",
+      "description": "Usage register of this sense: neutral, formal, informal, academic, technical, literary, slang. Drives C1 near-synonym contrast later."
+    },
+    "cefr": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Band of THIS SENSE, which can be higher than the word's own VocabularyWord.cefr \u2014 the concrete sense of 'issue' is B1, the academic-argument sense is B2. Falls back to the word's cefr when empty. Never written back onto VocabularyWord.cefr: that field drives wordsForLevel() and every existing pool, and changing it would change which students see the word at all."
+    },
+    "english_definition": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Word-relative definition of this sense (readable one band below the sense's own level), mirroring VocabularyWord.english_definition."
+    },
+    "def_a2": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "READER-relative definition for an A2 student, written with A1-level English. Same reader-relative contract as VocabularyWord.def_a2 \u2014 see the definition ladder in src/lib/vocab/enrichment.js."
+    },
+    "def_b1": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by a B1 student, written with A2-level English."
+    },
+    "def_b1_plus": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by a B1+ student, written with B1-level English. The one rung of the leveling ladder that has no equivalent field on VocabularyWord, so legacy rows resolve it down to def_b1 \u2014 added here rather than to the master record to keep this a purely additive change."
+    },
+    "def_b2": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Read by a B2 student, written with B1+-level English."
+    },
+    "def_c1": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Read by a C1 student, written with B2-level English."
+    },
+    "translation_uz": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Uzbek rendering of THIS sense. VocabularyWord.uzbek stays the word-level translation and remains the fallback."
+    },
+    "translation_ru": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Russian rendering of THIS sense. VocabularyWord.russian stays the fallback."
+    },
+    "example_en": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "One natural sentence using the word in THIS sense. Must actually contain the headword \u2014 Context Guess and Memory Flip both reject a sentence that does not, so an example that omits it silently removes the word from those games."
+    },
+    "pronunciation": {
+      "type": "string",
+      "description": "Phonetic form, when it differs by sense (e.g. record /\u02c8rek\u0254\u02d0d/ vs /r\u026a\u02c8k\u0254\u02d0d/). Falls back to VocabularyWord.pronunciation."
+    },
+    "collocations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Fixed expressions this sense appears in, e.g. ['raise an issue', 'a pressing issue']. Sense-scoped on purpose: 'issue a statement' belongs to a different sense and must not be taught next to this one."
+    },
+    "word_forms": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Inflected/derived forms as [{ form, pos, note }] \u2014 e.g. [{ form: 'issued', pos: 'verb' }]. Objects rather than strings so a form can carry its own part of speech without a schema change."
+    },
+    "domain_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Semantic domains this sense belongs to, e.g. ['business', 'politics']. Deliberately NOT the curriculum: which themes teach this word is ThemeWord's job. These are a discovery/authoring aid and never gate a learner."
+    },
+    "frequency_rank": {
+      "type": "number",
+      "description": "Corpus frequency rank of this sense (lower = more frequent), when known. The intended ordering signal once the corpus outgrows hand-curation \u2014 sorting a 10,000-word pool by teachability needs a number, not a curator."
+    },
+    "source": {
+      "type": "string",
+      "default": "manual",
+      "description": "How this row was produced: manual, ai, import. Kept so an AI-generated batch can be re-reviewed or rolled back without touching hand-authored rows."
+    },
+    "approved": {
+      "type": "boolean",
+      "default": false,
+      "description": "Human review gate. Resolution in enrichment.js only reads approved rows, so an unreviewed AI batch can sit in the table without affecting a single learner."
+    }
+  },
+  "required": [
+    "word_id",
+    "lemma_key",
+    "sense_index"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "name": "VocabTheme",
+  "type": "object",
+  "description": "ONE THEME of the scaffolded vocabulary curriculum \u2014 a teaching context with a CEFR range, prerequisites, an order, and mastery requirements. Created 2026-09-15. A theme is NOT a tag: VocabularyWord.tags (24 values, half the corpus, read by no game today) describes what a word is ABOUT; a theme describes WHEN it is taught and WHAT must be mastered first. Stored as data rather than in code \u2014 unlike skillTreeData.js's fixed game tree \u2014 precisely because the curriculum must grow with the corpus: adding themes for a 10,000-word set has to be an insert, not a code edit. The membership of a theme lives in ThemeWord, so one word can be core in 'Career & Work' and recycled in 'Environment & Society' without being duplicated. Zero rows at creation: with no published themes, src/lib/vocab/curriculum.js reports an empty curriculum and every existing surface keeps using the CEFR band pool it uses today.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Stable slug, e.g. 'career_work'. The identifier every other record points at (ThemeWord.theme_key, ThemeProgress.theme_key, VocabTheme.prerequisite_keys, WordRelation.context_theme_key). Never reused for a different theme and never renamed \u2014 a rename would orphan learner ThemeProgress rows."
+    },
+    "label_en": {
+      "type": "string",
+      "description": "Learner-facing name, English."
+    },
+    "label_uz": {
+      "type": "string",
+      "description": "Learner-facing name, Uzbek."
+    },
+    "label_ru": {
+      "type": "string",
+      "description": "Learner-facing name, Russian."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "What this theme teaches and why it sits where it sits in the progression."
+    },
+    "cefr_min": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Lowest band of the theme's vocabulary. A theme spans a RANGE rather than a single level because real thematic sets do: 'Health & Wellbeing' runs A2 body words up to B2 treatment vocabulary."
+    },
+    "cefr_max": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "description": "Highest band of the theme's vocabulary."
+    },
+    "tier": {
+      "type": "number",
+      "description": "Coarse depth band of the progression (1 = foundations, rising). Groups themes for display; ordering within a tier is order_index."
+    },
+    "order_index": {
+      "type": "number",
+      "description": "Recommended global position in the progression. Advisory: what actually gates a theme is prerequisite_keys, so inserting a theme later never renumbers the graph."
+    },
+    "prerequisite_keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "VocabTheme.key values a learner must have MASTERED before this theme unlocks. The real progression edge \u2014 'education' \u2192 'university_life' \u2192 'career_work' \u2192 'business' is four rows each naming its predecessor. Empty = an entry point, always unlocked. Cycles are rejected by buildCurriculum() in src/lib/vocab/curriculum.js rather than at write time, so a bad edit shows up as a reported error instead of an unreachable theme."
+    },
+    "recycle_theme_keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Earlier themes this one deliberately RECYCLES vocabulary from. Distinct from prerequisite_keys (which gates access): recycling means a share of every round is drawn from those themes' words, which is how later themes reinforce earlier ones instead of only adding new load. Words are pulled by reference \u2014 no ThemeWord row is duplicated for recycling unless a curator wants a specific word guaranteed."
+    },
+    "recycle_share": {
+      "type": "number",
+      "default": 0.25,
+      "description": "Target fraction of a round drawn from recycle_theme_keys (0-1). Same shape as the existing WRONG_SHARE / SAVED_SHARE constants in roundComposition.js, and composed by the same never-a-short-round rule."
+    },
+    "mastery_core_pct": {
+      "type": "number",
+      "default": 0.8,
+      "description": "Fraction of the theme's CORE words that must reach mastered before the theme itself is MASTERED. Per-theme rather than global so an abstract C1 theme can demand less than a concrete A2 one."
+    },
+    "mastery_min_words": {
+      "type": "number",
+      "default": 10,
+      "description": "Floor on how many core words must be mastered regardless of percentage \u2014 stops a thinly-populated new theme from being completable in three correct answers."
+    },
+    "source_units": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Legacy VocabularyWord.unit_key values this theme draws from, e.g. ['unit5']. Provenance for the assignment pass, and the reason the legacy unit fields must never be deleted: they are the best thematic signal the original 1,081 unit words carry."
+    },
+    "source_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "VocabularyWord.tags values this theme draws from, e.g. ['business']. Same role for the 1,201 enrichment words, which have tags but no unit."
+    },
+    "is_published": {
+      "type": "boolean",
+      "default": false,
+      "description": "Unpublished themes are invisible to learners and to curriculum resolution, so a theme can be built and populated in the open without appearing in anyone's progression."
+    }
+  },
+  "required": [
+    "key"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {},
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
