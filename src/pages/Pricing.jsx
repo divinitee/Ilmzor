@@ -3,7 +3,6 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Check, CreditCard, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import FounderPriceNote from "@/components/FounderPriceNote";
@@ -11,7 +10,6 @@ import FounderCountdown from "@/components/FounderCountdown";
 import { getCurrentStage, yearlySavingPct } from "@/lib/founderPricing";
 
 export default function Pricing() {
-  const navigate = useNavigate();
   const { t } = useAppLang();
   const [selectedPlan, setSelectedPlan] = useState("learner");
   const [cycle, setCycle] = useState("monthly");
