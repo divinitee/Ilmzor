@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { Trophy, Zap, Crown } from "lucide-react";
+import { Trophy } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function RoomLeaderboard({ user }) {
