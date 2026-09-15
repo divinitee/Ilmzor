@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Check, ArrowLeft, CreditCard, Loader2, Info } from "lucide-react";
+import { BookOpen, Check, CreditCard, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
-import TelegramPaymentLink from "@/components/TelegramPaymentLink";
 import FounderPriceNote from "@/components/FounderPriceNote";
 import FounderCountdown from "@/components/FounderCountdown";
 import { getCurrentStage, yearlySavingPct } from "@/lib/founderPricing";
@@ -16,12 +15,6 @@ export default function Pricing() {
   const { t } = useAppLang();
   const [selectedPlan, setSelectedPlan] = useState("learner");
   const [cycle, setCycle] = useState("monthly");
-  const [step, setStep] = useState("plans");
-  const [paymentRef, setPaymentRef] = useState("");
-  const [studentName, setStudentName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [cardLoading, setCardLoading] = useState(false);
   const [cardError, setCardError] = useState("");
 
@@ -29,8 +22,6 @@ export default function Pricing() {
   const plan = PLAN_LIST.find((p) => p.id === selectedPlan);
   const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
   const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
-
-  const handleContinue = () => setStep("payment");
 
   // Card payment via Dodo Payments. The backend function derives the buyer
   // from the authenticated session and builds the checkout — nothing about
@@ -57,123 +48,6 @@ export default function Pricing() {
       setCardLoading(false);
     }
   };
-
-  const handleSubmit = async () => {
-    if (!paymentRef.trim() || !studentName.trim() || !phone.trim()) return;
-    setSubmitting(true);
-    try {
-      const me = await base44.auth.me();
-      const existing = await base44.entities.StudentSubscription.filter({ phone: me.email });
-      const planName = plan.name;
-      const payload = {
-        student_name: studentName,
-        payment_ref: paymentRef,
-        status: "pending",
-        plan: planName,
-        billing_cycle: cycle,
-      };
-      if (existing.length > 0) {
-        await base44.entities.StudentSubscription.update(existing[0].id, payload);
-      } else {
-        await base44.entities.StudentSubscription.create({ ...payload, phone: me.email });
-      }
-      setSubmitted(true);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setSubmitting(false);
-    }
-  };
-
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 flex items-center justify-center px-4">
-        <div className="max-w-sm w-full text-center">
-          <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-5">
-            <Check className="w-10 h-10 text-emerald-600" />
-          </div>
-          <h2 className="text-2xl font-bold text-foreground mb-3">{t("pricing.submitted_title")}</h2>
-          <p className="text-muted-foreground text-sm mb-6">{t("pricing.submitted_desc")}</p>
-          <div className="bg-amber-500/10 border border-amber-400/30 rounded-2xl p-4 text-sm text-amber-700 dark:text-amber-400 font-medium">
-            {t("pricing.submitted_wait")}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (step === "payment") {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 flex items-center justify-center px-4 py-12">
-        <div className="max-w-md w-full">
-          <button onClick={() => setStep("plans")} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 select-none">
-            <ArrowLeft className="w-4 h-4" /> {t("pricing.back_to_plan")}
-          </button>
-
-          <div className="bg-card border border-border rounded-3xl shadow-sm p-6 space-y-5">
-            <div>
-              <h2 className="text-xl font-bold text-foreground">{t("pricing.payment_title")}</h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t("pricing.selected_plan")} <strong className="text-foreground">{plan.name} — {formatPrice(price)} {period}</strong>
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p className="text-xs text-muted-foreground mb-2 font-medium">{t("pricing.qr_via")}</p>
-              <img
-                src="https://media.base44.com/images/public/6a40f974860993eff3634df0/4ef59e6e7_paymentqr.jpg"
-                alt="QR"
-                className="w-36 h-36 mx-auto rounded-xl border-4 border-white shadow-md object-contain bg-white"
-              />
-            </div>
-
-            <TelegramPaymentLink />
-
-            <div className="space-y-3">
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.name_label")}</label>
-                <input
-                  type="text"
-                  value={studentName}
-                  onChange={(e) => setStudentName(e.target.value)}
-                  placeholder={t("pricing.name_placeholder")}
-                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.phone_label")}</label>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder={t("pricing.phone_placeholder")}
-                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-foreground mb-2">{t("pricing.ref_label")}</label>
-                <input
-                  type="text"
-                  value={paymentRef}
-                  onChange={(e) => setPaymentRef(e.target.value)}
-                  placeholder={t("pricing.ref_placeholder")}
-                  className="w-full h-12 px-4 border-2 border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-                />
-              </div>
-            </div>
-
-            <Button
-              onClick={handleSubmit}
-              disabled={submitting || !paymentRef.trim() || !studentName.trim() || !phone.trim()}
-              className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-base font-semibold select-none"
-            >
-              {submitting ? t("pricing.submitting") : t("pricing.submit_payment")}
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 px-4 py-12">
@@ -287,8 +161,8 @@ export default function Pricing() {
           })}
         </div>
 
-        {/* Card payment is the primary path; the manual transfer + screenshot
-            flow below stays as a fallback for students paying locally. */}
+        {/* Dodo is the sole payment path. Checkout creates the Dodo session,
+            and the webhook is the only authority that grants access. */}
         <Button
           onClick={handleCardCheckout}
           disabled={cardLoading}
@@ -302,13 +176,6 @@ export default function Pricing() {
         {cardError && (
           <p className="text-center text-xs text-destructive mt-2">{cardError}</p>
         )}
-
-        <button
-          onClick={handleContinue}
-          className="w-full mt-3 h-11 rounded-xl border border-border text-sm font-semibold text-foreground select-none hover:bg-muted/50 transition-colors"
-        >
-          {plan.name} — {formatPrice(price)} {t("pricing.continue_btn")}
-        </button>
 
         <p className="text-center text-xs text-muted-foreground mt-4">{t("pricing.payment_note")}</p>
       </div>
