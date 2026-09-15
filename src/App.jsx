@@ -23,7 +23,6 @@ import About from '@/pages/About';
 import Contact from '@/pages/Contact';
 import Leaderboard from '@/pages/Leaderboard';
 import MyProgress from '@/pages/MyProgress';
-import Plans from '@/pages/Plans';
 import Settings from '@/pages/Settings';
 import StudyTips from '@/pages/StudyTips';
 import AdminDashboard from '@/pages/AdminDashboard';
@@ -93,7 +92,6 @@ const AuthenticatedApp = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/achievements" element={<Achievements />} />
         <Route path="/my-progress" element={<MyProgress />} />
-        <Route path="/plans" element={<Plans />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/study-tips" element={<StudyTips />} />
         <Route path="/admin" element={<AdminDashboard />} />
