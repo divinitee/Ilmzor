@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Trophy, RotateCcw, Sparkles, Check, X } from "lucide-react";
+import { Trophy, RotateCcw, Sparkles, Check } from "lucide-react";
 import { EASE } from "@/components/skillhub/StagePrimitives";
 
 // End of a practice round. Same shape as the Vocabulary result screens
