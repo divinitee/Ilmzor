@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Play, Trash2, ChevronDown, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
