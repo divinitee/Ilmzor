@@ -283,11 +283,16 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
       </AnimatePresence>
       <AnimatePresence>
         {rootMenu && (
+          {/* Sits just above the root node it belongs to, rather than at the
+              centre of the stage — there is no centre node to attach to any
+              more. The -78px lift clears the root node's own box; it rides on
+              marginTop rather than the transform because framer-motion owns
+              the transform here (x/y stay a constant -50% to centre it). */}
           <motion.div key={rootMenu.id} className="absolute z-30 flex flex-col items-center gap-2 pointer-events-none"
-            style={{ left: `${rootMenu.x}%`, top: `${rootMenu.y}%`, x: "-50%", y: "-50%" }}
-            initial={{ opacity: 0, scale: 0.85, translateY: 0 }}
-            animate={{ opacity: 1, scale: 1, translateY: -78 }}
-            exit={{ opacity: 0, scale: 0.85, translateY: 0 }}
+            style={{ left: `${rootMenu.x}%`, top: `${rootMenu.y}%`, marginTop: -78 }}
+            initial={{ opacity: 0, scale: 0.85, x: "-50%", y: "-50%" }}
+            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
+            exit={{ opacity: 0, scale: 0.85, x: "-50%", y: "-50%" }}
             transition={{ duration: 0.32, ease: EASE }}
           >
             <div className="flex items-center gap-2 pointer-events-auto">
