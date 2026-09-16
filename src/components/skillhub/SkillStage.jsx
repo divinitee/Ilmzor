@@ -324,7 +324,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
 /* ---------- Node components ---------- */
 
-function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, dim, size = "root", onHoverStart, onHoverEnd }) {
+function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, dim, size = "root", bloomDelay, bloomKey, onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
   const soon = node.comingSoon;
   // Skill Hub v2: roots (Vocabulary/Grammar) render noticeably larger than
@@ -351,6 +351,13 @@ function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
           {!soon && (
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none hub-glow-pulse"
               style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
+          )}
+          {/* Arrival bloom. A root blooms the instant its glow sets off; a
+              leaf blooms when the glow reaches it, which is what bloomDelay
+              carries. Keyed on the active skill so each new activation
+              remounts the span and replays the animation from the start. */}
+          {bloomDelay != null && (
+            <span key={bloomKey} className="tree-bloom -z-10" style={{ animationDelay: `${bloomDelay}s` }} />
           )}
           <span className={`relative flex flex-col items-center justify-center text-white border backdrop-blur-xl transition-colors ${boxClass} ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": node.glow } : undefined}>
