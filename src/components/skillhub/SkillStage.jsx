@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
+import { ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
 import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -283,11 +283,11 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
       </AnimatePresence>
       <AnimatePresence>
         {rootMenu && (
-          <motion.div key={rootMenu.id} className="absolute z-30 left-1/2 top-1/2 flex flex-col items-center gap-2 pointer-events-none"
-            style={{ transform: "translate(-50%, -50%)" }}
-            initial={{ opacity: 0, scale: 0.85, y: 0 }}
-            animate={{ opacity: 1, scale: 1, y: -96 }}
-            exit={{ opacity: 0, scale: 0.85, y: 0 }}
+          <motion.div key={rootMenu.id} className="absolute z-30 flex flex-col items-center gap-2 pointer-events-none"
+            style={{ left: `${rootMenu.x}%`, top: `${rootMenu.y}%`, x: "-50%", y: "-50%" }}
+            initial={{ opacity: 0, scale: 0.85, translateY: 0 }}
+            animate={{ opacity: 1, scale: 1, translateY: -78 }}
+            exit={{ opacity: 0, scale: 0.85, translateY: 0 }}
             transition={{ duration: 0.32, ease: EASE }}
           >
             <div className="flex items-center gap-2 pointer-events-auto">
