@@ -142,19 +142,15 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   });
 
   /* hub face */
-  // Skill Hub v2: while the Learn/Practice chooser is open, the hub shows
-  // the clicked root's own icon/label/glow instead of the generic overview
-  // face, so the chooser reads as "about this skill" rather than floating
-  // unattached to anything.
-  const hubFace = rootMenu
-    ? { Icon: rootMenu.icon, label: loc(rootMenu.label), glow: rootMenu.glow || "rgba(99,102,241,0.6)" }
-    : level === 0
-      ? { Icon: Brain, label: loc("ui.center"), glow: "rgba(37,99,235,0.7)" }
-      : level === 1
-      ? { Icon: skill?.icon, label: loc(skill?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" }
-      : { Icon: Sparkles, label: loc(activeChild?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" };
+  // The overview layer has no centre node at all now — the tree's own trunk
+  // is what joins the roots to the leaves, and a hub floating over it read
+  // as a third thing competing with them. The hub still exists one level in,
+  // where it is the "you are inside this skill" marker and the back button.
+  const hubFace = level === 1
+    ? { Icon: skill?.icon, label: loc(skill?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" }
+    : { Icon: Sparkles, label: loc(activeChild?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" };
 
-  const hubHidden = !!(dive || backDive);
+  const hubHidden = level === 0 || !!(dive || backDive);
 
   return (
     <div className="relative w-full h-full" style={{ perspective: "1400px" }}>
@@ -175,7 +171,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hub-glow-pulse"
               style={{ width: "210%", height: "210%", background: `radial-gradient(closest-side, ${hubFace.glow}, transparent 72%)`, filter: "blur(26px)" }} />
             <button
-              onClick={rootMenu ? () => setRootMenu(null) : level > 0 ? onBack : undefined}
+              onClick={level > 0 ? onBack : undefined}
               className="relative w-full h-full rounded-full border border-white/25 bg-white/[0.1] backdrop-blur-2xl flex flex-col items-center justify-center text-white"
               style={{ boxShadow: `0 0 55px ${hubFace.glow}, inset 0 1px 0 rgba(255,255,255,0.22)` }}
             >
@@ -212,13 +208,16 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
         )}
       </AnimatePresence>
 
-      {/* ---------- Overview layer (2 root skills + 4 leaf skills) ---------- */}
+      {/* ---------- Overview layer: the tree, with the six skills on its
+           branch tips. SkillTree draws the branches and the pathway glow;
+           the nodes below are the actual buttons, positioned from the same
+           coordinate table. ---------- */}
       <NodeGroup active={level === 0}>
-        <Lines nodes={skillNodes} color="#a78bfa" hovered={hoveredSkillKey} filterId="ovPulse" />
-        <PathwayLines roots={rootSkillNodes} leaves={leafSkillNodes} hoveredKey={hoveredSkillKey} filterId="ovPathPulse" />
+        <SkillTree activeKey={activeSkillKey} />
         {skillNodes.map((n, i) => (
           <SkillNode key={n.id} node={n} index={i} active={level === 0} hidden={divingId === n.id}
             size={n.role === "root" ? "root" : "leaf"}
+            bloomDelay={bloomDelays[n.id]} bloomKey={activeSkillKey}
             onClick={() => {
               // Roots open the Learn/Practice chooser (unless a teacher is
               // picking homework, where the chooser is skipped and the old
