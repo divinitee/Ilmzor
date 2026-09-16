@@ -4,11 +4,11 @@ import { Brain, ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
 import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
-import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos } from "@/lib/skillTreeData";
+import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, posAt } from "@/lib/skillTreeData";
 import { isGameUnlocked, minLevelFor } from "@/lib/levels";
 // Node-map primitives (spokes, pulses, layer bloom, dives) live in
 // StagePrimitives.jsx since 2026-09-09 so the Grammar map shares them.
-import { EASE, RM, Lines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
+import { EASE, RM, Lines, PathwayLines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
 
 /* ---------- Stage ---------- */
 
@@ -24,6 +24,10 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   const [dive, setDive] = useState(null);
   const [divingId, setDivingId] = useState(null);
   const [backDive, setBackDive] = useState(null);
+  // Skill Hub v2: which root node (vocabulary/grammar) is showing its
+  // Learn/Practice chooser, or null. Distinct from `selected` (level 1) —
+  // opening the chooser does not dive into the subskill tree by itself.
+  const [rootMenu, setRootMenu] = useState(null); // { id, x, y, glow, icon, label }
 
   // Forward dive: the clicked node brightens in place, then flies to center
   // and blooms into the hub while its siblings recede.
@@ -57,7 +61,50 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   };
 
   /* node datasets */
-  const skillNodes = TOP_SKILLS.map((s, i) => ({ ...s, ...pos(i, 6, 38, 36) }));
+  // Skill Hub v2: authored angle/radius per node (see skillTreeData.js) —
+  // two large root nodes above the hub, four smaller leaf nodes fanned out
+  // below — instead of six evenly-spaced hexagon positions.
+  const skillNodes = TOP_SKILLS.map((s) => ({ ...s, ...posAt(s.angle, s.rx, s.ry) }));
+  const rootSkillNodes = skillNodes.filter((s) => s.role === "root");
+  const leafSkillNodes = skillNodes.filter((s) => s.role === "leaf");
+  const hoveredSkillKey = hovered?.group === "skill" ? hovered.key : null;
+  const rootIds = rootSkillNodes.map((s) => s.id);
+  // A node is "related" to the current hover when it's the hovered node
+  // itself, or it sits on the opposite side of a root<->leaf pathway
+  // (hovering a root relates all leaves; hovering a leaf relates both
+  // roots). Two leaves, or the two roots, are never related to each other —
+  // "do not activate unrelated pathways".
+  const isSkillRelated = (id) => {
+    if (!hoveredSkillKey) return false;
+    if (hoveredSkillKey === id) return true;
+    return rootIds.includes(hoveredSkillKey) !== rootIds.includes(id);
+  };
+
+  // Root click opens a small Learn/Practice chooser instead of diving
+  // straight into the subskill tree. In assignment mode (teacher picking
+  // homework) the chooser is skipped entirely — see the onClick branch
+  // below — since "Learn" has no meaning there.
+  const openRootMenu = (node) => setRootMenu({ id: node.id, x: node.x, y: node.y, glow: node.glow, icon: node.icon, label: node.label });
+
+  const handlePracticeClick = () => {
+    const node = skillNodes.find((s) => s.id === rootMenu?.id);
+    setRootMenu(null);
+    if (!node) return;
+    triggerDive(node, node.glow, () => setSelected(node.id));
+  };
+
+  // Learn routes into whatever the skill's own existing entry point is
+  // (onEnterSkill — the diagnostic-gated navigate already used for Grammar)
+  // rather than a new destination. A skill with no entry point yet
+  // (Vocabulary, until it adopts a diagnostic like Grammar's) shows an
+  // honest "coming soon" instead of a dead end or a duplicated system.
+  const handleLearnClick = () => {
+    const node = rootMenu;
+    setRootMenu(null);
+    if (!node) return;
+    if (onEnterSkill?.(node.id)) return;
+    onComingSoon?.(node.id === "vocabulary" ? "ui.vocabLearnTitle" : node.label);
+  };
 
   const children = selected ? (SKILL_CHILDREN[selected] || []) : [];
   const cn = children.length;
