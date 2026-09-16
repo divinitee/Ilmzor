@@ -9,16 +9,17 @@ import { BookOpen, SpellCheck, FileText, Headphones, PenLine, Mic } from "lucide
 // Skill Hub v2 (2026-09-16): vocabulary/grammar are the dominant root nodes
 // (larger, foundation skills); reading/listening/writing/speaking are leaf
 // nodes that apply them (visually secondary, still comingSoon). `role`
-// drives node sizing in SkillStage; `angle`/`rx`/`ry` are polar coordinates
-// (see posAt below) replacing the old even hexagon layout — two roots sit
-// above the hub, four leaves fan out below so hover pathways read top-down.
+// drives node sizing in SkillStage. Positions are no longer polar — each
+// skill sits on a branch tip of the literal tree below (TREE_POINTS), which
+// is the same table the tree art is drawn from, so a node can never drift
+// off the branch that feeds it.
 export const TOP_SKILLS = [
-  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-violet-500 to-purple-600", ring: "ring-violet-400/50", glow: "rgba(124,107,232,0.55)", color: "#7C6BE8", role: "root", angle: -132, rx: 30, ry: 28 },
-  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(62,158,146,0.55)", color: "#3E9E92", role: "root", angle: -48, rx: 30, ry: 28 },
-  { id: "reading", label: "Reading", icon: FileText, hue: "from-rose-400 to-pink-500", ring: "ring-rose-400/50", glow: "rgba(206,106,134,0.5)", comingSoon: true, color: "#CE6A86", role: "leaf", angle: 40, rx: 42, ry: 38 },
-  { id: "listening", label: "Listening", icon: Headphones, hue: "from-sky-400 to-blue-500", ring: "ring-sky-400/50", glow: "rgba(107,158,196,0.5)", comingSoon: true, color: "#6B9EC4", role: "leaf", angle: 73, rx: 42, ry: 38 },
-  { id: "writing", label: "Writing", icon: PenLine, hue: "from-purple-400 to-fuchsia-500", ring: "ring-purple-400/50", glow: "rgba(182,120,201,0.5)", comingSoon: true, color: "#B678C9", role: "leaf", angle: 107, rx: 42, ry: 38 },
-  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-emerald-400 to-green-500", ring: "ring-emerald-400/50", glow: "rgba(91,155,126,0.5)", comingSoon: true, color: "#5B9B7E", role: "leaf", angle: 140, rx: 42, ry: 38 },
+  { id: "vocabulary", label: "Vocabulary", icon: BookOpen, hue: "from-violet-500 to-purple-600", ring: "ring-violet-400/50", glow: "rgba(124,107,232,0.55)", color: "#7C6BE8", role: "root" },
+  { id: "grammar", label: "Grammar", icon: SpellCheck, hue: "from-teal-500 to-emerald-600", ring: "ring-teal-400/50", glow: "rgba(62,158,146,0.55)", color: "#3E9E92", role: "root" },
+  { id: "reading", label: "Reading", icon: FileText, hue: "from-rose-400 to-pink-500", ring: "ring-rose-400/50", glow: "rgba(206,106,134,0.5)", comingSoon: true, color: "#CE6A86", role: "leaf" },
+  { id: "listening", label: "Listening", icon: Headphones, hue: "from-sky-400 to-blue-500", ring: "ring-sky-400/50", glow: "rgba(107,158,196,0.5)", comingSoon: true, color: "#6B9EC4", role: "leaf" },
+  { id: "writing", label: "Writing", icon: PenLine, hue: "from-purple-400 to-fuchsia-500", ring: "ring-purple-400/50", glow: "rgba(182,120,201,0.5)", comingSoon: true, color: "#B678C9", role: "leaf" },
+  { id: "speaking", label: "Speaking", icon: Mic, hue: "from-emerald-400 to-green-500", ring: "ring-emerald-400/50", glow: "rgba(91,155,126,0.5)", comingSoon: true, color: "#5B9B7E", role: "leaf" },
 ];
 
 const gen = (names, game) => names.map((name, i) => ({
