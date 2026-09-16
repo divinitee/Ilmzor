@@ -1,21 +1,41 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { TREE_POINTS as T, TREE_SEGMENTS, TREE_JOINTS, TREE_ROUTES, taperPath } from "@/lib/skillTreeData";
+import { RM } from "@/components/skillhub/StagePrimitives";
 
 /* The Skill Hub overview tree (2026-09-16).
 
    Purely decorative: this renders the tree the six skill nodes sit on, plus
    the hover pathway glow. It never takes pointer events — the real buttons
    are the SkillNodes that SkillStage positions on top of it, from the same
-   TREE_POINTS table this is drawn from.
+   TREE_POINTS table this is drawn from. Nothing here reads learner data;
+   the tree is fixed structure, not a recommendation.
 
    The glow is the part with rules attached to it:
    - one continuous path per root->leaf route, so the reveal sweeps the whole
      way in one motion (chained per-branch segments read as blocky/stepped);
    - it always runs root outward, including when a leaf is what's hovered;
    - once a route lands it stops redrawing and only breathes its brightness,
-     symmetrically, so the loop has no seam and the line never blanks out.
-   The timing lives in skillTreeData (one shared speed, per-route duration);
-   the animation itself is in index.css (.vt-route). */
+     symmetrically, so the loop has no seam and the line never blanks out;
+   - letting go never stops the light dead. The sweep keeps travelling while
+     its brightness fades, so the glow leaves the way it arrived.
+
+   The motion is driven from here with the Web Animations API rather than
+   from CSS classes. That last rule is why: fading a line's brightness WHILE
+   its sweep continues from wherever it had reached is not something a class
+   toggle can express. The CSS version snapped the line to full length the
+   instant the pointer left, then faded the finished line — measurably (a
+   sweep 57% drawn jumped straight to 100%), and visibly as a flash of the
+   rest of the branch. Restarting every lit route together, rather than
+   leaving routes shared with the previous hover already-lit while their
+   siblings sweep in, needs the same explicit control.
+
+   index.css keeps only the resting appearance of these paths. */
+
+const CORE = { peak: 0.62, dim: 0.24 };
+const HALO = { peak: 0.26, dim: 0.09 };
+const SWEEP_EASE = "cubic-bezier(.32,.06,.24,1)";
+const BREATHE_MS = 3200;
+const RELEASE_MS = 520;
 
 const rnd = (seed) => { const x = Math.sin(seed * 999) * 10000; return x - Math.floor(x); };
 const lerp = (a, b, t) => ({ x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t });
@@ -82,14 +102,81 @@ function Shard({ s }) {
   );
 }
 
+const LAYERS = [["core", CORE], ["halo", HALO]];
+
 export default function SkillTree({ activeKey }) {
-  // Hovering a root sends its glow to all four leaves; hovering a leaf
-  // lights the one path back to it from both roots. Either way the paths
-  // themselves are authored root -> leaf, so the sweep direction is fixed
-  // by the geometry and cannot run backwards.
-  const activeIds = new Set(
-    activeKey ? TREE_ROUTES.filter((r) => r.root === activeKey || r.leaf === activeKey).map((r) => r.id) : []
-  );
+  const paths = useRef({});      // "core:route-id" -> <path>
+  const activeRef = useRef(new Set());
+
+  useEffect(() => {
+    // Hovering a root sends its glow to all four leaves; hovering a leaf
+    // lights the one path back to it from both roots. Either way the paths
+    // are authored root -> leaf, so the sweep direction is fixed by the
+    // geometry and cannot run backwards.
+    const active = new Set(
+      activeKey ? TREE_ROUTES.filter((r) => r.root === activeKey || r.leaf === activeKey).map((r) => r.id) : []
+    );
+    activeRef.current = active;
+
+    // Read every brightness we need before writing any, so releasing a
+    // handful of routes doesn't interleave style reads and writes.
+    const releasing = [];
+    TREE_ROUTES.forEach((r) => {
+      if (active.has(r.id)) return;
+      LAYERS.forEach(([kind]) => {
+        const el = paths.current[`${kind}:${r.id}`];
+        if (el && el.getAnimations().length) releasing.push({ el, id: r.id, from: getComputedStyle(el).opacity });
+      });
+    });
+
+    TREE_ROUTES.forEach((r) => {
+      if (!active.has(r.id)) return;
+      LAYERS.forEach(([kind, tone]) => {
+        const el = paths.current[`${kind}:${r.id}`];
+        if (!el) return;
+
+        el.getAnimations().forEach((a) => a.cancel());
+
+        if (RM) { el.style.opacity = String(tone.peak); return; }
+
+        // Every lit route restarts together, so a route carried over from
+        // the previous hover sweeps again with its siblings instead of
+        // sitting already-lit beside them.
+        const sweep = el.animate(
+          [
+            { strokeDashoffset: "1px", opacity: 0, offset: 0 },
+            { opacity: tone.peak, offset: 0.09 },
+            { strokeDashoffset: "0px", opacity: tone.peak, offset: 1 },
+          ],
+          { duration: r.dur * 1000, easing: SWEEP_EASE, fill: "forwards" }
+        );
+        // Breathing starts the instant the sweep lands, from the brightness
+        // the sweep ended on, and only ever moves brightness — so the loop
+        // has no seam and the drawn line is never redrawn.
+        sweep.finished.then(() => {
+          if (!activeRef.current.has(r.id)) return;
+          el.animate(
+            [{ opacity: tone.peak }, { opacity: tone.dim }, { opacity: tone.peak }],
+            { duration: BREATHE_MS, easing: "ease-in-out", iterations: Infinity }
+          );
+        }).catch(() => { /* cancelled by a newer hover — expected */ });
+      });
+    });
+
+    releasing.forEach(({ el, id, from }) => {
+      if (RM) { el.getAnimations().forEach((a) => a.cancel()); el.style.opacity = "0"; return; }
+      // Fade the brightness only. The sweep underneath keeps running, so a
+      // half-drawn line carries on to the end as it dims instead of
+      // snapping to full length. Created after the sweep, so it takes over
+      // opacity while leaving stroke-dashoffset to it.
+      const fade = el.animate([{ opacity: from }, { opacity: 0 }],
+        { duration: RELEASE_MS, easing: "ease-out", fill: "forwards" });
+      fade.finished.then(() => {
+        if (activeRef.current.has(id)) return;   // re-lit mid-fade; leave it alone
+        el.getAnimations().forEach((a) => a.cancel());
+      }).catch(() => { /* superseded */ });
+    });
+  }, [activeKey]);
 
   return (
     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
@@ -140,15 +227,13 @@ export default function SkillTree({ activeKey }) {
       {/* pathway glow: soft bloom layer, then the crisp core on top */}
       <g filter="url(#vtHalo)">
         {TREE_ROUTES.map((r) => (
-          <path key={r.id} d={r.d} pathLength="1"
-            className={`vt-route vt-halo${activeIds.has(r.id) ? " on" : ""}`}
-            style={{ "--vt-dur": `${r.dur}s` }} />
+          <path key={r.id} d={r.d} pathLength="1" className="vt-route vt-halo"
+            ref={(el) => { paths.current[`halo:${r.id}`] = el; }} />
         ))}
       </g>
       {TREE_ROUTES.map((r) => (
-        <path key={r.id} d={r.d} pathLength="1"
-          className={`vt-route vt-core${activeIds.has(r.id) ? " on" : ""}`}
-          style={{ "--vt-dur": `${r.dur}s` }} />
+        <path key={r.id} d={r.d} pathLength="1" className="vt-route vt-core"
+          ref={(el) => { paths.current[`core:${r.id}`] = el; }} />
       ))}
 
       {/* crystal growths */}
