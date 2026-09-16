@@ -56,6 +56,51 @@ export function Lines({ nodes, color, hovered, filterId }) {
   );
 }
 
+// Skill Hub v2: direct root<->leaf pathway lines on the overview layer, drawn
+// independently of the hub spokes in Lines above. Only ever renders relative
+// to whichever single overview node is currently hovered (skip entirely when
+// nothing is hovered, so idle state is unchanged from before v2). Hovering a
+// leaf lights both roots; hovering a root lights all four leaves in a gentle
+// sequential pulse — never lines between two leaves or between the two roots,
+// so unrelated pathways stay dark per the design direction.
+export function PathwayLines({ roots, leaves, hoveredKey, filterId = "pathPulse" }) {
+  if (!hoveredKey) return null;
+  const hoveredRoot = roots.find((r) => r.id === hoveredKey);
+  const hoveredLeaf = !hoveredRoot ? leaves.find((l) => l.id === hoveredKey) : null;
+  if (!hoveredRoot && !hoveredLeaf) return null;
+
+  const pairs = hoveredLeaf
+    ? roots.map((r, i) => ({ from: r, to: hoveredLeaf, delay: i * 0.12 }))
+    : leaves.map((l, i) => ({ from: hoveredRoot, to: l, delay: i * 0.16 }));
+
+  return (
+    <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <filter id={filterId} x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="2.2" />
+        </filter>
+      </defs>
+      {pairs.map(({ from, to }, i) => (
+        <line key={i} className={RM ? "" : "hub-line"} style={{ animationDelay: `${i * 0.4}s` }}
+          x1={from.x} y1={from.y} x2={to.x} y2={to.y}
+          stroke={to.color || to.glow} strokeLinecap="round" vectorEffect="non-scaling-stroke"
+          strokeWidth={1.1} opacity={0.85}
+          style={{ filter: `drop-shadow(0 0 5px ${to.color || to.glow})` }} />
+      ))}
+      {!RM && pairs.map(({ from, to, delay }, i) => (
+        <g key={`p${i}`}>
+          {PULSE_PHASES.map((p, j) => (
+            <circle key={j} r={p.r * 0.8} fill={to.color || to.glow} fillOpacity={p.fo} opacity={0} filter={`url(#${filterId})`}>
+              <animateMotion dur="1.8s" begin={`${delay + p.begin}s`} repeatCount="indefinite" path={`M ${from.x} ${from.y} L ${to.x} ${to.y}`} calcMode="linear" />
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.22;0.7;1" dur="1.8s" begin={`${delay + p.begin}s`} repeatCount="indefinite" />
+            </circle>
+          ))}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 /* A layer of nodes. Active blooms open (blur-to-sharp); inactive recedes
    backward — dims, blurs and shrinks slightly instead of vanishing, so the
    user feels the previous layer falling away into depth. */
