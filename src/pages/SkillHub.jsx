@@ -300,8 +300,12 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
           </div>
         )}
 
-        {/* 3D mind-map stage */}
-        <div className="relative w-full aspect-square max-w-[560px] mx-auto min-h-[360px]">
+        {/* 3D mind-map stage. Portrait rather than square since the overview
+            layer became a tree (2026-09-16) — a square frame left the trunk
+            stubby and the boughs splayed nearly flat. The inner layers
+            (subskills, challenges) are laid out in percentages too, so they
+            just gain a little vertical breathing room. */}
+        <div className="relative w-full aspect-[5/6] max-w-[560px] mx-auto min-h-[430px]">
           <SkillStage
             onPlayGame={assignmentMode ? handleAssignGame : (g) => setActiveGame(g)}
             onComingSoon={(label) => setSoonLabel(label)}
