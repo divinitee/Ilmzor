@@ -138,8 +138,13 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   });
 
   /* hub face */
-  const hubFace =
-    level === 0
+  // Skill Hub v2: while the Learn/Practice chooser is open, the hub shows
+  // the clicked root's own icon/label/glow instead of the generic overview
+  // face, so the chooser reads as "about this skill" rather than floating
+  // unattached to anything.
+  const hubFace = rootMenu
+    ? { Icon: rootMenu.icon, label: loc(rootMenu.label), glow: rootMenu.glow || "rgba(99,102,241,0.6)" }
+    : level === 0
       ? { Icon: Brain, label: loc("ui.center"), glow: "rgba(37,99,235,0.7)" }
       : level === 1
       ? { Icon: skill?.icon, label: loc(skill?.label), glow: skill?.glow || "rgba(99,102,241,0.6)" }
@@ -166,7 +171,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hub-glow-pulse"
               style={{ width: "210%", height: "210%", background: `radial-gradient(closest-side, ${hubFace.glow}, transparent 72%)`, filter: "blur(26px)" }} />
             <button
-              onClick={level > 0 ? onBack : undefined}
+              onClick={rootMenu ? () => setRootMenu(null) : level > 0 ? onBack : undefined}
               className="relative w-full h-full rounded-full border border-white/25 bg-white/[0.1] backdrop-blur-2xl flex flex-col items-center justify-center text-white"
               style={{ boxShadow: `0 0 55px ${hubFace.glow}, inset 0 1px 0 rgba(255,255,255,0.22)` }}
             >
@@ -191,14 +196,14 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
       {/* ---------- Back pill ---------- */}
       <AnimatePresence>
-        {level > 0 && !dive && !backDive && (
+        {(rootMenu || (level > 0 && !dive && !backDive)) && (
           <motion.button
             initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }}
             transition={{ duration: 0.3, ease: EASE }}
-            onClick={onBack}
+            onClick={rootMenu ? () => setRootMenu(null) : onBack}
             className="absolute top-2 left-2 z-30 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground bg-card/70 backdrop-blur border border-border rounded-full px-3 py-1.5 select-none"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> {level === 2 ? loc(skill?.label) : loc("ui.allSkills")}
+            <ArrowLeft className="w-3.5 h-3.5" /> {rootMenu ? loc("ui.allSkills") : level === 2 ? loc(skill?.label) : loc("ui.allSkills")}
           </motion.button>
         )}
       </AnimatePresence>
