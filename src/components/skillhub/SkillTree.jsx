@@ -128,10 +128,11 @@ export default function SkillTree({ activeKey }) {
         {TREE_JOINTS.map((j, i) => <circle key={i} cx={j.p.x} cy={j.p.y} r={j.r * 0.62} fill="url(#vtTrunk)" />)}
       </g>
 
-      {/* ambient bronze veins up the trunk — always on, low-key */}
+      {/* One ambient bronze vein, up the trunk only. There were three — the
+          two out along the boughs read as stray diagonals whenever those
+          boughs weren't lit, because nothing thick sat under them. On the
+          trunk it reads as a vein inside the wood, which is the point. */}
       <line x1={T.merge.x} y1={T.merge.y} x2={T.fork.x} y2={T.fork.y} stroke="url(#vtVein)" strokeWidth="0.9" strokeLinecap="round" />
-      <line x1={T.fork.x} y1={T.fork.y} x2={T.boughL.x} y2={T.boughL.y} stroke="url(#vtVein)" strokeWidth="0.7" strokeLinecap="round" />
-      <line x1={T.fork.x} y1={T.fork.y} x2={T.boughR.x} y2={T.boughR.y} stroke="url(#vtVein)" strokeWidth="0.7" strokeLinecap="round" />
 
       {/* warm glow at the base */}
       <ellipse cx="50" cy="88" rx="24" ry="5" fill="#E8C892" opacity="0.18" filter="url(#vtSoft)" />
