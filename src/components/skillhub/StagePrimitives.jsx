@@ -81,11 +81,11 @@ export function PathwayLines({ roots, leaves, hoveredKey, filterId = "pathPulse"
         </filter>
       </defs>
       {pairs.map(({ from, to }, i) => (
-        <line key={i} className={RM ? "" : "hub-line"} style={{ animationDelay: `${i * 0.4}s` }}
+        <line key={i} className={RM ? "" : "hub-line"}
           x1={from.x} y1={from.y} x2={to.x} y2={to.y}
           stroke={to.color || to.glow} strokeLinecap="round" vectorEffect="non-scaling-stroke"
           strokeWidth={1.1} opacity={0.85}
-          style={{ filter: `drop-shadow(0 0 5px ${to.color || to.glow})` }} />
+          style={{ animationDelay: `${i * 0.4}s`, filter: `drop-shadow(0 0 5px ${to.color || to.glow})` }} />
       ))}
       {!RM && pairs.map(({ from, to, delay }, i) => (
         <g key={`p${i}`}>
