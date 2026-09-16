@@ -4,11 +4,12 @@ import { Brain, ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
 import { getGameStats } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
-import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, posAt } from "@/lib/skillTreeData";
+import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, TREE_POINTS, bloomDelaysFor } from "@/lib/skillTreeData";
 import { isGameUnlocked, minLevelFor } from "@/lib/levels";
 // Node-map primitives (spokes, pulses, layer bloom, dives) live in
 // StagePrimitives.jsx since 2026-09-09 so the Grammar map shares them.
-import { EASE, RM, Lines, PathwayLines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
+import { EASE, RM, Lines, NodeGroup, ForwardDive, BackDive } from "@/components/skillhub/StagePrimitives";
+import SkillTree from "@/components/skillhub/SkillTree";
 
 /* ---------- Stage ---------- */
 
@@ -61,23 +62,26 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   };
 
   /* node datasets */
-  // Skill Hub v2: authored angle/radius per node (see skillTreeData.js) —
-  // two large root nodes above the hub, four smaller leaf nodes fanned out
-  // below — instead of six evenly-spaced hexagon positions.
-  const skillNodes = TOP_SKILLS.map((s) => ({ ...s, ...posAt(s.angle, s.rx, s.ry) }));
-  const rootSkillNodes = skillNodes.filter((s) => s.role === "root");
-  const leafSkillNodes = skillNodes.filter((s) => s.role === "leaf");
+  // Skill Hub v2: each skill sits on a branch tip of the overview tree —
+  // roots at the base, leaves out at the twig ends. Positions come from the
+  // same TREE_POINTS table SkillTree draws the branches from, so a node can
+  // never drift off the branch that feeds it.
+  const skillNodes = TOP_SKILLS.map((s) => ({ ...s, ...TREE_POINTS[s.id] }));
+  const rootIds = TOP_SKILLS.filter((s) => s.role === "root").map((s) => s.id);
   const hoveredSkillKey = hovered?.group === "skill" ? hovered.key : null;
-  const rootIds = rootSkillNodes.map((s) => s.id);
-  // A node is "related" to the current hover when it's the hovered node
-  // itself, or it sits on the opposite side of a root<->leaf pathway
-  // (hovering a root relates all leaves; hovering a leaf relates both
-  // roots). Two leaves, or the two roots, are never related to each other —
-  // "do not activate unrelated pathways".
+  // What the tree is lit for. The open Learn/Practice chooser counts as well
+  // as hover, which is what gives touch devices the pathway glow at all —
+  // tapping a root opens the chooser and lights its branches.
+  const activeSkillKey = rootMenu?.id || hoveredSkillKey;
+  const bloomDelays = bloomDelaysFor(activeSkillKey);
+  // A node is "related" to the active one when it's that node itself, or it
+  // sits on the opposite side of a root<->leaf pathway (a root relates all
+  // leaves; a leaf relates both roots). Two leaves, or the two roots, are
+  // never related to each other — "do not activate unrelated pathways".
   const isSkillRelated = (id) => {
-    if (!hoveredSkillKey) return false;
-    if (hoveredSkillKey === id) return true;
-    return rootIds.includes(hoveredSkillKey) !== rootIds.includes(id);
+    if (!activeSkillKey) return false;
+    if (activeSkillKey === id) return true;
+    return rootIds.includes(activeSkillKey) !== rootIds.includes(id);
   };
 
   // Root click opens a small Learn/Practice chooser instead of diving
