@@ -351,6 +351,19 @@ export function routesFor(skillId) {
   return TREE_ROUTES.filter((r) => r.root === skillId || r.leaf === skillId);
 }
 
+// When each node on a lit pathway should bloom: a root blooms as its glow
+// sets off (0s), a leaf blooms the moment the glow lands there (that route's
+// travel time). A leaf fed by both roots takes the later of the two so the
+// bloom marks the arrival the eye actually finishes on.
+export function bloomDelaysFor(skillId) {
+  const out = {};
+  routesFor(skillId).forEach((r) => {
+    out[r.root] = 0;
+    out[r.leaf] = Math.max(out[r.leaf] || 0, r.dur);
+  });
+  return out;
+}
+
 export const PULSE_PHASES = [
   { begin: 0, r: 3.0, fo: 0.95 },
   { begin: 0.55, r: 2.2, fo: 0.55 },
