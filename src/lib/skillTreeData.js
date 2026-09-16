@@ -262,19 +262,23 @@ export const pos = (i, n, rx, ry) => {
    into two twigs that end at the four application skills.
 
    Every coordinate here is a percentage of the stage box in BOTH axes. The
-   stage is square (see SkillHub.jsx) and the tree SVG uses
-   viewBox="0 0 100 100", so an SVG coordinate and a CSS left/top percentage
-   land on the same pixel. Node positions are read from this same table,
-   which is what keeps a skill node sitting exactly on its branch tip
+   tree SVG uses viewBox="0 0 100 100" with preserveAspectRatio="none", so
+   an SVG coordinate and a CSS left/top percentage land on the same pixel
+   whatever shape the stage is. Node positions are read from this same
+   table, which is what keeps a skill node sitting exactly on its branch tip
    instead of drifting off it. Change a number here and the art, the nodes
-   and the glow pathways all move together. */
+   and the glow pathways all move together.
+
+   The stage is 5:6 portrait (see SkillHub.jsx). It was square until the
+   tree landed; a square frame squashed the trunk short and splayed the
+   boughs nearly flat, so it read as a Y rather than a tree. */
 export const TREE_POINTS = {
   vocabulary: { x: 34, y: 84 },
   grammar:    { x: 66, y: 84 },
   merge:      { x: 50, y: 71 },
   fork:       { x: 50, y: 48 },
-  boughL:     { x: 28, y: 38 },
-  boughR:     { x: 72, y: 38 },
+  boughL:     { x: 29, y: 36 },
+  boughR:     { x: 71, y: 36 },
   listening:  { x: 23, y: 15 },
   reading:    { x: 16, y: 50 },
   writing:    { x: 77, y: 15 },
@@ -329,14 +333,19 @@ export function taperPath(seg) {
 // speed, so every route travels at the same visual pace and the longer
 // branches simply arrive later — the sequencing is physical rather than a
 // hand-authored stagger.
-const TREE_SPEED = 70; // percentage-units per second
+const TREE_SPEED = 78; // percentage-units per second
+// The stage is taller than it is wide, so a percentage step down the y axis
+// covers more screen than the same step across x. Measuring with y weighted
+// by that ratio is what makes one speed look like one speed on every route
+// — without it the near-vertical twigs crawl next to the flatter ones.
+const STAGE_ASPECT = 6 / 5;
 const BOUGH_OF = { listening: "boughL", reading: "boughL", writing: "boughR", speaking: "boughR" };
 
 export const TREE_ROUTES = ["vocabulary", "grammar"].flatMap((root) =>
   ["listening", "reading", "writing", "speaking"].map((leaf) => {
     const pts = [T[root], T.merge, T.fork, T[BOUGH_OF[leaf]], T[leaf]];
     let len = 0;
-    for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+    for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i].x - pts[i - 1].x, (pts[i].y - pts[i - 1].y) * STAGE_ASPECT);
     const d = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
     return { id: `${root}-${leaf}`, root, leaf, d, dur: +(len / TREE_SPEED).toFixed(3) };
   })
