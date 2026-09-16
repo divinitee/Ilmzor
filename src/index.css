@@ -360,19 +360,14 @@
   .hub-node.dim { opacity: 0.45; filter: blur(1.5px); }
 
   /* ---- Skill Hub overview tree (2026-09-16) ----
-     The pathway glow. A route is ONE continuous root→leaf path, revealed in
-     a single sweep, so it never steps joint to joint. Two things here are
-     deliberate and easy to break:
-
-     1. The off state keeps stroke-dashoffset at 0 (drawn but transparent).
-        Only opacity transitions, so letting go of a node fades the line out
-        instead of visibly retracting it. The grow keyframe supplies its own
-        starting offset of 1, so the off value never affects the sweep.
-     2. Growing and breathing are two animations, not one loop. Breathing is
-        delayed by exactly the route's own duration, so it picks up the
-        instant the sweep lands, at the same opacity the sweep ended on — no
-        jump. It then moves brightness only, symmetrically around its peak,
-        so the loop has no seam and the line never blanks or redraws. */
+     Only the RESTING look of a pathway line lives here: drawn, but fully
+     transparent. The motion is driven from SkillTree.jsx with the Web
+     Animations API, and that file explains why. The short version: letting
+     go of a node has to fade a line's brightness while its sweep keeps
+     travelling from wherever it had reached, and a class toggle can't do
+     that — the CSS version snapped a half-drawn line to full length the
+     moment the pointer left. Don't reintroduce an `.on` class here; two
+     systems animating the same opacity is the bug that replaces it. */
   .vt-route {
     fill: none;
     stroke: #ffffff;
@@ -381,31 +376,9 @@
     stroke-dasharray: 1 1;
     stroke-dashoffset: 0;
     opacity: 0;
-    transition: opacity .5s ease;
   }
   .vt-core { stroke-width: 0.7; }
   .vt-halo { stroke-width: 2.4; }
-
-  .vt-core.on {
-    animation: vtGrowCore var(--vt-dur, 1.3s) cubic-bezier(.32,.06,.24,1) both,
-               vtBreatheCore 3.2s ease-in-out var(--vt-dur, 1.3s) infinite;
-  }
-  .vt-halo.on {
-    animation: vtGrowHalo var(--vt-dur, 1.3s) cubic-bezier(.32,.06,.24,1) both,
-               vtBreatheHalo 3.2s ease-in-out var(--vt-dur, 1.3s) infinite;
-  }
-  @keyframes vtGrowCore {
-    0%   { stroke-dashoffset: 1; opacity: 0; }
-    9%   { opacity: 0.62; }
-    100% { stroke-dashoffset: 0; opacity: 0.62; }
-  }
-  @keyframes vtGrowHalo {
-    0%   { stroke-dashoffset: 1; opacity: 0; }
-    9%   { opacity: 0.26; }
-    100% { stroke-dashoffset: 0; opacity: 0.26; }
-  }
-  @keyframes vtBreatheCore { 0%, 100% { opacity: 0.62; } 50% { opacity: 0.24; } }
-  @keyframes vtBreatheHalo { 0%, 100% { opacity: 0.26; } 50% { opacity: 0.09; } }
 
   /* Crystal facets catch the light on their own unsynced cycles */
   @keyframes vtGlisten { 0%, 100% { opacity: 0.22; } 50% { opacity: 0.75; } }
@@ -441,12 +414,12 @@
   @media (prefers-reduced-motion: reduce) {
     .hub-glow-pulse, .hub-drift, .hub-line, .hub-ambient,
     .animate-neo-float, .animate-neo-breathe, .skill-border-glow, .skill-hover-pulse,
-    .vt-route, .vt-glisten, .vt-firefly, .vt-spark {
+    .vt-glisten, .vt-firefly, .vt-spark {
       animation: none !important;
     }
-    /* no sweep, no breathing — an active pathway just reads as lit */
-    .vt-route.on { opacity: 0.5; stroke-dashoffset: 0; }
-    .vt-halo.on { opacity: 0.2; }
+    /* Pathway lines: SkillTree.jsx skips the sweep entirely under reduced
+       motion and sets a flat lit opacity inline, so an active pathway still
+       reads as lit — there is no animation here to switch off. */
     .tree-bloom { display: none; }
   }
 }
