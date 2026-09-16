@@ -116,27 +116,34 @@ export function planPractice({ curriculum, progressRows = [], states, index, lev
   const candidates = themed.length ? themed : pool.words;
   let words = selectPractice({ words: candidates, states, count });
 
+  // Preserve source identity by lemma. `candidates` may be shuffled and may
+  // contain a subset of pool.words, so indexing pool.sources by candidate index
+  // (or using candidates.indexOf inside a filter) is incorrect and fragile.
+  const sourceByLemma = new Map();
+  pool.words.forEach((word, i) => {
+    const lemma = normalizeLemma(word?.english);
+    if (lemma && !sourceByLemma.has(lemma)) sourceByLemma.set(lemma, pool.sources?.[i]);
+  });
+
   const recycleShare = typeof theme.recycle_share === "number" ? theme.recycle_share : 0.25;
   const recycleTarget = Math.min(Math.round(count * recycleShare), Math.max(0, count - 1));
   if (recycleTarget > 0) {
-    const recycleLemmas = new Set(
-      candidates
-        .filter((w, i) => pool.sources[candidates.indexOf(w)] === "recycled")
-        .map((w) => normalizeLemma(w?.english))
-        .filter(Boolean)
-    );
-    const currentRecycle = words.filter((w) => recycleLemmas.has(normalizeLemma(w?.english))).length;
+    const isRecycled = (word) => sourceByLemma.get(normalizeLemma(word?.english)) === "recycled";
+    const currentRecycle = words.filter(isRecycled).length;
     if (currentRecycle < recycleTarget) {
-      const replacements = candidates.filter(
-        (w) => recycleLemmas.has(normalizeLemma(w?.english)) && !words.some((x) => normalizeLemma(x?.english) === normalizeLemma(w?.english))
-      );
-      const nonRecycle = [...words].reverse();
+      const selectedLemmas = new Set(words.map((word) => normalizeLemma(word?.english)));
+      const replacements = candidates.filter((word) => {
+        const lemma = normalizeLemma(word?.english);
+        return isRecycled(word) && lemma && !selectedLemmas.has(lemma);
+      });
+
       for (const replacement of replacements) {
-        if (words.filter((w) => recycleLemmas.has(normalizeLemma(w?.english))).length >= recycleTarget) break;
-        const indexToReplace = nonRecycle.findIndex((w) => !recycleLemmas.has(normalizeLemma(w?.english)));
-        if (indexToReplace < 0) break;
-        const victim = nonRecycle[indexToReplace];
-        words = words.map((w) => w === victim ? replacement : w);
+        if (words.filter(isRecycled).length >= recycleTarget) break;
+        const victimIndex = words.findLastIndex((word) => !isRecycled(word));
+        if (victimIndex < 0) break;
+        const replacementLemma = normalizeLemma(replacement?.english);
+        if (!replacementLemma || words.some((word) => normalizeLemma(word?.english) === replacementLemma)) continue;
+        words = words.map((word, i) => i === victimIndex ? replacement : word);
       }
     }
   }
