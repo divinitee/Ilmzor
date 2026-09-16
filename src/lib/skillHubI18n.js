@@ -23,6 +23,11 @@ const SKILL = {
   "ui.comingSoonTag": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
   "ui.tapHint": { en: "Tap a word, then its definition", uz: "So'zni bosing, so'ng uning ta'rifini bosing", ru: "Нажмите слово, затем его определение" },
 
+  // ---- Skill Hub v2: root node Learn/Practice chooser ----
+  "ui.learn": { en: "Learn", uz: "O'rganish", ru: "Учиться" },
+  "ui.practice": { en: "Practice", uz: "Mashq qilish", ru: "Практика" },
+  "ui.vocabLearnTitle": { en: "Guided Vocabulary learning is coming soon", uz: "Vokabularni bosqichma-bosqich o'rganish tez orada qo'shiladi", ru: "Пошаговое изучение словарного запаса скоро появится" },
+
   // ---- difficulty / time ----
   Easy: { uz: "Oson", ru: "Лёгкий" },
   Medium: { uz: "O'rta", ru: "Средний" },
