@@ -359,11 +359,95 @@
   .hub-node { transition: opacity .4s ease-out, filter .4s ease-out; }
   .hub-node.dim { opacity: 0.45; filter: blur(1.5px); }
 
+  /* ---- Skill Hub overview tree (2026-09-16) ----
+     The pathway glow. A route is ONE continuous root→leaf path, revealed in
+     a single sweep, so it never steps joint to joint. Two things here are
+     deliberate and easy to break:
+
+     1. The off state keeps stroke-dashoffset at 0 (drawn but transparent).
+        Only opacity transitions, so letting go of a node fades the line out
+        instead of visibly retracting it. The grow keyframe supplies its own
+        starting offset of 1, so the off value never affects the sweep.
+     2. Growing and breathing are two animations, not one loop. Breathing is
+        delayed by exactly the route's own duration, so it picks up the
+        instant the sweep lands, at the same opacity the sweep ended on — no
+        jump. It then moves brightness only, symmetrically around its peak,
+        so the loop has no seam and the line never blanks or redraws. */
+  .vt-route {
+    fill: none;
+    stroke: #ffffff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+    opacity: 0;
+    transition: opacity .5s ease;
+  }
+  .vt-core { stroke-width: 0.7; }
+  .vt-halo { stroke-width: 2.4; }
+
+  .vt-core.on {
+    animation: vtGrowCore var(--vt-dur, 1.3s) cubic-bezier(.32,.06,.24,1) both,
+               vtBreatheCore 3.2s ease-in-out var(--vt-dur, 1.3s) infinite;
+  }
+  .vt-halo.on {
+    animation: vtGrowHalo var(--vt-dur, 1.3s) cubic-bezier(.32,.06,.24,1) both,
+               vtBreatheHalo 3.2s ease-in-out var(--vt-dur, 1.3s) infinite;
+  }
+  @keyframes vtGrowCore {
+    0%   { stroke-dashoffset: 1; opacity: 0; }
+    9%   { opacity: 0.62; }
+    100% { stroke-dashoffset: 0; opacity: 0.62; }
+  }
+  @keyframes vtGrowHalo {
+    0%   { stroke-dashoffset: 1; opacity: 0; }
+    9%   { opacity: 0.26; }
+    100% { stroke-dashoffset: 0; opacity: 0.26; }
+  }
+  @keyframes vtBreatheCore { 0%, 100% { opacity: 0.62; } 50% { opacity: 0.24; } }
+  @keyframes vtBreatheHalo { 0%, 100% { opacity: 0.26; } 50% { opacity: 0.09; } }
+
+  /* Crystal facets catch the light on their own unsynced cycles */
+  @keyframes vtGlisten { 0%, 100% { opacity: 0.22; } 50% { opacity: 0.75; } }
+  .vt-glisten { animation: vtGlisten var(--vt-gd, 3.4s) ease-in-out var(--vt-go, 0s) infinite; }
+
+  /* Motes drift and twinkle. px on an SVG child resolves as user units (the
+     same 0-100 scale as the viewBox); % would resolve against the mote's own
+     tiny box and be imperceptible. */
+  @keyframes vtDrift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(var(--vt-dx, 1.2px), var(--vt-dy, -1.4px)); }
+  }
+  .vt-firefly { animation: vtDrift var(--vt-fd, 6s) ease-in-out var(--vt-fo, 0s) infinite; }
+  @keyframes vtTwinkle { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.95; } }
+  .vt-spark { animation: vtTwinkle var(--vt-td, 4.5s) ease-in-out var(--vt-to, 0s) infinite; }
+
+  /* Soft bloom at a root as its glow sets off, and at a leaf the moment the
+     glow lands there (animation-delay carries the route's travel time). */
+  @keyframes treeBloom {
+    0%   { opacity: 0;    transform: translate(-50%, -50%) scale(0.5); }
+    22%  { opacity: 0.85; transform: translate(-50%, -50%) scale(1.9); }
+    100% { opacity: 0;    transform: translate(-50%, -50%) scale(3.1); }
+  }
+  .tree-bloom {
+    position: absolute; left: 50%; top: 50%;
+    width: 46px; height: 46px; border-radius: 9999px;
+    background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 45%, transparent 72%);
+    opacity: 0; pointer-events: none;
+    animation: treeBloom 1.15s cubic-bezier(.2,.6,.3,1) both;
+    will-change: opacity, transform;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hub-glow-pulse, .hub-drift, .hub-line, .hub-ambient,
-    .animate-neo-float, .animate-neo-breathe, .skill-border-glow, .skill-hover-pulse {
+    .animate-neo-float, .animate-neo-breathe, .skill-border-glow, .skill-hover-pulse,
+    .vt-route, .vt-glisten, .vt-firefly, .vt-spark {
       animation: none !important;
     }
+    /* no sweep, no breathing — an active pathway just reads as lit */
+    .vt-route.on { opacity: 0.5; stroke-dashoffset: 0; }
+    .vt-halo.on { opacity: 0.2; }
+    .tree-bloom { display: none; }
   }
 }
 
