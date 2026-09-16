@@ -208,17 +208,23 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
         )}
       </AnimatePresence>
 
-      {/* ---------- Overview layer (6 skills) ---------- */}
+      {/* ---------- Overview layer (2 root skills + 4 leaf skills) ---------- */}
       <NodeGroup active={level === 0}>
-        <Lines nodes={skillNodes} color="#a78bfa" hovered={hovered?.group === "skill" ? hovered.key : null} filterId="ovPulse" />
+        <Lines nodes={skillNodes} color="#a78bfa" hovered={hoveredSkillKey} filterId="ovPulse" />
+        <PathwayLines roots={rootSkillNodes} leaves={leafSkillNodes} hoveredKey={hoveredSkillKey} filterId="ovPathPulse" />
         {skillNodes.map((n, i) => (
           <SkillNode key={n.id} node={n} index={i} active={level === 0} hidden={divingId === n.id}
+            size={n.role === "root" ? "root" : "leaf"}
             onClick={() => {
+              // Roots open the Learn/Practice chooser (unless a teacher is
+              // picking homework, where the chooser is skipped and the old
+              // straight-into-Practice dive behaviour is kept unchanged).
+              if (n.role === "root" && !assignmentMode) { openRootMenu(n); return; }
               if (onEnterSkill?.(n.id)) return;
               triggerDive(n, n.glow, () => setSelected(n.id));
             }} onComingSoon={() => onComingSoon(n.label)}
-            hot={hovered?.group === "skill" && hovered.key === n.id}
-            dim={hovered?.group === "skill" && hovered.key !== n.id}
+            hot={isSkillRelated(n.id)}
+            dim={hoveredSkillKey ? !isSkillRelated(n.id) : false}
             onHoverStart={() => setHovered({ group: "skill", key: n.id })} onHoverEnd={() => setHovered(null)} />
         ))}
       </NodeGroup>
@@ -258,6 +264,52 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
       {/* ---------- Reverse dive (Back): center node pulls back to its
            original position, shrinking + fading, as the previous layer blooms ---------- */}
       <BackDive dive={backDive} label={backDive ? loc(backDive.label) : ""} />
+
+      {/* ---------- Root Learn/Practice chooser (Skill Hub v2) ----------
+          A tap outside (the backdrop) closes it. The two pills route into
+          the skill's existing entry points — Learn via onEnterSkill (the
+          same diagnostic-gated navigate Grammar already used), Practice via
+          the same triggerDive/setSelected dive every node on this stage
+          already uses — no new systems, just a fork placed before the dive. */}
+      <AnimatePresence>
+        {rootMenu && (
+          <motion.div key="root-menu-backdrop" className="absolute inset-0 z-20"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setRootMenu(null)} />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {rootMenu && (
+          <motion.div key={rootMenu.id} className="absolute z-30 left-1/2 top-1/2 flex flex-col items-center gap-2 pointer-events-none"
+            style={{ transform: "translate(-50%, -50%)" }}
+            initial={{ opacity: 0, scale: 0.85, y: 0 }}
+            animate={{ opacity: 1, scale: 1, y: -96 }}
+            exit={{ opacity: 0, scale: 0.85, y: 0 }}
+            transition={{ duration: 0.32, ease: EASE }}
+          >
+            <div className="flex items-center gap-2 pointer-events-auto">
+              <motion.button
+                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
+                onClick={(e) => { e.stopPropagation(); handleLearnClick(); }}
+                aria-label={`${loc("ui.learn")} ${loc(rootMenu.label)}`}
+                className="px-4 py-2 rounded-full border border-white/25 bg-white/[0.12] backdrop-blur-xl text-white text-xs font-bold tracking-wide hover:bg-white/[0.2] hover:border-white/40 transition-colors select-none"
+                style={{ boxShadow: `0 0 24px ${rootMenu.glow}` }}
+              >
+                {loc("ui.learn")}
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
+                onClick={(e) => { e.stopPropagation(); handlePracticeClick(); }}
+                aria-label={`${loc("ui.practice")} ${loc(rootMenu.label)}`}
+                className="px-4 py-2 rounded-full border border-white/25 bg-white/[0.12] backdrop-blur-xl text-white text-xs font-bold tracking-wide hover:bg-white/[0.2] hover:border-white/40 transition-colors select-none"
+                style={{ boxShadow: `0 0 24px ${rootMenu.glow}` }}
+              >
+                {loc("ui.practice")}
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
