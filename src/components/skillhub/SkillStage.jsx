@@ -316,15 +316,23 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
 /* ---------- Node components ---------- */
 
-function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, dim, onHoverStart, onHoverEnd }) {
+function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, dim, size = "root", onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
   const soon = node.comingSoon;
+  // Skill Hub v2: roots (Vocabulary/Grammar) render noticeably larger than
+  // leaves (Reading/Listening/Writing/Speaking) so the foundation-skill
+  // hierarchy reads at a glance — same node component, just scaled.
+  const isRoot = size === "root";
+  const boxClass = isRoot ? "rounded-[32px] w-24 h-24 md:w-28 md:h-28" : "rounded-[22px] w-16 h-16 md:w-20 md:h-20";
+  const iconClass = isRoot ? "w-7 h-7 mb-1" : "w-5 h-5 mb-0.5";
+  const labelClass = isRoot ? "text-[10px] md:text-[11px] font-bold" : "text-[8px] md:text-[9px] font-semibold";
   return (
     <div className={`absolute z-10 hub-node ${dim ? "dim" : ""}`} style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className={RM ? "" : "hub-drift"} style={{ animationDelay: `${index * 0.8}s` }}>
         <motion.button
           onClick={() => (soon ? onComingSoon?.() : onClick?.())}
           onMouseEnter={onHoverStart} onMouseLeave={onHoverEnd}
+          aria-label={soon ? `${loc(node.label)} (${loc("ui.soon")})` : loc(node.label)}
           initial={{ scale: 0, opacity: 0, z: -220 }}
           animate={hidden ? { scale: 0.85, opacity: 0, z: 0 } : active ? { scale: 1, opacity: 1, z: 0 } : { scale: 0.35, opacity: 0, z: -240 }}
           transition={hidden ? { duration: 0 } : { delay: active ? 0.12 + index * 0.07 : 0, duration: 0.7, ease: EASE }}
@@ -336,10 +344,10 @@ function SkillNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 rounded-full pointer-events-none hub-glow-pulse"
               style={{ width: "140%", height: "140%", background: `radial-gradient(closest-side, ${node.glow}, transparent 72%)`, filter: "blur(16px)", opacity: 0.6 }} />
           )}
-          <span className={`relative flex flex-col items-center justify-center text-white rounded-[28px] w-20 h-20 md:w-24 md:h-24 border backdrop-blur-xl transition-colors ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"} ${hot ? "skill-border-glow" : ""}`}
+          <span className={`relative flex flex-col items-center justify-center text-white border backdrop-blur-xl transition-colors ${boxClass} ${soon ? "border-white/10 bg-white/[0.03] opacity-55 group-hover:opacity-80" : "border-white/15 bg-white/[0.07] group-hover:border-white/30 group-hover:bg-white/[0.12]"} ${hot ? "skill-border-glow" : ""}`}
             style={hot ? { "--arrival-color": node.glow } : undefined}>
-            <node.icon className={soon ? "w-6 h-6 mb-1 opacity-60" : "w-6 h-6 mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"} />
-            <span className="text-[10px] font-bold tracking-wide leading-none text-center px-1.5">{loc(node.label)}</span>
+            <node.icon className={`${iconClass} ${soon ? "opacity-60" : "drop-shadow-[0_0_8px_rgba(255,255,255,0.55)]"}`} />
+            <span className={`${labelClass} tracking-wide leading-none text-center px-1.5`}>{loc(node.label)}</span>
             {soon && <span className="text-[7px] font-medium leading-none mt-0.5 opacity-60">{loc("ui.soon")}</span>}
           </span>
         </motion.button>
