@@ -255,13 +255,101 @@ export const pos = (i, n, rx, ry) => {
   return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
 };
 
-// Fixed-angle placement for the Skill Hub v2 overview layer (roots + leaves),
-// where each node's position is authored on TOP_SKILLS rather than derived
-// from its index among N evenly-spaced siblings. Same polar math as pos().
-export const posAt = (angleDeg, rx, ry) => {
-  const a = angleDeg * (Math.PI / 180);
-  return { x: 50 + rx * Math.cos(a), y: 50 + ry * Math.sin(a) };
+/* ---------- Skill Hub overview tree (2026-09-16) ----------------------
+
+   The overview layer is a literal tree: the two root skills sit at the base,
+   merge into one trunk, which forks into two boughs, each splitting again
+   into two twigs that end at the four application skills.
+
+   Every coordinate here is a percentage of the stage box in BOTH axes. The
+   stage is square (see SkillHub.jsx) and the tree SVG uses
+   viewBox="0 0 100 100", so an SVG coordinate and a CSS left/top percentage
+   land on the same pixel. Node positions are read from this same table,
+   which is what keeps a skill node sitting exactly on its branch tip
+   instead of drifting off it. Change a number here and the art, the nodes
+   and the glow pathways all move together. */
+export const TREE_POINTS = {
+  vocabulary: { x: 34, y: 84 },
+  grammar:    { x: 66, y: 84 },
+  merge:      { x: 50, y: 71 },
+  fork:       { x: 50, y: 48 },
+  boughL:     { x: 28, y: 38 },
+  boughR:     { x: 72, y: 38 },
+  listening:  { x: 23, y: 15 },
+  reading:    { x: 16, y: 50 },
+  writing:    { x: 77, y: 15 },
+  speaking:   { x: 84, y: 50 },
 };
+
+// Branches are drawn as filled tapered quadrilaterals rather than strokes,
+// so the trunk can be broad at the base and thin out to twigs. w0/w1 are
+// the widths at each end, in the same percentage units as the points.
+const T = TREE_POINTS;
+export const TREE_SEGMENTS = [
+  { a: T.vocabulary, b: T.merge,     w0: 7.5, w1: 11 },
+  { a: T.grammar,    b: T.merge,     w0: 7.5, w1: 11 },
+  { a: T.merge,      b: T.fork,      w0: 11,  w1: 8 },
+  { a: T.fork,       b: T.boughL,    w0: 8,   w1: 5 },
+  { a: T.fork,       b: T.boughR,    w0: 8,   w1: 5 },
+  { a: T.boughL,     b: T.listening, w0: 5,   w1: 1.9 },
+  { a: T.boughL,     b: T.reading,   w0: 5,   w1: 1.9 },
+  { a: T.boughR,     b: T.writing,   w0: 5,   w1: 1.9 },
+  { a: T.boughR,     b: T.speaking,  w0: 5,   w1: 1.9 },
+];
+
+// Circles that round off the width change where segments meet, so joints
+// read as organic forks rather than butted-together quads.
+export const TREE_JOINTS = [
+  { p: T.merge,  r: 5.4 },
+  { p: T.fork,   r: 3.9 },
+  { p: T.boughL, r: 2.5 },
+  { p: T.boughR, r: 2.5 },
+];
+
+// The tapered quad for one segment: offset both ends perpendicular to the
+// segment by half their width and close the shape.
+export function taperPath(seg) {
+  const dx = seg.b.x - seg.a.x, dy = seg.b.y - seg.a.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const px = -dy / len, py = dx / len;
+  const a1 = { x: seg.a.x + px * seg.w0 / 2, y: seg.a.y + py * seg.w0 / 2 };
+  const b1 = { x: seg.b.x + px * seg.w1 / 2, y: seg.b.y + py * seg.w1 / 2 };
+  const b2 = { x: seg.b.x - px * seg.w1 / 2, y: seg.b.y - py * seg.w1 / 2 };
+  const a2 = { x: seg.a.x - px * seg.w0 / 2, y: seg.a.y - py * seg.w0 / 2 };
+  return `M ${a1.x} ${a1.y} L ${b1.x} ${b1.y} L ${b2.x} ${b2.y} L ${a2.x} ${a2.y} Z`;
+}
+
+// One CONTINUOUS polyline per root->leaf pathway (root, merge, fork, bough,
+// leaf), not a chain of per-branch segments. That is the whole point: the
+// hover glow is revealed along a single path so it sweeps the full distance
+// in one unbroken motion. Drawing it as separate segments with staggered
+// start delays is what made an earlier pass read as blocky/stepped.
+//
+// `dur` is derived from each route's own measured length at one shared
+// speed, so every route travels at the same visual pace and the longer
+// branches simply arrive later — the sequencing is physical rather than a
+// hand-authored stagger.
+const TREE_SPEED = 70; // percentage-units per second
+const BOUGH_OF = { listening: "boughL", reading: "boughL", writing: "boughR", speaking: "boughR" };
+
+export const TREE_ROUTES = ["vocabulary", "grammar"].flatMap((root) =>
+  ["listening", "reading", "writing", "speaking"].map((leaf) => {
+    const pts = [T[root], T.merge, T.fork, T[BOUGH_OF[leaf]], T[leaf]];
+    let len = 0;
+    for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+    const d = pts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join(" ");
+    return { id: `${root}-${leaf}`, root, leaf, d, dur: +(len / TREE_SPEED).toFixed(3) };
+  })
+);
+
+// Which routes light up for a given hovered/open skill. Hovering a root
+// sends its glow out to all four leaves; hovering a leaf lights the one
+// path back to it from BOTH roots. Either way every route is drawn from a
+// root outward — a leaf never flows backward into the trunk.
+export function routesFor(skillId) {
+  if (!skillId) return [];
+  return TREE_ROUTES.filter((r) => r.root === skillId || r.leaf === skillId);
+}
 
 export const PULSE_PHASES = [
   { begin: 0, r: 3.0, fo: 0.95 },
