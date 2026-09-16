@@ -49,7 +49,7 @@ const SHARDS = SHARD_ANCHORS.map((p, i) => {
   return {
     x: p.x + Math.cos(ang) * dist,
     y: p.y + Math.sin(ang) * dist,
-    size: 1.0 + rnd(s + 5) * 1.2,
+    size: 1.7 + rnd(s + 5) * 1.6,
     rot: rnd(s + 7) * 360,
     hue: SHARD_HUES[i % SHARD_HUES.length],
     gd: `${(2.6 + rnd(s + 9) * 2.4).toFixed(2)}s`,
