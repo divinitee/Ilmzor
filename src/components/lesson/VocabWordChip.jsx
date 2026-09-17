@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookmarkPlus, Check, X } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import { normalizeLemma } from "@/lib/vocab/lemma";
 
 // v1 vertical slice: tap the target word on a vocab item -> bookmark it for
 // later, without ever showing its definition here. The definition is
@@ -11,7 +12,15 @@ import { base44 } from "@/api/base44Client";
 // answer to the "explain in your own words" prompt they're actively
 // working on, graded or not. Reviewing the real definition is what "My
 // Words" is for; this is a testing/practice context, not a review one.
-export default function VocabWordChip({ word, definition, userEmail, lessonId }) {
+// Identity (contract frozen 2026-09-17): `word` is what the student sees and is
+// NOT an identity. `word_id` is the VocabularyWord row, `sense_id` is
+// `{word_id}:{sense_index}`, and `lemma_key` is normalizeLemma(word) — a lookup
+// aid only. All three are written here rather than backfilled later: SavedWord
+// had 0 rows when these fields were added, so this writer is the reason the
+// entity never needs a provenance migration. wordId/senseId are optional — a
+// hand-authored bank item with no corpus row legitimately has neither, and a
+// sense is never inferred for the caller (see the resolver safeguard).
+export default function VocabWordChip({ word, definition, userEmail, lessonId, wordId, senseId }) {
   const [open, setOpen] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -19,8 +28,17 @@ export default function VocabWordChip({ word, definition, userEmail, lessonId })
 
   useEffect(() => {
     if (!userEmail || !word) return;
-    base44.entities.SavedWord.filter({ user_email: userEmail, word })
-      .then((rows) => setSaved(rows.length > 0))
+    // Normalized check first; the raw-`word` query is the compatibility path for
+    // any record written before lemma_key existed. Base44 filters are exact
+    // match, so normalization has to have happened at write time — it cannot be
+    // applied at read time.
+    const lemma = normalizeLemma(word);
+    Promise.all([
+      lemma ? base44.entities.SavedWord.filter({ user_email: userEmail, lemma_key: lemma }) : [],
+      base44.entities.SavedWord.filter({ user_email: userEmail, word }),
+    ])
+      .then(([byLemma, legacy]) => setSaved(byLemma.length > 0 || legacy.length > 0))
+      .catch((e) => console.error("SavedWord lookup failed:", e))
       .finally(() => setChecked(true));
   }, [userEmail, word]);
 
@@ -31,6 +49,9 @@ export default function VocabWordChip({ word, definition, userEmail, lessonId })
       await base44.entities.SavedWord.create({
         user_email: userEmail,
         word,
+        lemma_key: normalizeLemma(word),
+        ...(wordId ? { word_id: wordId } : {}),
+        ...(senseId ? { sense_id: senseId } : {}),
         definition,
         source: "curated",
         ...(lessonId ? { source_lesson_id: lessonId } : {}),
