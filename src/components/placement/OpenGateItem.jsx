@@ -59,7 +59,19 @@ export default function OpenGateItem({
       {explainKey && <ExplainHelp contentKey={explainKey} />}
       {enableVault && item.type === "vocab" && (
         <div className="mb-3">
-          <VocabWordChip word={item.english} definition={item.definition} userEmail={userEmail} lessonId={lessonId} />
+          {/* wordId is best-effort: pool items built from VocabularyWord carry an
+              id, hand-authored bank items do not. Passing undefined is the
+              correct outcome for the latter — SavedWord.word_id is nullable, and
+              a save with no row provenance stays resolvable by lemma. No senseId
+              yet: senses do not exist until the WordSense migration, and the
+              contract forbids inferring one. */}
+          <VocabWordChip
+            word={item.english}
+            definition={item.definition}
+            userEmail={userEmail}
+            lessonId={lessonId}
+            wordId={item.word_id || item.id}
+          />
         </div>
       )}
       <div className="bg-card border border-border rounded-2xl p-5 mb-5">
