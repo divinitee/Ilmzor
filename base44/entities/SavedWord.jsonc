@@ -27,7 +27,20 @@
       "type": "string"
     },
     "word": {
-      "type": "string"
+      "type": "string",
+      "description": "the English string as shown to the student. Legacy identity: kept for display and for records written before word_id existed. NOT an identity \u2014 use word_id / sense_id."
+    },
+    "word_id": {
+      "type": "string",
+      "description": "VocabularyWord.id \u2014 the row this save refers to. Nullable: a save from a hand-authored bank item with no corpus row has none. Added 2026-09-17 before any rows existed, so SavedWord never needs a provenance backfill (WordAttempt.word_id is the precedent; all 251 of those rows carry it)."
+    },
+    "sense_id": {
+      "type": "string",
+      "description": "`{word_id}:{sense_index}` \u2014 the meaning/POS unit this save refers to. Nullable until the WordSense migration lands. Per the identity contract: resolve sense_id first, then word_id, then normalized lemma; never infer a sense for a multi-sense word the caller did not specify."
+    },
+    "lemma_key": {
+      "type": "string",
+      "description": "normalizeLemma(word) \u2014 the canonical lookup form, stored so the duplicate check is case- and whitespace-insensitive (an exact-match query cannot normalize at read time). A lookup aid, never an identity."
     }
   },
   "required": [
