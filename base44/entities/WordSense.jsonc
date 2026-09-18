@@ -5,7 +5,11 @@
   "properties": {
     "word_id": {
       "type": "string",
-      "description": "References VocabularyWord.id \u2014 the stable identifier for the master lexical item. Primary join key."
+      "description": "References VocabularyWord.id \u2014 the stable identifier for the master lexical item. Primary join key. This is the CANONICAL row for the lemma group (both senses of a species-C split point word_id at the same surviving row) \u2014 it is NOT necessarily the physical row a sense's content was drawn from; see source_row_id."
+    },
+    "source_row_id": {
+      "type": "string",
+      "description": "Added 2026-09-18 during the species-A/B/C duplicate-headword migration (Gate 4.1). References the specific VocabularyWord.id this sense's content was actually drawn from during the split \u2014 the physical row, which may differ from word_id once that row is deleted and its lemma's canonical id becomes the surviving row. This is what lets resolveWordSense() in src/lib/vocab/enrichment.js resolve a sense by the exact row a caller is holding (e.g. mid-migration, before a WordAttempt has been reassigned to the canonical id), rather than only by lemma text, which cannot disambiguate two physical rows that share one lemma_key (bus-'coach' vs trainer-'coach'). Optional: empty for any sense not produced by this migration."
     },
     "lemma_key": {
       "type": "string",
@@ -18,7 +22,7 @@
     "is_primary": {
       "type": "boolean",
       "default": false,
-      "description": "The sense a game should use when it has no thematic context to choose from. Exactly one sense per word should carry this; resolution falls back to sense_index 0 when none does."
+      "description": "The sense a game should use when it has no thematic context to choose from. Exactly one sense per word should carry this; resolution falls back to sense_index 0 when none does. NOTE (2026-09-18): this default is a fallback heuristic, not a rule \u2014 it is WRONG for at least one migrated lemma ('iron': the canonical A1 device sense is sense_index 1, not 0). Always set explicitly per group; never assume sense_index 0 means primary."
     },
     "sense_label": {
       "type": "string",
