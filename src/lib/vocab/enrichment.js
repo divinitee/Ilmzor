@@ -218,11 +218,47 @@ function translationFromSense(sense, lang) {
 // across a species-C split) and falls back to the legacy lemma path only when
 // the word carries no id or the row-id path is unavailable.
 export function supportFor({ word, level, lang, senses, senseIndex } = {}) {
-  const senseResolution = senses
-    ? (word?.id && resolveWordSense(senses, { row_id: word.id, sense_index: senseIndex })) ||
-      (word?.english && resolveWordSense(senses, { lemma: word.english })) ||
-      null
-    : null;
+  // NOTE (2026-09-18, Gate 4 audit finding): resolveWordSense() always returns
+  // a truthy object, success or failure — {ok:false, reason, ...} is still an
+  // object. So `word?.id && resolveWordSense(...)` short-circuited this chain
+  // the instant word.id existed, whether or not the row_id lookup found a
+  // real sense. That silently hid the lemma path behind ANY row_id result,
+  // including the safe "no senses indexed" fallback — so a stale/incorrect
+  // word.id on a genuinely ambiguous lemma (e.g. a WordAttempt not yet
+  // reassigned, pointing at a deleted "coach" row) reported
+  // {ok:true, sense:null, sense_index:0} as if sense 0 had been confidently
+  // resolved, instead of the honest "unknown, and this lemma is ambiguous."
+  // The rendered text was never wrong (sense:null already falls through to
+  // the word-row's own content either way) but `senseResolution` itself was
+  // lying about how confident that resolution was — exactly the kind of
+  // fabricated identity this migration exists to prevent.
+  //
+  // Fixed by checking .ok/.sense explicitly rather than relying on
+  // truthiness, and only overriding the row_id result with the lemma path
+  // when the lemma path is MORE informative: it found a real single sense
+  // the row_id path missed (recovers a stale-id case), or it can name the
+  // ambiguity honestly. When the lemma path also has nothing (the ordinary
+  // case for the ~2,150 words with no senses at all), the original row_id
+  // fallback shape is preserved unchanged — this is not a behavior change
+  // for any word that isn't part of a species-C split.
+  let senseResolution = null;
+  if (senses) {
+    const byRow = word?.id ? resolveWordSense(senses, { row_id: word.id, sense_index: senseIndex }) : null;
+    if (byRow && byRow.ok && byRow.sense) {
+      senseResolution = byRow; // row_id found a real sense -- most authoritative, done.
+    } else if (word?.english) {
+      const byLemma = resolveWordSense(senses, { lemma: word.english });
+      if (byLemma.ok && byLemma.sense) {
+        senseResolution = byLemma; // recovered a real sense the row_id path missed (e.g. a stale id).
+      } else if (!byLemma.ok && byLemma.reason === "ambiguous_sense") {
+        senseResolution = byLemma; // honest ambiguity signal -- never silently claim sense_index 0.
+      } else {
+        senseResolution = byRow || byLemma; // ordinary case: no senses anywhere. Unchanged shape.
+      }
+    } else {
+      senseResolution = byRow;
+    }
+  }
   const sense = senseResolution?.ok ? senseResolution.sense : null;
   const translation = translationFromSense(sense, lang) || clean(meaningInLang(word, lang === "en" ? "uz" : lang));
   const definition = definitionFromSense(sense, level) || clean(definitionForLevel(word, level, lang));
