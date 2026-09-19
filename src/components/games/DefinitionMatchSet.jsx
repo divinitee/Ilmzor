@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import DefinitionMatchBadge from "@/components/games/DefinitionMatchBadge";
+import PosBadge from "@/components/games/PosBadge";
 
 const EASE = [0.16, 1, 0.3, 1];
 
@@ -41,6 +42,7 @@ export default function DefinitionMatchSet({ items, defs, accent, stateOfWord, s
             >
               <span className="flex items-center gap-1.5">
                 <span className="text-sm sm:text-base font-bold text-foreground leading-tight break-words">{it.word}</span>
+                <PosBadge pos={it.pos} />
                 {st === "solved" && <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" aria-hidden="true" />}
                 {st === "miss" && <X className="w-3.5 h-3.5 text-rose-400 shrink-0" aria-hidden="true" />}
               </span>
