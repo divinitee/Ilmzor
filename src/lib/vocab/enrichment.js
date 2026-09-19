@@ -52,7 +52,7 @@ const clean = (v) => (typeof v === "string" && v.trim() ? v.trim() : "");
 
 export const usesTranslationSupport = (level) => SUPPORT_LADDER[level]?.mode === "translation";
 
-// Index senses two ways so a round can resolve without a query per word:
+// Index senses three ways so a round can resolve without a query per word:
 //   byLemma  — normalizeLemma(lemma_key) -> [senses], sorted primary-first then
 //              by sense_index. Unchanged from before; still the fallback path.
 //   byRowId  — source_row_id -> [senses]. This is the identity-safe path: a
@@ -60,11 +60,20 @@ export const usesTranslationSupport = (level) => SUPPORT_LADDER[level]?.mode ===
 //              bus-"coach" row, mid-migration, before it is deleted) resolves
 //              its OWN sense even though WordSense.word_id points at the
 //              trainer-"coach" row that survives as canonical.
-// Unapproved rows are dropped from both indexes, which is what lets an
+//   byWordId — word_id -> [senses]. The FULL sense set for a logical word
+//              group, regardless of which physical row each sense's content
+//              was drawn from. Needed because, post-migration, a live round
+//              can only ever supply the ONE surviving canonical row's id —
+//              and that id is the source_row_id for only ONE of the group's
+//              senses (see resolveWordSense()'s row_id+sense_index handling
+//              below for why byRowId alone isn't enough once a specific
+//              sense_index is being requested, e.g. by ThemeWord curation).
+// Unapproved rows are dropped from all three indexes, which is what lets an
 // AI-authored batch sit in the table without reaching a single learner.
 export function indexSenses(senses = []) {
   const byLemma = new Map();
   const byRowId = new Map();
+  const byWordId = new Map();
   for (const s of senses) {
     if (!s || s.approved === false) continue;
     const lemma = normalizeLemma(s.lemma_key);
@@ -79,16 +88,22 @@ export function indexSenses(senses = []) {
       if (rowBucket) rowBucket.push(s);
       else byRowId.set(rowId, [s]);
     }
+    if (s.word_id) {
+      const wordBucket = byWordId.get(s.word_id);
+      if (wordBucket) wordBucket.push(s);
+      else byWordId.set(s.word_id, [s]);
+    }
   }
   const bySenseOrder = (a, b) => (b.is_primary ? 1 : 0) - (a.is_primary ? 1 : 0) || (a.sense_index ?? 0) - (b.sense_index ?? 0);
   for (const bucket of byLemma.values()) bucket.sort(bySenseOrder);
   for (const bucket of byRowId.values()) bucket.sort(bySenseOrder);
-  return { byLemma, byRowId };
+  for (const bucket of byWordId.values()) bucket.sort(bySenseOrder);
+  return { byLemma, byRowId, byWordId };
 }
 
 // resolveWordSense(index, input) — the sense-identity resolver.
 //
-// `index` is the { byLemma, byRowId } result of indexSenses().
+// `index` is the { byLemma, byRowId, byWordId } result of indexSenses().
 // `input` accepts three shapes, tried in priority order:
 //
 //   { row_id }                  — resolve by the physical VocabularyWord row
@@ -126,8 +141,18 @@ export function indexSenses(senses = []) {
 // any deletion: it structurally prevents a stale row_id from ever reaching
 // this resolver in the first place, rather than asking the resolver to
 // distinguish the two cases at runtime.
+//
+// A second, subtler gap this closes (found 2026-09-19, tracing composeRound()
+// against ThemeWord's explicit-senseIndex mechanism): once a species-C
+// group's non-canonical row is deleted, a LIVE round can only ever supply
+// row_id = the surviving canonical row's id — and that id is only the
+// source_row_id for ONE of the group's senses. Explicit curation asking for
+// a DIFFERENT sense_index (e.g. ThemeWord teaching iron's metal sense, index
+// 0, when the canonical/surviving row is the device sense, index 1) must
+// still be honored — checked against the FULL word_id group (byWordId), not
+// just whatever happens to be attached to this one physical row_id.
 export function resolveWordSense(index, input = {}) {
-  const { byRowId, byLemma } = index || {};
+  const { byRowId, byLemma, byWordId } = index || {};
   const { row_id, word_id, sense_index, lemma } = input;
 
   if (row_id) {
@@ -139,15 +164,24 @@ export function resolveWordSense(index, input = {}) {
       // VocabularyWord row for content, exactly like today's no-senses path.
       return { ok: true, word_id: row_id, sense_index: 0, sense_id: `${row_id}:0`, sense: null };
     }
-    if (bucket.length === 1) {
-      const sense = bucket[0];
-      return { ok: true, word_id: sense.word_id, sense_index: sense.sense_index, sense_id: `${sense.word_id}:${sense.sense_index}`, sense };
-    }
     if (sense_index !== undefined && sense_index !== null) {
-      const exact = bucket.find((s) => s.sense_index === sense_index);
+      // Check the FULL logical group (every sense sharing this row's
+      // word_id) before falling back to what's merely attached to this one
+      // physical row_id — otherwise a valid, explicitly-requested sense_index
+      // that was sourced from a different (possibly now-deleted) physical row
+      // would be silently ignored in favour of whatever this row_id has.
+      const groupBucket = byWordId?.get(bucket[0].word_id) || bucket;
+      const exact = groupBucket.find((s) => s.sense_index === sense_index);
       if (exact) {
         return { ok: true, word_id: exact.word_id, sense_index: exact.sense_index, sense_id: `${exact.word_id}:${exact.sense_index}`, sense: exact };
       }
+      // Requested sense_index doesn't exist for this word at all — fall
+      // through to this row's own default below rather than silently
+      // returning a sense that wasn't the one asked for.
+    }
+    if (bucket.length === 1) {
+      const sense = bucket[0];
+      return { ok: true, word_id: sense.word_id, sense_index: sense.sense_index, sense_id: `${sense.word_id}:${sense.sense_index}`, sense };
     }
     // Multiple senses share this row_id and nothing disambiguated which one.
     // Schema-permitted (a future word could split one physical row into two
@@ -212,7 +246,7 @@ function translationFromSense(sense, lang) {
 // The single call a game makes: everything a learner should see for this word,
 // at their level, in the app's language, optionally in a specific sense.
 //
-// `senses` is the { byLemma, byRowId } index from indexSenses() and may be
+// `senses` is the { byLemma, byRowId, byWordId } index from indexSenses() and may be
 // omitted entirely — which is the current state of the system and yields
 // today's exact behaviour. Resolution prefers the row-id path (identity-safe
 // across a species-C split) and falls back to the legacy lemma path only when
