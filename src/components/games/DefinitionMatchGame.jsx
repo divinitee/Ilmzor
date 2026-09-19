@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Loader2, BookOpen, Check, X, Quote } from "lucide-react";
+import { base44 } from "@/api/base44Client";
 import { usableWords, shuffle } from "@/lib/vocabGameUtils";
 import { definitionForLevel } from "@/lib/definitionTiers";
+import { indexSenses, posForWord } from "@/lib/vocab/enrichment";
 import { SKILLS } from "@/lib/gameSkills";
 import { hintXpMultiplier, cognitiveDemandForLevel } from "@/lib/levels";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
@@ -54,6 +56,11 @@ const TIER = {
   proficient: { items: 14, setSize: 7 },
 };
 const MIN_POOL = 8;
+// WordSense is curated content, not corpus-wide (0 rows today, expected to
+// stay in the hundreds/low-thousands as senses are authored) — bounded, not
+// list()-unbounded, same precedent as ATTEMPT_QUERY_LIMIT/SAVED_QUERY_LIMIT
+// in roundComposition.js.
+const SENSE_QUERY_LIMIT = 1000;
 // Perfect play is 1.0 attempts per word. 1.75 leaves room to be wrong on
 // roughly three of four words and still finish — generous enough that failing
 // means genuinely not knowing the set, not bad luck.
@@ -120,6 +127,18 @@ export default function DefinitionMatchGame({ words = [], level, difficulty = "i
     missedOnce.current = new Set();
 
     const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: tier.items });
+
+    // Sense-level part of speech (2026-09-19 POS enhancement). A separate,
+    // independent lookup from the definition text above — it never changes
+    // which definition is shown, only whether a badge appears beside the
+    // word. Fetching senses is best-effort: a failed read means every word
+    // in this round simply shows no POS badge, same as the ordinary
+    // no-senses-yet case, never a broken round.
+    const senseRows = await base44.entities.WordSense
+      .filter({ approved: true }, "-created_date", SENSE_QUERY_LIMIT)
+      .catch((e) => { console.error("WordSense read failed", e); return []; });
+    const senseIndex = indexSenses(senseRows);
+
     const grouped = buildSets({ words: chosen, pool, size: tier.setSize, demand });
     const built = grouped
       .map((group) =>
@@ -132,6 +151,7 @@ export default function DefinitionMatchGame({ words = [], level, difficulty = "i
             provenance: w._provenance,
             example: w.example_en,
             definition: definitionForLevel(w, level, lang),
+            pos: posForWord({ word: w, senses: senseIndex }),
           }))
         ).filter((it) => it.definition)
       )
