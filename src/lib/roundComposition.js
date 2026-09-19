@@ -28,6 +28,7 @@ const SAVED_SHARE = 0.2;
 // bounded, never list() unbounded (see the entity's own schema description
 // and the existing unbounded-read failure mode elsewhere in this codebase).
 const ATTEMPT_QUERY_LIMIT = 150;
+const SAVED_QUERY_LIMIT = 150;
 
 export const PROVENANCE = { WRONG: "wrong", SAVED: "saved", FRESH: "fresh" };
 
@@ -38,7 +39,7 @@ export async function fetchPersonalizationSignals(userEmail) {
       .filter({ user_email: userEmail, correct: false }, "-created_date", ATTEMPT_QUERY_LIMIT)
       .catch((e) => { console.error("WordAttempt read failed", e); return []; }),
     base44.entities.SavedWord
-      .filter({ user_email: userEmail }, "-saved_at")
+      .filter({ user_email: userEmail }, "-saved_at", SAVED_QUERY_LIMIT)
       .catch((e) => { console.error("SavedWord read failed", e); return []; }),
   ]);
   return { previouslyWrong, saved };
@@ -59,22 +60,37 @@ function dedupeByEnglish(list) {
   return out;
 }
 
+// Prefer stable row identity. Fall back to the legacy displayed word only
+// when it maps to exactly one row in this learner's pool; never guess between
+// duplicate headwords/senses.
+function resolveSignalWord(signal, byId, byEnglish) {
+  if (signal?.word_id && byId.has(signal.word_id)) return byId.get(signal.word_id);
+  const matches = byEnglish.get(signal?.word) || [];
+  return matches.length === 1 ? matches[0] : null;
+}
+
 // Pure — no network — so it's independently testable and reusable by
 // anything that already has signals in hand.
 export function composeRound({ words = [], signals = {}, count }) {
   const pool = words.filter((w) => w && w.english);
-  const byEnglish = new Map(pool.map((w) => [w.english, w]));
+  const byId = new Map(pool.filter((w) => w.id).map((w) => [w.id, w]));
+  const byEnglish = new Map();
+  for (const word of pool) {
+    const rows = byEnglish.get(word.english) || [];
+    rows.push(word);
+    byEnglish.set(word.english, rows);
+  }
 
   const wrongTarget = Math.round(count * WRONG_SHARE);
   const savedTarget = Math.round(count * SAVED_SHARE);
 
   const wrongWords = dedupeByEnglish(
-    (signals.previouslyWrong || []).map((a) => byEnglish.get(a.word)).filter(Boolean)
+    (signals.previouslyWrong || []).map((a) => resolveSignalWord(a, byId, byEnglish)).filter(Boolean)
   ).slice(0, wrongTarget);
 
   const used = new Set(wrongWords.map((w) => w.english));
   const savedWords = dedupeByEnglish(
-    (signals.saved || []).map((s) => byEnglish.get(s.word)).filter((w) => w && !used.has(w.english))
+    (signals.saved || []).map((s) => resolveSignalWord(s, byId, byEnglish)).filter((w) => w && !used.has(w.english))
   ).slice(0, savedTarget);
   savedWords.forEach((w) => used.add(w.english));
 
