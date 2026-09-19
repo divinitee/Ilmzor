@@ -105,8 +105,11 @@ function closeSets(words, size, pool, demand) {
     // 4. last resort: pull from the round's own remaining words
     while (set.length < size && remaining.length) set.push(remaining.shift());
 
-    if (set.length === size) sets.push(shuffle(set));
-    else if (set.length > 1) sets.push(shuffle(set)); // short final set rather than dropping words
+    if (set.length > 1) sets.push(shuffle(set));
+    else if (set.length === 1 && sets.length) {
+      // Preserve the final unmatched item rather than silently dropping it.
+      sets[sets.length - 1] = shuffle([...sets[sets.length - 1], set[0]]);
+    }
   }
   return sets;
 }
@@ -116,6 +119,11 @@ function chunk(list, size) {
   for (let i = 0; i < list.length; i += size) {
     const part = list.slice(i, i + size);
     if (part.length > 1) out.push(part);
+    else if (part.length === 1 && out.length) {
+      // A singleton cannot be played alone; attach it to the preceding set
+      // so every selected word remains available to the learner.
+      out[out.length - 1] = [...out[out.length - 1], part[0]];
+    }
   }
   return out;
 }
