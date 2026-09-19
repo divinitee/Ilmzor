@@ -9,10 +9,10 @@
 // category) rather than mislabeling it, (d) the two duplicate-headword
 // lemmas among the 100 (loose, connection, pain, search) resolve each of
 // their two physical rows independently and correctly.
-import { indexSenses, posForWord, posLabel } from "/tmp/pilottest/enrichment.bundle.mjs";
+import { indexSenses, posForWord, posLabel } from "/app/tmp/pilottest/enrichment.bundle.mjs";
 import { readFileSync } from "fs";
 
-const senses = JSON.parse(readFileSync("/tmp/pilottest/pilot_senses.json", "utf8"));
+const senses = JSON.parse(readFileSync("/app/tmp/pilottest/pilot_senses.json", "utf8"));
 const index = indexSenses(senses);
 
 let pass = 0, fail = 0;
