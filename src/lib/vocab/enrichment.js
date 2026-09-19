@@ -224,6 +224,52 @@ export function resolveWordSense(index, input = {}) {
   return { ok: false, reason: "unparseable" };
 }
 
+// Part-of-speech label for Definition Match (and any other surface that
+// resolves a sense-level definition and wants a short grammatical-function
+// tag beside the word — added 2026-09-19 for the POS enhancement).
+//
+// Deliberately its OWN lookup, separate from definitionFromSense()/
+// supportFor()'s definition-selection path: reading `pos` never influences
+// which definition text is shown, so this can be added without touching
+// (or re-risking) the already-audited definition/fallback logic above.
+//
+// WordSense.pos is a free string (noun, verb, adjective, adverb, phrase,
+// phrasal_verb, preposition, other, ...) so a new corpus batch is never
+// rejected by a tag this list did not anticipate. Only the four canonical
+// grammatical categories have a short, unambiguous abbreviation worth
+// showing in a compact UI badge — anything else (including an empty pos)
+// renders as "no badge" rather than a guessed or misleading one.
+const POS_LABELS = { noun: "n.", verb: "v.", adjective: "adj.", adverb: "adv." };
+
+export function posLabel(pos) {
+  return POS_LABELS[clean(pos).toLowerCase()] || "";
+}
+
+// Resolves the part-of-speech label for the EXACT sense a caller's physical
+// row (and, optionally, explicit sense_index) identifies — never guessed
+// from the lemma or from the word's other senses. Returns "" (never a
+// guess) when:
+//   - `senses` is falsy or `word.id` is missing (nothing to resolve against)
+//   - no senses are indexed at all under this row_id (the ~2,150 words with
+//     no WordSense rows today, and every word until senses are authored
+//     for it) — resolveWordSense()'s safe `sense: null` fallback
+//   - the row/sense_index given resolves ambiguously (multiple candidates,
+//     nothing to disambiguate which one) rather than to exactly one sense
+//   - the resolved sense exists but has no `pos`, or a `pos` outside the
+//     four supported values (see POS_LABELS above)
+//
+// `senses` is the { byLemma, byRowId, byWordId } index from indexSenses().
+// `senseIndex` is optional explicit addressing (e.g. from ThemeWord
+// curation), mirroring resolveWordSense()'s own { row_id, sense_index }
+// contract — omitted, the resolver falls back to whatever single sense (if
+// any) is attached to this exact physical row.
+export function posForWord({ word, senses, senseIndex } = {}) {
+  if (!senses || !word?.id) return "";
+  const resolution = resolveWordSense(senses, { row_id: word.id, sense_index: senseIndex });
+  const sense = resolution?.ok ? resolution.sense : null;
+  return posLabel(sense?.pos);
+}
+
 function definitionFromSense(sense, level) {
   if (!sense) return "";
   const own = SUPPORT_LADDER[level]?.field;
