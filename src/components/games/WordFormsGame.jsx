@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, ArrowRight, Check, X, HelpCircle } from "lucide-react";
-import { shuffle, pickN } from "@/lib/vocabGameUtils";
+import { shuffle } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { logWordAttempts, buildBankRound, PROVENANCE } from "@/lib/roundComposition";
@@ -54,10 +54,10 @@ import {
 //    from its own bank (WORD_FAMILY_BANK / PREFIX_BANK / SUFFIX_BANK /
 //    ROOT_BANK) with its own identity field.
 // 5. Provenance badges: WRONG-only, same convention as every other game
-// 5. premium-mesh / premium-card / neo-pill, accent #3E9E92 (grammar skill
+// 6. premium-mesh / premium-card / neo-pill, accent #3E9E92 (grammar skill
 //    per GAME_SKILL_MAP — intentional cross-cut, keep it)
-// 6. wordFormsCopy.js — full en/uz/ru
-// 7. Mini blitz lesson — 2 screens per mode, shown once, re-viewable via "?"
+// 7. wordFormsCopy.js — full en/uz/ru
+// 8. Mini blitz lesson — 2 screens per mode, shown once, re-viewable via "?"
 // ---------------------------------------------------------------------------
 
 const GAME = "wordforms";
