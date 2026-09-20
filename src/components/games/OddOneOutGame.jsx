@@ -4,7 +4,7 @@ import { ArrowLeft, Check, X, Star, Flame, Target, Loader2, BookOpen, Trophy, Ro
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
-import { logWordAttempts } from "@/lib/roundComposition";
+import { logWordAttempts, buildBankRound, PROVENANCE } from "@/lib/roundComposition";
 import { useHuntCopy } from "@/components/games/antonymHuntCopy";
 
 // ---------------------------------------------------------------------------
@@ -22,14 +22,19 @@ import { useHuntCopy } from "@/components/games/antonymHuntCopy";
 // 2. Failability: was a walk-through with no way to fail. Now an attempt
 //    budget shown live in the HUD (ATTEMPTS_PER_ITEM multiplier), so
 //    roundPassed() has real teeth.
-// 3. Personalization: buildPersonalizedRound does NOT fit a fixed-bank game
-//    — the bank's targets are capitalized ("Happy") while VocabularyWord.
-//    english is lowercase ("happy"), so SavedWord / WordAttempt signal
-//    matching would be unreliable, and 20 entries is too small a pool for
-//    meaningful personalization anyway. Rounds are shuffle-picked from the
-//    bank directly. logWordAttempts IS used (target word as `word`, no
-//    wordId) so per-word history accumulates for future use.
-// 4. Provenance badges: skipped — no personalization signals to badge.
+// 3. Personalization: buildPersonalizedRound (the VocabularyWord-based
+//    recipe) does NOT fit this fixed bank — the bank's targets are
+//    capitalized ("Happy") while VocabularyWord.english is lowercase
+//    ("happy"), so id/english resolution against the corpus would be
+//    unreliable. Instead this uses buildBankRound (roundComposition.js),
+//    the bank-native sibling: it reads this student's own WordAttempt rows
+//    for game "odd_one_out" (already being written below) and prioritizes
+//    entries whose `target` they previously missed, recent first, before
+//    filling the rest fresh — same ~40/60 review-vs-fresh recipe, just
+//    keyed on the bank's own identity string instead of a VocabularyWord id.
+//    No SavedWord signal: this game has no "save" affordance.
+// 4. Provenance badges: WRONG-only (no SAVED, no FRESH badge — same
+//    convention as every VocabularyWord-based game).
 // 5. Shell: was hardcoded blue/indigo. Now premium-mesh / premium-card /
 //    neo-pill, accent #7C6BE8 from SKILLS (vocabulary).
 // 6. i18n: was zero coverage. Now antonymHuntCopy.js, full en/uz/ru.
@@ -105,7 +110,7 @@ export default function OddOneOutGame({ onBack, onXpEarned, onGameComplete, user
   const finishing = useRef(false);
   const busy = useRef(false);
 
-  const startRound = useCallback((startStreak) => {
+  const startRound = useCallback(async (startStreak) => {
     setPhase("loading");
     finishing.current = false;
     busy.current = false;
@@ -113,12 +118,19 @@ export default function OddOneOutGame({ onBack, onXpEarned, onGameComplete, user
     firstTry.current = new Set();
     missedOnce.current = new Set();
 
-    const picks = pickN(ODD_ONE_OUT_BANK, Math.min(ROUND_COUNT, ODD_ONE_OUT_BANK.length));
+    const picks = await buildBankRound({
+      pool: ODD_ONE_OUT_BANK,
+      keyFn: (entry) => entry.target,
+      userEmail: user?.email,
+      game: GAME,
+      count: Math.min(ROUND_COUNT, ODD_ONE_OUT_BANK.length),
+    });
     const built = picks.map((entry, i) => ({
       id: `${entry.target}-${i}`,
       word: entry.target,
       correct: entry.antonym,
       options: shuffle([...entry.synonyms, entry.antonym]),
+      _provenance: entry._provenance,
     }));
 
     roundItems.current = built;
@@ -140,7 +152,7 @@ export default function OddOneOutGame({ onBack, onXpEarned, onGameComplete, user
     setSummary(null);
     setFlyups([]);
     setPhase("playing");
-  }, []);
+  }, [user?.email]);
 
   useEffect(() => { startRound(0); }, [startRound]);
 
@@ -384,7 +396,10 @@ export default function OddOneOutGame({ onBack, onXpEarned, onGameComplete, user
                 {roundItems.current.map((it) => (
                   <li key={it.id} className="flex items-center justify-between gap-2 text-xs">
                     <span className={`font-semibold truncate ${firstTry.current.has(it.word) ? "text-foreground" : "text-muted-foreground"}`}>{it.word}</span>
-                    <span className="text-[10px] text-muted-foreground truncate max-w-[45%]">{it.correct}</span>
+                    <span className="flex items-center gap-1.5 shrink-0">
+                      {it._provenance === PROVENANCE.WRONG && <span className="text-[9px] text-amber-300">{firstTry.current.has(it.word) ? "✓" : "↻"}</span>}
+                      <span className="text-[10px] text-muted-foreground truncate max-w-[100px]">{it.correct}</span>
+                    </span>
                   </li>
                 ))}
               </ul>
