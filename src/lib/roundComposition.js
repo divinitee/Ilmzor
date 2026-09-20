@@ -155,6 +155,98 @@ export async function buildPersonalizedRound({ words, userEmail, count }) {
   return composeRound({ words, signals, count });
 }
 
+// ---------------------------------------------------------------------------
+// Bank-round review — the same "previously-wrong words come back" idea as
+// composeRound above, but for games whose content is a hand-authored fixed
+// bank (OddOneOutGame, RelatedWordsGame, WordFormsGame, Usage's fixed-bank
+// modes) rather than the VocabularyWord corpus.
+//
+// These banks don't map onto VocabularyWord rows — no word_id, often not
+// even matching casing (see OddOneOutGame's own comment) — so composeRound's
+// id/english resolution doesn't apply and there is no SavedWord signal (none
+// of these games expose a "save" affordance). What they DO already have is a
+// real signal that was being captured and thrown away: every one of them
+// already calls logWordAttempts with `word` set to the bank entry's own
+// identity string (entry.target / entry.base / entry.root / entry.correct —
+// whichever the game already treats as that item's WordAttempt.word). That
+// string is exactly what a caller's `keyFn` extracts from a pool entry here,
+// so "has this student gotten this entry wrong recently" is answerable with
+// no schema change and no new write path.
+//
+// composeBankRound is pure (no network) so it's independently testable, same
+// as composeRound. fetchWrongEntryWords does the (timeout-guarded) fetch.
+// ---------------------------------------------------------------------------
+
+const WRONG_ENTRY_QUERY_LIMIT = 150;
+
+// Bounded, most-recent-first, timeout-guarded (see withTimeout above) — same
+// discipline as fetchPersonalizationSignals. Returns plain word strings in
+// recency order (a student's most recent miss should be the first thing
+// prioritized for review).
+export async function fetchWrongEntryWords(userEmail, game, limit = WRONG_ENTRY_QUERY_LIMIT) {
+  if (!userEmail || !game) return [];
+  const rows = await withTimeout(
+    base44.entities.WordAttempt
+      .filter({ user_email: userEmail, game, correct: false }, "-created_date", limit)
+      .catch((e) => { console.error("WordAttempt read failed", e); return []; }),
+    SIGNAL_TIMEOUT_MS,
+    []
+  );
+  return (rows || []).map((r) => r.word).filter(Boolean);
+}
+
+// Pure. `pool` is the full fixed bank (or, for RelatedWordsGame, the list of
+// category names — any array of entries `keyFn` can turn into a stable
+// identity string). `wrongWords` is fetchWrongEntryWords's output: recent-
+// first, may contain duplicates or keys no longer in `pool`. Same shape as
+// composeRound: dedupe by key, fill a WRONG_SHARE-sized bucket first (in
+// recency order, most recent miss first), then top up with a shuffled fresh
+// remainder, and never return short.
+export function composeBankRound({ pool = [], keyFn, wrongWords = [], count, wrongShare = WRONG_SHARE }) {
+  const byKey = new Map();
+  for (const entry of pool) {
+    const k = entry && keyFn(entry);
+    if (!k || byKey.has(k)) continue; // first occurrence wins identity
+    byKey.set(k, entry);
+  }
+
+  const wrongTarget = Math.round(count * wrongShare);
+  const usedKeys = new Set();
+  const wrongPicked = [];
+  for (const w of wrongWords) {
+    if (wrongPicked.length >= wrongTarget) break;
+    if (!w || usedKeys.has(w) || !byKey.has(w)) continue;
+    usedKeys.add(w);
+    wrongPicked.push(byKey.get(w));
+  }
+
+  const freshPool = [...byKey.entries()].filter(([k]) => !usedKeys.has(k)).map(([, e]) => e);
+  const freshNeeded = Math.max(0, count - wrongPicked.length);
+  const freshPicked = shuffle(freshPool).slice(0, freshNeeded);
+  freshPicked.forEach((e) => usedKeys.add(keyFn(e)));
+
+  let combined = [
+    ...tag(wrongPicked, PROVENANCE.WRONG),
+    ...tag(freshPicked, PROVENANCE.FRESH),
+  ];
+
+  // Never a short round — top up from anything unused if the bank itself is
+  // smaller than `count` after dedup (mirrors composeRound's own top-up).
+  if (combined.length < count) {
+    const topUpPool = [...byKey.entries()].filter(([k]) => !usedKeys.has(k)).map(([, e]) => e);
+    const topUp = shuffle(topUpPool).slice(0, count - combined.length);
+    combined = [...combined, ...tag(topUp, PROVENANCE.FRESH)];
+  }
+
+  return shuffle(combined);
+}
+
+// Convenience wrapper: fetch wrong-entry signal + compose in one call.
+export async function buildBankRound({ pool, keyFn, userEmail, game, count, wrongShare }) {
+  const wrongWords = await fetchWrongEntryWords(userEmail, game);
+  return composeBankRound({ pool, keyFn, wrongWords, count, wrongShare });
+}
+
 // Fire-and-forget WordAttempt logging, matching syncGameResultToServer's
 // pattern (a failed write costs history, never the round). Callers own the
 // positive-signal-only rule for matching games (see WordAttempt's schema
