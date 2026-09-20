@@ -4,7 +4,7 @@ import { ArrowLeft, Check, X, Star, Flame, Target, Loader2, BookOpen, Trophy, Ro
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
-import { logWordAttempts } from "@/lib/roundComposition";
+import { logWordAttempts, composeBankRound, fetchWrongEntryWords, PROVENANCE } from "@/lib/roundComposition";
 import { CATEGORY_BANK, CATEGORY_ENTRIES } from "@/lib/relatedWordsBank";
 import { useRelatedWordsCopy } from "@/components/games/relatedWordsCopy";
 
@@ -24,10 +24,19 @@ import { useRelatedWordsCopy } from "@/components/games/relatedWordsCopy";
 //   words = 200 words). Same precedent as OddOneOutGame's ODD_ONE_OUT_BANK.
 //   Full coverage flagged as a content-authoring followup.
 //
-// PERSONALIZATION: skipped — fixed hand-authored bank, same as Antonym Hunt.
-//   buildPersonalizedRound doesn't fit (bank words don't map to VocabularyWord
-//   rows). logWordAttempts IS used (target word as `word`, no wordId) so
-//   per-word history accumulates. No provenance badges.
+// PERSONALIZATION: buildPersonalizedRound (the VocabularyWord-based recipe)
+//   doesn't fit — bank words don't map to VocabularyWord rows. Instead this
+//   uses composeBankRound (roundComposition.js) at the CATEGORY level: this
+//   student's own WordAttempt rows for the current mode's game key (already
+//   logged below, one row per round item with `word` = the tested answer)
+//   are mapped back to the category that word belongs to (WORD_TO_CATEGORY),
+//   and categories containing a recent miss are prioritized to reappear,
+//   most-recent-miss first, ahead of fresh categories. Crucially the actual
+//   missed word is then re-used as that question's `correct` answer (see
+//   the `focusWord` param on the two builders below) — so it's the specific
+//   word the student got wrong that comes back, not just its category.
+//   No SavedWord signal: this game has no "save" affordance. Provenance
+//   badges: WRONG-only, same convention as every other game.
 //
 // FIVE-LAYER STANDARD:
 //   1. gameScoring.js — computeRoundXp / recordRoundReward / roundPassed
@@ -49,14 +58,33 @@ const MISS_MS = 520;
 
 // ---- Question builders (pure) ----
 
-function buildRelatedWordsQ(categoryKey, idx) {
+// Reverse lookup built once at module load: which category a bank word
+// belongs to, so a WordAttempt.word (an answer string, no category on the
+// row) can be traced back to the category it should re-prioritize. First
+// category wins if a word ever appeared in more than one (not expected in
+// the current bank, but never crash over it).
+const WORD_TO_CATEGORY = new Map();
+for (const [cat, words] of CATEGORY_ENTRIES) {
+  for (const w of words) if (!WORD_TO_CATEGORY.has(w)) WORD_TO_CATEGORY.set(w, cat);
+}
+
+// `focusWord`, when given, is a word this student previously missed in this
+// category — make IT the correct answer instead of a fresh random pick, so
+// the actual missed word is what comes back for review.
+function buildRelatedWordsQ(categoryKey, idx, focusWord) {
   const words = CATEGORY_BANK[categoryKey];
-  // Pick 2: one as the shown target, one as the correct answer (a DIFFERENT
-  // word from the same category — the student has to recognize the shared
-  // topic, not just match the same word).
-  const picked = pickN(words, 2);
-  const target = picked[0];
-  const correct = picked[1];
+  let target, correct;
+  if (focusWord && words.includes(focusWord)) {
+    correct = focusWord;
+    target = pickN(words.filter((w) => w !== focusWord), 1)[0] ?? focusWord;
+  } else {
+    // Pick 2: one as the shown target, one as the correct answer (a DIFFERENT
+    // word from the same category — the student has to recognize the shared
+    // topic, not just match the same word).
+    const picked = pickN(words, 2);
+    target = picked[0];
+    correct = picked[1];
+  }
   // 3 distractors from other categories
   const otherCats = CATEGORY_ENTRIES.filter(([c]) => c !== categoryKey);
   const distractorPool = otherCats.flatMap(([, w]) => w);
@@ -72,12 +100,18 @@ function buildRelatedWordsQ(categoryKey, idx) {
   };
 }
 
-function buildConnectionChallengeQ(categoryKey, idx) {
+function buildConnectionChallengeQ(categoryKey, idx, focusWord) {
   const words = CATEGORY_BANK[categoryKey];
-  // Need 4 words from this category: 3 clues + 1 correct
-  const chosen = pickN(words, 4);
-  const clues = chosen.slice(0, 3);
-  const correct = chosen[3];
+  let clues, correct;
+  if (focusWord && words.includes(focusWord)) {
+    correct = focusWord;
+    clues = pickN(words.filter((w) => w !== focusWord), 3);
+  } else {
+    // Need 4 words from this category: 3 clues + 1 correct
+    const chosen = pickN(words, 4);
+    clues = chosen.slice(0, 3);
+    correct = chosen[3];
+  }
   // 3 distractors from other categories
   const otherCats = CATEGORY_ENTRIES.filter(([c]) => c !== categoryKey);
   const distractorPool = otherCats.flatMap(([, w]) => w);
@@ -203,7 +237,7 @@ export default function RelatedWordsGame({ bank = "related_words", onBack, onXpE
     if (!localStorage.getItem(blitzKey)) setShowBlitz(true);
   }, [blitzKey]);
 
-  const startRound = useCallback((startStreak) => {
+  const startRound = useCallback(async (startStreak) => {
     setPhase("loading");
     finishing.current = false;
     busy.current = false;
@@ -211,15 +245,30 @@ export default function RelatedWordsGame({ bank = "related_words", onBack, onXpE
     firstTry.current = new Set();
     missedOnce.current = new Set();
 
-    // Pick categories for this round
+    // Pick categories for this round — categories containing a recent miss
+    // (in this mode's own game key) are prioritized, most-recent first.
     const catNames = CATEGORY_ENTRIES.map(([c]) => c);
-    const pickedCats = pickN(catNames, Math.min(cfg.count, catNames.length));
+    const wrongWordsList = await fetchWrongEntryWords(user?.email, gameKey);
+    const focusByCategory = new Map();
+    for (const w of wrongWordsList) {
+      const cat = WORD_TO_CATEGORY.get(w);
+      if (cat && !focusByCategory.has(cat)) focusByCategory.set(cat, w);
+    }
+    const pickedCatEntries = composeBankRound({
+      pool: catNames.map((name) => ({ category: name })),
+      keyFn: (e) => e.category,
+      wrongWords: [...focusByCategory.keys()],
+      count: Math.min(cfg.count, catNames.length),
+    });
 
-    const built = pickedCats.map((catName, i) =>
-      mode === "connection_challenge"
-        ? buildConnectionChallengeQ(catName, i)
-        : buildRelatedWordsQ(catName, i)
-    );
+    const built = pickedCatEntries.map((entry, i) => {
+      const catName = entry.category;
+      const focusWord = entry._provenance === PROVENANCE.WRONG ? focusByCategory.get(catName) : null;
+      const q = mode === "connection_challenge"
+        ? buildConnectionChallengeQ(catName, i, focusWord)
+        : buildRelatedWordsQ(catName, i, focusWord);
+      return { ...q, _provenance: entry._provenance };
+    });
 
     roundItems.current = built;
     budgetRef.current = Math.max(built.length, Math.round(built.length * cfg.attemptsPerItem));
@@ -240,7 +289,7 @@ export default function RelatedWordsGame({ bank = "related_words", onBack, onXpE
     setSummary(null);
     setFlyups([]);
     setPhase("playing");
-  }, [cfg, mode]);
+  }, [cfg, mode, gameKey, user?.email]);
 
   useEffect(() => { startRound(0); }, [startRound]);
 
@@ -511,7 +560,10 @@ export default function RelatedWordsGame({ bank = "related_words", onBack, onXpE
                 {roundItems.current.map((it) => (
                   <li key={it.id} className="flex items-center justify-between gap-2 text-xs">
                     <span className={`font-semibold truncate ${firstTry.current.has(it.correct) ? "text-foreground" : "text-muted-foreground"}`}>{it.correct}</span>
-                    <span className="text-[10px] text-muted-foreground truncate max-w-[45%]">{it.category}</span>
+                    <span className="flex items-center gap-1.5 shrink-0">
+                      {it._provenance === PROVENANCE.WRONG && <span className="text-[9px] text-amber-300">{firstTry.current.has(it.correct) ? "✓" : "↻"}</span>}
+                      <span className="text-[10px] text-muted-foreground truncate max-w-[100px]">{it.category}</span>
+                    </span>
                   </li>
                 ))}
               </ul>
