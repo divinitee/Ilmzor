@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, ArrowRight, Check, X, HelpCircle } from "lucide-react";
-import { shuffle, pickN } from "@/lib/vocabGameUtils";
+import { shuffle } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
 import { logWordAttempts, buildPersonalizedRound, buildBankRound, PROVENANCE } from "@/lib/roundComposition";
@@ -216,7 +216,6 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
     setFlyups([]);
     setPhase("playing");
   }, [pool, fixedBank, usesVocabPool, itemCount, mode, user?.email]);
-  // (dependency list unchanged — user?.email was already tracked)
 
   useEffect(() => { startRound(0); }, [startRound]);
 
