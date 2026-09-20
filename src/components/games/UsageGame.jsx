@@ -4,7 +4,7 @@ import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, A
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
-import { logWordAttempts, PROVENANCE } from "@/lib/roundComposition";
+import { logWordAttempts, buildPersonalizedRound, buildBankRound, PROVENANCE } from "@/lib/roundComposition";
 import { useUsageCopy } from "@/components/games/usageCopy";
 import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK, BEST_WORD_BANK } from "@/lib/usageBank";
 
@@ -41,9 +41,20 @@ import { SENTENCE_REPAIR_BANK, COLLOCATION_BANK, BEST_WORD_BANK } from "@/lib/us
 // SHARED INFRASTRUCTURE FLOOR:
 // 1. gameScoring.js — computeRoundXp / recordRoundReward / roundPassed
 // 2. Attempt budget (ATTEMPTS_PER_ITEM = 1.5)
-// 3. Personalization skipped — see inline comment in startRound for why.
-//    logWordAttempts (all modes) still writes per-word history.
-// 4. Provenance badges (fill_blank only — fixed banks have none)
+// 3. Personalization: fixed 2026-09-20 (was defect #2 in the audit — this
+//    file's own comment claimed buildPersonalizedRound + provenance badges
+//    were wired while the code did a plain shuffle, citing a possible hang
+//    under rate limiting). The real fix landed in roundComposition.js
+//    itself: fetchPersonalizationSignals now races every signal fetch
+//    against a timeout and degrades to "no signal" instead of hanging, so
+//    it's safe for fill_blank to call buildPersonalizedRound directly. The
+//    three fixed-bank modes (best_word / sentence_repair / collocation_match)
+//    don't map to VocabularyWord rows, so they use buildBankRound instead —
+//    same review-vs-fresh recipe, keyed on each bank entry's `correct`
+//    answer string (which is exactly what's already logged as WordAttempt.word
+//    below). logWordAttempts (all modes) writes per-word history.
+// 4. Provenance badges: all four modes now (WRONG/SAVED for fill_blank,
+//    WRONG-only for the three fixed-bank modes — no SavedWord mapping there)
 // 5. premium-mesh / premium-card / neo-pill, accent #7C6BE8
 // 6. usageCopy.js — full en/uz/ru
 // 7. Mini blitz lesson — 1 screen (fb/bw/sr), 2 screens (cm)
@@ -93,15 +104,15 @@ function buildFillBlankQ(word, pool) {
 // wrong in context — not raw synonyms from the ladder, which were often all
 // acceptable. Same shape as buildRepairQ but without the `wrong` field.
 function buildBestWordBankQ(entry) {
-  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.sentence, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct };
+  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.sentence, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct, _provenance: entry._provenance };
 }
 
 function buildRepairQ(entry) {
-  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.sentence, wrong: entry.wrong, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct };
+  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.sentence, wrong: entry.wrong, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct, _provenance: entry._provenance };
 }
 
 function buildCollocationQ(entry) {
-  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.prompt, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct, isCollocation: true };
+  return { id: `${entry.correct}-${Math.random()}`, sentence: entry.prompt, correct: entry.correct, options: shuffle([entry.correct, ...entry.distractors]), word: entry.correct, isCollocation: true, _provenance: entry._provenance };
 }
 
 // ---- component ----
@@ -173,15 +184,13 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
 
     if (usesVocabPool) {
       if (pool.length < 4) { setPhase("empty"); return; }
-      // Shuffle directly — buildPersonalizedRound's server fetches
-      // (WordAttempt + SavedWord) can hang under rate limiting, which
-      // blocks the round from ever starting. Personalization degrades to
-      // a simple shuffle; logWordAttempts still writes per-word history
-      // so future rounds can personalize once signals exist.
-      const chosen = shuffle(pool).slice(0, Math.min(itemCount, pool.length));
+      // buildPersonalizedRound is now timeout-guarded inside
+      // roundComposition.js (see the header comment above) — safe to call
+      // directly. logWordAttempts still writes per-word history either way.
+      const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: Math.min(itemCount, pool.length) });
       built = chosen.map((w) => buildFillBlankQ(w, pool));
     } else {
-      const picks = pickN(fixedBank, Math.min(itemCount, fixedBank.length));
+      const picks = await buildBankRound({ pool: fixedBank, keyFn: (e) => e.correct, userEmail: user?.email, game: GAME, count: Math.min(itemCount, fixedBank.length) });
       built = picks.map((e) => mode === "sentence_repair" ? buildRepairQ(e) : mode === "best_word" ? buildBestWordBankQ(e) : buildCollocationQ(e));
     }
 
@@ -207,6 +216,7 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
     setFlyups([]);
     setPhase("playing");
   }, [pool, fixedBank, usesVocabPool, itemCount, mode, user?.email]);
+  // (dependency list unchanged — user?.email was already tracked)
 
   useEffect(() => { startRound(0); }, [startRound]);
 
