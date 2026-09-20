@@ -4,7 +4,7 @@ import { ArrowLeft, Star, Flame, Target, Loader2, BookOpen, Trophy, RotateCcw, A
 import { shuffle, pickN } from "@/lib/vocabGameUtils";
 import { SKILLS } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
-import { logWordAttempts } from "@/lib/roundComposition";
+import { logWordAttempts, buildBankRound, PROVENANCE } from "@/lib/roundComposition";
 import { useWordFormsCopy } from "@/components/games/wordFormsCopy";
 import {
   WORD_FAMILY_BANK, PREFIX_BANK, SUFFIX_BANK, ROOT_BANK,
@@ -44,7 +44,16 @@ import {
 // 1. gameScoring.js — computeRoundXp / recordRoundReward / roundPassed
 // 2. Attempt budget shown live (scaled by picks-per-item per mode)
 // 3. logWordAttempts (both signals — wrong picks are unambiguous)
-// 4. Provenance badges: skipped — fixed bank, no personalization signals
+// 4. Personalization: buildBankRound (roundComposition.js) — the bank-native
+//    sibling of buildPersonalizedRound for fixed-bank games with no
+//    VocabularyWord mapping. Reads this student's own WordAttempt rows for
+//    game "wordforms" (already logged below) and prioritizes entries whose
+//    identity (base word, or root for root_hunt) they previously missed,
+//    recent first, before filling the rest fresh. No SavedWord signal: this
+//    game has no "save" affordance. Applied per-mode since each mode draws
+//    from its own bank (WORD_FAMILY_BANK / PREFIX_BANK / SUFFIX_BANK /
+//    ROOT_BANK) with its own identity field.
+// 5. Provenance badges: WRONG-only, same convention as every other game
 // 5. premium-mesh / premium-card / neo-pill, accent #3E9E92 (grammar skill
 //    per GAME_SKILL_MAP — intentional cross-cut, keep it)
 // 6. wordFormsCopy.js — full en/uz/ru
@@ -139,7 +148,7 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
     } catch { /* ignore */ }
   }, [mode]);
 
-  const startRound = useCallback((startStreak) => {
+  const startRound = useCallback(async (startStreak) => {
     setPhase("loading");
     finishing.current = false;
     busy.current = false;
@@ -148,18 +157,20 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
     missedOnce.current = new Set();
 
     const bank = cfg.bank;
+    const count = Math.min(itemCount, bank.length);
     let built = [];
 
     if (mode === "word_family") {
-      const picks = pickN(bank, Math.min(itemCount, bank.length));
+      const picks = await buildBankRound({ pool: bank, keyFn: (e) => e.base, userEmail: user?.email, game: GAME, count });
       built = picks.map((entry, i) => ({
         id: `${entry.base}-${i}`,
         word: entry.base,
         forms: { noun: entry.noun, verb: entry.verb, adjective: entry.adjective, adverb: entry.adverb },
         options: buildFamilyOptions(entry, bank),
+        _provenance: entry._provenance,
       }));
     } else if (mode === "prefix_match") {
-      const picks = pickN(bank, Math.min(itemCount, bank.length));
+      const picks = await buildBankRound({ pool: bank, keyFn: (e) => e.base, userEmail: user?.email, game: GAME, count });
       built = picks.map((entry, i) => ({
         id: `${entry.base}-${i}`,
         word: entry.base,
@@ -167,9 +178,10 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
         meaning: entry.meaning,
         result: entry.result,
         options: PREFIXES,
+        _provenance: entry._provenance,
       }));
     } else if (mode === "suffix_builder") {
-      const picks = pickN(bank, Math.min(itemCount, bank.length));
+      const picks = await buildBankRound({ pool: bank, keyFn: (e) => e.base, userEmail: user?.email, game: GAME, count });
       built = picks.map((entry, i) => ({
         id: `${entry.base}-${i}`,
         word: entry.base,
@@ -178,9 +190,10 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
         meaning: entry.meaning,
         result: entry.result,
         options: SUFFIXES,
+        _provenance: entry._provenance,
       }));
     } else if (mode === "root_hunt") {
-      const picks = pickN(bank, Math.min(itemCount, bank.length));
+      const picks = await buildBankRound({ pool: bank, keyFn: (e) => e.root, userEmail: user?.email, game: GAME, count });
       built = picks.map((group, i) => ({
         id: `${group.root}-${i}`,
         word: group.root,
@@ -188,6 +201,7 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
         rootMeaning: group.meaning,
         correct: new Set(group.members),
         words: buildRootQuestion(group, bank),
+        _provenance: group._provenance,
       }));
     }
 
@@ -221,7 +235,7 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
     setWfFilled({});
     setRhTapped(new Set());
     setPhase("playing");
-  }, [cfg, itemCount, mode]);
+  }, [cfg, itemCount, mode, user?.email]);
 
   useEffect(() => { startRound(0); }, [startRound]);
 
@@ -718,11 +732,14 @@ export default function WordFormsGame({ bank: mode = "word_family", user, level,
                 {roundItems.current.map((it) => (
                   <li key={it.id} className="flex items-center justify-between gap-2 text-xs">
                     <span className={`font-semibold truncate ${firstTry.current.has(it.word) ? "text-foreground" : "text-muted-foreground"}`}>{it.word}</span>
-                    <span className="text-[10px] text-muted-foreground truncate max-w-[45%]">
-                      {mode === "prefix_match" && it.result}
-                      {mode === "suffix_builder" && it.result}
-                      {mode === "root_hunt" && it.rootMeaning}
-                      {mode === "word_family" && it.forms?.noun}
+                    <span className="flex items-center gap-1.5 shrink-0">
+                      {it._provenance === PROVENANCE.WRONG && <span className="text-[9px] text-amber-300">{firstTry.current.has(it.word) ? "✓" : "↻"}</span>}
+                      <span className="text-[10px] text-muted-foreground truncate max-w-[100px]">
+                        {mode === "prefix_match" && it.result}
+                        {mode === "suffix_builder" && it.result}
+                        {mode === "root_hunt" && it.rootMeaning}
+                        {mode === "word_family" && it.forms?.noun}
+                      </span>
                     </span>
                   </li>
                 ))}
