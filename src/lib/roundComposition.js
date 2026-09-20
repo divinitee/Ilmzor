@@ -30,17 +30,52 @@ const SAVED_SHARE = 0.2;
 const ATTEMPT_QUERY_LIMIT = 150;
 const SAVED_QUERY_LIMIT = 150;
 
+// Shared-engine defect fix (2026-09-20): the original fetchPersonalizationSignals
+// had per-call .catch() guards for a *rejected* request, but nothing guarded
+// against a request that simply never resolves (a hang under rate limiting —
+// exactly the failure mode UsageGame's startRound comment described when it
+// opted out of buildPersonalizedRound entirely and fell back to a plain
+// shuffle). A hang inside Promise.all blocks the round from ever starting,
+// with no error to catch. SIGNAL_TIMEOUT_MS bounds every signal fetch so a
+// slow/stuck request degrades to "no signal" (same as a brand-new student)
+// instead of hanging the round — this is what makes it safe for every game,
+// including Usage, to call buildPersonalizedRound without a local workaround.
+const SIGNAL_TIMEOUT_MS = 3500;
+
+function withTimeout(promise, ms, fallback) {
+  return new Promise((resolve) => {
+    let settled = false;
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      resolve(fallback);
+    }, ms);
+    promise.then(
+      (v) => { if (!settled) { settled = true; clearTimeout(timer); resolve(v); } },
+      () => { if (!settled) { settled = true; clearTimeout(timer); resolve(fallback); } }
+    );
+  });
+}
+
 export const PROVENANCE = { WRONG: "wrong", SAVED: "saved", FRESH: "fresh" };
 
 export async function fetchPersonalizationSignals(userEmail) {
   if (!userEmail) return { previouslyWrong: [], saved: [] };
   const [previouslyWrong, saved] = await Promise.all([
-    base44.entities.WordAttempt
-      .filter({ user_email: userEmail, correct: false }, "-created_date", ATTEMPT_QUERY_LIMIT)
-      .catch((e) => { console.error("WordAttempt read failed", e); return []; }),
-    base44.entities.SavedWord
-      .filter({ user_email: userEmail }, "-saved_at", SAVED_QUERY_LIMIT)
-      .catch((e) => { console.error("SavedWord read failed", e); return []; }),
+    withTimeout(
+      base44.entities.WordAttempt
+        .filter({ user_email: userEmail, correct: false }, "-created_date", ATTEMPT_QUERY_LIMIT)
+        .catch((e) => { console.error("WordAttempt read failed", e); return []; }),
+      SIGNAL_TIMEOUT_MS,
+      []
+    ),
+    withTimeout(
+      base44.entities.SavedWord
+        .filter({ user_email: userEmail }, "-saved_at", SAVED_QUERY_LIMIT)
+        .catch((e) => { console.error("SavedWord read failed", e); return []; }),
+      SIGNAL_TIMEOUT_MS,
+      []
+    ),
   ]);
   return { previouslyWrong, saved };
 }
