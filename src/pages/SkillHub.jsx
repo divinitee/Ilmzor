@@ -315,9 +315,11 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
                 button fires no click at all, so the lock cannot be defeated
                 by a stray handler later. Its "Coming soon" label is always
                 visible rather than click-revealed — nothing to discover, and
-                no dead-end tap. The label collapses below `sm` so the row
-                stays on one line on a phone; the lock icon carries the
-                meaning there, and the full text stays in the title/aria. */}
+                no dead-end tap. The label stays visible at every width
+                rather than collapsing to a bare lock glyph on a phone: a
+                disabled button is not focusable, so its title/aria never
+                reach a keyboard or a touch user, and the visible text is
+                the only thing carrying the reason. The row wraps instead. */}
             <div
               role="group"
               aria-label={loc("ui.modeLabel")}
@@ -345,7 +347,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
               >
                 <Lock className="w-3 h-3" />
                 {loc("ui.learn")}
-                <span className="hidden sm:inline font-medium opacity-70">· {loc("ui.comingSoonShort")}</span>
+                <span className="font-medium opacity-70">· {loc("ui.comingSoonShort")}</span>
               </button>
             </div>
           </div>
