@@ -18,6 +18,16 @@ import SkillTree from "@/components/skillhub/SkillTree";
 // diagnostic that has not been taken yet). Anything else keeps the existing
 // dive-into-subskills behaviour untouched.
 //
+// DORMANT as of Skill Hub v3 (2026-09-21) — kept wired, currently unreachable.
+// Roots skip it by design (it is the Learn path, see handleRootClick), and the
+// only other caller is the leaf branch below, which cannot fire either: all
+// four leaves carry comingSoon: true in skillTreeData.js, and SkillNode routes
+// a comingSoon node to the modal before onClick runs. So the whole diagnostic
+// chain behind it (handleEnterSkill -> resolveSkillEntry -> /grammar and
+// /grammar/assessment) has no entry point from the hub right now. Left in
+// place deliberately: it is the exact wiring Learn will reattach to, and
+// deleting it would be an unrelated refactor. See the handoff notes.
+//
 // mode: the hub-wide Learn/Practice selection, owned by SkillHub.jsx and read
 // here rather than stored per node (Skill Hub v3, 2026-09-21). Only "practice"
 // is reachable today — the header toggle renders Learn locked — so this is the
