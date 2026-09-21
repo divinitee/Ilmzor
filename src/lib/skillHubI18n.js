@@ -31,6 +31,12 @@ const SKILL = {
   "ui.learn": { en: "Learn", uz: "O'rganish", ru: "Учиться" },
   "ui.practice": { en: "Practice", uz: "Mashq qilish", ru: "Практика" },
   "ui.comingSoonShort": { en: "Coming soon", uz: "Tez orada", ru: "Скоро" },
+  // Shown to a TEACHER who taps Grammar while picking homework. Grammar is
+  // fully live for students — it just has no assignable Skill Hub rounds any
+  // more, now that its nine placeholder game nodes are retired in favour of
+  // the tiered path at /grammar. Says that, rather than the generic "coming
+  // soon", which would read as though Grammar itself were unfinished.
+  "ui.grammarNoAssign": { en: "Grammar homework can't be assigned from here yet", uz: "Grammatika uyga vazifasini bu yerdan hali tayinlab bo'lmaydi", ru: "Домашнее задание по грамматике пока нельзя назначить отсюда" },
   "ui.modeLabel": { en: "Mode", uz: "Rejim", ru: "Режим" },
   "ui.vocabLearnTitle": { en: "Guided Vocabulary learning is coming soon", uz: "Vokabularni bosqichma-bosqich o'rganish tez orada qo'shiladi", ru: "Пошаговое изучение словарного запаса скоро появится" },
 
