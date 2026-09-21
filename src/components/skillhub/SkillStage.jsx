@@ -17,7 +17,12 @@ import SkillTree from "@/components/skillhub/SkillTree";
 // dives into it. Returning true means the parent took over (e.g. a skill with a
 // diagnostic that has not been taken yet). Anything else keeps the existing
 // dive-into-subskills behaviour untouched.
-export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill, assignmentMode = false }) {
+//
+// mode: the hub-wide Learn/Practice selection, owned by SkillHub.jsx and read
+// here rather than stored per node (Skill Hub v3, 2026-09-21). Only "practice"
+// is reachable today — the header toggle renders Learn locked — so this is the
+// single place a future Learn branch attaches, not a live fork.
+export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill, assignmentMode = false, mode = "practice" }) {
   const loc = useSkillLoc();
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
@@ -25,10 +30,6 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   const [dive, setDive] = useState(null);
   const [divingId, setDivingId] = useState(null);
   const [backDive, setBackDive] = useState(null);
-  // Skill Hub v2: which root node (vocabulary/grammar) is showing its
-  // Learn/Practice chooser, or null. Distinct from `selected` (level 1) —
-  // opening the chooser does not dive into the subskill tree by itself.
-  const [rootMenu, setRootMenu] = useState(null); // { id, x, y, glow, icon, label }
 
   // Forward dive: the clicked node brightens in place, then flies to center
   // and blooms into the hub while its siblings recede.
@@ -69,10 +70,11 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
   const skillNodes = TOP_SKILLS.map((s) => ({ ...s, ...TREE_POINTS[s.id] }));
   const rootIds = TOP_SKILLS.filter((s) => s.role === "root").map((s) => s.id);
   const hoveredSkillKey = hovered?.group === "skill" ? hovered.key : null;
-  // What the tree is lit for. The open Learn/Practice chooser counts as well
-  // as hover, which is what gives touch devices the pathway glow at all —
-  // tapping a root opens the chooser and lights its branches.
-  const activeSkillKey = rootMenu?.id || hoveredSkillKey;
+  // What the tree is lit for. Hover only, since the per-root chooser that
+  // used to hold a root "open" (and light its branches on touch) is gone —
+  // a root tap now dives straight in, so there is no lingering state to
+  // light. This also retires the double-tap artefact that chooser caused.
+  const activeSkillKey = hoveredSkillKey;
   const bloomDelays = bloomDelaysFor(activeSkillKey);
   // A node is "related" to the active one when it's that node itself, or it
   // sits on the opposite side of a root<->leaf pathway (a root relates all
@@ -84,30 +86,15 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
     return rootIds.includes(activeSkillKey) !== rootIds.includes(id);
   };
 
-  // Root click opens a small Learn/Practice chooser instead of diving
-  // straight into the subskill tree. In assignment mode (teacher picking
-  // homework) the chooser is skipped entirely — see the onClick branch
-  // below — since "Learn" has no meaning there.
-  const openRootMenu = (node) => setRootMenu({ id: node.id, x: node.x, y: node.y, glow: node.glow, icon: node.icon, label: node.label });
-
-  const handlePracticeClick = () => {
-    const node = skillNodes.find((s) => s.id === rootMenu?.id);
-    setRootMenu(null);
-    if (!node) return;
+  // A root node (Vocabulary/Grammar) in Practice mode dives straight into
+  // its subskill tree — the same thing the chooser's Practice pill did, now
+  // that the mode is settled in the header before the tap rather than after
+  // it. Roots deliberately skip onEnterSkill: that call is the diagnostic
+  // gate, which for Grammar routes out to the adaptive /grammar map, and
+  // that destination belongs to Learn rather than to Practice.
+  const handleRootClick = (node) => {
+    if (mode !== "practice") return; // Learn is locked in the header; no branch to take yet.
     triggerDive(node, node.glow, () => setSelected(node.id));
-  };
-
-  // Learn routes into whatever the skill's own existing entry point is
-  // (onEnterSkill — the diagnostic-gated navigate already used for Grammar)
-  // rather than a new destination. A skill with no entry point yet
-  // (Vocabulary, until it adopts a diagnostic like Grammar's) shows an
-  // honest "coming soon" instead of a dead end or a duplicated system.
-  const handleLearnClick = () => {
-    const node = rootMenu;
-    setRootMenu(null);
-    if (!node) return;
-    if (onEnterSkill?.(node.id)) return;
-    onComingSoon?.(node.id === "vocabulary" ? "ui.vocabLearnTitle" : node.label);
   };
 
   const children = selected ? (SKILL_CHILDREN[selected] || []) : [];
@@ -196,14 +183,14 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
 
       {/* ---------- Back pill ---------- */}
       <AnimatePresence>
-        {(rootMenu || (level > 0 && !dive && !backDive)) && (
+        {level > 0 && !dive && !backDive && (
           <motion.button
             initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }}
             transition={{ duration: 0.3, ease: EASE }}
-            onClick={rootMenu ? () => setRootMenu(null) : onBack}
+            onClick={onBack}
             className="absolute top-2 left-2 z-30 flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground bg-card/70 backdrop-blur border border-border rounded-full px-3 py-1.5 select-none"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> {rootMenu ? loc("ui.allSkills") : level === 2 ? loc(skill?.label) : loc("ui.allSkills")}
+            <ArrowLeft className="w-3.5 h-3.5" /> {level === 2 ? loc(skill?.label) : loc("ui.allSkills")}
           </motion.button>
         )}
       </AnimatePresence>
@@ -219,10 +206,9 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
             size={n.role === "root" ? "root" : "leaf"}
             bloomDelay={bloomDelays[n.id]} bloomKey={activeSkillKey}
             onClick={() => {
-              // Roots open the Learn/Practice chooser (unless a teacher is
-              // picking homework, where the chooser is skipped and the old
-              // straight-into-Practice dive behaviour is kept unchanged).
-              if (n.role === "root" && !assignmentMode) { openRootMenu(n); return; }
+              // Roots follow the hub-wide mode (see handleRootClick). Leaves
+              // are unchanged: their own entry gate first, then the dive.
+              if (n.role === "root") { handleRootClick(n); return; }
               if (onEnterSkill?.(n.id)) return;
               triggerDive(n, n.glow, () => setSelected(n.id));
             }} onComingSoon={() => onComingSoon(n.label)}
@@ -268,56 +254,10 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
            original position, shrinking + fading, as the previous layer blooms ---------- */}
       <BackDive dive={backDive} label={backDive ? loc(backDive.label) : ""} />
 
-      {/* ---------- Root Learn/Practice chooser (Skill Hub v2) ----------
-          A tap outside (the backdrop) closes it. The two pills route into
-          the skill's existing entry points — Learn via onEnterSkill (the
-          same diagnostic-gated navigate Grammar already used), Practice via
-          the same triggerDive/setSelected dive every node on this stage
-          already uses — no new systems, just a fork placed before the dive. */}
-      <AnimatePresence>
-        {rootMenu && (
-          <motion.div key="root-menu-backdrop" className="absolute inset-0 z-20"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            onClick={() => setRootMenu(null)} />
-        )}
-      </AnimatePresence>
-      {/* The chooser sits just above the root node it belongs to, rather than
-          at the centre of the stage — there is no centre node to attach to
-          any more. The -78px lift clears the root node's own box; it rides on
-          marginTop rather than the transform because framer-motion owns the
-          transform here (x/y stay a constant -50% to centre it). */}
-      <AnimatePresence>
-        {rootMenu && (
-          <motion.div key={rootMenu.id} className="absolute z-30 flex flex-col items-center gap-2 pointer-events-none"
-            style={{ left: `${rootMenu.x}%`, top: `${rootMenu.y}%`, marginTop: -78 }}
-            initial={{ opacity: 0, scale: 0.85, x: "-50%", y: "-50%" }}
-            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-            exit={{ opacity: 0, scale: 0.85, x: "-50%", y: "-50%" }}
-            transition={{ duration: 0.32, ease: EASE }}
-          >
-            <div className="flex items-center gap-2 pointer-events-auto">
-              <motion.button
-                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
-                onClick={(e) => { e.stopPropagation(); handleLearnClick(); }}
-                aria-label={`${loc("ui.learn")} ${loc(rootMenu.label)}`}
-                className="px-4 py-2 rounded-full border border-white/25 bg-white/[0.12] backdrop-blur-xl text-white text-xs font-bold tracking-wide hover:bg-white/[0.2] hover:border-white/40 transition-colors select-none"
-                style={{ boxShadow: `0 0 24px ${rootMenu.glow}` }}
-              >
-                {loc("ui.learn")}
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}
-                onClick={(e) => { e.stopPropagation(); handlePracticeClick(); }}
-                aria-label={`${loc("ui.practice")} ${loc(rootMenu.label)}`}
-                className="px-4 py-2 rounded-full border border-white/25 bg-white/[0.12] backdrop-blur-xl text-white text-xs font-bold tracking-wide hover:bg-white/[0.2] hover:border-white/40 transition-colors select-none"
-                style={{ boxShadow: `0 0 24px ${rootMenu.glow}` }}
-              >
-                {loc("ui.practice")}
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* The per-root Learn/Practice chooser that used to live here was
+          removed in Skill Hub v3 (2026-09-21). It duplicated, once per root
+          node, a choice that is now made once in the Skill Hub header — see
+          SkillHub.jsx's mode toggle and the `mode` prop above. */}
     </div>
   );
 }
