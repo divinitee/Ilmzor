@@ -23,9 +23,15 @@ const SKILL = {
   "ui.comingSoonTag": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
   "ui.tapHint": { en: "Tap a word, then its definition", uz: "So'zni bosing, so'ng uning ta'rifini bosing", ru: "Нажмите слово, затем его определение" },
 
-  // ---- Skill Hub v2: root node Learn/Practice chooser ----
+  // ---- Skill Hub v3: global Learn/Practice mode toggle (header) ----
+  // ui.learn / ui.practice were the per-root chooser's two pills until
+  // 2026-09-21; they now label the single header-level mode toggle that
+  // replaced it. ui.comingSoonShort is the inline lock label on Learn —
+  // deliberately shorter than ui.comingSoonTitle, which is modal copy.
   "ui.learn": { en: "Learn", uz: "O'rganish", ru: "Учиться" },
   "ui.practice": { en: "Practice", uz: "Mashq qilish", ru: "Практика" },
+  "ui.comingSoonShort": { en: "Coming soon", uz: "Tez orada", ru: "Скоро" },
+  "ui.modeLabel": { en: "Mode", uz: "Rejim", ru: "Режим" },
   "ui.vocabLearnTitle": { en: "Guided Vocabulary learning is coming soon", uz: "Vokabularni bosqichma-bosqich o'rganish tez orada qo'shiladi", ru: "Пошаговое изучение словарного запаса скоро появится" },
 
   // ---- difficulty / time ----
