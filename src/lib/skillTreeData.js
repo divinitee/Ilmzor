@@ -31,12 +31,6 @@ const gen = (names, game) => names.map((name, i) => ({
 }));
 
 const C = (label, subs, challenges, comingSoon = false) => ({ label, subs, challenges, comingSoon });
-const grammarCh = (names, bank) => names.map((name, i) => ({
-  name, game: "grammar", bank,
-  difficulty: ["Easy", "Medium", "Hard"][i % 3],
-  time: ["3 min", "5 min", "8 min"][i % 3],
-  xp: [40, 65, 100][i % 3],
-}));
 
 export const SKILL_CHILDREN = {
   vocabulary: [
@@ -176,17 +170,24 @@ export const SKILL_CHILDREN = {
       { name: "Connection Challenge", game: "connection_challenge", difficulty: "Hard", time: "3-5 min", xp: 100 },
     ]),
   ],
-  grammar: [
-    C("Sentence Structure", ["Word Order"], gen(["Word Order", "Build It"], "sentence")),
-    C("Verb Tenses", [], grammarCh(["Present vs Past", "Perfect Tenses"], "verb_tenses")),
-    C("Articles", [], grammarCh(["A or An", "The or Zero"], "articles")),
-    C("Prepositions", [], grammarCh(["Time Prepositions", "Place Prepositions"], "prepositions")),
-    C("Punctuation", [], grammarCh(["End Marks", "Apostrophes & Commas"], "punctuation")),
-    C("Question Formation", [], grammarCh(["Yes/No Questions", "Wh-Questions"], "question_formation")),
-    C("Active vs Passive", [], grammarCh(["Form the Passive", "Spot the Voice"], "active_passive")),
-    C("Conditionals", [], grammarCh(["Zero & First", "Second & Third"], "conditionals")),
-    C("Reported Speech", [], grammarCh(["Statements", "Questions & Commands"], "reported_speech")),
-  ],
+  // NO `grammar` KEY, DELIBERATELY (2026-09-21).
+  //
+  // Grammar used to list nine hand-made categories here (Sentence Structure,
+  // Verb Tenses, Articles, Prepositions, Punctuation, Question Formation,
+  // Active vs Passive, Conditionals, Reported Speech), each holding two
+  // GrammarQuizGame rounds off a fixed bank. They were a placeholder from
+  // before Grammar had a real curriculum, and they shadowed it: a student
+  // tapping Grammar landed in that flat nine-node ring instead of the tiered
+  // Foundational / Functional / Academic path the app actually teaches from
+  // (GRAMMAR_NAV in grammarTiers.js, rendered at /grammar).
+  //
+  // Grammar now has no subskill layer in the Skill Hub at all. Its root node
+  // hands straight off to /grammar through the skill's own diagnostic gate —
+  // see handleRootClick in SkillStage.jsx. Anything that walks SKILL_CHILDREN
+  // (getAllPlayableChallenges, the Random Challenge action) simply stops
+  // seeing grammar, which is correct: those nine nodes are retired, not
+  // hidden. The `grammar` GAME engine itself is untouched and still
+  // launchable, so homework already assigned from the old nodes still runs.
   speaking: [
     C("Pronunciation", [], gen(["Hear & Choose", "Repeat"], "spelling")),
     C("Fluency", [], gen(["Speak Up", "Quick Talk"], "sentence")),
