@@ -18,15 +18,18 @@ import SkillTree from "@/components/skillhub/SkillTree";
 // diagnostic that has not been taken yet). Anything else keeps the existing
 // dive-into-subskills behaviour untouched.
 //
-// DORMANT as of Skill Hub v3 (2026-09-21) — kept wired, currently unreachable.
-// Roots skip it by design (it is the Learn path, see handleRootClick), and the
-// only other caller is the leaf branch below, which cannot fire either: all
-// four leaves carry comingSoon: true in skillTreeData.js, and SkillNode routes
-// a comingSoon node to the modal before onClick runs. So the whole diagnostic
-// chain behind it (handleEnterSkill -> resolveSkillEntry -> /grammar and
-// /grammar/assessment) has no entry point from the hub right now. Left in
-// place deliberately: it is the exact wiring Learn will reattach to, and
-// deleting it would be an unrelated refactor. See the handoff notes.
+// This is how a skill that owns its own curriculum takes over from the hub.
+// Grammar is the one that does: onEnterSkill -> resolveSkillEntry -> either
+// /grammar/assessment (no placement on file yet) or /grammar (the tiered
+// Foundational / Functional / Academic map). Roots call it FIRST now, which
+// is what makes Grammar's real path — rather than a placeholder node ring —
+// the thing a student lands in. Vocabulary has no diagnostic, so it falls
+// through to the subskill dive exactly as before.
+//
+// Note the leaf branch below can never fire it today: all four leaves carry
+// comingSoon: true in skillTreeData.js, and SkillNode routes a comingSoon
+// node to the modal before onClick runs. That is pre-existing and harmless —
+// the root path is the live one.
 //
 // mode: the hub-wide Learn/Practice selection, owned by SkillHub.jsx and read
 // here rather than stored per node (Skill Hub v3, 2026-09-21). Only "practice"
@@ -96,14 +99,28 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
     return rootIds.includes(activeSkillKey) !== rootIds.includes(id);
   };
 
-  // A root node (Vocabulary/Grammar) in Practice mode dives straight into
-  // its subskill tree — the same thing the chooser's Practice pill did, now
-  // that the mode is settled in the header before the tap rather than after
-  // it. Roots deliberately skip onEnterSkill: that call is the diagnostic
-  // gate, which for Grammar routes out to the adaptive /grammar map, and
-  // that destination belongs to Learn rather than to Practice.
+  // What a root node (Vocabulary/Grammar) does in Practice mode, in order:
+  //
+  //  1. Hand off to the skill's own path if it has one. Grammar does — its
+  //     curriculum is the tiered Foundational / Functional / Academic map at
+  //     /grammar, reached through the diagnostic gate so a student with no
+  //     placement yet is sent to the assessment first. This replaced the nine
+  //     placeholder grammar categories that used to sit in SKILL_CHILDREN
+  //     and shadow the real thing.
+  //  2. Otherwise dive into the skill's subskill layer. Vocabulary's path.
+  //  3. If it has neither — which is what Grammar looks like in assignment
+  //     mode, since the gate deliberately stands down for a teacher picking
+  //     homework — say so instead of diving into an empty stage.
+  //
+  // Learn will reuse this same shape rather than a second set of
+  // destinations: same map, taught rather than drilled.
   const handleRootClick = (node) => {
     if (mode !== "practice") return; // Learn is locked in the header; no branch to take yet.
+    if (onEnterSkill?.(node.id)) return;
+    if ((SKILL_CHILDREN[node.id] || []).length === 0) {
+      onComingSoon?.(assignmentMode ? "ui.grammarNoAssign" : node.label);
+      return;
+    }
     triggerDive(node, node.glow, () => setSelected(node.id));
   };
 
