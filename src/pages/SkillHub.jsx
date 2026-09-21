@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Sparkles, BookmarkPlus } from "lucide-react";
+import { Star, Sparkles, BookmarkPlus, Lock } from "lucide-react";
 import SkillStage from "@/components/skillhub/SkillStage";
 import VocabQuizGame from "@/components/games/VocabQuizGame";
 import SentenceBuilderGame from "@/components/games/SentenceBuilderGame";
@@ -44,6 +44,15 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const [assignmentDueDate, setAssignmentDueDate] = useState("");
   const [assigning, setAssigning] = useState(false);
   const [assignmentMessage, setAssignmentMessage] = useState("");
+  // Skill Hub v3 (2026-09-21): one mode for the whole hub, owned here and
+  // read by every node through SkillStage. Replaces the per-root
+  // Learn/Practice chooser, which stored the fork on each root node
+  // separately and could only ever describe the node you had just tapped.
+  //
+  // "learn" is a declared value, not a reachable one: the header toggle
+  // renders it locked, so nothing can set it. The Learn experience itself
+  // is deliberately not built here — this is the seam it will attach to.
+  const [hubMode, setHubMode] = useState("practice");
   const loc = useSkillLoc();
   const { t } = useAppLang();
   const navigate = useNavigate();
@@ -287,7 +296,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             rather than nested under a "Vocabulary" list that doesn't exist
             as such in the rendered UI). */}
         {user && !assignmentMode && (
-          <div className="flex justify-center items-center gap-2 mb-2">
+          <div className="flex flex-wrap justify-center items-center gap-2 mb-2">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-xs font-semibold select-none">
               <Star className="w-3.5 h-3.5" /> {userXp?.coins || 0} XP
             </div>
@@ -297,6 +306,48 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             >
               <BookmarkPlus className="w-3.5 h-3.5" /> {t("nav.my_words")}
             </Link>
+
+            {/* Global Learn/Practice mode. Sits to the right of My Words and
+                governs the whole hub, so a student sets the mode once rather
+                than re-answering it at every root node.
+
+                Learn is rendered as a real, disabled button: a disabled
+                button fires no click at all, so the lock cannot be defeated
+                by a stray handler later. Its "Coming soon" label is always
+                visible rather than click-revealed — nothing to discover, and
+                no dead-end tap. The label collapses below `sm` so the row
+                stays on one line on a phone; the lock icon carries the
+                meaning there, and the full text stays in the title/aria. */}
+            <div
+              role="group"
+              aria-label={loc("ui.modeLabel")}
+              className="flex items-center gap-0.5 p-0.5 rounded-full bg-white/[0.06] border border-white/15 select-none"
+            >
+              <button
+                type="button"
+                onClick={() => setHubMode("practice")}
+                aria-pressed={hubMode === "practice"}
+                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors ${
+                  hubMode === "practice"
+                    ? "bg-primary/20 border border-primary/30 text-primary"
+                    : "border border-transparent text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {loc("ui.practice")}
+              </button>
+              <button
+                type="button"
+                disabled
+                aria-disabled="true"
+                title={`${loc("ui.learn")} — ${loc("ui.comingSoonShort")}`}
+                aria-label={`${loc("ui.learn")} — ${loc("ui.comingSoonShort")}`}
+                className="flex items-center gap-1 px-3 py-1 rounded-full border border-transparent text-xs font-semibold text-muted-foreground/50 cursor-not-allowed"
+              >
+                <Lock className="w-3 h-3" />
+                {loc("ui.learn")}
+                <span className="hidden sm:inline font-medium opacity-70">· {loc("ui.comingSoonShort")}</span>
+              </button>
+            </div>
           </div>
         )}
 
@@ -313,6 +364,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             onLocked={(info) => setLockedInfo(info)}
             onEnterSkill={handleEnterSkill}
             assignmentMode={assignmentMode}
+            mode={hubMode}
           />
         </div>
       </div>
