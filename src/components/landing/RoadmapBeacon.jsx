@@ -6,7 +6,6 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { CURRENT_STAGE_INDEX, getRoadmapStages, getRoadmapUI, ROAD_PATH } from "@/content/roadmapJourney";
 
 const ROAD_BREATHE = 6.5;
-const ARRIVAL_SPEED = 0.34;
 
 export default function RoadmapBeacon() {
   const reduced = useReducedMotion();
@@ -59,7 +58,6 @@ export default function RoadmapBeacon() {
                 <filter id="roadSoftGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="20" /></filter>
                 <filter id="roadGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8" /></filter>
                 <linearGradient id="roadActive" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#6d28d9"/><stop offset="52%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#c4b5fd"/></linearGradient>
-                <linearGradient id="roadEnergy" x1="0" x2="1"><stop offset="0%" stopColor="#ffffff" stopOpacity="0"/><stop offset="45%" stopColor="#ddd6fe" stopOpacity=".95"/><stop offset="55%" stopColor="#ffffff" stopOpacity="1"/><stop offset="100%" stopColor="#c4b5fd" stopOpacity="0"/></linearGradient>
                 <linearGradient id="roadFuture" x1="0" x2="1"><stop offset="0%" stopColor="#3b0764"/><stop offset="50%" stopColor="#4c1d95"/><stop offset="100%" stopColor="#5b21b6"/></linearGradient>
                 <linearGradient id="roadDirectional" x1="0" x2="1"><stop offset="0%" stopColor="#ddd6fe" stopOpacity="0"/><stop offset="50%" stopColor="#c4b5fd" stopOpacity=".8"/><stop offset="100%" stopColor="#ffffff" stopOpacity="0"/></linearGradient>
               </defs>
