@@ -48,7 +48,13 @@ export default function Pricing() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 px-4 py-12">
+    <div className="relative min-h-screen overflow-hidden bg-[#070817] text-white px-4 py-8 sm:py-12">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-[-18rem] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-violet-600/15 blur-3xl" />
+        <div className="absolute right-[-10rem] top-[28rem] h-[28rem] w-[28rem] rounded-full bg-indigo-600/10 blur-3xl" />
+        <div className="absolute left-[-12rem] top-[34rem] h-[24rem] w-[24rem] rounded-full bg-fuchsia-600/10 blur-3xl" />
+      </div>
+      <div className="relative mx-auto max-w-6xl">
       <div className="max-w-lg mx-auto">
         <div className="relative text-center mb-8">
           <button
