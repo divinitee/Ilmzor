@@ -73,16 +73,19 @@ export default function LandingPricing() {
             const price = isYearly ? p.yearlyPrice : p.monthlyPrice;
             const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
             const highlighted = p.id === "learner";
+            const isVip = p.id === "vip";
             return (
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, ease, delay: i * 0.07 }}
                 whileHover={{ y: -6 }}
-                className={`relative rounded-2xl border p-6 flex flex-col ${
+                className={`relative rounded-3xl border p-6 sm:p-7 flex flex-col overflow-hidden transition-all duration-300 ${
                 highlighted ?
-                "premium-card premium-glow bg-white landing-dark:bg-slate-900 border-blue-600 ring-1 ring-blue-600 lg:-mt-2" :
-                "premium-card bg-white landing-dark:bg-slate-900 border-slate-200 landing-dark:border-slate-800"}`
+                "premium-card premium-glow bg-white landing-dark:bg-violet-400/[0.055] border-blue-600 landing-dark:border-violet-400/60 ring-1 ring-blue-600 landing-dark:ring-0 shadow-[0_0_55px_rgba(139,92,246,0.14)] lg:-mt-2" :
+                isVip ?
+                "premium-card bg-white landing-dark:bg-amber-200/[0.045] border-slate-200 landing-dark:border-amber-300/60 shadow-[0_0_55px_rgba(245,158,11,0.10)]" :
+                "premium-card bg-white landing-dark:bg-white/[0.035] border-slate-200 landing-dark:border-white/10 hover:border-slate-300 landing-dark:hover:border-white/20 hover:bg-slate-50 landing-dark:hover:bg-white/[0.05]"}`
                 }>
                 
                 {highlighted &&
@@ -90,9 +93,14 @@ export default function LandingPricing() {
                     <Sparkles className="w-3 h-3" /> {t("plans.badges.learner")}
                   </span>
                 }
-                <div className="w-11 h-11 rounded-xl bg-blue-600/10 landing-dark:bg-blue-500/10 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-blue-600 landing-dark:text-blue-400" />
+                <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center mb-4 ${
+                  isVip
+                    ? "border-amber-300/15 bg-amber-300/[0.08]"
+                    : "border-violet-300/15 bg-violet-300/[0.08]"
+                }`}>
+                  <Icon className={`w-5 h-5 ${isVip ? "text-amber-300" : "text-violet-300"}`} />
                 </div>
+                <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent ${isVip ? "via-amber-300/70" : "via-violet-300/70"} to-transparent opacity-80`} />
                 <h3 className="font-bold text-slate-900 landing-dark:text-slate-50 text-lg">{p.name}</h3>
                 <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400 landing-dark:text-slate-500">
                   {t(`plans.position.${p.id}`)}
