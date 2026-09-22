@@ -295,9 +295,9 @@ export const translations = {
     },
     pricing: {
       beta_badge: "BETA",
-      founder_label: "Founder narxi",
-      founder_info: "Hozir qulflasangiz, obunangiz faol turgan ekan, bu narx siz uchun o'zgarmaydi — narxlar oshganda ham. VIRORA beta bosqichida va yangi imkoniyatlar qo'shilgani sari narx bosqichma-bosqich oshadi.",
-      founder_lock: "Umrbod saqlanadi",
+      founder_label: "Founding Learner narxi",
+      founder_info: "Founding Learner bosqichida qo'shilsangiz, obunangiz faol turgan ekan, narxingiz keyingi narx oshishlaridan keyin ham o'zgarmaydi. Narx VIRORA keyingi mahsulot bosqichlariga o'tgani sari oshadi.",
+      founder_lock: "Obuna davomida narx qulflanadi",
       founder_deadline: "Founder narxi {date} gacha",
       founder_then: "keyin {price}",
       founder_left: "qulflashga vaqt qoldi",
