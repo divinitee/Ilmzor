@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Check, CircleDot, Compass, Clock3, LockKeyhole, Sparkles, Zap } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-import { CURRENT_STAGE_INDEX, getRoadmapRoster, getRoadmapStages, getRoadmapUI } from "@/content/roadmapJourney";
+import { CURRENT_STAGE_INDEX, getRoadmapExtra, getRoadmapRoster, getRoadmapStages, getRoadmapUI } from "@/content/roadmapJourney";
 
 const legacyRoster = {
   exploring: [["Core learner journey","Refine the path from onboarding and placement to vocabulary, practice and measurable progress.","personalization"],["Deeper learner signals","Identify the signals that should influence what a learner sees and practices next.","personalization"]],
@@ -31,6 +31,7 @@ export default function Roadmap() {
   const { lang } = useAppLang();
   const stages = getRoadmapStages(lang);
   const ui = getRoadmapUI(lang);
+  const extra = getRoadmapExtra(lang);
   const roster = getRoadmapRoster(lang);
   const [active, setActive] = useState(CURRENT_STAGE_INDEX);
   const [picked, setPicked] = useState(null);
@@ -42,7 +43,7 @@ export default function Roadmap() {
     <div className="fixed inset-0 pointer-events-none"><div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-violet-600/[0.10] blur-[140px]"/><div className="absolute top-[50%] -left-40 w-[500px] h-[500px] rounded-full bg-indigo-600/[0.07] blur-[130px]"/></div>
     <header className="relative z-10 max-w-6xl mx-auto px-5 py-5 flex items-center justify-between"><Link to="/landing" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-violet-300"><ArrowLeft className="w-4 h-4"/>{ui.back}</Link><div className="flex items-center gap-2"><div className="w-9 h-9 rounded-xl bg-violet-500/10 border border-violet-400/20 flex items-center justify-center"><BookOpen className="w-4 h-4 text-violet-300"/></div><span className="font-bold tracking-[0.18em] text-sm">VIRORA</span></div></header>
     <main className="relative z-10 max-w-6xl mx-auto px-5 pb-28">
-      <section className="pt-14 sm:pt-20 text-center max-w-4xl mx-auto"><motion.div initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{duration:.7}}><div className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/[0.07] px-3.5 py-1.5 text-[10px] font-black tracking-[0.18em] text-violet-300"><Sparkles className="w-3.5 h-3.5"/>{ui.journey}</div><h1 className="mt-7 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.035em]">You're here before the<br className="hidden sm:block"/> full system exists.</h1><p className="mt-6 text-base sm:text-lg leading-7 text-slate-400 max-w-2xl mx-auto">VIRORA is being built one layer at a time. Explore what already exists, what we're building now, and where the system is going.</p></motion.div></section>
+      <section className="pt-14 sm:pt-20 text-center max-w-4xl mx-auto"><motion.div initial={{opacity:0,y:15}} animate={{opacity:1,y:0}} transition={{duration:.7}}><div className="inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/[0.07] px-3.5 py-1.5 text-[10px] font-black tracking-[0.18em] text-violet-300"><Sparkles className="w-3.5 h-3.5"/>{ui.journey}</div><h1 className="mt-7 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-[-0.035em]">{extra.heroTitle}</h1><p className="mt-6 text-base sm:text-lg leading-7 text-slate-400 max-w-2xl mx-auto">{extra.heroDesc}</p></motion.div></section>
 
       <section className="relative mt-20 sm:mt-28">
         <div className="absolute left-[8%] right-[8%] top-[70px] h-px bg-slate-800 hidden md:block"/>
@@ -73,7 +74,7 @@ export default function Roadmap() {
               <motion.h2 key={selectedStage.id} initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{duration:.25}} aria-live="polite" className="mt-3 text-2xl sm:text-3xl font-bold">{selectedStage.title}</motion.h2>
               <motion.p key={selectedStage.desc} initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.25}} className="mt-4 max-w-xl text-sm sm:text-base leading-7 text-slate-400">{selectedStage.desc}</motion.p>
               <div className="mt-6 flex flex-wrap gap-2">{selectedStage.items.map(item=><span key={item} className="rounded-full border border-violet-300/10 bg-violet-300/[0.045] px-3 py-1.5 text-[11px] text-violet-200">{item}</span>)}</div>
-              {selectedStage.id === "system" && <Link to="/landing" className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-violet-200">Back to the journey <ArrowRight className="w-3.5 h-3.5"/></Link>}
+              {selectedStage.id === "system" && <Link to="/landing" className="mt-6 inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-violet-200">{extra.backJourney} <ArrowRight className="w-3.5 h-3.5"/></Link>}
             </div>
             <div className="border-t lg:border-t-0 lg:border-l border-violet-400/10 p-7 sm:p-10 bg-black/10">
               <div className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-600">{ui.position}</div>
@@ -86,7 +87,7 @@ export default function Roadmap() {
 
       <section className="mt-28"><div className="max-w-2xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.roster}</div><h2 className="mt-3 text-3xl sm:text-4xl font-bold">{ui.rosterTitle}</h2><p className="mt-4 text-sm sm:text-base leading-7 text-slate-400">{ui.rosterDesc}</p></div><div className="mt-10 grid lg:grid-cols-4 gap-4">{Object.keys(meta).map(type=><Column key={type} type={type} onPick={setPicked}/>)}</div></section>
 
-      <section className="mt-28 relative overflow-hidden rounded-[2rem] border border-violet-400/15 bg-gradient-to-br from-violet-500/[0.09] via-indigo-500/[0.04] to-transparent p-8 sm:p-12"><div className="relative max-w-3xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.destination}</div><h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight">{ui.destinationTitle}</h2><p className="mt-5 text-sm sm:text-base leading-7 text-slate-400">{ui.destinationDesc}</p><div className="mt-7 flex flex-wrap gap-2">{["Skills","Curriculum","Practice","Vocabulary","Grammar","Progress","AI"].map(x=><span key={x} className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs text-slate-300">{x}</span>)}</div></div></section>
+      <section className="mt-28 relative overflow-hidden rounded-[2rem] border border-violet-400/15 bg-gradient-to-br from-violet-500/[0.09] via-indigo-500/[0.04] to-transparent p-8 sm:p-12"><div className="relative max-w-3xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.destination}</div><h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight">{ui.destinationTitle}</h2><p className="mt-5 text-sm sm:text-base leading-7 text-slate-400">{ui.destinationDesc}</p><div className="mt-7 flex flex-wrap gap-2">{extra.systemItems.map(x=><span key={x} className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs text-slate-300">{x}</span>)}</div></div></section>
     </main>
 
     {picked && <div className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-end sm:items-center justify-center p-4" onClick={() => setPicked(null)}><motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} className="w-full max-w-lg rounded-3xl border border-white/10 bg-[#101125] shadow-2xl p-6" onClick={event => event.stopPropagation()}><div className={`text-[10px] font-black uppercase tracking-[0.18em] ${meta[picked.type].color}`}>{meta[picked.type].label}</div><h3 className="mt-4 text-2xl font-bold">{picked.title}</h3><p className="mt-3 text-sm leading-6 text-slate-400">{picked.desc}</p><div className="mt-5 rounded-xl border border-white/5 bg-white/[0.025] p-3 text-xs text-slate-500">{ui.roadmapChapter}: <span className="text-slate-300">{picked.stage}</span></div><button onClick={() => setPicked(null)} className="mt-5 text-xs font-bold text-violet-300">{ui.close}</button></motion.div></div>}
