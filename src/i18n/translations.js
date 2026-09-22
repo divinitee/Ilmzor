@@ -702,9 +702,9 @@ export const translations = {
     },
     pricing: {
       beta_badge: "BETA",
-      founder_label: "Founder price",
-      founder_info: "Lock this price in now and it stays yours for as long as your subscription stays active — even after prices rise. VIRORA is in beta and the price steps up as features ship.",
-      founder_lock: "Locked for life",
+      founder_label: "Founding Learner price",
+      founder_info: "Join during the Founding Learner stage and your price stays locked for as long as your subscription remains active, even after later price increases. The price changes as VIRORA reaches the next product milestones.",
+      founder_lock: "Price locked while subscribed",
       founder_deadline: "Founder price ends {date}",
       founder_then: "then {price}",
       founder_left: "left to lock in",
