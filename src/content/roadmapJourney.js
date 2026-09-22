@@ -79,3 +79,10 @@ export const ROADMAP_EXTRA = {
   ru:{heroTitle:"Вы здесь до того, как полная система существует.",heroDesc:"VIRORA строится слой за слоем. Исследуйте то, что уже существует, что создаётся сейчас и куда движется система.",backJourney:"Вернуться к пути",systemItems:["Навыки","Программа","Практика","Словарь","Грамматика","Прогресс","AI"]}
 };
 export function getRoadmapExtra(lang="en"){ return ROADMAP_EXTRA[["en","uz","ru"].includes(lang) ? lang : "en"]; }
+
+export const ROADMAP_STATUS = {
+  en:{exploring:"EXPLORING",planned:"COMING NEXT",building:"BUILDING NOW",shipped:"SHIPPED"},
+  uz:{exploring:"KO‘RIB CHIQILMOQDA",planned:"KEYINGI",building:"HOZIR QURILMOQDA",shipped:"TAYYOR"},
+  ru:{exploring:"ИССЛЕДУЕМ",planned:"СЛЕДОМ",building:"СЕЙЧАС В РАБОТЕ",shipped:"ГОТОВО"}
+};
+export function getRoadmapStatus(lang="en"){ return ROADMAP_STATUS[["en","uz","ru"].includes(lang) ? lang : "en"]; }
