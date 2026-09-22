@@ -1,7 +1,6 @@
 import React from "react";
 import { Info, Lock } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { IS_BETA } from "@/lib/appMeta";
 import { useAppLang } from "@/hooks/useAppLang";
 import {
   getNextStage, formatUsd, discountVsLaunch, launchPriceFor,
@@ -43,8 +42,6 @@ export default function FounderPriceNote({
 }) {
   const { t } = useAppLang();
   const tone = TONES[variant] || TONES.app;
-  if (!IS_BETA) return null;
-
   // Only name a next price when we actually know this plan's next rung.
   const next = getNextStage();
   let nextPrice = null;
@@ -60,10 +57,10 @@ export default function FounderPriceNote({
   const launch = planId ? launchPriceFor(planId, cycle) : 0;
 
   return (
-    <div className={`space-y-0.5 ${className}`}>
-      <div className="flex items-center gap-1">
+    <div className={`rounded-xl border border-violet-300/15 bg-violet-300/[0.05] px-3 py-2.5 ${className}`}>
+      <div className="flex items-center gap-1.5">
         <Lock className={`w-3 h-3 flex-shrink-0 ${tone.lock}`} />
-        <span className={`text-[11px] font-semibold ${tone.label}`}>
+        <span className={`text-xs font-bold uppercase tracking-[0.08em] ${tone.label}`}>
           {t("pricing.founder_label")}
         </span>
         <Popover>
@@ -89,18 +86,18 @@ export default function FounderPriceNote({
       </div>
 
       {off > 0 && (
-        <p className={`text-[11px] font-bold ${tone.lock}`}>
+        <p className={`mt-1 text-sm font-black ${tone.lock}`}>
           {t("pricing.founder_off", { pct: off })}
         </p>
       )}
 
-      <p className={`text-[10px] font-semibold ${tone.lock}`}>{t("pricing.founder_lock")}</p>
+      <p className={`mt-0.5 text-[11px] font-bold ${tone.lock}`}>{t("pricing.founder_lock")}</p>
 
       {/* Both future prices, stated forward and never struck through: the next
           rung is the immediate reason to act, the launch price is the size of
           the deal. Neither has ever been charged, so neither is ever presented
           as a former price. */}
-      <p className={`text-[10px] ${tone.next}`}>
+      <p className={`mt-0.5 text-[11px] ${tone.next}`}>
         {nextPrice && t("pricing.founder_then", { price: nextPrice })}
         {nextPrice && launch > 0 && " · "}
         {launch > 0 && t("pricing.founder_launch", { price: formatUsd(launch) })}
