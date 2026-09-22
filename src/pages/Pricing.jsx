@@ -66,13 +66,13 @@ export default function Pricing() {
           <div className="flex flex-col items-center text-center">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-400/[0.08] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-violet-300">
               <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-              Founding Learner · First Public Release
+              {t("pricing.pricing_eyebrow")}
             </div>
             <h1 className="max-w-2xl text-3xl font-semibold tracking-[-0.03em] text-white sm:text-5xl">
-              Choose your level of access.
+              {t("pricing.pricing_hero_title")}
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-6 text-white/55 sm:text-base">
-              Start with the essentials. Upgrade when you want the complete VIRORA learning system.
+              {t("pricing.pricing_hero_sub")}
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export default function Pricing() {
               <Info className="h-4 w-4" />
             </button>
             <span className="pointer-events-none absolute right-0 top-11 z-20 w-52 rounded-xl border border-white/10 bg-[#111327] px-3 py-2 text-left text-[10px] leading-4 text-white/65 opacity-0 shadow-2xl transition-opacity group-hover:opacity-100">
-              Founder pricing is subject to the current VIRORA launch stage.
+              {t("pricing.pricing_info")}
             </span>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function Pricing() {
                   </div>
                   <div className="min-w-0 pr-16">
                     <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">
-                      {isVip ? "Complete access" : "For serious learners"}
+                      {isVip ? t("pricing.pricing_complete") : t("pricing.pricing_serious")}
                     </p>
                     <h2 className="mt-1 text-2xl font-semibold tracking-tight text-white">{p.name.replace(" Plan", "")}</h2>
                   </div>
@@ -173,7 +173,7 @@ export default function Pricing() {
 
                 <div className="mt-6 flex-1">
                   <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-white/35">
-                    What’s included
+                    {t("pricing.pricing_included")}
                   </p>
                   <ul className="space-y-3">
                     {p.featureKeys.map((f, fi) => (
@@ -220,7 +220,7 @@ export default function Pricing() {
         </div>
 
         <p className="mx-auto mt-10 max-w-xl text-center text-[11px] leading-5 text-white/25">
-          Prices shown are for the current founder stage. Plan features and availability may evolve as VIRORA develops.
+          {t("pricing.pricing_stage_note")}
         </p>
       </div>
       </div>
