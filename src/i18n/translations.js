@@ -317,6 +317,7 @@ export const translations = {
       ref_label: "Tranzaksiya ID / Chek raqami:", ref_placeholder: "Masalan: 45781223",
       submit_payment: "To'lovni tasdiqlashga yuborish", submitting: "Yuborilmoqda...",
       header_title: "Obuna rejasini tanlang", header_sub: "To'liq kirish uchun qulay rejani tanlang va ingliz tilini o'rganing",
+      pricing_eyebrow: "FOUNDING LEARNER · BIRINCHI OMMAVIY RELIZ", pricing_hero_title: "Kirish darajangizni tanlang.", pricing_hero_sub: "Asosiy imkoniyatlardan boshlang. VIRORA'ning to'liq o'rganish tizimiga ehtiyojingiz oshganda yuqoriroq rejaga o'ting.", pricing_complete: "To'liq kirish", pricing_serious: "Jiddiy o'rganuvchilar uchun", pricing_included: "Nimalar kiradi", pricing_stage_note: "Ko'rsatilgan narxlar joriy asoschi bosqichiga tegishli. VIRORA rivojlanishi bilan reja imkoniyatlari va mavjudligi o'zgarishi mumkin.", pricing_info: "Asoschi narxi VIRORA'ning joriy ishga tushirish bosqichiga bog'liq."
       discount_title: "🔥 Chegirmaning oxirgi kunlari! 41% gacha arzon",
       discount_sub: "Chegirmalar cheklangan vaqt ichida amal qiladi",
       discount_word: "chegirma",
@@ -721,6 +722,7 @@ export const translations = {
       ref_label: "Transaction ID / Receipt no.:", ref_placeholder: "e.g. 45781223",
       submit_payment: "Submit payment for confirmation", submitting: "Submitting...",
       header_title: "Choose a subscription plan", header_sub: "Pick a convenient plan for full access and learn English",
+      pricing_eyebrow: "FOUNDING LEARNER · FIRST PUBLIC RELEASE", pricing_hero_title: "Choose your level of access.", pricing_hero_sub: "Start with the essentials. Upgrade when you want the complete VIRORA learning system.", pricing_complete: "Complete access", pricing_serious: "For serious learners", pricing_included: "What’s included", pricing_stage_note: "Prices shown are for the current founder stage. Plan features and availability may evolve as VIRORA develops.", pricing_info: "Founder pricing is subject to the current VIRORA launch stage."
       discount_title: "🔥 Last days of the sale! Up to 41% off",
       discount_sub: "Discounts are available for a limited time",
       discount_word: "off",
@@ -1125,6 +1127,7 @@ export const translations = {
       ref_label: "ID транзакции / № чека:", ref_placeholder: "Напр. 45781223",
       submit_payment: "Отправить платёж на подтверждение", submitting: "Отправка...",
       header_title: "Выберите план подписки", header_sub: "Выберите удобный план для полного доступа и учите английский",
+      pricing_eyebrow: "FOUNDING LEARNER · ПЕРВЫЙ ПУБЛИЧНЫЙ РЕЛИЗ", pricing_hero_title: "Выберите уровень доступа.", pricing_hero_sub: "Начните с необходимого. Перейдите на полный доступ, когда вам понадобится вся система обучения VIRORA.", pricing_complete: "Полный доступ", pricing_serious: "Для серьёзных учеников", pricing_included: "Что входит", pricing_stage_note: "Указанные цены действуют на текущем этапе для основателей. Возможности и доступность планов могут меняться по мере развития VIRORA.", pricing_info: "Цена для основателей зависит от текущего этапа запуска VIRORA."
       discount_title: "🔥 Последние дни распродажи! Скидки до 41%",
       discount_sub: "Скидки действуют ограниченное время",
       discount_word: "скидка",
