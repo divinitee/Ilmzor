@@ -149,10 +149,12 @@ export default function LandingPricing() {
                 </div>
                 <Link to="/register" className="mt-6">
                   <Button
-                    variant={highlighted ? "default" : "outline"}
+                    variant="outline"
                     className={`w-full h-11 text-sm [font-family:'Barlow',_sans-serif] font-bold ${
                     highlighted ?
-                    "" :
+                    "border-0 bg-violet-500 text-white shadow-lg shadow-violet-500/20 hover:bg-violet-400" :
+                    isVip ?
+                    "border-0 bg-amber-300 text-slate-950 shadow-lg shadow-amber-300/10 hover:bg-amber-200" :
                     "bg-white landing-dark:bg-slate-800 border border-slate-200 landing-dark:border-slate-700 text-slate-700 landing-dark:text-slate-200 hover:bg-slate-50 landing-dark:hover:bg-slate-700"}`
                     }>
                     
