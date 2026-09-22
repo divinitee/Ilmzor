@@ -322,9 +322,9 @@ export const translations = {
       discount_word: "chegirma",
       billing_monthly: "Oylik", billing_yearly: "Yillik",
       billing_save: "{pct}% chegirma", per_month: "/ oy", per_year: "/ yil",
-      continue_btn: "— Davom etish", payment_note: "To'lovni bank kartasi yoki QR orqali amalga oshirasiz",
+      continue_btn: "— Davom etish", payment_note: "To'lovni bank kartasi orqali amalga oshirasiz",
       card_btn: "Karta bilan to'lash", card_loading: "To'lov sahifasi ochilmoqda...",
-      card_error: "To'lov sahifasini ochib bo'lmadi. Qayta urinib ko'ring yoki quyidagi usuldan foydalaning.",
+      card_error: "To'lov sahifasini ochib bo'lmadi. Qayta urinib ko'ring."
     },
     payment: {
       checking_title: "To'lovingiz tasdiqlanmoqda...",
@@ -726,9 +726,9 @@ export const translations = {
       discount_word: "off",
       billing_monthly: "Monthly", billing_yearly: "Yearly",
       billing_save: "{pct}% off", per_month: "/ mo", per_year: "/ yr",
-      continue_btn: "— Continue", payment_note: "Pay by bank card or QR code",
+      continue_btn: "— Continue", payment_note: "Pay by bank card",
       card_btn: "Pay by card", card_loading: "Opening checkout...",
-      card_error: "Couldn't open checkout. Try again, or use the option below.",
+      card_error: "Couldn't open checkout. Try again."
     },
     payment: {
       checking_title: "Confirming your payment...",
@@ -1130,9 +1130,9 @@ export const translations = {
       discount_word: "скидка",
       billing_monthly: "Ежемесячно", billing_yearly: "Ежегодно",
       billing_save: "{pct}% скидка", per_month: "/ мес", per_year: "/ год",
-      continue_btn: "— Продолжить", payment_note: "Оплата банковской картой или QR-кодом",
+      continue_btn: "— Продолжить", payment_note: "Оплата банковской картой",
       card_btn: "Оплатить картой", card_loading: "Открываем оплату...",
-      card_error: "Не удалось открыть страницу оплаты. Попробуйте снова или воспользуйтесь вариантом ниже.",
+      card_error: "Не удалось открыть страницу оплаты. Попробуйте снова."
     },
     payment: {
       checking_title: "Подтверждаем ваш платёж...",
