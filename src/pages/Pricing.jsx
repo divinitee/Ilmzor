@@ -26,13 +26,13 @@ export default function Pricing() {
   // who is paying is taken from this component, so a tampered client can't
   // buy a subscription onto someone else's account. Access is granted by the
   // dodoWebhook function when Dodo confirms payment, never here.
-  const handleCardCheckout = async () => {
+  const handleCardCheckout = async (planId = selectedPlan, billingCycle = cycle) => {
     setCardError("");
     setCardLoading(true);
     try {
       const res = await base44.functions.invoke("createDodoCheckout", {
-        plan: selectedPlan,
-        billing_cycle: cycle,
+        plan: planId,
+        billing_cycle: billingCycle,
         // Label only — the binding locked price is derived server-side from
         // what Dodo actually charges (see dodoWebhook).
         founder_stage: getCurrentStage().id,
