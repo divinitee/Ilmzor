@@ -223,6 +223,7 @@ export default function Pricing() {
           Prices shown are for the current founder stage. Plan features and availability may evolve as VIRORA develops.
         </p>
       </div>
+      </div>
     </div>
   );
 }
