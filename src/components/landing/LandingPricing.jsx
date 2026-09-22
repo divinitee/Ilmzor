@@ -61,8 +61,8 @@ export default function LandingPricing() {
         </div>
 
         <div className="max-w-md mx-auto mb-4 rounded-2xl border border-blue-200 landing-dark:border-blue-900/60 bg-blue-50/70 landing-dark:bg-blue-950/30 px-4 py-3 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.14em] text-blue-700 landing-dark:text-blue-300">Launch Pricing</p>
-          <p className="text-[11px] text-slate-500 landing-dark:text-slate-400 mt-1">Be among the first VIRORA learners.</p>
+          <p className="text-sm font-black uppercase tracking-[0.16em] text-violet-700 landing-dark:text-violet-300">Founding Learner · Current price stage</p>
+          <p className="text-[11px] text-slate-500 landing-dark:text-slate-400 mt-1">Join during this stage to lock the current subscription price.</p>
         </div>
         <FounderCountdown variant="landing" className="max-w-md mx-auto mb-8" />
 
@@ -134,7 +134,7 @@ export default function LandingPricing() {
                 )}
                 <div className="mt-5 pt-4 border-t border-slate-200/80 landing-dark:border-slate-800">
                   <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 landing-dark:text-slate-500 mb-3">
-                    {t("pricing.included")}
+                    {t("pricing.pricing_included")}
                   </p>
                   <ul className="space-y-2.5 flex-1">
                   {p.featureKeys.map((f) =>
