@@ -73,3 +73,9 @@ export const ROADMAP_ROSTER = {
   }
 };
 export function getRoadmapRoster(lang="en"){ return ROADMAP_ROSTER[["en","uz","ru"].includes(lang) ? lang : "en"]; }
+export const ROADMAP_EXTRA = {
+  en:{heroTitle:"You're here before the full system exists.",heroDesc:"VIRORA is being built one layer at a time. Explore what already exists, what we're building now, and where the system is going.",backJourney:"Back to the journey",systemItems:["Skills","Curriculum","Practice","Vocabulary","Grammar","Progress","AI"]},
+  uz:{heroTitle:"To‘liq tizim hali mavjud emas.",heroDesc:"VIRORA qatlamma-qatlam qurilmoqda. Hozir nima mavjudligi, nimalar qurilayotgani va tizim qayerga ketayotganini ko‘ring.",backJourney:"Sayohatga qaytish",systemItems:["Ko‘nikmalar","Curriculum","Mashq","Vocabulary","Grammatika","Progress","AI"]},
+  ru:{heroTitle:"Вы здесь до того, как полная система существует.",heroDesc:"VIRORA строится слой за слоем. Исследуйте то, что уже существует, что создаётся сейчас и куда движется система.",backJourney:"Вернуться к пути",systemItems:["Навыки","Программа","Практика","Словарь","Грамматика","Прогресс","AI"]}
+};
+export function getRoadmapExtra(lang="en"){ return ROADMAP_EXTRA[["en","uz","ru"].includes(lang) ? lang : "en"]; }
