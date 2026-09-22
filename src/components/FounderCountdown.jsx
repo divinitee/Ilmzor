@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Lock, Clock } from "lucide-react";
-import { IS_BETA } from "@/lib/appMeta";
 import { useAppLang } from "@/hooks/useAppLang";
 import {
   getCurrentStage,
@@ -54,12 +53,11 @@ export default function FounderCountdown({ className = "", variant = "app" }) {
   const tone = TONES[variant] || TONES.app;
 
   useEffect(() => {
-    if (!IS_BETA) return undefined;
+    // Founder pricing is driven by the pricing ladder, not the product beta flag.
+    // VIRORA can be publicly released while a founding-price stage is still active.
     const id = setInterval(() => setMs(msUntilStageEnd()), 1000);
     return () => clearInterval(id);
   }, []);
-
-  if (!IS_BETA) return null;
 
   const stage = getCurrentStage();
   const parts = countdownParts(ms);
