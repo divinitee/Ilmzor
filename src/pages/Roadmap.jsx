@@ -12,7 +12,7 @@ const meta = {
   shipped:{label:"SHIPPED",icon:Check,color:"text-emerald-300",dot:"bg-emerald-400",border:"border-emerald-400/20"}
 };
 
-function Column({ type, onPick, label, stageNames }) {
+function Column({ type, onPick, label, stageNames, roster }) {
   const m = meta[type], Icon = m.icon;
   return <div className={`rounded-2xl border ${m.border} bg-white/[0.025] overflow-hidden`}>
     <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between"><div className={`flex items-center gap-2 text-[10px] font-black tracking-[0.16em] ${m.color}`}><Icon className="w-3.5 h-3.5"/>{label}</div><span className="text-[10px] text-slate-600">{roster[type].length}</span></div>
@@ -81,7 +81,7 @@ export default function Roadmap() {
         </motion.div>
       </section>
 
-      <section className="mt-28"><div className="max-w-2xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.roster}</div><h2 className="mt-3 text-3xl sm:text-4xl font-bold">{ui.rosterTitle}</h2><p className="mt-4 text-sm sm:text-base leading-7 text-slate-400">{ui.rosterDesc}</p></div><div className="mt-10 grid lg:grid-cols-4 gap-4">{Object.keys(meta).map(type=><Column key={type} type={type} label={status[type]} stageNames={stageNames} onPick={setPicked}/>)}</div></section>
+      <section className="mt-28"><div className="max-w-2xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.roster}</div><h2 className="mt-3 text-3xl sm:text-4xl font-bold">{ui.rosterTitle}</h2><p className="mt-4 text-sm sm:text-base leading-7 text-slate-400">{ui.rosterDesc}</p></div><div className="mt-10 grid lg:grid-cols-4 gap-4">{Object.keys(meta).map(type=><Column key={type} type={type} label={status[type]} stageNames={stageNames} roster={roster} onPick={setPicked}/>)}</div></section>
 
       <section className="mt-28 relative overflow-hidden rounded-[2rem] border border-violet-400/15 bg-gradient-to-br from-violet-500/[0.09] via-indigo-500/[0.04] to-transparent p-8 sm:p-12"><div className="relative max-w-3xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.destination}</div><h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight">{ui.destinationTitle}</h2><p className="mt-5 text-sm sm:text-base leading-7 text-slate-400">{ui.destinationDesc}</p><div className="mt-7 flex flex-wrap gap-2">{extra.systemItems.map(x=><span key={x} className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs text-slate-300">{x}</span>)}</div></div></section>
     </main>
