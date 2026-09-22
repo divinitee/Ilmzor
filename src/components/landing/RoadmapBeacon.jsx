@@ -19,6 +19,9 @@ export default function RoadmapBeacon() {
   const selectedStage = stages[selected];
   const currentStage = stages[CURRENT_STAGE_INDEX];
   const isLast = selected === stages.length - 1;
+  const selectedFraction = selectedStage?.pathFraction ?? currentStage.pathFraction;
+  const futureFraction = Math.max(0, selectedFraction - currentStage.pathFraction);
+  const hasFutureSelection = selected > CURRENT_STAGE_INDEX;
 
   useEffect(() => {
     if (!pathRef.current) return;
@@ -57,6 +60,8 @@ export default function RoadmapBeacon() {
                 <filter id="roadGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="8" /></filter>
                 <linearGradient id="roadActive" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#6d28d9"/><stop offset="52%" stopColor="#8b5cf6"/><stop offset="100%" stopColor="#c4b5fd"/></linearGradient>
                 <linearGradient id="roadEnergy" x1="0" x2="1"><stop offset="0%" stopColor="#ffffff" stopOpacity="0"/><stop offset="45%" stopColor="#ddd6fe" stopOpacity=".95"/><stop offset="55%" stopColor="#ffffff" stopOpacity="1"/><stop offset="100%" stopColor="#c4b5fd" stopOpacity="0"/></linearGradient>
+                <linearGradient id="roadFuture" x1="0" x2="1"><stop offset="0%" stopColor="#3b0764"/><stop offset="50%" stopColor="#4c1d95"/><stop offset="100%" stopColor="#5b21b6"/></linearGradient>
+                <linearGradient id="roadDirectional" x1="0" x2="1"><stop offset="0%" stopColor="#ddd6fe" stopOpacity="0"/><stop offset="50%" stopColor="#c4b5fd" stopOpacity=".8"/><stop offset="100%" stopColor="#ffffff" stopOpacity="0"/></linearGradient>
               </defs>
 
               <path ref={pathRef} d={ROAD_PATH} fill="none" stroke="rgba(30,41,59,.96)" strokeWidth="72" strokeLinecap="round" />
@@ -66,18 +71,42 @@ export default function RoadmapBeacon() {
               {!reduced ? (
                 <>
                   <motion.path d={ROAD_PATH} fill="none" stroke="rgba(139,92,246,.32)" strokeWidth="90" strokeLinecap="round" filter="url(#roadSoftGlow)"
-                    initial={{ pathLength: 0 }} animate={{ pathLength: currentStage.pathFraction, opacity: [0.36, 0.58, 0.36] }}
-                    transition={{ pathLength: { duration: .85, ease: [0.22,1,0.36,1] }, opacity: { duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" } }} />
+                    initial={{ pathLength: 0 }} animate={{ pathLength: currentStage.pathFraction, opacity: [0.34, 0.5, 0.34] }}
+                    transition={{ pathLength: { duration: .7, ease: [0.22,1,0.36,1] }, opacity: { duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" } }} />
                   <motion.path d={ROAD_PATH} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" filter="url(#roadGlow)"
-                    initial={{ pathLength: 0 }} animate={{ pathLength: currentStage.pathFraction, opacity: [0.84, 1, 0.84] }}
-                    transition={{ pathLength: { duration: .85, ease: [0.22,1,0.36,1] }, opacity: { duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" } }} />
-                  <motion.path d={ROAD_PATH} fill="none" stroke="url(#roadEnergy)" strokeWidth="5" strokeLinecap="round"
-                    pathLength="1" initial={{ strokeDasharray: "0.045 0.955", strokeDashoffset: 0, opacity: 0 }}
-                    animate={{ strokeDasharray: "0.045 0.955", strokeDashoffset: [0, -(currentStage.pathFraction - 0.045)], opacity: [0, .95, 0] }}
-                    transition={{ strokeDashoffset: { duration: currentStage.pathFraction / ARRIVAL_SPEED, ease: "linear" }, opacity: { duration: currentStage.pathFraction / ARRIVAL_SPEED, ease: "linear" } }} />
+                    initial={{ pathLength: 0 }} animate={{ pathLength: currentStage.pathFraction, opacity: [0.86, 1, 0.86] }}
+                    transition={{ pathLength: { duration: .7, ease: [0.22,1,0.36,1] }, opacity: { duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" } }} />
+
+                  {hasFutureSelection && (
+                    <>
+                      <motion.path d={ROAD_PATH} fill="none" stroke="rgba(76,29,149,.28)" strokeWidth="74" strokeLinecap="round" filter="url(#roadSoftGlow)"
+                        pathLength="1" initial={{ opacity: 0 }} animate={{ opacity: [0.18, 0.3, 0.18] }}
+                        transition={{ duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" }}
+                        strokeDasharray={`${futureFraction} ${1 - futureFraction}`} strokeDashoffset={-currentStage.pathFraction} />
+                      <motion.path d={ROAD_PATH} fill="none" stroke="url(#roadFuture)" strokeWidth="55" strokeLinecap="round"
+                        pathLength="1" initial={{ opacity: 0 }} animate={{ opacity: [0.72, 0.88, 0.72] }}
+                        transition={{ duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" }}
+                        strokeDasharray={`${futureFraction} ${1 - futureFraction}`} strokeDashoffset={-currentStage.pathFraction} />
+                    </>
+                  )}
+
+                  <motion.circle r="7" fill="#f5f3ff" stroke="#8b5cf6" strokeWidth="3" filter="url(#roadGlow)"
+                    initial={{ opacity: 0 }} animate={{ opacity: [0.55, 0.9, 0.55] }}
+                    transition={{ duration: ROAD_BREATHE, repeat: Infinity, ease: "easeInOut" }}>
+                    <animateMotion path={ROAD_PATH} dur="5.8s" repeatCount="indefinite" rotate="auto"
+                      keyPoints={`0;${selectedFraction}`} keyTimes="0;1" calcMode="linear" />
+                  </motion.circle>
+                  <motion.path d={ROAD_PATH} fill="none" stroke="url(#roadDirectional)" strokeWidth="3.5" strokeLinecap="round"
+                    pathLength="1" strokeDasharray="0.035 0.965" strokeDashoffset="0"
+                    initial={{ opacity: 0 }} animate={{ opacity: [0, 0.72, 0] }}
+                    transition={{ duration: 5.8, repeat: Infinity, ease: "linear" }}
+                    style={{ pathLength: 1 }} />
                 </>
               ) : (
-                <path d={ROAD_PATH} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" strokeDasharray={`${currentStage.pathFraction} ${1 - currentStage.pathFraction}`} pathLength={1} style={{ opacity: .9 }} />
+                <>
+                  <path d={ROAD_PATH} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" strokeDasharray={`${currentStage.pathFraction} ${1 - currentStage.pathFraction}`} pathLength={1} style={{ opacity: .9 }} />
+                  {hasFutureSelection && <path d={ROAD_PATH} fill="none" stroke="url(#roadFuture)" strokeWidth="55" strokeLinecap="round" strokeDasharray={`${futureFraction} ${1 - futureFraction}`} strokeDashoffset={-currentStage.pathFraction} pathLength={1} style={{ opacity: .82 }} />}
+                </>
               )}
 
               {points.map((point, index) => {
