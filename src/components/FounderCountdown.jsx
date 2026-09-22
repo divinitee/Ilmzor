@@ -64,6 +64,8 @@ export default function FounderCountdown({ className = "", variant = "app" }) {
   const stage = getCurrentStage();
   const parts = countdownParts(ms);
   const deadline = formatDeadline(stage.endsOn, lang);
+  const stageName = stage.id === "founder" ? "FOUNDING LEARNER" : stage.id === "early" ? "EARLY ACCESS" : "STANDARD";
+  const stageProgress = stage.id === "founder" ? 0 : stage.id === "early" ? 1 : 2;
 
   const cells = parts && !parts.expired
     ? [
@@ -74,14 +76,33 @@ export default function FounderCountdown({ className = "", variant = "app" }) {
     : null;
 
   return (
-    <div className={`rounded-2xl border p-4 ${tone.wrap} ${className}`}>
-      <div className="flex items-center gap-2">
-        <Lock className={`w-4 h-4 flex-shrink-0 ${tone.accent}`} />
-        <p className={`text-sm font-bold ${tone.head}`}>
-          {stage.endsOn
-            ? t("pricing.founder_deadline", { date: deadline })
-            : t("pricing.founder_milestone")}
-        </p>
+    <div className={`rounded-2xl border p-4 sm:p-5 ${tone.wrap} ${className}`}>
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <Lock className={`w-4 h-4 flex-shrink-0 ${tone.accent}`} />
+            <p className={`text-[10px] font-black uppercase tracking-[0.16em] ${tone.accent}`}>
+              Founding Learner pricing
+            </p>
+          </div>
+          <p className={`mt-1 text-sm font-bold ${tone.head}`}>
+            {stage.endsOn
+              ? t("pricing.founder_deadline", { date: deadline })
+              : t("pricing.founder_milestone")}
+          </p>
+        </div>
+        <span className={`shrink-0 rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] ${tone.accent} border-current/20 bg-white/10`}>
+          {stageName}
+        </span>
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-1.5">
+        {[["FOUNDING LEARNER", 0], ["EARLY ACCESS", 1], ["STANDARD", 2]].map(([label, index]) => (
+          <div key={label} className={`rounded-lg border px-2 py-2 text-center ${index === stageProgress ? "border-current/30 bg-white/15" : "border-transparent bg-black/5"}`}>
+            <div className={`mx-auto mb-1.5 h-1.5 w-full rounded-full ${index <= stageProgress ? "bg-current" : "bg-current/10"}`} />
+            <p className={`text-[8px] font-bold tracking-[0.08em] ${index === stageProgress ? tone.accent : tone.sub}`}>{label}</p>
+          </div>
+        ))}
       </div>
 
       {cells && (
@@ -108,6 +129,9 @@ export default function FounderCountdown({ className = "", variant = "app" }) {
       )}
 
       <p className={`text-[11px] mt-2 ${tone.sub}`}>{t("pricing.founder_final")}</p>
+      <p className={`mt-2 text-[11px] font-semibold ${tone.accent}`}>
+        Your subscription locks the price at the stage you join.
+      </p>
     </div>
   );
 }
