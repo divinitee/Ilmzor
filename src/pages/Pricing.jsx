@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Check, CreditCard, Loader2, Info } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, CreditCard, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
@@ -51,6 +51,15 @@ export default function Pricing() {
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-slate-950 dark:to-indigo-950 px-4 py-12">
       <div className="max-w-lg mx-auto">
         <div className="relative text-center mb-8">
+          <button
+            type="button"
+            onClick={() => window.history.length > 1 ? window.history.back() : (window.location.href = "/")}
+            aria-label="Back"
+            title="Back"
+            className="absolute left-0 top-0 w-9 h-9 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground flex items-center justify-center transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
           <div className="absolute right-0 top-0 group">
             <button type="button" aria-label="Subject to change" title="Subject to change" className="w-7 h-7 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground flex items-center justify-center transition-colors">
               <Info className="w-3.5 h-3.5" />
