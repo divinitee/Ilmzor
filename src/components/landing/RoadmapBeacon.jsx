@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, MousePointer2, Sparkles } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-import { CURRENT_STAGE_INDEX, getRoadmapStages, ROAD_PATH } from "@/content/roadmapJourney";
+import { CURRENT_STAGE_INDEX, getRoadmapStages, getRoadmapUI, ROAD_PATH } from "@/content/roadmapJourney";
 
 const ROAD_BREATHE = 6.5;
 const ARRIVAL_SPEED = 0.34;
@@ -12,6 +12,7 @@ export default function RoadmapBeacon() {
   const reduced = useReducedMotion();
   const { lang } = useAppLang();
   const stages = useMemo(() => getRoadmapStages(lang), [lang]);
+  const ui = getRoadmapUI(lang);
   const [selected, setSelected] = useState(CURRENT_STAGE_INDEX);
   const [points, setPoints] = useState([]);
   const pathRef = useRef(null);
@@ -40,14 +41,14 @@ export default function RoadmapBeacon() {
         <div className="relative">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-violet-300 font-black"><Sparkles className="w-3 h-3" /> The VIRORA journey</div>
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-violet-300 font-black"><Sparkles className="w-3 h-3" /> {ui.journey}</div>
               <motion.h3 key={selectedStage.id} initial={reduced ? false : { opacity: 0, y: 5 }} animate={reduced ? undefined : { opacity: 1, y: 0 }} transition={reduced ? undefined : { duration: .25 }} aria-live="polite" className="mt-2 text-xl sm:text-2xl font-bold text-slate-50">{selectedStage.title}</motion.h3>
               <motion.p key={selectedStage.short} initial={reduced ? false : { opacity: 0 }} animate={reduced ? undefined : { opacity: 1 }} transition={reduced ? undefined : { duration: .3 }} className="mt-2 text-xs sm:text-sm leading-6 text-slate-400 max-w-sm">{selectedStage.short}</motion.p>
             </div>
-            <span className="shrink-0 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-600">Chapter {selected + 1} / {stages.length}</span>
+            <span className="shrink-0 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-600">{ui.chapter} {selected + 1} / {stages.length}</span>
           </div>
 
-          <button type="button" onClick={focusNext} aria-label={`Chapter ${selected + 1} of ${stages.length}. ${selectedStage.kicker}. Explore the next chapter.`}
+          <button type="button" onClick={focusNext} aria-label={`${ui.chapter} ${selected + 1} of ${stages.length}. ${selectedStage.kicker}. ${ui.ariaExplore}`} 
             className="relative mt-5 block w-full aspect-[2/1] overflow-hidden rounded-[1.5rem] border border-white/5 bg-[#070812] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/70">
             <div className="absolute inset-0 opacity-35" style={{ backgroundImage: "linear-gradient(rgba(139,92,246,.065) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,.065) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
             <svg viewBox="0 0 618 300" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -76,7 +77,7 @@ export default function RoadmapBeacon() {
                     transition={{ strokeDashoffset: { duration: currentStage.pathFraction / ARRIVAL_SPEED, ease: "linear" }, opacity: { duration: currentStage.pathFraction / ARRIVAL_SPEED, ease: "linear" } }} />
                 </>
               ) : (
-                <path d={ROAD_PATH} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" strokeDasharray="none" pathLength={1} style={{ strokeDashoffset: 1 - currentStage.pathFraction, opacity: .9 }} />
+                <path d={ROAD_PATH} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" strokeDasharray={`${currentStage.pathFraction} ${1 - currentStage.pathFraction}`} pathLength={1} style={{ opacity: .9 }} />
               )}
 
               {points.map((point, index) => {
@@ -111,9 +112,9 @@ export default function RoadmapBeacon() {
             <button type="button" onClick={isLast ? undefined : focusNext}
               className="inline-flex items-center gap-2 rounded-xl border border-violet-200/25 bg-violet-500/10 px-3.5 py-2 text-[10px] font-black uppercase tracking-[0.14em] text-violet-100 hover:bg-violet-500/20 transition-colors">
               <motion.span animate={reduced ? undefined : { scale: [1,.84,1] }} transition={reduced ? undefined : { duration: .9, repeat: isLast ? 0 : Infinity, repeatDelay: 2 }} className="inline-flex"><MousePointer2 className="w-3.5 h-3.5" /></motion.span>
-              {isLast ? "See the full roadmap" : selected === CURRENT_STAGE_INDEX ? "Explore the journey" : "Continue journey"}
+              {isLast ? ui.full : selected === CURRENT_STAGE_INDEX ? ui.explore : ui.continue}
             </button>
-            {isLast ? <Link to="/roadmap" className="inline-flex items-center gap-1.5 text-xs font-bold text-violet-300 hover:text-violet-200">Full roadmap <ArrowUpRight className="w-3.5 h-3.5" /></Link> : <span className="text-[10px] text-slate-600">{currentStage.kicker} · chapter {CURRENT_STAGE_INDEX + 1} of {stages.length}</span>}
+            {isLast ? <Link to="/roadmap" className="inline-flex items-center gap-1.5 text-xs font-bold text-violet-300 hover:text-violet-200">{ui.roadmap} <ArrowUpRight className="w-3.5 h-3.5" /></Link> : <span className="text-[10px] text-slate-600">{currentStage.kicker} · {ui.chapter} {CURRENT_STAGE_INDEX + 1} / {stages.length}</span>}
           </div>
         </div>
       </motion.div>
