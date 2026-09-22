@@ -5,12 +5,6 @@ import { ArrowLeft, ArrowRight, BookOpen, Check, CircleDot, Compass, Clock3, Loc
 import { useAppLang } from "@/hooks/useAppLang";
 import { CURRENT_STAGE_INDEX, getRoadmapExtra, getRoadmapRoster, getRoadmapStages, getRoadmapStatus, getRoadmapUI } from "@/content/roadmapJourney";
 
-const legacyRoster = {
-  exploring: [["Core learner journey","Refine the path from onboarding and placement to vocabulary, practice and measurable progress.","personalization"],["Deeper learner signals","Identify the signals that should influence what a learner sees and practices next.","personalization"]],
-  planned: [["Controlled public release","Define the first public audience, boundaries and launch experience.","foundation"],["Grammar learning system","Stabilize the reusable grammar lesson structure and initial learning subset.","personalization"],["Meaningful progress model","Define mastery before expanding the progress experience.","personalization"]],
-  building: [["Meaningful progress tracking","Move beyond game correctness and measure actual learner development.","personalization"],["Grammar progression","Turn the grammar architecture into a usable learn → practice progression.","personalization"],["Landing + pricing promise audit","Make sure what VIRORA promises matches what the product actually delivers.","foundation"]],
-  shipped: [["Vocabulary learning engine","The vocabulary corpus, senses and review loop now support a real learning cycle.","foundation"],["Skill Hub experience","The learner can navigate the skill system and enter learning activity.","foundation"],["Founding Learner pricing","Founder-stage pricing, price locking and progression are connected to the product.","foundation"],["Learn / Practice architecture","A shared learning-mode structure is established for the skill experience.","foundation"]]
-};
 const meta = {
   exploring:{label:"EXPLORING",icon:Compass,color:"text-slate-300",dot:"bg-slate-400",border:"border-slate-700"},
   planned:{label:"COMING NEXT",icon:Clock3,color:"text-blue-300",dot:"bg-blue-400",border:"border-blue-400/20"},
