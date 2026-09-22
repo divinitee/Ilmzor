@@ -39,12 +39,16 @@ export default function RoadmapBeacon() {
 
             <svg viewBox="0 0 600 300" className="absolute inset-0 w-full h-full" preserveAspectRatio="none" aria-hidden="true">
               <defs>
-                <filter id="roadGlow"><feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                <linearGradient id="roadActive" x1="0" x2="1"><stop offset="0%" stopColor="#8b5cf6"/><stop offset="55%" stopColor="#a78bfa"/><stop offset="100%" stopColor="#c4b5fd"/></linearGradient>
+                <filter id="roadGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="11" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <filter id="roadSoftGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+                <linearGradient id="roadActive" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#6d28d9"/><stop offset="48%" stopColor="#8b5cf6"/><stop offset="78%" stopColor="#a78bfa"/><stop offset="100%" stopColor="#c4b5fd"/></linearGradient>
+                <linearGradient id="roadEnergy" x1="0" x2="1"><stop offset="0%" stopColor="#ffffff" stopOpacity="0"/><stop offset="45%" stopColor="#ddd6fe" stopOpacity=".9"/><stop offset="55%" stopColor="#ffffff" stopOpacity="1"/><stop offset="100%" stopColor="#c4b5fd" stopOpacity="0"/></linearGradient>
               </defs>
               <path d={roadPath} fill="none" stroke="rgba(30,41,59,.95)" strokeWidth="72" strokeLinecap="round" />
               <path d={roadPath} fill="none" stroke="rgba(71,85,105,.58)" strokeWidth="61" strokeLinecap="round" />
-              <motion.path d={roadPath} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" filter="url(#roadGlow)" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: step / chapters.length, opacity: step ? .95 : 0 }} transition={{ duration: .9, ease: [0.22,1,0.36,1] }} />
+              <motion.path d={roadPath} fill="none" stroke="rgba(139,92,246,.34)" strokeWidth="88" strokeLinecap="round" filter="url(#roadSoftGlow)" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: step / chapters.length, opacity: step ? [0.34,0.62,0.34] : 0 }} transition={{ pathLength: { duration: .9, ease: [0.22,1,0.36,1] }, opacity: { duration: 3.6, repeat: step ? Infinity : 0, ease: "easeInOut" } }} />
+              <motion.path d={roadPath} fill="none" stroke="url(#roadActive)" strokeWidth="57" strokeLinecap="round" filter="url(#roadGlow)" initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: step / chapters.length, opacity: step ? [0.82,1,0.82] : 0 }} transition={{ pathLength: { duration: .9, ease: [0.22,1,0.36,1] }, opacity: { duration: 3.2, repeat: step ? Infinity : 0, ease: "easeInOut" } }} />
+              <motion.path d={roadPath} fill="none" stroke="url(#roadEnergy)" strokeWidth="4" strokeLinecap="round" pathLength="1" initial={{ strokeDasharray: "0 1", strokeDashoffset: 0, opacity: 0 }} animate={{ strokeDasharray: ((step / chapters.length) * 0.16) + " " + Math.max(0.001, 1 - (step / chapters.length) * 0.16), strokeDashoffset: step ? [0,-1] : 0, opacity: step ? [0,.95,0] : 0 }} transition={{ strokeDashoffset: { duration: 2.4, repeat: step ? Infinity : 0, ease: "linear" }, opacity: { duration: 2.4, repeat: step ? Infinity : 0, ease: "easeInOut" } }} />
               <path d={roadPath} fill="none" stroke="rgba(226,232,240,.62)" strokeWidth="2" strokeDasharray="9 11" strokeLinecap="round" />
               {step > 0 && <motion.circle r="7" fill="#ddd6fe" stroke="#8b5cf6" strokeWidth="4" filter="url(#roadGlow)" initial={{ offsetDistance: "0%" }} animate={{ offsetDistance: (Math.min(step, chapters.length) / chapters.length) * 100 + "%" }} transition={{ duration: .95, ease: [0.22,1,0.36,1] }} style={{ offsetPath: "path('" + roadPath + "')" }} />}
             </svg>
@@ -54,13 +58,14 @@ export default function RoadmapBeacon() {
               const current = step === index + 1;
               return <motion.div key={chapter.title} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: chapter.x, top: chapter.y }} initial={false} animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : .65 }} transition={{ duration: .45 }}>
                 <div className="relative">
-                  {visible && <motion.div className="absolute inset-[-13px] rounded-full bg-violet-400/20 blur-lg" animate={reduced ? {} : { scale: current ? [1,1.45,1] : 1, opacity: current ? [.65,.12,.65] : .35 }} transition={{ duration: 2.2, repeat: current && !reduced ? Infinity : 0 }} />}
-                  <div className={"relative w-8 h-8 rounded-full border-2 bg-[#101026] flex items-center justify-center " + (current ? "border-violet-100 shadow-[0_0_28px_rgba(167,139,250,.9)]" : "border-violet-300/80 shadow-[0_0_18px_rgba(139,92,246,.45)]")}><span className={"w-2.5 h-2.5 rounded-full " + (current ? "bg-white" : "bg-violet-300")} /></div>
+                  {visible && <motion.div className="absolute inset-[-16px] rounded-full bg-violet-400/25 blur-xl" animate={reduced ? {} : { scale: current ? [1,1.5,1] : [1,1.12,1], opacity: current ? [.8,.18,.8] : [.32,.5,.32] }} transition={{ duration: current ? 2.2 : 4.5, repeat: reduced ? 0 : Infinity, ease: "easeInOut" }} />}
+                  <div className={"relative w-8 h-8 rounded-full border-2 bg-[#101026] flex items-center justify-center " + (current ? "border-violet-100 shadow-[0_0_28px_rgba(167,139,250,.95),0_0_60px_rgba(139,92,246,.45)]" : "border-violet-300/80 shadow-[0_0_18px_rgba(139,92,246,.45)]")}><span className={"w-2.5 h-2.5 rounded-full " + (current ? "bg-white shadow-[0_0_12px_rgba(255,255,255,.95)]" : "bg-violet-300")} /></div>
                   <div className={"absolute bottom-11 left-1/2 -translate-x-1/2 w-36 text-center " + (current ? "opacity-100" : "opacity-70")}><div className="text-[9px] uppercase tracking-[0.15em] font-black text-violet-200">{chapter.kicker}</div><div className="mt-1 text-[10px] font-bold text-slate-200">{chapter.title}</div></div>
                 </div>
               </motion.div>;
             })}
 
+            {step > 0 && <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_72%,rgba(139,92,246,.11),transparent_22%),radial-gradient(circle_at_68%_42%,rgba(139,92,246,.08),transparent_28%)]" />}
             {step === 0 && <motion.div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none" animate={reduced ? {} : { y: [0,-4,0], opacity: [.72,1,.72] }} transition={{ duration: 2, repeat: Infinity }}><div className="mx-auto w-12 h-12 rounded-2xl border border-violet-300/25 bg-violet-500/10 flex items-center justify-center shadow-[0_0_32px_rgba(139,92,246,.22)]"><MousePointer2 className="w-6 h-6 text-violet-200" /></div><div className="mt-2 text-[10px] uppercase tracking-[0.18em] font-black text-violet-200">Click to begin</div></motion.div>}
           </div>
 
