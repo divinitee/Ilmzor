@@ -51,3 +51,25 @@ export function getRoadmapStages(lang="en") {
 export function getRoadmapUI(lang="en") {
   return ROADMAP_UI[["en","uz","ru"].includes(lang) ? lang : "en"];
 }
+
+export const ROADMAP_ROSTER = {
+  en:{
+    exploring:[["Core learner journey","Refine the path from onboarding and placement to vocabulary, practice and measurable progress.","Personalization"],["Deeper learner signals","Identify the signals that should influence what a learner sees and practices next.","Personalization"]],
+    planned:[["Controlled public release","Define the first public audience, boundaries and launch experience.","Foundation"],["Grammar learning system","Stabilize the reusable grammar lesson structure and initial learning subset.","Personalization"],["Meaningful progress model","Define mastery before expanding the progress experience.","Personalization"]],
+    building:[["Meaningful progress tracking","Move beyond game correctness and measure actual learner development.","Personalization"],["Grammar progression","Turn the grammar architecture into a usable learn → practice progression.","Personalization"],["Landing + pricing promise audit","Make sure what VIRORA promises matches what the product actually delivers.","Foundation"]],
+    shipped:[["Vocabulary learning engine","The vocabulary corpus, senses and review loop now support a real learning cycle.","Foundation"],["Skill Hub experience","The learner can navigate the skill system and enter learning activity.","Foundation"],["Founding Learner pricing","Founder-stage pricing, price locking and progression are connected to the product.","Foundation"],["Learn / Practice architecture","A shared learning-mode structure is established for the skill experience.","Foundation"]]
+  },
+  uz:{
+    exploring:[["Asosiy o‘quvchi yo‘li","Onboarding va placement'dan vocabulary, mashq va o‘lchanadigan progressgacha yo‘lni takomillashtirish.","Personalization"],["O‘quvchi signallari","Keyingi mashq va yo‘lni belgilaydigan signallarni aniqlash.","Personalization"]],
+    planned:[["Nazoratli ommaviy reliz","Birinchi ommaviy auditoriya, chegaralar va launch tajribasini belgilash.","Foundation"],["Grammar learning system","Qayta ishlatiladigan grammatika darsi tuzilmasi va dastlabki subsetni barqarorlashtirish.","Personalization"],["Mazmunli progress modeli","Progress tajribasini kengaytirishdan oldin mastery'ni aniqlash.","Personalization"]],
+    building:[["Mazmunli progress tracking","Faqat o‘yin to‘g‘riligidan o‘tib, haqiqiy o‘quvchi rivojini o‘lchash.","Personalization"],["Grammar progression","Grammar arxitekturasini learn → practice jarayoniga aylantirish.","Personalization"],["Landing + pricing audit","VIRORA va’dalari mahsulotdagi real imkoniyatlarga mosligini tekshirish.","Foundation"]],
+    shipped:[["Vocabulary learning engine","Vocabulary corpus, senses va review loop haqiqiy o‘rganish siklini qo‘llab-quvvatlaydi.","Foundation"],["Skill Hub tajribasi","O‘quvchi skill tizimida harakatlanib, o‘rganish faoliyatiga kira oladi.","Foundation"],["Founding Learner pricing","Asoschi narxi, price lock va bosqichlar mahsulot bilan bog‘langan.","Foundation"],["Learn / Practice arxitekturasi","Skill tajribasi uchun umumiy learning-mode tuzilmasi yaratildi.","Foundation"]]
+  },
+  ru:{
+    exploring:[["Путь ученика","Уточнить путь от онбординга и placement до словаря, практики и измеримого прогресса.","Personalization"],["Сигналы ученика","Определить сигналы, которые влияют на следующий шаг и практику.","Personalization"]],
+    planned:[["Контролируемый публичный релиз","Определить первую аудиторию, границы и опыт запуска.","Foundation"],["Система изучения грамматики","Стабилизировать структуру уроков грамматики и первоначальный набор.","Personalization"],["Модель осмысленного прогресса","Определить mastery до расширения системы прогресса.","Personalization"]],
+    building:[["Осмысленное отслеживание прогресса","Выйти за рамки правильности игр и измерять реальное развитие ученика.","Personalization"],["Прогрессия грамматики","Превратить архитектуру грамматики в последовательность learn → practice.","Personalization"],["Аудит обещаний landing + pricing","Убедиться, что обещания VIRORA соответствуют реальным возможностям продукта.","Foundation"]],
+    shipped:[["Vocabulary learning engine","Корпус слов, senses и review loop поддерживают реальный цикл обучения.","Foundation"],["Опыт Skill Hub","Ученик может перемещаться по системе навыков и входить в учебную активность.","Foundation"],["Founding Learner pricing","Цена основателя, price lock и этапы связаны с продуктом.","Foundation"],["Архитектура Learn / Practice","Создана единая структура режимов обучения для Skill Hub.","Foundation"]]
+  }
+};
+export function getRoadmapRoster(lang="en"){ return ROADMAP_ROSTER[["en","uz","ru"].includes(lang) ? lang : "en"]; }
