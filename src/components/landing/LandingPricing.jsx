@@ -66,7 +66,7 @@ export default function LandingPricing() {
         </div>
         <FounderCountdown variant="landing" className="max-w-md mx-auto mb-8" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto items-start">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
           {PLAN_LIST.map((p, i) => {
             const Icon = p.icon;
             const isFree = p.monthlyPrice === 0;
@@ -94,7 +94,13 @@ export default function LandingPricing() {
                   <Icon className="w-5 h-5 text-blue-600 landing-dark:text-blue-400" />
                 </div>
                 <h3 className="font-bold text-slate-900 landing-dark:text-slate-50 text-lg">{p.name}</h3>
-                <div className="mt-3 flex items-baseline gap-1">
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400 landing-dark:text-slate-500">
+                  {t(`plans.position.${p.id}`)}
+                </p>
+                <p className="mt-3 min-h-[40px] text-sm leading-5 text-slate-500 landing-dark:text-slate-400">
+                  {t(`plans.descriptions.${p.id}`)}
+                </p>
+                <div className="mt-4 flex items-baseline gap-1">
                   {isFree ?
                   <span className="text-3xl font-bold text-slate-900 landing-dark:text-slate-50">{t("landing.pricing.free")}</span> :
 
@@ -118,7 +124,11 @@ export default function LandingPricing() {
                     cycle={cycle}
                   />
                 )}
-                <ul className="mt-5 space-y-2.5 flex-1">
+                <div className="mt-5 pt-4 border-t border-slate-200/80 landing-dark:border-slate-800">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 landing-dark:text-slate-500 mb-3">
+                    {t("pricing.included")}
+                  </p>
+                  <ul className="space-y-2.5 flex-1">
                   {p.featureKeys.map((f) =>
                   <li key={f} className="flex items-start gap-2.5 text-sm text-slate-600 landing-dark:text-slate-300">
                       <span className="mt-0.5 w-5 h-5 rounded-full bg-green-100 landing-dark:bg-green-900/40 flex items-center justify-center flex-shrink-0">
@@ -127,7 +137,8 @@ export default function LandingPricing() {
                       {t(`plans.features.${f}`)}
                     </li>
                   )}
-                </ul>
+                  </ul>
+                </div>
                 <Link to="/register" className="mt-6">
                   <Button
                     variant={highlighted ? "default" : "outline"}
