@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, BookOpen, Check, CreditCard, Loader2, Info } from "lucide-react";
+import { ArrowLeft, Check, CreditCard, Loader2, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
@@ -17,10 +17,6 @@ export default function Pricing() {
   const [cardError, setCardError] = useState("");
 
   const isYearly = cycle === "yearly";
-  const plan = PLAN_LIST.find((p) => p.id === selectedPlan);
-  const price = isYearly ? plan.yearlyPrice : plan.monthlyPrice;
-  const period = isYearly ? t("pricing.per_year") : t("pricing.per_month");
-
   // Card payment via Dodo Payments. The backend function derives the buyer
   // from the authenticated session and builds the checkout — nothing about
   // who is paying is taken from this component, so a tampered client can't
