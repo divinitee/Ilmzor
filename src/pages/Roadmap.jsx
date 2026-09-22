@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, BookOpen, Check, CircleDot, Compass, Clock3, LockKeyhole, Sparkles, Zap } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-import { CURRENT_STAGE_INDEX, getRoadmapExtra, getRoadmapRoster, getRoadmapStages, getRoadmapUI } from "@/content/roadmapJourney";
+import { CURRENT_STAGE_INDEX, getRoadmapExtra, getRoadmapRoster, getRoadmapStages, getRoadmapStatus, getRoadmapUI } from "@/content/roadmapJourney";
 
 const legacyRoster = {
   exploring: [["Core learner journey","Refine the path from onboarding and placement to vocabulary, practice and measurable progress.","personalization"],["Deeper learner signals","Identify the signals that should influence what a learner sees and practices next.","personalization"]],
@@ -18,11 +18,11 @@ const meta = {
   shipped:{label:"SHIPPED",icon:Check,color:"text-emerald-300",dot:"bg-emerald-400",border:"border-emerald-400/20"}
 };
 
-function Column({ type, onPick }) {
+function Column({ type, onPick, label, stageNames }) {
   const m = meta[type], Icon = m.icon;
   return <div className={`rounded-2xl border ${m.border} bg-white/[0.025] overflow-hidden`}>
-    <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between"><div className={`flex items-center gap-2 text-[10px] font-black tracking-[0.16em] ${m.color}`}><Icon className="w-3.5 h-3.5"/>{m.label}</div><span className="text-[10px] text-slate-600">{roster[type].length}</span></div>
-    <div className="p-3 space-y-2.5">{roster[type].map(([title,desc,stage]) => <motion.button key={title} type="button" onClick={() => onPick({title,desc,stage,type})} whileHover={{x:3}} className="w-full text-left rounded-xl border border-white/5 bg-slate-950/45 hover:bg-white/[0.045] hover:border-white/10 p-3.5 transition-colors"><div className="flex items-start gap-2"><span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${m.dot}`}/><div><div className="text-sm font-semibold text-slate-100">{title}</div><div className="mt-1 text-[11px] leading-5 text-slate-500">{desc}</div><div className="mt-2 text-[9px] uppercase tracking-[0.12em] text-slate-600">{stage}</div></div></div></motion.button>)}</div>
+    <div className="px-4 py-3 border-b border-white/5 flex items-center justify-between"><div className={`flex items-center gap-2 text-[10px] font-black tracking-[0.16em] ${m.color}`}><Icon className="w-3.5 h-3.5"/>{label}</div><span className="text-[10px] text-slate-600">{roster[type].length}</span></div>
+    <div className="p-3 space-y-2.5">{roster[type].map(([title,desc,stage]) => <motion.button key={title} type="button" onClick={() => onPick({title,desc,stageId:stage,type})} whileHover={{x:3}} className="w-full text-left rounded-xl border border-white/5 bg-slate-950/45 hover:bg-white/[0.045] hover:border-white/10 p-3.5 transition-colors"><div className="flex items-start gap-2"><span className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${m.dot}`}/><div><div className="text-sm font-semibold text-slate-100">{title}</div><div className="mt-1 text-[11px] leading-5 text-slate-500">{desc}</div><div className="mt-2 text-[9px] uppercase tracking-[0.12em] text-slate-600">{stageNames[stage]}</div></div></div></motion.button>)}</div>
   </div>;
 }
 
@@ -32,12 +32,14 @@ export default function Roadmap() {
   const stages = getRoadmapStages(lang);
   const ui = getRoadmapUI(lang);
   const extra = getRoadmapExtra(lang);
+  const status = getRoadmapStatus(lang);
+  const stageNames = Object.fromEntries(stages.map(stage => [stage.id, stage.name]));
   const roster = getRoadmapRoster(lang);
   const [active, setActive] = useState(CURRENT_STAGE_INDEX);
   const [picked, setPicked] = useState(null);
   const currentStage = stages[CURRENT_STAGE_INDEX];
   const selectedStage = stages[active];
-  const currentProgress = 8 + (CURRENT_STAGE_INDEX / (stages.length - 1)) * 84;
+  const currentProgress = CURRENT_STAGE_INDEX / (stages.length - 1);
 
   return <div className="landing-dark min-h-screen bg-[#050612] text-slate-50 overflow-x-hidden">
     <div className="fixed inset-0 pointer-events-none"><div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-violet-600/[0.10] blur-[140px]"/><div className="absolute top-[50%] -left-40 w-[500px] h-[500px] rounded-full bg-indigo-600/[0.07] blur-[130px]"/></div>
@@ -85,11 +87,11 @@ export default function Roadmap() {
         </motion.div>
       </section>
 
-      <section className="mt-28"><div className="max-w-2xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.roster}</div><h2 className="mt-3 text-3xl sm:text-4xl font-bold">{ui.rosterTitle}</h2><p className="mt-4 text-sm sm:text-base leading-7 text-slate-400">{ui.rosterDesc}</p></div><div className="mt-10 grid lg:grid-cols-4 gap-4">{Object.keys(meta).map(type=><Column key={type} type={type} onPick={setPicked}/>)}</div></section>
+      <section className="mt-28"><div className="max-w-2xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.roster}</div><h2 className="mt-3 text-3xl sm:text-4xl font-bold">{ui.rosterTitle}</h2><p className="mt-4 text-sm sm:text-base leading-7 text-slate-400">{ui.rosterDesc}</p></div><div className="mt-10 grid lg:grid-cols-4 gap-4">{Object.keys(meta).map(type=><Column key={type} type={type} label={status[type]} stageNames={stageNames} onPick={setPicked}/>)}</div></section>
 
       <section className="mt-28 relative overflow-hidden rounded-[2rem] border border-violet-400/15 bg-gradient-to-br from-violet-500/[0.09] via-indigo-500/[0.04] to-transparent p-8 sm:p-12"><div className="relative max-w-3xl"><div className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">{ui.destination}</div><h2 className="mt-3 text-3xl sm:text-5xl font-bold tracking-tight">{ui.destinationTitle}</h2><p className="mt-5 text-sm sm:text-base leading-7 text-slate-400">{ui.destinationDesc}</p><div className="mt-7 flex flex-wrap gap-2">{extra.systemItems.map(x=><span key={x} className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1.5 text-xs text-slate-300">{x}</span>)}</div></div></section>
     </main>
 
-    {picked && <div className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-end sm:items-center justify-center p-4" onClick={() => setPicked(null)}><motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} className="w-full max-w-lg rounded-3xl border border-white/10 bg-[#101125] shadow-2xl p-6" onClick={event => event.stopPropagation()}><div className={`text-[10px] font-black uppercase tracking-[0.18em] ${meta[picked.type].color}`}>{meta[picked.type].label}</div><h3 className="mt-4 text-2xl font-bold">{picked.title}</h3><p className="mt-3 text-sm leading-6 text-slate-400">{picked.desc}</p><div className="mt-5 rounded-xl border border-white/5 bg-white/[0.025] p-3 text-xs text-slate-500">{ui.roadmapChapter}: <span className="text-slate-300">{picked.stage}</span></div><button onClick={() => setPicked(null)} className="mt-5 text-xs font-bold text-violet-300">{ui.close}</button></motion.div></div>}
+    {picked && <div className="fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-end sm:items-center justify-center p-4" onClick={() => setPicked(null)}><motion.div initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} className="w-full max-w-lg rounded-3xl border border-white/10 bg-[#101125] shadow-2xl p-6" onClick={event => event.stopPropagation()}><div className={`text-[10px] font-black uppercase tracking-[0.18em] ${meta[picked.type].color}`}>{meta[picked.type].label}</div><h3 className="mt-4 text-2xl font-bold">{picked.title}</h3><p className="mt-3 text-sm leading-6 text-slate-400">{picked.desc}</p><div className="mt-5 rounded-xl border border-white/5 bg-white/[0.025] p-3 text-xs text-slate-500">{ui.roadmapChapter}: <span className="text-slate-300">{stageNames[picked.stageId]}</span></div><button onClick={() => setPicked(null)} className="mt-5 text-xs font-bold text-violet-300">{ui.close}</button></motion.div></div>}
   </div>;
 }
