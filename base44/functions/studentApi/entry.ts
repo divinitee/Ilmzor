@@ -152,6 +152,9 @@ async function joinClass(svc: any, me: any, body: any) {
   }
 
   const patch = {
+    // Refresh the roster name too: legacy rows carry the email local part
+    // ("themember1ofthe7") while submissions carry the display name.
+    student_name: displayName(me),
     referral_code: code,
     teacher_id: group.teacher_id,
     teacher_name: group.teacher_name || displayName(owner),
