@@ -1,4 +1,5 @@
 import { base44 } from "@/api/base44Client";
+import { studentApi } from "@/lib/serverApi";
 
 // Whether new registrations get an automatic 1-week trial at all. Flip this
 // to false to retire the trial entirely (the founder has already flagged
@@ -174,54 +175,28 @@ export async function reactivateSubscription(sub, note = "") {
 }
 
 // --- Student-facing flows -------------------------------------------------
+//
+// Moved server-side on 2026-09-23 (Teacher Panel phase 1). Students can no
+// longer write their own StudentSubscription row at all — RLS allows only
+// admins — so the trial grant and the expiry transition run in
+// base44/functions/studentApi. That function also enforces one trial per
+// account (User.trial_used_at) and never downgrades a paying member. Keep
+// TRIAL_ENABLED / TRIAL_DAYS above in sync with the constants there.
 
-// Called when a student picks "Start Free" during onboarding. Grants a real
-// week of Learner-tier access if TRIAL_ENABLED, tagged is_trial so it can be
-// told apart from someone who actually paid for Learner. If a referral
-// already created a StudentSubscription record (inactive, pending), that
-// record is updated rather than duplicated.
-export async function chooseFreePlan(userEmail, studentName) {
+// Called when a student picks "Start Free" during onboarding.
+export async function chooseFreePlan() {
   try {
-    const existing = await findSubscription(userEmail);
-    // An admin-paused or admin-cancelled account must not be able to hand
-    // itself access back by re-running onboarding — without this, "cancel"
-    // would be undone by the student in about four taps.
-    if (existing && ["paused", "cancelled"].includes(existing.status)) return;
-    const payload = TRIAL_ENABLED
-      ? {
-          status: "active",
-          plan: "Learner Plan",
-          is_trial: true,
-          expires_at: addDays(TRIAL_DAYS),
-        }
-      : { status: "active", plan: "Free Plan", is_trial: false, expires_at: "" };
-    if (existing) {
-      await base44.entities.StudentSubscription.update(existing.id, payload);
-    } else {
-      await base44.entities.StudentSubscription.create({ student_name: studentName || userEmail, phone: userEmail, ...payload });
-    }
+    const res = await studentApi("startTrial");
+    return res?.subscription || null;
   } catch (e) {
-    console.error("chooseFreePlan failed:", e);
+    console.error("startTrial failed:", e);
+    return null;
   }
 }
 
-// Called from Home.jsx's existing expiry check. A lapsed TRIAL lands
-// softly on the real, permanent Free Plan (still status: "active", since
-// Free Plan costs nothing) — only a lapsed PAID plan goes "inactive" and
-// hits the paywall, exactly as it already correctly did before today.
-export async function handleExpiredSubscription(sub) {
-  // A subscription cancelled at period end has now reached that end. It
-  // lapses to "cancelled" rather than "inactive" so the deliberate
-  // cancellation stays distinguishable afterwards — and, importantly, a
-  // cancelled trial does NOT get rolled onto the free plan below, which
-  // would have quietly handed access back to someone you cancelled.
-  if (sub.cancelled_at) {
-    return base44.entities.StudentSubscription.update(sub.id, { status: "cancelled" });
-  }
-  if (sub.is_trial) {
-    return base44.entities.StudentSubscription.update(sub.id, {
-      status: "active", plan: "Free Plan", is_trial: false, expires_at: "",
-    });
-  }
-  return base44.entities.StudentSubscription.update(sub.id, { status: "inactive" });
+// The caller's own subscription, with any due expiry transition applied
+// server-side (trial → Free Plan, cancelled-at-period-end → cancelled, lapsed
+// paid → inactive). Also returns the caller's class membership.
+export async function refreshMySubscription() {
+  return studentApi("refresh");
 }
