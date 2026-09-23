@@ -718,14 +718,14 @@ export default function AdminDashboard() {
                   rows across {wipeResult.results.length} entities.
                 </p>
                 {wipeTarget.mode === "delete" && (
-                  <p className={`text-sm mb-2 ${wipeResult.accountDeleted ? "text-emerald-600" : "text-amber-600"}`}>
+                  <p className={`text-sm mb-2 ${wipeResult.accountDeleted ? "text-emerald-400" : "text-amber-400"}`}>
                     {wipeResult.accountDeleted
                       ? "Account removed."
                       : `Data is gone, but the account itself could not be deleted${wipeResult.accountError ? ` (${wipeResult.accountError})` : ""}. Remove it from Base44's own Users tab.`}
                   </p>
                 )}
                 {wipeTarget.mode === "reset" && (
-                  <p className={`text-sm mb-2 ${wipeResult.profileError ? "text-amber-600" : "text-emerald-600"}`}>
+                  <p className={`text-sm mb-2 ${wipeResult.profileError ? "text-amber-400" : "text-emerald-400"}`}>
                     {wipeResult.profileError
                       ? `Data wiped, but the profile fields didn't clear (${wipeResult.profileError}).`
                       : "Profile cleared — this email can register from scratch now."}
@@ -733,7 +733,7 @@ export default function AdminDashboard() {
                 )}
                 <div className="text-[11px] font-mono text-muted-foreground space-y-0.5 mt-3 max-h-40 overflow-y-auto">
                   {wipeResult.results.filter((r) => r.deleted || r.failed).map((r) => (
-                    <div key={r.name} className={r.failed ? "text-amber-600" : ""}>
+                    <div key={r.name} className={r.failed ? "text-amber-400" : ""}>
                       {r.name}: {r.deleted} deleted{r.failed ? `, ${r.failed} failed` : ""}
                     </div>
                   ))}
