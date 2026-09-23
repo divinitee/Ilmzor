@@ -9,7 +9,8 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { PROFILE_STR, GOAL_KEYS } from "@/lib/profileSetupCopy";
 import { LEVELS } from "@/lib/levels";
 import { setUserLevel } from "@/lib/levelStore";
-import { resolveUserName, resolveUserNameOrEmail } from "@/lib/profileName";
+import { resolveUserName } from "@/lib/profileName";
+import { studentApi } from "@/lib/serverApi";
 
 // The four questions a Google signup never got asked, because they skipped
 // the registration form entirely. Same questions, same wording and same
@@ -79,36 +80,21 @@ export default function ProfileSetup({ user, onDone }) {
     try {
       // display_name, not full_name — the platform silently discards writes to
       // full_name (see src/lib/profileName.js).
+      // classroom_code is NOT written here any more: it's a server-owned
+      // mirror of the class membership (studentApi.joinClass sets it).
       await base44.auth.updateMe({
         display_name: username.trim(),
         goals,
-        classroom_code: classCode.trim().toUpperCase(),
       });
       if (level) await setUserLevel(level, "self");
 
       if (classCode.trim()) {
-        // Same referral linking registration does, so a Google student who
+        // Same server-side join registration does, so a Google student who
         // enters their teacher's code still gets connected to that teacher.
         try {
-          const me = await base44.auth.me();
-          const refs = await base44.entities.TeacherReferral.filter({ code: classCode.trim().toUpperCase() });
-          if (refs.length > 0) {
-            const ref = refs[0];
-            const existing = await base44.entities.StudentSubscription.filter({ phone: me.email });
-            if (existing.length === 0) {
-              await base44.entities.StudentSubscription.create({
-                student_name: resolveUserNameOrEmail(me),
-                phone: me.email,
-                status: "inactive",
-                referral_code: ref.code,
-                teacher_id: ref.teacher_id,
-                teacher_name: ref.teacher_name,
-              });
-              await base44.entities.TeacherReferral.update(ref.id, { uses: (ref.uses || 0) + 1 });
-            }
-          }
+          await studentApi("joinClass", { code: classCode.trim() });
         } catch (refErr) {
-          console.error("Referral linking error:", refErr);
+          console.error("Class join failed:", refErr?.code || refErr);
         }
       }
     } catch (e) {
