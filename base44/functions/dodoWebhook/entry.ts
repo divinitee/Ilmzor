@@ -375,9 +375,15 @@ Deno.serve(async (req) => {
             phone: email,
             plan: metadata.plan || "",
             billing_cycle: metadata.billing_cycle || "monthly",
-            referral_code: metadata.referral_code || "",
-            teacher_id: metadata.teacher_id || "",
-            teacher_name: metadata.teacher_name || "",
+            // Teacher attribution is NOT taken from metadata. On the hosted
+            // payment-link path metadata rides in an editable query string,
+            // so a buyer could name any teacher. Attribution only ever comes
+            // from studentApi.joinClass (server-side); a row created here
+            // starts unattributed, and a student who joined a class already
+            // has a row, so they're matched by email above instead.
+            referral_code: "",
+            teacher_id: "",
+            teacher_name: "",
             ...patch,
           });
         }
