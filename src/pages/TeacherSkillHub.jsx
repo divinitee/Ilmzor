@@ -3,6 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { Navigate, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import SkillHub from "@/pages/SkillHub";
+import { teacherApi } from "@/lib/serverApi";
 
 export default function TeacherSkillHub() {
   const navigate = useNavigate();
@@ -17,13 +18,17 @@ export default function TeacherSkillHub() {
         const me = await base44.auth.me();
         const allowed = me?.role === "admin" || me?.teacher_status === "approved";
         if (!allowed) return;
-        const rows = await base44.entities.TeacherReferral.filter(
-          { teacher_id: me.id },
-          "-created_date"
-        );
+        // Groups + their active students come from teacherApi (server-scoped
+        // to this teacher), so the assign dialog can target individuals.
+        const data = await teacherApi("overview");
+        if (data?.access !== "approved") return;
+        const active = (data.students || []).filter((s) => s.roster_status === "active");
+        const rows = (data.groups || [])
+          .filter((g) => g.group_status !== "ended")
+          .map((g) => ({ ...g, students: active.filter((s) => s.group_code === g.code) }));
         if (!cancelled) {
           setUser(me);
-          setGroups(rows.filter((g) => (g.group_status || "running") === "running"));
+          setGroups(rows);
         }
       } finally {
         if (!cancelled) setLoading(false);
