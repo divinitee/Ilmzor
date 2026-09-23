@@ -507,16 +507,55 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
                     <span className="text-xs font-semibold text-muted-foreground">Group</span>
                     <select
                       value={assignmentGroup}
-                      onChange={(e) => setAssignmentGroup(e.target.value)}
+                      onChange={(e) => { setAssignmentGroup(e.target.value); setAssignmentStudents([]); }}
                       className="mt-1.5 w-full h-11 rounded-xl bg-background border border-border px-3 text-sm text-foreground"
                     >
                       {assignmentGroups.map((group) => (
-                        <option key={group.id} value={group.code}>
-                          {group.label || group.code} · {group.code}
+                        <option key={group.id} value={group.id}>
+                          {group.label || group.code} · {group.students?.length || 0} student{(group.students?.length || 0) === 1 ? "" : "s"}
                         </option>
                       ))}
                     </select>
                   </label>
+
+                  <div>
+                    <span className="text-xs font-semibold text-muted-foreground">Assign to</span>
+                    <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                      {[
+                        { id: "class", label: "Whole group" },
+                        { id: "students", label: "Pick students" },
+                      ].map((opt) => (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          onClick={() => setAssignmentTarget(opt.id)}
+                          className={`h-10 rounded-xl text-xs font-semibold transition-colors ${assignmentTarget === opt.id ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:text-foreground"}`}
+                        >
+                          {opt.label}
+                        </button>
+                      ))}
+                    </div>
+                    {assignmentTarget === "class" && (
+                      <p className="mt-1.5 text-[11px] text-muted-foreground">Everyone in the group now, and anyone who joins before it's closed.</p>
+                    )}
+                    {assignmentTarget === "students" && (
+                      <div className="mt-2 max-h-44 overflow-y-auto rounded-xl border border-border divide-y divide-border">
+                        {(selectedGroup?.students || []).length === 0 ? (
+                          <p className="p-3 text-xs text-muted-foreground">No students in this group yet.</p>
+                        ) : (selectedGroup?.students || []).map((st) => (
+                          <label key={st.email} className="flex items-center gap-2.5 px-3 py-2 text-sm cursor-pointer hover:bg-muted/40">
+                            <input
+                              type="checkbox"
+                              checked={assignmentStudents.includes(st.email)}
+                              onChange={() => toggleAssignmentStudent(st.email)}
+                              className="accent-[hsl(var(--primary))]"
+                            />
+                            <span className="truncate text-foreground">{st.name}</span>
+                          </label>
+                        ))}
+                      </div>
+                    )}
+                  </div>
 
                   <label className="block">
                     <span className="text-xs font-semibold text-muted-foreground">Due date, optional</span>
@@ -529,6 +568,8 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
                   </label>
                 </div>
               )}
+
+              {assignmentError && <p className="mt-4 text-sm text-destructive">{assignmentError}</p>}
 
               <div className="mt-6 flex gap-3">
                 <button
