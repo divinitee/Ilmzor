@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   BookOpen, LogOut, Users, RefreshCw, Plus, Copy, ChevronDown, UserMinus, AlertTriangle,
-  Sparkles, Activity, ClipboardList, CheckCircle2, Clock, FileText, LayoutDashboard, Check,
+  Sparkles, Activity, ClipboardList, CheckCircle2, Clock, FileText, LayoutDashboard,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
@@ -713,7 +713,7 @@ function MaterialsTab({ onOpen }) {
       <p className="text-sm text-muted-foreground">
         Upload or paste your own teaching material. VIRORA stores it and writes a short summary. You can't turn materials into homework or share them with students yet.
       </p>
-      <Button onClick={onOpen} variant="outline" className="gap-2"><Check className="w-4 h-4" /> Open Material Library</Button>
+      <Button onClick={onOpen} variant="outline" className="gap-2"><FileText className="w-4 h-4" /> Open Material Library</Button>
     </div>
   );
 }
