@@ -18,10 +18,6 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const todayStr = () => new Date().toISOString().slice(0, 10);
 const addDays = (n) => new Date(Date.now() + n * DAY_MS).toISOString().slice(0, 10);
 
-async function findSubscription(userEmail) {
-  const existing = await base44.entities.StudentSubscription.filter({ phone: userEmail });
-  return existing[0] || null;
-}
 
 // --- Classification -------------------------------------------------------
 
