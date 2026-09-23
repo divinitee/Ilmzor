@@ -1,44 +1,57 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  BookOpen, LogOut, CheckCircle, Clock, Users, RefreshCw, Plus,
-  Copy, ChevronDown, MessageCircle, UserMinus, AlertTriangle, Sparkles, Activity,
+  BookOpen, LogOut, Users, RefreshCw, Plus, Copy, ChevronDown, UserMinus, AlertTriangle,
+  Sparkles, Activity, ClipboardList, CheckCircle2, Clock, FileText, LayoutDashboard, Check,
 } from "lucide-react";
-import ChatWindow from "@/components/ChatWindow";
 import { motion, AnimatePresence } from "framer-motion";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
-import TeacherCoPlanChat from "@/components/teacher/TeacherCoPlanChat";
-import { subscriptionKind, SUB_KIND_META, isPaying, approveSubscription } from "@/lib/subscription";
+import { SUB_KIND_META } from "@/lib/subscription";
+import { teacherApi } from "@/lib/serverApi";
 import BetaBadge from "@/components/BetaBadge";
 import ActivityReport from "@/components/ActivityReport";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-const pageVariants = {
-  initial: { x: "100%", opacity: 0 },
-  animate: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 30 } },
-  exit: { x: "-100%", opacity: 0, transition: { duration: 0.2 } },
-};
+// Teacher Panel (rebuilt 2026-09-23, phase 1).
+//
+// Everything on this page reads and writes through teacherApi
+// (base44/functions/teacherApi), which scopes every query to the calling
+// teacher server-side. Nothing here talks to StudentSubscription /
+// TeacherReferral / HomeworkAssignment directly any more.
+//
+// Removed on purpose (see claude/virora-teacher-panel-audit.md):
+//   Approvals: dead manual-payment flow that let a teacher grant paid access
+//   Chat: students had no chat UI, messages went nowhere
+//   Results: legacy unit quizzes the teacher could never read
+//   AI Co-Plan: its agent was never configured; returns when it's real
 
 const DAY_OPTIONS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const LEVEL_OPTIONS = ["Starter", "A1", "A2", "B1", "B2", "C1"];
-const INACTIVITY_DAYS = 14;
+const TABS = [
+  { id: "overview", label: "Overview", icon: LayoutDashboard },
+  { id: "classes", label: "Classes", icon: Users },
+  { id: "students", label: "Students", icon: Users },
+  { id: "assignments", label: "Assignments", icon: ClipboardList },
+  { id: "materials", label: "Materials", icon: FileText },
+];
 
-function generateCode() {
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  return Array.from({ length: 6 }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-}
-
-function formatDayPattern(days) {
-  if (!days?.length) return "";
-  return days.map((d) => d[0]).join("/");
-}
-
-function daysSince(dateStr) {
-  if (!dateStr) return Infinity;
-  return Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000);
-}
+const ACTIVITY_STYLES = {
+  active: { label: "Active", cls: "bg-emerald-500/10 text-emerald-600" },
+  new: { label: "New", cls: "bg-muted text-muted-foreground" },
+  inactive: { label: "Inactive 14d+", cls: "bg-amber-500/10 text-amber-600" },
+};
+const HW_STYLES = {
+  completed: { label: "Completed", cls: "bg-emerald-500/10 text-emerald-600" },
+  overdue: { label: "Overdue", cls: "bg-amber-500/10 text-amber-600" },
+  assigned: { label: "Assigned", cls: "bg-muted text-muted-foreground" },
+};
+const GROUP_STATUS_STYLES = {
+  running: "bg-emerald-500/10 text-emerald-600",
+  paused: "bg-amber-500/10 text-amber-600",
+  ended: "bg-muted text-muted-foreground",
+};
 
 function greetingWord() {
   const h = new Date().getHours();
@@ -46,216 +59,85 @@ function greetingWord() {
   if (h < 18) return "Good afternoon";
   return "Good evening";
 }
-
-// subscriptionKind / SUB_KIND_META / isPaying now live in lib/subscription.js
-// alongside the admin actions, so this page and /admin classify a
-// subscription identically — including the paused and cancelled states an
-// admin can now put one into, which a teacher needs to see rather than
-// having them collapse into a misleading "Unpaid".
-
-// "active" = played within the window · "new" = never played yet but joined
-// recently (not flagged) · "inactive" = the thing the teacher actually needs
-// to see — stopped showing up in Skill Hub for 14+ days, or joined 14+ days
-// ago and never played at all. `removed` students are excluded before this
-// ever runs (see GroupCard).
-function getActivityStatus(sub, lastActiveMs) {
-  if (!lastActiveMs) {
-    return daysSince(sub.created_date) >= INACTIVITY_DAYS ? "inactive" : "new";
-  }
-  return daysSince(new Date(lastActiveMs).toISOString()) >= INACTIVITY_DAYS ? "inactive" : "active";
+const formatDayPattern = (days) => (days?.length ? days.map((d) => d.slice(0, 2)).join(" ") : "");
+function formatDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso.length === 10 ? `${iso}T00:00:00` : iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+}
+function timeAgo(iso) {
+  if (!iso) return "";
+  const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins}m ago`;
+  const h = Math.round(mins / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.round(h / 24);
+  return `${d}d ago`;
 }
 
-const ACTIVITY_STYLES = {
-  active: { label: "Active", cls: "bg-emerald-500/10 text-emerald-600" },
-  new: { label: "New", cls: "bg-muted text-muted-foreground" },
-  inactive: { label: "⚠ Inactive 14d+", cls: "bg-amber-500/10 text-amber-600" },
-};
-
-const GROUP_STATUS_STYLES = {
-  running: "bg-emerald-500/10 text-emerald-600",
-  paused: "bg-amber-500/10 text-amber-600",
-  ended: "bg-muted text-muted-foreground",
-};
+function Pill({ cls, children }) {
+  return <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${cls}`}>{children}</span>;
+}
 
 export default function TeacherDashboard() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = TABS.some((t) => t.id === searchParams.get("tab")) ? searchParams.get("tab") : "overview";
+  const setTab = (id) => {
+    const next = new URLSearchParams(searchParams);
+    if (id === "overview") next.delete("tab"); else next.set("tab", id);
+    setSearchParams(next, { replace: true });
+  };
+
   const [user, setUser] = useState(null);
-  const [subscriptions, setSubscriptions] = useState([]);
-  const [results, setResults] = useState([]);
-  const [referrals, setReferrals] = useState([]);
-  const [skillRows, setSkillRows] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [notification, setNotification] = useState("");
+  const [data, setData] = useState(null);
+  const [access, setAccess] = useState("loading"); // loading | approved | pending | rejected | none | error
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState("groups"); // "groups" | "approvals" | "coplan" | "results"
-  const [savingGroup, setSavingGroup] = useState(false);
-  const [creatingGroupOpen, setCreatingGroupOpen] = useState(false);
-  const [editingGroup, setEditingGroup] = useState(null);
-  const [expandedReferral, setExpandedReferral] = useState(null);
-  const [showRemovedGroups, setShowRemovedGroups] = useState(new Set());
-  const [chatStudent, setChatStudent] = useState(null); // { email, name }
-  const [activityStudent, setActivityStudent] = useState(null); // { email, name }
-  const pullStartY = useRef(0);
-  const scrollRef = useRef(null);
+  const [notice, setNotice] = useState("");
+  const [activityStudent, setActivityStudent] = useState(null);
 
-  useEffect(() => { loadData(); }, []);
+  const flash = (msg) => { setNotice(msg); setTimeout(() => setNotice(""), 2500); };
 
-  const loadData = async (isRefresh = false) => {
-    if (!isRefresh) setLoading(true);
+  const load = async (isRefresh = false) => {
+    if (isRefresh) setRefreshing(true);
     try {
       const me = await base44.auth.me();
       setUser(me);
-      // Teacher registration creates a teacher-track account immediately.
-      // Approval remains account state, but the Teacher Panel is the teacher's
-      // home product from first login. Rejected accounts stay outside it.
-      const isTeacher = me.role === "teacher"
-        || me.teacher_status === "approved"
-        || me.teacher_status === "pending";
-      if (me.role !== "admin" && !isTeacher) { navigate("/"); return; }
-      const [subs, res, refs, skills] = await Promise.all([
-        base44.entities.StudentSubscription.list("-created_date", 200),
-        base44.entities.QuizResult.list("-created_date", 100).catch(() => []),
-        base44.entities.TeacherReferral.filter({ teacher_id: me.id }, "-created_date"),
-        // SkillHubProgress's RLS was widened to let any approved teacher read
-        // it (there's no per-row teacher_id to scope against — see
-        // SkillHubProgress.jsonc), so this technically comes back with every
-        // student's rows, not just this teacher's own. Only used below to
-        // compute a last-active timestamp per email for THIS teacher's own
-        // roster, so nothing beyond that ever reaches the UI.
-        base44.entities.SkillHubProgress.list("-updated_date", 1000).catch(() => []),
-      ]);
-      setSubscriptions(subs);
-      setResults(res);
-      setReferrals(refs);
-      setSkillRows(skills);
-    } catch (err) {
-      console.error(err);
+      const res = await teacherApi("overview");
+      if (res?.access !== "approved") {
+        setAccess(res?.access || "none");
+        if (!["pending", "rejected"].includes(res?.access) && me.role !== "admin") navigate("/");
+        return;
+      }
+      setData(res);
+      setAccess("approved");
+    } catch (e) {
+      console.error("teacher overview failed", e);
+      setAccess((prev) => (prev === "approved" ? prev : "error"));
     } finally {
-      setLoading(false);
       setRefreshing(false);
     }
   };
+  useEffect(() => { load(); }, []);
 
-  const handleTouchStart = (e) => { pullStartY.current = e.touches[0].clientY; };
-  const handleTouchEnd = (e) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const delta = e.changedTouches[0].clientY - pullStartY.current;
-    if (delta > 80 && el.scrollTop === 0 && !refreshing) {
-      setRefreshing(true);
-      loadData(true);
-    }
-  };
-
-  const handleAccept = async (sub) => {
-    await approveSubscription(sub);
-    setNotification(`"${sub.student_name}" subscription approved!`);
-    setTimeout(() => setNotification(""), 3000);
-    loadData(true);
-  };
-
-  const handleApproveAllVerified = async () => {
-    const verifiedPending = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified);
-    if (verifiedPending.length === 0) return;
-    for (const sub of verifiedPending) {
-      await approveSubscription(sub);
-    }
-    setNotification(`${verifiedPending.length} AI-verified subscriptions approved!`);
-    setTimeout(() => setNotification(""), 3000);
-    loadData(true);
-  };
-
-  const handleCreateGroup = async (fields) => {
-    if (!user) return;
-    setSavingGroup(true);
-    try {
-      const code = generateCode();
-      await base44.entities.TeacherReferral.create({
-        teacher_id: user.id,
-        teacher_name: resolveUserNameOrEmail(user),
-        teacher_email: user.email,
-        code,
-        label: fields.label || `Group ${referrals.length + 1}`,
-        uses: 0,
-        level: fields.level || undefined,
-        days: fields.days,
-        start_time: fields.start_time || undefined,
-        end_time: fields.end_time || undefined,
-        group_status: fields.group_status || "running",
-      });
-      setCreatingGroupOpen(false);
-      setNotification("Group created!");
-      setTimeout(() => setNotification(""), 2000);
-      loadData(true);
-    } finally {
-      setSavingGroup(false);
-    }
-  };
-
-  const handleUpdateGroup = async (fields) => {
-    if (!editingGroup) return;
-    setSavingGroup(true);
-    try {
-      await base44.entities.TeacherReferral.update(editingGroup.id, {
-        label: fields.label || editingGroup.label,
-        level: fields.level || null,
-        days: fields.days,
-        start_time: fields.start_time || null,
-        end_time: fields.end_time || null,
-        group_status: fields.group_status || "running",
-      });
-      setEditingGroup(null);
-      loadData(true);
-    } finally {
-      setSavingGroup(false);
-    }
-  };
-
-  // "Both" — a teacher can manually pull a student off their roster once
-  // they've stopped attending live lessons, on top of the automatic 14-day
-  // inactivity flag computed below. Either way this never touches `status`
-  // (payment/access) — the student keeps their app account and subscription
-  // exactly as before, they just stop showing up on this teacher's roster.
-  const handleRemoveStudent = async (sub, restore = false) => {
-    const roster_status = restore ? "active" : "removed";
-    await base44.entities.StudentSubscription.update(sub.id, { roster_status });
-    setSubscriptions((prev) => prev.map((s) => (s.id === sub.id ? { ...s, roster_status } : s)));
-  };
-
-  const toggleShowRemoved = (groupId) => {
-    setShowRemovedGroups((prev) => {
-      const next = new Set(prev);
-      if (next.has(groupId)) next.delete(groupId); else next.add(groupId);
-      return next;
-    });
-  };
-
-  const copyCode = (code) => {
-    navigator.clipboard.writeText(code);
-    setNotification(`Code copied: ${code}`);
-    setTimeout(() => setNotification(""), 2000);
-  };
-
-  // Latest SkillHubProgress activity per student email, across all 5 skills.
-  const lastActiveMap = useMemo(() => {
+  // Per-student homework tallies, derived from the assignment recipients.
+  const hwByStudent = useMemo(() => {
     const map = {};
-    skillRows.forEach((r) => {
-      const t = r.updated_date ? new Date(r.updated_date).getTime() : 0;
-      if (!t) return;
-      if (!map[r.user_email] || t > map[r.user_email]) map[r.user_email] = t;
-    });
+    for (const a of data?.assignments || []) {
+      if (a.status !== "active") continue;
+      for (const r of a.recipients) {
+        const m = (map[r.email] ||= { total: 0, completed: 0, overdue: 0 });
+        m.total += 1;
+        if (r.status === "completed") m.completed += 1;
+        if (r.status === "overdue") m.overdue += 1;
+      }
+    }
     return map;
-  }, [skillRows]);
+  }, [data]);
 
-  const openChat = (sub) => setChatStudent({ email: sub.phone, name: sub.student_name, roomId: `chat:${sub.phone}` });
-  const openActivity = (sub) => setActivityStudent({ email: sub.phone, name: sub.student_name });
-
-  const StatusBadge = ({ sub }) => {
-    const meta = SUB_KIND_META[subscriptionKind(sub)];
-    return <span className={`text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap ${meta.cls}`}>{meta.label}</span>;
-  };
-
-  if (loading) {
+  if (access === "loading") {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin" />
@@ -263,308 +145,277 @@ export default function TeacherDashboard() {
     );
   }
 
-  const totalCount = subscriptions.filter(s => s.roster_status !== "removed").length;
-  // Real paid subscriptions only — excludes the self-serve trial and any
-  // lapsed-trial-to-free-plan rows, both of which are also status:"active"
-  // but never involved anyone paying or a teacher approving anything. See
-  // subscriptionKind() in lib/subscription.js.
-  const activeCount = subscriptions.filter(isPaying).length;
-  const pendingCount = subscriptions.filter(s => s.status === "pending").length;
-  const verifiedPendingCount = subscriptions.filter(s => s.status === "pending" && s.screenshot_verified).length;
-  const attentionCount = subscriptions.filter(
-    s => s.roster_status !== "removed" && getActivityStatus(s, lastActiveMap[s.phone]) === "inactive"
-  ).length;
-  const activeGroupsCount = referrals.filter(r => (r.group_status || "running") === "running").length;
+  const header = (
+    <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
+      <div className="flex items-center gap-2">
+        <BookOpen className="w-5 h-5 text-primary select-none" />
+        <span className="font-bold text-foreground">Teacher Panel</span>
+        <BetaBadge className="ml-1" />
+      </div>
+      <div className="flex items-center gap-1">
+        {access === "approved" && (
+          <button onClick={() => load(true)} className="text-muted-foreground hover:text-foreground transition-colors p-1.5" aria-label="Refresh">
+            <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+          </button>
+        )}
+        <button onClick={() => base44.auth.logout("/login")} className="text-muted-foreground hover:text-foreground transition-colors p-1.5" aria-label="Log out">
+          <LogOut className="w-4 h-4" />
+        </button>
+      </div>
+    </header>
+  );
 
-  const ungrouped = subscriptions.filter(s => s.roster_status !== "removed" && (!s.referral_code || !referrals.some(r => r.code === s.referral_code)));
-  const pendingAll = subscriptions.filter(s => s.status === "pending");
+  if (access !== "approved") {
+    const copy = {
+      pending: ["Your teacher application is being reviewed", "We'll switch on your Teacher Panel as soon as it's approved. Nothing to do until then."],
+      rejected: ["Your teacher application wasn't approved", user?.teacher_status_note || "Contact us if you think this is a mistake."],
+      error: ["Couldn't load your Teacher Panel", "Check your connection and try again."],
+    }[access] || ["Teacher access required", ""];
+    return (
+      <div className="min-h-screen bg-muted/40 flex flex-col">
+        {header}
+        <div className="max-w-md mx-auto px-4 py-16 text-center space-y-3">
+          <h1 className="text-xl font-bold text-foreground">{copy[0]}</h1>
+          <p className="text-sm text-muted-foreground">{copy[1]}</p>
+          {access === "error" && <Button onClick={() => load()} className="mt-2">Try again</Button>}
+        </div>
+      </div>
+    );
+  }
+
+  const groups = data.groups || [];
+  const students = data.students || [];
+  const activeStudents = students.filter((s) => s.roster_status === "active");
+  const activeAssignments = (data.assignments || []).filter((a) => a.status === "active");
+  const attention = activeStudents
+    .map((s) => ({ ...s, overdue: hwByStudent[s.email]?.overdue || 0 }))
+    .filter((s) => s.overdue > 0 || s.activity === "inactive");
 
   return (
-    <motion.div className="min-h-screen bg-muted/40 flex flex-col" variants={pageVariants} initial="initial" animate="animate">
-      {/* Header */}
-      <header className="bg-background border-b border-border px-4 pb-3 flex items-center justify-between safe-header sticky top-0 z-30">
-        <div className="flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-primary select-none" />
-          <span className="font-bold text-foreground">Teacher Panel</span>
-          <BetaBadge className="ml-1" />
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-xs bg-primary/10 text-primary font-semibold px-2.5 py-1 rounded-full select-none">Teacher</span>
-          <button onClick={() => base44.auth.logout("/login")} className="text-muted-foreground hover:text-foreground transition-colors p-1.5 select-none">
-            <LogOut className="w-4 h-4" />
-          </button>
-        </div>
-      </header>
-
-      <AnimatePresence>
-        {refreshing && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 40, opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-            className="flex items-center justify-center overflow-hidden">
-            <RefreshCw className="w-4 h-4 text-primary animate-spin" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div ref={scrollRef} className="flex-1 overflow-y-auto" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+    <div className="min-h-screen bg-muted/40 flex flex-col">
+      {header}
+      <div className="flex-1 overflow-y-auto">
         <div className="max-w-3xl mx-auto px-4 py-6 space-y-5">
-
-          {/* Hero */}
-          <div className="bg-gradient-to-br from-primary/15 via-primary/5 to-transparent rounded-2xl border border-primary/20 p-5">
-            <p className="text-xs text-muted-foreground">{greetingWord()},</p>
-            <h1 className="text-xl font-bold text-foreground">{resolveUserNameOrEmail(user)?.split(" ")[0] || "Teacher"}</h1>
-            <p className="text-sm text-muted-foreground mt-1">
-              {activeGroupsCount} active group{activeGroupsCount !== 1 ? "s" : ""} · {totalCount} student{totalCount !== 1 ? "s" : ""}
-              {attentionCount > 0 && <> · <span className="text-amber-600 font-semibold">{attentionCount} need attention</span></>}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <Button onClick={() => navigate("/teacher/skill-hub")} className="h-11 gap-2">
-              <Sparkles className="w-4 h-4" /> Assign homework
-            </Button>
-            <Button onClick={() => navigate("/teacher/materials")} variant="outline" className="h-11 gap-2">
-              <BookOpen className="w-4 h-4" /> Material Library
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-4 gap-2">
-            <div className="bg-background rounded-xl p-3 border border-border text-center">
-              <Users className="w-4 h-4 text-primary mx-auto mb-1 select-none" />
-              <p className="text-lg font-bold text-foreground">{totalCount}</p>
-              <p className="text-[10px] text-muted-foreground">Total</p>
-            </div>
-            <div className="bg-background rounded-xl p-3 border border-border text-center">
-              <CheckCircle className="w-4 h-4 text-emerald-500 mx-auto mb-1 select-none" />
-              <p className="text-lg font-bold text-emerald-600">{activeCount}</p>
-              <p className="text-[10px] text-muted-foreground">Paid</p>
-            </div>
-            <div className="bg-background rounded-xl p-3 border border-border text-center">
-              <Clock className="w-4 h-4 text-amber-500 mx-auto mb-1 select-none" />
-              <p className="text-lg font-bold text-amber-600">{pendingCount}</p>
-              <p className="text-[10px] text-muted-foreground">Pending</p>
-            </div>
-            <div className="bg-background rounded-xl p-3 border border-border text-center">
-              <AlertTriangle className="w-4 h-4 text-amber-500 mx-auto mb-1 select-none" />
-              <p className="text-lg font-bold text-amber-600">{attentionCount}</p>
-              <p className="text-[10px] text-muted-foreground">Attention</p>
-            </div>
-          </div>
-
-          {notification && (
-            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-sm text-emerald-700 dark:text-emerald-400 font-medium">
-              {notification}
-            </div>
-          )}
-
           {/* Tabs */}
-          <div className="grid grid-cols-4 gap-1 bg-muted p-1 rounded-xl">
-            {[
-              { id: "groups", label: "Groups" },
-              { id: "approvals", label: `Approvals${pendingCount ? ` (${pendingCount})` : ""}` },
-              { id: "coplan", label: "AI Co-Plan" },
-              { id: "results", label: "Results" },
-            ].map(t => (
-              <button key={t.id} onClick={() => setActiveTab(t.id)}
-                className={`py-2 rounded-lg text-[11px] font-semibold transition-all select-none px-1 ${activeTab === t.id ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+          <nav className="grid grid-cols-5 gap-1 bg-muted p-1 rounded-xl" aria-label="Teacher Panel sections">
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => setTab(t.id)}
+                aria-current={tab === t.id ? "page" : undefined}
+                className={`py-2 rounded-lg text-[11px] font-semibold transition-all select-none px-1 ${tab === t.id ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+              >
                 {t.label}
               </button>
             ))}
-          </div>
+          </nav>
 
-          {/* GROUPS TAB */}
-          {activeTab === "groups" && (
-            <div className="space-y-4">
-              {!creatingGroupOpen ? (
-                <Button onClick={() => setCreatingGroupOpen(true)} variant="outline" className="w-full h-11 gap-1.5 select-none">
-                  <Plus className="w-4 h-4" /> New group
-                </Button>
-              ) : (
-                <GroupForm
-                  onSubmit={handleCreateGroup}
-                  onCancel={() => setCreatingGroupOpen(false)}
-                  submitLabel="Create group"
-                  submitting={savingGroup}
-                />
-              )}
-
-              {referrals.length === 0 && !creatingGroupOpen && (
-                <p className="text-center text-sm text-muted-foreground py-6">No groups yet — create one to start building a roster.</p>
-              )}
-
-              {referrals.map(ref => {
-                const groupStudents = subscriptions.filter(s => s.referral_code === ref.code);
-                if (editingGroup?.id === ref.id) {
-                  return (
-                    <div key={ref.id} className="bg-background rounded-2xl border border-border p-5">
-                      <GroupForm
-                        initial={editingGroup}
-                        onSubmit={handleUpdateGroup}
-                        onCancel={() => setEditingGroup(null)}
-                        submitLabel="Save changes"
-                        submitting={savingGroup}
-                      />
-                    </div>
-                  );
-                }
-                return (
-                  <GroupCard
-                    key={ref.id}
-                    group={ref}
-                    students={groupStudents}
-                    lastActiveMap={lastActiveMap}
-                    expanded={expandedReferral === ref.id}
-                    onToggle={() => setExpandedReferral(expandedReferral === ref.id ? null : ref.id)}
-                    onCopyCode={copyCode}
-                    onRemoveStudent={handleRemoveStudent}
-                    onOpenChat={openChat}
-                    onOpenActivity={openActivity}
-                    onAccept={handleAccept}
-                    onEditGroup={() => setEditingGroup(ref)}
-                    showRemoved={showRemovedGroups.has(ref.id)}
-                    onToggleShowRemoved={() => toggleShowRemoved(ref.id)}
-                    StatusBadge={StatusBadge}
-                  />
-                );
-              })}
-
-              {ungrouped.length > 0 && (
-                <div className="bg-background rounded-2xl border border-border overflow-hidden">
-                  <div className="px-5 py-3 border-b border-border">
-                    <h3 className="text-sm font-semibold text-muted-foreground">Students without a group</h3>
-                  </div>
-                  {ungrouped.map(sub => (
-                    <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-b border-border last:border-0">
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-foreground truncate">{sub.student_name}</p>
-                        <p className="text-xs text-muted-foreground truncate">{sub.phone}</p>
-                      </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        <StatusBadge sub={sub} />
-                        {sub.status === "pending" && (
-                          <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
-                            Approve
-                          </Button>
-                        )}
-                        <Button variant="outline" size="sm" onClick={() => openActivity(sub)} className="h-7 gap-1 text-xs select-none">
-                          <Activity className="w-3.5 h-3.5" /> Activity
-                        </Button>
-                        <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
-                          <MessageCircle className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+          {notice && (
+            <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-sm text-emerald-700 dark:text-emerald-400 font-medium">{notice}</div>
           )}
 
-          {/* APPROVALS TAB */}
-          {activeTab === "approvals" && (
-            <div className="space-y-4">
-              {verifiedPendingCount > 0 && (
-                <Button onClick={handleApproveAllVerified} className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 select-none">
-                  ✅ Approve {verifiedPendingCount} AI-verified
-                </Button>
-              )}
-              {pendingAll.length === 0 ? (
-                <p className="text-center text-sm text-muted-foreground py-10">No pending subscriptions</p>
-              ) : (
-                <div className="bg-background rounded-2xl border border-border overflow-hidden">
-                  {pendingAll.map(sub => (
-                    <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-b border-border last:border-0">
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-foreground truncate">{sub.student_name}</p>
-                        <p className="text-xs text-muted-foreground truncate">{sub.phone}</p>
-                        {sub.referral_code && <p className="text-xs text-primary font-mono mt-0.5">{sub.referral_code}</p>}
-                      </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
-                        {sub.screenshot_verified && (
-                          <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-500/10 px-1.5 py-0.5 rounded-full whitespace-nowrap">🤖 AI Verified</span>
-                        )}
-                        <span className="text-xs text-muted-foreground font-mono">{sub.payment_ref || "—"}</span>
-                        <Button size="sm" onClick={() => handleAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-8 select-none">
-                          Approve
-                        </Button>
-                        <button onClick={() => openChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
-                          <MessageCircle className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+          {tab === "overview" && (
+            <OverviewTab
+              user={user}
+              groups={groups}
+              activeStudents={activeStudents}
+              activeAssignments={activeAssignments}
+              attention={attention}
+              recent={data.recent_completions || []}
+              onNavigate={setTab}
+              onAssign={() => navigate("/teacher/skill-hub")}
+            />
           )}
-
-          {/* AI CO-PLAN TAB */}
-          {activeTab === "coplan" && <TeacherCoPlanChat user={user} />}
-
-          {/* RESULTS TAB */}
-          {activeTab === "results" && (
-            <div className="bg-background rounded-2xl border border-border overflow-hidden">
-              <div className="px-5 py-4 border-b border-border">
-                <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Test Results</h3>
-              </div>
-              {results.length === 0 ? (
-                <p className="p-5 text-sm text-muted-foreground text-center">No results found</p>
-              ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-border">
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Student</th>
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Unit</th>
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Score</th>
-                        <th className="text-left px-4 py-3 text-xs font-semibold text-muted-foreground uppercase">Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {results.map(r => (
-                        <tr key={r.id} className="border-b border-border last:border-0">
-                          <td className="px-4 py-3">
-                            <p className="font-medium text-foreground">{r.student_name}</p>
-                            <p className="text-xs text-muted-foreground">{r.student_phone}</p>
-                          </td>
-                          <td className="px-4 py-3 text-foreground">{r.unit_name}</td>
-                          <td className="px-4 py-3">
-                            <span className="font-bold text-emerald-600">{r.score}</span>
-                            <span className="text-muted-foreground"> / {r.total_questions || 30}</span>
-                          </td>
-                          <td className="px-4 py-3 text-muted-foreground text-xs">{r.date}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
+          {tab === "classes" && (
+            <ClassesTab groups={groups} students={students} onChanged={() => load(true)} flash={flash} onActivity={setActivityStudent} />
           )}
-
+          {tab === "students" && (
+            <StudentsTab groups={groups} students={students} hwByStudent={hwByStudent} onActivity={setActivityStudent} />
+          )}
+          {tab === "assignments" && (
+            <AssignmentsTab assignments={data.assignments || []} onAssign={() => navigate("/teacher/skill-hub")} onChanged={() => load(true)} flash={flash} />
+          )}
+          {tab === "materials" && <MaterialsTab onOpen={() => navigate("/teacher/materials")} />}
         </div>
       </div>
 
       <StudentActivityDialog student={activityStudent} onClose={() => setActivityStudent(null)} />
-
-      {/* Chat overlay */}
-      <AnimatePresence>
-        {chatStudent && user && (
-          <ChatWindow
-            user={user}
-            roomId={chatStudent.roomId}
-            partnerName={chatStudent.name}
-            onClose={() => setChatStudent(null)}
-          />
-        )}
-      </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
-// Reusable create/edit form for a group (TeacherReferral row). `initial`
-// present = edit mode (prefilled, shows the running/paused/ended status
-// picker); absent = create mode (always starts "running").
+/* ------------------------------------------------------------ Overview */
+
+function OverviewTab({ user, groups, activeStudents, activeAssignments, attention, recent, onNavigate, onAssign }) {
+  const runningGroups = groups.filter((g) => g.group_status === "running").length;
+  const stats = [
+    { label: "Classes", value: runningGroups, icon: Users, tab: "classes" },
+    { label: "Students", value: activeStudents.length, icon: Users, tab: "students" },
+    { label: "Active homework", value: activeAssignments.length, icon: ClipboardList, tab: "assignments" },
+    { label: "Need attention", value: attention.length, icon: AlertTriangle, tab: "students", warn: attention.length > 0 },
+  ];
+  return (
+    <div className="space-y-5">
+      <div className="bg-gradient-to-br from-primary/15 via-primary/5 to-transparent rounded-2xl border border-primary/20 p-5">
+        <p className="text-xs text-muted-foreground">{greetingWord()},</p>
+        <h1 className="text-xl font-bold text-foreground">{resolveUserNameOrEmail(user)?.split(" ")[0] || "Teacher"}</h1>
+        <div className="grid grid-cols-2 gap-3 mt-4">
+          <Button onClick={onAssign} className="h-11 gap-2" disabled={groups.length === 0}>
+            <Sparkles className="w-4 h-4" /> Assign homework
+          </Button>
+          <Button onClick={() => onNavigate("classes")} variant="outline" className="h-11 gap-2">
+            <Plus className="w-4 h-4" /> New class
+          </Button>
+        </div>
+        {groups.length === 0 && (
+          <p className="text-xs text-muted-foreground mt-3">Start by creating a class. Each class gets a code your students enter to join.</p>
+        )}
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        {stats.map((s) => (
+          <button key={s.label} onClick={() => onNavigate(s.tab)} className="bg-background rounded-xl p-3 border border-border text-left hover:border-primary/40 transition-colors">
+            <s.icon className={`w-4 h-4 mb-1 ${s.warn ? "text-amber-500" : "text-primary"}`} />
+            <p className={`text-lg font-bold ${s.warn ? "text-amber-600" : "text-foreground"}`}>{s.value}</p>
+            <p className="text-[11px] text-muted-foreground">{s.label}</p>
+          </button>
+        ))}
+      </div>
+
+      <Section title="Needs attention" empty={attention.length === 0 ? "Nobody is behind. Overdue homework and students inactive for 14+ days show up here." : null}>
+        {attention.slice(0, 8).map((s) => (
+          <Row key={s.email} title={s.name} sub={s.group_label || s.group_code}>
+            {s.overdue > 0 && <Pill cls={HW_STYLES.overdue.cls}>{s.overdue} overdue</Pill>}
+            {s.activity === "inactive" && <Pill cls={ACTIVITY_STYLES.inactive.cls}>Inactive 14d+</Pill>}
+          </Row>
+        ))}
+      </Section>
+
+      <Section title="Recently completed" empty={recent.length === 0 ? "Completed homework will appear here as students finish it." : null}>
+        {recent.slice(0, 8).map((r) => (
+          <Row key={`${r.assignment_id}-${r.student_email}`} title={r.student_name} sub={`${r.assignment_title} · ${timeAgo(r.completed_at)}`}>
+            {r.best_score_pct != null && <span className="text-sm font-bold text-emerald-600 tabular-nums">{r.best_score_pct}%</span>}
+            {r.completed_late && <Pill cls={HW_STYLES.overdue.cls}>late</Pill>}
+          </Row>
+        ))}
+      </Section>
+
+      <Section title="Active homework" empty={activeAssignments.length === 0 ? "No homework out right now." : null}>
+        {activeAssignments.slice(0, 5).map((a) => (
+          <Row key={a.id} title={a.title} sub={`${a.group_label || a.group_code}${a.due_date ? ` · due ${formatDate(a.due_date)}` : ""}`}>
+            <span className="text-xs text-muted-foreground tabular-nums">{a.counts.completed}/{a.counts.total} done</span>
+            {a.counts.overdue > 0 && <Pill cls={HW_STYLES.overdue.cls}>{a.counts.overdue} overdue</Pill>}
+          </Row>
+        ))}
+      </Section>
+    </div>
+  );
+}
+
+function Section({ title, empty, children, action }) {
+  return (
+    <section className="bg-background rounded-2xl border border-border overflow-hidden">
+      <div className="px-5 py-3 border-b border-border flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-muted-foreground">{title}</h3>
+        {action}
+      </div>
+      {empty ? <p className="px-5 py-6 text-sm text-muted-foreground text-center">{empty}</p> : children}
+    </section>
+  );
+}
+
+function Row({ title, sub, children, onClick }) {
+  const Comp = onClick ? "button" : "div";
+  return (
+    <Comp onClick={onClick} className={`w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-border last:border-0 text-left ${onClick ? "hover:bg-muted/30 transition-colors" : ""}`}>
+      <div className="min-w-0">
+        <p className="text-sm font-medium text-foreground truncate">{title}</p>
+        {sub && <p className="text-xs text-muted-foreground truncate">{sub}</p>}
+      </div>
+      <div className="flex items-center gap-1.5 flex-shrink-0">{children}</div>
+    </Comp>
+  );
+}
+
+/* ------------------------------------------------------------ Classes */
+
+function ClassesTab({ groups, students, onChanged, flash, onActivity }) {
+  const [creating, setCreating] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [expanded, setExpanded] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  const save = async (fields, groupId) => {
+    setSaving(true);
+    setError("");
+    try {
+      if (groupId) await teacherApi("updateGroup", { group_id: groupId, ...fields });
+      else await teacherApi("createGroup", fields);
+      setCreating(false);
+      setEditingId(null);
+      flash(groupId ? "Class updated." : "Class created. Share its code with your students.");
+      await onChanged();
+    } catch (e) {
+      setError(e?.message || "Couldn't save the class.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const setRoster = async (student, removed) => {
+    try {
+      await teacherApi("setRoster", { subscription_id: student.subscription_id, removed });
+      flash(removed ? `${student.name} removed from the class.` : `${student.name} restored.`);
+      await onChanged();
+    } catch (e) {
+      flash(e?.message || "Couldn't update the roster.");
+    }
+  };
+
+  const copyCode = (code) => {
+    navigator.clipboard?.writeText(code);
+    flash(`Code copied: ${code}`);
+  };
+
+  return (
+    <div className="space-y-4">
+      {!creating ? (
+        <Button onClick={() => setCreating(true)} variant="outline" className="w-full h-11 gap-1.5">
+          <Plus className="w-4 h-4" /> New class
+        </Button>
+      ) : (
+        <GroupForm onSubmit={(f) => save(f)} onCancel={() => setCreating(false)} submitLabel="Create class" submitting={saving} />
+      )}
+      {error && <p className="text-sm text-destructive">{error}</p>}
+      {groups.length === 0 && !creating && (
+        <p className="text-center text-sm text-muted-foreground py-6">No classes yet. Create one to get a join code.</p>
+      )}
+      {groups.map((g) => {
+        const members = students.filter((s) => s.group_code === g.code);
+        if (editingId === g.id) {
+          return (
+            <GroupForm key={g.id} initial={g} onSubmit={(f) => save(f, g.id)} onCancel={() => setEditingId(null)} submitLabel="Save changes" submitting={saving} />
+          );
+        }
+        return (
+          <GroupCard
+            key={g.id}
+            group={g}
+            members={members}
+            expanded={expanded === g.id}
+            onToggle={() => setExpanded(expanded === g.id ? null : g.id)}
+            onCopy={() => copyCode(g.code)}
+            onEdit={() => setEditingId(g.id)}
+            onRoster={setRoster}
+            onActivity={onActivity}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 function GroupForm({ initial, onSubmit, onCancel, submitLabel, submitting }) {
   const [label, setLabel] = useState(initial?.label || "");
   const [level, setLevel] = useState(initial?.level || "");
@@ -572,29 +423,18 @@ function GroupForm({ initial, onSubmit, onCancel, submitLabel, submitting }) {
   const [startTime, setStartTime] = useState(initial?.start_time || "");
   const [endTime, setEndTime] = useState(initial?.end_time || "");
   const [groupStatus, setGroupStatus] = useState(initial?.group_status || "running");
-
   const toggleDay = (d) => setDays((prev) => (prev.includes(d) ? prev.filter((x) => x !== d) : [...prev, d]));
-
   const submit = () => {
-    onSubmit({ label: label.trim(), level: level || null, days, start_time: startTime || null, end_time: endTime || null, group_status: groupStatus });
-    if (!initial) { setLabel(""); setLevel(""); setDays([]); setStartTime(""); setEndTime(""); setGroupStatus("running"); }
+    const fields = { label: label.trim(), level: level || null, days, start_time: startTime || null, end_time: endTime || null };
+    if (initial) fields.group_status = groupStatus;
+    onSubmit(fields);
   };
-
   return (
     <div className="bg-background rounded-2xl border border-border p-5 space-y-3">
-      <h3 className="text-sm font-semibold text-foreground">{initial ? "Edit group" : "New group"}</h3>
-      <input
-        type="text"
-        placeholder="Group title, e.g. B2 Evening"
-        value={label}
-        onChange={(e) => setLabel(e.target.value)}
-        className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors"
-      />
-      <select
-        value={level}
-        onChange={(e) => setLevel(e.target.value)}
-        className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground"
-      >
+      <h3 className="text-sm font-semibold text-foreground">{initial ? "Edit class" : "New class"}</h3>
+      <input type="text" placeholder="Class name, e.g. B2 Evening" value={label} onChange={(e) => setLabel(e.target.value)}
+        className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground focus:border-primary focus:outline-none transition-colors" />
+      <select value={level} onChange={(e) => setLevel(e.target.value)} className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground">
         <option value="">Level (optional)</option>
         {LEVEL_OPTIONS.map((l) => <option key={l} value={l}>{l}</option>)}
       </select>
@@ -602,113 +442,62 @@ function GroupForm({ initial, onSubmit, onCancel, submitLabel, submitting }) {
         <p className="text-xs text-muted-foreground mb-1.5">Days</p>
         <div className="flex flex-wrap gap-1.5">
           {DAY_OPTIONS.map((d) => (
-            <button
-              key={d}
-              type="button"
-              onClick={() => toggleDay(d)}
-              className={`w-9 h-9 rounded-lg text-xs font-bold select-none transition-colors ${
-                days.includes(d) ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/70"
-              }`}
-            >
-              {d[0]}
+            <button key={d} type="button" onClick={() => toggleDay(d)}
+              className={`w-10 h-9 rounded-lg text-xs font-bold select-none transition-colors ${days.includes(d) ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/70"}`}>
+              {d.slice(0, 2)}
             </button>
           ))}
         </div>
       </div>
       <div className="flex gap-2">
-        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)}
+        <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} aria-label="Start time"
           className="flex-1 h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground" />
-        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)}
+        <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} aria-label="End time"
           className="flex-1 h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground" />
       </div>
-      <div>
-        <p className="text-xs text-muted-foreground mb-1.5">Status</p>
-        <div className="grid grid-cols-3 gap-1.5">
-          {["running", "paused", "ended"].map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setGroupStatus(s)}
-              className={`h-9 rounded-lg text-xs font-semibold select-none capitalize transition-colors ${
-                groupStatus === s ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/70"
-              }`}
-            >
-              {s}
-            </button>
-          ))}
+      {initial && (
+        <div>
+          <p className="text-xs text-muted-foreground mb-1.5">Status</p>
+          <div className="grid grid-cols-3 gap-1.5">
+            {["running", "paused", "ended"].map((st) => (
+              <button key={st} type="button" onClick={() => setGroupStatus(st)}
+                className={`h-9 rounded-lg text-xs font-semibold select-none capitalize transition-colors ${groupStatus === st ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/70"}`}>
+                {st}
+              </button>
+            ))}
+          </div>
+          {groupStatus === "ended" && <p className="text-[11px] text-muted-foreground mt-1.5">Ended classes stop accepting new students and new homework.</p>}
         </div>
-      </div>
+      )}
       <div className="flex gap-2 pt-1">
-        <Button onClick={submit} disabled={submitting} className="flex-1 h-10 select-none">{submitLabel}</Button>
-        {onCancel && <Button variant="outline" onClick={onCancel} className="h-10 select-none">Cancel</Button>}
+        <Button onClick={submit} disabled={submitting} className="flex-1 h-10">{submitting ? "Saving..." : submitLabel}</Button>
+        {onCancel && <Button variant="outline" onClick={onCancel} className="h-10">Cancel</Button>}
       </div>
     </div>
   );
 }
 
-// CRM-inspired group card: title/level/status at a glance, day-pattern +
-// time, student count, expands into the group's roster with per-student
-// activity state and a manual remove/restore control.
-function StudentActivityDialog({ student, onClose }) {
-  const [sessions, setSessions] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!student) return;
-    let active = true;
-    setLoading(true);
-    base44.entities.ActivitySession
-      .filter({ student_email: student.email }, "-ended_at", 100)
-      .then((rows) => { if (active) setSessions(rows || []); })
-      .catch((error) => { console.error("Student activity load failed:", error); if (active) setSessions([]); })
-      .finally(() => { if (active) setLoading(false); });
-    return () => { active = false; };
-  }, [student?.email]);
-
-  return (
-    <Dialog open={!!student} onOpenChange={(open) => { if (!open) onClose(); }}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-xl sm:rounded-2xl">
-        <DialogHeader>
-          <DialogTitle>{student?.name || "Student"} — Activity</DialogTitle>
-          <DialogDescription>Visible, active learning time recorded in VIRORA.</DialogDescription>
-        </DialogHeader>
-        {loading ? (
-          <div className="flex justify-center py-12"><RefreshCw className="w-5 h-5 animate-spin text-primary" /></div>
-        ) : (
-          <ActivityReport sessions={sessions} compact />
-        )}
-      </DialogContent>
-    </Dialog>
-  );
-}
-
-function GroupCard({
-  group, students, lastActiveMap, expanded, onToggle, onCopyCode, onRemoveStudent,
-  onOpenChat, onOpenActivity, onAccept, onEditGroup, showRemoved, onToggleShowRemoved, StatusBadge,
-}) {
-  const activeStudents = students.filter((s) => s.roster_status !== "removed");
-  const removedStudents = students.filter((s) => s.roster_status === "removed");
-  const attentionCount = activeStudents.filter((s) => getActivityStatus(s, lastActiveMap[s.phone]) === "inactive").length;
-  const status = group.group_status || "running";
-
+function GroupCard({ group, members, expanded, onToggle, onCopy, onEdit, onRoster, onActivity }) {
+  const active = members.filter((s) => s.roster_status === "active");
+  const removed = members.filter((s) => s.roster_status === "removed");
+  const [showRemoved, setShowRemoved] = useState(false);
+  const inactive = active.filter((s) => s.activity === "inactive").length;
   return (
     <div className="bg-background rounded-2xl border border-border overflow-hidden">
-      <button onClick={onToggle} className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors select-none text-left gap-3">
+      <button onClick={onToggle} className="w-full flex items-center justify-between px-5 py-4 hover:bg-muted/30 transition-colors text-left gap-3">
         <div className="flex items-center gap-3 min-w-0">
-          <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-            <Users className="w-5 h-5 text-primary" />
-          </div>
+          <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0"><Users className="w-5 h-5 text-primary" /></div>
           <div className="min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
-              <p className="text-sm font-semibold text-foreground truncate">{group.label || "Untitled group"}</p>
-              {group.level && <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">{group.level}</span>}
-              <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full capitalize ${GROUP_STATUS_STYLES[status]}`}>{status}</span>
+              <p className="text-sm font-semibold text-foreground truncate">{group.label || "Untitled class"}</p>
+              {group.level && <Pill cls="text-primary bg-primary/10">{group.level}</Pill>}
+              <Pill cls={`capitalize ${GROUP_STATUS_STYLES[group.group_status] || ""}`}>{group.group_status}</Pill>
             </div>
             <p className="text-xs text-muted-foreground mt-0.5 truncate">
               {group.days?.length ? formatDayPattern(group.days) : "No schedule set"}
-              {group.start_time && ` · ${group.start_time}${group.end_time ? "–" + group.end_time : ""}`}
-              {" · "}{activeStudents.length} student{activeStudents.length !== 1 ? "s" : ""}
-              {attentionCount > 0 && <span className="text-amber-600 font-semibold"> · {attentionCount} need attention</span>}
+              {group.start_time && ` · ${group.start_time}${group.end_time ? `–${group.end_time}` : ""}`}
+              {` · ${active.length} student${active.length !== 1 ? "s" : ""}`}
+              {inactive > 0 && <span className="text-amber-600 font-semibold">{` · ${inactive} inactive`}</span>}
             </p>
           </div>
         </div>
@@ -721,52 +510,40 @@ function GroupCard({
         {expanded && (
           <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden">
             <div className="border-t border-border px-5 py-2.5 flex items-center justify-between gap-2 bg-muted/20">
-              <button onClick={() => onCopyCode(group.code)} className="text-xs font-mono font-bold text-primary flex items-center gap-1.5 select-none">
-                <Copy className="w-3.5 h-3.5" /> {group.code}
+              <button onClick={onCopy} className="text-xs font-mono font-bold text-primary flex items-center gap-1.5">
+                <Copy className="w-3.5 h-3.5" /> Join code {group.code}
               </button>
-              <button onClick={onEditGroup} className="text-xs font-medium text-muted-foreground hover:text-foreground select-none">Edit schedule</button>
+              <button onClick={onEdit} className="text-xs font-medium text-muted-foreground hover:text-foreground">Edit class</button>
             </div>
-            {activeStudents.length === 0 ? (
-              <p className="text-center text-xs text-muted-foreground py-6">No students yet</p>
-            ) : activeStudents.map((sub) => {
-              const st = getActivityStatus(sub, lastActiveMap[sub.phone]);
-              const styleInfo = ACTIVITY_STYLES[st];
-              return (
-                <div key={sub.id} className="flex items-center justify-between px-5 py-3 border-t border-border gap-2">
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate">{sub.student_name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{sub.phone}</p>
-                  </div>
-                  <div className="flex items-center gap-1.5 flex-shrink-0">
-                    <StatusBadge sub={sub} />
-                    <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full whitespace-nowrap ${styleInfo.cls}`}>{styleInfo.label}</span>
-                    {sub.status === "pending" && (
-                      <Button size="sm" onClick={() => onAccept(sub)} className="bg-emerald-600 hover:bg-emerald-700 text-xs h-7 select-none">
-                        Approve
-                      </Button>
-                    )}
-                    <Button variant="outline" size="sm" onClick={() => onOpenActivity(sub)} className="h-7 gap-1 text-xs select-none">
-                      <Activity className="w-3.5 h-3.5" /> Activity
-                    </Button>
-                    <button onClick={() => onOpenChat(sub)} className="p-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors select-none">
-                      <MessageCircle className="w-4 h-4" />
-                    </button>
-                    <button onClick={() => onRemoveStudent(sub)} title="Remove from roster" className="p-1.5 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors select-none">
-                      <UserMinus className="w-4 h-4" />
-                    </button>
-                  </div>
+            {active.length === 0 ? (
+              <p className="text-center text-xs text-muted-foreground py-6">No students yet. They join by entering <span className="font-mono font-bold">{group.code}</span> at sign-up or in their profile.</p>
+            ) : active.map((s) => (
+              <div key={s.subscription_id} className="flex items-center justify-between px-5 py-3 border-t border-border gap-2">
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">{s.name}</p>
+                  <p className="text-xs text-muted-foreground truncate">{s.email}</p>
                 </div>
-              );
-            })}
-            {removedStudents.length > 0 && (
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <Pill cls={ACTIVITY_STYLES[s.activity]?.cls}>{ACTIVITY_STYLES[s.activity]?.label}</Pill>
+                  <Button variant="outline" size="sm" onClick={() => onActivity({ email: s.email, name: s.name })} className="h-7 gap-1 text-xs">
+                    <Activity className="w-3.5 h-3.5" /> Activity
+                  </Button>
+                  <button onClick={() => onRoster(s, true)} title="Remove from class" aria-label={`Remove ${s.name} from class`}
+                    className="p-1.5 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors">
+                    <UserMinus className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))}
+            {removed.length > 0 && (
               <div className="border-t border-border px-5 py-2.5">
-                <button onClick={onToggleShowRemoved} className="text-xs text-muted-foreground hover:text-foreground select-none">
-                  {showRemoved ? "Hide" : "Show"} {removedStudents.length} removed
+                <button onClick={() => setShowRemoved((v) => !v)} className="text-xs text-muted-foreground hover:text-foreground">
+                  {showRemoved ? "Hide" : "Show"} {removed.length} removed
                 </button>
-                {showRemoved && removedStudents.map((sub) => (
-                  <div key={sub.id} className="flex items-center justify-between py-2">
-                    <p className="text-xs text-muted-foreground">{sub.student_name}</p>
-                    <button onClick={() => onRemoveStudent(sub, true)} className="text-xs text-primary font-medium select-none">Restore</button>
+                {showRemoved && removed.map((s) => (
+                  <div key={s.subscription_id} className="flex items-center justify-between py-2">
+                    <p className="text-xs text-muted-foreground">{s.name}</p>
+                    <button onClick={() => onRoster(s, false)} className="text-xs text-primary font-medium">Restore</button>
                   </div>
                 ))}
               </div>
@@ -775,5 +552,200 @@ function GroupCard({
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+/* ------------------------------------------------------------ Students */
+
+function StudentsTab({ groups, students, hwByStudent, onActivity }) {
+  const [groupFilter, setGroupFilter] = useState("all");
+  const rows = students
+    .filter((s) => s.roster_status === "active")
+    .filter((s) => groupFilter === "all" || s.group_code === groupFilter);
+  return (
+    <div className="space-y-3">
+      {groups.length > 1 && (
+        <select value={groupFilter} onChange={(e) => setGroupFilter(e.target.value)}
+          className="w-full h-10 px-3 border border-input rounded-xl text-sm bg-background text-foreground">
+          <option value="all">All classes</option>
+          {groups.map((g) => <option key={g.id} value={g.code}>{g.label || g.code}</option>)}
+        </select>
+      )}
+      <Section title={`Students (${rows.length})`} empty={rows.length === 0 ? "No students yet. Share a class code to get started." : null}>
+        {rows.map((s) => {
+          const hw = hwByStudent[s.email] || { total: 0, completed: 0, overdue: 0 };
+          const kind = SUB_KIND_META[s.plan_kind];
+          return (
+            <div key={s.subscription_id} className="flex items-center justify-between px-5 py-3 border-b border-border last:border-0 gap-2">
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-foreground truncate">{s.name}</p>
+                <p className="text-xs text-muted-foreground truncate">
+                  {s.group_label || s.group_code}
+                  {` · homework ${hw.completed}/${hw.total}`}
+                  {s.week_minutes > 0 && ` · ${s.week_minutes} min this week`}
+                </p>
+              </div>
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                {hw.overdue > 0 && <Pill cls={HW_STYLES.overdue.cls}>{hw.overdue} overdue</Pill>}
+                <Pill cls={ACTIVITY_STYLES[s.activity]?.cls}>{ACTIVITY_STYLES[s.activity]?.label}</Pill>
+                {kind && <Pill cls={kind.cls}>{kind.label}</Pill>}
+                <Button variant="outline" size="sm" onClick={() => onActivity({ email: s.email, name: s.name })} className="h-7 gap-1 text-xs">
+                  <Activity className="w-3.5 h-3.5" />
+                </Button>
+              </div>
+            </div>
+          );
+        })}
+      </Section>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------ Assignments */
+
+function AssignmentsTab({ assignments, onAssign, onChanged, flash }) {
+  const [expanded, setExpanded] = useState(null);
+  const [showClosed, setShowClosed] = useState(false);
+  const active = assignments.filter((a) => a.status === "active");
+  const closed = assignments.filter((a) => a.status !== "active");
+
+  const toggleClosed = async (a) => {
+    try {
+      await teacherApi("closeAssignment", { assignment_id: a.id, reopen: a.status !== "active" });
+      flash(a.status === "active" ? "Homework closed. Students no longer see it." : "Homework reopened.");
+      await onChanged();
+    } catch (e) {
+      flash(e?.message || "Couldn't update the homework.");
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={onAssign} className="w-full h-11 gap-2"><Sparkles className="w-4 h-4" /> Assign homework</Button>
+      {active.length === 0 && <p className="text-center text-sm text-muted-foreground py-6">No active homework.</p>}
+      {active.map((a) => (
+        <AssignmentCard key={a.id} a={a} expanded={expanded === a.id} onToggle={() => setExpanded(expanded === a.id ? null : a.id)} onClose={() => toggleClosed(a)} />
+      ))}
+      {closed.length > 0 && (
+        <div>
+          <button onClick={() => setShowClosed((v) => !v)} className="text-xs text-muted-foreground hover:text-foreground">
+            {showClosed ? "Hide" : "Show"} {closed.length} closed
+          </button>
+          {showClosed && (
+            <div className="space-y-3 mt-3">
+              {closed.map((a) => (
+                <AssignmentCard key={a.id} a={a} expanded={expanded === a.id} onToggle={() => setExpanded(expanded === a.id ? null : a.id)} onClose={() => toggleClosed(a)} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AssignmentCard({ a, expanded, onToggle, onClose }) {
+  const pct = a.counts.total ? Math.round((a.counts.completed / a.counts.total) * 100) : 0;
+  return (
+    <div className={`bg-background rounded-2xl border border-border overflow-hidden ${a.status !== "active" ? "opacity-70" : ""}`}>
+      <button onClick={onToggle} className="w-full px-5 py-4 text-left hover:bg-muted/30 transition-colors">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-foreground truncate">{a.title}</p>
+            <p className="text-xs text-muted-foreground mt-0.5 truncate">
+              {a.group_label || a.group_code}
+              {a.target === "students" ? " · selected students" : ""}
+              {a.skill_label ? ` · ${a.skill_label}` : ""}
+              {a.due_date ? ` · due ${formatDate(a.due_date)}` : " · no due date"}
+            </p>
+          </div>
+          <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform flex-shrink-0 mt-0.5 ${expanded ? "rotate-180" : ""}`} />
+        </div>
+        <div className="mt-3 flex items-center gap-3">
+          <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
+            <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${pct}%` }} />
+          </div>
+          <span className="text-xs text-muted-foreground tabular-nums flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />{a.counts.completed}/{a.counts.total}</span>
+          {a.counts.overdue > 0 && <span className="text-xs text-amber-600 tabular-nums flex items-center gap-1"><AlertTriangle className="w-3.5 h-3.5" />{a.counts.overdue}</span>}
+          {a.counts.assigned > 0 && <span className="text-xs text-muted-foreground tabular-nums flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{a.counts.assigned}</span>}
+        </div>
+      </button>
+      <AnimatePresence>
+        {expanded && (
+          <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden border-t border-border">
+            {a.recipients.length === 0 ? (
+              <p className="text-center text-xs text-muted-foreground py-6">No students in this class yet.</p>
+            ) : a.recipients.map((r) => (
+              <div key={r.email} className="flex items-center justify-between px-5 py-2.5 border-b border-border last:border-0 gap-2">
+                <div className="min-w-0">
+                  <p className="text-sm text-foreground truncate">{r.name}{!r.still_member && <span className="text-xs text-muted-foreground"> (left class)</span>}</p>
+                  {r.completed_at && <p className="text-[11px] text-muted-foreground">{formatDate(r.completed_at)}{r.attempts > 1 ? ` · ${r.attempts} attempts` : ""}</p>}
+                </div>
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  {r.best_score_pct != null && <span className="text-sm font-bold text-emerald-600 tabular-nums">{r.best_score_pct}%</span>}
+                  {r.completed_late && <Pill cls={HW_STYLES.overdue.cls}>late</Pill>}
+                  <Pill cls={HW_STYLES[r.status].cls}>{HW_STYLES[r.status].label}</Pill>
+                </div>
+              </div>
+            ))}
+            <div className="px-5 py-2.5 bg-muted/20 flex justify-end">
+              <button onClick={onClose} className="text-xs font-medium text-muted-foreground hover:text-foreground">
+                {a.status === "active" ? "Close homework" : "Reopen homework"}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------ Materials */
+
+function MaterialsTab({ onOpen }) {
+  return (
+    <div className="bg-background rounded-2xl border border-border p-5 space-y-3">
+      <div className="flex items-center gap-2">
+        <FileText className="w-5 h-5 text-primary" />
+        <h3 className="text-sm font-semibold text-foreground">Material Library</h3>
+        <BetaBadge />
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Upload or paste your own teaching material. VIRORA stores it and writes a short summary. You can't turn materials into homework or share them with students yet.
+      </p>
+      <Button onClick={onOpen} variant="outline" className="gap-2"><Check className="w-4 h-4" /> Open Material Library</Button>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------ Activity dialog */
+
+function StudentActivityDialog({ student, onClose }) {
+  const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (!student) return;
+    let active = true;
+    setLoading(true);
+    teacherApi("studentActivity", { email: student.email })
+      .then((res) => { if (active) setSessions(res?.sessions || []); })
+      .catch((error) => { console.error("Student activity load failed:", error); if (active) setSessions([]); })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [student?.email]);
+  return (
+    <Dialog open={!!student} onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-xl sm:rounded-2xl">
+        <DialogHeader>
+          <DialogTitle>{student?.name || "Student"} · Activity</DialogTitle>
+          <DialogDescription>Visible, active learning time recorded in VIRORA.</DialogDescription>
+        </DialogHeader>
+        {loading ? (
+          <div className="flex justify-center py-12"><RefreshCw className="w-5 h-5 animate-spin text-primary" /></div>
+        ) : (
+          <ActivityReport sessions={sessions} compact />
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }
