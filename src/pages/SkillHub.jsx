@@ -92,7 +92,20 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
       const PAGE = 500;
       // eslint-disable-next-line no-constant-condition
       while (true) {
-        const page = await base44.entities.VocabularyWord.list("id", PAGE, skip);
+        // One retry per page, then stop with what we have. Seen 2026-09-23:
+        // the platform occasionally answers a single page with a spurious
+        // 403, and an unhandled throw here left `loading` true forever —
+        // which also froze homework launches (they wait for the pool).
+        let page = null;
+        for (let attempt = 0; attempt < 2 && !page; attempt++) {
+          try {
+            page = await base44.entities.VocabularyWord.list("id", PAGE, skip);
+          } catch (e) {
+            if (attempt === 1) console.error("VocabularyWord page failed", skip, e);
+            else await new Promise((r) => setTimeout(r, 600));
+          }
+        }
+        if (!page) break;
         page.forEach((w) => byId.set(w.id, w));
         if (page.length < PAGE) break;
         skip += PAGE;
