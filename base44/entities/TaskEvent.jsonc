@@ -1,0 +1,74 @@
+{
+  "name": "TaskEvent",
+  "type": "object",
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "string",
+      "enum": [
+        "tee",
+        "gpt",
+        "claude",
+        "fable",
+        "base44",
+        "system",
+        "imported"
+      ]
+    },
+    "actor_label": {
+      "type": "string"
+    },
+    "node_id": {
+      "type": "string"
+    },
+    "node_code": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string"
+    },
+    "field": {
+      "type": "string"
+    },
+    "before": {
+      "type": "string"
+    },
+    "after": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "ts",
+    "actor",
+    "node_id",
+    "action"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "never"
+      }
+    }
+  }
+}
