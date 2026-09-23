@@ -11,7 +11,7 @@ import { useTheme } from "next-themes";
 import BottomTabBar from "@/components/BottomTabBar";
 import UnitDrawer from "@/components/UnitDrawer";
 import ParticleBackground from "@/components/ParticleBackground";
-import { handleExpiredSubscription } from "@/lib/subscription";
+import { refreshMySubscription } from "@/lib/subscription";
 import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -86,17 +86,18 @@ export default function Home() {
       // them the B1 default concretely before anything downstream reads it —
       // a no-op (and no extra request) for everyone who already has one.
       setUser(await ensureUserLevel(me));
-      let subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
-      if (subs.length === 0) {
-        // fallback: find subscription created by this user
-        subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
-      }
-      if (subs.length > 0) {
-        let sub = subs[0];
-        if (sub.status === "active" && sub.expires_at && new Date(sub.expires_at) < new Date()) {
-          sub = await handleExpiredSubscription(sub);
-        }
-        setSubscription(sub);
+      // Server-side since 2026-09-23: studentApi applies any due expiry
+      // transition (the browser can no longer write its own subscription).
+      // If the function is unreachable, fall back to a plain read so the
+      // dashboard still renders; the transition just waits for next load.
+      try {
+        const res = await refreshMySubscription();
+        if (res?.subscription) setSubscription(res.subscription);
+      } catch (subErr) {
+        console.error("subscription refresh failed, reading directly:", subErr);
+        let subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
+        if (subs.length === 0) subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
+        if (subs.length > 0) setSubscription(subs[0]);
       }
       const words = await base44.entities.VocabularyWord.list();
       const unitMap = {};
