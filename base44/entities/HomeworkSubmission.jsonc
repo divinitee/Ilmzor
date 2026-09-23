@@ -1,0 +1,82 @@
+{
+  "name": "HomeworkSubmission",
+  "type": "object",
+  "properties": {
+    "assignment_id": {
+      "type": "string",
+      "description": "HomeworkAssignment id"
+    },
+    "teacher_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "student_email": {
+      "type": "string"
+    },
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "attempts": {
+      "type": "number",
+      "default": 0
+    },
+    "best_score_pct": {
+      "type": "number",
+      "description": "Best round score 0-100 across attempts"
+    },
+    "last_score_pct": {
+      "type": "number"
+    },
+    "first_completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_late": {
+      "type": "boolean",
+      "default": false,
+      "description": "First completion happened after the assignment's due date (Asia/Tashkent calendar day)."
+    }
+  },
+  "required": [
+    "assignment_id",
+    "student_email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.student_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

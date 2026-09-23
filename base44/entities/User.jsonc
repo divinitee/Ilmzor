@@ -131,6 +131,11 @@
       "type": "string",
       "maxLength": 128,
       "description": "SHA-256 of this admin's /admin unlock PIN. IMPORTANT \u2014 this is a convenience lock, NOT a security boundary: the real gate is Base44 auth plus the role-based RLS rules, which are enforced server-side. Anyone holding a valid admin session can call the entity API directly and never sees this screen. A short numeric PIN is also brute-forceable from its hash, so this is only meant to stop a passer-by at an already-unlocked laptop. Never treat it as protection against a technical attacker."
+    },
+    "trial_used_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this account started its one self-serve trial. Written only by the studentApi function (service role); a second startTrial is refused once set, so deleting a subscription row cannot farm a fresh trial."
     }
   },
   "required": [
