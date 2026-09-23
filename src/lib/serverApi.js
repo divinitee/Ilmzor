@@ -44,8 +44,10 @@ async function call(fn, action, payload = {}, retried = false) {
 export const studentApi = (action, payload) => call("studentApi", action, payload);
 export const teacherApi = (action, payload) => call("teacherApi", action, payload);
 
-export const taskboardApi = (action, payload = {}, actor = "tee") =>
-  call("taskboard-api", action, { ...payload, actor });
+export const taskboardApi = async (action, payload = {}, actor = "tee") => {
+  const response = await call("taskboard-api", action, { ...payload, actor });
+  return response?.data ?? response;
+};
 
 // Human copy for the join-class errors students can actually hit.
 const JOIN_ERRORS = {
