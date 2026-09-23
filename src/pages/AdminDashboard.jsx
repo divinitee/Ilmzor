@@ -299,14 +299,14 @@ export default function AdminDashboard() {
   // role === "teacher" branch was unreachable and every real teacher
   // showed up here badged as a student.
   const roleBadge = (u) => {
-    if (u.role === "admin") return <Badge className="bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400 gap-1"><Crown className="w-3 h-3" />{s.admin}</Badge>;
-    if (u.teacher_status === "approved") return <Badge className="bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher}</Badge>;
-    if (u.teacher_status === "pending") return <Badge className="bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher} ?</Badge>;
-    return <Badge className="bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400 gap-1"><GraduationCap className="w-3 h-3" />{s.student}</Badge>;
+    if (u.role === "admin") return <Badge className="bg-amber-500/15 text-amber-400 gap-1"><Crown className="w-3 h-3" />{s.admin}</Badge>;
+    if (u.teacher_status === "approved") return <Badge className="bg-indigo-500/15 text-indigo-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher}</Badge>;
+    if (u.teacher_status === "pending") return <Badge className="bg-slate-500/15 text-slate-400 gap-1"><BookOpen className="w-3 h-3" />{s.teacher} ?</Badge>;
+    return <Badge className="bg-slate-500/15 text-slate-400 gap-1"><GraduationCap className="w-3 h-3" />{s.student}</Badge>;
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-slate-950 dark:to-indigo-950">
+    <div className="min-h-screen bg-background">
       <header className="bg-background/80 backdrop-blur border-b border-border px-4 pb-3 flex items-center gap-3 safe-header sticky top-0 z-30">
         <Link to="/" className="text-muted-foreground hover:text-foreground p-1.5 select-none">
           <ArrowLeft className="w-5 h-5" />
@@ -429,7 +429,7 @@ export default function AdminDashboard() {
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1.5">
                             <button onClick={() => openWipe(u, "reset")}
-                              className={`${actionBtn} text-amber-600 border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-500/10`}>
+                              className={`${actionBtn} text-amber-400 border-amber-400/40 hover:bg-amber-500/10`}>
                               Reset
                             </button>
                             <button onClick={() => openWipe(u, "delete")}
@@ -471,9 +471,9 @@ export default function AdminDashboard() {
                         rejected: s.teacherStatusRejected,
                       }[u.teacher_status] || u.teacher_status;
                       const statusClass = {
-                        pending: "bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-400",
-                        approved: "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-400",
-                        rejected: "bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-400",
+                        pending: "bg-amber-500/15 text-amber-400",
+                        approved: "bg-emerald-500/15 text-emerald-400",
+                        rejected: "bg-slate-500/15 text-slate-400",
                       }[u.teacher_status] || "";
                       return (
                         <tr key={u.id} className="border-t border-border hover:bg-muted/30">
@@ -489,7 +489,8 @@ export default function AdminDashboard() {
                               type="number" step="0.5" min="0" max="100"
                               defaultValue={u.teacher_commission_rate_pct ?? ""}
                               onBlur={(e) => handleSetCommissionRate(u, e.target.value)}
-                              className="w-20 h-8 px-2 border border-input rounded-lg text-sm bg-background text-foreground"
+                              placeholder="—"
+                              className="w-20 h-8 px-2 border border-border rounded-lg text-sm bg-muted/40 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
                             />
                           </td>
                           <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
@@ -500,7 +501,7 @@ export default function AdminDashboard() {
                               <div className="flex gap-2">
                                 <button
                                   onClick={() => handleApproveTeacher(u)}
-                                  className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 border border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 rounded-lg px-2.5 py-1 select-none"
+                                  className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 border border-emerald-400/40 hover:bg-emerald-500/10 rounded-lg px-2.5 py-1 select-none"
                                 >
                                   {s.teacherApprove}
                                 </button>
@@ -573,19 +574,19 @@ export default function AdminDashboard() {
                           <div className="flex flex-wrap gap-1.5">
                             {(x.status === "pending" || x.status === "inactive") && (
                               <button onClick={() => handleApprove(x)} disabled={busy}
-                                className={`${actionBtn} text-emerald-600 border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}>
+                                className={`${actionBtn} text-emerald-400 border-emerald-400/40 hover:bg-emerald-500/10`}>
                                 Approve
                               </button>
                             )}
                             {x.status === "active" && !x.cancelled_at && (
                               <button onClick={() => handlePause(x)} disabled={busy}
-                                className={`${actionBtn} text-amber-600 border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-500/10`}>
+                                className={`${actionBtn} text-amber-400 border-amber-400/40 hover:bg-amber-500/10`}>
                                 Halt
                               </button>
                             )}
                             {x.status === "paused" && (
                               <button onClick={() => handleResume(x)} disabled={busy}
-                                className={`${actionBtn} text-emerald-600 border-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-500/10`}>
+                                className={`${actionBtn} text-emerald-400 border-emerald-400/40 hover:bg-emerald-500/10`}>
                                 Resume
                               </button>
                             )}

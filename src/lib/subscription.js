@@ -65,12 +65,12 @@ export function paidSince(sub) {
 }
 
 export const SUB_KIND_META = {
-  paid: { label: "✅ Paid", cls: "text-emerald-700 dark:text-emerald-400 bg-emerald-500/10" },
-  trial: { label: "🎁 Trial", cls: "text-sky-700 dark:text-sky-400 bg-sky-500/10" },
+  paid: { label: "✅ Paid", cls: "text-emerald-400 bg-emerald-500/10" },
+  trial: { label: "🎁 Trial", cls: "text-sky-400 bg-sky-500/10" },
   free: { label: "Free plan", cls: "text-muted-foreground bg-muted" },
-  pending: { label: "⏳ Pending", cls: "text-amber-700 dark:text-amber-400 bg-amber-500/10" },
-  paused: { label: "⏸ Paused", cls: "text-amber-700 dark:text-amber-400 bg-amber-500/10" },
-  ending: { label: "⚠ Ending", cls: "text-orange-700 dark:text-orange-400 bg-orange-500/10" },
+  pending: { label: "⏳ Pending", cls: "text-amber-400 bg-amber-500/10" },
+  paused: { label: "⏸ Paused", cls: "text-amber-400 bg-amber-500/10" },
+  ending: { label: "⚠ Ending", cls: "text-orange-400 bg-orange-500/10" },
   cancelled: { label: "Cancelled", cls: "text-muted-foreground bg-muted line-through" },
   unpaid: { label: "❌ Unpaid", cls: "text-destructive bg-destructive/10" },
 };
