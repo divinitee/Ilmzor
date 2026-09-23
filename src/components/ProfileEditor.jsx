@@ -13,7 +13,7 @@ export default function ProfileEditor({ user, onSaved }) {
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(() => resolveUserName(user));
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
-  const [roomCode, setRoomCode] = useState(user?.classroom_code || "");
+  const [roomCode, setRoomCode] = useState("");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -21,6 +21,22 @@ export default function ProfileEditor({ user, onSaved }) {
   // Class-code problems get their own message: "couldn't save" would hide
   // the one thing the student can fix (a mistyped code, a removed class).
   const [codeError, setCodeError] = useState("");
+  // The class code shown/compared is the student's REAL membership from the
+  // server, not the User.classroom_code mirror: older accounts have typed
+  // codes in the mirror that never linked to a class (e.g. "IDK"), and one
+  // matching the right code while unlinked would otherwise never re-join.
+  // null = couldn't load, fall back to the mirror.
+  const [memberCode, setMemberCode] = useState(undefined);
+  const effectiveCode = (memberCode ?? user?.classroom_code ?? "") || "";
+
+  useEffect(() => {
+    if (!user?.id) return;
+    let cancelled = false;
+    studentApi("refresh")
+      .then((r) => { if (!cancelled) setMemberCode(r?.membership && !r.membership.removed ? r.membership.code : ""); })
+      .catch(() => { if (!cancelled) setMemberCode(null); });
+    return () => { cancelled = true; };
+  }, [user?.id, user?.classroom_code]);
 
   // `user` is refetched after every save (see Settings.jsx / Home.jsx's
   // onSaved handlers) and this component isn't remounted when that happens —
@@ -30,8 +46,8 @@ export default function ProfileEditor({ user, onSaved }) {
     if (editing) return;
     setUsername(resolveUserName(user));
     setAvatarUrl(user?.avatar_url || "");
-    setRoomCode(user?.classroom_code || "");
-  }, [user?.display_name, user?.full_name, user?.email, user?.avatar_url, user?.classroom_code, editing]);
+    setRoomCode(effectiveCode);
+  }, [user?.display_name, user?.full_name, user?.email, user?.avatar_url, effectiveCode, editing]);
 
   const handleAvatarChange = async (e) => {
     const file = e.target.files?.[0];
@@ -53,7 +69,7 @@ export default function ProfileEditor({ user, onSaved }) {
     setCodeError("");
     const trimmedName = username.trim();
     const nextCode = roomCode.trim().toUpperCase();
-    const currentCode = (user?.classroom_code || "").toUpperCase();
+    const currentCode = effectiveCode.toUpperCase();
     try {
       // display_name, not full_name: the platform ignores writes to full_name
       // (see src/lib/profileName.js), which is why saving here used to revert
@@ -90,7 +106,7 @@ export default function ProfileEditor({ user, onSaved }) {
   const handleCancel = () => {
     setUsername(resolveUserName(user));
     setAvatarUrl(user?.avatar_url || "");
-    setRoomCode(user?.classroom_code || "");
+    setRoomCode(effectiveCode);
     setError(false);
     setCodeError("");
     setEditing(false);
