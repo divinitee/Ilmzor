@@ -258,6 +258,11 @@
     background: radial-gradient(closest-side, rgba(34,211,238,0.5), rgba(124,58,237,0.22) 55%, transparent 76%);
   }
 
+  .field {
+    @apply mt-1 rounded-md border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 outline-none;
+  }
+  .field:focus { @apply border-blue-500/50; }
+
   .neo-float { animation: neo-float 7s ease-in-out infinite; }
   .neo-fade { animation: neo-fade 0.7s ease-out both; }
 
