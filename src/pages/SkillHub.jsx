@@ -32,7 +32,7 @@ import { hasDiagnostic, resolveSkillEntry } from "@/lib/skillDiagnostics";
 // autoRandomToken: bumped by the dashboard's Random Challenge quick action
 // (see Home.jsx's navigateTab "skillhub-random" handling) to launch straight
 // into a random playable game instead of just opening the Skill Hub tab.
-export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0, assignmentMode = false, assignmentGroups = [] }) {
+export default function SkillHub({ isActive = true, user = null, autoRandomToken = 0, assignmentMode = false, assignmentGroups = [], homeworkId = null, onHomeworkExit = null }) {
   const [words, setWords] = useState([]); // raw pool, all levels
   const [loading, setLoading] = useState(true);
   const [userXp, setUserXp] = useState(null);
@@ -40,10 +40,17 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const [soonLabel, setSoonLabel] = useState(null);
   const [lockedInfo, setLockedInfo] = useState(null); // { label, minLevel } — distinct from soonLabel: "not unlocked for you" vs "not built yet"
   const [pendingAssignment, setPendingAssignment] = useState(null);
-  const [assignmentGroup, setAssignmentGroup] = useState(assignmentGroups[0]?.code || "");
+  const [assignmentGroup, setAssignmentGroup] = useState(assignmentGroups[0]?.id || "");
+  const [assignmentTarget, setAssignmentTarget] = useState("class"); // "class" | "students"
+  const [assignmentStudents, setAssignmentStudents] = useState([]); // emails
   const [assignmentDueDate, setAssignmentDueDate] = useState("");
   const [assigning, setAssigning] = useState(false);
   const [assignmentMessage, setAssignmentMessage] = useState("");
+  const [assignmentError, setAssignmentError] = useState("");
+  // Student homework launch state: "loading" while the assignment resolves,
+  // "missing" if it isn't this student's (closed, removed, bad link).
+  const [homeworkState, setHomeworkState] = useState(homeworkId ? "loading" : null);
+  const [homeworkToast, setHomeworkToast] = useState(null); // { ok, text }
   // Skill Hub v3 (2026-09-21): one mode for the whole hub, owned here and
   // read by every node through SkillStage. Replaces the per-root
   // Learn/Practice chooser, which stored the fork on each root node
@@ -103,6 +110,32 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     if (challenge) setActiveGame(challenge);
   }, [autoRandomToken, loading]);
 
+  // Homework launch: resolve the assignment through the server (it checks
+  // membership + targeting), then open its activity directly. The Skill Hub
+  // level lock is skipped on purpose: the teacher chose this activity.
+  useEffect(() => {
+    if (!homeworkId || assignmentMode || loading) return;
+    let cancelled = false;
+    setHomeworkState("loading");
+    studentApi("listHomework")
+      .then((res) => {
+        if (cancelled) return;
+        const a = (res?.assignments || []).find((x) => x.id === homeworkId);
+        if (!a) { setHomeworkState("missing"); return; }
+        setHomeworkState("ready");
+        setActiveGame({
+          game: a.game,
+          bank: a.bank || undefined,
+          difficulty: a.difficulty || undefined,
+          skillLabel: a.skill_label,
+          title: a.title,
+          homeworkId: a.id,
+        });
+      })
+      .catch(() => { if (!cancelled) setHomeworkState("missing"); });
+    return () => { cancelled = true; };
+  }, [homeworkId, assignmentMode, loading]);
+
   useEffect(() => {
     if (!user) return;
     // UserCoins is the underlying storage entity for XP — kept unchanged
@@ -151,22 +184,54 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     const pct = Math.max(0, Math.min(100, Math.round(result?.scorePct ?? 0)));
     recordGameResult(activeGame.game, pct); // instant local UI (completion chips)
     syncGameResultToServer(user?.email, activeGame.game, pct); // fire-and-forget DB sync for the dashboard
+    if (activeGame.homeworkId) {
+      // The one write that closes the homework loop. Server checks the
+      // student is still in the class and targeted before recording it.
+      studentApi("submitHomework", { assignment_id: activeGame.homeworkId, score_pct: pct })
+        .then(() => setHomeworkToast({ ok: true, text: `${loc("ui.hwRecorded")} · ${pct}%` }))
+        .catch((e) => {
+          console.error("submitHomework failed", e);
+          setHomeworkToast({ ok: false, text: loc("ui.hwNotRecorded") });
+        })
+        .finally(() => setTimeout(() => setHomeworkToast(null), 4000));
+    }
   };
 
+  const leaveGame = () => {
+    const wasHomework = !!activeGame?.homeworkId;
+    setActiveGame(null);
+    if (wasHomework) onHomeworkExit?.();
+  };
+
+  const selectedGroup = assignmentGroups.find((g) => g.id === assignmentGroup) || null;
+
   const handleAssignGame = (challenge) => {
-    setAssignmentGroup(assignmentGroups[0]?.code || "");
+    setAssignmentGroup(assignmentGroups[0]?.id || "");
+    setAssignmentTarget("class");
+    setAssignmentStudents([]);
     setAssignmentDueDate("");
+    setAssignmentError("");
     setPendingAssignment(challenge);
   };
 
+  const toggleAssignmentStudent = (email) =>
+    setAssignmentStudents((prev) => (prev.includes(email) ? prev.filter((e) => e !== email) : [...prev, email]));
+
   const createAssignment = async () => {
     if (!pendingAssignment || !assignmentGroup || !user) return;
+    if (assignmentTarget === "students" && assignmentStudents.length === 0) {
+      setAssignmentError("Pick at least one student.");
+      return;
+    }
     setAssigning(true);
+    setAssignmentError("");
     try {
-      await base44.entities.HomeworkAssignment.create({
-        teacher_id: user.id,
-        teacher_email: user.email,
-        classroom_code: assignmentGroup,
+      // teacherApi checks group ownership, that the activity is launchable,
+      // and that every picked student is really in this group.
+      await teacherApi("createAssignment", {
+        group_id: assignmentGroup,
+        target: assignmentTarget,
+        student_emails: assignmentTarget === "students" ? assignmentStudents : [],
         skill_id: pendingAssignment.skillId || "",
         skill_label: pendingAssignment.skillLabel || "",
         title: pendingAssignment.title || pendingAssignment.game,
@@ -174,18 +239,43 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
         bank: pendingAssignment.bank || undefined,
         difficulty: pendingAssignment.difficulty || undefined,
         due_date: assignmentDueDate || undefined,
-        status: "active",
       });
       setPendingAssignment(null);
       setAssignmentMessage("Homework assigned.");
       setTimeout(() => setAssignmentMessage(""), 2500);
     } catch (error) {
       console.error("Homework assignment failed", error);
-      setAssignmentMessage("Assignment failed. Please try again.");
+      const byCode = {
+        due_date_in_past: "The due date is in the past.",
+        no_valid_students: "None of the picked students are in this group any more.",
+        group_ended: "This group has ended. Reopen it or pick another group.",
+        unsupported_activity: "This activity can't be assigned yet.",
+      };
+      setAssignmentError(byCode[error?.code] || "Assignment failed. Please try again.");
     } finally {
       setAssigning(false);
     }
   };
+
+  if (homeworkId && !assignmentMode && !activeGame && homeworkState !== "missing") {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-muted border-t-primary rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (homeworkId && !assignmentMode && homeworkState === "missing") {
+    return (
+      <div className="max-w-sm mx-auto px-4 py-16 text-center space-y-4">
+        <h2 className="text-lg font-bold text-foreground">{loc("ui.hwMissingTitle")}</h2>
+        <p className="text-sm text-muted-foreground">{loc("ui.hwMissingBody")}</p>
+        <button onClick={() => onHomeworkExit?.()} className="neo-pill px-5 py-2 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
+          {loc("ui.gotIt")}
+        </button>
+      </div>
+    );
+  }
 
   if (activeGame && !assignmentMode) {
     // The node's own Easy/Medium/Hard nudges one step either side of the
@@ -199,7 +289,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     // thinking the task requires". Every engine gets them; only the
     // AI-generating ones (definition_match, definition today) act on them
     // so far. See levels.js's "Cognitive demand" section.
-    const base = { words: poolWords, unitName: "Skill Hub", onBack: () => setActiveGame(null), onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff, level: studentLevel, cognitiveDemand: cognitiveDemandForLevel(studentLevel) };
+    const base = { words: poolWords, unitName: "Skill Hub", onBack: leaveGame, onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff, level: studentLevel, cognitiveDemand: cognitiveDemandForLevel(studentLevel) };
     if (activeGame.game === "quiz")
       return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
     if (activeGame.game === "sentence")
