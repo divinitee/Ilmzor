@@ -19,6 +19,11 @@ const SKILL = {
   "ui.soon": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
   "ui.comingSoonTitle": { en: "This skill is coming soon — stay tuned!", uz: "Bu ko'nikma tez orada qo'shiladi — kuting!", ru: "Этот навык скоро появится — следите за новостями!" },
   "ui.gotIt": { en: "Got it", uz: "Tushundim", ru: "Понятно" },
+  // Homework launched from the dashboard (Teacher Panel phase 1, 2026-09-23).
+  "ui.hwRecorded": { en: "Homework recorded", uz: "Uyga vazifa qayd etildi", ru: "Домашнее задание засчитано" },
+  "ui.hwNotRecorded": { en: "Couldn't record your homework. Try the round again.", uz: "Uyga vazifani qayd etib bo'lmadi. Raundni qayta o'ynang.", ru: "Не удалось засчитать задание. Пройдите раунд ещё раз." },
+  "ui.hwMissingTitle": { en: "This homework isn't available", uz: "Bu uyga vazifa mavjud emas", ru: "Это задание недоступно" },
+  "ui.hwMissingBody": { en: "It may have been closed by your teacher, or you're no longer in that class.", uz: "O'qituvchingiz uni yopgan bo'lishi yoki siz endi o'sha sinfda emasligingiz mumkin.", ru: "Возможно, учитель закрыл его или вы больше не в этом классе." },
   "ui.notAvailable": { en: "Not available yet", uz: "Hali mavjud emas", ru: "Пока недоступно" },
   "ui.comingSoonTag": { en: "(soon)", uz: "(tezda)", ru: "(скоро)" },
   "ui.tapHint": { en: "Tap a word, then its definition", uz: "So'zni bosing, so'ng uning ta'rifini bosing", ru: "Нажмите слово, затем его определение" },
