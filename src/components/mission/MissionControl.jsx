@@ -40,6 +40,9 @@ export default function MissionControl({
   user,
   results,
   onNavigate,
+  // Teacher-set homework (StudentHomework). Rendered first: it's the only
+  // thing on this screen with a deadline someone else set.
+  homeworkSlot = null,
 }) {
   const { lang, t } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
@@ -156,6 +159,7 @@ export default function MissionControl({
         )}
       </div>
 
+      {homeworkSlot}
       <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={{ rows: skillHubRows, overall: skillHubOverall }} />
       <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
