@@ -16,7 +16,7 @@ const STR = {
     empty: "No homework right now.", error: "Couldn't load homework.",
   },
   uz: {
-    title: "Uyga vazifa", from: "", due: "Muddat", noDue: "Muddatsiz", overdue: "Muddati o'tgan",
+    title: "Uyga vazifa", from: "O'qituvchi:", due: "Muddat", noDue: "Muddatsiz", overdue: "Muddati o'tgan",
     done: "Bajarildi", late: "kechikib", start: "Boshlash", again: "Qayta o'ynash", best: "Eng yaxshi",
     empty: "Hozircha uyga vazifa yo'q.", error: "Uyga vazifani yuklab bo'lmadi.",
   },
