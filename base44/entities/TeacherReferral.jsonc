@@ -13,7 +13,7 @@
     },
     "code": {
       "type": "string",
-      "description": "The unique referral code"
+      "description": "The unique join code. Generated server-side by teacherApi.createGroup (uniqueness-checked); never editable afterwards."
     },
     "label": {
       "type": "string",
@@ -22,7 +22,7 @@
     "uses": {
       "type": "number",
       "default": 0,
-      "description": "Number of students who used this code"
+      "description": "Number of students who joined with this code (incremented by studentApi.joinClass)"
     },
     "description": {
       "type": "string",
@@ -39,7 +39,7 @@
         "B2",
         "C1"
       ],
-      "description": "CEFR level this group is taught at, e.g. 'B2'. A referral code doubles as a teaching group once this is set."
+      "description": "CEFR level this group is taught at, e.g. 'B2'."
     },
     "days": {
       "type": "array",
@@ -55,7 +55,7 @@
           "Sun"
         ]
       },
-      "description": "Weekdays this group meets, e.g. [\"Tue\", \"Thu\", \"Sat\"] for a T/T/S schedule"
+      "description": "Weekdays this group meets, e.g. [\"Tue\", \"Thu\", \"Sat\"]"
     },
     "start_time": {
       "type": "string",
@@ -73,7 +73,7 @@
         "ended"
       ],
       "default": "running",
-      "description": "Whether this group is currently meeting. The referral code keeps working while running; paused/ended groups are kept for history and hidden from the active roster view by default."
+      "description": "Whether this group is currently meeting. Ended groups refuse new joins and new homework."
     }
   },
   "required": [
@@ -82,15 +82,14 @@
   ],
   "rls": {
     "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
       "$or": [
         {
-          "created_by_id": "{{user.id}}"
-        },
-        {
           "data.teacher_id": "{{user.id}}"
-        },
-        {
-          "data.teacher_email": "{{user.email}}"
         },
         {
           "user_condition": {
@@ -99,25 +98,15 @@
         }
       ]
     },
-    "read": null,
-    "update": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
     "delete": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.teacher_id": "{{user.id}}"
-        },
-        {
-          "data.teacher_email": "{{user.email}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }
