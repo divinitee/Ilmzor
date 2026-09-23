@@ -11,7 +11,11 @@ import { base44 } from "@/api/base44Client";
 // Errors come back as an Error whose `.code` is the function's machine code
 // (e.g. "code_not_found", "removed_from_class", "not_teacher").
 
-async function call(fn, action, payload = {}) {
+// A function rejects with 401 before it touches any data, so one retry is
+// always safe. Seen in preview testing (2026-09-23): an occasional one-off
+// 401 from auth.me() inside the function with a perfectly valid session.
+// Without the retry that flake would silently drop a homework result.
+async function call(fn, action, payload = {}, retried = false) {
   try {
     const res = await base44.functions.invoke(fn, { action, ...payload });
     const data = res?.data ?? res;
@@ -24,9 +28,14 @@ async function call(fn, action, payload = {}) {
   } catch (e) {
     if (e?.code && !e.response) throw e;
     const body = e?.response?.data || e?.data;
+    const status = e?.response?.status || e?.status;
+    if (status === 401 && !retried) {
+      await new Promise((r) => setTimeout(r, 700));
+      return call(fn, action, payload, true);
+    }
     const err = new Error(body?.error || e?.message || "Request failed");
     err.code = body?.code || "request_failed";
-    err.status = e?.response?.status || e?.status;
+    err.status = status;
     throw err;
   }
 }
