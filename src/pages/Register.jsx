@@ -227,7 +227,10 @@ export default function Register() {
   // step before OTP, so account creation fires from there.
   const STEPS = role === "student"
     ? ["lang", "role", "goals", "level", "name", "creds", "code", "heard", "otp"]
-    : ["lang", "role", "name", "teacherinfo", "creds", "code", "heard", "otp"];
+    // No "code" step for teachers: the typed "room code" was never stored or
+    // used (a teacher gets real join codes by creating classes in the Teacher
+    // Panel), so asking for it was a dead field. Removed 2026-09-23.
+    : ["lang", "role", "name", "teacherinfo", "creds", "heard", "otp"];
   const TOTAL = STEPS.length;
   const currentKey = STEPS[step];
 
@@ -688,7 +691,7 @@ export default function Register() {
                   {error && <div className="mb-3 p-3 rounded-xl bg-destructive/10 text-destructive text-sm">{error}</div>}
                   <div className="space-y-2 flex-1">
                     <div className="grid grid-cols-2 gap-2">
-                      {HEARD_OPTIONS.map((key) => (
+                      {HEARD_OPTIONS.filter((key) => !(isTeacher && key === "teacher")).map((key) => (
                         <button
                           key={key} type="button"
                           onClick={() => setHeardAbout(key)}
