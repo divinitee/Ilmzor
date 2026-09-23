@@ -174,7 +174,7 @@ export default function Onboarding() {
 
   const handleChooseFree = async () => {
     const me = await base44.auth.me().catch(() => null);
-    if (me) await chooseFreePlan(me.email, resolveUserNameOrEmail(me));
+    if (me) await chooseFreePlan();
     setStep("tutorial");
   };
 
