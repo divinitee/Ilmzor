@@ -35,10 +35,11 @@ function similarityScore(userInput, target) {
   return Math.max(0, Math.round((1 - dist / maxLen) * 100));
 }
 
-async function aiSimilarity(userInput, word) {
+async function aiSimilarity(userInput, word, nativeKey = "uzbek") {
   try {
+    const shown = nativeKey === "russian" ? `Russian word "${word.russian}" (Uzbek: "${word.uzbek || ""}")` : `Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}")`;
     const res = await base44.integrations.Core.InvokeLLM({
-      prompt: `The correct English translation of the Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}") is "${word.english}". A student wrote: "${userInput}". Is this translation correct? Consider minor typos (1-2 chars) as correct. Reply with JSON: { "correct": true } or { "correct": false }. Do NOT give partial credit.`,
+      prompt: `The correct English translation of the ${shown} is "${word.english}". A student wrote: "${userInput}". Is this translation correct? Consider minor typos (1-2 chars) as correct. Reply with JSON: { "correct": true } or { "correct": false }. Do NOT give partial credit.`,
       response_json_schema: { type: "object", properties: { correct: { type: "boolean" } } }
     });
     return res.correct ? 100 : 0;
@@ -53,11 +54,11 @@ async function aiSimilarity(userInput, word) {
 // the catch above), so a spent daily AI allowance degrades the same way—no
 // blocking screen needed, just a less nuanced (but still real) grade, and no
 // AI credit spent when we fall back.
-async function gradeDefine(userInput, word, user) {
+async function gradeDefine(userInput, word, user, nativeKey = "uzbek") {
   if (user) {
     const gate = await checkAiGate(user.email, user.id, user.role === "admin");
     if (gate.allowed) {
-      const score = await aiSimilarity(userInput, word);
+      const score = await aiSimilarity(userInput, word, nativeKey);
       incrementAiUsage(user.email, user.id, "").catch(() => {});
       return score;
     }
@@ -83,15 +84,27 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
   const [xpAnimation, setXpAnimation] = useState(null);
   const timerRef = useRef(null);
   const { t, lang } = useAppLang();
-  // Supplementary Russian hint — useful unless Russian is already the
-  // primary display language, in which case it'd just repeat itself.
-  const showRu = lang !== "ru";
+  // Translation Drill (renamed 2026-09-23, was the unlabeled "quiz" engine).
+  // The student's side of the translation follows the app language: Russian
+  // UI → Russian, Uzbek or English UI → Uzbek (VIRORA's audience is Uzbek-
+  // and Russian-speaking; English UI users are overwhelmingly Uzbek
+  // speakers). Before this it was hard-wired to Uzbek, with Russian only as
+  // a small hint, even for a Russian-speaking student.
+  const nativeKey = lang === "ru" ? "russian" : "uzbek";
+  const native = (w) => w?.[nativeKey] || w?.uzbek || "";
+  // Hint in the other native language, only when the main one is Uzbek.
+  const showRu = nativeKey === "uzbek";
 
   const buildQuestions = () => {
-    const TARGET = Math.min(cfg.count, Math.max(words.length, 1));
-    let expanded = shuffle(words);
-    while (expanded.length < TARGET && words.length > 0) {
-      expanded = [...expanded, ...shuffle(words)];
+    // Only words that actually carry a translation in the student's
+    // language (a word with no Russian would otherwise fall back to Uzbek
+    // mid-round). Falls back to the full pool if that leaves too few.
+    const withNative = words.filter((w) => w?.[nativeKey]);
+    const src = withNative.length >= 8 ? withNative : words;
+    const TARGET = Math.min(cfg.count, Math.max(src.length, 1));
+    let expanded = shuffle(src);
+    while (expanded.length < TARGET && src.length > 0) {
+      expanded = [...expanded, ...shuffle(src)];
     }
     const pool = expanded.slice(0, TARGET);
     const qs = pool.map(word => {
@@ -102,12 +115,12 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
       // nuance/precision demand this pulls wrong answers from the target's
       // own band instead of pure random, which is what makes a B2/C1 round
       // feel harder than "same task, more words" (see levels.js).
-      const others = words.filter(w => w.id !== word.id);
+      const others = src.filter(w => w.id !== word.id);
       const ranked = rankDistractors(others, word, cognitiveDemand);
       const pickWindow = shuffle(ranked.slice(0, Math.max(6, Math.ceil(ranked.length * 0.4))));
       if (type === "multiple_choice") {
-        const distractors = pickWindow.slice(0, 3).map(w => w.uzbek);
-        options = shuffle([word.uzbek, ...distractors]);
+        const distractors = pickWindow.slice(0, 3).map(native);
+        options = shuffle([native(word), ...distractors]);
       }
       if (type === "translation") {
         const distractors = pickWindow.slice(0, 3).map(w => w.english);
@@ -184,7 +197,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
     clearInterval(timerRef.current);
     setSelected(opt);
     const q = questions[qIndex];
-    const correct = q.type === "multiple_choice" ? opt === q.word.uzbek : opt === q.word.english;
+    const correct = q.type === "multiple_choice" ? opt === native(q.word) : opt === q.word.english;
     setScores(s => [...s, correct ? 100 : 0]);
     if (correct) { setXpAnimation("+1 ⚡"); setTimeout(() => setXpAnimation(null), 1000); }
     afterAnswer();
@@ -194,7 +207,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
     if (!defineInput.trim() || checking) return;
     clearInterval(timerRef.current);
     setChecking(true);
-    const score = await gradeDefine(defineInput, questions[qIndex].word, user);
+    const score = await gradeDefine(defineInput, questions[qIndex].word, user, nativeKey);
     setDefineScore(score);
     setScores(s => [...s, score]);
     if (score === 100) { setXpAnimation("+1 ⚡"); setTimeout(() => setXpAnimation(null), 1000); }
@@ -295,7 +308,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
           <div className="bg-background border border-border rounded-2xl p-5 mb-5 text-center">
             {q.type === "multiple_choice" && (
               <>
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t("gameui.translate_to_uz")}</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t(nativeKey === "russian" ? "gameui.translate_to_ru" : "gameui.translate_to_uz")}</p>
                 <p className="text-2xl font-bold text-foreground">{q.word.english}</p>
                 {cfg.hints && q.word.pronunciation && <p className="text-sm text-muted-foreground mt-1">{q.word.pronunciation}</p>}
               </>
@@ -303,7 +316,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
             {q.type === "translation" && (
               <>
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">{t("gameui.translate_to_en")}</p>
-                <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
+                <p className="text-2xl font-bold text-foreground">{native(q.word)}</p>
                 {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
@@ -312,7 +325,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
                 <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2 font-semibold">
                   <Lightbulb className="inline w-3.5 h-3.5 mr-1" />{t("gameui.write_en_translation")}
                 </p>
-                <p className="text-2xl font-bold text-foreground">{q.word.uzbek}</p>
+                <p className="text-2xl font-bold text-foreground">{native(q.word)}</p>
                 {cfg.hints && showRu && q.word.russian && <p className="text-sm text-muted-foreground mt-1">{q.word.russian}</p>}
               </>
             )}
@@ -322,10 +335,10 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
           {(q.type === "multiple_choice" || q.type === "translation") && (
             <div className="grid grid-cols-2 gap-3">
               {q.options.map((opt, i) => {
-                const correctOpt = q.type === "multiple_choice" ? q.word.uzbek : q.word.english;
+                const correctOpt = q.type === "multiple_choice" ? native(q.word) : q.word.english;
                 let cls = "border-2 border-border bg-background text-foreground hover:border-primary/50 transition-colors";
                 if (selected !== null) {
-                  if (opt === correctOpt) cls = "border-2 border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300";
+                  if (opt === correctOpt) cls = "border-2 border-emerald-500 bg-emerald-500/10 text-emerald-300";
                   else if (opt === selected) cls = "border-2 border-destructive bg-destructive/10 text-destructive";
                   else cls = "border-2 border-border bg-muted/30 text-muted-foreground";
                 }
@@ -350,7 +363,7 @@ export default function VocabQuizGame({ words, unitName, onBack, user, onXpEarne
               {defineScore !== null && (
                 <div className={`mt-3 rounded-xl p-3 text-center font-semibold text-sm ${defineScore === 100 ? "bg-emerald-500/10 text-emerald-700" : "bg-destructive/10 text-destructive"}`}>
                   {defineScore === 100 ? t("gameui.correct_great") : t("gameui.wrong")} — {t("gameui.correct_wrong_pct", { pct: defineScore === 100 ? "100%" : "0%" })}
-                  <p className="text-xs font-normal mt-1 text-muted-foreground">{t("gameui.correct_answer_is")} {q.word.english} = {q.word.uzbek}</p>
+                  <p className="text-xs font-normal mt-1 text-muted-foreground">{t("gameui.correct_answer_is")} {q.word.english} = {native(q.word)}</p>
                 </div>
               )}
               {defineScore === null && (
