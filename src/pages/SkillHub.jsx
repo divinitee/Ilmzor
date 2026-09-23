@@ -20,6 +20,7 @@ import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import RelatedWordsGame from "@/components/games/RelatedWordsGame";
 import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
+import { studentApi, teacherApi } from "@/lib/serverApi";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
 import { getRandomChallenge } from "@/lib/skillTreeData";
@@ -278,79 +279,93 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   }
 
   if (activeGame && !assignmentMode) {
-    // The node's own Easy/Medium/Hard nudges one step either side of the
-    // student's actual level (difficultyFor in levels.js) rather than
-    // setting difficulty outright — so "Hard" means hard for this student,
-    // not "third node in the category," and two students at different
-    // levels playing the same node get different intensity.
-    const diff = difficultyFor(studentLevel, activeGame.difficulty);
-    // level + cognitiveDemand ride alongside difficulty (round intensity) as
-    // a separate signal — "how hard the language is" vs "what kind of
-    // thinking the task requires". Every engine gets them; only the
-    // AI-generating ones (definition_match, definition today) act on them
-    // so far. See levels.js's "Cognitive demand" section.
-    const base = { words: poolWords, unitName: "Skill Hub", onBack: leaveGame, onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff, level: studentLevel, cognitiveDemand: cognitiveDemandForLevel(studentLevel) };
-    if (activeGame.game === "quiz")
-      return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
-    if (activeGame.game === "sentence")
-      return <SentenceBuilderGame {...base} user={user} />;
-    if (activeGame.game === "usage")
-      // New engine (2026-09-07): four Vocabulary modes branched on `bank`
-      // (fill_blank / best_word / sentence_repair / collocation_match).
-      // SentenceBuilderGame and Grammar's Sentence Structure keep "sentence".
-      return <UsageGame {...base} user={user} bank={activeGame.bank} />;
-    if (activeGame.game === "spelling")
-      // Rebuilt 2026-09-07: three distinct mechanics branched on `bank`
-      // (missing_letters / letter_order / typing), same shape as
-      // GrammarQuizGame's bankKey. Takes `user` for personalization + logging.
-      return <SpellingGame {...base} user={user} bank={activeGame.bank} />;
-    if (activeGame.game === "wordforms")
-      // Rebuilt 2026-09-07: four distinct mechanics branched on `bank`
-      // (word_family / prefix_match / suffix_builder / root_hunt). Takes
-      // `user` for logWordAttempts. No InvokeLLM — hand-authored banks.
-      return <WordFormsGame {...base} user={user} bank={activeGame.bank} />;
-    if (activeGame.game === "crossword")
-      return <CrosswordGame {...base} />;
-    if (activeGame.game === "definition")
-      return <DefinitionGame {...base} user={user} />;
-    if (activeGame.game === "grammar")
-      return <GrammarQuizGame {...base} bankKey={activeGame.bank} skillLabel={activeGame.skillLabel} />;
-    if (activeGame.game === "definition_match")
-      // Takes `user` on top of base: the rebuilt engine (2026-09-06) reads
-      // user.email for personalized round composition and for its own
-      // RewardEvent / WordAttempt logging.
-      return <DefinitionMatchGame {...base} user={user} />;
-    if (activeGame.game === "context_guess")
-      // Standard signature since the 2026-09-07 rebuild — takes `user` on top
-      // of base for round composition and reward / attempt logging.
-      return <ContextGuessGame {...base} user={user} />;
-    // Memory Flip's production engine as of 2026-09-06 (bake-off winner; the
-    // previous MemoryFlipGame.jsx and the CardFlipOpus entry were removed with
-    // it, and remain in git history and the checkpoints if ever needed).
-    // Takes `user` on top of base: it reads user.email for round composition
-    // (WordAttempt / SavedWord) and for its reward + attempt logging.
-    if (activeGame.game === "memory_flip")
-      return <CardFlipFable {...base} user={user} />;
-    if (activeGame.game === "picture_match")
-      // Standard signature since the 2026-09-07 expansion — takes `user` on
-      // top of base for round composition and reward / attempt logging.
-      return <PictureMatchGame {...base} user={user} />;
-    if (activeGame.game === "synonym_sprint")
-      // Vocabulary > Relationships, standard signature — takes `user` on top of
-      // base for round composition and reward / attempt logging.
-      return <SynonymSprintGame {...base} user={user} />;
-    if (activeGame.game === "odd_one_out")
-      // Refined 2026-09-07: now reads user.email for RewardEvent / WordAttempt
-      // logging (gameScoring.js + logWordAttempts), same as the other
-      // Vocabulary games. buildPersonalizedRound is NOT used — the bank is a
-      // fixed 20-entry hardcoded set, not sourced from VocabularyWord.
-      return <OddOneOutGame {...base} user={user} />;
-    if (activeGame.game === "related_words" || activeGame.game === "connection_challenge")
-      // New 2026-09-07: the last two Relationships nodes, moved off the generic
-      // "quiz" engine. One engine file with a bank/mode split — Related Words
-      // (category recognition) and Connection Challenge (category inference
-      // from 3 examples). Fixed hand-authored bank, same as Antonym Hunt.
-      return <RelatedWordsGame {...base} user={user} bank={activeGame.game} />;
+    const gameEl = (() => {
+      // The node's own Easy/Medium/Hard nudges one step either side of the
+      // student's actual level (difficultyFor in levels.js) rather than
+      // setting difficulty outright — so "Hard" means hard for this student,
+      // not "third node in the category," and two students at different
+      // levels playing the same node get different intensity.
+      const diff = difficultyFor(studentLevel, activeGame.difficulty);
+      // level + cognitiveDemand ride alongside difficulty (round intensity) as
+      // a separate signal — "how hard the language is" vs "what kind of
+      // thinking the task requires". Every engine gets them; only the
+      // AI-generating ones (definition_match, definition today) act on them
+      // so far. See levels.js's "Cognitive demand" section.
+      const base = { words: poolWords, unitName: "Skill Hub", onBack: leaveGame, onXpEarned: handleXpEarned, onGameComplete: handleGameComplete, difficulty: diff, level: studentLevel, cognitiveDemand: cognitiveDemandForLevel(studentLevel) };
+      if (activeGame.game === "quiz")
+        return <VocabQuizGame {...base} user={user} timePerQ={30} autoAdvance />;
+      if (activeGame.game === "sentence")
+        return <SentenceBuilderGame {...base} user={user} />;
+      if (activeGame.game === "usage")
+        // New engine (2026-09-07): four Vocabulary modes branched on `bank`
+        // (fill_blank / best_word / sentence_repair / collocation_match).
+        // SentenceBuilderGame and Grammar's Sentence Structure keep "sentence".
+        return <UsageGame {...base} user={user} bank={activeGame.bank} />;
+      if (activeGame.game === "spelling")
+        // Rebuilt 2026-09-07: three distinct mechanics branched on `bank`
+        // (missing_letters / letter_order / typing), same shape as
+        // GrammarQuizGame's bankKey. Takes `user` for personalization + logging.
+        return <SpellingGame {...base} user={user} bank={activeGame.bank} />;
+      if (activeGame.game === "wordforms")
+        // Rebuilt 2026-09-07: four distinct mechanics branched on `bank`
+        // (word_family / prefix_match / suffix_builder / root_hunt). Takes
+        // `user` for logWordAttempts. No InvokeLLM — hand-authored banks.
+        return <WordFormsGame {...base} user={user} bank={activeGame.bank} />;
+      if (activeGame.game === "crossword")
+        return <CrosswordGame {...base} />;
+      if (activeGame.game === "definition")
+        return <DefinitionGame {...base} user={user} />;
+      if (activeGame.game === "grammar")
+        return <GrammarQuizGame {...base} bankKey={activeGame.bank} skillLabel={activeGame.skillLabel} />;
+      if (activeGame.game === "definition_match")
+        // Takes `user` on top of base: the rebuilt engine (2026-09-06) reads
+        // user.email for personalized round composition and for its own
+        // RewardEvent / WordAttempt logging.
+        return <DefinitionMatchGame {...base} user={user} />;
+      if (activeGame.game === "context_guess")
+        // Standard signature since the 2026-09-07 rebuild — takes `user` on top
+        // of base for round composition and reward / attempt logging.
+        return <ContextGuessGame {...base} user={user} />;
+      // Memory Flip's production engine as of 2026-09-06 (bake-off winner; the
+      // previous MemoryFlipGame.jsx and the CardFlipOpus entry were removed with
+      // it, and remain in git history and the checkpoints if ever needed).
+      // Takes `user` on top of base: it reads user.email for round composition
+      // (WordAttempt / SavedWord) and for its reward + attempt logging.
+      if (activeGame.game === "memory_flip")
+        return <CardFlipFable {...base} user={user} />;
+      if (activeGame.game === "picture_match")
+        // Standard signature since the 2026-09-07 expansion — takes `user` on
+        // top of base for round composition and reward / attempt logging.
+        return <PictureMatchGame {...base} user={user} />;
+      if (activeGame.game === "synonym_sprint")
+        // Vocabulary > Relationships, standard signature — takes `user` on top of
+        // base for round composition and reward / attempt logging.
+        return <SynonymSprintGame {...base} user={user} />;
+      if (activeGame.game === "odd_one_out")
+        // Refined 2026-09-07: now reads user.email for RewardEvent / WordAttempt
+        // logging (gameScoring.js + logWordAttempts), same as the other
+        // Vocabulary games. buildPersonalizedRound is NOT used — the bank is a
+        // fixed 20-entry hardcoded set, not sourced from VocabularyWord.
+        return <OddOneOutGame {...base} user={user} />;
+      if (activeGame.game === "related_words" || activeGame.game === "connection_challenge")
+        // New 2026-09-07: the last two Relationships nodes, moved off the generic
+        // "quiz" engine. One engine file with a bank/mode split — Related Words
+        // (category recognition) and Connection Challenge (category inference
+        // from 3 examples). Fixed hand-authored bank, same as Antonym Hunt.
+        return <RelatedWordsGame {...base} user={user} bank={activeGame.game} />;
+    })();
+    if (gameEl) {
+      return (
+        <>
+          {gameEl}
+          {homeworkToast && (
+            <div className={`fixed top-20 left-1/2 -translate-x-1/2 z-[60] rounded-full border px-4 py-2 text-sm font-semibold shadow-xl backdrop-blur ${homeworkToast.ok ? "border-emerald-400/40 bg-background/95 text-emerald-400" : "border-destructive/40 bg-background/95 text-destructive"}`}>
+              {homeworkToast.text}
+            </div>
+          )}
+        </>
+      );
+    }
   }
 
   return (
