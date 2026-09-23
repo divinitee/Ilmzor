@@ -47,6 +47,7 @@ import AppLoader from '@/components/AppLoader';
 import HelpReporter from '@/components/HelpReporter';
 import ActivityTracker from '@/components/ActivityTracker';
 import Developer from '@/pages/Developer';
+import Taskboard from '@/pages/Taskboard';
 import LaunchExperience from '@/components/LaunchExperience';
 
 const AuthenticatedApp = () => {
@@ -105,6 +106,10 @@ const AuthenticatedApp = () => {
         <Route path="/admin-wipe-users" element={<AdminWipeUsers />} />
         <Route path="/admin-payments" element={<AdminPayments />} />
         <Route path="/developer" element={<Developer />} />
+        <Route path="/taskboard" element={<Taskboard />} />
+        <Route path="/taskboard/:taskCode" element={<Taskboard />} />
+        <Route path="/taskbar" element={<Taskboard />} />
+        <Route path="/taskbar/:taskCode" element={<Taskboard />} />
         <Route path="/payment-complete" element={<PaymentComplete />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/lesson/:lessonId" element={<LessonRunner />} />
