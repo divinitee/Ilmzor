@@ -38,11 +38,11 @@
     },
     "referral_code": {
       "type": "string",
-      "description": "Teacher's referral code used at registration"
+      "description": "Code of the teacher group (TeacherReferral.code) this student is in. Written only by studentApi.joinClass/leaveClass (service role)."
     },
     "teacher_id": {
       "type": "string",
-      "description": "ID of the teacher who owns this referral code"
+      "description": "ID of the teacher who owns that group. Commission attribution (dodoWebhook) and roster scope (teacherApi) both read it. Server-written only."
     },
     "teacher_name": {
       "type": "string",
@@ -65,7 +65,7 @@
     "is_trial": {
       "type": "boolean",
       "default": false,
-      "description": "True if this subscription is the automatic 1-week welcome trial, not a real payment \u2014 used to tell trial expiry apart from a lapsed paid subscription."
+      "description": "True if this subscription is the automatic welcome trial, not a real payment \u2014 used to tell trial expiry apart from a lapsed paid subscription."
     },
     "description": {
       "type": "string",
@@ -79,7 +79,7 @@
         "dodo"
       ],
       "default": "manual",
-      "description": "Which rail owns this subscription. 'manual' = approved by hand by a teacher/admin from a payment screenshot (the legacy Telegram flow). 'dodo' = created and driven by Dodo Payments webhooks. An admin should not hand-edit a 'dodo' row's status: the next webhook will overwrite it, and the two will disagree in the meantime."
+      "description": "Which rail owns this subscription. 'manual' = approved by hand by an admin (the legacy flow). 'dodo' = created and driven by Dodo Payments webhooks. An admin should not hand-edit a 'dodo' row's status: the next webhook will overwrite it, and the two will disagree in the meantime."
     },
     "founder_stage": {
       "type": "string",
@@ -87,16 +87,16 @@
     },
     "locked_price_usd": {
       "type": "number",
-      "description": "The monthly/yearly USD amount this subscriber locked in \u2014 the advertised price they saw and agreed to. Resolved server-side in dodoWebhook by looking up the Dodo product they bought, never from anything the browser claimed. Deliberately NOT read from recurring_pre_tax_amount: VIRORA prices are tax-inclusive, so that figure is the advertised price minus the buyer's local VAT and differs country by country, which would give every subscriber a different 'locked for life' number. Written ONCE on first activation and never overwritten on renewal. If the lookup fails the field is left empty and the next webhook event retries it \u2014 empty is recoverable, a wrong number in a 'for life' field is not."
+      "description": "The monthly/yearly USD amount this subscriber locked in. Resolved server-side in dodoWebhook by looking up the Dodo product they bought, never from anything the browser claimed. Written ONCE on first activation and never overwritten on renewal."
     },
     "paid_since": {
       "type": "string",
       "format": "date",
-      "description": "The day this person FIRST became a paying member \u2014 stamped once on the first real paid activation (dodoWebhook activating event, or a manual approve/resume/reactivate of a non-free plan) and never overwritten or cleared afterwards, even if the subscription later lapses, pauses or is cancelled. This is the permanent record that drives time-boxed achievements such as Founding Learner (lib/achievements.js): the badge is earned by having paid before a cutoff date, so it must survive the subscription's later state. Never set by a trial or the free plan. Rows that predate this field fall back to created_date while currently paying (see paidSince() in lib/subscription.js)."
+      "description": "The day this person FIRST became a paying member \u2014 stamped once on the first real paid activation and never overwritten or cleared afterwards. Drives time-boxed achievements such as Founding Learner (lib/achievements.js). Never set by a trial or the free plan."
     },
     "dodo_subscription_id": {
       "type": "string",
-      "description": "Dodo Payments subscription id (sub_...). The primary key used to match an incoming webhook back to this row \u2014 more reliable than email, which a customer can change at checkout."
+      "description": "Dodo Payments subscription id (sub_...). The primary key used to match an incoming webhook back to this row."
     },
     "dodo_customer_id": {
       "type": "string",
@@ -104,7 +104,7 @@
     },
     "last_dodo_event_id": {
       "type": "string",
-      "description": "The webhook-id of the last Dodo event applied to this row. Dodo retries deliveries, so this is checked first and a repeat of the same id is skipped \u2014 without it, a retried subscription.renewed would accrue teacher commission twice."
+      "description": "The webhook-id of the last Dodo event applied to this row. Dodo retries deliveries, so a repeat of the same id is skipped \u2014 without it, a retried subscription.renewed would accrue teacher commission twice."
     },
     "paused_at": {
       "type": "string",
@@ -113,7 +113,7 @@
     },
     "paused_days_remaining": {
       "type": "number",
-      "description": "Days of paid access left at the moment of pausing. Resuming sets expires_at to today + this many days, so a student who paused with 20 days left gets 20 days back rather than losing them to the calendar. Null/0 for a subscription with no expiry (e.g. the permanent free plan)."
+      "description": "Days of paid access left at the moment of pausing. Resuming sets expires_at to today + this many days."
     },
     "cancelled_at": {
       "type": "string",
@@ -123,7 +123,7 @@
     "admin_note": {
       "type": "string",
       "maxLength": 500,
-      "description": "Free-text admin note on the last pause/cancel/reactivate action \u2014 why it happened, for later reconciliation against Stripe or a refund dispute."
+      "description": "Free-text admin note on the last pause/cancel/reactivate action."
     },
     "roster_status": {
       "type": "string",
@@ -132,7 +132,7 @@
         "removed"
       ],
       "default": "active",
-      "description": "Whether this student still appears on their teacher's group roster. Deliberately separate from `status` (payment/access) \u2014 a teacher removing a student here never touches the student's own app access or subscription; it only hides them from that teacher's roster view once they've stopped attending live lessons. Set manually by the teacher, or auto-flagged in the UI (not this field) from SkillHubProgress staleness."
+      "description": "Whether this student is still on their teacher's class roster. Set by teacherApi.setRoster (service role). Never touches status/plan (the student's own access) or teacher_id (commission attribution)."
     }
   },
   "required": [
@@ -141,19 +141,9 @@
   ],
   "rls": {
     "create": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.phone": "{{user.email}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "read": {
       "$or": [
@@ -167,47 +157,13 @@
           "user_condition": {
             "role": "admin"
           }
-        },
-        {
-          "$and": [
-            {
-              "data.teacher_id": "{{user.id}}"
-            },
-            {
-              "user_condition": {
-                "data.teacher_status": "approved"
-              }
-            }
-          ]
         }
       ]
     },
     "update": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.phone": "{{user.email}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        },
-        {
-          "$and": [
-            {
-              "data.teacher_id": "{{user.id}}"
-            },
-            {
-              "user_condition": {
-                "data.teacher_status": "approved"
-              }
-            }
-          ]
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
       "$or": [
