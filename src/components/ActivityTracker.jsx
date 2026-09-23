@@ -36,7 +36,10 @@ export default function ActivityTracker({ user }) {
     base44.entities.StudentSubscription
       .filter({ phone: user.email }, "-created_date", 1)
       .then((rows) => {
-        if (!disposed) teacherIdRef.current = rows?.[0]?.teacher_id || null;
+        // A student their teacher removed from the roster stops sharing new
+        // activity with that teacher (attribution itself is untouched).
+        const row = rows?.[0];
+        if (!disposed) teacherIdRef.current = row && row.roster_status !== "removed" ? row.teacher_id || null : null;
       })
       .catch(() => {});
 
