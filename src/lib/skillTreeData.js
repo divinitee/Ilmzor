@@ -139,6 +139,21 @@ export const SKILL_CHILDREN = {
       // picks × 10 base = 80.
       { name: "Collocation Match", game: "usage", bank: "collocation_match", difficulty: "Medium", time: "2-3 min", xp: 80 },
     ]),
+    // Translation (2026-09-23, founder's call: keep the early engine, name it
+    // honestly). VocabQuizGame is a plain word ↔ translation drill. It used to
+    // sit only behind Reading/Listening placeholder nodes ("Fast Scan",
+    // "Key Hunt", "Speed Run") that promised skimming/listening practice it
+    // never gave. Here it is what it says it is. The native side follows the
+    // app language (Russian UI → Russian, otherwise Uzbek).
+    // Easy runs at the student's band nudged down: mostly multiple choice,
+    // 20 questions, 30s each, measured around 3-5 min. Hard nudges up to
+    // typed answers (AI-graded, falls back to a spelling-distance check),
+    // 30 questions, around 6-10 min. XP here is 1 per correct answer, so the
+    // numbers are the CEILING (unlike the floors quoted above).
+    C("Translation", ["English ↔ Uzbek / Russian"], [
+      { name: "Translation Drill", game: "quiz", difficulty: "Easy", time: "3-5 min", xp: 20 },
+      { name: "Translation Challenge", game: "quiz", difficulty: "Hard", time: "6-10 min", xp: 30 },
+    ]),
     C("Relationships", ["Synonyms", "Antonyms", "Related words"], [
       // Honest label, 2026-09-07: its own engine now (was pointing at the
       // generic translation drill). 8 words at the beginner tier, one pick each,
