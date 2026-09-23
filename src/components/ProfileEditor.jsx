@@ -83,6 +83,7 @@ export default function ProfileEditor({ user, onSaved }) {
         try {
           if (nextCode) await studentApi("joinClass", { code: nextCode });
           else await studentApi("leaveClass");
+          setMemberCode(nextCode);
         } catch (joinErr) {
           setCodeError(joinErrorMessage(joinErr?.code, lang));
           setSaving(false);
