@@ -79,5 +79,15 @@
     "task_id",
     "action",
     "state"
-  ]
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": false,
+    "update": false,
+    "delete": false
+  }
 }
