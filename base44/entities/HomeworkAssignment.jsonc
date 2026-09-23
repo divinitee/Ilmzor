@@ -8,9 +8,37 @@
     "teacher_email": {
       "type": "string"
     },
+    "teacher_name": {
+      "type": "string",
+      "description": "Teacher display name, copied at assignment time so the student view needs no User read."
+    },
     "classroom_code": {
       "type": "string",
       "description": "Teacher group/referral code receiving this assignment"
+    },
+    "group_id": {
+      "type": "string",
+      "description": "TeacherReferral id of the group. Written by the teacherApi function only."
+    },
+    "group_label": {
+      "type": "string",
+      "description": "Group label copied at assignment time, for display."
+    },
+    "target": {
+      "type": "string",
+      "enum": [
+        "class",
+        "students"
+      ],
+      "default": "class",
+      "description": "class = every active member of the group, including students who join later; students = only the emails in student_emails."
+    },
+    "student_emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Targeted students when target = students. Empty for target = class."
     },
     "skill_id": {
       "type": "string"
