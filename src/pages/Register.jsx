@@ -324,17 +324,15 @@ export default function Register() {
       const profile = {};
       if (username.trim()) profile.display_name = username.trim();
       if (role === "student" && goals.length > 0) profile.goals = goals;
-      if (role === "student" && referralCode.trim()) profile.classroom_code = referralCode.trim().toUpperCase();
       // Teacher registration doesn't grant a working teacher account by
       // itself — it files an application. teacher_status starts at "pending"
       // and only an admin (via /admin) can flip it to "approved", at which
       // point TeacherDashboard.jsx's access gate lets them in. Deliberately
       // never touches the platform's own "role" field.
-      if (role === "teacher") {
-        profile.teacher_status = "pending";
-        if (teachingCenter.trim()) profile.teaching_center = teachingCenter.trim();
-        if (teacherPhone.trim()) profile.teacher_phone = teacherPhone.trim();
-      }
+      //
+      // Since 2026-09-23 the application itself is filed server-side
+      // (studentApi.applyTeacher, below): teacher_status is field-locked to
+      // admins, so the browser can't set it — not even to "pending".
       if (heardAbout) {
         profile.heard_about_us = heardAbout;
         if (heardAbout === "other" && heardDetail.trim()) {
@@ -352,24 +350,22 @@ export default function Register() {
         await setUserLevel(level, "self");
       }
 
+      if (role === "teacher") {
+        try {
+          await studentApi("applyTeacher", { teaching_center: teachingCenter.trim(), teacher_phone: teacherPhone.trim() });
+        } catch (appErr) {
+          console.error("Teacher application failed:", appErr);
+        }
+      }
+
+      // Class code → server-side join (validates the code, sets the teacher
+      // link and the User.classroom_code mirror). A bad code is not fatal:
+      // the student can join later from their profile.
       if (role === "student" && referralCode.trim()) {
         try {
-          const me = await base44.auth.me();
-          const refs = await base44.entities.TeacherReferral.filter({ code: referralCode.trim().toUpperCase() });
-          if (refs.length > 0) {
-            const ref = refs[0];
-            await base44.entities.StudentSubscription.create({
-              student_name: resolveUserNameOrEmail(me) || email,
-              phone: email,
-              status: "inactive",
-              referral_code: ref.code,
-              teacher_id: ref.teacher_id,
-              teacher_name: ref.teacher_name,
-            });
-            await base44.entities.TeacherReferral.update(ref.id, { uses: (ref.uses || 0) + 1 });
-          }
+          await studentApi("joinClass", { code: referralCode.trim() });
         } catch (refErr) {
-          console.error("Referral linking error:", refErr);
+          console.error("Class join failed:", refErr?.code || refErr);
         }
       }
 
