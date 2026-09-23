@@ -26,13 +26,14 @@ async function call(fn, action, payload = {}, retried = false) {
     }
     return data;
   } catch (e) {
-    if (e?.code && !e.response) throw e;
     const body = e?.response?.data || e?.data;
     const status = e?.response?.status || e?.status;
     if (status === 401 && !retried) {
       await new Promise((r) => setTimeout(r, 700));
       return call(fn, action, payload, true);
     }
+    // Base44Error already carries the function's machine code.
+    if (e?.code && !e.response) throw e;
     const err = new Error(body?.error || e?.message || "Request failed");
     err.code = body?.code || "request_failed";
     err.status = status;
