@@ -35,14 +35,45 @@ export const studentApi = (action, payload) => call("studentApi", action, payloa
 export const teacherApi = (action, payload) => call("teacherApi", action, payload);
 
 // Human copy for the join-class errors students can actually hit.
-export function joinErrorMessage(code) {
-  switch (code) {
-    case "code_not_found": return "No class uses that code. Check it with your teacher.";
-    case "class_ended": return "That class has ended. Ask your teacher for a new code.";
-    case "class_unavailable": return "That class isn't available right now.";
-    case "removed_from_class": return "Your teacher removed you from this class. Ask them to add you back.";
-    case "teachers_cannot_join": return "Teacher accounts can't join a class as a student.";
-    case "own_class": return "That's your own class code.";
-    default: return "Couldn't join the class. Try again.";
-  }
+const JOIN_ERRORS = {
+  code_not_found: {
+    en: "No class uses that code. Check it with your teacher.",
+    uz: "Bunday kodli sinf topilmadi. Kodni o'qituvchingizdan tekshiring.",
+    ru: "Класса с таким кодом нет. Уточните код у учителя.",
+  },
+  class_ended: {
+    en: "That class has ended. Ask your teacher for a new code.",
+    uz: "Bu sinf yakunlangan. O'qituvchingizdan yangi kod so'rang.",
+    ru: "Этот класс завершён. Попросите у учителя новый код.",
+  },
+  class_unavailable: {
+    en: "That class isn't available right now.",
+    uz: "Bu sinf hozircha mavjud emas.",
+    ru: "Этот класс сейчас недоступен.",
+  },
+  removed_from_class: {
+    en: "Your teacher removed you from this class. Ask them to add you back.",
+    uz: "O'qituvchingiz sizni bu sinfdan chiqargan. Qayta qo'shishini so'rang.",
+    ru: "Учитель удалил вас из этого класса. Попросите добавить вас снова.",
+  },
+  teachers_cannot_join: {
+    en: "Teacher accounts can't join a class as a student.",
+    uz: "O'qituvchi hisobi sinfga o'quvchi sifatida qo'shila olmaydi.",
+    ru: "Аккаунт учителя не может вступить в класс как ученик.",
+  },
+  own_class: {
+    en: "That's your own class code.",
+    uz: "Bu sizning sinfingiz kodi.",
+    ru: "Это код вашего собственного класса.",
+  },
+  default: {
+    en: "Couldn't join the class. Try again.",
+    uz: "Sinfga qo'shilib bo'lmadi. Qaytadan urinib ko'ring.",
+    ru: "Не удалось вступить в класс. Попробуйте ещё раз.",
+  },
+};
+
+export function joinErrorMessage(code, lang = "en") {
+  const entry = JOIN_ERRORS[code] || JOIN_ERRORS.default;
+  return entry[lang] || entry.en;
 }
