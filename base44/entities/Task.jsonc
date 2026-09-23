@@ -1,0 +1,146 @@
+{
+  "name": "Task",
+  "type": "object",
+  "properties": {
+    "task_code": {
+      "type": "string",
+      "description": "Human-readable receipt ID such as VT-14 or VT-14.2."
+    },
+    "parent_id": {
+      "type": "string",
+      "description": "Parent Task.id. Empty for root tasks."
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "title": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "done_when": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "backlog",
+        "planned",
+        "active",
+        "blocked",
+        "done",
+        "verified",
+        "dropped"
+      ],
+      "default": "backlog"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "default": "medium"
+    },
+    "area": {
+      "type": "string"
+    },
+    "launch_blocker": {
+      "type": "boolean",
+      "default": false
+    },
+    "horizon": {
+      "type": "string",
+      "enum": [
+        "now",
+        "week",
+        "month",
+        "later"
+      ],
+      "default": "later"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string"
+    },
+    "decisions": {
+      "type": "string"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "human",
+        "gpt",
+        "claude",
+        "fable",
+        "base44",
+        "system",
+        "imported"
+      ],
+      "default": "human"
+    },
+    "last_actor": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "task_code",
+    "title",
+    "status",
+    "priority",
+    "area"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "never"
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "TaskStep",
+  "type": "object",
+  "properties": {
+    "step_code": {
+      "type": "string",
+      "description": "Human-readable step ID such as VT-14.2#5."
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "action": {
+      "type": "string"
+    },
+    "expected": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "todo",
+        "done",
+        "verified",
+        "failed",
+        "skipped"
+      ],
+      "default": "todo"
+    },
+    "actual": {
+      "type": "string"
+    },
+    "performed_by": {
+      "type": "string"
+    },
+    "performed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verified_by": {
+      "type": "string"
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "checkpoint": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "base44",
+            "git",
+            "deploy"
+          ]
+        },
+        "ref": {
+          "type": "string"
+        },
+        "env": {
+          "type": "string",
+          "enum": [
+            "sandbox",
+            "live"
+          ]
+        }
+      }
+    },
+    "dropped_reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "step_code",
+    "task_id",
+    "action",
+    "state"
+  ]
+}

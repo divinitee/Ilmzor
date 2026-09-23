@@ -1,0 +1,45 @@
+{
+  "name": "TaskEvidence",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "step_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "screenshot",
+        "log",
+        "api_response",
+        "test_output",
+        "file",
+        "link",
+        "note"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "ref": {
+      "type": "string",
+      "description": "Path or URL reference."
+    },
+    "captured_by": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "type",
+    "title"
+  ]
+}
