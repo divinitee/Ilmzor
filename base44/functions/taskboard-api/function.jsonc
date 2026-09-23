@@ -1,0 +1,4 @@
+{
+  "name":"taskboard-api",
+  "entry":"index.ts"
+}
