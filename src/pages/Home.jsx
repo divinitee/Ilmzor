@@ -16,6 +16,7 @@ import SkillHub from "@/pages/SkillHub";
 import VocabTutorChat from "@/components/tutor/VocabTutorChat";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
+import StudentHomework from "@/components/homework/StudentHomework";
 import BetaBadge from "@/components/BetaBadge";
 import AchievementsButton from "@/components/AchievementsButton";
 import { hasAnyUnlocked } from "@/lib/achievements";
@@ -46,12 +47,27 @@ export default function Home() {
   const [randomLaunch, setRandomLaunch] = useState(0);
   const navigateTab = (tab) => {
     const next = new URLSearchParams(searchParams);
-    ["game", "play", "difficulty", "timePerQ", "autoAdvance"].forEach(k => next.delete(k));
+    ["game", "play", "difficulty", "timePerQ", "autoAdvance", "hw"].forEach(k => next.delete(k));
     const isRandom = tab === "skillhub-random";
     const targetTab = isRandom ? "skillhub" : tab;
     if (targetTab === "home") next.delete("tab"); else next.set("tab", targetTab);
     setSearchParams(next);
     if (isRandom) setRandomLaunch((n) => n + 1);
+  };
+  // Homework launched from the dashboard's homework card: ?tab=skillhub&hw=<id>.
+  // SkillHub resolves the assignment server-side (studentApi.listHomework)
+  // and records the result through studentApi.submitHomework.
+  const homeworkId = activeTab === "skillhub" ? searchParams.get("hw") : null;
+  const [homeworkRefresh, setHomeworkRefresh] = useState(0);
+  const openHomework = (assignment) => {
+    const next = new URLSearchParams(searchParams);
+    next.set("tab", "skillhub");
+    next.set("hw", assignment.id);
+    setSearchParams(next);
+  };
+  const exitHomework = () => {
+    setHomeworkRefresh((n) => n + 1);
+    navigateTab("home");
   };
   const [unitDrawerOpen, setUnitDrawerOpen] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -269,11 +285,12 @@ export default function Home() {
               subscription={subscription}
               onSubmitted={() => loadData(true)}
               onNavigate={navigateTab}
+              homeworkSlot={<StudentHomework onOpen={openHomework} refreshToken={homeworkRefresh} />}
             />
           )
         )}
 
-        {activeTab === "skillhub" && !isTeacherAccount && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} />}
+        {activeTab === "skillhub" && !isTeacherAccount && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} homeworkId={homeworkId} onHomeworkExit={exitHomework} />}
 
         {activeTab === "tutor" && !isTeacherAccount && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
 
@@ -331,9 +348,10 @@ export default function Home() {
   );
 }
 
-function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted, onNavigate }) {
+function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOpenUnitDrawer, isActive, user, subscription, onSubmitted, onNavigate, homeworkSlot }) {
   return (
     <MissionControl
+      homeworkSlot={homeworkSlot}
       user={user}
       results={results}
       units={units}
