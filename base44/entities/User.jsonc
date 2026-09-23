@@ -68,21 +68,49 @@
         "rejected"
       ],
       "default": "none",
-      "description": "Whether this account is a teacher, and where in the approval flow. Set to 'pending' when someone registers choosing the Teacher role on Register.jsx. Only an admin flips it to 'approved' (via /admin) or 'rejected'. Deliberately separate from the platform's own 'role' field (admin|user, used by Base44's RLS engine) \u2014 teacher-ness is an app concept, not a platform permission, so it never touches 'role'. TeacherDashboard.jsx's access gate checks role === 'admin' OR teacher_status === 'approved'."
+      "description": "Whether this account is a teacher, and where in the approval flow. LOCKED (field-level security, 2026-09-23): only admins (via /admin) and the service role (studentApi.applyTeacher sets 'pending') can write it \u2014 the browser used to self-approve through updateMe. Deliberately separate from the platform's own 'role' field. RLS rules and teacherApi trust it for teacher access.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teacher_status_note": {
       "type": "string",
       "maxLength": 500,
-      "description": "Optional admin note on a teacher application, e.g. a reason for rejection. Shown back to the applicant."
+      "description": "Optional admin note on a teacher application, e.g. a reason for rejection. Shown back to the applicant. Admin-write only.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teacher_commission_rate_pct": {
       "type": "number",
-      "description": "Commission rate (percent of what their referred students pay) once approved. Set per-teacher by an admin \u2014 no platform-wide default, since Founder-era rates may vary teacher to teacher."
+      "description": "Commission rate (percent of what their referred students pay) once approved. Set per-teacher by an admin. Admin-write only (field-level security) \u2014 dodoWebhook trusts it.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teacher_commission_accrued_usd": {
       "type": "number",
       "default": 0,
-      "description": "Running total commission owed to this teacher, in USD. Lives on the teacher's own User row rather than per-TeacherReferral code, because payout happens per teacher, not per code, and a teacher can hold several codes (one per group/class). Incremented when a referred student's payment succeeds \u2014 wiring lands with the Stripe webhook, not yet implemented."
+      "description": "Running total commission owed to this teacher, in USD. Incremented by dodoWebhook (service role) on subscription.renewed. Admin-write only (field-level security).",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teacher_payout_status": {
       "type": "string",
@@ -92,12 +120,26 @@
         "paid"
       ],
       "default": "none",
-      "description": "Manual payout tracking for MVP \u2014 no automated payout rail yet. An admin marks this 'paid' by hand once a payout is sent, which should also reset teacher_commission_accrued_usd."
+      "description": "Manual payout tracking for MVP \u2014 no automated payout rail yet. Admin-write only.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teacher_last_payout_at": {
       "type": "string",
       "format": "date",
-      "description": "Date of the most recent commission payout, set by hand by an admin."
+      "description": "Date of the most recent commission payout, set by hand by an admin. Admin-write only.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     },
     "teaching_center": {
       "type": "string",
@@ -132,10 +174,29 @@
       "maxLength": 128,
       "description": "SHA-256 of this admin's /admin unlock PIN. IMPORTANT \u2014 this is a convenience lock, NOT a security boundary: the real gate is Base44 auth plus the role-based RLS rules, which are enforced server-side. Anyone holding a valid admin session can call the entity API directly and never sees this screen. A short numeric PIN is also brute-forceable from its hash, so this is only meant to stop a passer-by at an already-unlocked laptop. Never treat it as protection against a technical attacker."
     },
+    "classroom_code": {
+      "type": "string",
+      "maxLength": 32,
+      "description": "Server-written MIRROR of the student's active class membership (StudentSubscription.referral_code with roster_status active). Written only by studentApi.joinClass/leaveClass and teacherApi.setRoster (service role); admin-write only for clients. Never the source of truth \u2014 read membership from studentApi.refresh.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
+    },
     "trial_used_at": {
       "type": "string",
       "format": "date-time",
-      "description": "When this account started its one self-serve trial. Written only by the studentApi function (service role); a second startTrial is refused once set, so deleting a subscription row cannot farm a fresh trial."
+      "description": "When this account started its one self-serve trial. Written only by the studentApi function (service role); a second startTrial is refused once set, so deleting a subscription row cannot farm a fresh trial. Admin-write only.",
+      "rls": {
+        "write": {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      }
     }
   },
   "required": [
