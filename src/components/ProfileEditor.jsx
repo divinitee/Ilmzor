@@ -6,9 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAppLang } from "@/hooks/useAppLang";
 import { resolveUserName } from "@/lib/profileName";
+import { studentApi, joinErrorMessage } from "@/lib/serverApi";
 
 export default function ProfileEditor({ user, onSaved }) {
-  const { t } = useAppLang();
+  const { t, lang } = useAppLang();
   const [editing, setEditing] = useState(false);
   const [username, setUsername] = useState(() => resolveUserName(user));
   const [avatarUrl, setAvatarUrl] = useState(user?.avatar_url || "");
@@ -17,6 +18,9 @@ export default function ProfileEditor({ user, onSaved }) {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState(false);
+  // Class-code problems get their own message: "couldn't save" would hide
+  // the one thing the student can fix (a mistyped code, a removed class).
+  const [codeError, setCodeError] = useState("");
 
   // `user` is refetched after every save (see Settings.jsx / Home.jsx's
   // onSaved handlers) and this component isn't remounted when that happens —
@@ -46,12 +50,30 @@ export default function ProfileEditor({ user, onSaved }) {
   const handleSave = async () => {
     setSaving(true);
     setError(false);
+    setCodeError("");
     const trimmedName = username.trim();
+    const nextCode = roomCode.trim().toUpperCase();
+    const currentCode = (user?.classroom_code || "").toUpperCase();
     try {
       // display_name, not full_name: the platform ignores writes to full_name
       // (see src/lib/profileName.js), which is why saving here used to revert
       // to "No name set" the moment the user was refetched.
-      await base44.auth.updateMe({ display_name: trimmedName, avatar_url: avatarUrl, classroom_code: roomCode.trim().toUpperCase() });
+      await base44.auth.updateMe({ display_name: trimmedName, avatar_url: avatarUrl });
+      // The class code is a membership, not a profile string: changing it
+      // joins (or leaves) a class server-side, which also moves the teacher
+      // link. Writing User.classroom_code directly used to leave the roster
+      // pointing at the old class.
+      if (nextCode !== currentCode) {
+        try {
+          if (nextCode) await studentApi("joinClass", { code: nextCode });
+          else await studentApi("leaveClass");
+        } catch (joinErr) {
+          setCodeError(joinErrorMessage(joinErr?.code, lang));
+          setSaving(false);
+          onSaved?.();
+          return;
+        }
+      }
       setUsername(trimmedName);
       setSaved(true);
       setEditing(false);
@@ -70,6 +92,7 @@ export default function ProfileEditor({ user, onSaved }) {
     setAvatarUrl(user?.avatar_url || "");
     setRoomCode(user?.classroom_code || "");
     setError(false);
+    setCodeError("");
     setEditing(false);
   };
 
@@ -122,6 +145,11 @@ export default function ProfileEditor({ user, onSaved }) {
               />
             </div>
             <p className="text-xs text-muted-foreground">{t("profile.room_code_desc")}</p>
+            {codeError && (
+              <p className="flex items-center gap-1.5 text-xs text-destructive font-medium">
+                <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" /> {codeError}
+              </p>
+            )}
           </div>
 
           {error && (
