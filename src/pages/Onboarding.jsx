@@ -6,7 +6,6 @@ import { chooseFreePlan, TRIAL_DAYS, TRIAL_ENABLED } from "@/lib/subscription";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
 import ProfileSetup from "@/components/onboarding/ProfileSetup";
 import { needsProfileSetup } from "@/lib/profileStatus";
-import { resolveUserNameOrEmail } from "@/lib/profileName";
 import { useAppLang } from "@/hooks/useAppLang";
 
 // Post-registration flow for students: choose a plan (with a soft nudge

@@ -13,7 +13,7 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { APP_LANGS } from "@/i18n/translations";
 import { LEVELS } from "@/lib/levels";
 import { setUserLevel } from "@/lib/levelStore";
-import { resolveUserNameOrEmail } from "@/lib/profileName";
+import { studentApi } from "@/lib/serverApi";
 import BetaBadge from "@/components/BetaBadge";
 import { safeReturnTo } from "@/lib/authReturnTo";
 
