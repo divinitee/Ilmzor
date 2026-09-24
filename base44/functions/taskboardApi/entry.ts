@@ -197,7 +197,7 @@ async function createTask(db: any, actor: string, input: any) {
   const fields = cleanTaskPatch({ ...input, title });
   const status = fields.status || 'raw_idea';
   const record = await db.Task.create({
-    category: 'General', priority: 'medium', tags: [], depends_on: [], description: '', project: parent?.project || '', notes: '',
+    category: parent?.category || 'General', priority: 'medium', tags: [], depends_on: [], description: '', project: parent?.project || '', notes: '', launch_blocker: false,
     ...fields,
     status,
     ...statusStamps(null, status),
