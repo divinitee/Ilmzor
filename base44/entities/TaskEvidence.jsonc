@@ -8,27 +8,33 @@
     "step_id": {
       "type": "string"
     },
+    "owner_code": {
+      "type": "string",
+      "description": "task_code or step_code of the record this evidence is attached to."
+    },
     "type": {
       "type": "string",
       "enum": [
+        "note",
         "screenshot",
         "log",
         "api_response",
         "test_output",
         "file",
         "link",
-        "note"
-      ]
+        "checkpoint"
+      ],
+      "default": "note"
     },
     "title": {
       "type": "string"
     },
-    "body": {
+    "description": {
       "type": "string"
     },
-    "ref": {
+    "reference": {
       "type": "string",
-      "description": "Path or URL reference."
+      "description": "URL, file path, commit hash, checkpoint ID, or pasted output."
     },
     "captured_by": {
       "type": "string"
@@ -60,7 +66,7 @@
     },
     "delete": {
       "user_condition": {
-        "role": "never"
+        "role": "admin"
       }
     }
   }

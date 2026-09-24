@@ -18,16 +18,28 @@
         "imported"
       ]
     },
-    "actor_label": {
+    "task_id": {
       "type": "string"
     },
-    "node_id": {
-      "type": "string"
+    "task_code": {
+      "type": "string",
+      "description": "Code of the task this event belongs to (for step/evidence events, the owning task). Subtree history = task_code equal to X or starting with X + '.'."
+    },
+    "node_type": {
+      "type": "string",
+      "enum": [
+        "task",
+        "step",
+        "evidence"
+      ]
     },
     "node_code": {
       "type": "string"
     },
     "action": {
+      "type": "string"
+    },
+    "details": {
       "type": "string"
     },
     "field": {
@@ -38,15 +50,12 @@
     },
     "after": {
       "type": "string"
-    },
-    "note": {
-      "type": "string"
     }
   },
   "required": [
     "ts",
     "actor",
-    "node_id",
+    "task_code",
     "action"
   ],
   "rls": {

@@ -4,7 +4,7 @@
   "properties": {
     "step_code": {
       "type": "string",
-      "description": "Human-readable step ID such as VT-14.2#5."
+      "description": "Human-readable step ID: VT-14.2#5."
     },
     "task_id": {
       "type": "string"
@@ -13,72 +13,50 @@
       "type": "integer",
       "default": 0
     },
-    "action": {
+    "title": {
       "type": "string"
     },
-    "expected": {
-      "type": "string"
+    "description": {
+      "type": "string",
+      "description": "Instructions: what exactly to do."
     },
-    "state": {
+    "status": {
       "type": "string",
       "enum": [
         "todo",
+        "in_progress",
         "done",
-        "verified",
         "failed",
         "skipped"
       ],
       "default": "todo"
     },
-    "actual": {
+    "expected_result": {
       "type": "string"
     },
-    "performed_by": {
+    "actual_result": {
       "type": "string"
     },
-    "performed_at": {
+    "started_at": {
       "type": "string",
       "format": "date-time"
     },
-    "verified_by": {
-      "type": "string"
-    },
-    "verified_at": {
+    "completed_at": {
       "type": "string",
       "format": "date-time"
     },
-    "checkpoint": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "type": "string",
-          "enum": [
-            "base44",
-            "git",
-            "deploy"
-          ]
-        },
-        "ref": {
-          "type": "string"
-        },
-        "env": {
-          "type": "string",
-          "enum": [
-            "sandbox",
-            "live"
-          ]
-        }
-      }
+    "completed_by": {
+      "type": "string"
     },
-    "dropped_reason": {
+    "last_actor": {
       "type": "string"
     }
   },
   "required": [
     "step_code",
     "task_id",
-    "action",
-    "state"
+    "title",
+    "status"
   ],
   "rls": {
     "read": {
@@ -86,8 +64,20 @@
         "role": "admin"
       }
     },
-    "create": false,
-    "update": false,
-    "delete": false
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
   }
 }

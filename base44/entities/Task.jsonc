@@ -4,11 +4,11 @@
   "properties": {
     "task_code": {
       "type": "string",
-      "description": "Human-readable receipt ID such as VT-14 or VT-14.2."
+      "description": "Human-readable hierarchical ID: VT-14, VT-14.2, VT-14.2.1. A child's code is its parent's code plus a dot and a number."
     },
     "parent_id": {
       "type": "string",
-      "description": "Parent Task.id. Empty for root tasks."
+      "description": "Parent Task.id. Empty for root (big) tasks."
     },
     "order": {
       "type": "integer",
@@ -17,24 +17,18 @@
     "title": {
       "type": "string"
     },
-    "objective": {
-      "type": "string"
-    },
-    "done_when": {
+    "description": {
       "type": "string"
     },
     "status": {
       "type": "string",
       "enum": [
-        "backlog",
+        "raw_idea",
         "planned",
-        "active",
-        "blocked",
-        "done",
-        "verified",
-        "dropped"
+        "in_progress",
+        "complete"
       ],
-      "default": "backlog"
+      "default": "raw_idea"
     },
     "priority": {
       "type": "string",
@@ -46,22 +40,11 @@
       ],
       "default": "medium"
     },
-    "area": {
+    "category": {
       "type": "string"
     },
-    "launch_blocker": {
-      "type": "boolean",
-      "default": false
-    },
-    "horizon": {
-      "type": "string",
-      "enum": [
-        "now",
-        "week",
-        "month",
-        "later"
-      ],
-      "default": "later"
+    "project": {
+      "type": "string"
     },
     "tags": {
       "type": "array",
@@ -69,37 +52,31 @@
         "type": "string"
       }
     },
+    "due_date": {
+      "type": "string",
+      "description": "YYYY-MM-DD"
+    },
     "depends_on": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "description": "Task codes this task depends on."
     },
     "notes": {
       "type": "string"
     },
-    "decisions": {
-      "type": "string"
+    "launch_blocker": {
+      "type": "boolean",
+      "default": false
     },
     "archived": {
       "type": "boolean",
       "default": false
     },
-    "source": {
+    "archived_at": {
       "type": "string",
-      "enum": [
-        "human",
-        "gpt",
-        "claude",
-        "fable",
-        "base44",
-        "system",
-        "imported"
-      ],
-      "default": "human"
-    },
-    "last_actor": {
-      "type": "string"
+      "format": "date-time"
     },
     "started_at": {
       "type": "string",
@@ -112,14 +89,22 @@
     "verified_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "verified_by": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "last_actor": {
+      "type": "string"
     }
   },
   "required": [
     "task_code",
     "title",
     "status",
-    "priority",
-    "area"
+    "priority"
   ],
   "rls": {
     "read": {
@@ -139,7 +124,7 @@
     },
     "delete": {
       "user_condition": {
-        "role": "never"
+        "role": "admin"
       }
     }
   }
