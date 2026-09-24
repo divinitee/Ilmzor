@@ -44,8 +44,9 @@ async function call(fn, action, payload = {}, retried = false) {
 export const studentApi = (action, payload) => call("studentApi", action, payload);
 export const teacherApi = (action, payload) => call("teacherApi", action, payload);
 
+// Internal Taskboard (admin only). base44/functions/taskboardApi/entry.ts
 export const taskboardApi = async (action, payload = {}, actor = "tee") => {
-  const response = await call("taskboard-api", action, { ...payload, actor });
+  const response = await call("taskboardApi", action, { ...payload, actor });
   return response?.data ?? response;
 };
 
