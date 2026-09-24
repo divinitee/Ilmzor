@@ -1,114 +1,243 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { Loader2, ShieldAlert, Trash2, X } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import { taskboardApi } from "@/lib/serverApi";
-import { ArrowLeft, ChevronRight, ChevronDown, Circle, CircleDot, CheckCircle2, ShieldCheck, XCircle, MinusCircle, Plus, Search, FolderTree, ExternalLink, Loader2 } from "lucide-react";
+import Board from "@/components/taskboard/Board";
+import TaskPage from "@/components/taskboard/TaskPage";
+import TaskForm from "@/components/taskboard/TaskForm";
+import { Modal, Button, inputCls } from "@/components/taskboard/ui";
+import { buildIndex, buildExport, downloadJson, taskUrl, STATUS_LABEL } from "@/components/taskboard/model";
 
-const STATES = {
-  backlog:["Backlog",Circle,"text-slate-500"], planned:["Planned",Circle,"text-slate-400"],
-  active:["Active",CircleDot,"text-blue-400"], blocked:["Blocked",XCircle,"text-rose-400"],
-  done:["Done",CheckCircle2,"text-emerald-400"], verified:["Verified",ShieldCheck,"text-cyan-400"],
-  dropped:["Dropped",MinusCircle,"text-slate-600"]
-};
-const PRIORITIES={critical:"Critical",high:"High",medium:"Medium",low:"Low"};
+// Internal VIRORA Taskboard / build receipt. Admin only.
+// Board at /taskboard, recursive task workspace at /taskboard/:taskCode.
+// All reads/writes go through base44/functions/taskboardApi.
 
-function StateIcon({state}) {
-  const x=STATES[state]||STATES.backlog; const Icon=x[1];
-  return <Icon className={"h-4 w-4 shrink-0 "+x[2]}/>;
-}
-function time(v){return v?new Date(v).toLocaleString([],{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"}):"—";}
-function relative(v){if(!v)return"never";const m=Math.max(0,Math.floor((Date.now()-new Date(v))/60000));if(m<60)return m+"m ago";const h=Math.floor(m/60);if(h<24)return h+"h ago";return Math.floor(h/24)+"d ago";}
+const EMPTY = { tasks: [], steps: [], evidence: [], events: [] };
 
-export default function Taskboard(){
-  const {user}=useAuth(); const {taskCode}=useParams(); const navigate=useNavigate();
-  const [data,setData]=useState({tasks:[],steps:[],evidence:[],events:[]});
-  const [loading,setLoading]=useState(true); const [error,setError]=useState("");
-  const [query,setQuery]=useState(""); const [tab,setTab]=useState("work");
-  const [editing,setEditing]=useState(false); const [draft,setDraft]=useState(null);
-  const [busy,setBusy]=useState(false); const [reason,setReason]=useState("");
-  const [newChild,setNewChild]=useState(false); const [newStep,setNewStep]=useState(false);
-  const [expanded,setExpanded]=useState({}); const [evidenceStep,setEvidenceStep]=useState(null);
+export default function Taskboard() {
+  const { user } = useAuth();
+  const { taskCode } = useParams();
+  const navigate = useNavigate();
+  const [data, setData] = useState(EMPTY);
+  const [loaded, setLoaded] = useState(false);
+  const [loadError, setLoadError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [form, setForm] = useState(null); // {task} edit | {parent} new subtask | {} new big task
+  const [confirmDelete, setConfirmDelete] = useState(null);
+  const toastTimer = useRef(null);
 
-  const load=async()=>{setLoading(true);try{setData(await taskboardApi("bundle"));setError("")}catch(e){setError(e.message||"Taskboard unavailable")}finally{setLoading(false)}};
-  useEffect(()=>{load()},[]);
-  useEffect(()=>{setEditing(false);setDraft(null);setTab("work");setReason("")},[taskCode]);
+  const isAdmin = user?.role === "admin";
 
-  const byId=useMemo(()=>Object.fromEntries(data.tasks.map(t=>[t.id,t])),[data.tasks]);
-  const children=useMemo(()=>{const m={};data.tasks.forEach(t=>(m[t.parent_id||""] ||= []).push(t));Object.values(m).forEach(a=>a.sort((x,y)=>(x.order||0)-(y.order||0)));return m},[data.tasks]);
-  const steps=useMemo(()=>{const m={};data.steps.forEach(s=>(m[s.task_id] ||= []).push(s));Object.values(m).forEach(a=>a.sort((x,y)=>(x.order||0)-(y.order||0)));return m},[data.steps]);
-  const current=taskCode?data.tasks.find(t=>t.task_code===taskCode):null;
+  const notify = useCallback((msg, kind = "ok", action = null) => {
+    setToast({ msg, kind, action });
+    clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setToast(null), kind === "error" ? 8000 : 5000);
+  }, []);
 
-  const descendants=(root)=>{const out=[root];const walk=id=>(children[id]||[]).forEach(c=>{out.push(c);walk(c.id)});walk(root.id);return out};
-  const progress=(root)=>{const ids=new Set(descendants(root).map(t=>t.id));const ss=data.steps.filter(s=>ids.has(s.task_id));return {total:ss.length,verified:ss.filter(s=>s.state==="verified").length,done:ss.filter(s=>s.state==="done").length,open:ss.filter(s=>!["verified","done","skipped"].includes(s.state))}};
-  const path=current?(()=>{const out=[];let t=current;while(t){out.unshift(t);t=t.parent_id?byId[t.parent_id]:null}return out})():[];
-  const invoke=async(action,payload)=>{setBusy(true);try{const r=await taskboardApi(action,payload,"tee");await load();return r}catch(e){setError(e.message||"Request failed")}finally{setBusy(false)}};
+  const load = useCallback(async () => {
+    try {
+      const b = await taskboardApi("bundle");
+      setData({ tasks: b?.tasks || [], steps: b?.steps || [], evidence: b?.evidence || [], events: b?.events || [] });
+      setLoadError("");
+    } catch (e) {
+      setLoadError(e.message || "Taskboard unavailable");
+    } finally {
+      setLoaded(true);
+    }
+  }, []);
 
-  if(!user||user.role!=="admin")return <div className="min-h-screen bg-[#070b12] text-slate-100 grid place-items-center"><div className="text-center"><ShieldCheck className="mx-auto h-8 w-8 text-rose-400"/><h1 className="mt-3 font-semibold">Access denied</h1><p className="mt-1 text-sm text-slate-500">Taskboard is internal infrastructure.</p></div></div>;
-  if(loading)return <div className="min-h-screen bg-[#070b12] text-slate-100 grid place-items-center"><Loader2 className="h-6 w-6 animate-spin"/></div>;
-  if(error&&!data.tasks.length)return <div className="min-h-screen bg-[#070b12] text-slate-100 grid place-items-center p-6"><div className="text-center"><h1 className="font-semibold">Taskboard unavailable</h1><p className="mt-2 text-sm text-slate-500">{error}</p><button onClick={load} className="mt-4 rounded-lg border border-slate-700 px-4 py-2 text-sm">Retry</button></div></div>;
+  useEffect(() => { if (isAdmin) load(); }, [isAdmin, load]);
+  useEffect(() => { window.scrollTo(0, 0); }, [taskCode]);
 
-  if(!current)return <Dashboard tasks={data.tasks} query={query} setQuery={setQuery} progress={progress} navigate={navigate}/>;
+  const idx = useMemo(() => buildIndex(data), [data]);
+  const current = taskCode ? idx.byCode[decodeURIComponent(taskCode)] : null;
 
-  const p=progress(current); const kids=children[current.id]||[]; const ownSteps=steps[current.id]||[];
-  const allSub=descendants(current); const ids=new Set(allSub.map(t=>t.id));
-  const receiptEvidence=data.evidence.filter(e=>ids.has(e.task_id)||ownSteps.some(s=>s.id===e.step_id));
-  const activity=data.events.filter(e=>ids.has(e.node_id)||ownSteps.some(s=>s.id===e.node_id)).slice(0,100);
+  // Run a server action, then refresh. Returns the result, or false on failure.
+  const run = useCallback(async (action, payload, okMsg, toastAction) => {
+    setBusy(true);
+    try {
+      const r = await taskboardApi(action, payload, "tee");
+      await load();
+      if (okMsg) notify(typeof okMsg === "function" ? okMsg(r) : okMsg, "ok", toastAction ? toastAction(r) : null);
+      return r ?? true;
+    } catch (e) {
+      notify(e.message || "Request failed", "error");
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }, [load, notify]);
 
-  const save=async()=>{if(!draft.title.trim())return;await invoke("update_task",{id:current.id,patch:{title:draft.title,objective:draft.objective||"",done_when:draft.done_when||"",priority:draft.priority,area:draft.area,status:draft.status,horizon:draft.horizon,launch_blocker:!!draft.launch_blocker,notes:draft.notes||"",decisions:draft.decisions||""}});setEditing(false)};
-  const statusChange=async e=>{const next=e.target.value;if(next==="verified")return invoke("verify_task",{id:current.id});if(next==="done"&&p.open){setReason(" ");return}invoke("update_task",{id:current.id,patch:{status:next}})};
+  const handlers = useMemo(() => ({
+    newTask: () => setForm({}),
+    newSubtask: (parent) => setForm({ parent }),
+    edit: (task) => setForm({ task }),
+    move: (id, status) => {
+      const t = idx.byId[id];
+      if (!t || t.status === status) return;
+      return run("update_task", { id, patch: { status } }, `${t.task_code} → ${STATUS_LABEL[status]}`);
+    },
+    archive: (task) => run("set_archived", { id: task.id, archived: true }, `${task.task_code} archived`, () => ({
+      label: "Undo", fn: () => run("set_archived", { id: task.id, archived: false }, `${task.task_code} restored`),
+    })),
+    restore: (task) => run("set_archived", { id: task.id, archived: false }, `${task.task_code} restored`),
+    remove: (task) => setConfirmDelete(task),
+    verify: (task, verified) => run("verify_task", { id: task.id, verified }, verified ? `${task.task_code} verified` : `${task.task_code} unverified`),
+    createStep: (taskId, f) => run("create_step", { task_id: taskId, ...f }, (s) => `Step ${s?.step_code || ""} added`),
+    updateStep: (id, patch) => run("update_step", { id, patch }, patch.status ? `Step marked ${patch.status.replace("_", " ")}` : "Step saved"),
+    addEvidence: (payload) => run("add_evidence", payload, "Evidence attached"),
+    exportSubtree: (task) => {
+      const out = buildExport(data, task);
+      downloadJson(out, `virora-taskboard-${task.task_code}-${new Date().toISOString().slice(0, 10)}.json`);
+      notify(`Exported ${task.task_code}: ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events`);
+    },
+  }), [idx, run, data, notify]);
 
-  return <div className="min-h-screen bg-[#070b12] text-slate-100">
-    <header className="sticky top-0 z-20 border-b border-slate-800/80 bg-[#070b12]/95 backdrop-blur">
-      <div className="mx-auto max-w-[1450px] px-4 py-3">
-        <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] text-slate-600">
-          <button onClick={()=>navigate("/taskboard")} className="hover:text-slate-300">Tasks</button>
-          {path.map((t,i)=><React.Fragment key={t.id}><span>/</span><button onClick={()=>navigate("/taskboard/"+encodeURIComponent(t.task_code))} className={i===path.length-1?"text-slate-200":"hover:text-slate-300"}>{t.task_code} {t.title}</button></React.Fragment>)}
+  const exportAll = () => {
+    const out = buildExport(data);
+    downloadJson(out, `virora-taskboard-${new Date().toISOString().slice(0, 10)}.json`);
+    notify(`Exported ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events`);
+  };
+
+  const importFile = async (text, name) => {
+    let parsed;
+    try { parsed = JSON.parse(text); } catch { notify(`${name} is not valid JSON`, "error"); return; }
+    await run("import", { data: parsed }, (r) => {
+      const c = r?.created || {};
+      const s = r?.skipped || {};
+      return `Imported (${r?.format}): ${c.tasks || 0} tasks, ${c.steps || 0} steps, ${c.evidence || 0} evidence, ${c.events || 0} events created · ${s.tasks || 0} tasks already present`;
+    });
+  };
+
+  const submitForm = async (fields) => {
+    if (form?.task) {
+      const r = await run("update_task", { id: form.task.id, patch: fields }, `${form.task.task_code} saved`);
+      if (r !== false) setForm(null);
+      return;
+    }
+    const r = await run("create_task", { ...fields, parent_id: form?.parent?.id || "" }, (t) => `${t?.task_code} created`);
+    if (r !== false) setForm(null);
+  };
+
+  if (!user) return <Center><Loader2 className="h-6 w-6 animate-spin text-slate-400" /></Center>;
+  if (!isAdmin) {
+    return (
+      <Center>
+        <ShieldAlert className="mx-auto h-8 w-8 text-rose-400" />
+        <h1 className="mt-3 text-lg font-semibold">Access denied</h1>
+        <p className="mt-1 text-sm text-slate-400">The Taskboard is internal VIRORA infrastructure.</p>
+      </Center>
+    );
+  }
+  if (!loaded) return <Center><Loader2 className="mx-auto h-6 w-6 animate-spin text-slate-400" /><p className="mt-3 text-sm text-slate-400">Loading taskboard…</p></Center>;
+  if (loadError && !data.tasks.length) {
+    return (
+      <Center>
+        <h1 className="text-lg font-semibold">Taskboard unavailable</h1>
+        <p className="mt-2 text-sm text-slate-400">{loadError}</p>
+        <Button className="mt-4" onClick={() => { setLoaded(false); load(); }}>Retry</Button>
+      </Center>
+    );
+  }
+
+  let body;
+  if (taskCode && !current) {
+    body = (
+      <Center>
+        <h1 className="text-lg font-semibold">Task {decodeURIComponent(taskCode)} not found</h1>
+        <p className="mt-2 text-sm text-slate-400">It may have been deleted. Its history is kept in the parent’s activity log.</p>
+        <Link to="/taskboard" className="mt-4 inline-block text-sm text-blue-300 hover:underline">Back to the board</Link>
+      </Center>
+    );
+  } else if (current) {
+    body = <TaskPage key={current.id} task={current} data={data} idx={idx} busy={busy} navigate={navigate} handlers={handlers} />;
+  } else {
+    body = (
+      <Board
+        data={data}
+        idx={idx}
+        busy={busy}
+        onOpen={(t) => navigate(taskUrl(t))}
+        onNew={handlers.newTask}
+        onEdit={handlers.edit}
+        onMove={handlers.move}
+        onArchive={handlers.archive}
+        onRestore={handlers.restore}
+        onDelete={handlers.remove}
+        onExport={exportAll}
+        onImport={importFile}
+      />
+    );
+  }
+
+  return (
+    <>
+      {body}
+      {form && <TaskForm task={form.task} parent={form.parent} busy={busy} onClose={() => setForm(null)} onSubmit={submitForm} />}
+      {confirmDelete && (
+        <DeleteDialog
+          task={confirmDelete}
+          idx={idx}
+          data={data}
+          busy={busy}
+          onClose={() => setConfirmDelete(null)}
+          onConfirm={async (code) => {
+            const t = confirmDelete;
+            const parent = t.parent_id ? idx.byId[t.parent_id] : null;
+            const onPage = current && (current.id === t.id || idx.path(current).some((x) => x.id === t.id));
+            const r = await run("delete_task", { id: t.id, confirm: code }, `${t.task_code} deleted`);
+            if (r !== false) {
+              setConfirmDelete(null);
+              if (onPage) navigate(parent ? taskUrl(parent) : "/taskboard");
+            }
+          }}
+        />
+      )}
+      {busy && <div className="fixed left-0 right-0 top-0 z-[60] h-0.5 animate-pulse bg-blue-400" />}
+      {toast && (
+        <div role="status" className={`fixed bottom-4 left-1/2 z-[70] flex w-[min(92vw,560px)] -translate-x-1/2 items-center gap-3 rounded-lg border px-4 py-3 text-sm shadow-2xl ${toast.kind === "error" ? "border-rose-500/50 bg-[#2a0f16] text-rose-100" : "border-slate-600 bg-[#111a2a] text-slate-100"}`}>
+          <span className="min-w-0 flex-1">{toast.msg}</span>
+          {toast.action && (
+            <button type="button" className="font-semibold text-blue-300 hover:text-blue-200" onClick={() => { const a = toast.action; setToast(null); a.fn(); }}>{toast.action.label}</button>
+          )}
+          <button type="button" onClick={() => setToast(null)} className="text-slate-400 hover:text-white" aria-label="Dismiss"><X className="h-4 w-4" /></button>
         </div>
-        <div className="mt-3 flex flex-wrap items-start justify-between gap-4">
-          <div className="min-w-0"><div className="flex items-center gap-2"><StateIcon state={current.status}/><span className="font-mono text-xs text-slate-600">{current.task_code}</span><h1 className="truncate text-xl font-semibold">{current.title}</h1></div><p className="mt-1 text-sm text-slate-500">{current.objective||"No objective recorded."}</p></div>
-          <div className="flex items-center gap-2"><select value={current.status} onChange={statusChange} className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs">{Object.entries(STATES).map(([k,v])=><option key={k} value={k}>{v[0]}</option>)}</select><button onClick={()=>{setDraft({...current});setEditing(!editing)}} className="rounded-lg border border-slate-700 px-3 py-2 text-xs">Edit</button></div>
-        </div>
-        {reason!==""&&<div className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/5 p-3"><div className="text-xs text-amber-300">This task has {p.open} open step(s). Explain why it is being closed early.</div><div className="mt-2 flex gap-2"><input autoFocus value={reason.trim()===""?"":reason} onChange={e=>setReason(e.target.value)} placeholder="Reason" className="min-w-0 flex-1 rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-xs"/><button onClick={async()=>{if(!reason.trim())return;await invoke("update_task",{id:current.id,patch:{status:"done",notes:(current.notes||"")+"\nDone early: "+reason}});setReason("")}} className="rounded-md bg-blue-500 px-3 py-2 text-xs font-semibold">Confirm</button></div></div>}
-        <div className="mt-4 flex gap-1 border-b border-slate-800">{["work","receipt","activity","notes"].map(k=><button key={k} onClick={()=>setTab(k)} className={"border-b-2 px-3 py-2 text-xs "+(tab===k?"border-blue-400 text-slate-100":"border-transparent text-slate-600")}>{k==="work"?"Work":k==="receipt"?"Receipt":k==="activity"?"Activity":"Notes / Decisions"}</button>)}</div>
-      </div>
-    </header>
-
-    <main className="mx-auto max-w-[1450px] px-4 py-5">
-      {error&&<div className="mb-4 rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2 text-xs text-rose-300">{error}</div>}
-      {editing&&<EditPanel draft={draft} setDraft={setDraft} save={save} cancel={()=>setEditing(false)} busy={busy}/>}
-      {tab==="work"&&<Work current={current} kids={kids} ownSteps={ownSteps} progress={p} navigate={navigate} expanded={expanded} setExpanded={setExpanded} invoke={invoke} busy={busy} newChild={newChild} setNewChild={setNewChild} newStep={newStep} setNewStep={setNewStep} evidenceStep={evidenceStep} setEvidenceStep={setEvidenceStep} evidence={data.evidence}/>}
-      {tab==="receipt"&&<Receipt current={current} subtree={allSub} steps={data.steps} evidence={receiptEvidence} progress={p}/>}
-      {tab==="activity"&&<Activity events={activity}/>}
-      {tab==="notes"&&<div className="grid gap-4 lg:grid-cols-2"><Panel title="Notes"><pre className="whitespace-pre-wrap text-sm leading-6 text-slate-400">{current.notes||"No notes."}</pre></Panel><Panel title="Decisions"><pre className="whitespace-pre-wrap text-sm leading-6 text-slate-400">{current.decisions||"No decisions recorded."}</pre></Panel></div>}
-    </main>
-  </div>;
+      )}
+    </>
+  );
 }
 
-function Dashboard({tasks,query,setQuery,progress,navigate}){
-  const roots=tasks.filter(t=>!t.parent_id&&!t.archived&&t.status!=="dropped").filter(t=>{const q=query.toLowerCase();return !q||[t.task_code,t.title,t.area,...(t.tags||[])].join(" ").toLowerCase().includes(q)});
-  const groups=[
-    ["Blocked",roots.filter(t=>t.status==="blocked"||t.launch_blocker)],
-    ["Active",roots.filter(t=>t.status==="active")],
-    ["Awaiting verification",roots.filter(t=>t.status==="done")],
-    ["Next",roots.filter(t=>t.status==="planned"||t.status==="backlog")],
-    ["Verified",roots.filter(t=>t.status==="verified")]
-  ];
-  const active=roots.filter(t=>t.status==="active").length,blocked=roots.filter(t=>t.status==="blocked").length,done=roots.filter(t=>t.status==="done").length,verified=roots.filter(t=>t.status==="verified").length;
-  return <div className="min-h-screen bg-[#070b12] text-slate-100"><header className="border-b border-slate-800/80"><div className="mx-auto max-w-[1250px] px-4 py-5"><div className="flex flex-wrap items-end justify-between gap-4"><div><div className="text-[10px] uppercase tracking-[.22em] text-blue-400">Build receipt</div><h1 className="mt-1 text-2xl font-semibold">Build the future.</h1><p className="mt-1 text-sm text-slate-600">Ideas → Execution → Impact</p></div><div className="relative w-full sm:w-80"><Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-700"/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search tasks, tags, or areas…" className="w-full rounded-lg border border-slate-800 bg-slate-950 px-9 py-2 text-xs outline-none focus:border-blue-500/50"/></div></div><div className="mt-5 flex flex-wrap gap-5 text-xs text-slate-600"><span><b className="text-blue-300">{active}</b> active</span><span><b className="text-rose-300">{blocked}</b> blocked</span><span><b className="text-amber-300">{done}</b> awaiting verification</span><span><b className="text-cyan-300">{verified}</b> verified</span><span><b className="text-slate-300">{roots.length}</b> root tasks</span></div></div></header><main className="mx-auto max-w-[1250px] px-4 py-6">{groups.map(g=><section key={g[0]} className="mb-7"><div className="mb-2 flex justify-between text-[11px] font-semibold uppercase tracking-[.16em] text-slate-600"><span>{g[0]}</span><span>{g[1].length}</span></div><div className="overflow-hidden rounded-xl border border-slate-800/80 divide-y divide-slate-800/70">{g[1].length?g[1].map(t=><TaskRow key={t.id} task={t} progress={progress(t)} onClick={()=>navigate("/taskboard/"+encodeURIComponent(t.task_code))}/>):<div className="px-4 py-3 text-xs text-slate-700">Nothing here.</div>}</div></section>)}</main></div>;
+function Center({ children }) {
+  return <div className="grid min-h-screen place-items-center bg-[#070b12] p-6 text-center text-slate-100"><div>{children}</div></div>;
 }
-function TaskRow({task,progress,onClick}){return <button onClick={onClick} className="group flex w-full items-center gap-3 bg-[#0b111b] px-3 py-3 text-left hover:bg-[#0e1520]"><StateIcon state={task.status}/><span className="w-16 font-mono text-[10px] text-slate-600">{task.task_code}</span><span className="min-w-0 flex-1"><span className="block truncate text-sm text-slate-200">{task.title}</span><span className="mt-0.5 block truncate text-[11px] text-slate-600">{task.area} · {progress.total?progress.verified+"/"+progress.total+" verified":"no plan"}</span></span><span className={"hidden text-[10px] uppercase sm:block "+(task.priority==="critical"?"text-rose-400":task.priority==="high"?"text-amber-300":"text-slate-600")}>{PRIORITIES[task.priority]}</span>{task.launch_blocker&&<span className="hidden text-[10px] text-rose-400 md:block">BLOCKER</span>}<ChevronRight className="h-4 w-4 text-slate-700"/></button>}
 
-function EditPanel({draft,setDraft,save,cancel,busy}){const set=(k,v)=>setDraft(d=>({...d,[k]:v}));return <section className="mb-5 rounded-xl border border-blue-500/20 bg-[#0b111b] p-4"><div className="grid gap-3 md:grid-cols-2"><Field label="Title"><input value={draft.title} onChange={e=>set("title",e.target.value)} className="field"/></Field><Field label="Area"><input value={draft.area||""} onChange={e=>set("area",e.target.value)} className="field"/></Field><Field label="Objective" wide><textarea rows={2} value={draft.objective||""} onChange={e=>set("objective",e.target.value)} className="field"/></Field><Field label="Done when" wide><textarea rows={2} value={draft.done_when||""} onChange={e=>set("done_when",e.target.value)} className="field"/></Field><Field label="Priority"><select value={draft.priority} onChange={e=>set("priority",e.target.value)} className="field"><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></Field><Field label="Horizon"><select value={draft.horizon||"later"} onChange={e=>set("horizon",e.target.value)} className="field"><option value="now">Now</option><option value="week">This week</option><option value="month">This month</option><option value="later">Later</option></select></Field><label className="flex items-center gap-2 text-xs text-slate-400"><input type="checkbox" checked={!!draft.launch_blocker} onChange={e=>set("launch_blocker",e.target.checked)}/> Launch blocker</label><div className="flex justify-end gap-2 md:col-span-2"><button onClick={cancel} className="rounded-lg border border-slate-800 px-3 py-2 text-xs">Cancel</button><button disabled={busy} onClick={save} className="rounded-lg bg-blue-500 px-4 py-2 text-xs font-semibold text-white">{busy?"Saving…":"Save changes"}</button></div></div></section>}
-function Field({label,children,wide}){return <label className={"text-[11px] text-slate-600 "+(wide?"md:col-span-2":"")}>{label}{children}</label>}
-
-function Work({current,kids,ownSteps,progress,navigate,expanded,setExpanded,invoke,busy,newChild,setNewChild,newStep,setNewStep,evidenceStep,setEvidenceStep,evidence}){
-  return <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]"><section><Panel title="Progress"><div className="flex flex-wrap justify-between gap-2 text-xs text-slate-500"><span>{progress.total?progress.verified+" verified · "+progress.done+" done · "+progress.open+" open":"No plan yet"}</span><span>{current.horizon||"later"}</span></div><div className="mt-2 flex h-1.5 overflow-hidden rounded-full bg-slate-950">{progress.total>0&&<><div className="bg-cyan-400" style={{width:(progress.verified/progress.total*100)+"%"}}/><div className="bg-emerald-400" style={{width:(progress.done/progress.total*100)+"%"}}/></>}</div></Panel><div className="mt-4 rounded-xl border border-slate-800 bg-[#0b111b]"><div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 px-4 py-3"><div><h2 className="text-sm font-semibold">Work outline</h2><p className="text-[11px] text-slate-600">Tasks are folders. Steps are executable actions.</p></div><div className="flex gap-2"><button onClick={()=>setNewChild(!newChild)} className="rounded-md border border-slate-700 px-2.5 py-1.5 text-[11px]"><Plus className="mr-1 inline h-3.5 w-3.5"/>Child task</button><button onClick={()=>setNewStep(!newStep)} className="rounded-md border border-slate-700 px-2.5 py-1.5 text-[11px]"><Plus className="mr-1 inline h-3.5 w-3.5"/>Step</button></div></div>{newChild&&<CreateChild parentId={current.id} invoke={invoke} close={()=>setNewChild(false)}/>} {newStep&&<CreateStep taskId={current.id} invoke={invoke} close={()=>setNewStep(false)}/>}<div className="divide-y divide-slate-800/70">{kids.map(t=><button key={t.id} onClick={()=>navigate("/taskboard/"+encodeURIComponent(t.task_code))} className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-slate-900/60"><FolderTree className="h-4 w-4 text-slate-500"/><span className="font-mono text-[10px] text-slate-600">{t.task_code}</span><span className="min-w-0 flex-1 truncate text-sm text-slate-300">{t.title}</span><StateIcon state={t.status}/><ChevronRight className="h-4 w-4 text-slate-700"/></button>)}{ownSteps.map(s=><Step key={s.id} step={s} expanded={!!expanded[s.id]} toggle={()=>setExpanded(x=>({...x,[s.id]:!x[s.id]}))} invoke={invoke} busy={busy} evidence={evidence.filter(e=>e.step_id===s.id)} evidenceStep={evidenceStep} setEvidenceStep={setEvidenceStep}/>) }{!kids.length&&!ownSteps.length&&<div className="px-4 py-10 text-center text-xs text-slate-700">No child tasks or steps yet.</div>}</div></div></section><aside className="space-y-4"><Panel title="Dependencies">{(current.depends_on||[]).length?current.depends_on.map(x=><div key={x} className="font-mono text-xs text-blue-300">{x}</div>):<span className="text-xs text-slate-700">None recorded.</span>}</Panel><Panel title="Receipt metadata"><div className="space-y-2 text-xs text-slate-600"><div className="flex justify-between"><span>Created</span><span className="font-mono">{time(current.created_date)}</span></div><div className="flex justify-between"><span>Last activity</span><span className="font-mono">{relative(current.updated_date)}</span></div><div className="flex justify-between"><span>Actor</span><span className="font-mono text-slate-300">{current.last_actor||"—"}</span></div></div></Panel></aside></div>;
+function DeleteDialog({ task, idx, data, busy, onClose, onConfirm }) {
+  const [code, setCode] = useState("");
+  const desc = idx.descendants(task);
+  const ids = new Set([task.id, ...desc.map((d) => d.id)]);
+  const steps = data.steps.filter((s) => ids.has(s.task_id)).length;
+  const ev = data.evidence.filter((e) => ids.has(e.task_id)).length;
+  return (
+    <Modal
+      title={`Delete ${task.task_code} permanently?`}
+      onClose={onClose}
+      footer={
+        <>
+          <Button variant="ghost" onClick={onClose}>Cancel</Button>
+          <Button variant="danger" icon={Trash2} disabled={busy || code.trim() !== task.task_code} onClick={() => onConfirm(code.trim())}>Delete permanently</Button>
+        </>
+      }
+    >
+      <p className="text-sm text-slate-300">
+        This removes <b>{task.title}</b> together with <b>{desc.length}</b> subtask(s), <b>{steps}</b> step(s) and <b>{ev}</b> evidence record(s). The activity log keeps a record that it existed.
+      </p>
+      <p className="mt-2 text-sm text-slate-400">If you only want it off the board, use <b>Archive</b> instead — it can be restored.</p>
+      <label className="mt-4 block text-sm text-slate-300">
+        Type <span className="font-mono font-semibold text-rose-300">{task.task_code}</span> to confirm
+        <input autoFocus value={code} onChange={(e) => setCode(e.target.value)} className={inputCls + " font-mono"} placeholder={task.task_code} />
+      </label>
+    </Modal>
+  );
 }
-function Step({step,expanded,toggle,invoke,busy,evidence,evidenceStep,setEvidenceStep}){const state=async v=>invoke("update_step",{id:step.id,patch:{state:v}});return <div><div className="flex items-center gap-3 px-4 py-3"><button onClick={toggle} className="text-slate-700">{expanded?<ChevronDown className="h-4 w-4"/>:<ChevronRight className="h-4 w-4"/>}</button><StateIcon state={step.state}/><span className="font-mono text-[10px] text-slate-600">{step.step_code}</span><button onClick={toggle} className="min-w-0 flex-1 truncate text-left text-sm text-slate-300">{step.action}</button><select disabled={busy} value={step.state} onChange={e=>state(e.target.value)} className="rounded border border-slate-800 bg-slate-950 px-2 py-1 text-[10px]"><option>todo</option><option>done</option><option>verified</option><option>failed</option><option>skipped</option></select></div>{expanded&&<div className="border-t border-slate-800/70 bg-[#090e17] px-11 py-4"><div className="grid gap-3 md:grid-cols-2"><Info label="Expected result" value={step.expected}/><Info label="Actual result" value={step.actual}/></div><div className="mt-3 text-[11px] text-slate-600">Performed {step.performed_by||"—"} · {time(step.performed_at)} · Verified {step.verified_by||"—"} · {time(step.verified_at)}</div><div className="mt-4"><div className="flex items-center justify-between"><span className="text-xs font-semibold text-slate-500">Evidence ({evidence.length})</span><button onClick={()=>setEvidenceStep(evidenceStep===step.id?null:step.id)} className="text-[11px] text-blue-400">+ Add evidence</button></div>{evidence.map(e=><div key={e.id} className="mt-2 rounded-lg border border-slate-800 p-3"><div className="flex justify-between text-xs text-slate-300"><span>{e.title}</span><span className="font-mono text-[10px] text-slate-600">{e.type}</span></div>{e.ref&&<a href={e.ref} target="_blank" rel="noreferrer" className="mt-1 block truncate text-[11px] text-blue-400">{e.ref}<ExternalLink className="ml-1 inline h-3 w-3"/></a>}{e.body&&<p className="mt-1 whitespace-pre-wrap text-[11px] text-slate-600">{e.body}</p>}</div>)}{evidenceStep===step.id&&<EvidenceForm stepId={step.id} invoke={invoke} close={()=>setEvidenceStep(null)}/>}</div></div>}</div>}
-function CreateChild({parentId,invoke,close}){const [title,setTitle]=useState("");const [objective,setObjective]=useState("");return <div className="border-b border-slate-800 bg-blue-500/5 p-4"><div className="grid gap-2 md:grid-cols-2"><input autoFocus value={title} onChange={e=>setTitle(e.target.value)} placeholder="Child task title" className="field"/><input value={objective} onChange={e=>setObjective(e.target.value)} placeholder="Objective" className="field"/></div><div className="mt-2 flex justify-end gap-2"><button onClick={close} className="text-xs text-slate-600">Cancel</button><button onClick={async()=>{if(!title.trim())return;await invoke("create_task",{parent_id:parentId,title,objective,status:"planned",priority:"medium",area:"Infra"});close()}} className="rounded bg-blue-500 px-3 py-1.5 text-xs font-semibold">Create</button></div></div>}
-function CreateStep({taskId,invoke,close}){const [action,setAction]=useState("");const [expected,setExpected]=useState("");return <div className="border-b border-slate-800 bg-emerald-500/5 p-4"><div className="grid gap-2 md:grid-cols-2"><input autoFocus value={action} onChange={e=>setAction(e.target.value)} placeholder="Action" className="field"/><input value={expected} onChange={e=>setExpected(e.target.value)} placeholder="Expected result" className="field"/></div><div className="mt-2 flex justify-end gap-2"><button onClick={close} className="text-xs text-slate-600">Cancel</button><button onClick={async()=>{if(!action.trim())return;await invoke("create_step",{task_id:taskId,action,expected});close()}} className="rounded bg-emerald-400 px-3 py-1.5 text-xs font-semibold text-slate-950">Add step</button></div></div>}
-function EvidenceForm({stepId,invoke,close}){const [title,setTitle]=useState("");const [type,setType]=useState("note");const [ref,setRef]=useState("");const [body,setBody]=useState("");return <div className="mt-3 rounded-lg border border-slate-800 bg-slate-950 p-3"><div className="grid gap-2 md:grid-cols-3"><input autoFocus value={title} onChange={e=>setTitle(e.target.value)} placeholder="Evidence title" className="field"/><select value={type} onChange={e=>setType(e.target.value)} className="field"><option>note</option><option>test_output</option><option>api_response</option><option>log</option><option>screenshot</option><option>file</option><option>link</option></select><input value={ref} onChange={e=>setRef(e.target.value)} placeholder="Path or URL" className="field"/></div><textarea value={body} onChange={e=>setBody(e.target.value)} placeholder="What does this prove?" rows={2} className="field mt-2 w-full"/><div className="mt-2 flex justify-end gap-2"><button onClick={close} className="text-[11px] text-slate-600">Cancel</button><button onClick={async()=>{if(!title.trim())return;await invoke("add_evidence",{step_id:stepId,title,type,ref,body});close()}} className="rounded bg-blue-500 px-3 py-1.5 text-[11px] font-semibold">Attach</button></div></div>}
-function Receipt({current,subtree,steps,evidence,progress}){const ids=new Set(subtree.map(t=>t.id));const ss=steps.filter(s=>ids.has(s.task_id));return <div className="grid gap-4 lg:grid-cols-[1fr_340px]"><div className="space-y-4"><Panel title="Objective"><p className="text-sm leading-6 text-slate-300">{current.objective||"No objective recorded."}</p></Panel><Panel title="Result"><p className="text-sm text-slate-300">{current.status==="verified"?"VERIFIED":current.status==="done"?"DONE":"Not resolved."}</p></Panel><Panel title="Evidence">{evidence.length?evidence.map(e=><div key={e.id} className="mb-2 rounded-lg border border-slate-800 p-3"><div className="text-xs text-slate-300">{e.title}</div><div className="mt-1 text-[10px] text-slate-600">{e.type} · {e.captured_by} · {time(e.captured_at)}</div></div>):<span className="text-xs text-slate-700">No evidence recorded.</span>}</Panel></div><Panel title="Receipt summary"><div className="space-y-2 text-xs text-slate-500"><div className="flex justify-between"><span>Verified</span><span className="font-mono">{progress.verified}/{progress.total}</span></div><div className="flex justify-between"><span>Steps</span><span className="font-mono">{ss.length}</span></div><div className="flex justify-between"><span>Checkpoint</span><span className="font-mono">{ss.find(s=>s.checkpoint?.ref)?.checkpoint?.ref||"—"}</span></div></div></Panel></div>}
-function Activity({events}){return <Panel title="Activity log"><div>{events.map((e,i)=><div key={e.id||i} className="border-b border-slate-800/70 py-3 last:border-0"><div className="flex flex-wrap gap-2"><span className="font-mono text-[10px] text-slate-600">{time(e.ts)}</span><span className="rounded bg-slate-800 px-1.5 py-0.5 text-[10px] text-slate-300">{e.actor_label||e.actor}</span><span className="text-xs text-slate-400">{e.action}</span></div>{(e.field||e.note)&&<div className="mt-1 text-[11px] text-slate-600">{e.field}{e.note?" · "+e.note:""}</div>}{(e.before||e.after)&&<pre className="mt-2 overflow-auto rounded bg-slate-950 p-2 text-[10px] text-slate-600">before: {e.before||"—"}{"\n"}after: {e.after||"—"}</pre>}</div>)}</div></Panel>}
-function Panel({title,children}){return <section className="rounded-xl border border-slate-800 bg-[#0b111b] p-4"><h2 className="mb-3 text-[10px] font-semibold uppercase tracking-[.16em] text-slate-600">{title}</h2>{children}</section>}
-function Info({label,value}){return <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3"><div className="text-[10px] uppercase tracking-wide text-slate-700">{label}</div><p className="mt-1 whitespace-pre-wrap text-xs leading-5 text-slate-500">{value||"—"}</p></div>}
