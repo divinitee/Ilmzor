@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { Button, StatusBadge, PriorityBadge, Tag, ProgressBar, Panel, ActorBadge } from "./ui";
 import StepList, { StepCreateForm, EvidenceForm, EvidenceItem } from "./StepList";
-import { STATUSES, STATUS_LABEL, STATUS_STYLE, fmtDate, fmtTime, relative, isOverdue, taskUrl, inSubtree } from "./model";
+import { STATUSES, STATUS_LABEL, STATUS_STYLE, fmtDate, fmtTime, isOverdue, taskUrl, inSubtree } from "./model";
 
 export default function TaskPage({ task, data, idx, busy, navigate, handlers }) {
   const [addingStep, setAddingStep] = useState(false);
