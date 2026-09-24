@@ -197,7 +197,7 @@ export default function Taskboard() {
       )}
       {busy && <div className="fixed left-0 right-0 top-0 z-[60] h-0.5 animate-pulse bg-blue-400" />}
       {toast && (
-        <div role="status" className={`fixed bottom-4 left-1/2 z-[70] flex w-[min(92vw,560px)] -translate-x-1/2 items-center gap-3 rounded-lg border px-4 py-3 text-sm shadow-2xl ${toast.kind === "error" ? "border-rose-500/50 bg-[#2a0f16] text-rose-100" : "border-slate-600 bg-[#111a2a] text-slate-100"}`}>
+        <div role="status" className={`fixed bottom-4 left-1/2 z-[70] flex w-[min(92vw,560px)] -translate-x-1/2 items-center gap-3 rounded-[8px] border px-4 py-3 text-sm shadow-2xl ${toast.kind === "error" ? "border-rose-500/50 bg-[#2a0f16] text-rose-100" : "border-slate-600 bg-[#111a2a] text-slate-100"}`}>
           <span className="min-w-0 flex-1">{toast.msg}</span>
           {toast.action && (
             <button type="button" className="font-semibold text-blue-300 hover:text-blue-200" onClick={() => { const a = toast.action; setToast(null); a.fn(); }}>{toast.action.label}</button>
