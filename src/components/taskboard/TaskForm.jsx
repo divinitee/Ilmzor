@@ -51,7 +51,7 @@ export default function TaskForm({ task, parent, onSubmit, onClose, busy }) {
     >
       <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2">
         {parent && !editing && (
-          <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-400 sm:col-span-2">
+          <div className="rounded-[8px] border border-slate-800 bg-slate-900/60 px-3 py-2 text-xs text-slate-400 sm:col-span-2">
             Parent: <span className="font-mono text-slate-300">{parent.task_code}</span> {parent.title}
           </div>
         )}

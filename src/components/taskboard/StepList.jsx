@@ -13,7 +13,7 @@ export function StepCreateForm({ onSubmit, onCancel, busy }) {
     if (ok !== false) setF({ title: "", description: "", expected_result: "" });
   };
   return (
-    <form onSubmit={submit} className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-3">
+    <form onSubmit={submit} className="rounded-[8px] border border-emerald-500/30 bg-emerald-500/5 p-3">
       <div className="grid gap-3 sm:grid-cols-2">
         <Field label="Step (action)" className="sm:col-span-2">
           <input autoFocus value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} className={inputCls} placeholder="e.g. Attempt cross-owner read as T2" />
@@ -44,7 +44,7 @@ export function EvidenceForm({ onSubmit, onCancel, busy }) {
     await onSubmit({ ...f, title: f.title.trim() });
   };
   return (
-    <form onSubmit={submit} className="mt-2 rounded-lg border border-blue-500/30 bg-blue-500/5 p-3">
+    <form onSubmit={submit} className="mt-2 rounded-[8px] border border-blue-500/30 bg-blue-500/5 p-3">
       <div className="grid gap-3 sm:grid-cols-3">
         <Field label="Type">
           <select value={f.type} onChange={(e) => setF({ ...f, type: e.target.value })} className={inputCls}>
@@ -75,7 +75,7 @@ export function EvidenceItem({ ev }) {
   const ref = ev.reference || "";
   const isUrl = /^https?:\/\//i.test(ref.trim());
   return (
-    <div className="rounded-lg border border-slate-700/70 bg-slate-950/60 p-3">
+    <div className="rounded-[8px] border border-slate-700/70 bg-slate-950/60 p-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded border border-blue-500/30 bg-blue-500/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase text-blue-300">{EVIDENCE_LABEL[ev.type] || ev.type}</span>
         <span className="text-sm font-medium text-slate-100">{ev.title}</span>
@@ -94,7 +94,7 @@ export function EvidenceItem({ ev }) {
 export default function StepList({ steps, evidenceByStep, onUpdateStep, onAddEvidence, busy }) {
   const [open, setOpen] = useState({});
   return (
-    <div className="divide-y divide-slate-800 overflow-hidden rounded-lg border border-slate-800">
+    <div className="divide-y divide-slate-800 overflow-hidden rounded-[8px] border border-slate-800">
       {steps.map((s, i) => (
         <StepRow
           key={s.id}
@@ -177,7 +177,7 @@ function StepRow({ step, n, evidence, expanded, toggle, onUpdateStep, onAddEvide
           <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-slate-400">
             <label className="flex items-center gap-2">
               Status
-              <select value={step.status} disabled={busy} onChange={(e) => setStatus(e.target.value)} className="rounded-md border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200">
+              <select value={step.status} disabled={busy} onChange={(e) => setStatus(e.target.value)} className="rounded-[6px] border border-slate-700 bg-slate-950 px-2 py-1 text-xs text-slate-200">
                 {STEP_STATUSES.map((s) => <option key={s} value={s}>{STEP_LABEL[s]}</option>)}
               </select>
             </label>
@@ -213,7 +213,7 @@ function StepRow({ step, n, evidence, expanded, toggle, onUpdateStep, onAddEvide
 
 function Info({ label, value }) {
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-950/50 p-3">
+    <div className="rounded-[8px] border border-slate-800 bg-slate-950/50 p-3">
       <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">{label}</div>
       <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-slate-300">{value || <span className="text-slate-500">—</span>}</p>
     </div>

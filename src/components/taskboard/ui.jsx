@@ -16,7 +16,7 @@ export function Button({ variant = "secondary", size = "md", className = "", ico
     <button
       type="button"
       {...rest}
-      className={`inline-flex items-center justify-center gap-1.5 rounded-lg border font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 disabled:cursor-not-allowed disabled:opacity-50 ${BTN[variant]} ${SIZE[size]} ${className}`}
+      className={`inline-flex items-center justify-center gap-1.5 rounded-[8px] border font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/60 disabled:cursor-not-allowed disabled:opacity-50 ${BTN[variant]} ${SIZE[size]} ${className}`}
     >
       {Icon && <Icon className={size === "sm" ? "h-3.5 w-3.5" : "h-4 w-4"} />}
       {children}
@@ -27,7 +27,7 @@ export function Button({ variant = "secondary", size = "md", className = "", ico
 export function StatusBadge({ status }) {
   const s = STATUS_STYLE[status] || STATUS_STYLE.raw_idea;
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[11px] font-medium ${s.ring} ${s.text}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-[6px] border px-2 py-0.5 text-[11px] font-medium ${s.ring} ${s.text}`}>
       <span className={`h-1.5 w-1.5 rounded-full ${s.dot}`} />
       {STATUS_LABEL[status] || status}
     </span>
@@ -36,14 +36,14 @@ export function StatusBadge({ status }) {
 
 export function PriorityBadge({ priority }) {
   return (
-    <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${PRIORITY_STYLE[priority] || PRIORITY_STYLE.medium}`}>
+    <span className={`inline-flex items-center rounded-[6px] border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${PRIORITY_STYLE[priority] || PRIORITY_STYLE.medium}`}>
       {PRIORITY_LABEL[priority] || priority}
     </span>
   );
 }
 
 export function Tag({ children, className = "" }) {
-  return <span className={`inline-flex items-center rounded-md border border-slate-700/70 bg-slate-800/50 px-2 py-0.5 text-[11px] text-slate-300 ${className}`}>{children}</span>;
+  return <span className={`inline-flex items-center rounded-[6px] border border-slate-700/70 bg-slate-800/50 px-2 py-0.5 text-[11px] text-slate-300 ${className}`}>{children}</span>;
 }
 
 export function ActorBadge({ actor }) {
@@ -78,7 +78,7 @@ export function Field({ label, children, className = "", hint }) {
 }
 
 export const inputCls =
-  "mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-blue-400/70 focus:ring-1 focus:ring-blue-400/30";
+  "mt-1 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 outline-none focus:border-blue-400/70 focus:ring-1 focus:ring-blue-400/30";
 
 export function Modal({ title, onClose, children, footer, wide }) {
   useEffect(() => {
@@ -90,10 +90,10 @@ export function Modal({ title, onClose, children, footer, wide }) {
   }, [onClose]);
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 p-3 pt-[6vh] sm:p-6 sm:pt-[8vh]" onMouseDown={(e) => e.target === e.currentTarget && onClose?.()}>
-      <div className={`flex max-h-[88vh] w-full flex-col rounded-xl border border-slate-700 bg-[#0c121c] shadow-2xl ${wide ? "max-w-3xl" : "max-w-lg"}`}>
+      <div className={`flex max-h-[88vh] w-full flex-col rounded-[10px] border border-slate-700 bg-[#0c121c] shadow-2xl ${wide ? "max-w-3xl" : "max-w-lg"}`}>
         <div className="flex items-center justify-between border-b border-slate-800 px-5 py-3.5">
           <h2 className="text-base font-semibold text-slate-100">{title}</h2>
-          <button type="button" onClick={onClose} className="rounded-md p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Close">
+          <button type="button" onClick={onClose} className="rounded-[6px] p-1.5 text-slate-400 hover:bg-slate-800 hover:text-white" aria-label="Close">
             <X className="h-4 w-4" />
           </button>
         </div>
@@ -106,7 +106,7 @@ export function Modal({ title, onClose, children, footer, wide }) {
 
 export function Panel({ title, action, children, className = "" }) {
   return (
-    <section className={`rounded-xl border border-slate-800 bg-[#0b111b] ${className}`}>
+    <section className={`rounded-[10px] border border-slate-800 bg-[#0b111b] ${className}`}>
       {(title || action) && (
         <div className="flex items-center justify-between gap-2 border-b border-slate-800 px-4 py-3">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-300">{title}</h2>

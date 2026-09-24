@@ -116,12 +116,12 @@ export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, 
             </select>
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            <div className="inline-flex rounded-lg border border-slate-700 bg-slate-950 p-0.5 text-sm">
-              <button type="button" onClick={() => setView("active")} className={`rounded-md px-3 py-1.5 ${view === "active" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Board</button>
-              <button type="button" onClick={() => setView("archived")} className={`rounded-md px-3 py-1.5 ${view === "archived" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Archived ({archivedCount})</button>
+            <div className="inline-flex rounded-[8px] border border-slate-700 bg-slate-950 p-0.5 text-sm">
+              <button type="button" onClick={() => setView("active")} className={`rounded-[6px] px-3 py-1.5 ${view === "active" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Board</button>
+              <button type="button" onClick={() => setView("archived")} className={`rounded-[6px] px-3 py-1.5 ${view === "archived" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Archived ({archivedCount})</button>
             </div>
             {view === "active" && (
-              <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-500">
+              <label className="flex cursor-pointer items-center gap-2 rounded-[8px] border border-slate-700 px-3 py-1.5 text-sm text-slate-300 hover:border-slate-500">
                 <input type="checkbox" checked={allLevels} onChange={(e) => setAllLevels(e.target.checked)} className="h-4 w-4 accent-blue-500" />
                 Show subtasks on board
               </label>
@@ -140,7 +140,7 @@ export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, 
         {view === "archived" ? (
           <ArchivedList tasks={visible} idx={idx} onOpen={onOpen} onRestore={onRestore} onDelete={onDelete} busy={busy} />
         ) : data.tasks.length === 0 ? (
-          <div className="mx-auto mt-10 max-w-md rounded-xl border border-dashed border-slate-700 p-10 text-center">
+          <div className="mx-auto mt-10 max-w-md rounded-[10px] border border-dashed border-slate-700 p-10 text-center">
             <FolderTree className="mx-auto h-8 w-8 text-slate-500" />
             <h2 className="mt-3 text-lg font-semibold">No tasks yet</h2>
             <p className="mt-1 text-sm text-slate-400">Create a big task, then open it to break it down into subtasks and steps.</p>
@@ -157,22 +157,22 @@ export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, 
                   onDragOver={(e) => { e.preventDefault(); setDragOver(col); }}
                   onDragLeave={() => setDragOver((d) => (d === col ? null : d))}
                   onDrop={(e) => { e.preventDefault(); setDragOver(null); const id = e.dataTransfer.getData("text/task-id"); if (id) onMove(id, col); }}
-                  className={`flex min-h-[200px] flex-col rounded-xl border bg-[#0a0f18] transition-colors ${dragOver === col ? "border-blue-400/70 bg-blue-500/5" : "border-slate-800"}`}
+                  className={`flex min-h-[200px] flex-col rounded-[10px] border bg-[#0a0f18] transition-colors ${dragOver === col ? "border-blue-400/70 bg-blue-500/5" : "border-slate-800"}`}
                 >
                   <div className="flex items-center justify-between border-b border-slate-800 px-3.5 py-3">
                     <div className="flex items-center gap-2">
                       <span className={`h-2 w-2 rounded-full ${st.dot}`} />
                       <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200">{STATUS_LABEL[col]}</h2>
                     </div>
-                    <span className="rounded-md bg-slate-800 px-2 py-0.5 text-xs text-slate-300">{list.length}</span>
+                    <span className="rounded-[6px] bg-slate-800 px-2 py-0.5 text-xs text-slate-300">{list.length}</span>
                   </div>
                   <div className="flex-1 space-y-2.5 p-2.5">
                     {list.map((t) => (
                       <TaskCard key={t.id} task={t} idx={idx} onOpen={onOpen} onEdit={onEdit} onMove={onMove} onArchive={onArchive} busy={busy} />
                     ))}
-                    {!list.length && <div className="rounded-lg border border-dashed border-slate-800 px-3 py-6 text-center text-xs text-slate-500">{filtersOn ? "No matches" : "Drop a task here"}</div>}
+                    {!list.length && <div className="rounded-[8px] border border-dashed border-slate-800 px-3 py-6 text-center text-xs text-slate-500">{filtersOn ? "No matches" : "Drop a task here"}</div>}
                     {col === "raw_idea" && !filtersOn && (
-                      <button type="button" onClick={onNew} className="flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-slate-700 py-2.5 text-sm text-slate-400 hover:border-blue-400/60 hover:text-blue-200">
+                      <button type="button" onClick={onNew} className="flex w-full items-center justify-center gap-1.5 rounded-[8px] border border-dashed border-slate-700 py-2.5 text-sm text-slate-400 hover:border-blue-400/60 hover:text-blue-200">
                         <Plus className="h-4 w-4" /> Add big task
                       </button>
                     )}
@@ -197,7 +197,7 @@ function TaskCard({ task, idx, onOpen, onEdit, onMove, onArchive, busy }) {
       draggable
       onDragStart={(e) => { e.dataTransfer.setData("text/task-id", task.id); e.dataTransfer.effectAllowed = "move"; }}
       onClick={() => onOpen(task)}
-      className={`group cursor-pointer rounded-lg border border-l-[3px] border-slate-700/70 bg-[#0f1624] p-3 transition-colors hover:border-slate-500 hover:bg-[#121b2b] ${PRIORITY_EDGE[task.priority] || ""}`}
+      className={`group cursor-pointer rounded-[8px] border border-l-[3px] border-slate-700/70 bg-[#0f1624] p-3 transition-colors hover:border-slate-500 hover:bg-[#121b2b] ${PRIORITY_EDGE[task.priority] || ""}`}
     >
       <div className="flex items-center justify-between gap-2">
         <span className="font-mono text-[11px] text-slate-400">{task.task_code}</span>
@@ -231,17 +231,17 @@ function TaskCard({ task, idx, onOpen, onEdit, onMove, onArchive, busy }) {
           <span className={`inline-flex items-center gap-1 ${overdue ? "text-rose-300" : "text-slate-400"}`}><CalendarDays className="h-3 w-3" />{overdue ? "Overdue · " : ""}{fmtDate(task.due_date)}</span>
         )}
         {task.verified_at && <span className="inline-flex items-center gap-1 text-cyan-300"><ShieldCheck className="h-3 w-3" />Verified</span>}
-        <span className="text-slate-500">updated {relative(task.updated_date)}</span>
+        {task.updated_date && <span className="text-slate-500">updated {relative(task.updated_date)}</span>}
       </div>
       <div className="mt-3 flex items-center gap-1.5 border-t border-slate-800 pt-2.5" onClick={(e) => e.stopPropagation()}>
         <select
           value={task.status}
           disabled={busy}
           onChange={(e) => onMove(task.id, e.target.value)}
-          className="min-w-0 flex-1 rounded-md border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 outline-none hover:border-slate-500"
+          className="min-w-0 flex-1 rounded-[6px] border border-slate-700 bg-slate-950 px-2 py-1.5 text-xs text-slate-200 outline-none hover:border-slate-500"
           aria-label={`Move ${task.task_code}`}
         >
-          {STATUSES.map((s) => <option key={s} value={s}>Move: {STATUS_LABEL[s]}</option>)}
+          {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
         </select>
         <Button size="sm" icon={Pencil} onClick={() => onEdit(task)} aria-label={`Edit ${task.task_code}`}>Edit</Button>
         <Button size="sm" variant="ghost" icon={Archive} onClick={() => onArchive(task)} aria-label={`Archive ${task.task_code}`} title="Archive" />
@@ -252,9 +252,9 @@ function TaskCard({ task, idx, onOpen, onEdit, onMove, onArchive, busy }) {
 }
 
 function ArchivedList({ tasks, idx, onOpen, onRestore, onDelete, busy }) {
-  if (!tasks.length) return <div className="rounded-xl border border-dashed border-slate-700 p-10 text-center text-sm text-slate-400">Archive is empty.</div>;
+  if (!tasks.length) return <div className="rounded-[10px] border border-dashed border-slate-700 p-10 text-center text-sm text-slate-400">Archive is empty.</div>;
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-800 divide-y divide-slate-800">
+    <div className="overflow-hidden rounded-[10px] border border-slate-800 divide-y divide-slate-800">
       {tasks.map((t) => {
         const parents = idx.path(t).slice(0, -1);
         return (

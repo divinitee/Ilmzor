@@ -36,16 +36,16 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
       <header className="sticky top-0 z-30 border-b border-slate-800 bg-[#080d16]/95 backdrop-blur">
         <div className="mx-auto max-w-[1400px] px-4 py-3 sm:px-6">
           <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1 text-sm">
-            <Link to="/taskboard" className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-slate-400 hover:bg-slate-800 hover:text-white">
+            <Link to="/taskboard" className="inline-flex items-center gap-1 rounded-[6px] px-1.5 py-0.5 text-slate-400 hover:bg-slate-800 hover:text-white">
               <ArrowLeft className="h-3.5 w-3.5" /> Taskboard
             </Link>
             {path.map((t, i) => (
               <React.Fragment key={t.id}>
                 <ChevronRight className="h-3.5 w-3.5 text-slate-600" />
                 {i === path.length - 1 ? (
-                  <span className="rounded-md px-1.5 py-0.5 font-medium text-white" aria-current="page"><span className="font-mono text-xs text-slate-400">{t.task_code}</span> {t.title}</span>
+                  <span className="rounded-[6px] px-1.5 py-0.5 font-medium text-white" aria-current="page"><span className="font-mono text-xs text-slate-400">{t.task_code}</span> {t.title}</span>
                 ) : (
-                  <Link to={taskUrl(t)} className="rounded-md px-1.5 py-0.5 text-slate-300 hover:bg-slate-800 hover:text-white">
+                  <Link to={taskUrl(t)} className="rounded-[6px] px-1.5 py-0.5 text-slate-300 hover:bg-slate-800 hover:text-white">
                     <span className="font-mono text-xs text-slate-500">{t.task_code}</span> {t.title}
                   </Link>
                 )}
@@ -57,7 +57,7 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
 
       <main className="mx-auto max-w-[1400px] px-4 py-5 sm:px-6">
         {(task.archived || hiddenByAncestor) && (
-          <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
+          <div className="mb-4 flex flex-wrap items-center gap-3 rounded-[8px] border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
             <Archive className="h-4 w-4" />
             {task.archived ? "This task is archived. It is hidden from the board but kept with its full history." : "A parent of this task is archived, so it is hidden from the board."}
             {task.archived && <Button size="sm" icon={RotateCcw} className="ml-auto" onClick={() => handlers.restore(task)} disabled={busy}>Restore</Button>}
@@ -90,7 +90,7 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
               value={task.status}
               disabled={busy}
               onChange={(e) => handlers.move(task.id, e.target.value)}
-              className={`rounded-lg border bg-slate-950 px-3 py-2 text-sm font-medium outline-none ${STATUS_STYLE[task.status].ring} ${STATUS_STYLE[task.status].text}`}
+              className={`rounded-[8px] border bg-slate-950 px-3 py-2 text-sm font-medium outline-none ${STATUS_STYLE[task.status].ring} ${STATUS_STYLE[task.status].text}`}
             >
               {STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABEL[s]}</option>)}
             </select>
@@ -139,11 +139,11 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
               action={<Button variant="primary" icon={Plus} onClick={() => handlers.newSubtask(task)} disabled={busy}>Add subtask</Button>}
             >
               {kids.length ? (
-                <div className="divide-y divide-slate-800 overflow-hidden rounded-lg border border-slate-800">
+                <div className="divide-y divide-slate-800 overflow-hidden rounded-[8px] border border-slate-800">
                   {kids.map((k) => <ChildRow key={k.id} task={k} idx={idx} onOpen={() => navigate(taskUrl(k))} />)}
                 </div>
               ) : (
-                <button type="button" onClick={() => handlers.newSubtask(task)} className="flex w-full flex-col items-center gap-1 rounded-lg border border-dashed border-slate-700 px-4 py-6 text-sm text-slate-400 hover:border-blue-400/60 hover:text-blue-200">
+                <button type="button" onClick={() => handlers.newSubtask(task)} className="flex w-full flex-col items-center gap-1 rounded-[8px] border border-dashed border-slate-700 px-4 py-6 text-sm text-slate-400 hover:border-blue-400/60 hover:text-blue-200">
                   <FolderTree className="h-5 w-5" />
                   No subtasks. Break this task down — each subtask gets its own page and can have its own subtasks.
                 </button>
@@ -154,7 +154,7 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
                     {showArchivedKids ? "Hide" : "Show"} {archivedKids.length} archived subtask{archivedKids.length > 1 ? "s" : ""}
                   </button>
                   {showArchivedKids && (
-                    <div className="mt-2 divide-y divide-slate-800 overflow-hidden rounded-lg border border-slate-800 opacity-70">
+                    <div className="mt-2 divide-y divide-slate-800 overflow-hidden rounded-[8px] border border-slate-800 opacity-70">
                       {archivedKids.map((k) => <ChildRow key={k.id} task={k} idx={idx} onOpen={() => navigate(taskUrl(k))} archived />)}
                     </div>
                   )}
@@ -179,7 +179,7 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
               {steps.length ? (
                 <StepList steps={steps} evidenceByStep={idx.evidenceByStep} onUpdateStep={handlers.updateStep} onAddEvidence={handlers.addEvidence} busy={busy} />
               ) : (
-                !addingStep && <div className="rounded-lg border border-dashed border-slate-700 px-4 py-5 text-center text-sm text-slate-400">No steps. Steps are the concrete actions you perform and verify — each has an expected and an actual result, and can carry evidence.</div>
+                !addingStep && <div className="rounded-[8px] border border-dashed border-slate-700 px-4 py-5 text-center text-sm text-slate-400">No steps. Steps are the concrete actions you perform and verify — each has an expected and an actual result, and can carry evidence.</div>
               )}
             </Panel>
 
@@ -260,9 +260,9 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
           <Panel
             title={`Activity (${events.length})`}
             action={
-              <div className="inline-flex rounded-lg border border-slate-700 bg-slate-950 p-0.5 text-xs">
-                <button type="button" onClick={() => setHistoryScope("subtree")} className={`rounded-md px-2.5 py-1 ${historyScope === "subtree" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Include subtasks</button>
-                <button type="button" onClick={() => setHistoryScope("self")} className={`rounded-md px-2.5 py-1 ${historyScope === "self" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>This task only</button>
+              <div className="inline-flex rounded-[8px] border border-slate-700 bg-slate-950 p-0.5 text-xs">
+                <button type="button" onClick={() => setHistoryScope("subtree")} className={`rounded-[6px] px-2.5 py-1 ${historyScope === "subtree" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>Include subtasks</button>
+                <button type="button" onClick={() => setHistoryScope("self")} className={`rounded-[6px] px-2.5 py-1 ${historyScope === "self" ? "bg-slate-700 text-white" : "text-slate-400 hover:text-white"}`}>This task only</button>
               </div>
             }
           >
@@ -318,7 +318,7 @@ function TreeNode({ node, idx, currentId, depth }) {
     <div>
       <Link
         to={taskUrl(node)}
-        className={`flex items-center gap-2 rounded-md py-1 pr-2 text-sm hover:bg-slate-800/70 ${current ? "bg-blue-500/15 text-white ring-1 ring-blue-400/40" : "text-slate-300"}`}
+        className={`flex items-center gap-2 rounded-[6px] py-1 pr-2 text-sm hover:bg-slate-800/70 ${current ? "bg-blue-500/15 text-white ring-1 ring-blue-400/40" : "text-slate-300"}`}
         style={{ paddingLeft: 6 + depth * 14 }}
       >
         <span className={`h-2 w-2 shrink-0 rounded-full ${st.dot}`} />
