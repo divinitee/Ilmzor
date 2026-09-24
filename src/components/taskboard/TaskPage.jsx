@@ -324,7 +324,7 @@ function TreeNode({ node, idx, currentId, depth }) {
         <span className={`h-2 w-2 shrink-0 rounded-full ${st.dot}`} />
         <span className="font-mono text-[11px] text-slate-500">{node.task_code}</span>
         <span className="min-w-0 flex-1 truncate">{node.title}</span>
-        {steps > 0 && <span className="text-[10px] text-slate-500">{steps} st</span>}
+        {steps > 0 && <span className="text-[10px] text-slate-500">{steps} steps</span>}
         <span className="font-mono text-[11px] text-slate-400">{p.percent}%</span>
       </Link>
       {kids.length > 0 && (
