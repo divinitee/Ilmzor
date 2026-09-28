@@ -2,6 +2,20 @@
 // Pool sizes per topic and stage, counting slot expansion. Lets the node map
 // render real numbers without loading a single bank.
 export const PRACTICE_MANIFEST = {
+ "tenses.present.continuous-negative": {
+  "domain": "tenses",
+  "branch": "present",
+  "topic": "continuous-negative",
+  "level": "A1",
+  "authored": 68,
+  "stages": {
+   "choose": 320,
+   "build": 320,
+   "transform": 240,
+   "create": 8,
+   "express": 5
+  }
+ },
  "tenses.present.continuous-now": {
   "domain": "tenses",
   "branch": "present",
