@@ -13,12 +13,12 @@
     },
     "date": {
       "type": "string",
-      "description": "YYYY-MM-DD local date key"
+      "description": "YYYY-MM-DD date key"
     },
     "count": {
       "type": "number",
       "default": 0,
-      "description": "Number of AI tutor turns used on this date"
+      "description": "Number of AI turns used on this date. Written only by the aiApi backend function."
     }
   },
   "required": [
@@ -30,9 +30,6 @@
     "read": {
       "$or": [
         {
-          "created_by_id": "{{user.id}}"
-        },
-        {
           "data.user_email": "{{user.email}}"
         },
         {
@@ -43,36 +40,19 @@
       ]
     },
     "create": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.user_email": "{{user.email}}"
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "update": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.user_email": "{{user.email}}"
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     }
   }
 }
