@@ -4,7 +4,7 @@ import SkillOrb from "./SkillOrb";
 import { useProfileCopy } from "@/lib/profile/profileCopy";
 
 const EASE = [0.16, 1, 0.3, 1]; // ease-out-expo
-const R = 36; // % of stage
+const R = 33; // % of stage
 
 const place = (i, n) => {
   const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
@@ -19,7 +19,7 @@ export default function SkillConstellation({ profile, onSelect }) {
   const d = (s) => (reduce ? 0 : s);
 
   return (
-    <div className="relative w-full max-w-[420px] mx-auto aspect-square">
+    <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-6">
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: d(1.2) }}
         className="absolute inset-[18%] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(closest-side, rgba(91,46,145,0.35), transparent)" }} />
@@ -44,7 +44,8 @@ export default function SkillConstellation({ profile, onSelect }) {
       </svg>
 
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: d(0.2), duration: d(1), ease: EASE }}
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[34%] aspect-square rounded-full flex flex-col items-center justify-center text-center border border-white/10 bg-white/[0.03] backdrop-blur-md">
+        style={{ x: "-50%", y: "-50%" }}
+        className="absolute left-1/2 top-1/2 w-[34%] aspect-square rounded-full flex flex-col items-center justify-center text-center border border-white/10 bg-white/[0.03] backdrop-blur-md">
         <span className="text-[9px] uppercase tracking-[0.22em] text-muted-foreground">{c("title")}</span>
         <span className="mt-1 text-[11px] md:text-xs font-semibold text-foreground leading-tight px-2">{c(`core_${summary.state}`)}</span>
       </motion.div>
@@ -53,8 +54,8 @@ export default function SkillConstellation({ profile, onSelect }) {
         <motion.button key={n.key} type="button" onClick={() => onSelect(n.key)}
           initial={{ opacity: 0, scale: reduce ? 1 : 0.6 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: d(0.9 + i * 0.1), duration: d(0.9), ease: EASE }}
-          className="absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1 p-1 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group"
-          style={{ left: `${pts[i].x}%`, top: `${pts[i].y}%` }}
+          className="absolute flex flex-col items-center gap-1 p-1 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group"
+          style={{ left: `${pts[i].x}%`, top: `${pts[i].y}%`, x: "-50%", y: "-50%" }}
           aria-label={`${skillName(n.key)}: ${n.mapped ? c("developed", { n: n.mastery }) : c("unmapped")}`}>
           <span className="transition-transform duration-500 group-hover:scale-110">
             <SkillOrb node={n} size={n.mapped ? 44 + n.mastery * 0.14 : 44} layoutId={`orb-${n.key}`} />
