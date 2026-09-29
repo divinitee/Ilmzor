@@ -28,9 +28,11 @@ function areasFor(key) {
     .map((c) => c.label);
 }
 
-export function buildSkillProfile(state) {
-  if (!state) return null;
-  const nodes = (state.skills || []).map((r) => {
+// skillStates: raw server SkillState rows. Each node keeps its row as `raw`
+// (computed_at, last_verified_at, legacy fields…) so nothing is lost.
+export function buildSkillProfile(skillStates) {
+  if (!skillStates) return null;
+  const nodes = skillStates.map((r) => {
     const meta = META[r.skill] || {};
     const mapped = !!r.evidence_count;
     const peak = Math.round(r.historical_peak || 0);
@@ -48,6 +50,7 @@ export function buildSkillProfile(state) {
       atPeak: mapped && mastery >= peak,
       lastEvidenceAt: r.last_evidence_at || null,
       areas: areasFor(r.skill),
+      raw: r,
     };
   });
   const mappedCount = nodes.filter((n) => n.mapped).length;

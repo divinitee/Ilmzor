@@ -11,7 +11,7 @@ const COPY = {
     fresh: "Verified recently", stale: "Needs a fresh check", cold: "May be rusty",
     atPeak: "At your best so far", peak: "Personal best {n}%",
     evidence: "Evidence", confidence: "Confidence", freshness: "Recency", trajectory: "Trajectory",
-    roundsShort: "{n} rounds", areas: "Where this skill grows", back: "Back to profile",
+    roundsShort: "{n} rounds", areas: "Where this skill grows", back: "Back to profile", error: "Couldn't load your skill profile right now. It will refresh later.",
   },
   uz: {
     title: "Ingliz tilingiz", core_unmapped: "Hali xaritada emas", core_developing: "Profil shakllanmoqda", core_mapped: "Profil to'liq",
@@ -22,7 +22,7 @@ const COPY = {
     fresh: "Yaqinda tasdiqlangan", stale: "Qayta tekshirish kerak", cold: "Unutilgan bo'lishi mumkin",
     atPeak: "Eng yaxshi natijangiz", peak: "Eng yaxshi {n}%",
     evidence: "Dalil", confidence: "Ishonch", freshness: "Yangilik", trajectory: "Yo'nalish",
-    roundsShort: "{n} raund", areas: "Bu ko'nikma qayerda o'sadi", back: "Profilga qaytish",
+    roundsShort: "{n} raund", areas: "Bu ko'nikma qayerda o'sadi", back: "Profilga qaytish", error: "Ko'nikma profilingizni hozir yuklab bo'lmadi. Keyinroq yangilanadi.",
   },
   ru: {
     title: "Ваш английский", core_unmapped: "Ждёт картирования", core_developing: "Профиль формируется", core_mapped: "Профиль составлен",
@@ -33,7 +33,7 @@ const COPY = {
     fresh: "Проверено недавно", stale: "Нужна проверка", cold: "Возможно, забыто",
     atPeak: "Ваш лучший результат", peak: "Лучший {n}%",
     evidence: "Данные", confidence: "Уверенность", freshness: "Свежесть", trajectory: "Динамика",
-    roundsShort: "{n} раундов", areas: "Где растёт этот навык", back: "К профилю",
+    roundsShort: "{n} раундов", areas: "Где растёт этот навык", back: "К профилю", error: "Не удалось загрузить профиль навыков. Он обновится позже.",
   },
 };
 

@@ -4,9 +4,9 @@ import { Sparkles, Play, ArrowRight } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import LearnerProfile from "@/components/profile/LearnerProfile";
 
-// skillState: raw server SkillState (null while loading). The Learner Profile
-// constellation is its only presentation here.
-export default function HeroCard({ accent, accentGlow, onContinue, skillState }) {
+// skillStates: the RAW server SkillState rows from MissionControl's
+// useSkillState (null while loading). Passed through untouched.
+export default function HeroCard({ accent, accentGlow, onContinue, skillStates, skillStateError }) {
   const { t } = useAppLang();
   return (
     <div className="relative">
@@ -27,7 +27,7 @@ export default function HeroCard({ accent, accentGlow, onContinue, skillState })
         </h2>
 
         <div className="relative mt-3">
-          <LearnerProfile skillState={skillState} />
+          <LearnerProfile skillStates={skillStates} error={skillStateError} />
         </div>
         <button
           onClick={onContinue}

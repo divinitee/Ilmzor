@@ -7,12 +7,14 @@ import { useProfileCopy } from "@/lib/profile/profileCopy";
 
 // Level 1 (constellation) ↔ Level 2/3 (skill detail + its practice areas).
 // Takes raw SkillState; the adapter is the only thing that reads it.
-export default function LearnerProfile({ skillState }) {
-  const profile = useMemo(() => buildSkillProfile(skillState), [skillState]);
+export default function LearnerProfile({ skillStates, error = false }) {
+  const profile = useMemo(() => buildSkillProfile(skillStates), [skillStates]);
   const [selected, setSelected] = useState(null);
   const reduce = useReducedMotion();
   const { c } = useProfileCopy();
+  if (!profile && error) return <p className="py-10 text-center text-sm text-muted-foreground">{c("error")}</p>;
   if (!profile) return <div className="mt-4 aspect-square max-w-[420px] mx-auto rounded-full border border-white/10 bg-white/[0.03] animate-pulse" />;
+  if (profile.nodes.length === 0) return <p className="py-10 text-center text-sm text-muted-foreground">{c("empty")}</p>;
   const node = profile.nodes.find((n) => n.key === selected);
   const { summary } = profile;
   const fade = { initial: { opacity: 0, scale: reduce ? 1 : 0.97 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: reduce ? 1 : 1.03 }, transition: { duration: reduce ? 0 : 0.6, ease: [0.16, 1, 0.3, 1] } };
