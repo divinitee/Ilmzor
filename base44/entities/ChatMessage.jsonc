@@ -4,7 +4,7 @@
   "properties": {
     "room_id": {
       "type": "string",
-      "description": "Unique chat room ID e.g. teacher_id:student_email"
+      "description": "Unique chat room ID e.g. chat:student_email"
     },
     "sender_id": {
       "type": "string"
@@ -36,19 +36,9 @@
   ],
   "rls": {
     "create": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "data.sender_id": "{{user.id}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "read": {
       "$or": [
@@ -69,16 +59,9 @@
       ]
     },
     "update": {
-      "$or": [
-        {
-          "created_by_id": "{{user.id}}"
-        },
-        {
-          "user_condition": {
-            "role": "admin"
-          }
-        }
-      ]
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "delete": {
       "$or": [
