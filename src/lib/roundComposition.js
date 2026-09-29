@@ -1,5 +1,6 @@
 import { base44 } from "@/api/base44Client";
 import { shuffle } from "@/lib/vocabGameUtils";
+import { submitEvidence } from "@/lib/progress/progressClient";
 
 // ---------------------------------------------------------------------------
 // Layer 4.2 of claude/virora-game-template.md — identical round-composition
@@ -253,19 +254,12 @@ export async function buildBankRound({ pool, keyFn, userEmail, game, count, wron
 // description and Layer 4.1 of the template) — pass only the items that
 // should actually be logged; for Memory Flip that means found pairs only,
 // never mismatches.
+// VT-6: the round's per-word evidence goes to progressApi, which writes the
+// WordAttempt rows itself (grading where it can) and recomputes SkillState.
 export async function logWordAttempts({ userEmail, game, level, roundId, items = [] }) {
   if (!userEmail || !items.length) return;
-  await Promise.all(
-    items.map(({ word, wordId, correct }) =>
-      base44.entities.WordAttempt.create({
-        user_email: userEmail,
-        word,
-        word_id: wordId,
-        game,
-        correct: !!correct,
-        level,
-        round_id: roundId,
-      }).catch((e) => console.error("WordAttempt write failed", e))
-    )
-  );
+  await submitEvidence(userEmail, {
+    game, level, round_id: roundId,
+    items: items.slice(0, 50).map(({ word, wordId, correct }) => ({ word, word_id: wordId || undefined, correct: !!correct })),
+  });
 }

@@ -23,7 +23,10 @@ export const SKILLS = [
 export const GAME_SKILL_MAP = {
   quiz: "vocabulary",
   crossword: "vocabulary",
-  wordforms: "grammar",
+  // Word formation (families / prefixes / suffixes) is vocabulary, not the
+  // grammar curriculum — moved 2026-09-29 to match the server map.
+  wordforms: "vocabulary",
+  grammar_practice: "grammar",
   spelling: "spelling",
   definition: "comprehension",
   sentence: "creativity",

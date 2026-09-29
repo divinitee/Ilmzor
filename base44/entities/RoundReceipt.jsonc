@@ -1,15 +1,14 @@
 {
   "name": "RoundReceipt",
   "type": "object",
-  "description": "VT-6 correction (2026-09-29). Idempotency receipt: one row per (learner, round_id, kind). Created ONLY by progressApi with upsert keyed on receipt_key, so two concurrent submits of the same round cannot both be processed. kind=evidence rows also carry the server-derived round summary (items_total / items_credit) that the normal-path SkillState window reads; rebuild recomputes from the item ledgers instead, and the two must agree. Not an evidence ledger: deleting it only removes the fast-path cache and the duplicate guard.",
+  "description": "Exactly-once receipt per (learner, round_id, kind), created only by progressApi via claimRound (earliest-claim election; the platform upsert is not atomic). kind=evidence rows also carry the server-derived round summary the normal SkillState path reads; rebuild recomputes the same numbers from the item ledgers.",
   "properties": {
     "receipt_key": {
       "type": "string",
-      "description": "user_email|round_id|kind. Upsert key."
+      "description": "user_email|round_id|kind"
     },
     "claim_id": {
-      "type": "string",
-      "description": "Random id written by the request that claimed the receipt. After the upsert, the request whose claim_id is stored is the ONLY one allowed to process the round."
+      "type": "string"
     },
     "user_email": {
       "type": "string"
@@ -39,16 +38,19 @@
       ],
       "default": "claimed"
     },
+    "round_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Server time the claim was made; copied onto every ledger row of the round."
+    },
     "items_total": {
       "type": "number"
     },
     "items_credit": {
-      "type": "number",
-      "description": "Sum of per-item credit (0-1 each), server-derived."
+      "type": "number"
     },
     "verification": {
-      "type": "string",
-      "description": "server_graded | server_ai | client_attested"
+      "type": "string"
     }
   },
   "required": [

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Shuffle, CheckCircle2 } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import { checkAiGate, runAiTask } from "@/lib/aiLimits";
+import { generateRoundId } from "@/lib/gameScoring";
+import { submitEvidence } from "@/lib/progress/progressClient";
 
 const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
 
@@ -66,7 +68,7 @@ function quickFail(sentence, theme) {
   return null;
 }
 
-async function evaluateSentence(sentence, theme, themeWords, difficulty) {
+async function evaluateSentence(sentence, theme, themeWords, difficulty, roundId) {
   const fail = quickFail(sentence, theme);
   if (fail) return fail;
 
@@ -74,7 +76,7 @@ async function evaluateSentence(sentence, theme, themeWords, difficulty) {
 
   try {
     const res = await runAiTask("gradeSentence", {
-      sentence, theme, themeWords, difficulty,
+      sentence, theme, themeWords, difficulty, round_id: roundId,
       label: cfg.label, target: cfg.target, minWords: cfg.minWords,
     });
     const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
@@ -132,8 +134,12 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
         return;
       }
     }
-    const res = await evaluateSentence(sentence, theme, currentGroup, difficulty);
+    const roundId = generateRoundId();
+    const res = await evaluateSentence(sentence, theme, currentGroup, difficulty, roundId);
     setResult(res);
+    // Evidence is the server's own AI grade for this round_id; a quick-fail
+    // never reached the grader, so it is not submitted.
+    if (willNeedAi && user) submitEvidence(user.email, { game: "sentence", round_id: roundId });
     setChecking(false);
     const avg = Math.round((res.grammar + res.relevance + res.creativity) / 3);
     if (onGameComplete) onGameComplete({ scorePct: avg, correct: res.grammar, total: 100 });

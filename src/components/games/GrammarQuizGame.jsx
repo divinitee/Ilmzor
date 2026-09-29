@@ -109,7 +109,7 @@ export default function GrammarQuizGame({
     setAnswered(true);
     if (i === q.answer) setScore((s) => s + 1);
     const bank = QUESTION_BANK[bankKey] || QUESTION_BANK.articles;
-    setResults((r) => [...r, { item_id: `${bankKey}:${bank.indexOf(q)}`, correct: i === q.answer }]);
+    setResults((r) => [...r, { item_id: `${bankKey}:${bank.indexOf(q)}`, given: i }]);
   };
 
   const handleNext = () => {

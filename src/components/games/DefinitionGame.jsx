@@ -114,7 +114,7 @@ export default function DefinitionGame({ words = [], onBack, user, onXpEarned, o
         return;
       }
     }
-    const res = await evaluateDefinition(answer, { english: current.english, uzbek: current.uzbek, definition: current.definition }, cfg, level);
+    const res = await evaluateDefinition(answer, { id: current.id, english: current.english, uzbek: current.uzbek, definition: current.definition }, cfg, level, roundId.current);
     scores.current.push(averageScore(res));
     if (clearedBar(res)) {
       cleared.current.add(current.english);

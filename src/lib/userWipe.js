@@ -28,6 +28,8 @@ export const USER_DATA_ENTITIES = [
   { name: "SkillHubProgress", emailFields: ["user_email"], idFields: [] },
   { name: "SkillState", emailFields: ["user_email"], idFields: [] },
   { name: "GrammarAttempt", emailFields: ["user_email"], idFields: [] },
+  { name: "RoundReceipt", emailFields: ["user_email"], idFields: [] },
+  { name: "AiGradedItem", emailFields: ["user_email"], idFields: [] },
   { name: "StudentProgress", emailFields: ["user_email"], idFields: [] },
   // teacher_id is deliberately NOT matched. On a subscription row it names
   // the REFERRING TEACHER, not the subscriber — matching it would mean that

@@ -1,106 +1,42 @@
-// VT-6 Meaningful Progress V1 — the ONE place mastery is defined.
-//
-// Deterministic and explainable: a skill's current_mastery is
-//   (items correct) / (items presented) across its most recent
-//   EVIDENCE_WINDOW_N rounds.
-// Item-weighted, so a 20-item round counts more than a 4-item one. No EMA,
-// no hidden weights, no time decay — freshness is a label, never a penalty.
-// Every value here is recomputable from the ledgers (RewardEvent, and
-// GrammarAttempt which is what grammar rounds' counts are derived from).
+// VT-6 progress engine — DB side. All mastery math lives in progressCore.js.
+// Two ways to compute SkillState, which must agree:
+//   recomputeSkill  normal path: newest N RoundReceipt summaries + newest N legacy RewardEvents + counts.
+//   rebuildSkill    from scratch: every item-ledger row grouped into rounds + every legacy RewardEvent.
+import {
+  SKILL_KEYS, EVIDENCE_WINDOW_N, gamesForSkill, ledgerForSkill, groupRounds,
+  stateFrom, replayPeak, zeroState, presentState, summarize,
+} from './progressCore.js';
 
-export const SKILL_KEYS = ["vocabulary", "grammar", "spelling", "comprehension", "creativity"];
+export * from './progressCore.js';
 
-// Server mirror of src/lib/gameSkills.js GAME_SKILL_MAP (the backend cannot
-// import src/). Keep the two in sync.
-export const GAME_SKILL_MAP: Record<string, string> = {
-  quiz: "vocabulary", crossword: "vocabulary", usage: "vocabulary", odd_one_out: "vocabulary",
-  definition_match: "vocabulary", picture_match: "vocabulary", context_guess: "vocabulary",
-  memory_flip: "vocabulary", synonym_sprint: "vocabulary", related_words: "vocabulary",
-  connection_challenge: "vocabulary",
-  grammar: "grammar", wordforms: "grammar",
-  spelling: "spelling",
-  definition: "comprehension",
-  sentence: "creativity",
-};
+const PAGE = 500;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export const EVIDENCE_WINDOW_N = 10;
-export const CONFIDENCE_MEDIUM_MIN = 3;   // low < 3
-export const CONFIDENCE_HIGH_MIN = 10;    // medium 3-9, high 10+
-export const FRESH_MAX_DAYS = 7;          // fresh <= 7d
-export const STALE_MAX_DAYS = 30;         // stale <= 30d, cold beyond
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-export const gamesForSkill = (skill: string) =>
-  Object.keys(GAME_SKILL_MAP).filter((g) => GAME_SKILL_MAP[g] === skill);
-
-export function confidenceFor(count: number) {
-  if (count >= CONFIDENCE_HIGH_MIN) return "high";
-  if (count >= CONFIDENCE_MEDIUM_MIN) return "medium";
-  return "low";
-}
-
-export function freshnessFor(lastAt: string | null | undefined, now = Date.now()) {
-  if (!lastAt) return "cold";
-  const days = (now - new Date(lastAt).getTime()) / DAY_MS;
-  if (days <= FRESH_MAX_DAYS) return "fresh";
-  if (days <= STALE_MAX_DAYS) return "stale";
-  return "cold";
-}
-
-const isRound = (r: any) => Number(r?.items_total) > 0;
-
-/** Item-weighted mastery over a window of rounds. */
-export function masteryOf(rounds: any[]) {
-  let c = 0, t = 0;
-  for (const r of rounds) { c += Number(r.items_correct) || 0; t += Number(r.items_total) || 0; }
-  return t > 0 ? Math.round((100 * c) / t) : 0;
-}
-
-/** Derived, not persisted: newest 3 rounds vs the rest of the window. */
-export function trendOf(roundsNewestFirst: any[]) {
-  if (roundsNewestFirst.length < 6) return "unknown";
-  const d = masteryOf(roundsNewestFirst.slice(0, 3)) - masteryOf(roundsNewestFirst.slice(3));
-  return d >= 5 ? "improving" : d <= -5 ? "declining" : "steady";
-}
-
-/** Replay a full history (oldest first) to get the lifetime peak of the rolling mastery. */
-export function replayPeak(roundsOldestFirst: any[]) {
-  let peak = 0;
-  for (let i = 0; i < roundsOldestFirst.length; i++) {
-    const win = roundsOldestFirst.slice(Math.max(0, i - EVIDENCE_WINDOW_N + 1), i + 1);
-    peak = Math.max(peak, masteryOf(win));
+export async function pageAll(ent: any, q: any, sort = 'created_date') {
+  const out: any[] = [];
+  let skip = 0;
+  while (true) {
+    const page = (await ent.filter(q, sort, PAGE, skip)) || [];
+    out.push(...page);
+    if (page.length < PAGE) break;
+    skip += PAGE;
   }
-  return peak;
+  return out;
 }
 
-export function zeroState(email: string, skill: string) {
-  return {
-    user_email: email, skill, current_mastery: 0, confidence: "low", freshness: "cold",
-    evidence_count: 0, last_evidence_at: null, historical_peak: 0, computed_at: null,
-  };
-}
+const legacyQuery = (email: string, skill: string) => ({
+  user_email: email, game: { $in: gamesForSkill(skill) }, items_total: { $gt: 0 }, ledger_version: { $exists: false },
+});
+const legacyRound = (e: any) => ({ round_id: e.round_id || e.id, at: e.created_date, total: Number(e.items_total) || 0, credit: Math.min(Number(e.items_correct) || 0, Number(e.items_total) || 0), verified: false });
+const receiptQuery = (email: string, skill: string) => ({ user_email: email, kind: 'evidence', status: 'done', skill });
+const receiptRound = (r: any) => ({ round_id: r.round_id, at: r.round_at, total: Number(r.items_total) || 0, credit: Number(r.items_credit) || 0, verified: true });
 
-/** Freshness is always re-derived at read time; a stored label is never trusted. */
-export function presentState(row: any, now = Date.now()) {
-  return { ...row, freshness: freshnessFor(row.last_evidence_at, now), confidence: confidenceFor(row.evidence_count || 0) };
+function ledgerQuery(email: string, skill: string) {
+  if (skill === 'creativity') return { user_email: email, task: 'sentence', counted: true };
+  return { user_email: email, game: { $in: gamesForSkill(skill) }, verification: { $exists: true } };
 }
-
-/** Overall demonstrated ability averages EVIDENCED skills only; coverage is separate. */
-export function summarize(states: any[]) {
-  const ev = states.filter((s) => (s.evidence_count || 0) > 0);
-  const avg = ev.length ? Math.round(ev.reduce((a, s) => a + s.current_mastery, 0) / ev.length) : 0;
-  return {
-    avgMastery: avg,
-    skillsEvidenced: ev.length,
-    skillsTotal: SKILL_KEYS.length,
-    plays: states.reduce((a, s) => a + (s.evidence_count || 0), 0),
-  };
-}
-
-async function legacyPeak(svc: any, email: string, skill: string) {
-  const rows = await svc.SkillHubProgress.filter({ user_email: email, skill }, '-updated_date', 1);
-  return Number(rows?.[0]?.best) || 0;
-}
+const creditOf = (skill: string) => (row: any) =>
+  skill === 'creativity' ? Math.max(0, Math.min(100, Number(row.score) || 0)) / 100 : row.correct === true ? 1 : 0;
 
 async function upsertState(svc: any, email: string, skill: string, fields: any) {
   const existing = await svc.SkillState.filter({ user_email: email, skill }, '-updated_date', 1);
@@ -108,58 +44,76 @@ async function upsertState(svc: any, email: string, skill: string, fields: any) 
   return await svc.SkillState.create({ user_email: email, skill, ...fields });
 }
 
-/** Normal-operation recompute after a round. Bounded: one window + one count. */
-export async function recomputeSkill(svc: any, email: string, skill: string, now = Date.now()) {
-  const games = gamesForSkill(skill);
-  const q = { user_email: email, game: { $in: games }, items_total: { $gt: 0 } };
-  const recent = ((await svc.RewardEvent.filter(q, '-created_date', EVIDENCE_WINDOW_N)) || []).filter(isRound);
-  const count = await svc.RewardEvent.count(q);
-  const mastery = masteryOf(recent);
-  const existing = await svc.SkillState.filter({ user_email: email, skill }, '-updated_date', 1);
-  const prevPeak = existing?.[0] ? Number(existing[0].historical_peak) || 0 : await legacyPeak(svc, email, skill);
-  const last = recent[0]?.created_date || null;
-  return await upsertState(svc, email, skill, {
-    current_mastery: mastery,
-    confidence: confidenceFor(count),
-    freshness: freshnessFor(last, now),
-    evidence_count: count,
-    last_evidence_at: last,
-    historical_peak: Math.max(prevPeak, mastery),
-    computed_at: new Date(now).toISOString(),
+/**
+ * Exactly-once claim for (learner, round_id, kind). No unique index exists and
+ * upsert is not atomic under concurrency (8 parallel upserts made 4 rows), so
+ * this is an election: each request writes its own claim, waits a settle
+ * window, re-reads, and only the EARLIEST row (created_date, then id) proceeds.
+ * Returns the winning receipt, or null for a duplicate.
+ */
+export async function claimRound(svc: any, email: string, roundId: string, kind: string) {
+  const receipt_key = `${email}|${roundId}|${kind}`;
+  const prior = await svc.RoundReceipt.filter({ receipt_key }, 'created_date', 1);
+  if (prior?.length) return null;
+  const mine = await svc.RoundReceipt.create({
+    receipt_key, claim_id: crypto.randomUUID(), user_email: email, round_id: roundId, kind,
+    status: 'claimed', round_at: new Date().toISOString(),
   });
-}
-
-/** Full rebuild from the ledger (admin/backfill). Must equal normal operation. */
-export async function rebuildSkill(svc: any, email: string, skill: string, now = Date.now()) {
-  const games = gamesForSkill(skill);
-  const q = { user_email: email, game: { $in: games }, items_total: { $gt: 0 } };
-  const all: any[] = [];
-  let skip = 0;
-  while (true) {
-    const page = (await svc.RewardEvent.filter(q, 'created_date', 500, skip)) || [];
-    all.push(...page.filter(isRound));
-    if (page.length < 500) break;
-    skip += 500;
+  await sleep(450);
+  const rows = (await svc.RoundReceipt.filter({ receipt_key }, 'created_date', 50)) || [];
+  rows.sort((a: any, b: any) => (a.created_date < b.created_date ? -1 : a.created_date > b.created_date ? 1 : a.id < b.id ? -1 : 1));
+  if (rows[0]?.id !== mine.id) {
+    await svc.RoundReceipt.delete(mine.id).catch(() => {});
+    return null;
   }
-  const recent = all.slice(-EVIDENCE_WINDOW_N).reverse();
-  const mastery = masteryOf(recent);
-  const last = recent[0]?.created_date || null;
+  return mine;
+}
+
+export async function recomputeSkill(svc: any, email: string, skill: string, now = Date.now()) {
+  const existing = (await svc.SkillState.filter({ user_email: email, skill }, '-updated_date', 1))?.[0];
+  if (!existing || existing.verified_rounds == null) return await rebuildSkill(svc, email, skill, now);
+  const [receipts, verifiedCount, legacy, legacyCount] = await Promise.all([
+    svc.RoundReceipt.filter(receiptQuery(email, skill), '-round_at', EVIDENCE_WINDOW_N),
+    svc.RoundReceipt.count(receiptQuery(email, skill)),
+    svc.RewardEvent.filter(legacyQuery(email, skill), '-created_date', EVIDENCE_WINDOW_N),
+    svc.RewardEvent.count(legacyQuery(email, skill)),
+  ]);
+  const s = stateFrom({ verified: (receipts || []).map(receiptRound), legacy: (legacy || []).map(legacyRound), verifiedCount, legacyCount }, now);
   return await upsertState(svc, email, skill, {
-    current_mastery: mastery,
-    confidence: confidenceFor(all.length),
-    freshness: freshnessFor(last, now),
-    evidence_count: all.length,
-    last_evidence_at: last,
-    historical_peak: Math.max(await legacyPeak(svc, email, skill), replayPeak(all)),
+    ...s,
+    historical_peak: Math.max(Number(existing.historical_peak) || 0, s.current_mastery),
     computed_at: new Date(now).toISOString(),
   });
 }
 
-/** Five rows for one learner, zero-filled, freshness re-derived. */
+export async function deriveSkill(svc: any, email: string, skill: string, now = Date.now()) {
+  const [rows, legacyRows] = await Promise.all([
+    pageAll(svc[ledgerForSkill(skill)], ledgerQuery(email, skill)),
+    pageAll(svc.RewardEvent, legacyQuery(email, skill)),
+  ]);
+  const verified = groupRounds(rows, creditOf(skill));
+  const legacy = legacyRows.map(legacyRound);
+  const s = stateFrom({ verified, legacy, verifiedCount: verified.length, legacyCount: legacy.length }, now);
+  return { ...s, historical_peak: replayPeak(verified, legacy) };
+}
+
+export async function rebuildSkill(svc: any, email: string, skill: string, now = Date.now()) {
+  const d = await deriveSkill(svc, email, skill, now);
+  const existing = (await svc.SkillState.filter({ user_email: email, skill }, '-updated_date', 1))?.[0];
+  // legacy_best: display-only copy of the frozen SkillHubProgress.best. Never feeds mastery or peak.
+  let legacy_best = existing?.legacy_best;
+  if (legacy_best == null) {
+    const old = await svc.SkillHubProgress.filter({ user_email: email, skill }, '-updated_date', 1);
+    legacy_best = Number(old?.[0]?.best) || 0;
+  }
+  return await upsertState(svc, email, skill, { ...d, legacy_best, computed_at: new Date(now).toISOString() });
+}
+
 export async function readSkillStates(svc: any, email: string, now = Date.now()) {
   const rows = (await svc.SkillState.filter({ user_email: email }, '-updated_date', 20)) || [];
   const bySkill: Record<string, any> = {};
   for (const r of rows) if (!bySkill[r.skill]) bySkill[r.skill] = r;
   const skills = SKILL_KEYS.map((k) => presentState(bySkill[k] || zeroState(email, k), now));
-  return { skills, overall: summarize(skills) };
+  const computed_at = skills.map((s) => s.computed_at).filter(Boolean).sort().pop() || null;
+  return { skills, overall: summarize(skills), computed_at };
 }

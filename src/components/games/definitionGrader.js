@@ -7,9 +7,11 @@ import { runAiTask } from "@/lib/aiLimits";
 // round economy (gameScoring.js owns that now).
 
 // Evaluate a user-written definition and award 1-5 XP.
-export async function evaluateDefinition(userDef, word, cfg, level) {
+// roundId/wordId let aiApi record its own grade as progress evidence.
+export async function evaluateDefinition(userDef, word, cfg, level, roundId) {
   try {
     const res = await runAiTask("gradeDefinition", {
+      round_id: roundId, word_id: word.id,
       word: { english: word.english, uzbek: word.uzbek, definition: word.definition || "" },
       answer: userDef, minWords: cfg.minWords, level,
     });

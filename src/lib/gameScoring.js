@@ -1,4 +1,4 @@
-import { submitRound } from "@/lib/progress/progressClient";
+import { submitReward } from "@/lib/progress/progressClient";
 
 // ---------------------------------------------------------------------------
 // Layer 3.2 of claude/virora-game-template.md — the single source of truth
@@ -78,9 +78,9 @@ export async function recordRoundReward({
   level,
 }) {
   const { baseXp, streakBonus, amount } = computeRoundXp({ itemsCorrect, streakBest, hintMultiplier });
-  // VT-6: RewardEvent is server-written now. progressApi validates the
-  // counts, writes the row, and recomputes this skill's SkillState.
-  await submitRound(userEmail, {
+  // VT-6: XP only. Mastery evidence goes separately through logWordAttempts
+  // (roundComposition.js) -> progressApi.submitEvidence.
+  await submitReward(userEmail, {
     game,
     round_id: roundId,
     level,

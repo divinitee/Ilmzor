@@ -1,7 +1,7 @@
 {
   "name": "AiGradedItem",
   "type": "object",
-  "description": "VT-6 correction (2026-09-29). Server-side record of one AI grade, written ONLY by aiApi in the same request that ran the grader. This is the evidence for AI-graded games (sentence -> creativity, definition -> comprehension): progressApi reads these rows by round_id and never trusts a grade or count the browser reports.",
+  "description": "Server-side record of one AI grade, written ONLY by aiApi in the request that ran the grader. Evidence for AI-graded games (sentence -> creativity, definition -> comprehension). progressApi marks a sentence grade counted when its round is submitted; the first grade per round wins.",
   "properties": {
     "user_email": {
       "type": "string"
@@ -17,15 +17,23 @@
       ]
     },
     "item_key": {
-      "type": "string",
-      "description": "Lowercased target word for definition; 'sentence' for the sentence game."
+      "type": "string"
     },
     "word_id": {
       "type": "string"
     },
     "score": {
       "type": "number",
-      "description": "0-100, average of the grader's sub-scores."
+      "description": "0-100 average of the grader's sub-scores."
+    },
+    "counted": {
+      "type": "boolean",
+      "default": false,
+      "description": "Sentence rows: set by progressApi when the round is accepted as evidence."
+    },
+    "round_at": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "required": [

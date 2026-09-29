@@ -248,7 +248,21 @@ export default async function (req) {
       task.schema ? { prompt: task.prompt, response_json_schema: task.schema } : { prompt: task.prompt }
     );
     const next = await consume(sr, user, status);
-    return Response.json({ result: task.shape(raw || {}), status: publicStatus(next) });
+    const result = task.shape(raw || {});
+    // VT-6: the server's own grade is the progress evidence for AI-graded
+    // games; progressApi reads these rows and never a browser-reported score.
+    const round_id = str(body.round_id, 80);
+    if (round_id && (action === 'gradeSentence' || action === 'gradeDefinition')) {
+      const parts = action === 'gradeSentence' ? [result.grammar, result.relevance, result.creativity] : [result.accuracy, result.completeness, result.own_words];
+      await sr.entities.AiGradedItem.create({
+        user_email: user.email, round_id,
+        task: action === 'gradeSentence' ? 'sentence' : 'definition',
+        item_key: action === 'gradeSentence' ? 'sentence' : str(body.word?.english, 100).toLowerCase().replace(/\s+/g, ' ').trim(),
+        word_id: str(body.word_id, 40) || undefined,
+        score: Math.round(parts.reduce((a, b) => a + b, 0) / 3),
+      });
+    }
+    return Response.json({ result, status: publicStatus(next) });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }

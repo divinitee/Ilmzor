@@ -19,17 +19,17 @@ import CardFlipFable from "@/components/games/CardFlipFable";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import RelatedWordsGame from "@/components/games/RelatedWordsGame";
-import { submitRound } from "@/lib/progress/progressClient";
+import { submitEvidence } from "@/lib/progress/progressClient";
 import { generateRoundId } from "@/lib/gameScoring";
 import { useSkillState } from "@/hooks/useSkillState";
 
 // Games whose engines don't call recordRoundReward. Each maps its
 // onGameComplete payload to the round contract using only what it has.
+// Evidence only (XP for these is still handled by onXpEarned). sentence
+// submits itself, since its round_id must match the one the AI grade used.
 const HUB_SUBMITTED_GAMES = {
   quiz: (r) => ({ items_correct: r.correct, items_total: r.total }),
-  // AI-graded single sentence: the 0-100 grade is the only signal there is.
-  sentence: (r) => ({ items_correct: Math.round(r.scorePct), items_total: 100 }),
-  grammar: (r, g) => ({ items: r.items, grammar_topic: g.bank, amount: r.xp, base_xp: r.xp }),
+  grammar: (r, g) => ({ items: r.items, grammar_topic: g.bank }),
 };
 import { studentApi, teacherApi } from "@/lib/serverApi";
 import { useSkillLoc } from "@/lib/skillHubI18n";
@@ -215,7 +215,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
     // 100%), which is completion, not performance evidence.
     const hub = HUB_SUBMITTED_GAMES[activeGame.game];
     if (hub && result) {
-      submitRound(user?.email, {
+      submitEvidence(user?.email, {
         game: activeGame.game,
         round_id: generateRoundId(),
         level: studentLevel,

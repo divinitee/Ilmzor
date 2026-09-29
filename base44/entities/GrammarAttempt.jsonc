@@ -1,26 +1,28 @@
 {
   "name": "GrammarAttempt",
   "type": "object",
-  "description": "VT-6 (2026-09-29). Immutable per-question GRAMMAR PRACTICE evidence, one row per answered question. Written only by progressApi (service role) \u2014 the server derives the round's items_correct/items_total from these rows rather than trusting a client percentage. Deliberately separate from WordAttempt (vocabulary-shaped) and from GrammarAssessmentRun (placement): practice and placement are different evidence and are never merged.",
+  "description": "Per-question GRAMMAR PRACTICE evidence, written only by progressApi. Rows with `verification` were graded by the server against base44/shared/grammarKeys.js; rows without it are pre-correction history and are not mastery evidence. Separate from GrammarAssessmentRun (placement).",
   "properties": {
     "user_email": {
       "type": "string"
     },
     "game": {
       "type": "string",
-      "description": "Game key, e.g. grammar."
+      "description": "grammar (hub quiz) or grammar_practice (curriculum map)."
     },
     "grammar_topic": {
-      "type": "string",
-      "description": "Skill Hub grammar bank key, e.g. articles, verb_tenses."
+      "type": "string"
     },
     "item_id": {
-      "type": "string",
-      "description": "Stable id of the question within its bank, when the game provides one."
+      "type": "string"
     },
     "item_index": {
-      "type": "number",
-      "description": "Position of the question within the round."
+      "type": "number"
+    },
+    "given": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "What the learner answered, for audit."
     },
     "correct": {
       "type": "boolean"
@@ -38,6 +40,16 @@
     },
     "round_id": {
       "type": "string"
+    },
+    "round_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verification": {
+      "type": "string",
+      "enum": [
+        "server_graded"
+      ]
     }
   },
   "required": [

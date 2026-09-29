@@ -7,6 +7,9 @@ import { gradeItem, hasResponse, emptyResponse, scoreRound } from "@/lib/grammar
 import { summarise } from "@/lib/grammarPractice/feedback";
 import PracticeResult from "@/components/grammar/PracticeResult";
 import { historyFor, saveHistory } from "@/lib/grammarPractice/history";
+import { submitEvidence } from "@/lib/progress/progressClient";
+import { generateRoundId } from "@/lib/gameScoring";
+import { useAuth } from "@/lib/AuthContext";
 
 // One round: compose, ask, mark, summarise. The composer decides WHICH items
 // and the grader decides IF an answer is right; this owns only the sequence and
@@ -17,6 +20,8 @@ const ROUND_SIZE = 10;
 
 export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c }) {
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
+  const [roundId] = useState(() => generateRoundId());
+  const { user } = useAuth();
 
   const round = useMemo(
     () => composeRound({ items, stage, size: ROUND_SIZE, seed, history: historyFor(topicKey) }),
@@ -41,6 +46,12 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
     setMarked(null);
     if (i + 1 < round.items.length) { setI(i + 1); return; }
     saveHistory(topicKey, recordSeen(historyFor(topicKey), round.variantIds));
+    // VT-6: grammar curriculum practice is grammar evidence. The server grades
+    // gradable stages itself; rubric stages (create/express) are not sent.
+    const items = round.items
+      .map((it, k) => ({ item_id: it.id, given: it.format === "mcq" ? it.options?.[responses[k]] ?? null : responses[k] }))
+      .filter((x) => /\.(choose|build|transform)\.\d+$/.test(x.item_id || ""));
+    if (user?.email && items.length) submitEvidence(user.email, { game: "grammar_practice", round_id: roundId, grammar_topic: topicKey, items });
     setDone(true);
   };
 
