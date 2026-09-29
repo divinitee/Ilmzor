@@ -43,6 +43,8 @@ async function call(fn, action, payload = {}, retried = false) {
 
 export const studentApi = (action, payload) => call("studentApi", action, payload);
 export const teacherApi = (action, payload) => call("teacherApi", action, payload);
+// VT-6 progress: base44/functions/progressApi/entry.ts
+export const progressApi = (action, payload) => call("progressApi", action, payload);
 
 // Internal Taskboard (admin only). base44/functions/taskboardApi/entry.ts
 export const taskboardApi = async (action, payload = {}, actor = "tee") => {

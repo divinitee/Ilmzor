@@ -19,7 +19,18 @@ import CardFlipFable from "@/components/games/CardFlipFable";
 import PictureMatchGame from "@/components/games/PictureMatchGame";
 import OddOneOutGame from "@/components/games/OddOneOutGame";
 import RelatedWordsGame from "@/components/games/RelatedWordsGame";
-import { recordGameResult, syncGameResultToServer } from "@/lib/gameSkills";
+import { submitRound } from "@/lib/progress/progressClient";
+import { generateRoundId } from "@/lib/gameScoring";
+import { useSkillState } from "@/hooks/useSkillState";
+
+// Games whose engines don't call recordRoundReward. Each maps its
+// onGameComplete payload to the round contract using only what it has.
+const HUB_SUBMITTED_GAMES = {
+  quiz: (r) => ({ items_correct: r.correct, items_total: r.total }),
+  // AI-graded single sentence: the 0-100 grade is the only signal there is.
+  sentence: (r) => ({ items_correct: Math.round(r.scorePct), items_total: 100 }),
+  grammar: (r, g) => ({ items: r.items, grammar_topic: g.bank, amount: r.xp, base_xp: r.xp }),
+};
 import { studentApi, teacherApi } from "@/lib/serverApi";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -64,6 +75,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const loc = useSkillLoc();
   const { t } = useAppLang();
   const navigate = useNavigate();
+  const skillState = useSkillState(user);
 
   // Skill Hub entry gate. A skill with a diagnostic routes through its own
   // entry check instead of diving into subskills: placement complete goes to
@@ -196,8 +208,20 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
   const handleGameComplete = (result) => {
     if (!activeGame) return;
     const pct = Math.max(0, Math.min(100, Math.round(result?.scorePct ?? 0)));
-    recordGameResult(activeGame.game, pct); // instant local UI (completion chips)
-    syncGameResultToServer(user?.email, activeGame.game, pct); // fire-and-forget DB sync for the dashboard
+    // VT-6: progress evidence goes to progressApi, which owns SkillState.
+    // Games built on gameScoring submit their own round there (with XP
+    // breakdown); only the games below don't, so they are submitted here.
+    // crossword is deliberately absent: it only reports "solved" (always
+    // 100%), which is completion, not performance evidence.
+    const hub = HUB_SUBMITTED_GAMES[activeGame.game];
+    if (hub && result) {
+      submitRound(user?.email, {
+        game: activeGame.game,
+        round_id: generateRoundId(),
+        level: studentLevel,
+        ...hub(result, activeGame),
+      });
+    }
     if (activeGame.homeworkId) {
       // The one write that closes the homework loop. Server checks the
       // student is still in the class and targeted before recording it.
@@ -485,6 +509,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             onEnterSkill={handleEnterSkill}
             assignmentMode={assignmentMode}
             mode={hubMode}
+            skillState={skillState}
           />
         </div>
       </div>

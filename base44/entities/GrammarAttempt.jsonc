@@ -1,0 +1,78 @@
+{
+  "name": "GrammarAttempt",
+  "type": "object",
+  "description": "VT-6 (2026-09-29). Immutable per-question GRAMMAR PRACTICE evidence, one row per answered question. Written only by progressApi (service role) \u2014 the server derives the round's items_correct/items_total from these rows rather than trusting a client percentage. Deliberately separate from WordAttempt (vocabulary-shaped) and from GrammarAssessmentRun (placement): practice and placement are different evidence and are never merged.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "game": {
+      "type": "string",
+      "description": "Game key, e.g. grammar."
+    },
+    "grammar_topic": {
+      "type": "string",
+      "description": "Skill Hub grammar bank key, e.g. articles, verb_tenses."
+    },
+    "item_id": {
+      "type": "string",
+      "description": "Stable id of the question within its bank, when the game provides one."
+    },
+    "item_index": {
+      "type": "number",
+      "description": "Position of the question within the round."
+    },
+    "correct": {
+      "type": "boolean"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Starter",
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1"
+      ]
+    },
+    "round_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "game",
+    "correct",
+    "round_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

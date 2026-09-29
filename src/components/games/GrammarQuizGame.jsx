@@ -97,6 +97,9 @@ export default function GrammarQuizGame({
   const [answered, setAnswered] = useState(false);
   const [score, setScore] = useState(0);
   const [finished, setFinished] = useState(false);
+  // Per-question evidence for progressApi (VT-6). item_id is the question's
+  // index in its bank, which is stable across shuffles.
+  const [results, setResults] = useState([]);
 
   const q = questions[idx];
 
@@ -105,6 +108,8 @@ export default function GrammarQuizGame({
     setSelected(i);
     setAnswered(true);
     if (i === q.answer) setScore((s) => s + 1);
+    const bank = QUESTION_BANK[bankKey] || QUESTION_BANK.articles;
+    setResults((r) => [...r, { item_id: `${bankKey}:${bank.indexOf(q)}`, correct: i === q.answer }]);
   };
 
   const handleNext = () => {
@@ -113,7 +118,7 @@ export default function GrammarQuizGame({
       const pct = Math.round((finalScore / count) * 100);
       const earned = finalScore * 10;
       setFinished(true);
-      onGameComplete?.({ scorePct: pct });
+      onGameComplete?.({ scorePct: pct, correct: finalScore, total: count, items: results, xp: earned });
       if (earned > 0) onXpEarned?.(earned, finalScore);
     } else {
       setIdx((i) => i + 1);
@@ -128,6 +133,7 @@ export default function GrammarQuizGame({
     setAnswered(false);
     setScore(0);
     setFinished(false);
+    setResults([]);
     setRound((r) => r + 1);
   };
 

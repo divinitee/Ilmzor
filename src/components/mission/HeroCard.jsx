@@ -42,6 +42,7 @@ export default function HeroCard({ accent, accentGlow, onContinue, skillHub }) {
             {hasPlays && (
               <p className="text-[11px] text-muted-foreground text-center -mt-1">
                 {t("dashboard.skillHubStat", { pct: skillHub.overall.avgMastery, n: skillHub.overall.plays })}
+                {" · "}{t("dashboard.skillsEvidenced", { n: skillHub.overall.skillsEvidenced, total: skillHub.overall.skillsTotal })}
               </p>
             )}
           </div>

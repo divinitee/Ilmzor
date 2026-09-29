@@ -1,4 +1,4 @@
-import { base44 } from "@/api/base44Client";
+import { submitRound } from "@/lib/progress/progressClient";
 
 // ---------------------------------------------------------------------------
 // Layer 3.2 of claude/virora-game-template.md — the single source of truth
@@ -78,21 +78,18 @@ export async function recordRoundReward({
   level,
 }) {
   const { baseXp, streakBonus, amount } = computeRoundXp({ itemsCorrect, streakBest, hintMultiplier });
-  try {
-    await base44.entities.RewardEvent.create({
-      user_email: userEmail,
-      game,
-      amount,
-      round_id: roundId,
-      items_total: itemsTotal,
-      items_correct: itemsCorrect,
-      base_xp: baseXp,
-      streak_best: streakBest,
-      hint_multiplier: hintMultiplier,
-      level,
-    });
-  } catch (e) {
-    console.error("RewardEvent write failed", e);
-  }
+  // VT-6: RewardEvent is server-written now. progressApi validates the
+  // counts, writes the row, and recomputes this skill's SkillState.
+  await submitRound(userEmail, {
+    game,
+    round_id: roundId,
+    level,
+    items_total: itemsTotal,
+    items_correct: itemsCorrect,
+    amount,
+    base_xp: baseXp,
+    streak_best: streakBest,
+    hint_multiplier: hintMultiplier,
+  });
   return { baseXp, streakBonus, amount, passed: roundPassed(itemsCorrect, itemsTotal) };
 }

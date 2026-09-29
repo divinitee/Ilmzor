@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Sparkles, Zap, Clock, Lock } from "lucide-react";
-import { getGameStats } from "@/lib/gameSkills";
+import { masteryForGame } from "@/lib/gameSkills";
 import { useSkillLoc } from "@/lib/skillHubI18n";
 import { useAppLang } from "@/hooks/useAppLang";
 import { TOP_SKILLS, SKILL_CHILDREN, DIFF_STYLE, pos, TREE_POINTS, bloomDelaysFor } from "@/lib/skillTreeData";
@@ -35,7 +35,7 @@ import SkillTree from "@/components/skillhub/SkillTree";
 // here rather than stored per node (Skill Hub v3, 2026-09-21). Only "practice"
 // is reachable today — the header toggle renders Learn locked — so this is the
 // single place a future Learn branch attaches, not a live fork.
-export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill, assignmentMode = false, mode = "practice" }) {
+export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onLocked, onEnterSkill, assignmentMode = false, mode = "practice", skillState = null }) {
   const loc = useSkillLoc();
   const [selected, setSelected] = useState(null);
   const [activeChild, setActiveChild] = useState(null);
@@ -261,7 +261,7 @@ export default function SkillStage({ onPlayGame, onComingSoon, studentLevel, onL
       <NodeGroup active={level === 2} delay={diveDelay}>
         <Lines nodes={gameNodes} color={skill?.color || "#a78bfa"} hovered={hovered?.group === "game" ? hovered.key : null} filterId="gmPulse" />
         {gameNodes.map((c) => (
-          <GameNode key={c.name + c._i} node={c} active={level === 2} glow={skill?.glow || skill?.color} delay={diveDelay}
+          <GameNode key={c.name + c._i} node={c} skillState={skillState} active={level === 2} glow={skill?.glow || skill?.color} delay={diveDelay}
             onClick={() =>
               c.locked
                 ? onLocked?.({ label: c.name, minLevel: c.minLevel })
@@ -380,12 +380,12 @@ function ChildNode({ node, index, active, hidden, onClick, onComingSoon, hot, di
   );
 }
 
-function GameNode({ node, active, onClick, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd }) {
+function GameNode({ node, skillState, active, onClick, hot, dim, glow, delay = 0, onHoverStart, onHoverEnd }) {
   const loc = useSkillLoc();
   const { t } = useAppLang();
   const soon = node.comingSoon;
   const locked = !soon && node.locked;
-  const completion = getGameStats(node.game).best || 0;
+  const completion = masteryForGame(skillState, node.game);
   return (
     <div className={`absolute z-10 hub-node ${dim ? "dim" : ""}`} style={{ left: `${node.x}%`, top: `${node.y}%`, transform: "translate(-50%, -50%)" }}>
       <div className={RM ? "" : "hub-drift"} style={{ animationDelay: `${node._i * 0.6}s` }}>

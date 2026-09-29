@@ -8,7 +8,8 @@ import MissionsCard from "./MissionsCard";
 import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import QuickActions from "./QuickActions";
-import { getRemoteSkillProgress, summarizeSkillProgress, getTodaySkillActivity } from "@/lib/gameSkills";
+import { skillRows } from "@/lib/gameSkills";
+import { useSkillState } from "@/hooks/useSkillState";
 import { resolveUserName } from "@/lib/profileName";
 
 export const ACCENT = "#3b82f6";
@@ -47,7 +48,6 @@ export default function MissionControl({
   const { lang, t } = useAppLang();
   const s = DASH_STR[lang] || DASH_STR.en;
   const [xpRecord, setXpRecord] = useState(null);
-  const [skillHubRows, setSkillHubRows] = useState(null); // null = still loading
 
   useEffect(() => {
     if (!user) return;
@@ -62,19 +62,11 @@ export default function MissionControl({
       .catch(() => {});
   }, [user]);
 
-  useEffect(() => {
-    if (!user?.email) return;
-    getRemoteSkillProgress(user.email).then(setSkillHubRows);
-  }, [user]);
-
-  const skillHubOverall = useMemo(
-    () => (skillHubRows ? summarizeSkillProgress(skillHubRows) : null),
-    [skillHubRows]
-  );
-  const skillHubToday = useMemo(
-    () => getTodaySkillActivity(skillHubRows || []),
-    [skillHubRows]
-  );
+  // VT-6: server SkillState (current mastery), not the old lifetime peak.
+  const skillState = useSkillState(user);
+  const skillHubRows = useMemo(() => (skillState ? skillRows(skillState) : null), [skillState]);
+  const skillHubOverall = skillState?.overall || null;
+  const skillHubToday = skillState?.today || { playedToday: false, skillsToday: 0, bestToday: 0 };
 
   const data = useMemo(() => {
     const tk = todayKey();

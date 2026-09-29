@@ -1,4 +1,5 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
+import { readSkillStates } from '../../shared/progressEngine.ts';
 
 // teacherApi: the Teacher Panel's only read/write path for classes, rosters,
 // homework and results. (Teacher Panel phase 1, 2026-09-23)
@@ -254,6 +255,15 @@ async function studentActivity(svc: any, me: any, body: any) {
   return { sessions: sessions || [] };
 }
 
+// VT-6: a rostered student's SkillState, read with the service role only
+// after the roster check. Teachers have no direct RLS access to SkillState.
+async function studentProgress(svc: any, me: any, body: any) {
+  const email = normEmail(body.email);
+  const roster = await myRoster(svc, me);
+  if (!roster.some((s: any) => normEmail(s.phone) === email)) throw new ApiError(404, 'student_not_found');
+  return await readSkillStates(svc, email);
+}
+
 // ---------------------------------------------------------------- writes
 
 async function createGroup(svc: any, me: any, body: any) {
@@ -356,6 +366,7 @@ async function closeAssignment(svc: any, me: any, body: any) {
 const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = {
   overview: (svc, me) => overview(svc, me),
   studentActivity,
+  studentProgress,
   createGroup,
   updateGroup,
   setRoster,

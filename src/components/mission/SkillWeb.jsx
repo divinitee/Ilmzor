@@ -34,7 +34,7 @@ export default function SkillWeb({ rows }) {
 
   const ringPolys = RINGS.map((frac) => rows.map((_, i) => axisPoint(i, n, frac).join(",")).join(" "));
   const axisEnds = rows.map((_, i) => axisPoint(i, n, 1));
-  const dataPts = rows.map((r, i) => axisPoint(i, n, Math.max(MIN_FRAC, (r.best || 0) / 100)));
+  const dataPts = rows.map((r, i) => axisPoint(i, n, Math.max(MIN_FRAC, (r.current_mastery || 0) / 100)));
   const dataPolyPoints = dataPts.map((p) => p.join(",")).join(" ");
 
   return (
@@ -113,7 +113,13 @@ export default function SkillWeb({ rows }) {
 
       {rows.map((r, i) => {
         const [lx, ly] = axisPoint(i, n, LABEL_RADIUS / RADIUS);
-        const pct = Math.round(r.best || 0);
+        // A view of server SkillState: current mastery, plus a quiet label
+        // when evidence is thin (low confidence) or old (stale/cold).
+        const pct = Math.round(r.current_mastery || 0);
+        const note = !r.evidence_count ? null
+          : r.freshness === "cold" ? t("dashboard.skillRusty")
+          : r.freshness === "stale" ? t("dashboard.skillVerify")
+          : r.confidence === "low" ? t("dashboard.skillNew") : null;
         return (
           <motion.div
             key={r.key}
@@ -128,6 +134,7 @@ export default function SkillWeb({ rows }) {
               {t(`dashboard.${SKILL_LABEL_KEY[r.key]}`)}
             </span>
             <span className="text-[10px] font-bold leading-tight" style={{ color: r.color }}>{pct}%</span>
+            {note && <span className="text-[8px] leading-tight text-muted-foreground">{note}</span>}
           </motion.div>
         );
       })}

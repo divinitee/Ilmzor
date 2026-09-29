@@ -11,7 +11,8 @@ import {
   PolarAngleAxis, Radar, XAxis, YAxis, Tooltip, CartesianGrid,
 } from "recharts";
 import ParticleBackground from "@/components/ParticleBackground";
-import { getRadarData, getOverallStats, SKILLS } from "@/lib/gameSkills";
+import { radarRows, SKILLS } from "@/lib/gameSkills";
+import { useSkillState } from "@/hooks/useSkillState";
 import BetaBadge from "@/components/BetaBadge";
 
 const ACCENT = "#3b82f6";
@@ -125,8 +126,10 @@ export default function Analytics() {
       }));
   }, [results]);
 
-  const radarData = useMemo(() => getRadarData(), []);
-  const overall = useMemo(() => getOverallStats(), []);
+  // VT-6: server SkillState, not the old browser-local peak.
+  const skillState = useSkillState(user);
+  const radarData = useMemo(() => radarRows(skillState), [skillState]);
+  const overall = { skillsTrained: skillState?.overall?.skillsEvidenced || 0, plays: skillState?.overall?.plays || 0 };
 
   const heatmap = useMemo(() => {
     const cells = [];

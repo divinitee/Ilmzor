@@ -1,7 +1,7 @@
 {
   "name": "RewardEvent",
   "type": "object",
-  "description": "One row per completed Skill Hub round that awards XP. The reward ledger the app lacked before 2026-09-04: UserCoins stores only an aggregate `coins` total with no record of which game, round or moment produced it, which is why the historical 1x-vs-10x XP unfairness between games could never be corrected retroactively. Policy (decided 2026-09-04): existing UserCoins balances are legacy and are NEVER rescaled or migrated; the centralized formula in src/lib/gameScoring.js is the standard going forward, starting with Memory Flip, and other games migrate as the revamp reaches them. Grain is per ROUND, not per item, because the streak bonus and hint multiplier are round-level modifiers that per-item rows could not express honestly; round_id reaches the per-item detail in WordAttempt. TRUST MODEL: the client writes this row, and UserCoins RLS already lets a client write balances directly, so this ledger reliably surfaces farming PATTERNS (one student, impossible round counts or score distributions) but cannot prevent a determined forger. Genuinely tamper-proof rewards would need a server-side function issuing them; recording history now is what makes that move possible later.",
+  "description": "One row per completed Skill Hub round that awards XP. The reward ledger the app lacked before 2026-09-04: UserCoins stores only an aggregate `coins` total with no record of which game, round or moment produced it, which is why the historical 1x-vs-10x XP unfairness between games could never be corrected retroactively. Policy (decided 2026-09-04): existing UserCoins balances are legacy and are NEVER rescaled or migrated; the centralized formula in src/lib/gameScoring.js is the standard going forward, starting with Memory Flip, and other games migrate as the revamp reaches them. Grain is per ROUND, not per item, because the streak bonus and hint multiplier are round-level modifiers that per-item rows could not express honestly; round_id reaches the per-item detail in WordAttempt. TRUST MODEL (VT-6, 2026-09-29): rows are written ONLY by the progressApi backend function, which validates the counts (and derives them from GrammarAttempt items for grammar) before writing. This is also the round-level evidence ledger SkillState is computed from. Rows written before 2026-09-29 were client-written and are historical data.",
   "properties": {
     "user_email": {
       "type": "string",
@@ -13,11 +13,11 @@
     },
     "amount": {
       "type": "number",
-      "description": "XP awarded for this round, after all modifiers. This is the number added to UserCoins.coins for this round."
+      "description": "XP awarded for this round, after all modifiers. This is the number added to UserCoins.coins for this round. 0 for quiz/sentence rounds, whose XP is not computed by gameScoring.js."
     },
     "round_id": {
       "type": "string",
-      "description": "Client-generated at round start. Join key to this round's WordAttempt rows."
+      "description": "Client-generated at round start. Join key to this round's WordAttempt / GrammarAttempt rows. Unique per learner: progressApi ignores a repeat submit."
     },
     "items_total": {
       "type": "number",
@@ -60,7 +60,9 @@
   ],
   "rls": {
     "create": {
-      "data.user_email": "{{user.email}}"
+      "user_condition": {
+        "role": "admin"
+      }
     },
     "read": {
       "$or": [

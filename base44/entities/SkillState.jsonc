@@ -1,0 +1,101 @@
+{
+  "name": "SkillState",
+  "type": "object",
+  "description": "VT-6 (2026-09-29). DERIVED current standing of one learner in one of the five Skill Hub skills. Never an evidence ledger: every field is recomputed server-side by base44/shared/progressEngine.ts from RewardEvent (round ledger) and GrammarAttempt (grammar item ledger), so the row can be deleted and rebuilt at any time. Written ONLY by the progressApi backend function (service role). Replaces SkillHubProgress.best (a lifetime peak) as the canonical progress value.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "skill": {
+      "type": "string",
+      "enum": [
+        "vocabulary",
+        "grammar",
+        "spelling",
+        "comprehension",
+        "creativity"
+      ]
+    },
+    "current_mastery": {
+      "type": "number",
+      "default": 0,
+      "description": "0-100. Items correct / items presented across the most recent EVIDENCE_WINDOW_N rounds. No weighting, no time decay."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "low",
+      "description": "From evidence_count only. Never alters current_mastery."
+    },
+    "freshness": {
+      "type": "string",
+      "enum": [
+        "fresh",
+        "stale",
+        "cold"
+      ],
+      "default": "cold",
+      "description": "From last_evidence_at at compute time. progressApi re-derives it on every read, so a stored value is never trusted as current."
+    },
+    "evidence_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Rounds of evidence ever recorded for this skill."
+    },
+    "last_evidence_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "historical_peak": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime max of current_mastery, seeded from legacy SkillHubProgress.best (client-written historical data, not proof of mastery). Secondary information only."
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Storage only. No verification workflow in V1."
+    }
+  },
+  "required": [
+    "user_email",
+    "skill"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
