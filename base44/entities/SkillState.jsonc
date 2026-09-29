@@ -1,7 +1,7 @@
 {
   "name": "SkillState",
   "type": "object",
-  "description": "VT-6 (2026-09-29). DERIVED current standing of one learner in one of the five Skill Hub skills. Never an evidence ledger: every field is recomputed server-side by base44/shared/progressEngine.ts from RewardEvent (round ledger) and GrammarAttempt (grammar item ledger), so the row can be deleted and rebuilt at any time. Written ONLY by the progressApi backend function (service role). Replaces SkillHubProgress.best (a lifetime peak) as the canonical progress value.",
+  "description": "VT-6. DERIVED current standing of one learner in one skill. Recomputed server-side by base44/shared/progressEngine.ts from the skill's OWN evidence (WordAttempt for vocabulary/spelling, GrammarAttempt for grammar, AiGradedItem for comprehension/creativity), plus pre-VT-6 RewardEvent rounds as a flagged legacy tier that only fills the window when fewer than EVIDENCE_WINDOW_N verified rounds exist. RewardEvent is never mastery evidence for post-VT-6 rounds. Written ONLY by progressApi.",
   "properties": {
     "user_email": {
       "type": "string"
@@ -19,7 +19,7 @@
     "current_mastery": {
       "type": "number",
       "default": 0,
-      "description": "0-100. Items correct / items presented across the most recent EVIDENCE_WINDOW_N rounds. No weighting, no time decay."
+      "description": "0-100. Item credit / items presented across the window."
     },
     "confidence": {
       "type": "string",
@@ -29,7 +29,7 @@
         "high"
       ],
       "default": "low",
-      "description": "From evidence_count only. Never alters current_mastery."
+      "description": "From verified_rounds only. Never alters mastery."
     },
     "freshness": {
       "type": "string",
@@ -39,12 +39,31 @@
         "cold"
       ],
       "default": "cold",
-      "description": "From last_evidence_at at compute time. progressApi re-derives it on every read, so a stored value is never trusted as current."
+      "description": "Re-derived on every read."
+    },
+    "round_count": {
+      "type": "number",
+      "default": 0,
+      "description": "All rounds of evidence (verified + legacy)."
+    },
+    "verified_rounds": {
+      "type": "number",
+      "default": 0,
+      "description": "Rounds of server-validated post-VT-6 evidence."
+    },
+    "legacy_rounds_in_window": {
+      "type": "number",
+      "default": 0,
+      "description": "How many of the window's rounds are legacy client-written history."
+    },
+    "items_in_window": {
+      "type": "number",
+      "default": 0
     },
     "evidence_count": {
       "type": "number",
       "default": 0,
-      "description": "Rounds of evidence ever recorded for this skill."
+      "description": "DEPRECATED alias of round_count, kept so older cached clients keep rendering."
     },
     "last_evidence_at": {
       "type": "string",
@@ -53,7 +72,12 @@
     "historical_peak": {
       "type": "number",
       "default": 0,
-      "description": "Lifetime max of current_mastery, seeded from legacy SkillHubProgress.best (client-written historical data, not proof of mastery). Secondary information only."
+      "description": "Server-derived lifetime max of current_mastery, replayed from the ledgers. Never read from SkillHubProgress."
+    },
+    "legacy_best": {
+      "type": "number",
+      "default": 0,
+      "description": "Frozen copy of the old client-written SkillHubProgress.best. Display-only history; never feeds mastery or historical_peak."
     },
     "computed_at": {
       "type": "string",
@@ -62,7 +86,7 @@
     "last_verified_at": {
       "type": "string",
       "format": "date-time",
-      "description": "Storage only. No verification workflow in V1."
+      "description": "Storage only."
     }
   },
   "required": [

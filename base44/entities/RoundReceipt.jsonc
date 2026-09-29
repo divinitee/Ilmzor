@@ -1,0 +1,89 @@
+{
+  "name": "RoundReceipt",
+  "type": "object",
+  "description": "VT-6 correction (2026-09-29). Idempotency receipt: one row per (learner, round_id, kind). Created ONLY by progressApi with upsert keyed on receipt_key, so two concurrent submits of the same round cannot both be processed. kind=evidence rows also carry the server-derived round summary (items_total / items_credit) that the normal-path SkillState window reads; rebuild recomputes from the item ledgers instead, and the two must agree. Not an evidence ledger: deleting it only removes the fast-path cache and the duplicate guard.",
+  "properties": {
+    "receipt_key": {
+      "type": "string",
+      "description": "user_email|round_id|kind. Upsert key."
+    },
+    "claim_id": {
+      "type": "string",
+      "description": "Random id written by the request that claimed the receipt. After the upsert, the request whose claim_id is stored is the ONLY one allowed to process the round."
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "round_id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "evidence",
+        "reward"
+      ]
+    },
+    "game": {
+      "type": "string"
+    },
+    "skill": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "claimed",
+        "done",
+        "rejected"
+      ],
+      "default": "claimed"
+    },
+    "items_total": {
+      "type": "number"
+    },
+    "items_credit": {
+      "type": "number",
+      "description": "Sum of per-item credit (0-1 each), server-derived."
+    },
+    "verification": {
+      "type": "string",
+      "description": "server_graded | server_ai | client_attested"
+    }
+  },
+  "required": [
+    "receipt_key",
+    "user_email",
+    "round_id",
+    "kind"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

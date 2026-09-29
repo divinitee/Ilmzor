@@ -1,0 +1,66 @@
+{
+  "name": "AiGradedItem",
+  "type": "object",
+  "description": "VT-6 correction (2026-09-29). Server-side record of one AI grade, written ONLY by aiApi in the same request that ran the grader. This is the evidence for AI-graded games (sentence -> creativity, definition -> comprehension): progressApi reads these rows by round_id and never trusts a grade or count the browser reports.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "round_id": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string",
+      "enum": [
+        "sentence",
+        "definition"
+      ]
+    },
+    "item_key": {
+      "type": "string",
+      "description": "Lowercased target word for definition; 'sentence' for the sentence game."
+    },
+    "word_id": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number",
+      "description": "0-100, average of the grader's sub-scores."
+    }
+  },
+  "required": [
+    "user_email",
+    "round_id",
+    "task",
+    "score"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
