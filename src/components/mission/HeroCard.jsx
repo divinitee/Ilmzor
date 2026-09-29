@@ -2,19 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Play, ArrowRight } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-import SkillWeb from "./SkillWeb";
+import LearnerProfile from "@/components/profile/LearnerProfile";
 
-export default function HeroCard({ accent, accentGlow, onContinue, skillHub }) {
+// skillState: raw server SkillState (null while loading). The Learner Profile
+// constellation is its only presentation here.
+export default function HeroCard({ accent, accentGlow, onContinue, skillState }) {
   const { t } = useAppLang();
-  // skillHub: { rows, overall } — rows from getRemoteSkillProgress (always
-  // all 5 SKILLS, zero-filled), overall from summarizeSkillProgress. Both
-  // null while loading. This is real, cross-device Skill Hub mastery, not a
-  // static/generic label — the hero used to show the old unit-vocab-quiz
-  // system's current path/unit here; that system still exists but is no
-  // longer the dashboard's headline feature (nor linked from the dashboard
-  // at all anymore — the old Vocab Journey entry point was removed).
-  const rows = skillHub?.rows;
-  const hasPlays = (skillHub?.overall?.plays || 0) > 0;
   return (
     <div className="relative">
       <span className="neo-bloom neo-bloom-blue" aria-hidden="true" />
@@ -33,22 +26,9 @@ export default function HeroCard({ accent, accentGlow, onContinue, skillHub }) {
           {t("dashboard.skillHubHeroTitle")}
         </h2>
 
-        {rows ? (
-          <div className="relative mt-2">
-            {!hasPlays && (
-              <p className="text-xs text-muted-foreground text-center mb-1">{t("dashboard.skillHubHeroEmpty")}</p>
-            )}
-            <SkillWeb rows={rows} />
-            {hasPlays && (
-              <p className="text-[11px] text-muted-foreground text-center -mt-1">
-                {t("dashboard.skillHubStat", { pct: skillHub.overall.avgMastery, n: skillHub.overall.plays })}
-                {" · "}{t("dashboard.skillsEvidenced", { n: skillHub.overall.skillsEvidenced, total: skillHub.overall.skillsTotal })}
-              </p>
-            )}
-          </div>
-        ) : (
-          <div className="relative mt-4 h-56 rounded-2xl border border-white/10 bg-white/[0.03] animate-pulse" />
-        )}
+        <div className="relative mt-3">
+          <LearnerProfile skillState={skillState} />
+        </div>
         <button
           onClick={onContinue}
           className="hero-continue relative mt-5 w-full h-14 rounded-2xl font-bold text-white text-base flex items-center justify-center gap-2 select-none overflow-hidden"

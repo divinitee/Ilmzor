@@ -8,7 +8,6 @@ import MissionsCard from "./MissionsCard";
 import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import QuickActions from "./QuickActions";
-import { skillRows } from "@/lib/gameSkills";
 import { useSkillState } from "@/hooks/useSkillState";
 import { resolveUserName } from "@/lib/profileName";
 
@@ -64,8 +63,6 @@ export default function MissionControl({
 
   // VT-6: server SkillState (current mastery), not the old lifetime peak.
   const skillState = useSkillState(user);
-  const skillHubRows = useMemo(() => (skillState ? skillRows(skillState) : null), [skillState]);
-  const skillHubOverall = skillState?.overall || null;
   const skillHubToday = skillState?.today || { playedToday: false, skillsToday: 0, bestToday: 0 };
 
   const data = useMemo(() => {
@@ -152,7 +149,7 @@ export default function MissionControl({
       </div>
 
       {homeworkSlot}
-      <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillHub={{ rows: skillHubRows, overall: skillHubOverall }} />
+      <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillState={skillState} />
       <FreeLessonCard />
       <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
