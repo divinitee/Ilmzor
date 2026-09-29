@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { Send, Sparkles, Lock } from "lucide-react";
 import MessageBubble from "@/components/tutor/MessageBubble";
-import { canUseAiToday, incrementAiUsage } from "@/lib/aiLimits";
+import { getAiStatus, consumeAiChatTurn } from "@/lib/aiLimits";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const AGENT_NAME = "teacher_coplan";
@@ -16,7 +16,7 @@ const AGENT_NAME = "teacher_coplan";
 // displayed as "fair use") rather than the Free tier's 3/day, which would be
 // unusable for planning a real lesson. Admins still get the unconditional
 // unlimited bypass same as everywhere else.
-const TEACHER_AI_TIER = "vip";
+const TEACHER_AI_SCOPE = "teacher";
 
 export default function TeacherCoPlanChat({ user }) {
   const [conversation, setConversation] = useState(null);
@@ -64,7 +64,7 @@ export default function TeacherCoPlanChat({ user }) {
   const init = async () => {
     try {
       const me = user || (await base44.auth.me());
-      const status = await canUseAiToday(TEACHER_AI_TIER, me.email, me.role === "admin");
+      const status = await getAiStatus(TEACHER_AI_SCOPE);
       setUsage({ limit: status.limit, used: status.used, remaining: status.remaining, unlimited: status.unlimited, allowed: status.allowed });
       const existing = await base44.agents.listConversations({ agent_name: AGENT_NAME });
       const conv = existing?.[0];
@@ -110,13 +110,9 @@ export default function TeacherCoPlanChat({ user }) {
     setSending(true);
     try {
       const conv = await ensureConversation();
+      const next = await consumeAiChatTurn(TEACHER_AI_SCOPE);
       await base44.agents.addMessage(conv, { role: "user", content });
-      const me = user || (await base44.auth.me());
-      await incrementAiUsage(me.email, me.id, resolveUserNameOrEmail(me));
-      setUsage((u) => {
-        const remaining = Math.max(0, u.remaining - 1);
-        return { ...u, used: u.used + 1, remaining, allowed: remaining > 0 };
-      });
+      setUsage(next);
     } catch {
       setMessages((prev) => prev.filter((m) => m.id !== tempId));
     } finally {

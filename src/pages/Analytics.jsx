@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
+import { runAiTask } from "@/lib/aiLimits";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -143,18 +144,11 @@ export default function Analytics() {
     setGenerating(true);
     setReport("");
     try {
-      const prompt = `You are an expert language-learning coach reviewing a student's progress data. Write a concise, motivating analytics report (3 short paragraphs). Use plain text, no markdown.
-Data:
-- Total quizzes completed: ${stats.totalQuizzes}
-- Total words learned (correct answers): ${stats.totalCorrect}
-- Average accuracy: ${stats.accuracy}%
-- Current streak: ${stats.streak} days
-- Current XP: ${stats.xp}
-- Skill mastery (0-100): ${radarData.map((s) => `${s.emoji} ${s.value}`).join(", ")}
-
-Highlight strengths, weakest skill to focus on, and 2 concrete next steps.`;
-      const res = await base44.integrations.Core.InvokeLLM({ prompt });
-      setReport(typeof res === "string" ? res : JSON.stringify(res));
+      const res = await runAiTask("analyticsReport", {
+        stats: { totalQuizzes: stats.totalQuizzes, totalCorrect: stats.totalCorrect, accuracy: stats.accuracy, streak: stats.streak, xp: stats.xp },
+        skills: radarData.map((s) => ({ emoji: s.emoji, value: s.value })),
+      });
+      setReport(res?.text || "");
     } catch (e) {
       setReport("Could not generate the report right now. Please try again later.");
     } finally {

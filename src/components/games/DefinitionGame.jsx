@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Loader2, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate } from "@/lib/aiLimits";
 import { definitionForLevel } from "@/lib/definitionTiers";
 import { SKILLS, GAME_SKILL_MAP } from "@/lib/gameSkills";
 import { computeRoundXp, recordRoundReward, generateRoundId, roundPassed } from "@/lib/gameScoring";
@@ -115,7 +115,6 @@ export default function DefinitionGame({ words = [], onBack, user, onXpEarned, o
       }
     }
     const res = await evaluateDefinition(answer, { english: current.english, uzbek: current.uzbek, definition: current.definition }, cfg, level);
-    if (user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     scores.current.push(averageScore(res));
     if (clearedBar(res)) {
       cleared.current.add(current.english);

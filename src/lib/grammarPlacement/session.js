@@ -17,7 +17,7 @@ import {
   ADAPTIVE_GRAMMAR_ITEMS, DOMAINS, CEFR_LEVELS, validateDataset,
 } from "@/lib/adaptiveGrammar";
 import { evaluateGrammarConstruction } from "@/lib/assessor";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate } from "@/lib/aiLimits";
 import { buildIndex } from "@/lib/grammarPlacement/datasetIndex";
 import { resolveConfig } from "@/lib/grammarPlacement/config";
 import { normalizeAiEvaluation, requiresAiEvaluation } from "@/lib/grammarPlacement/scoring";
@@ -133,7 +133,6 @@ export async function submitAnswer(runner, { itemId, response }) {
           response
         );
         evaluation = normalizeAiEvaluation(raw);
-        try { await incrementAiUsage(runner.userEmail, runner.userId, ""); } catch { /* usage logging is best-effort */ }
         nextAi = { allowed: true, remaining: Math.max(0, (gate.remaining ?? 1) - 1) };
       }
     } catch (error) {

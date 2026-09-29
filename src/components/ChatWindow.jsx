@@ -43,13 +43,7 @@ export default function ChatWindow({ user, roomId, partnerName, onClose }) {
     setText("");
     setSending(true);
     try {
-      await base44.entities.ChatMessage.create({
-        room_id: roomId,
-        sender_id: user.id,
-        sender_name: resolveUserNameOrEmail(user),
-        sender_role: user.role,
-        text: content,
-      });
+      await base44.functions.invoke("chatApi", { room_id: roomId, text: content });
       // subscription refreshes; refetch as a fallback to swap the temp msg for the real one
       const fresh = await base44.entities.ChatMessage.filter({ room_id: roomId }, "created_date", 100);
       setMessages(fresh);

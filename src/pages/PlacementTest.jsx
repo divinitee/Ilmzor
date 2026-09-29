@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate } from "@/lib/aiLimits";
 import { GATES } from "@/lib/placementContent";
 import { setUserLevel } from "@/lib/levelStore";
 import {
@@ -124,7 +124,6 @@ export default function PlacementTest() {
           { instruction: item.instruction, requiredElement: item.requiredElement, topic: item.topic },
           answer
         );
-    await incrementAiUsage(userEmail, userId, "");
 
     const skill = item.type === "vocab" ? "vocabulary" : "grammar";
     const subskill = item.type === "vocab" ? "Word Meaning" : item.topic;

@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Loader2, Target, CheckCircle2, RotateCcw } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import { evaluateVocabArticulation, evaluateGrammarConstruction } from "@/lib/assessor";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate } from "@/lib/aiLimits";
 import { FREE_LESSON_ID } from "@/lib/freeLesson";
 import { recordAssessmentResult } from "@/lib/placementTest";
 import { getRandomizedItems, computeCheckStatus, advanceProgress } from "@/lib/lessonEngine";
@@ -189,7 +189,6 @@ export default function LessonRunner() {
       : await evaluateGrammarConstruction(
           { instruction: item.instruction, requiredElement: item.requiredElement, topic: item.topic }, answer
         );
-    if (!isFreeDemoLesson) await incrementAiUsage(userEmail, userId, "");
     await recordAssessmentResult({
       userEmail, lessonId: lesson.id, activityId: current.activityId,
       source: "practice", skill: item.skill || (item.type === "vocab" ? "vocabulary" : "grammar"),

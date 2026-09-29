@@ -4,7 +4,7 @@ import { Send, Sparkles, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import MessageBubble from "@/components/tutor/MessageBubble";
 import { useAppLang } from "@/hooks/useAppLang";
-import { canUseAiToday, incrementAiUsage } from "@/lib/aiLimits";
+import { getAiStatus, consumeAiChatTurn } from "@/lib/aiLimits";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 
 const AGENT_NAME = "vocabulary_tutor";
@@ -56,10 +56,7 @@ export default function VocabTutorChat() {
   const init = async () => {
     try {
       const me = await base44.auth.me();
-      let subs = await base44.entities.StudentSubscription.filter({ phone: me.email });
-      if (subs.length === 0) subs = await base44.entities.StudentSubscription.filter({ created_by_id: me.id });
-      const planName = subs?.[0]?.plan;
-      const status = await canUseAiToday(planName, me.email, me.role === "admin");
+      const status = await getAiStatus("student");
       setUsage({ limit: status.limit, used: status.used, remaining: status.remaining, unlimited: status.unlimited, allowed: status.allowed });
       const existing = await base44.agents.listConversations({ agent_name: AGENT_NAME });
       const conv = existing?.[0];
@@ -107,13 +104,9 @@ export default function VocabTutorChat() {
     setSending(true);
     try {
       const conv = await ensureConversation();
+      const next = await consumeAiChatTurn("student");
       await base44.agents.addMessage(conv, { role: "user", content: `[${lang}] ${content}` });
-      const me = await base44.auth.me();
-      await incrementAiUsage(me.email, me.id, resolveUserNameOrEmail(me));
-      setUsage((u) => {
-        const remaining = Math.max(0, u.remaining - 1);
-        return { ...u, used: u.used + 1, remaining, allowed: remaining > 0 };
-      });
+      setUsage(next);
     } catch {
       setMessages((prev) => prev.filter((m) => m.id !== tempId));
     } finally {

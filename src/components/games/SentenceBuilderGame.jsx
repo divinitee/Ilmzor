@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Shuffle, CheckCircle2 } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate, runAiTask } from "@/lib/aiLimits";
 
 const AI_LIMIT_MSG = "You've reached today's AI-graded practice. It refreshes tomorrow, or upgrade your plan for more.";
 
@@ -73,39 +73,9 @@ async function evaluateSentence(sentence, theme, themeWords, difficulty) {
   const cfg = DIFFICULTY[difficulty] || DIFFICULTY.intermediate;
 
   try {
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: [
-        `You are a strict, calibrated English-language examiner for ${cfg.label.toUpperCase()} learners.`,
-        `Theme words the student may use: ${themeWords.join(", ")}.`,
-        `Level target: the student must write ${cfg.target}. Minimum ${cfg.minWords} words.`,
-        `The student submitted: "${sentence}".`,
-        ``,
-        `Grade STRICTLY and calibrated to this level:`,
-        difficulty === "proficient"
-          ? `PROFICIENT: require a complex/compound-complex sentence with a subordinate clause (because/although/while/when/if/that/which). A simple sentence must score low on grammar and creativity even if correct.`
-          : difficulty === "advanced"
-            ? `ADVANCED: require a compound or complex sentence with a linking word. A correct but merely simple sentence caps grammar at ~55 and creativity at ~40.`
-            : difficulty === "intermediate"
-              ? `INTERMEDIATE: require a complete sentence of 5+ words. Shorter or fragmentary sentences score lower.`
-              : `BEGINNER: accept a simple correct sentence (3+ words). Be encouraging but still require a real verb.`,
-        ``,
-        `Word-lists / synonyms with no verb, repeated words, or off-theme gibberish must score 0-15 on grammar and creativity.`,
-        ``,
-        `Grammar rubric (be strict): 90-100 flawless; 70-89 minor errors; 40-69 several mistakes; 15-39 fragment; 0-14 not a sentence.`,
-        `Relevance: how many words genuinely fit the theme "${theme}".`,
-        `Creativity: originality and variety. Word lists / trivial statements score 0-15.`,
-        ``,
-        `Each score is a whole number 0-100. Then give ONE short, specific, encouraging tip in English (max 15 words). Reply in JSON only.`,
-      ].join("\n"),
-      response_json_schema: {
-        type: "object",
-        properties: {
-          grammar: { type: "number" },
-          relevance: { type: "number" },
-          creativity: { type: "number" },
-          tip: { type: "string" }
-        }
-      }
+    const res = await runAiTask("gradeSentence", {
+      sentence, theme, themeWords, difficulty,
+      label: cfg.label, target: cfg.target, minWords: cfg.minWords,
     });
     const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
     return {
@@ -163,7 +133,6 @@ export default function SentenceBuilderGame({ words, onBack, onNewRound, onGameC
       }
     }
     const res = await evaluateSentence(sentence, theme, currentGroup, difficulty);
-    if (willNeedAi && user) incrementAiUsage(user.email, user.id, "").catch(() => {});
     setResult(res);
     setChecking(false);
     const avg = Math.round((res.grammar + res.relevance + res.creativity) / 3);

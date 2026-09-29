@@ -1,4 +1,4 @@
-import { base44 } from "@/api/base44Client";
+import { runAiTask } from "@/lib/aiLimits";
 
 // Shared LLM-graded assessor logic for open-ended ("articulation") answers.
 // Generalizes the pattern proven in DefinitionGame's evaluateDefinition() to
@@ -33,50 +33,8 @@ export async function evaluateVocabArticulation(word, studentAnswer) {
     };
   }
   try {
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: [
-        `You are a strict but fair English vocabulary examiner.`,
-        `Target word: "${word.english}".`,
-        `Dictionary definition: "${word.definition}".`,
-        `The student's own-words explanation: "${answer}".`,
-        ``,
-        `Evaluate ONLY on meaning, not wording. A paraphrase using completely different`,
-        `words that keeps the correct meaning is EXCELLENT (accuracy 90-100). A definition`,
-        `that is factually wrong, off-topic, or gibberish scores 0-20 on accuracy.`,
-        ``,
-        `CRITICAL CHECK FIRST: this is a test of the student's ability to explain the word`,
-        `IN ENGLISH. If the answer is not written in English — including a transliteration,`,
-        `loanword, or direct translation of the target word itself into another language or`,
-        `script (e.g. writing the Russian/Uzbek cognate of "compensate" instead of explaining`,
-        `it in English) — this FAILS the exercise regardless of whether the underlying concept`,
-        `is correct. Score accuracy 0-10, completeness 0-10, own_words 0, and use diagnosis`,
-        `"not_in_english" for this case, skipping all other checks below.`,
-        ``,
-        `Score 0-100 each:`,
-        `- accuracy: how close is the meaning to the dictionary definition above?`,
-        `- completeness: does it capture the key idea, not just a vague gesture at it?`,
-        `- own_words: did the student paraphrase rather than near-copy the definition word-for-word? (near-copy = 0-30)`,
-        ``,
-        `Also classify the answer with ONE diagnosis tag, exactly one of:`,
-        `"correct" (good answer), "vague" (too imprecise to confirm understanding),`,
-        `"wrong_meaning" (confidently states an incorrect meaning),`,
-        `"near_copy" (just restates the definition with minor word swaps),`,
-        `"not_in_english" (answer is not a genuine English-language explanation — see check above),`,
-        `"off_topic" (doesn't address the word's meaning at all / gibberish).`,
-        ``,
-        `Give ONE concrete, specific tip (max 15 words) — not generic praise.`,
-        `Reply as JSON only.`,
-      ].join("\n"),
-      response_json_schema: {
-        type: "object",
-        properties: {
-          accuracy: { type: "number" },
-          completeness: { type: "number" },
-          own_words: { type: "number" },
-          diagnosis: { type: "string" },
-          tip: { type: "string" },
-        },
-      },
+    const res = await runAiTask("gradeVocabArticulation", {
+      word: { english: word.english, definition: word.definition }, answer,
     });
     const accuracy = clamp(res.accuracy);
     const completeness = clamp(res.completeness);
@@ -114,48 +72,8 @@ export async function evaluateGrammarConstruction(task, studentAnswer) {
     };
   }
   try {
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: [
-        `You are a strict English grammar examiner grading ONE sentence.`,
-        `Task instruction given to the student: "${task.instruction}"`,
-        `Required grammatical element: "${task.requiredElement}"`,
-        `Grammar topic being tested: "${task.topic}"`,
-        `The student's sentence: "${answer}"`,
-        ``,
-        `CRITICAL CHECK FIRST: if the sentence is not written in English (e.g. written in`,
-        `another language, or is just a translated/transliterated version of an English`,
-        `sentence), this FAILS the exercise. Score structureUsed 0, correctness 0,`,
-        `naturalness 0, and use diagnosis "not_in_english", skipping all checks below.`,
-        ``,
-        `Score 0-100 each, based on actual grammatical rules, not style preference:`,
-        `- structureUsed: did the sentence genuinely use the required element correctly`,
-        `  (e.g. a real subordinating conjunction like "because/although/when", NOT a`,
-        `  coordinating conjunction like "and/but/so" used instead)? 0 if not used at all.`,
-        `- correctness: is the sentence grammatically well-formed (no fragment, no run-on`,
-        `  or comma splice, correct verb forms, subject-verb agreement, punctuation)?`,
-        `- naturalness: does it read like a sentence a fluent speaker would actually write,`,
-        `  not a mechanical attempt to satisfy the rule?`,
-        ``,
-        `Also classify with ONE diagnosis tag, exactly one of:`,
-        `"not_in_english" (see check above), "correct", "wrong_form" (used the wrong word form, e.g. an adjective instead of a`,
-        `past participle, or a double comparative), "missing_element" (a required word was`,
-        `left out, e.g. a missing article), "wrong_word_choice" (the wrong specific word for`,
-        `the job, e.g. wrong preposition, wrong conjunction type, wrong quantifier),`,
-        `"tense_error", "sentence_fragment", "run_on_or_comma_splice", "off_topic_or_blank".`,
-        ``,
-        `Give ONE concrete, specific tip (max 15 words) naming the exact issue — not generic praise.`,
-        `Reply as JSON only.`,
-      ].join("\n"),
-      response_json_schema: {
-        type: "object",
-        properties: {
-          structureUsed: { type: "number" },
-          correctness: { type: "number" },
-          naturalness: { type: "number" },
-          diagnosis: { type: "string" },
-          tip: { type: "string" },
-        },
-      },
+    const res = await runAiTask("gradeGrammarConstruction", {
+      task: { instruction: task.instruction, requiredElement: task.requiredElement, topic: task.topic }, answer,
     });
     const structureUsed = clamp(res.structureUsed);
     const correctness = clamp(res.correctness);

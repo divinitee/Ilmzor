@@ -4,7 +4,7 @@ import { base44 } from "@/api/base44Client";
 import { Timer, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAppLang } from "@/hooks/useAppLang";
-import { checkAiGate, incrementAiUsage } from "@/lib/aiLimits";
+import { checkAiGate, runAiTask } from "@/lib/aiLimits";
 import { resolveUserNameOrEmail } from "@/lib/profileName";
 import { rankDistractors } from "@/lib/levels";
 
@@ -37,10 +37,9 @@ function similarityScore(userInput, target) {
 
 async function aiSimilarity(userInput, word, nativeKey = "uzbek") {
   try {
-    const shown = nativeKey === "russian" ? `Russian word "${word.russian}" (Uzbek: "${word.uzbek || ""}")` : `Uzbek word "${word.uzbek}" (Russian: "${word.russian || ""}")`;
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: `The correct English translation of the ${shown} is "${word.english}". A student wrote: "${userInput}". Is this translation correct? Consider minor typos (1-2 chars) as correct. Reply with JSON: { "correct": true } or { "correct": false }. Do NOT give partial credit.`,
-      response_json_schema: { type: "object", properties: { correct: { type: "boolean" } } }
+    const res = await runAiTask("checkTranslation", {
+      word: { english: word.english, uzbek: word.uzbek || "", russian: word.russian || "" },
+      nativeKey, answer: userInput,
     });
     return res.correct ? 100 : 0;
   } catch {
@@ -58,9 +57,7 @@ async function gradeDefine(userInput, word, user, nativeKey = "uzbek") {
   if (user) {
     const gate = await checkAiGate(user.email, user.id, user.role === "admin");
     if (gate.allowed) {
-      const score = await aiSimilarity(userInput, word, nativeKey);
-      incrementAiUsage(user.email, user.id, "").catch(() => {});
-      return score;
+      return await aiSimilarity(userInput, word, nativeKey);
     }
   }
   const sim = similarityScore(userInput, word.english);

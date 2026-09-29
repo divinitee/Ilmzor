@@ -1,4 +1,4 @@
-import { base44 } from "@/api/base44Client";
+import { runAiTask } from "@/lib/aiLimits";
 
 // The grading call for the Definition game — moved verbatim out of
 // DefinitionGame.jsx on 2026-09-07 so the engine file could shrink. The prompt,
@@ -9,37 +9,9 @@ import { base44 } from "@/api/base44Client";
 // Evaluate a user-written definition and award 1-5 XP.
 export async function evaluateDefinition(userDef, word, cfg, level) {
   try {
-    const res = await base44.integrations.Core.InvokeLLM({
-      prompt: [
-        `You are a strict but fair English vocabulary examiner for ${level || "B1"}-level learners.`,
-        `Target word (English): "${word.english}" — Uzbek: "${word.uzbek}".`,
-        `Reference definition: "${word.definition || ""}".`,
-        `The student rewrote the definition in their own words:`,
-        `"${userDef}".`,
-        ``,
-        `Evaluate the student's text ONLY on meaning, not wording. A paraphrase that uses completely different words but keeps the correct meaning is EXCELLENT (accuracy 90-100). A definition that is factually wrong scores 0-20 on accuracy.`,
-        ``,
-        `Score these criteria each 0-100 (whole numbers):`,
-        `- accuracy: does it convey the CORRECT meaning of "${word.english}"? (synonyms/paraphrase = high; wrong meaning = low)`,
-        `- completeness: does it capture the key idea, not just a vague synonym?`,
-        `- own_words: did the student paraphrase rather than copy the reference almost word-for-word? (near-copy = 0-30)`,
-        ``,
-        `Then reward XP (integer 1-5) from the AVERAGE of the three scores:`,
-        `>=85 → 5, 70-84 → 4, 55-69 → 3, 35-54 → 2, <35 → 1.`,
-        `Minimum ${cfg.minWords} words expected; much shorter answers subtract ~10 from each score.`,
-        `Also give ONE concrete, specific tip (max 15 words) pointing out exactly what to improve — not generic praise.`,
-        `Reply as JSON only.`,
-      ].join("\n"),
-      response_json_schema: {
-        type: "object",
-        properties: {
-          accuracy: { type: "number" },
-          completeness: { type: "number" },
-          own_words: { type: "number" },
-          xp: { type: "number" },
-          tip: { type: "string" },
-        },
-      },
+    const res = await runAiTask("gradeDefinition", {
+      word: { english: word.english, uzbek: word.uzbek, definition: word.definition || "" },
+      answer: userDef, minWords: cfg.minWords, level,
     });
     const clamp = v => Math.max(0, Math.min(100, Math.round(Number(v) || 0)));
     let xp = Math.round(Number(res.xp) || 0);
