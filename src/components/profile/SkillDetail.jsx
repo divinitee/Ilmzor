@@ -37,8 +37,15 @@ export default function SkillDetail({ node, onBack }) {
       </div>
 
       <motion.div initial={{ opacity: 0, y: reduce ? 0 : 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: d(0.35), duration: d(0.8), ease: EASE }}>
+        {node.mapped && (
+          <div className="mt-5 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3">
+            <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{c("progress")}</div>
+            <div className="mt-1 text-sm font-semibold text-foreground">{c("journey", { n: node.rounds })}</div>
+            <p className="mt-1 text-xs text-muted-foreground leading-relaxed">{c("masteryNote")}</p>
+          </div>
+        )}
         {node.mapped ? (
-          <div className="mt-5 grid grid-cols-2 gap-2">
+          <div className="mt-2 grid grid-cols-2 gap-2">
             <Fact icon={TrendingUp} label={c("trajectory")} value={node.atPeak ? c("atPeak") : c("peak", { n: node.peak })} />
             <Fact icon={ShieldCheck} label={c("confidence")} value={c(`conf_${node.confidence}`)} />
             <Fact icon={Clock} label={c("freshness")} value={c(node.freshness)} />
