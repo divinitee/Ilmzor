@@ -1,9 +1,11 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.52';
 import {
-  GAME_SKILL_MAP, XP_ONLY_GAMES, SKILL_KEYS, MAX_ITEMS, DEFINITION_CLEAR, COMPARABLE,
-  gradePractice, gradeQuiz, gradeTranslation, normalise,
+  GAME_SKILL_MAP, XP_ONLY_GAMES, SKILL_KEYS, MAX_ITEMS, COMPARABLE,
+  gradePractice, gradeQuiz, gradeWordItem, normalise,
   claimRound, recomputeSkill, rebuildSkill, deriveSkill, readSkillStates, pageAll,
 } from '../../shared/progressEngine.ts';
+import { enrichmentFor } from '../../shared/skillActivityMap.js';
+import { rebuildLeafStates, verifyLeafStates } from '../../shared/leafStateEngine.ts';
 
 // progressApi (VT-6, corrected 2026-09-29). Progress and rewards are separate:
 //   submitEvidence  a round's per-item evidence -> item ledger -> SkillState.
@@ -13,7 +15,14 @@ import {
 //   submitReward    XP ledger only (RewardEvent ledger_version 2). Never mastery.
 //   getSkillState   caller's five rows + today's activity.
 //   rebuild / verify  admin: rebuild from ledgers / prove rebuild == normal path.
+//   rebuildLeafStates / verifyLeafStates  admin: Skill Intelligence SHADOW
+//                   LeafState (docs/skill-intelligence-architecture.md). Never
+//                   touches SkillState; nothing learner-facing reads it.
 // Both submits are exactly-once per round via claimRound().
+//
+// Skill Intelligence enrichment (2026-09-30): every new ledger row also
+// carries bank, mode (from the activity map, never the client), support and
+// taxonomy/activity-map versions. Scoring is unchanged by it.
 
 const LEVELS = new Set(['Starter', 'A1', 'A2', 'B1', 'B2', 'C1']);
 const str = (v: unknown, n: number) => String(v ?? '').slice(0, n);
@@ -27,7 +36,7 @@ function base(body: any) {
   const game = str(body.game, 40);
   const round_id = str(body.round_id, 80);
   if (!round_id) throw new ApiError(400, 'missing_round_id');
-  return { game, round_id, level: LEVELS.has(body.level) ? body.level : undefined };
+  return { game, round_id, level: LEVELS.has(body.level) ? body.level : undefined, bank: str(body.bank, 40) || undefined };
 }
 
 function itemsOf(body: any) {
@@ -43,7 +52,11 @@ async function gradeEvidence(svc: any, me: any, r: any, body: any) {
       const item_id = str(it?.item_id, 80);
       const correct = r.game === 'grammar' ? gradeQuiz(item_id, it?.given) : gradePractice(item_id, it?.given);
       if (correct === null) throw new ApiError(400, 'unknown_item');
-      return { item_id, item_index: i, correct, given: str(Array.isArray(it?.given) ? it.given.join(' | ') : it?.given, 200), grammar_topic: str(body.grammar_topic || item_id.split(':')[0], 80) };
+      const bank = r.game === 'grammar' ? item_id.split(':')[0] : undefined;
+      return {
+        item_id, item_index: i, correct, given: str(Array.isArray(it?.given) ? it.given.join(' | ') : it?.given, 200), grammar_topic: str(body.grammar_topic || item_id.split(':')[0], 80),
+        ...enrichmentFor({ game: r.game, bank, item_id, support: it?.support }),
+      };
     });
     return { ledger: 'GrammarAttempt', rows, verification: 'server_graded' };
   }
@@ -74,11 +87,10 @@ async function gradeEvidence(svc: any, me: any, r: any, body: any) {
     const w = it?.word_id ? byId.get(str(it.word_id, 40)) : null;
     const word = str(w?.english || it?.word, 80);
     if (!word) throw new ApiError(400, 'bad_items');
-    let correct: boolean | null = null;
-    if (skill === 'comprehension') correct = (aiByKey.get(normalise(word)) ?? -1) >= DEFINITION_CLEAR;
-    else if (r.game === 'quiz' && w) correct = gradeTranslation(w, it?.type, it?.given);
+    let correct: boolean | null = gradeWordItem({ game: r.game, skill, word: w, item: it, aiScore: aiByKey.get(normalise(word)) });
     if (correct === null) { correct = it?.correct === true; anyAttested = true; }
-    return { word, word_id: w?.id, correct };
+    const given = r.game === 'spelling' && typeof it?.given === 'string' ? str(it.given, 80) : undefined;
+    return { word, word_id: w?.id, correct, given, ...enrichmentFor({ game: r.game, bank: r.bank, support: it?.support }) };
   });
   const verification = skill === 'comprehension' ? 'server_ai' : anyAttested ? 'client_attested' : 'server_graded';
   return { ledger: 'WordAttempt', rows, verification };
@@ -178,7 +190,32 @@ async function verify(svc: any, me: any, body: any) {
   return { checked: t.emails.length, total: t.total, next_offset: t.next_offset, mismatches };
 }
 
-const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = { submitEvidence, submitReward, getSkillState, rebuild, verify };
+/** Admin: rebuild the SHADOW LeafState rows from the ledgers. SkillState is not touched. */
+async function rebuildLeafStatesAction(svc: any, me: any, body: any) {
+  if (me.role !== 'admin') throw new ApiError(403, 'admin_only');
+  const t = await targets(svc, body);
+  const now = Date.now();
+  const results = [];
+  for (const email of t.emails) results.push(await rebuildLeafStates(svc, email, now));
+  return { rebuilt: t.emails.length, total: t.total, next_offset: t.next_offset, has_more: t.next_offset != null, results };
+}
+
+/** Admin: prove LeafState derivation is deterministic and stored rows == a fresh rebuild. */
+async function verifyLeafStatesAction(svc: any, me: any, body: any) {
+  if (me.role !== 'admin') throw new ApiError(403, 'admin_only');
+  const t = await targets(svc, body);
+  const now = Date.now();
+  const results = [];
+  for (const email of t.emails) results.push(await verifyLeafStates(svc, email, now));
+  const nondeterministic = results.filter((x) => !x.deterministic).map((x) => x.email);
+  const mismatched = results.filter((x) => x.mismatches.length).map((x) => x.email);
+  return { checked: t.emails.length, total: t.total, next_offset: t.next_offset, nondeterministic, mismatched, results };
+}
+
+const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = {
+  submitEvidence, submitReward, getSkillState, rebuild, verify,
+  rebuildLeafStates: rebuildLeafStatesAction, verifyLeafStates: verifyLeafStatesAction,
+};
 
 export default async function (req: Request): Promise<Response> {
   try {

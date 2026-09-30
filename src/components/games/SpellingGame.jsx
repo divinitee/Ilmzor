@@ -117,6 +117,10 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
   const roundItems = useRef([]);
   const firstTry = useRef(new Set());
   const missedOnce = useRef(new Set());
+  // Skill Intelligence: the learner's FIRST attempt per word (server grades it
+  // with gradeSpelling) and the words answered while the meaning was showing.
+  const firstAttempt = useRef(new Map());
+  const hinted = useRef(new Set());
   const triesRef = useRef(0);
   const budgetRef = useRef(0);
   const streakBestRef = useRef(0);
@@ -162,6 +166,8 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
     roundId.current = generateRoundId();
     firstTry.current = new Set();
     missedOnce.current = new Set();
+    firstAttempt.current = new Map();
+    hinted.current = new Set();
 
     const chosen = await buildPersonalizedRound({ words: pool, userEmail: user?.email, count: tier.items });
     roundItems.current = chosen;
@@ -225,8 +231,14 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
       userEmail: user?.email,
       game: GAME,
       level,
+      bank: mode,
       roundId: roundId.current,
-      items: items.map((it) => ({ word: it.english, wordId: it.id, correct: firstTry.current.has(it.english) })),
+      // given: "" for a word never reached (budget ran out) -> graded wrong, as before.
+      items: items.map((it) => ({
+        word: it.english, wordId: it.id, correct: firstTry.current.has(it.english),
+        given: firstAttempt.current.get(it.english) ?? "",
+        support: hinted.current.has(it.english) ? "hint" : "none",
+      })),
     });
 
     const scorePct = Math.round((itemsCorrect / itemsTotal) * 100);
@@ -248,7 +260,7 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
       hintMultiplier: mult,
     });
     setPhase("result");
-  }, [user?.email, level, onXpEarned, onGameComplete, baseMultiplier]);
+  }, [user?.email, level, mode, onXpEarned, onGameComplete, baseMultiplier]);
 
   const advance = useCallback(() => {
     const next = idxRef.current + 1;
@@ -308,6 +320,10 @@ export default function SpellingGame({ words = [], level, difficulty = "intermed
     triesRef.current += 1;
     setTries(triesRef.current);
     const ok = attempt === target;
+    if (currentWord && !firstAttempt.current.has(currentWord.english)) {
+      firstAttempt.current.set(currentWord.english, attempt);
+      if (showMeaning) hinted.current.add(currentWord.english); // meaning visible while answering
+    }
     setStatus(ok ? "correct" : "wrong");
 
     if (ok) {

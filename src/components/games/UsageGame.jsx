@@ -234,6 +234,7 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
       userEmail: user?.email,
       game: GAME,
       level,
+      bank: mode,
       roundId: roundId.current,
       items: items.map((it) => ({ word: it.word, correct: firstTry.current.has(it.word) })),
     });
@@ -255,7 +256,7 @@ export default function UsageGame({ words = [], bank: mode = "fill_blank", user,
       itemsTotal,
     });
     setPhase("result");
-  }, [user?.email, level, onXpEarned, onGameComplete]);
+  }, [user?.email, level, mode, onXpEarned, onGameComplete]);
 
   const advance = useCallback(() => {
     const next = idxRef.current + 1;

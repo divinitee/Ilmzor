@@ -105,6 +105,22 @@ export function gradeTranslation(word, type, given) {
   return null;
 }
 
+/**
+ * One word-shaped evidence item. Returns true/false when the SERVER can decide,
+ * or null when it cannot (the row is then client-attested).
+ *   comprehension (definition)  server AI grade >= DEFINITION_CLEAR
+ *   quiz                        option questions via gradeTranslation
+ *   spelling                    the learner's FIRST attempt (`given`) vs the
+ *                               canonical headword via gradeSpelling. Clients
+ *                               send given:"" for items never attempted.
+ */
+export function gradeWordItem({ game, skill, word, item, aiScore }) {
+  if (skill === "comprehension") return (aiScore ?? -1) >= DEFINITION_CLEAR;
+  if (game === "quiz" && word) return gradeTranslation(word, item?.type, item?.given);
+  if (game === "spelling" && word && typeof item?.given === "string") return gradeSpelling(word.english, item.given);
+  return null;
+}
+
 /* ---------------- rounds, window, peak ---------------- */
 
 /** Group item-ledger rows into rounds. creditOf(row) in [0,1]. */

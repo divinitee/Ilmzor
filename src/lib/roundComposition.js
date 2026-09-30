@@ -256,10 +256,19 @@ export async function buildBankRound({ pool, keyFn, userEmail, game, count, wron
 // never mismatches.
 // VT-6: the round's per-word evidence goes to progressApi, which writes the
 // WordAttempt rows itself (grading where it can) and recomputes SkillState.
-export async function logWordAttempts({ userEmail, game, level, roundId, items = [] }) {
+// Skill Intelligence (2026-09-30): `bank` names the activity mode so the
+// server can attribute evidence to the right skill leaf; an item's `given`
+// lets the server grade it itself (spelling), and `support` records whether
+// the learner opened help ("hint") before answering. All optional.
+/** @param {{ userEmail: any, game: string, level?: any, roundId: any, bank?: string, items?: any[] }} args */
+export async function logWordAttempts({ userEmail, game, level, roundId, bank, items = [] }) {
   if (!userEmail || !items.length) return;
   await submitEvidence(userEmail, {
-    game, level, round_id: roundId,
-    items: items.slice(0, 50).map(({ word, wordId, correct }) => ({ word, word_id: wordId || undefined, correct: !!correct })),
+    game, level, round_id: roundId, bank: bank || undefined,
+    items: items.slice(0, 50).map(({ word, wordId, correct, given, support }) => ({
+      word, word_id: wordId || undefined, correct: !!correct,
+      ...(typeof given === "string" ? { given } : {}),
+      ...(support ? { support } : {}),
+    })),
   });
 }
