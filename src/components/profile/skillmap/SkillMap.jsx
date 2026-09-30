@@ -13,17 +13,20 @@ const fade = { initial: { opacity: 0, scale: 0.98 }, animate: { opacity: 1, scal
 // constellation) if the map errors or comes back empty.
 export default function SkillMap({ fallback }) {
   const [map, setMap] = useState(undefined); // undefined loading, null failed
+  const [why, setWhy] = useState(""); // TEMP DEBUG (Claude, 2026-09-30): reason the map fell back
   const [open, setOpen] = useState(null);
   const { s, label } = useSkillMapCopy();
 
   useEffect(() => {
-    const load = () => progressApi("getSkillMap", {}).then((d) => setMap(d?.groups?.length ? d : null)).catch(() => setMap(null));
+    const load = () => progressApi("getSkillMap", {})
+      .then((d) => { if (d?.groups?.length) setMap(d); else { setWhy("empty: " + JSON.stringify(d).slice(0, 300)); setMap(null); } })
+      .catch((e) => { setWhy("error: " + (e?.code || "") + " " + (e?.message || String(e)).slice(0, 300)); setMap(null); });
     load();
     window.addEventListener(SKILLSTATE_EVENT, load);
     return () => window.removeEventListener(SKILLSTATE_EVENT, load);
   }, []);
 
-  if (map === null) return fallback;
+  if (map === null) return <>{fallback}<p data-skillmap-debug className="mt-2 text-[10px] text-rose-300/80 break-all">[skill map debug] {why}</p></>;
   if (map === undefined) return <div className="mt-4 h-56 rounded-3xl border border-white/10 bg-white/[0.03] animate-pulse" />;
   const area = open && map.groups.flatMap((g) => g.areas).find((a) => a.id === open);
 
