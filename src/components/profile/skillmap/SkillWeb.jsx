@@ -70,8 +70,8 @@ function areaPoints(groups) {
   const out = [];
   groups.forEach((g, gi) => {
     const n = g.areas.length;
-    const [from, to] = gi === 0 ? [-162, -18] : [60, 120];
-    g.areas.forEach((a, i) => out.push({ area: a, group: g.id, ...polar(n === 1 ? (from + to) / 2 : from + ((to - from) * i) / (n - 1), 36) }));
+    const [from, to] = gi === 0 ? [-170, -10] : [125, 55];
+    g.areas.forEach((a, i) => out.push({ area: a, group: g.id, ...polar(n === 1 ? (from + to) / 2 : from + ((to - from) * i) / (n - 1), 38) }));
   });
   return out;
 }
@@ -82,15 +82,15 @@ function leafPoints(leaves) {
   if (n <= 7) return leaves.map((l, i) => ({ leaf: l, ...polar(-90 + (360 * i) / n, 35) }));
   const inner = Math.floor(n / 2), outer = n - inner;
   return leaves.map((l, i) => i < inner
-    ? { leaf: l, ...polar(-90 + (360 * i) / inner, 23) }
-    : { leaf: l, ...polar(-90 + 180 / outer + (360 * (i - inner)) / outer, 41) });
+    ? { leaf: l, ...polar(-90 + (360 * i) / inner, 25) }
+    : { leaf: l, ...polar(-90 + 180 / outer + (360 * (i - inner)) / outer, 43) });
 }
 
 function Spokes({ pts, colorOf, litOf, reduce }) {
   const d = (s) => (reduce ? 0 : s);
   return (
     <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full overflow-visible pointer-events-none">
-      <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(239,230,213,0.05)" strokeWidth="0.3" />
+      <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(239,230,213,0.05)" strokeWidth="0.3" />
       {pts.map((p, i) => {
         const lit = litOf(p);
         return (
@@ -105,7 +105,7 @@ function Spokes({ pts, colorOf, litOf, reduce }) {
   );
 }
 
-function Core({ children, size = "34%", onClick, label }) {
+function Core({ children, size = "26%", onClick, label }) {
   const Tag = onClick ? motion.button : motion.div;
   return (
     <Tag type={onClick ? "button" : undefined} onClick={onClick} aria-label={label}
@@ -156,7 +156,7 @@ export function AreaWeb({ map, onOpen }) {
           );
         })}
       </div>
-      <p className="-mt-1 text-[9px] uppercase tracking-[0.22em] text-muted-foreground text-center">{s("use")}</p>
+      <p className="mt-2 text-[9px] uppercase tracking-[0.22em] text-muted-foreground text-center">{s("use")}</p>
     </div>
   );
 }
@@ -170,10 +170,10 @@ export function LeafWeb({ area, selected, onSelect, onBack }) {
   const two = area.leaves.length > 7;
   const d = (x) => (reduce ? 0 : x);
   return (
-    <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-6">
+    <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-10">
       <Glow />
       <Spokes pts={pts} reduce={reduce} colorOf={() => color} litOf={(p) => ["verified", "activity"].includes(leafStatus(p.leaf))} />
-      <Core size={two ? "24%" : "30%"} onClick={onBack} label={s("back")}>
+      <Core size={two ? "22%" : "28%"} onClick={onBack} label={s("back")}>
         <span className="text-[11px] md:text-xs font-bold leading-tight px-1.5" style={{ color }}>{label(area)}</span>
         <span className="mt-0.5 text-[8.5px] text-muted-foreground">← {s("back")}</span>
       </Core>
