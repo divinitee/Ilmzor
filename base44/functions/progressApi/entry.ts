@@ -5,6 +5,8 @@ import {
   claimRound, recomputeSkill, rebuildSkill, deriveSkill, readSkillStates, pageAll,
 } from '../../shared/progressEngine.ts';
 import { enrichmentFor } from '../../shared/skillActivityMap.js';
+import { childrenOf, TAXONOMY_VERSION } from '../../shared/skillTaxonomy.js';
+import { freshnessFor } from '../../shared/progressCore.js';
 import { rebuildLeafStates, verifyLeafStates } from '../../shared/leafStateEngine.ts';
 
 // progressApi (VT-6, corrected 2026-09-29). Progress and rewards are separate:
@@ -116,6 +118,7 @@ async function submitEvidence(svc: any, me: any, body: any) {
   }
   await svc.RoundReceipt.update(receipt.id, { status: 'done', game: r.game, skill, items_total: total, items_credit: credit, verification: g.verification });
   await recomputeSkill(svc, me.email, skill);
+  try { await rebuildLeafStates(svc, me.email); } catch (e) { console.error('leaf rebuild failed (ignored)', e); }
   return { duplicate: false, observed_pct: Math.round((100 * credit) / total), verification: g.verification, ...(await readSkillStates(svc, me.email)) };
 }
 
@@ -212,7 +215,27 @@ async function verifyLeafStatesAction(svc: any, me: any, body: any) {
   return { checked: t.emails.length, total: t.total, next_offset: t.next_offset, nondeterministic, mismatched, results };
 }
 
+// Learner Skill Map (Phase 2): the taxonomy tree + the CALLER's own LeafState.
+const MAP_FIELDS = ['correctness', 'confidence', 'verified_rounds', 'attested_rounds', 'unattributed_rounds', 'legacy_rounds', 'last_verified_at', 'last_evidence_at'];
+async function getSkillMap(svc: any, me: any) {
+  let rows = (await pageAll(svc.LeafState, { user_email: me.email })) || [];
+  if (!rows.length) { await rebuildLeafStates(svc, me.email); rows = (await pageAll(svc.LeafState, { user_email: me.email })) || []; }
+  const now = Date.now();
+  const byNode = new Map(rows.map((r: any) => [r.node_id, r]));
+  const node = (n: any) => {
+    const r: any = byNode.get(n.id);
+    const ev = r ? { ...Object.fromEntries(MAP_FIELDS.map((f) => [f, r[f] ?? null])), freshness: freshnessFor(r.last_evidence_at, now) } : null;
+    return { id: n.id, label: n.label, state: n.state, evidence: ev };
+  };
+  const groups = childrenOf('english').map((g) => ({
+    id: g.id, label: g.label,
+    areas: childrenOf(g.id).map((a) => ({ ...node(a), leaves: childrenOf(a.id).map(node) })),
+  }));
+  return { taxonomy_version: TAXONOMY_VERSION, groups };
+}
+
 const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = {
+  getSkillMap,
   submitEvidence, submitReward, getSkillState, rebuild, verify,
   rebuildLeafStates: rebuildLeafStatesAction, verifyLeafStates: verifyLeafStatesAction,
 };
