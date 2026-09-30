@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Play, ArrowRight } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
 import LearnerProfile from "@/components/profile/LearnerProfile";
-// Skill Map v2 is being redesigned (web layout) — rolled back 2026-09-30 until Tee approves the new design.
-// import SkillMap from "@/components/profile/skillmap/SkillMap";
+import SkillMap from "@/components/profile/skillmap/SkillMap";
 
 // skillStates: the RAW server SkillState rows from MissionControl's
 // useSkillState (null while loading). Passed through untouched.
@@ -29,7 +28,7 @@ export default function HeroCard({ accent, accentGlow, onContinue, skillStates, 
         </h2>
 
         <div className="relative mt-3">
-          <LearnerProfile skillStates={skillStates} error={skillStateError} />
+          <SkillMap fallback={<LearnerProfile skillStates={skillStates} error={skillStateError} />} />
         </div>
         <button
           onClick={onContinue}
