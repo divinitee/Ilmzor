@@ -1,0 +1,155 @@
+{
+  "name": "LeafState",
+  "type": "object",
+  "description": "Skill Intelligence SHADOW state (Phase 1). DERIVED standing of one learner at one taxonomy node (usually a leaf; area rows hold only unattributed/legacy activity). Rebuilt from the immutable ledgers (WordAttempt, GrammarAttempt, AiGradedItem, legacy RewardEvent) by base44/shared/leafStateEngine.ts via the admin-only progressApi actions rebuildLeafStates / verifyLeafStates. NOT read by any learner-facing path and NOT a replacement for SkillState yet. See docs/skill-intelligence-architecture.md.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "node_id": {
+      "type": "string",
+      "description": "Stable taxonomy node id from base44/shared/skillTaxonomy.js (e.g. vocabulary.form_and_meaning, grammar.tenses)."
+    },
+    "node_kind": {
+      "type": "string",
+      "description": "leaf | area | group | root"
+    },
+    "node_state": {
+      "type": "string",
+      "description": "LIVE | COMING_SOON at derivation time."
+    },
+    "taxonomy_version": {
+      "type": "number",
+      "description": "TAXONOMY_VERSION used for this derivation."
+    },
+    "activity_map_version": {
+      "type": "number",
+      "description": "ACTIVITY_MAP_VERSION used for this derivation."
+    },
+    "classifier_version": {
+      "type": "number",
+      "description": "CLASSIFIER_VERSION used for this derivation."
+    },
+    "leaf_state_version": {
+      "type": "number",
+      "description": "LEAF_STATE_VERSION used for this derivation."
+    },
+    "correctness": {
+      "type": "number",
+      "description": "0-100 over the newest N verified, targeted rounds on this node (item-weighted). NULL when there is no verified evidence - never 0 by default. Not mastery."
+    },
+    "confidence": {
+      "type": "string",
+      "description": "low | medium | high from verified round count; null without verified evidence."
+    },
+    "freshness": {
+      "type": "string",
+      "description": "fresh | stale | cold from the last verified evidence at computed_at; re-derive on read."
+    },
+    "verified_rounds": {
+      "type": "number",
+      "description": "Rounds with server-verified, targeted evidence on a LIVE leaf."
+    },
+    "verified_items": {
+      "type": "number",
+      "description": "Items behind verified_rounds."
+    },
+    "items_in_window": {
+      "type": "number",
+      "description": "Items inside the correctness window."
+    },
+    "attested_rounds": {
+      "type": "number",
+      "description": "Client-attested rounds - activity only, never progress or mastery."
+    },
+    "attested_items": {
+      "type": "number",
+      "description": "Client-attested items."
+    },
+    "retained_items": {
+      "type": "number",
+      "description": "Server-verified items on a COMING_SOON leaf - kept, not shown."
+    },
+    "incidental_items": {
+      "type": "number",
+      "description": "Declared co-measured evidence from another activity - never progress or mastery."
+    },
+    "unattributed_items": {
+      "type": "number",
+      "description": "Area rows only: items whose leaf cannot be determined without guessing (e.g. historic usage rows without bank)."
+    },
+    "unattributed_rounds": {
+      "type": "number",
+      "description": "Area rows only: rounds behind unattributed_items."
+    },
+    "legacy_rounds": {
+      "type": "number",
+      "description": "Area rows only: pre-VT-6 RewardEvent rounds (legacy tier)."
+    },
+    "legacy_items": {
+      "type": "number",
+      "description": "Area rows only: items behind legacy_rounds."
+    },
+    "verification_profile": {
+      "type": "object",
+      "description": "Item counts by verification: server_graded / server_ai / client_attested / unknown."
+    },
+    "evidence_profile": {
+      "type": "object",
+      "description": "Verified items by_mode, by_level and by_support."
+    },
+    "cells": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Progress-cell INPUTS (level x mode) from verified targeted evidence: items, credit, rounds, distinct_days_utc, first_at, last_at. Cell state (not started / emerging / demonstrated / secured) is NOT decided here."
+    },
+    "first_verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_evidence_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "fingerprint": {
+      "type": "string",
+      "description": "FNV-1a hash of the comparable fields; verifyLeafStates compares it."
+    },
+    "computed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_email",
+    "node_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

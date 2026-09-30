@@ -48,6 +48,40 @@
         "client_attested"
       ],
       "description": "How `correct` was decided."
+    },
+    "given": {
+      "type": "string",
+      "description": "The learner's answer, for server-graded items (spelling: the first attempt). Absent on older rows."
+    },
+    "bank": {
+      "type": "string",
+      "description": "Activity bank/mode key (e.g. spelling:typing, usage:collocation_match). Skill Intelligence enrichment; absent on rows written before 2026-09-30."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "recognise",
+        "construct",
+        "produce"
+      ],
+      "description": "Canonical response mode from base44/shared/skillActivityMap.js at write time (never client-supplied). Informational: classifyEvidence re-derives it."
+    },
+    "support": {
+      "type": "string",
+      "enum": [
+        "none",
+        "hint",
+        "unknown"
+      ],
+      "description": "Client-reported support used on this item (hint = learner opened help). Can only lower a claim."
+    },
+    "taxonomy_version": {
+      "type": "number",
+      "description": "TAXONOMY_VERSION of base44/shared/skillTaxonomy.js when the row was written."
+    },
+    "activity_map_version": {
+      "type": "number",
+      "description": "ACTIVITY_MAP_VERSION of base44/shared/skillActivityMap.js when the row was written."
     }
   },
   "required": [

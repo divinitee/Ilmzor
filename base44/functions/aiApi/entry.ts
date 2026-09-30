@@ -260,6 +260,11 @@ export default async function (req) {
         item_key: action === 'gradeSentence' ? 'sentence' : str(body.word?.english, 100).toLowerCase().replace(/\s+/g, ' ').trim(),
         word_id: str(body.word_id, 40) || undefined,
         score: Math.round(parts.reduce((a, b) => a + b, 0) / 3),
+        // Skill Intelligence: keep the rubric's sub-scores, not just the average.
+        sub_scores: action === 'gradeSentence'
+          ? { grammar: (result as any).grammar, relevance: (result as any).relevance, creativity: (result as any).creativity }
+          : { accuracy: (result as any).accuracy, completeness: (result as any).completeness, own_words: (result as any).own_words },
+        rubric: action === 'gradeSentence' ? 'sentence.v1' : 'definition.v1',
       });
     }
     return Response.json({ result, status: publicStatus(next) });

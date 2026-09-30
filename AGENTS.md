@@ -22,6 +22,7 @@ npx skills add base44/skills
 - `docs/grammar-taxonomy.md`: **source of truth** for the grammar taxonomy — 13 domains, 83 branches, concept ownership rulings. Read it before changing anything under `src/lib/adaptiveGrammar/`.
 - `src/lib/adaptiveGrammar/README.md`: the dataset's own item contract and layout.
 - `tools/grammar-placement-sim/README.md`: offline regression harness for the placement engine.
+- `docs/skill-intelligence-architecture.md`: **source of truth** for Skill Intelligence (skill taxonomy, activity → leaf ownership, response modes, evidence classification, shadow leaf state, transfer graph). Read it before changing `base44/shared/skill*.js`, `base44/shared/leafState*`, the `LeafState` entity, or adding a game/bank.
 
 ## Key Files
 

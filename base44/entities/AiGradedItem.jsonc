@@ -34,6 +34,14 @@
     "round_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "sub_scores": {
+      "type": "object",
+      "description": "The grader's rubric sub-scores (0-100 each). sentence: {grammar, relevance, creativity}; definition: {accuracy, completeness, own_words}. `score` stays their average. Absent on rows written before 2026-09-30."
+    },
+    "rubric": {
+      "type": "string",
+      "description": "Rubric id, e.g. sentence.v1 / definition.v1 - which sub-score set sub_scores holds."
     }
   },
   "required": [
