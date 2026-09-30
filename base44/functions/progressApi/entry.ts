@@ -217,8 +217,7 @@ async function verifyLeafStatesAction(svc: any, me: any, body: any) {
 
 // Learner Skill Map (Phase 2): the taxonomy tree + the CALLER's own LeafState.
 const MAP_FIELDS = ['correctness', 'confidence', 'verified_rounds', 'attested_rounds', 'unattributed_rounds', 'legacy_rounds', 'last_verified_at', 'last_evidence_at'];
-async function getSkillMap(svc: any, me0: any, body: any = {}) {
-  const me = me0.role === 'admin' && body.as_email ? { email: body.as_email } : me0; // TEMP
+async function getSkillMap(svc: any, me: any) {
   let rows = (await pageAll(svc.LeafState, { user_email: me.email })) || [];
   if (!rows.length) { await rebuildLeafStates(svc, me.email); rows = (await pageAll(svc.LeafState, { user_email: me.email })) || []; }
   const now = Date.now();
