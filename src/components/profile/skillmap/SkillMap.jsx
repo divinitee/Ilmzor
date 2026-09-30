@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { progressApi } from "@/lib/serverApi";
 import { SKILLSTATE_EVENT } from "@/lib/progress/progressClient";
-import SkillMapAreaNode from "./SkillMapAreaNode";
-import SkillMapLeaf from "./SkillMapLeaf";
-import { AREA_COLOR, useSkillMapCopy } from "@/lib/profile/skillMapCopy";
+import { AreaWeb, LeafWeb, LeafDetail, leafStatus } from "./SkillWeb";
+import { useSkillMapCopy } from "@/lib/profile/skillMapCopy";
 
-const fade = { initial: { opacity: 0, scale: 0.98 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: 1.02 }, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } };
-
-// Learner Skill Map (taxonomy + own LeafState). Renders `fallback` (the old
-// constellation) if the map errors or comes back empty.
+// Learner Skill Map (taxonomy + own LeafState) in the web layout.
+// Level 1: six areas around "Your English". Tap an area → its leaves as a web
+// (Grammar: two rings), tap a leaf → its detail below. Renders `fallback`
+// (the old constellation) if the map errors or comes back empty.
 export default function SkillMap({ fallback }) {
   const [map, setMap] = useState(undefined); // undefined loading, null failed
   const [open, setOpen] = useState(null);
-  const { s, label } = useSkillMapCopy();
+  const [leafId, setLeafId] = useState(null);
+  const reduce = useReducedMotion();
+  const { s } = useSkillMapCopy();
 
   useEffect(() => {
     const load = () => progressApi("getSkillMap", {})
@@ -26,31 +26,30 @@ export default function SkillMap({ fallback }) {
   }, []);
 
   if (map === null) return fallback;
-  if (map === undefined) return <div className="mt-4 h-56 rounded-3xl border border-white/10 bg-white/[0.03] animate-pulse" />;
+  if (map === undefined) return <div className="mt-4 aspect-square max-w-[420px] mx-auto rounded-full border border-white/10 bg-white/[0.03] animate-pulse" />;
   const area = open && map.groups.flatMap((g) => g.areas).find((a) => a.id === open);
+  const leaf = area && area.leaves.find((l) => l.id === leafId);
+
+  const openArea = (id) => {
+    const a = map.groups.flatMap((g) => g.areas).find((x) => x.id === id);
+    // Pre-select the most informative leaf: checked first, then practised.
+    const pick = a?.leaves.find((l) => leafStatus(l) === "verified") || a?.leaves.find((l) => leafStatus(l) === "activity");
+    setLeafId(pick?.id || null);
+    setOpen(id);
+  };
+  const fade = { initial: { opacity: 0, scale: reduce ? 1 : 0.97 }, animate: { opacity: 1, scale: 1 }, exit: { opacity: 0, scale: reduce ? 1 : 1.03 }, transition: { duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] } };
 
   return (
     <AnimatePresence mode="wait" initial={false}>
       {area ? (
-        <motion.div key={area.id} {...fade} className="py-1">
-          <button onClick={() => setOpen(null)} className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground mb-3">
-            <ArrowLeft className="w-3.5 h-3.5" /> {s("back")}
-          </button>
-          <h3 className="text-lg font-bold text-foreground mb-3" style={{ color: AREA_COLOR[area.id] }}>{label(area)}</h3>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {area.leaves.map((l, i) => <SkillMapLeaf key={l.id} leaf={l} color={AREA_COLOR[area.id]} index={i} />)}
-          </div>
+        <motion.div key={area.id} {...fade}>
+          <LeafWeb area={area} selected={leafId} onSelect={setLeafId} onBack={() => setOpen(null)} />
+          <LeafDetail leaf={leaf} area={area} />
         </motion.div>
       ) : (
-        <motion.div key="top" {...fade} className="space-y-4 py-1">
-          {map.groups.map((g) => (
-            <div key={g.id}>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1 text-center">{label(g)}</p>
-              <div className={`grid gap-1 ${g.areas.length > 2 ? "grid-cols-4" : "grid-cols-2 max-w-[220px] mx-auto"}`}>
-                {g.areas.map((a) => <SkillMapAreaNode key={a.id} area={a} onOpen={setOpen} />)}
-              </div>
-            </div>
-          ))}
+        <motion.div key="top" {...fade}>
+          <AreaWeb map={map} onOpen={openArea} />
+          <p className="text-[11px] text-muted-foreground text-center mt-2">{s("tapArea")}</p>
         </motion.div>
       )}
     </AnimatePresence>
