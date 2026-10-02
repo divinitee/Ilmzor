@@ -49,7 +49,7 @@ export default function Pricing() {
         const sub = res?.subscription;
         const kind = subscriptionKind(sub);
         if (["paid", "ending"].includes(kind)) setCurrent(planKey(sub.plan));
-        else if (kind === "free" || kind === "trial") setCurrent("free");
+        else if (kind === "free") setCurrent("free");
       })
       .catch(() => {});
     return () => { alive = false; };
@@ -198,8 +198,8 @@ export default function Pricing() {
                   <>
                     {/* slow gold rays behind the card */}
                     <div
-                      className="vr-spin-xslow pointer-events-none absolute left-1/2 top-[120px] h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full"
-                      style={{ marginLeft: 0, background: "repeating-conic-gradient(from 0deg, rgba(233,201,140,0.07) 0deg 6deg, rgba(233,201,140,0) 6deg 18deg)" }}
+                      className="vr-spin-xslow pointer-events-none absolute h-[560px] w-[560px] rounded-full"
+                      style={{ left: "calc(50% - 280px)", top: "-120px", background: "repeating-conic-gradient(from 0deg, rgba(233,201,140,0.07) 0deg 6deg, rgba(233,201,140,0) 6deg 18deg)" }}
                     />
                     <span className="vr-twinkle absolute left-[12%] top-[38%] h-1 w-1 rounded-full bg-[#F6E7BE]" />
                     <span className="vr-twinkle absolute right-[14%] top-[22%] h-1 w-1 rounded-full bg-[#E9D29A]" style={{ animationDelay: "1.1s" }} />
