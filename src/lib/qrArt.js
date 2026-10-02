@@ -64,3 +64,32 @@ export function qrArtSvg(payload, style = "learner", logoHref = "/virora-mark-v2
     `<image href="${logoHref}" x="${(c + pad - logo / 2).toFixed(2)}" y="${(c + pad - logo / 2).toFixed(2)}" width="${logo.toFixed(2)}" height="${logo.toFixed(2)}"/>` +
     `</svg>`;
 }
+
+// Styled QR as a PNG Blob, for "save QR image" (paying on the same phone:
+// save, then pick it from the gallery in the bank app). The logo is inlined
+// as a data URI because an SVG drawn into a canvas can't load outside files.
+export async function qrArtPng(payload, style = "learner", size = 1024) {
+  let logo = "";
+  try {
+    const txt = await (await fetch("/virora-mark-v2.svg")).text();
+    logo = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(txt)))}`;
+  } catch { /* no logo is fine: error correction H covers the gap */ }
+  const svg = qrArtSvg(payload, style, logo || "data:,")
+    .replace('width="100%" height="100%"', `width="${size}" height="${size}"`);
+  const url = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }));
+  try {
+    const img = await new Promise((resolve, reject) => {
+      const i = new Image();
+      i.onload = () => resolve(i);
+      i.onerror = reject;
+      i.src = url;
+    });
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    canvas.getContext("2d").drawImage(img, 0, 0, size, size);
+    return await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
