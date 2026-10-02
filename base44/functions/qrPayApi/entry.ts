@@ -197,10 +197,7 @@ async function submit(svc: any, me: any, body: any) {
     submitted_at: nowIso(),
   });
 
-  // Tell the admin. Never fail the student's submit over the email.
-  try {
-    await svc._integrations?.Core?.SendEmail; // no-op guard for older SDKs
-  } catch { /* ignore */ }
+  // The admin email is sent by the router after this returns.
   return { payment: studentView(updated), notify: true };
 }
 
