@@ -422,6 +422,7 @@ export default function AdminDashboard() {
         ) : (
           <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
             {/* Users table */}
+            {(tab === "subs" || tab === "users") && <PlanLegend />}
             {tab === "users" && (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -561,7 +562,6 @@ export default function AdminDashboard() {
             )}
 
             {/* Subscriptions table */}
-            {(tab === "subs" || tab === "users") && <PlanLegend />}
             {tab === "subs" && (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
