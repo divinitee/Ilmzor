@@ -86,15 +86,27 @@ function leafPoints(leaves) {
     : { leaf: l, ...polar(-90 + 180 / outer + (360 * (i - inner)) / outer, 43) });
 }
 
-function Spokes({ pts, colorOf, litOf, reduce }) {
+// Spokes start at the core's edge and stop short of each node, so lines never
+// run through the labels (labels sit under the orb, so nodes above the centre
+// need a longer gap than nodes beside or below it).
+function trim(p, coreR, labelGap, orbGap) {
+  const dx = p.x - 50, dy = p.y - 50, len = Math.hypot(dx, dy) || 1;
+  const ux = dx / len, uy = dy / len;
+  const gap = p.y < 46 ? labelGap : orbGap;
+  const end = Math.max(coreR + 2, len - gap);
+  return { x1: 50 + ux * coreR, y1: 50 + uy * coreR, x2: 50 + ux * end, y2: 50 + uy * end };
+}
+
+function Spokes({ pts, colorOf, litOf, reduce, coreR = 13, labelGap = 15, orbGap = 6 }) {
   const d = (s) => (reduce ? 0 : s);
   return (
     <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full overflow-visible pointer-events-none">
       <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(239,230,213,0.05)" strokeWidth="0.3" />
       {pts.map((p, i) => {
         const lit = litOf(p);
+        const l = trim(p, coreR, labelGap, orbGap);
         return (
-          <motion.line key={i} x1="50" y1="50" x2={p.x} y2={p.y}
+          <motion.line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2}
             stroke={lit ? colorOf(p) : "rgba(239,230,213,0.25)"} strokeWidth={lit ? 0.45 : 0.25}
             strokeDasharray={lit ? undefined : "0.8 1.6"}
             initial={{ pathLength: reduce ? 1 : 0, opacity: 0 }} animate={{ pathLength: 1, opacity: lit ? 0.7 : 0.45 }}
@@ -172,7 +184,7 @@ export function LeafWeb({ area, selected, onSelect, onBack }) {
   return (
     <div className="relative w-full max-w-[420px] mx-auto aspect-square mb-10">
       <Glow />
-      <Spokes pts={pts} reduce={reduce} colorOf={() => color} litOf={(p) => ["verified", "activity"].includes(leafStatus(p.leaf))} />
+      <Spokes pts={pts} reduce={reduce} coreR={two ? 11 : 14} labelGap={9} orbGap={4} colorOf={() => color} litOf={(p) => ["verified", "activity"].includes(leafStatus(p.leaf))} />
       <Core size={two ? "22%" : "28%"} onClick={onBack} label={s("back")}>
         <span className="text-[11px] md:text-xs font-bold leading-tight px-1.5" style={{ color }}>{label(area)}</span>
         <span className="mt-0.5 text-[8.5px] text-muted-foreground">← {s("back")}</span>
