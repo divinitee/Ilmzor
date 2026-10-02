@@ -34,6 +34,24 @@
     },
     "price_uzs_vip_yearly": {
       "type": "number"
+    },
+    "tg_admin_chat_id": {
+      "type": "string",
+      "description": "The ONE Telegram chat allowed to approve/reject via the payments bot. Set by the /start <code> link flow, never typed in."
+    },
+    "tg_link_code": {
+      "type": "string",
+      "description": "One-time code shown on /admin-qr-payments to link the admin's Telegram. Cleared once used."
+    },
+    "tg_link_expires_at": {
+      "type": "string"
+    },
+    "tg_webhook_secret": {
+      "type": "string",
+      "description": "Random secret Telegram sends back in X-Telegram-Bot-Api-Secret-Token. Requests without it are dropped."
+    },
+    "tg_bot_username": {
+      "type": "string"
     }
   },
   "required": [],
