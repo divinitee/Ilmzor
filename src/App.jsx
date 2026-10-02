@@ -35,6 +35,8 @@ import Grammar from '@/pages/Grammar';
 import GrammarAssessment from '@/pages/GrammarAssessment';
 import AdminWipeUsers from '@/pages/AdminWipeUsers';
 import AdminPayments from '@/pages/AdminPayments';
+import QrPayment from '@/pages/QrPayment';
+import AdminQrPayments from '@/pages/AdminQrPayments';
 import PaymentComplete from '@/pages/PaymentComplete';
 import Onboarding from '@/pages/Onboarding';
 import LessonRunner from '@/pages/LessonRunner';
@@ -105,6 +107,8 @@ const AuthenticatedApp = () => {
         <Route path="/grammar/assessment" element={<GrammarAssessment />} />
         <Route path="/admin-wipe-users" element={<AdminWipeUsers />} />
         <Route path="/admin-payments" element={<AdminPayments />} />
+        <Route path="/pay/qr" element={<QrPayment />} />
+        <Route path="/admin-qr-payments" element={<AdminQrPayments />} />
         <Route path="/developer" element={<Developer />} />
         <Route path="/taskboard" element={<Taskboard />} />
         <Route path="/taskboard/:taskCode" element={<Taskboard />} />
