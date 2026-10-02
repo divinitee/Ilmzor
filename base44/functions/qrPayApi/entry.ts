@@ -42,7 +42,7 @@ const botToken = () => secrets.get('VIRORA_payment_BOT_tg') || '';
 // ------------------------------------------------------------- settings
 
 const SETTINGS_FIELDS = [
-  'qr_enabled', 'qr_image_url', 'recipient_name', 'telegram_handle', 'activation_hours',
+  'qr_enabled', 'qr_image_url', 'qr_payload', 'recipient_name', 'telegram_handle', 'activation_hours',
   'price_uzs_learner_monthly', 'price_uzs_learner_yearly', 'price_uzs_vip_monthly', 'price_uzs_vip_yearly',
 ];
 
@@ -55,7 +55,7 @@ const priceOf = (s: any, plan: string, cycle: string) => {
 // scan, and a price for every plan/cycle the pricing page offers.
 function readiness(s: any) {
   if (!s) return false;
-  if (!s.qr_enabled || !s.qr_image_url) return false;
+  if (!s.qr_enabled || (!s.qr_image_url && !s.qr_payload)) return false;
   return PLANS.every((p) => CYCLES.every((c) => priceOf(s, p, c) > 0));
 }
 
@@ -158,7 +158,13 @@ async function start(svc: any, me: any, body: any) {
 
   return {
     payment: studentView(payment),
-    qr: { image_url: settings.qr_image_url, recipient_name: clean(settings.recipient_name) },
+    qr: {
+      image_url: settings.qr_image_url || '',
+      // The raw text inside the bank QR. The page redraws it in the plan's
+      // style; the money goes wherever this text says, so it is admin-set only.
+      payload: settings.qr_payload || '',
+      recipient_name: clean(settings.recipient_name),
+    },
     config: publicConfig(settings),
   };
 }
@@ -224,6 +230,10 @@ async function saveSettings(svc: any, me: any, body: any) {
       const url = String(v || '').trim();
       if (url && !/^https:\/\//.test(url)) throw new ApiError(400, 'qr_url_must_be_https');
       patch[k] = url.slice(0, 1000);
+    } else if (k === 'qr_payload') {
+      const p = String(v || '').trim();
+      if (p.length > 1000 || /[\r\n]/.test(p)) throw new ApiError(400, 'bad_qr_payload');
+      patch[k] = p;
     } else if (k === 'telegram_handle') {
       patch[k] = clean(v, 64).replace(/^@/, '');
     } else {
