@@ -509,7 +509,7 @@ export default function QrPayment() {
   const ctx = { preview, pickFile, submit, sending, error, hoursLine };
 
   return (
-    <div className="relative min-h-screen overflow-hidden px-4 py-6 text-white sm:py-10" style={{ background: `${PAGE_BG[k]}, ${PAGE_BASE[k]}`, backgroundColor: PAGE_BASE[k], fontFamily: "inherit" }}>
+    <div className="relative min-h-screen overflow-hidden px-4 py-6 text-white sm:py-10" style={{ background: `${PAGE_BG[k]}, ${PAGE_BASE[k]}` }}>
       {k === "vip" && (
         <>
           {/* spotlight from above + watermark V */}
