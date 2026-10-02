@@ -23,6 +23,24 @@ import {
 import AdminPinGate from "@/components/admin/AdminPinGate";
 import { isUnlockedThisSession } from "@/lib/adminPin";
 import BetaBadge from "@/components/BetaBadge";
+import { PLAN_THEME, planKey } from "@/lib/planTheme";
+import { PlanDot } from "@/components/payments/MemberCard";
+
+// Plan colour of a subscription row: blue = free (also trial / unpaid /
+// pending), purple = Learner, gold = VIP. Only real money earns a colour.
+const planOfSub = (x) => (x && isPaying(x) ? planKey(x.plan) : "free");
+
+function PlanLegend() {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 px-4 py-2.5 text-[11px] font-semibold text-muted-foreground">
+      {["free", "learner", "vip"].map((k) => (
+        <span key={k} className="inline-flex items-center gap-1.5">
+          <PlanDot plan={k} size={9} /> {PLAN_THEME[k].label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 const STR = {
   uz: {
@@ -282,6 +300,21 @@ export default function AdminDashboard() {
     { label: s.trialSubs, value: trialCount, icon: Gift, color: "from-sky-500 to-cyan-500" },
   ];
 
+  // Each user's plan colour, matched the same way the server matches a
+  // subscription to a user (phone = email, else created_by_id). A paying row
+  // wins over a free/trial one.
+  const userPlan = (() => {
+    const byKey = new Map();
+    for (const x of subs) {
+      const k = planOfSub(x);
+      for (const id of [String(x.phone || "").toLowerCase(), x.created_by_id].filter(Boolean)) {
+        const prev = byKey.get(id);
+        if (!prev || prev === "free" || (prev === "learner" && k === "vip")) byKey.set(id, k);
+      }
+    }
+    return (u) => byKey.get(String(u.email || "").toLowerCase()) || byKey.get(u.id) || "free";
+  })();
+
   const filteredUsers = users.filter((u) =>
     !query || `${resolveUserName(u)} ${u.full_name || ""} ${u.email || ""}`.toLowerCase().includes(query.toLowerCase())
   );
@@ -408,7 +441,12 @@ export default function AdminDashboard() {
                     )}
                     {filteredUsers.map((u) => (
                       <tr key={u.id} className="border-t border-border hover:bg-muted/30">
-                        <td className="px-4 py-3 font-medium text-foreground">{resolveUserName(u) || "—"}</td>
+                        <td className="px-4 py-3 font-medium text-foreground">
+                          <span className="inline-flex items-center gap-2">
+                            <PlanDot plan={userPlan(u)} size={10} />
+                            {resolveUserName(u) || "—"}
+                          </span>
+                        </td>
                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{u.email || "—"}</td>
                         <td className="px-4 py-3">{roleBadge(u)}</td>
                         <td className="px-4 py-3 text-muted-foreground hidden md:table-cell">
@@ -523,6 +561,7 @@ export default function AdminDashboard() {
             )}
 
             {/* Subscriptions table */}
+            {(tab === "subs" || tab === "users") && <PlanLegend />}
             {tab === "subs" && (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -544,7 +583,10 @@ export default function AdminDashboard() {
                     {filteredSubs.map((x) => (
                       <tr key={x.id} className="border-t border-border hover:bg-muted/30">
                         <td className="px-4 py-3">
-                          <p className="font-medium text-foreground">{x.student_name || "—"}</p>
+                          <p className="inline-flex items-center gap-2 font-medium text-foreground">
+                            <PlanDot plan={planOfSub(x)} size={10} />
+                            {x.student_name || "—"}
+                          </p>
                           <p className="text-xs text-muted-foreground sm:hidden">{x.plan || "—"}</p>
                         </td>
                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell">{x.plan || "—"}</td>
