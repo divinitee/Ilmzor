@@ -1,0 +1,106 @@
+{
+  "name": "ManualPayment",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "The paying user's id. Server-written from the session (qrPayApi), never from the payload."
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "string",
+      "enum": [
+        "learner",
+        "vip"
+      ]
+    },
+    "billing_cycle": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "yearly"
+      ],
+      "default": "monthly"
+    },
+    "amount_uzs": {
+      "type": "number",
+      "description": "So'm amount the student was told to pay, copied server-side from PaymentSettings when the payment was started. This is the price they locked in."
+    },
+    "payment_code": {
+      "type": "string",
+      "description": "VR-xxxxxx code the student writes in the transfer comment so the admin can match money to account."
+    },
+    "receipt_uri": {
+      "type": "string",
+      "description": "Private file URI of the uploaded receipt screenshot (UploadPrivateFile). Viewable only through a short-lived signed URL."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "awaiting_receipt",
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "awaiting_receipt",
+      "description": "awaiting_receipt = QR shown, no receipt yet \u00b7 pending = receipt submitted, waiting for admin \u00b7 approved = admin confirmed money arrived and activated the subscription \u00b7 rejected = admin found no matching payment."
+    },
+    "submitted_at": {
+      "type": "string"
+    },
+    "reviewed_at": {
+      "type": "string"
+    },
+    "reviewed_by": {
+      "type": "string"
+    },
+    "admin_note": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "subscription_id": {
+      "type": "string",
+      "description": "StudentSubscription row activated by the approval."
+    }
+  },
+  "required": [
+    "user_id",
+    "plan",
+    "billing_cycle",
+    "payment_code"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
