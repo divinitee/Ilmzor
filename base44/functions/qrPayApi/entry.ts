@@ -1,4 +1,9 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
+import { secrets } from 'base44:runtime';
+import {
+  PLANS, CYCLES, ApiError, clean, nowIso, loadSettings, reviewPayment,
+  notifyTelegram, tg, randomToken, randomDigits,
+} from '../../shared/qrPayCore.ts';
 
 // qrPayApi: Humo / Uzcard payments by QR code, in so'm, confirmed by hand.
 // (2026-10-02)
@@ -7,42 +12,32 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 //   1. Student picks a plan on /pricing → "start" creates a ManualPayment with
 //      a VR-xxxxxx code and the so'm amount from PaymentSettings.
 //   2. Student scans the QR in their bank app, pays, writes the code in the
-//      comment, uploads the receipt → "submit" marks it pending and emails
-//      the admin.
-//   3. Admin checks the money actually arrived, then "review" approves (which
-//      activates the StudentSubscription) or rejects.
+//      comment, uploads the receipt → "submit" marks it pending, emails the
+//      admin and, if linked, pushes it to the admin's Telegram with
+//      Approve / Reject buttons (base44/functions/telegramPayBot).
+//   3. Admin checks the money actually arrived, then approves (which
+//      activates the StudentSubscription) or rejects — on /admin-qr-payments
+//      or in Telegram. Both go through shared/qrPayCore.reviewPayment.
 //
 // Security rules, same as studentApi:
 //  - Identity always comes from the session (auth.me()), never the payload.
 //  - The amount always comes from PaymentSettings on the server, never the
 //    browser, so a tampered client cannot "start" a 1-so'm VIP payment.
 //  - ManualPayment and PaymentSettings are admin-only for writes (RLS). Only
-//    this function (service role) creates or changes them for students.
+//    this function and telegramPayBot (service role) change them.
 //  - A receipt is never proof on its own. Access is only granted by an admin
 //    pressing Approve after checking their bank, so a fake screenshot buys
 //    nothing.
+//
+// Secrets: TELEGRAM_BOT_TOKEN (optional — Telegram features stay off without
+// it), TG_WEBHOOK_URL (optional override of the bot webhook URL).
 
-const PLAN_NAMES: Record<string, string> = { learner: 'Learner Plan', vip: 'VIP Plan' };
-const PLANS = ['learner', 'vip'];
-const CYCLES = ['monthly', 'yearly'];
 const MAX_OPEN_PER_USER = 3;
 const ADMIN_EMAIL = 'ilmzor.uz@gmail.com';
+const DEFAULT_WEBHOOK_URL = 'https://base44.app/api/apps/6a40f974860993eff3634df0/functions/telegramPayBot';
 
-const nowIso = () => new Date().toISOString();
-const todayUtc = () => new Date().toISOString().slice(0, 10);
-const clean = (v: unknown, n = 120) => String(v ?? '').replace(/[\r\n]+/g, ' ').trim().slice(0, n);
 const displayName = (u: any) => u?.display_name || u?.full_name || u?.email || '';
-const isRealPlan = (sub: any) => !!sub?.plan && !/free/i.test(sub.plan);
-
-class ApiError extends Error {
-  status: number;
-  code: string;
-  constructor(status: number, code: string, message?: string) {
-    super(message || code);
-    this.status = status;
-    this.code = code;
-  }
-}
+const botToken = () => secrets.get('TELEGRAM_BOT_TOKEN') || '';
 
 // ------------------------------------------------------------- settings
 
@@ -50,11 +45,6 @@ const SETTINGS_FIELDS = [
   'qr_enabled', 'qr_image_url', 'recipient_name', 'telegram_handle', 'activation_hours',
   'price_uzs_learner_monthly', 'price_uzs_learner_yearly', 'price_uzs_vip_monthly', 'price_uzs_vip_yearly',
 ];
-
-async function loadSettings(svc: any) {
-  const rows = await svc.PaymentSettings.list('-updated_date', 1);
-  return rows?.[0] || null;
-}
 
 const priceOf = (s: any, plan: string, cycle: string) => {
   const n = Number(s?.[`price_uzs_${plan}_${cycle}`]);
@@ -83,6 +73,21 @@ function publicConfig(s: any) {
   };
 }
 
+// What the admin page may see of the settings row: never the webhook secret.
+function adminSettingsView(s: any) {
+  if (!s) return null;
+  const { tg_webhook_secret: _secret, tg_link_code: _code, ...rest } = s;
+  return rest;
+}
+
+function telegramStatus(s: any) {
+  return {
+    token_set: !!botToken(),
+    linked: !!s?.tg_admin_chat_id,
+    bot_username: s?.tg_bot_username || '',
+  };
+}
+
 // ------------------------------------------------------------- helpers
 
 async function uniqueCode(svc: any) {
@@ -93,24 +98,6 @@ async function uniqueCode(svc: any) {
     if (!clash?.length) return code;
   }
   throw new ApiError(500, 'code_generation_failed');
-}
-
-function addPeriod(fromDate: string, cycle: string) {
-  const d = new Date(`${fromDate}T00:00:00Z`);
-  if (cycle === 'yearly') d.setUTCFullYear(d.getUTCFullYear() + 1);
-  else d.setUTCMonth(d.getUTCMonth() + 1);
-  return d.toISOString().slice(0, 10);
-}
-
-// Same row selection as studentApi.findSub: a live row wins, then newest.
-async function findSub(svc: any, email: string, userId: string) {
-  let rows = await svc.StudentSubscription.filter({ phone: email });
-  if (!rows?.length) rows = await svc.StudentSubscription.filter({ created_by_id: userId });
-  if (!rows?.length) return null;
-  const rank = (s: any) => (s.status === 'active' ? 2 : 0) + (s.dodo_subscription_id ? 1 : 0);
-  return [...rows].sort((a, b) =>
-    rank(b) - rank(a) || String(b.updated_date || '').localeCompare(String(a.updated_date || '')),
-  )[0];
 }
 
 const studentView = (p: any) => ({
@@ -150,8 +137,6 @@ async function start(svc: any, me: any, body: any) {
   const open = (mine || []).filter((p: any) => p.status === 'awaiting_receipt' || p.status === 'pending');
 
   // Reuse an unfinished payment for the same plan instead of piling up codes.
-  // A pending one (receipt sent) is reused too: the student is shown its
-  // status rather than a second code for the same money.
   let payment = open.find((p: any) => p.plan === plan && p.billing_cycle === cycle) || null;
   if (payment && payment.status === 'awaiting_receipt' && payment.amount_uzs !== amount) {
     // The admin changed the price since; refresh it before they pay.
@@ -173,10 +158,7 @@ async function start(svc: any, me: any, body: any) {
 
   return {
     payment: studentView(payment),
-    qr: {
-      image_url: settings.qr_image_url,
-      recipient_name: clean(settings.recipient_name),
-    },
+    qr: { image_url: settings.qr_image_url, recipient_name: clean(settings.recipient_name) },
     config: publicConfig(settings),
   };
 }
@@ -196,9 +178,8 @@ async function submit(svc: any, me: any, body: any) {
     status: 'pending',
     submitted_at: nowIso(),
   });
-
-  // The admin email is sent by the router after this returns.
-  return { payment: studentView(updated), notify: true };
+  // Notifications are sent by the router after this returns.
+  return { payment: studentView(updated), _notify: updated };
 }
 
 async function mine(svc: any, me: any) {
@@ -212,81 +193,20 @@ async function adminList(svc: any, me: any, body: any) {
   requireAdmin(me);
   const status = String(body.status || 'pending');
   const query = ['awaiting_receipt', 'pending', 'approved', 'rejected'].includes(status) ? { status } : {};
-  const rows = await svc.ManualPayment.filter(query, status === 'pending' ? 'submitted_at' : '-updated_date', 200);
+  const sort = status === 'pending' ? 'submitted_at' : '-updated_date';
+  const rows = await svc.ManualPayment.filter(query, sort, status === 'all' ? 2000 : 200);
   return { payments: rows || [] };
 }
 
 async function review(svc: any, me: any, body: any) {
   requireAdmin(me);
-  const id = String(body.payment_id || '');
-  const decision = String(body.decision || '');
-  const note = clean(body.note, 500);
-  if (!id || !['approve', 'reject'].includes(decision)) throw new ApiError(400, 'bad_request');
-
-  const p = await svc.ManualPayment.get(id).catch(() => null);
-  if (!p) throw new ApiError(404, 'not_found');
-  if (p.status === 'approved' || p.status === 'rejected') throw new ApiError(409, 'already_reviewed');
-
-  if (decision === 'reject') {
-    const updated = await svc.ManualPayment.update(p.id, {
-      status: 'rejected', admin_note: note, reviewed_at: nowIso(), reviewed_by: me.email,
-    });
-    return { payment: updated };
-  }
-
-  if (p.status !== 'pending') throw new ApiError(409, 'no_receipt_yet');
-
-  const sub = await findSub(svc, p.user_email, p.user_id);
-
-  // A live card subscription is owned by Dodo's webhooks; editing it by hand
-  // would be overwritten on the next renewal. Sort that one out manually.
-  if (sub && sub.provider === 'dodo' && sub.status === 'active' && !sub.cancelled_at) {
-    throw new ApiError(409, 'has_active_card_subscription');
-  }
-
-  // Paying again while still paid up extends from the current end date, so
-  // an early renewal never eats the days they already paid for.
-  const today = todayUtc();
-  const stillPaid = sub && sub.status === 'active' && !sub.is_trial && isRealPlan(sub)
-    && sub.expires_at && sub.expires_at > today;
-  const from = stillPaid ? String(sub.expires_at).slice(0, 10) : today;
-
-  const patch: Record<string, unknown> = {
-    status: 'active',
-    provider: 'manual',
-    plan: PLAN_NAMES[p.plan],
-    billing_cycle: p.billing_cycle,
-    is_trial: false,
-    expires_at: addPeriod(from, p.billing_cycle),
-    payment_ref: p.payment_code,
-    cancelled_at: '',
-    paused_at: '',
-    paused_days_remaining: null,
-  };
-  if (!sub?.paid_since) patch.paid_since = today;
-
-  const row = sub
-    ? await svc.StudentSubscription.update(sub.id, patch)
-    : await svc.StudentSubscription.create({
-        student_name: p.user_name || p.user_email,
-        phone: p.user_email,
-        ...patch,
-      });
-
-  const updated = await svc.ManualPayment.update(p.id, {
-    status: 'approved',
-    admin_note: note,
-    reviewed_at: nowIso(),
-    reviewed_by: me.email,
-    subscription_id: row?.id || '',
-  });
-  return { payment: updated, subscription: row };
+  return reviewPayment(svc, String(body.payment_id || ''), String(body.decision || ''), String(body.note || ''), me.email);
 }
 
 async function getSettings(svc: any, me: any) {
   requireAdmin(me);
   const s = await loadSettings(svc);
-  return { settings: s, config: publicConfig(s) };
+  return { settings: adminSettingsView(s), config: publicConfig(s), telegram: telegramStatus(s) };
 }
 
 async function saveSettings(svc: any, me: any, body: any) {
@@ -314,7 +234,45 @@ async function saveSettings(svc: any, me: any, body: any) {
   const saved = existing
     ? await svc.PaymentSettings.update(existing.id, patch)
     : await svc.PaymentSettings.create(patch);
-  return { settings: saved, config: publicConfig(saved) };
+  return { settings: adminSettingsView(saved), config: publicConfig(saved), telegram: telegramStatus(saved) };
+}
+
+// Point the bot at telegramPayBot with a fresh secret and hand the admin a
+// one-time code to send to the bot. Whoever sends that code (within 15 min)
+// becomes the only chat allowed to approve.
+async function tgSetup(svc: any, me: any) {
+  requireAdmin(me);
+  const token = botToken();
+  if (!token) throw new ApiError(409, 'bot_token_missing');
+
+  const bot = await tg(token, 'getMe', {}).catch((e) => { throw new ApiError(502, 'bot_token_invalid', e.message); });
+  const secret = randomToken(24);
+  const url = secrets.get('TG_WEBHOOK_URL') || DEFAULT_WEBHOOK_URL;
+  await tg(token, 'setWebhook', {
+    url,
+    secret_token: secret,
+    allowed_updates: ['message', 'callback_query'],
+    drop_pending_updates: true,
+  }).catch((e) => { throw new ApiError(502, 'set_webhook_failed', e.message); });
+
+  const code = randomDigits(6);
+  const patch = {
+    tg_webhook_secret: secret,
+    tg_bot_username: bot?.username || '',
+    tg_link_code: code,
+    tg_link_expires_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
+  };
+  const existing = await loadSettings(svc);
+  const saved = existing ? await svc.PaymentSettings.update(existing.id, patch) : await svc.PaymentSettings.create(patch);
+  return { link_code: code, bot_username: saved.tg_bot_username, telegram: telegramStatus(saved) };
+}
+
+async function tgUnlink(svc: any, me: any) {
+  requireAdmin(me);
+  const existing = await loadSettings(svc);
+  if (!existing) return { telegram: telegramStatus(null) };
+  const saved = await svc.PaymentSettings.update(existing.id, { tg_admin_chat_id: '', tg_link_code: '', tg_link_expires_at: '' });
+  return { telegram: telegramStatus(saved) };
 }
 
 // ------------------------------------------------------------- router
@@ -328,6 +286,8 @@ const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = 
   review,
   getSettings: (svc, me) => getSettings(svc, me),
   saveSettings,
+  tgSetup: (svc, me) => tgSetup(svc, me),
+  tgUnlink: (svc, me) => tgUnlink(svc, me),
 };
 
 Deno.serve(async (req) => {
@@ -343,22 +303,28 @@ Deno.serve(async (req) => {
     const fn = ACTIONS[action];
     if (!fn) return Response.json({ error: 'unknown action', code: 'unknown_action' }, { status: 400 });
 
-    const data = await fn(base44.asServiceRole.entities, me, body);
+    const svc = base44.asServiceRole.entities;
+    const data = await fn(svc, me, body);
 
-    // Admin heads-up on a new receipt. Outside the action so a mail failure
-    // can never undo or fail the student's submission.
-    if (action === 'submit' && data?.payment) {
+    // New receipt: tell the admin by email and Telegram. Outside the action
+    // so a failed notification can never undo the student's submission.
+    if (action === 'submit' && data?._notify) {
+      const p = data._notify;
+      delete data._notify;
       try {
-        const p = data.payment;
         await base44.asServiceRole.integrations.Core.SendEmail({
           to: ADMIN_EMAIL,
           subject: `QR to'lov: ${clean(displayName(me))} — ${p.payment_code}`,
           body: `Yangi QR to'lov cheki yuborildi.\n\n👤 ${clean(displayName(me))}\n📧 ${clean(me.email)}\n📦 ${p.plan} · ${p.billing_cycle}\n💰 ${p.amount_uzs} so'm\n🔖 Kod: ${p.payment_code}\n\nBank ilovangizda tushumni tekshiring, keyin tasdiqlang:\nhttps://virora.space/admin-qr-payments`,
         });
       } catch (e) {
-        console.error('qrPayApi notify failed:', (e as any)?.message);
+        console.error('qrPayApi email failed:', (e as any)?.message);
       }
-      delete data.notify;
+      try {
+        await notifyTelegram(base44, botToken(), await loadSettings(svc), p);
+      } catch (e) {
+        console.error('qrPayApi telegram failed:', (e as any)?.message);
+      }
     }
 
     return Response.json({ ok: true, ...data });
