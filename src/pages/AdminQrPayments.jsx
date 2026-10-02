@@ -213,7 +213,9 @@ function Settings({ onSaved }) {
           ? "QR o‘qildi ✓ To‘lov sahifasida reja ranglarida chiziladi. Saqlashni unutmang."
           : "QR o‘qildi, lekin bu bank to‘lov QR’iga o‘xshamaydi. Tekshirib ko‘ring.");
       } else {
-        setDecodeMsg("QR ichidagi matnni o‘qib bo‘lmadi. Aniqroq rasm yuklang yoki matnni qo‘lda kiriting.");
+        // Never keep the OLD QR's text next to a NEW image: they'd pay different people.
+        set("qr_payload", "");
+        setDecodeMsg("QR ichidagi matnni o‘qib bo‘lmadi. Aniqroq rasm yuklang yoki matnni qo‘lda kiriting. Hozircha rasmning o‘zi ko‘rsatiladi.");
         setShowPayload(true);
       }
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
