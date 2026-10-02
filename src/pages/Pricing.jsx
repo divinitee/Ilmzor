@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, CreditCard, Loader2, Info } from "lucide-react";
+import { ArrowLeft, Check, CreditCard, Loader2, Info, QrCode } from "lucide-react";
+import { qrPayApi } from "@/lib/serverApi";
+import { qrT, formatUzs, METAL_GOLD, METAL_VIOLET, GOLD_TEXT } from "@/lib/qrPay";
 import { motion } from "framer-motion";
 import { useAppLang } from "@/hooks/useAppLang";
 import { PLAN_LIST, formatPrice } from "@/lib/plans";
@@ -10,13 +13,29 @@ import FounderCountdown from "@/components/FounderCountdown";
 import { getCurrentStage, yearlySavingPct } from "@/lib/founderPricing";
 
 export default function Pricing() {
-  const { t } = useAppLang();
+  const { t, lang } = useAppLang();
+  const navigate = useNavigate();
+  const [qrConfig, setQrConfig] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState("learner");
   const [cycle, setCycle] = useState("monthly");
   const [cardLoading, setCardLoading] = useState(false);
   const [cardError, setCardError] = useState("");
 
   const isYearly = cycle === "yearly";
+  const q = (key, vars) => qrT(lang, key, vars);
+
+  // So'm prices for the Humo/Uzcard QR option, set by the admin in
+  // /admin-qr-payments. The QR button shows either way; the so'm line only
+  // once a price exists.
+  useEffect(() => {
+    let alive = true;
+    qrPayApi("config")
+      .then((res) => { if (alive) setQrConfig(res?.config || null); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  const goQr = (planId) => navigate(`/pay/qr?plan=${planId}&cycle=${cycle}`);
   // Card payment via Dodo Payments. The backend function derives the buyer
   // from the authenticated session and builds the checkout — nothing about
   // who is paying is taken from this component, so a tampered client can't
@@ -114,6 +133,16 @@ export default function Pricing() {
           </div>
         </div>
 
+        <div className="mx-auto mb-7 flex max-w-xl items-center gap-3 rounded-2xl border border-[rgba(214,180,108,0.40)] bg-[rgba(139,92,246,0.10)] px-4 py-3.5">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={METAL_GOLD}>
+            <QrCode className="h-5 w-5" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-white">{q("banner_title")}</p>
+            <p className="text-xs leading-5 text-[#CDBFE6]">{q("banner_sub")}</p>
+          </div>
+        </div>
+
         <FounderCountdown className="mb-8" />
 
         <div className="grid items-stretch gap-5 lg:grid-cols-2">
@@ -163,6 +192,11 @@ export default function Pricing() {
                     <span className="text-5xl font-semibold tracking-[-0.045em] text-white">{formatPrice(pPrice)}</span>
                     <span className="pb-1.5 text-sm text-white/40">{pPeriod}</span>
                   </div>
+                  {qrConfig?.prices?.[p.id]?.[cycle] > 0 && (
+                    <p className="mt-1.5 text-[15px] font-bold" style={{ color: GOLD_TEXT }}>
+                      {q("or_uzs", { amount: formatUzs(qrConfig.prices[p.id][cycle]) })} {isYearly ? q("per_year") : q("per_month")}
+                    </p>
+                  )}
                   {isYearly && (
                     <p className="mt-2 text-xs font-medium text-violet-300">
                       {t("pricing.billing_save", { pct: yearlySavingPct() })}
@@ -187,24 +221,36 @@ export default function Pricing() {
                   </ul>
                 </div>
 
-                <Button
-                  type="button"
-                  disabled={cardLoading}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedPlan(p.id);
-                    handleCardCheckout(p.id, cycle);
-                  }}
-                  className={`mt-7 h-12 w-full rounded-xl text-sm font-bold transition-all ${
-                    isVip
-                      ? "bg-amber-300 text-slate-950 hover:bg-amber-200"
-                      : "bg-violet-500 text-white hover:bg-violet-400"
-                  }`}
-                >
-                  {cardLoading && selectedPlan === p.id
-                    ? <><Loader2 className="h-4 w-4 animate-spin" /> {t("pricing.card_loading")}</>
-                    : <><CreditCard className="h-4 w-4" /> {t("pricing.card_btn")}</>}
-                </Button>
+                <div className="mt-7 flex flex-col gap-2.5">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedPlan(p.id);
+                      goQr(p.id);
+                    }}
+                    style={METAL_GOLD}
+                    className="flex min-h-[56px] w-full items-center justify-center gap-2.5 rounded-xl px-4 text-[15px] font-extrabold transition-[filter] hover:brightness-110"
+                  >
+                    <QrCode className="h-5 w-5" />
+                    {q("qr_btn")}
+                  </button>
+                  <Button
+                    type="button"
+                    disabled={cardLoading}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedPlan(p.id);
+                      handleCardCheckout(p.id, cycle);
+                    }}
+                    style={METAL_VIOLET}
+                    className="h-12 w-full rounded-xl text-sm font-bold transition-[filter] hover:brightness-110"
+                  >
+                    {cardLoading && selectedPlan === p.id
+                      ? <><Loader2 className="h-4 w-4 animate-spin" /> {t("pricing.card_loading")}</>
+                      : <><CreditCard className="h-4 w-4" /> {q("card_btn")}</>}
+                  </Button>
+                </div>
               </motion.div>
             );
           })}
@@ -215,8 +261,8 @@ export default function Pricing() {
         )}
 
         <div className="mt-6 flex items-center justify-center gap-2 text-[11px] text-white/35">
-          <CreditCard className="h-3.5 w-3.5" />
-          <span>{t("pricing.payment_note")}</span>
+          <CreditCard className="h-3.5 w-3.5 shrink-0" />
+          <span className="text-center">{q("footer")}</span>
         </div>
 
         <p className="mx-auto mt-10 max-w-xl text-center text-[11px] leading-5 text-white/25">
