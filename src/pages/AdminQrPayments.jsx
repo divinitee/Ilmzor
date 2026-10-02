@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { AlertTriangle, ChevronDown, ChevronUp, Loader2, RefreshCw, Upload } from "lucide-react";
+import { AlertTriangle, ChevronDown, ChevronUp, Download, Loader2, RefreshCw, Send, Upload } from "lucide-react";
 import { qrPayApi } from "@/lib/serverApi";
 import { formatUzs, METAL_GOLD } from "@/lib/qrPay";
 
@@ -31,7 +31,111 @@ const ERRORS = {
   already_reviewed: "Bu to‘lov allaqachon ko‘rib chiqilgan.",
   qr_url_must_be_https: "QR rasm havolasi https:// bilan boshlanishi kerak.",
   forbidden: "Faqat admin uchun.",
+  bot_token_missing: "TELEGRAM_BOT_TOKEN hali Base44 Secrets'ga qo‘shilmagan.",
+  bot_token_invalid: "Bot tokeni ishlamayapti. BotFather'dan yangisini olib, Secrets'da yangilang.",
+  set_webhook_failed: "Telegram webhookni o‘rnatib bo‘lmadi. Qaytadan urinib ko‘ring.",
 };
+
+// Every payment as a CSV, for your own spreadsheet copy of the records.
+const CSV_COLS = [
+  ["payment_code", "Kod"], ["status", "Holat"], ["user_name", "Ism"], ["user_email", "Email"],
+  ["plan", "Reja"], ["billing_cycle", "Davr"], ["amount_uzs", "Summa (so‘m)"],
+  ["created_date", "Yaratilgan"], ["submitted_at", "Chek yuborilgan"], ["reviewed_at", "Ko‘rib chiqilgan"],
+  ["reviewed_by", "Kim"], ["admin_note", "Izoh"], ["user_id", "User ID"], ["id", "Payment ID"],
+];
+function downloadCsv(rows) {
+  const cell = (v) => {
+    const s = String(v ?? "");
+    // Neutralise spreadsheet formulas in user-supplied text.
+    const safe = /^[=+\-@]/.test(s) ? `'${s}` : s;
+    return `"${safe.replace(/"/g, '""')}"`;
+  };
+  const lines = [CSV_COLS.map(([, h]) => cell(h)).join(",")];
+  for (const r of rows) lines.push(CSV_COLS.map(([k]) => cell(r[k])).join(","));
+  const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `virora-qr-tolovlar-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+function TelegramPanel({ tgState, setTgState }) {
+  const [busy, setBusy] = useState(false);
+  const [link, setLink] = useState(null);
+  const [msg, setMsg] = useState("");
+
+  const connect = async () => {
+    setBusy(true);
+    setMsg("");
+    try {
+      const res = await qrPayApi("tgSetup");
+      setLink({ code: res.link_code, bot: res.bot_username });
+      setTgState(res.telegram);
+    } catch (e) {
+      setMsg(ERRORS[e.code] || e.message);
+    }
+    setBusy(false);
+  };
+  const unlink = async () => {
+    setBusy(true);
+    try {
+      const res = await qrPayApi("tgUnlink");
+      setTgState(res.telegram);
+      setLink(null);
+    } catch (e) {
+      setMsg(ERRORS[e.code] || e.message);
+    }
+    setBusy(false);
+  };
+
+  return (
+    <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-sm font-bold">
+          <Send className="h-4 w-4 text-violet-300" /> Telegram bot: chek kelishi bilan tasdiqlash
+        </div>
+        {tgState?.linked ? (
+          <span className="rounded-full bg-violet-500/20 px-2.5 py-0.5 text-[11px] font-bold text-violet-200">
+            Ulangan{tgState.bot_username ? ` · @${tgState.bot_username}` : ""}
+          </span>
+        ) : (
+          <span className="rounded-full bg-[rgba(214,180,108,0.15)] px-2.5 py-0.5 text-[11px] font-bold text-[#E9DDBC]">Ulanmagan</span>
+        )}
+      </div>
+      {!tgState?.token_set && (
+        <p className="text-xs leading-5 text-white/65">
+          Avval Base44 → Settings → Secrets'da <code className="font-mono">TELEGRAM_BOT_TOKEN</code> nomi bilan BotFather bergan tokenni saqlang.
+        </p>
+      )}
+      {link && (
+        <div className="flex flex-col gap-2 rounded-xl border border-[rgba(214,180,108,0.40)] bg-[rgba(139,92,246,0.10)] p-3 text-sm">
+          <span>15 daqiqa ichida shu tugmani bosing (bot ochiladi, “Start” ni bosing):</span>
+          <a href={`https://t.me/${link.bot}?start=${link.code}`} target="_blank" rel="noopener noreferrer"
+            style={METAL_GOLD} className="inline-flex min-h-[44px] items-center justify-center gap-2 self-start rounded-xl px-4 text-sm font-extrabold">
+            <Send className="h-4 w-4" /> @{link.bot} ni ochish
+          </a>
+          <span className="text-xs text-white/60">Yoki botga shu kodni yuboring: <b className="font-mono">{link.code}</b></span>
+        </div>
+      )}
+      <div className="flex flex-wrap items-center gap-2">
+        {tgState?.token_set && (
+          <button type="button" onClick={connect} disabled={busy}
+            className="min-h-[40px] rounded-xl border border-white/15 bg-white/[0.05] px-4 text-[13px] font-bold disabled:opacity-60">
+            {tgState?.linked ? "Qayta ulash" : "Botni ulash"}
+          </button>
+        )}
+        {tgState?.linked && (
+          <button type="button" onClick={unlink} disabled={busy}
+            className="min-h-[40px] rounded-xl border border-white/15 px-4 text-[13px] font-bold text-white/70 disabled:opacity-60">
+            Uzish
+          </button>
+        )}
+        {msg && <span className="text-xs text-rose-200">{msg}</span>}
+      </div>
+    </div>
+  );
+}
 
 const PRICE_FIELDS = [
   ["price_uzs_learner_monthly", "Learner · oylik"],
@@ -48,11 +152,13 @@ function Settings({ onSaved }) {
   const [ready, setReady] = useState(false);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState("");
+  const [tgState, setTgState] = useState(null);
 
   useEffect(() => {
     qrPayApi("getSettings").then((res) => {
       setS(res.settings || { qr_enabled: false });
       setReady(!!res.config?.ready);
+      setTgState(res.telegram || null);
       if (!res.config?.ready) setOpen(true);
     }).catch((e) => setMsg(ERRORS[e.code] || e.message));
   }, []);
@@ -144,6 +250,7 @@ function Settings({ onSaved }) {
               </button>
               {msg && <span className="text-xs text-white/70">{msg}</span>}
             </div>
+            <TelegramPanel tgState={tgState} setTgState={setTgState} />
           </div>
         </div>
       )}
@@ -160,6 +267,18 @@ export default function AdminQrPayments() {
   const [error, setError] = useState("");
   const [rejecting, setRejecting] = useState(null);
   const [note, setNote] = useState("");
+  const [exporting, setExporting] = useState(false);
+
+  const exportCsv = async () => {
+    setExporting(true);
+    try {
+      const res = await qrPayApi("adminList", { status: "all" });
+      downloadCsv(res.payments || []);
+    } catch (e) {
+      setError(ERRORS[e.code] || e.message);
+    }
+    setExporting(false);
+  };
 
   const load = useCallback(async (status = tab) => {
     setLoading(true);
@@ -230,6 +349,10 @@ export default function AdminQrPayments() {
             ))}
             <button type="button" onClick={() => load(tab)} aria-label="Yangilash" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/75">
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+            </button>
+            <button type="button" onClick={exportCsv} disabled={exporting}
+              className="flex min-h-[40px] items-center gap-2 rounded-full border border-white/15 px-3.5 text-[13px] font-bold text-white/80 disabled:opacity-60">
+              {exporting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />} CSV
             </button>
           </div>
         </div>
