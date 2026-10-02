@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -431,4 +431,24 @@
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
+}
+/* ── Plan themes: pricing, membership cards, QR checkout (2026-10-03) ── */
+@keyframes vr-sheen { 0% { transform: translateX(-140%) skewX(-18deg); } 60%, 100% { transform: translateX(320%) skewX(-18deg); } }
+@keyframes vr-spin { to { transform: rotate(360deg); } }
+@keyframes vr-breathe { 0%, 100% { opacity: .55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.04); } }
+@keyframes vr-twinkle { 0%, 100% { opacity: .15; } 50% { opacity: .9; } }
+@keyframes vr-rise { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-220px); opacity: 0; } }
+@keyframes vr-scan { 0% { top: 8%; } 50% { top: 88%; } 100% { top: 8%; } }
+@keyframes vr-pulse-violet { 0%, 100% { box-shadow: 0 0 0 0 rgba(140,102,212,.55); } 50% { box-shadow: 0 0 0 10px rgba(140,102,212,0); } }
+.vr-sheen { animation: vr-sheen 3.8s ease-in-out infinite; }
+.vr-spin-slow { animation: vr-spin 14s linear infinite; }
+.vr-spin-xslow { animation: vr-spin 40s linear infinite; }
+.vr-breathe { animation: vr-breathe 4.5s ease-in-out infinite; }
+.vr-twinkle { animation: vr-twinkle 2.8s ease-in-out infinite; }
+.vr-rise { animation: vr-rise 3.2s ease-in infinite; }
+.vr-scan { animation: vr-scan 3.2s ease-in-out infinite; }
+.vr-pulse-violet { animation: vr-pulse-violet 2s infinite; }
+.vr-serif { font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif; }
+@media (prefers-reduced-motion: reduce) {
+  .vr-sheen, .vr-spin-slow, .vr-spin-xslow, .vr-breathe, .vr-twinkle, .vr-rise, .vr-scan, .vr-pulse-violet { animation: none; }
 }
