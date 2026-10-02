@@ -3,6 +3,36 @@ import { base44 } from "@/api/base44Client";
 import { AlertTriangle, ChevronDown, ChevronUp, Download, Loader2, RefreshCw, Send, Upload } from "lucide-react";
 import { qrPayApi } from "@/lib/serverApi";
 import { formatUzs, METAL_GOLD } from "@/lib/qrPay";
+import jsQR from "jsqr";
+import { qrArtSvg } from "@/lib/qrArt";
+import { PLAN_THEME, planKey } from "@/lib/planTheme";
+import { PlanDot } from "@/components/payments/MemberCard";
+
+// Read the text out of an uploaded QR image, so the checkout can redraw it in
+// each plan's style. Tries the image at a few sizes, and both colourings.
+async function decodeQrFile(file) {
+  const bitmap = await createImageBitmap(file);
+  try {
+    for (const max of [900, 600, 1400, 400]) {
+      const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+      const w = Math.round(bitmap.width * scale);
+      const h = Math.round(bitmap.height * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(bitmap, 0, 0, w, h);
+      const { data } = ctx.getImageData(0, 0, w, h);
+      const hit = jsQR(data, w, h, { inversionAttempts: "attemptBoth" });
+      if (hit?.data) return hit.data;
+    }
+  } finally {
+    bitmap.close?.();
+  }
+  return "";
+}
 
 // Admin: Humo / Uzcard QR payments (approved design, 2026-10-02).
 // Not linked in nav — visit /admin-qr-payments as an admin. Every action goes
@@ -34,6 +64,7 @@ const ERRORS = {
   bot_token_missing: "Bot tokeni (VIRORA_payment_BOT_tg) hali Base44 Secrets'ga qo‘shilmagan.",
   bot_token_invalid: "Bot tokeni ishlamayapti. BotFather'dan yangisini olib, Secrets'da yangilang.",
   set_webhook_failed: "Telegram webhookni o‘rnatib bo‘lmadi. Qaytadan urinib ko‘ring.",
+  bad_qr_payload: "QR matni noto‘g‘ri (bir qatorda, 1000 belgidan oshmasin).",
 };
 
 // Every payment as a CSV, for your own spreadsheet copy of the records.
@@ -163,13 +194,28 @@ function Settings({ onSaved }) {
     }).catch((e) => setMsg(ERRORS[e.code] || e.message));
   }, []);
 
+  const [decodeMsg, setDecodeMsg] = useState("");
+  const [showPayload, setShowPayload] = useState(false);
   const set = (k, v) => setS((prev) => ({ ...prev, [k]: v }));
 
+  // Upload the QR image AND read the payment text inside it. The text is what
+  // the checkout redraws in purple (Learner) and gold (VIP).
   const uploadQr = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
     setBusy(true);
+    setDecodeMsg("");
     try {
+      const payload = await decodeQrFile(file).catch(() => "");
+      if (payload) {
+        set("qr_payload", payload);
+        setDecodeMsg(/^000201/.test(payload)
+          ? "QR o‘qildi ✓ To‘lov sahifasida reja ranglarida chiziladi. Saqlashni unutmang."
+          : "QR o‘qildi, lekin bu bank to‘lov QR’iga o‘xshamaydi. Tekshirib ko‘ring.");
+      } else {
+        setDecodeMsg("QR ichidagi matnni o‘qib bo‘lmadi. Aniqroq rasm yuklang yoki matnni qo‘lda kiriting.");
+        setShowPayload(true);
+      }
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
       set("qr_image_url", file_url);
     } catch (err) {
@@ -216,6 +262,34 @@ function Settings({ onSaved }) {
               <Upload className="h-4 w-4" /> QR rasmini yuklash
               <input type="file" accept="image/*" onChange={uploadQr} className="sr-only" />
             </label>
+            {decodeMsg && <p className="text-center text-[11px] leading-4 text-white/70">{decodeMsg}</p>}
+            {s.qr_payload ? (
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-[11px] font-bold text-white/55">O‘quvchilar ko‘radigan QR — telefon bilan sinang:</p>
+                <div className="flex gap-2">
+                  {["learner", "vip"].map((st) => (
+                    <div key={st} className="flex flex-col items-center gap-1">
+                      <div className="h-24 w-24" dangerouslySetInnerHTML={{ __html: (() => { try { return qrArtSvg(s.qr_payload, st); } catch { return ""; } })() }} />
+                      <span className="flex items-center gap-1 text-[10px] font-bold" style={{ color: PLAN_THEME[st].accent }}>
+                        <PlanDot plan={st} size={7} /> {PLAN_THEME[st].label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            <button type="button" onClick={() => setShowPayload((v) => !v)} className="text-[11px] font-bold text-white/45 underline-offset-2 hover:underline">
+              {showPayload ? "QR matnini yashirish" : "QR matni (ilg‘or)"}
+            </button>
+            {showPayload && (
+              <textarea
+                value={s.qr_payload || ""}
+                onChange={(e) => set("qr_payload", e.target.value.replace(/[\r\n]/g, ""))}
+                rows={4}
+                placeholder="000201..."
+                className={`${input} w-full font-mono text-[10px]`}
+              />
+            )}
           </div>
           <div className="flex flex-col gap-4">
             <label className="flex items-center gap-3 text-sm font-bold">
@@ -373,12 +447,15 @@ export default function AdminQrPayments() {
             {!loading && rows.map((p) => (
               <div key={p.id} className={`${cols} border-t border-white/[0.08] px-5 py-4 text-sm`}>
                 <div className="flex min-w-0 flex-col gap-0.5">
-                  <span className="truncate font-bold">{p.user_name || "—"}</span>
+                  <span className="flex min-w-0 items-center gap-2">
+                    <PlanDot plan={planKey(p.plan)} size={10} />
+                    <span className="truncate font-bold">{p.user_name || "—"}</span>
+                  </span>
                   <span className="truncate text-xs text-white/55">
                     {p.user_email} · {new Date(p.submitted_at || p.created_date).toLocaleString()}
                   </span>
                 </div>
-                <span className="capitalize">{p.plan === "vip" ? "VIP" : "Learner"} · {p.billing_cycle === "yearly" ? "Yillik" : "Oylik"}</span>
+                <span className="font-semibold" style={{ color: PLAN_THEME[planKey(p.plan)].accent }}>{p.plan === "vip" ? "VIP" : "Learner"} · {p.billing_cycle === "yearly" ? "Yillik" : "Oylik"}</span>
                 <span className="font-bold">{formatUzs(p.amount_uzs)} so‘m</span>
                 <span className="font-mono font-bold">{p.payment_code}</span>
                 {p.receipt_uri
