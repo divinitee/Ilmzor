@@ -216,7 +216,7 @@ async function verifyLeafStatesAction(svc: any, me: any, body: any) {
 }
 
 // Learner Skill Map (Phase 2): the taxonomy tree + the CALLER's own LeafState.
-const MAP_FIELDS = ['correctness', 'confidence', 'verified_rounds', 'attested_rounds', 'unattributed_rounds', 'legacy_rounds', 'last_verified_at', 'last_evidence_at'];
+const MAP_FIELDS = ['correctness', 'confidence', 'verified_rounds', 'verified_items', 'items_in_window', 'attested_rounds', 'unattributed_rounds', 'legacy_rounds', 'last_verified_at', 'last_evidence_at'];
 async function getSkillMap(svc: any, me: any) {
   let rows = (await pageAll(svc.LeafState, { user_email: me.email })) || [];
   if (!rows.length) { await rebuildLeafStates(svc, me.email); rows = (await pageAll(svc.LeafState, { user_email: me.email })) || []; }
@@ -224,7 +224,7 @@ async function getSkillMap(svc: any, me: any) {
   const byNode = new Map(rows.map((r: any) => [r.node_id, r]));
   const node = (n: any) => {
     const r: any = byNode.get(n.id);
-    const ev = r ? { ...Object.fromEntries(MAP_FIELDS.map((f) => [f, r[f] ?? null])), freshness: freshnessFor(r.last_evidence_at, now) } : null;
+    const ev = r ? { ...Object.fromEntries(MAP_FIELDS.map((f) => [f, r[f] ?? null])), freshness: r.last_verified_at ? freshnessFor(r.last_verified_at, now) : null } : null;
     return { id: n.id, label: n.label, state: n.state, evidence: ev };
   };
   const groups = childrenOf('english').map((g) => ({
