@@ -18,7 +18,7 @@ import { ApiError, loadSettings, reviewPayment, paymentCaption, tg } from '../..
 //  - Button presses are only honoured from the linked admin chat id.
 //  - Link codes are 6 digits, single-use, private chats only, 15-minute TTL.
 //
-// Secret: TELEGRAM_BOT_TOKEN.
+// Secret: VIRORA_payment_BOT_tg (the payments bot token).
 
 const ERR_TEXT: Record<string, string> = {
   already_reviewed: "Bu to'lov allaqachon ko'rib chiqilgan.",
@@ -36,7 +36,7 @@ function sameSecret(a: string, b: string) {
 
 Deno.serve(async (req) => {
   if (req.method !== 'POST') return new Response('POST only', { status: 405 });
-  const token = secrets.get('TELEGRAM_BOT_TOKEN') || '';
+  const token = secrets.get('VIRORA_payment_BOT_tg') || '';
   if (!token) return new Response('bot not configured', { status: 503 });
 
   try {

@@ -31,7 +31,7 @@ const ERRORS = {
   already_reviewed: "Bu to‘lov allaqachon ko‘rib chiqilgan.",
   qr_url_must_be_https: "QR rasm havolasi https:// bilan boshlanishi kerak.",
   forbidden: "Faqat admin uchun.",
-  bot_token_missing: "TELEGRAM_BOT_TOKEN hali Base44 Secrets'ga qo‘shilmagan.",
+  bot_token_missing: "Bot tokeni (VIRORA_payment_BOT_tg) hali Base44 Secrets'ga qo‘shilmagan.",
   bot_token_invalid: "Bot tokeni ishlamayapti. BotFather'dan yangisini olib, Secrets'da yangilang.",
   set_webhook_failed: "Telegram webhookni o‘rnatib bo‘lmadi. Qaytadan urinib ko‘ring.",
 };
@@ -105,7 +105,7 @@ function TelegramPanel({ tgState, setTgState }) {
       </div>
       {!tgState?.token_set && (
         <p className="text-xs leading-5 text-white/65">
-          Avval Base44 → Settings → Secrets'da <code className="font-mono">TELEGRAM_BOT_TOKEN</code> nomi bilan BotFather bergan tokenni saqlang.
+          Avval Base44 → Settings → Secrets'da <code className="font-mono">VIRORA_payment_BOT_tg</code> nomi bilan BotFather bergan tokenni saqlang.
         </p>
       )}
       {link && (
