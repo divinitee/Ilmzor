@@ -92,7 +92,8 @@ function leafPoints(leaves) {
 function trim(p, coreR, labelGap, orbGap) {
   const dx = p.x - 50, dy = p.y - 50, len = Math.hypot(dx, dy) || 1;
   const ux = dx / len, uy = dy / len;
-  const gap = p.y < 46 ? labelGap : orbGap;
+  // only nodes clearly above the centre have their label in the line's path
+  const gap = dy < -0.45 * len ? labelGap : orbGap;
   const end = Math.max(coreR + 2, len - gap);
   return { x1: 50 + ux * coreR, y1: 50 + uy * coreR, x2: 50 + ux * end, y2: 50 + uy * end };
 }
