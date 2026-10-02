@@ -11,6 +11,10 @@
       "type": "string",
       "description": "Public URL of the payment QR image students scan."
     },
+    "qr_payload": {
+      "type": "string",
+      "description": "The raw text inside the bank QR (EMV string decoded from the uploaded image). /pay/qr redraws it in the plan's style. Admin-set only: payments go wherever this text points."
+    },
     "recipient_name": {
       "type": "string",
       "description": "Name shown under the QR so the student can check who they are paying."
