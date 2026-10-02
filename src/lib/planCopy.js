@@ -46,7 +46,7 @@ export const PLAN_COPY = {
     // vip
     v_eyebrow: "VIP · SHAXSIY CHECKOUT",
     v_title: "Eksklyuziv a‘zolik",
-    v_sub: "Bir necha daqiqa — va VIP imkoniyatlarining hammasi siznikI.",
+    v_sub: "Bir necha daqiqa — va VIP imkoniyatlarining hammasi sizniki.",
     v_step1: "Bank ilovangizda QR kodni skanerlang",
     v_step2: "Aynan {amount} so‘m to‘lang, izohga {code} yozing",
     v_step3: "Chek skrinshotini yuklang — qolganini biz qilamiz",
