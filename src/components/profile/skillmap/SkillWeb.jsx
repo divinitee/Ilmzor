@@ -245,7 +245,7 @@ export function LeafDetail({ leaf, area }) {
             <span className="text-2xl font-bold leading-none" style={{ color }}>{ev.correctness}%</span>
           </div>
           <p className="text-[11px] text-foreground/75 mt-1">
-            {(() => { const n = ev.items_in_window || ev.verified_items; if (!n) return null; return n === 1 ? s("basedOn_one") : s("basedOn", { n }); })()} · {s(`conf_${ev.confidence || "low"}`)}
+            {[(() => { const n = ev.items_in_window || ev.verified_items; return !n ? null : n === 1 ? s("basedOn_one") : s("basedOn", { n }); })(), s(`conf_${ev.confidence || "low"}`)].filter(Boolean).join(" · ")}
             {days != null && <> · {days === 0 ? s("checkedToday") : s("checkedDaysAgo", { n: days })}</>}
           </p>
           {(ev.attested_rounds || 0) > 0 && <p className="text-[10.5px] text-muted-foreground mt-1">+ {s("unverified", { n: ev.attested_rounds })}</p>}
