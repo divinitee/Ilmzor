@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, ArrowUp, ChevronRight, Plus, Pencil, Archive, RotateCcw, Trash2, Download, ShieldCheck, ShieldOff,
-  FolderTree, ListChecks, Paperclip, History, AlertTriangle,
+  FolderTree, ListChecks, Paperclip, History, AlertTriangle, Crosshair, ListPlus, X,
 } from "lucide-react";
 import { Button, StatusBadge, PriorityBadge, Tag, ProgressBar, Panel, ActorBadge } from "./ui";
 import StepList, { StepCreateForm, EvidenceForm, EvidenceItem } from "./StepList";
@@ -37,7 +37,7 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
         <div className="mx-auto max-w-[1400px] px-4 py-3 sm:px-6">
           <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1 text-sm">
             <Link to="/taskboard" className="inline-flex items-center gap-1 rounded-[6px] px-1.5 py-0.5 text-slate-400 hover:bg-slate-800 hover:text-white">
-              <ArrowLeft className="h-3.5 w-3.5" /> Taskboard
+              <ArrowLeft className="h-3.5 w-3.5" /> Focus
             </Link>
             {path.map((t, i) => (
               <React.Fragment key={t.id}>
@@ -98,8 +98,35 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
             {parent ? (
               <Button variant="ghost" icon={ArrowUp} onClick={() => navigate(taskUrl(parent))}>Up</Button>
             ) : (
-              <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/taskboard")}>Board</Button>
+              <Button variant="ghost" icon={ArrowLeft} onClick={() => navigate("/taskboard?view=all")}>Backlog</Button>
             )}
+          </div>
+        </div>
+
+        {/* Focus roadmap controls */}
+        {!task.archived && !hiddenByAncestor && task.status !== "complete" && (() => {
+          const road = handlers.roadmap();
+          const pos = road.findIndex((t) => t.id === task.id);
+          return (
+            <div className="mt-4 flex flex-wrap items-center gap-2 rounded-[10px] border border-blue-500/30 bg-blue-500/[0.06] px-4 py-3 text-sm">
+              <Crosshair className="h-4 w-4 text-blue-300" />
+              {pos === 0 ? (
+                <span className="font-semibold text-blue-200">This is your focus right now.</span>
+              ) : pos > 0 ? (
+                <span className="text-slate-200">On your roadmap: <b>Up next #{pos}</b></span>
+              ) : (
+                <span className="text-slate-400">In the backlog.</span>
+              )}
+              <div className="ml-auto flex flex-wrap gap-2">
+                {pos !== 0 && <Button size="sm" variant="primary" icon={Crosshair} disabled={busy} onClick={() => handlers.addToRoadmap(task, true)}>Focus on this now</Button>}
+                {pos < 0 && <Button size="sm" icon={ListPlus} disabled={busy} onClick={() => handlers.addToRoadmap(task)}>Add to Up next</Button>}
+                {pos >= 0 && <Button size="sm" variant="ghost" icon={X} disabled={busy} onClick={() => handlers.removeFromRoadmap(task)}>Back to backlog</Button>}
+              </div>
+            </div>
+          );
+        })()}
+        <div className="hidden">
+          <div>
           </div>
         </div>
 
