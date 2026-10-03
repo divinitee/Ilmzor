@@ -18,7 +18,10 @@ const PRIORITIES = ['critical', 'high', 'medium', 'low'];
 const STEP_STATUSES = ['todo', 'in_progress', 'done', 'failed', 'skipped'];
 const STEP_LABEL: Record<string, string> = { todo: 'To do', in_progress: 'In progress', done: 'Done', failed: 'Failed', skipped: 'Skipped' };
 const EVIDENCE_TYPES = ['note', 'screenshot', 'log', 'api_response', 'test_output', 'file', 'link', 'checkpoint'];
-const TASK_FIELDS = ['title', 'description', 'status', 'priority', 'category', 'project', 'tags', 'due_date', 'depends_on', 'notes', 'launch_blocker', 'order'];
+const TASK_FIELDS = ['title', 'description', 'status', 'priority', 'category', 'project', 'tags', 'due_date', 'depends_on', 'notes', 'launch_blocker', 'order', 'focus_rank'];
+// The Focus roadmap: 1 = now, 2.. = up next. Kept short on purpose (Tee,
+// 2026-10-03: "every new task we complete, 5 new tasks get added").
+const ROADMAP_MAX = 6;
 const STEP_FIELDS = ['title', 'description', 'status', 'expected_result', 'actual_result', 'order'];
 const CATEGORIES = ['Product / Architecture', 'Engineering', 'Design / UX', 'Planning / Strategy', 'Marketing', 'Pricing / Business', 'Research', 'General'];
 
@@ -166,6 +169,7 @@ function cleanTaskPatch(patch: any) {
     else if (k === 'due_date') out.due_date = dateOnly(v);
     else if (k === 'launch_blocker') out.launch_blocker = !!v;
     else if (k === 'order') out.order = Number(v) || 0;
+    else if (k === 'focus_rank') out.focus_rank = Math.max(0, Math.min(99, Math.floor(Number(v) || 0)));
     else out[k] = str(v);
   }
   return out;
@@ -229,6 +233,7 @@ async function updateTask(db: any, actor: string, input: any) {
   const events: any[] = [];
   for (const k of changed) {
     if (k === 'order') continue;
+    if (k === 'focus_rank') { events.push(eventRow(actor, task, { action: 'roadmap', field: k, before: before.focus_rank || 0, after: write.focus_rank, details: roadmapLabel(before.focus_rank, write.focus_rank) })); continue; }
     if (k === 'status') events.push(eventRow(actor, task, { action: 'status_changed', field: k, before: before.status, after: write.status, details: `Status: ${STATUS_LABEL[before.status] || before.status} → ${STATUS_LABEL[write.status]}` }));
     else if (k === 'priority') events.push(eventRow(actor, task, { action: 'priority_changed', field: k, before: before.priority, after: write.priority, details: `Priority: ${before.priority || '—'} → ${write.priority}` }));
     else if (k === 'title') events.push(eventRow(actor, task, { action: 'renamed', field: k, before: before.title, after: write.title, details: `Renamed “${before.title}” → “${write.title}”` }));
@@ -237,6 +242,44 @@ async function updateTask(db: any, actor: string, input: any) {
   }
   if (events.length) await bulk(db.TaskEvent, events);
   return updated || task;
+}
+
+function roadmapLabel(before: unknown, after: unknown) {
+  const b = Number(before) || 0;
+  const a = Number(after) || 0;
+  const where = (n: number) => (n === 1 ? 'Now' : `Up next #${n - 1}`);
+  if (!a) return 'Removed from the Focus roadmap';
+  if (!b) return `Added to the Focus roadmap: ${where(a)}`;
+  return `Roadmap: ${where(b)} → ${where(a)}`;
+}
+
+// Replace the whole Focus roadmap in one go. ids[0] becomes "Now", the rest
+// "Up next" in order; every other task drops back to the backlog (rank 0).
+async function setRoadmap(db: any, actor: string, input: any) {
+  const ids: string[] = [...new Set(list(input.ids))];
+  if (ids.length > ROADMAP_MAX) throw bad(`Keep the roadmap to ${ROADMAP_MAX} tasks or fewer.`);
+  const tasks = await listAll(db.Task);
+  const byId = new Map<string, any>(tasks.map((t: any) => [t.id, t]));
+  for (const id of ids) {
+    const t = byId.get(id);
+    if (!t) throw new ApiError(404, 'Task not found');
+    if (t.archived) throw bad(`${t.task_code} is archived.`);
+  }
+  const want = new Map<string, number>(ids.map((id, i) => [id, i + 1]));
+  const events: any[] = [];
+  for (const t of tasks) {
+    const before = Number(t.focus_rank) || 0;
+    const after = want.get(t.id) || 0;
+    if (before === after) continue;
+    const write: any = { focus_rank: after, last_actor: actor };
+    // Putting something in "Now" means you're working on it.
+    if (after === 1 && ['raw_idea', 'planned'].includes(t.status)) Object.assign(write, { status: 'in_progress' }, statusStamps(t, 'in_progress'));
+    await db.Task.update(t.id, write);
+    events.push(eventRow(actor, t, { action: 'roadmap', field: 'focus_rank', before, after, details: roadmapLabel(before, after) }));
+    if (write.status) events.push(eventRow(actor, t, { action: 'status_changed', field: 'status', before: t.status, after: 'in_progress', details: `Status: ${STATUS_LABEL[t.status]} → In Progress (moved to Now)` }));
+  }
+  if (events.length) await bulk(db.TaskEvent, events);
+  return { roadmap: ids };
 }
 
 async function verifyTask(db: any, actor: string, input: any) {
@@ -514,6 +557,7 @@ const ACTIONS: Record<string, (db: any, actor: string, input: any) => Promise<an
   create_step: createStep,
   update_step: updateStep,
   add_evidence: addEvidence,
+  set_roadmap: setRoadmap,
   import: importData,
 };
 
