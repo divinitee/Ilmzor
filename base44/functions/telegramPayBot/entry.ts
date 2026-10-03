@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
       const cq = update.callback_query;
       const fromId = String(cq.from?.id || '');
       if (!adminChat || fromId !== adminChat) {
-        await tg(token, 'answerCallbackQuery', { callback_query_id: cq.id, text: "Ruxsat yo'q.", show_alert: true });
+        await tg(token, 'answerCallbackQuery', { callback_query_id: cq.id, text: 'Not allowed.', show_alert: true });
         return Response.json({ ok: true });
       }
 
@@ -111,7 +111,7 @@ Deno.serve(async (req) => {
       } catch (e) {
         const code = e instanceof ApiError ? e.code : 'server_error';
         await tg(token, 'answerCallbackQuery', {
-          callback_query_id: cq.id, text: ERR_TEXT[code] || 'Xatolik. Admin sahifasidan urinib ko‘ring.', show_alert: true,
+          callback_query_id: cq.id, text: ERR_TEXT[code] || 'Something went wrong. Try from the admin page.', show_alert: true,
         });
         if (code !== 'already_reviewed') return Response.json({ ok: true });
         current = await svc.ManualPayment.get(paymentId).catch(() => null);
