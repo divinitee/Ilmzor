@@ -49,30 +49,30 @@ const EMERALD = {
 };
 
 const TABS = [
-  { id: "pending", label: "Kutilmoqda" },
-  { id: "approved", label: "Tasdiqlangan" },
-  { id: "rejected", label: "Rad etilgan" },
-  { id: "awaiting_receipt", label: "Chek yuborilmagan" },
+  { id: "pending", label: "Pending" },
+  { id: "approved", label: "Approved" },
+  { id: "rejected", label: "Rejected" },
+  { id: "awaiting_receipt", label: "No receipt yet" },
 ];
 
 const ERRORS = {
-  has_active_card_subscription: "Bu o‘quvchida faol karta (Dodo) obunasi bor. Uni qo‘lda hal qiling.",
-  no_receipt_yet: "Chek hali yuborilmagan.",
-  already_reviewed: "Bu to‘lov allaqachon ko‘rib chiqilgan.",
-  qr_url_must_be_https: "QR rasm havolasi https:// bilan boshlanishi kerak.",
-  forbidden: "Faqat admin uchun.",
-  bot_token_missing: "Bot tokeni (VIRORA_payment_BOT_tg) hali Base44 Secrets'ga qo‘shilmagan.",
-  bot_token_invalid: "Bot tokeni ishlamayapti. BotFather'dan yangisini olib, Secrets'da yangilang.",
-  set_webhook_failed: "Telegram webhookni o‘rnatib bo‘lmadi. Qaytadan urinib ko‘ring.",
-  bad_qr_payload: "QR matni noto‘g‘ri (bir qatorda, 1000 belgidan oshmasin).",
+  has_active_card_subscription: "This student already has an active card (Dodo) subscription. Sort it out manually.",
+  no_receipt_yet: "No receipt has been sent yet.",
+  already_reviewed: "This payment has already been reviewed.",
+  qr_url_must_be_https: "The QR image link must start with https://.",
+  forbidden: "Admins only.",
+  bot_token_missing: "The bot token (VIRORA_payment_BOT_tg) isn't in Base44 Secrets yet.",
+  bot_token_invalid: "The bot token doesn't work. Get a new one from BotFather and update it in Secrets.",
+  set_webhook_failed: "Couldn't set the Telegram webhook. Try again.",
+  bad_qr_payload: "Invalid QR text (one line, max 1000 characters).",
 };
 
 // Every payment as a CSV, for your own spreadsheet copy of the records.
 const CSV_COLS = [
-  ["payment_code", "Kod"], ["status", "Holat"], ["user_name", "Ism"], ["user_email", "Email"],
-  ["plan", "Reja"], ["billing_cycle", "Davr"], ["amount_uzs", "Summa (so‘m)"],
-  ["created_date", "Yaratilgan"], ["submitted_at", "Chek yuborilgan"], ["reviewed_at", "Ko‘rib chiqilgan"],
-  ["reviewed_by", "Kim"], ["admin_note", "Izoh"], ["user_id", "User ID"], ["id", "Payment ID"],
+  ["payment_code", "Code"], ["status", "Status"], ["user_name", "Name"], ["user_email", "Email"],
+  ["plan", "Plan"], ["billing_cycle", "Cycle"], ["amount_uzs", "Amount (UZS)"],
+  ["created_date", "Created"], ["submitted_at", "Receipt sent"], ["reviewed_at", "Reviewed"],
+  ["reviewed_by", "Reviewed by"], ["admin_note", "Note"], ["user_id", "User ID"], ["id", "Payment ID"],
 ];
 function downloadCsv(rows) {
   const cell = (v) => {
@@ -86,7 +86,7 @@ function downloadCsv(rows) {
   const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = `virora-qr-tolovlar-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `virora-qr-payments-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   setTimeout(() => URL.revokeObjectURL(a.href), 2000);
 }
@@ -124,42 +124,42 @@ function TelegramPanel({ tgState, setTgState }) {
     <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-sm font-bold">
-          <Send className="h-4 w-4 text-violet-300" /> Telegram bot: chek kelishi bilan tasdiqlash
+          <Send className="h-4 w-4 text-violet-300" /> Telegram bot: approve receipts as they arrive
         </div>
         {tgState?.linked ? (
           <span className="rounded-full bg-violet-500/20 px-2.5 py-0.5 text-[11px] font-bold text-violet-200">
-            Ulangan{tgState.bot_username ? ` · @${tgState.bot_username}` : ""}
+            Connected{tgState.bot_username ? ` · @${tgState.bot_username}` : ""}
           </span>
         ) : (
-          <span className="rounded-full bg-[rgba(214,180,108,0.15)] px-2.5 py-0.5 text-[11px] font-bold text-[#E9DDBC]">Ulanmagan</span>
+          <span className="rounded-full bg-[rgba(214,180,108,0.15)] px-2.5 py-0.5 text-[11px] font-bold text-[#E9DDBC]">Not connected</span>
         )}
       </div>
       {!tgState?.token_set && (
         <p className="text-xs leading-5 text-white/65">
-          Avval Base44 → Settings → Secrets'da <code className="font-mono">VIRORA_payment_BOT_tg</code> nomi bilan BotFather bergan tokenni saqlang.
+          First save the token from BotFather in Base44 → Settings → Secrets as <code className="font-mono">VIRORA_payment_BOT_tg</code>.
         </p>
       )}
       {link && (
         <div className="flex flex-col gap-2 rounded-xl border border-[rgba(214,180,108,0.40)] bg-[rgba(139,92,246,0.10)] p-3 text-sm">
-          <span>15 daqiqa ichida shu tugmani bosing (bot ochiladi, “Start” ni bosing):</span>
+          <span>Tap this within 15 minutes (the bot opens, then press “Start”):</span>
           <a href={`https://t.me/${link.bot}?start=${link.code}`} target="_blank" rel="noopener noreferrer"
             style={METAL_GOLD} className="inline-flex min-h-[44px] items-center justify-center gap-2 self-start rounded-xl px-4 text-sm font-extrabold">
-            <Send className="h-4 w-4" /> @{link.bot} ni ochish
+            <Send className="h-4 w-4" /> Open @{link.bot}
           </a>
-          <span className="text-xs text-white/60">Yoki botga shu kodni yuboring: <b className="font-mono">{link.code}</b></span>
+          <span className="text-xs text-white/60">Or send the bot this code: <b className="font-mono">{link.code}</b></span>
         </div>
       )}
       <div className="flex flex-wrap items-center gap-2">
         {tgState?.token_set && (
           <button type="button" onClick={connect} disabled={busy}
             className="min-h-[40px] rounded-xl border border-white/15 bg-white/[0.05] px-4 text-[13px] font-bold disabled:opacity-60">
-            {tgState?.linked ? "Qayta ulash" : "Botni ulash"}
+            {tgState?.linked ? "Reconnect" : "Connect bot"}
           </button>
         )}
         {tgState?.linked && (
           <button type="button" onClick={unlink} disabled={busy}
             className="min-h-[40px] rounded-xl border border-white/15 px-4 text-[13px] font-bold text-white/70 disabled:opacity-60">
-            Uzish
+            Disconnect
           </button>
         )}
         {msg && <span className="text-xs text-rose-200">{msg}</span>}
@@ -169,10 +169,10 @@ function TelegramPanel({ tgState, setTgState }) {
 }
 
 const PRICE_FIELDS = [
-  ["price_uzs_learner_monthly", "Learner · oylik"],
-  ["price_uzs_learner_yearly", "Learner · yillik"],
-  ["price_uzs_vip_monthly", "VIP · oylik"],
-  ["price_uzs_vip_yearly", "VIP · yillik"],
+  ["price_uzs_learner_monthly", "Learner · monthly"],
+  ["price_uzs_learner_yearly", "Learner · yearly"],
+  ["price_uzs_vip_monthly", "VIP · monthly"],
+  ["price_uzs_vip_yearly", "VIP · yearly"],
 ];
 
 const input = "w-full rounded-xl border border-white/15 bg-white/[0.05] px-3 py-2.5 text-sm text-white outline-none focus:border-violet-300/60";
@@ -210,12 +210,12 @@ function Settings({ onSaved }) {
       if (payload) {
         set("qr_payload", payload);
         setDecodeMsg(/^000201/.test(payload)
-          ? "QR o‘qildi ✓ To‘lov sahifasida reja ranglarida chiziladi. Saqlashni unutmang."
-          : "QR o‘qildi, lekin bu bank to‘lov QR’iga o‘xshamaydi. Tekshirib ko‘ring.");
+          ? "QR read ✓ The checkout will draw it in each plan's colours. Don't forget to Save."
+          : "QR read, but it doesn't look like a bank payment QR. Double-check it.");
       } else {
         // Never keep the OLD QR's text next to a NEW image: they'd pay different people.
         set("qr_payload", "");
-        setDecodeMsg("QR ichidagi matnni o‘qib bo‘lmadi. Aniqroq rasm yuklang yoki matnni qo‘lda kiriting. Hozircha rasmning o‘zi ko‘rsatiladi.");
+        setDecodeMsg("Couldn't read the text inside the QR. Upload a clearer image or paste the text manually. For now the plain image will be shown.");
         setShowPayload(true);
       }
       const { file_url } = await base44.integrations.Core.UploadFile({ file });
@@ -233,7 +233,7 @@ function Settings({ onSaved }) {
       const res = await qrPayApi("saveSettings", { settings: s });
       setS(res.settings);
       setReady(!!res.config?.ready);
-      setMsg(res.config?.ready ? "Saqlandi. QR to‘lov ishlayapti." : "Saqlandi. QR to‘lov hali o‘chiq: yoqing, QR rasm va barcha narxlarni kiriting.");
+      setMsg(res.config?.ready ? "Saved. QR payments are live." : "Saved. QR payments are still off: tick Enable, add the QR and all four prices.");
       onSaved?.();
     } catch (e) {
       setMsg(ERRORS[e.code] || e.message);
@@ -245,9 +245,9 @@ function Settings({ onSaved }) {
     <div className="rounded-[18px] border border-white/10 bg-white/[0.03]">
       <button type="button" onClick={() => setOpen((o) => !o)} className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left">
         <span className="flex items-center gap-3">
-          <span className="text-sm font-bold">Sozlamalar: QR, narxlar, Telegram</span>
+          <span className="text-sm font-bold">Settings: QR, prices, Telegram</span>
           <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${ready ? "bg-violet-500/20 text-violet-200" : "bg-[rgba(214,180,108,0.15)] text-[#E9DDBC]"}`}>
-            {ready ? "Faol" : "Sozlanmagan"}
+            {ready ? "Live" : "Not set up"}
           </span>
         </span>
         {open ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
@@ -257,17 +257,17 @@ function Settings({ onSaved }) {
           <div className="flex flex-col items-center gap-3">
             <div className="flex h-52 w-52 items-center justify-center overflow-hidden rounded-2xl bg-[#F4F1EA]">
               {s.qr_image_url
-                ? <img src={s.qr_image_url} alt="To‘lov QR kodi" className="h-full w-full object-contain" />
-                : <span className="px-4 text-center text-xs font-bold text-[#3D3A4D]">QR rasm yuklanmagan</span>}
+                ? <img src={s.qr_image_url} alt="Payment QR code" className="h-full w-full object-contain" />
+                : <span className="px-4 text-center text-xs font-bold text-[#3D3A4D]">No QR image uploaded (the QR text is used instead, if set)</span>}
             </div>
             <label className="inline-flex min-h-[40px] cursor-pointer items-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-3.5 text-[13px] font-bold">
-              <Upload className="h-4 w-4" /> QR rasmini yuklash
+              <Upload className="h-4 w-4" /> Upload QR image
               <input type="file" accept="image/*" onChange={uploadQr} className="sr-only" />
             </label>
             {decodeMsg && <p className="text-center text-[11px] leading-4 text-white/70">{decodeMsg}</p>}
             {s.qr_payload ? (
               <div className="flex flex-col items-center gap-2">
-                <p className="text-[11px] font-bold text-white/55">O‘quvchilar ko‘radigan QR — telefon bilan sinang:</p>
+                <p className="text-[11px] font-bold text-white/55">The QR students see — test-scan it with your phone:</p>
                 <div className="flex gap-2">
                   {["learner", "vip"].map((st) => (
                     <div key={st} className="flex flex-col items-center gap-1">
@@ -281,7 +281,7 @@ function Settings({ onSaved }) {
               </div>
             ) : null}
             <button type="button" onClick={() => setShowPayload((v) => !v)} className="text-[11px] font-bold text-white/45 underline-offset-2 hover:underline">
-              {showPayload ? "QR matnini yashirish" : "QR matni (ilg‘or)"}
+              {showPayload ? "Hide QR text" : "QR text (advanced)"}
             </button>
             {showPayload && (
               <textarea
@@ -296,33 +296,33 @@ function Settings({ onSaved }) {
           <div className="flex flex-col gap-4">
             <label className="flex items-center gap-3 text-sm font-bold">
               <input type="checkbox" checked={!!s.qr_enabled} onChange={(e) => set("qr_enabled", e.target.checked)} className="h-5 w-5 accent-violet-500" />
-              QR to‘lovni yoqish
+              Enable QR payments
             </label>
             <div className="grid gap-3 sm:grid-cols-2">
               {PRICE_FIELDS.map(([k, label]) => (
                 <label key={k} className="flex flex-col gap-1.5 text-xs font-bold text-white/70">
-                  {label} (so‘m)
+                  {label} (UZS)
                   <input type="number" min="0" inputMode="numeric" value={s[k] ?? ""} onChange={(e) => set(k, e.target.value)} className={input} />
                 </label>
               ))}
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               <label className="flex flex-col gap-1.5 text-xs font-bold text-white/70">
-                Qabul qiluvchi nomi
+                Recipient name
                 <input value={s.recipient_name || ""} onChange={(e) => set("recipient_name", e.target.value)} className={input} />
               </label>
               <label className="flex flex-col gap-1.5 text-xs font-bold text-white/70">
-                Telegram (@siz)
+                Support Telegram (@handle, optional)
                 <input value={s.telegram_handle || ""} onChange={(e) => set("telegram_handle", e.target.value)} className={input} />
               </label>
               <label className="flex flex-col gap-1.5 text-xs font-bold text-white/70">
-                Odatda necha soatda faollashtirasiz
+                Usual activation time (hours)
                 <input type="number" min="0" value={s.activation_hours ?? ""} onChange={(e) => set("activation_hours", e.target.value)} className={input} />
               </label>
             </div>
             <div className="flex items-center gap-3">
               <button type="button" onClick={save} disabled={busy} style={METAL_GOLD} className="min-h-[44px] rounded-xl px-5 text-sm font-extrabold disabled:opacity-60">
-                {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : "Saqlash"}
+                {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : "Save"}
               </button>
               {msg && <span className="text-xs text-white/70">{msg}</span>}
             </div>
@@ -413,8 +413,8 @@ export default function AdminQrPayments() {
       <div className="mx-auto flex max-w-6xl flex-col gap-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex flex-col gap-1.5">
-            <p className="text-[11px] font-extrabold tracking-[0.16em] text-white/55">ADMIN · FAQAT SIZ KO‘RASIZ</p>
-            <h1 className="text-[28px] font-bold">QR to‘lovlar — tasdiqlash kutilmoqda</h1>
+            <p className="text-[11px] font-extrabold tracking-[0.16em] text-white/55">ADMIN · ONLY YOU CAN SEE THIS</p>
+            <h1 className="text-[28px] font-bold">QR payments (Humo / Uzcard)</h1>
           </div>
           <div className="flex flex-wrap gap-2">
             {TABS.map((tb) => (
@@ -423,7 +423,7 @@ export default function AdminQrPayments() {
                 {tb.label}{tab === tb.id && !loading ? ` · ${rows.length}` : ""}
               </button>
             ))}
-            <button type="button" onClick={() => load(tab)} aria-label="Yangilash" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/75">
+            <button type="button" onClick={() => load(tab)} aria-label="Refresh" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/75">
               <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             </button>
             <button type="button" onClick={exportCsv} disabled={exporting}
@@ -440,11 +440,11 @@ export default function AdminQrPayments() {
         <div className="overflow-x-auto rounded-[18px] border border-white/10">
           <div className="min-w-[900px]">
             <div className={`${cols} bg-white/[0.04] px-5 py-3.5 text-[11px] font-extrabold tracking-[0.12em] text-white/55`}>
-              <span>FOYDALANUVCHI</span><span>REJA</span><span>SUMMA</span><span>KOD</span><span>CHEK</span><span>AMAL</span>
+              <span>STUDENT</span><span>PLAN</span><span>AMOUNT</span><span>CODE</span><span>RECEIPT</span><span>ACTION</span>
             </div>
             {loading && <div className="flex justify-center border-t border-white/[0.08] py-10"><Loader2 className="h-5 w-5 animate-spin text-violet-300" /></div>}
             {!loading && rows.length === 0 && (
-              <p className="border-t border-white/[0.08] px-5 py-10 text-center text-sm text-white/50">Hozircha bo‘sh.</p>
+              <p className="border-t border-white/[0.08] px-5 py-10 text-center text-sm text-white/50">Nothing here yet.</p>
             )}
             {!loading && rows.map((p) => (
               <div key={p.id} className={`${cols} border-t border-white/[0.08] px-5 py-4 text-sm`}>
@@ -457,11 +457,11 @@ export default function AdminQrPayments() {
                     {p.user_email} · {new Date(p.submitted_at || p.created_date).toLocaleString()}
                   </span>
                 </div>
-                <span className="font-semibold" style={{ color: PLAN_THEME[planKey(p.plan)].accent }}>{p.plan === "vip" ? "VIP" : "Learner"} · {p.billing_cycle === "yearly" ? "Yillik" : "Oylik"}</span>
-                <span className="font-bold">{formatUzs(p.amount_uzs)} so‘m</span>
+                <span className="font-semibold" style={{ color: PLAN_THEME[planKey(p.plan)].accent }}>{p.plan === "vip" ? "VIP" : "Learner"} · {p.billing_cycle === "yearly" ? "Yearly" : "Monthly"}</span>
+                <span className="font-bold">{formatUzs(p.amount_uzs)} UZS</span>
                 <span className="font-mono font-bold">{p.payment_code}</span>
                 {p.receipt_uri
-                  ? <button type="button" onClick={() => viewReceipt(p)} className="min-h-[40px] rounded-[10px] border border-white/15 bg-white/[0.05] text-[13px] font-bold">Ko‘rish</button>
+                  ? <button type="button" onClick={() => viewReceipt(p)} className="min-h-[40px] rounded-[10px] border border-white/15 bg-white/[0.05] text-[13px] font-bold">View</button>
                   : <span className="text-xs text-white/40">—</span>}
                 <div className="flex gap-2">
                   {(p.status === "pending" || p.status === "awaiting_receipt") ? (
@@ -469,12 +469,12 @@ export default function AdminQrPayments() {
                       {p.status === "pending" && (
                         <button type="button" disabled={busyId === p.id} onClick={() => decide(p, "approve")} style={EMERALD}
                           className="min-h-[40px] flex-1 rounded-[10px] text-[13px] font-extrabold disabled:opacity-60">
-                          {busyId === p.id ? <Loader2 className="mx-auto h-4 w-4 animate-spin" /> : "Tasdiqlash"}
+                          {busyId === p.id ? <Loader2 className="mx-auto h-4 w-4 animate-spin" /> : "Approve"}
                         </button>
                       )}
                       <button type="button" disabled={busyId === p.id} onClick={() => { setRejecting(p); setNote(""); }}
                         className="min-h-[40px] flex-1 rounded-[10px] border border-[rgba(255,138,122,0.55)] text-[13px] font-bold text-[#FFB4A8] disabled:opacity-60">
-                        Rad etish
+                        Reject
                       </button>
                     </>
                   ) : (
@@ -490,23 +490,23 @@ export default function AdminQrPayments() {
 
         <div className="flex items-start gap-3 rounded-[14px] border border-[rgba(214,180,108,0.30)] bg-[rgba(214,180,108,0.07)] px-[18px] py-4 text-[13px] leading-6 text-[#E9DDBC]">
           <AlertTriangle className="mt-0.5 h-[18px] w-[18px] shrink-0 text-[#D6B46C]" />
-          <span>Tasdiqlashdan oldin: bank ilovangizda shu summa va izohda shu kod bilan tushum borligini tekshiring. “Tasdiqlash” obunani faollashtiradi. Chek rasmi o‘zi dalil emas — faqat bankdagi tushum dalil.</span>
+          <span>Before approving: check your bank app for an incoming payment of this exact amount with this code in the comment. “Approve” activates the plan immediately. The receipt screenshot alone isn't proof — only the money in your bank is.</span>
         </div>
       </div>
 
       {rejecting && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true" aria-labelledby="reject-title">
           <div className="flex w-full max-w-md flex-col gap-4 rounded-2xl border border-white/10 bg-[#11122A] p-6">
-            <h2 id="reject-title" className="text-lg font-bold">{rejecting.payment_code} — rad etish</h2>
+            <h2 id="reject-title" className="text-lg font-bold">Reject {rejecting.payment_code}</h2>
             <label className="flex flex-col gap-1.5 text-xs font-bold text-white/70">
-              O‘quvchiga ko‘rinadigan sabab (ixtiyoriy)
+              Reason the student will see (optional — write it in Uzbek or Russian)
               <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={3} maxLength={500} className={input} />
             </label>
             <div className="flex justify-end gap-2">
-              <button type="button" onClick={() => setRejecting(null)} className="min-h-[40px] rounded-xl border border-white/15 px-4 text-sm font-bold">Bekor qilish</button>
+              <button type="button" onClick={() => setRejecting(null)} className="min-h-[40px] rounded-xl border border-white/15 px-4 text-sm font-bold">Cancel</button>
               <button type="button" onClick={() => decide(rejecting, "reject", note)} disabled={busyId === rejecting.id}
                 className="min-h-[40px] rounded-xl border border-[rgba(255,138,122,0.55)] px-4 text-sm font-bold text-[#FFB4A8]">
-                Rad etish
+                Reject
               </button>
             </div>
           </div>
