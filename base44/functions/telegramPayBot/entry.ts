@@ -24,7 +24,7 @@ const ERR_TEXT: Record<string, string> = {
   already_reviewed: 'This payment has already been reviewed.',
   no_receipt_yet: 'No receipt has been sent yet.',
   has_active_card_subscription: 'This student already has an active card (Dodo) subscription — sort it out manually.',
-  not_found: "To'lov topilmadi.",
+  not_found: 'Payment not found.',
 };
 
 function sameSecret(a: string, b: string) {
