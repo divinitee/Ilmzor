@@ -1,102 +1,106 @@
 {
   "name": "Task",
-  "type": "object",
   "properties": {
-    "task_code": {
-      "type": "string",
-      "description": "Human-readable hierarchical ID: VT-14, VT-14.2, VT-14.2.1. A child's code is its parent's code plus a dot and a number."
+    "archived": {
+      "default": false,
+      "type": "boolean"
     },
-    "parent_id": {
-      "type": "string",
-      "description": "Parent Task.id. Empty for root (big) tasks."
-    },
-    "order": {
-      "type": "integer",
-      "default": 0
-    },
-    "title": {
+    "archived_at": {
+      "format": "date-time",
       "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "completed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "depends_on": {
+      "description": "Task codes this task depends on.",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
     },
     "description": {
       "type": "string"
     },
-    "status": {
-      "type": "string",
-      "enum": [
-        "raw_idea",
-        "planned",
-        "in_progress",
-        "complete"
-      ],
-      "default": "raw_idea"
+    "due_date": {
+      "description": "YYYY-MM-DD",
+      "type": "string"
+    },
+    "focus_rank": {
+      "default": 0,
+      "description": "Position on the Focus roadmap: 1 = the task being worked on now, 2+ = up next in order, 0 = not on the roadmap (backlog).",
+      "type": "integer"
+    },
+    "last_actor": {
+      "type": "string"
+    },
+    "launch_blocker": {
+      "default": false,
+      "type": "boolean"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "order": {
+      "default": 0,
+      "type": "integer"
+    },
+    "parent_id": {
+      "description": "Parent Task.id. Empty for root (big) tasks.",
+      "type": "string"
     },
     "priority": {
-      "type": "string",
+      "default": "medium",
       "enum": [
         "critical",
         "high",
         "medium",
         "low"
       ],
-      "default": "medium"
-    },
-    "category": {
       "type": "string"
     },
     "project": {
       "type": "string"
     },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "due_date": {
-      "type": "string",
-      "description": "YYYY-MM-DD"
-    },
-    "depends_on": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "description": "Task codes this task depends on."
-    },
-    "notes": {
-      "type": "string"
-    },
-    "launch_blocker": {
-      "type": "boolean",
-      "default": false
-    },
-    "archived": {
-      "type": "boolean",
-      "default": false
-    },
-    "archived_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "started_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "completed_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "verified_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "verified_by": {
-      "type": "string"
-    },
     "source": {
       "type": "string"
     },
-    "last_actor": {
+    "started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "status": {
+      "default": "raw_idea",
+      "enum": [
+        "raw_idea",
+        "planned",
+        "in_progress",
+        "complete"
+      ],
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "task_code": {
+      "description": "Human-readable hierarchical ID: VT-14, VT-14.2, VT-14.2.1. A child's code is its parent's code plus a dot and a number.",
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "verified_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "verified_by": {
       "type": "string"
     }
   },
@@ -107,17 +111,7 @@
     "priority"
   ],
   "rls": {
-    "read": {
-      "user_condition": {
-        "role": "admin"
-      }
-    },
     "create": {
-      "user_condition": {
-        "role": "admin"
-      }
-    },
-    "update": {
       "user_condition": {
         "role": "admin"
       }
@@ -126,6 +120,17 @@
       "user_condition": {
         "role": "admin"
       }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
     }
-  }
+  },
+  "type": "object"
 }
