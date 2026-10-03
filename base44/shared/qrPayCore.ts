@@ -129,23 +129,23 @@ const fmtUzs = (n: unknown) => String(Math.round(Number(n) || 0)).replace(/\B(?=
 const esc = (s: unknown) => String(s ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c] as string));
 
 export function paymentCaption(p: any, status?: string) {
-  const plan = `${p.plan === 'vip' ? 'VIP' : 'Learner'} · ${p.billing_cycle === 'yearly' ? 'Yillik' : 'Oylik'}`;
+  const plan = `${p.plan === 'vip' ? 'VIP' : 'Learner'} · ${p.billing_cycle === 'yearly' ? 'Yearly' : 'Monthly'}`;
   const lines = [
-    `🧾 <b>QR to'lov</b> · <code>${esc(p.payment_code)}</code>`,
+    `🧾 <b>QR payment</b> · <code>${esc(p.payment_code)}</code>`,
     `👤 ${esc(p.user_name || '—')}`,
     `📧 ${esc(p.user_email)}`,
     `📦 ${plan}`,
-    `💰 <b>${fmtUzs(p.amount_uzs)} so'm</b>`,
+    `💰 <b>${fmtUzs(p.amount_uzs)} UZS</b>`,
   ];
   if (status) lines.push('', status);
-  else lines.push('', "Paynet'da shu summa va izohda shu kod bilan tushum borligini tekshiring.");
+  else lines.push('', 'Check Paynet for an incoming payment of exactly this amount with this code in the comment.');
   return lines.join('\n');
 }
 
 export const reviewKeyboard = (paymentId: string) => ({
   inline_keyboard: [[
-    { text: '✅ Tasdiqlash', callback_data: `ap:${paymentId}` },
-    { text: '❌ Rad etish', callback_data: `rj:${paymentId}` },
+    { text: '✅ Approve', callback_data: `ap:${paymentId}` },
+    { text: '❌ Reject', callback_data: `rj:${paymentId}` },
   ]],
 });
 

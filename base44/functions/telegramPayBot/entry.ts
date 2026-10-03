@@ -21,9 +21,9 @@ import { ApiError, loadSettings, reviewPayment, paymentCaption, tg } from '../..
 // Secret: VIRORA_payment_BOT_tg (the payments bot token).
 
 const ERR_TEXT: Record<string, string> = {
-  already_reviewed: "Bu to'lov allaqachon ko'rib chiqilgan.",
-  no_receipt_yet: 'Chek hali yuborilmagan.',
-  has_active_card_subscription: "Bu o'quvchida faol karta (Dodo) obunasi bor — qo'lda hal qiling.",
+  already_reviewed: 'This payment has already been reviewed.',
+  no_receipt_yet: 'No receipt has been sent yet.',
+  has_active_card_subscription: 'This student already has an active card (Dodo) subscription — sort it out manually.',
   not_found: "To'lov topilmadi.",
 };
 
@@ -69,10 +69,10 @@ Deno.serve(async (req) => {
           });
           await tg(token, 'sendMessage', {
             chat_id: chatId,
-            text: "✅ Ulandi! Endi har bir yangi QR to'lov cheki shu yerga keladi — tekshirib, tugma bilan tasdiqlaysiz.",
+            text: '✅ Connected! Every new QR payment receipt will arrive here — check your bank, then tap Approve or Reject.',
           });
         } else {
-          await tg(token, 'sendMessage', { chat_id: chatId, text: "Kod noto'g'ri yoki eskirgan. Admin sahifasida yangisini oling." });
+          await tg(token, 'sendMessage', { chat_id: chatId, text: 'That code is wrong or expired. Get a new one on the admin page.' });
         }
         return Response.json({ ok: true });
       }
@@ -80,7 +80,7 @@ Deno.serve(async (req) => {
       if (chatId === adminChat) {
         await tg(token, 'sendMessage', {
           chat_id: chatId,
-          text: "Bot ulangan. Yangi to'lovlar shu yerga keladi. Hammasi: https://virora.space/admin-qr-payments",
+          text: 'Bot connected. New payments arrive here. All payments: https://virora.space/admin-qr-payments',
         });
       } else if (msg.chat?.type === 'private') {
         await tg(token, 'sendMessage', { chat_id: chatId, text: 'Bu VIRORA ichki boti. Savollar uchun: @viroraspace' });
@@ -105,9 +105,9 @@ Deno.serve(async (req) => {
         const res = await reviewPayment(svc, paymentId, decision, '', `telegram:${fromId}`);
         current = res.payment;
         statusLine = decision === 'approve'
-          ? `✅ <b>Tasdiqlandi</b> · obuna ${res.subscription?.expires_at || ''} gacha`
-          : '❌ <b>Rad etildi</b>';
-        await tg(token, 'answerCallbackQuery', { callback_query_id: cq.id, text: decision === 'approve' ? 'Tasdiqlandi ✅' : 'Rad etildi' });
+          ? `✅ <b>Approved</b> · plan active until ${res.subscription?.expires_at || ''}`
+          : '❌ <b>Rejected</b>';
+        await tg(token, 'answerCallbackQuery', { callback_query_id: cq.id, text: decision === 'approve' ? 'Approved ✅' : 'Rejected' });
       } catch (e) {
         const code = e instanceof ApiError ? e.code : 'server_error';
         await tg(token, 'answerCallbackQuery', {
@@ -115,7 +115,7 @@ Deno.serve(async (req) => {
         });
         if (code !== 'already_reviewed') return Response.json({ ok: true });
         current = await svc.ManualPayment.get(paymentId).catch(() => null);
-        statusLine = current?.status === 'approved' ? '✅ <b>Tasdiqlangan</b>' : '❌ <b>Rad etilgan</b>';
+        statusLine = current?.status === 'approved' ? '✅ <b>Already approved</b>' : '❌ <b>Already rejected</b>';
       }
 
       // Replace the buttons with the outcome so the chat stays a clean log.

@@ -324,8 +324,8 @@ Deno.serve(async (req) => {
       try {
         await base44.asServiceRole.integrations.Core.SendEmail({
           to: ADMIN_EMAIL,
-          subject: `QR to'lov: ${clean(displayName(me))} — ${p.payment_code}`,
-          body: `Yangi QR to'lov cheki yuborildi.\n\n👤 ${clean(displayName(me))}\n📧 ${clean(me.email)}\n📦 ${p.plan} · ${p.billing_cycle}\n💰 ${p.amount_uzs} so'm\n🔖 Kod: ${p.payment_code}\n\nBank ilovangizda tushumni tekshiring, keyin tasdiqlang:\nhttps://virora.space/admin-qr-payments`,
+          subject: `QR payment: ${clean(displayName(me))} — ${p.payment_code}`,
+          body: `New QR payment receipt submitted.\n\n👤 ${clean(displayName(me))}\n📧 ${clean(me.email)}\n📦 ${p.plan} · ${p.billing_cycle}\n💰 ${p.amount_uzs} UZS\n🔖 Code: ${p.payment_code}\n\nCheck your bank app for the incoming payment, then approve it here:\nhttps://virora.space/admin-qr-payments`,
         });
       } catch (e) {
         console.error('qrPayApi email failed:', (e as any)?.message);
