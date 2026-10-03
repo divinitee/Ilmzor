@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams, Link } from "react-router-dom";
 import { Loader2, ShieldAlert, Trash2, X } from "lucide-react";
 import { useAuth } from "@/lib/AuthContext";
 import { taskboardApi } from "@/lib/serverApi";
 import Board from "@/components/taskboard/Board";
+import Focus, { roadmapOf, ROADMAP_MAX } from "@/components/taskboard/Focus";
 import TaskPage from "@/components/taskboard/TaskPage";
 import TaskForm from "@/components/taskboard/TaskForm";
 import { Modal, Button, inputCls } from "@/components/taskboard/ui";
 import { buildIndex, buildExport, downloadJson, taskUrl, STATUS_LABEL } from "@/components/taskboard/model";
 
 // Internal VIRORA Taskboard / build receipt. Admin only.
-// Board at /taskboard, recursive task workspace at /taskboard/:taskCode.
+// Focus (now + up next) at /taskboard, the full board (backlog) at
+// /taskboard?view=all, recursive task workspace at /taskboard/:taskCode.
 // All reads/writes go through base44/functions/taskboardApi.
 
 const EMPTY = { tasks: [], steps: [], evidence: [], events: [] };
@@ -19,6 +21,8 @@ export default function Taskboard() {
   const { user } = useAuth();
   const { taskCode } = useParams();
   const navigate = useNavigate();
+  const [search] = useSearchParams();
+  const showAll = search.get("view") === "all";
   const [data, setData] = useState(EMPTY);
   const [loaded, setLoaded] = useState(false);
   const [loadError, setLoadError] = useState("");
@@ -88,6 +92,16 @@ export default function Taskboard() {
     createStep: (taskId, f) => run("create_step", { task_id: taskId, ...f }, (s) => `Step ${s?.step_code || ""} added`),
     updateStep: (id, patch) => run("update_step", { id, patch }, patch.status ? `Step marked ${patch.status.replace("_", " ")}` : "Step saved"),
     addEvidence: (payload) => run("add_evidence", payload, "Evidence attached"),
+    // Focus roadmap: ids[0] = Now, the rest = Up next.
+    setRoadmap: (ids, msg) => run("set_roadmap", { ids }, msg || "Roadmap updated"),
+    roadmap: () => roadmapOf(data, idx),
+    addToRoadmap: (task, asNow = false) => {
+      const list = roadmapOf(data, idx).filter((t) => t.id !== task.id);
+      if (!asNow && list.length >= ROADMAP_MAX) { notify(`Roadmap is full (${ROADMAP_MAX}). Finish or remove something first.`, "error"); return false; }
+      const next = asNow ? [task, ...list].slice(0, ROADMAP_MAX) : [...list, task];
+      return run("set_roadmap", { ids: next.map((t) => t.id) }, asNow ? `${task.task_code} is now your focus` : `${task.task_code} added to Up next`);
+    },
+    removeFromRoadmap: (task) => run("set_roadmap", { ids: roadmapOf(data, idx).filter((t) => t.id !== task.id).map((t) => t.id) }, `${task.task_code} moved back to the backlog`),
     exportSubtree: (task) => {
       const out = buildExport(data, task);
       downloadJson(out, `virora-taskboard-${task.task_code}-${new Date().toISOString().slice(0, 10)}.json`);
@@ -153,9 +167,22 @@ export default function Taskboard() {
     );
   } else if (current) {
     body = <TaskPage key={current.id} task={current} data={data} idx={idx} busy={busy} navigate={navigate} handlers={handlers} />;
+  } else if (!showAll) {
+    body = (
+      <Focus
+        data={data}
+        idx={idx}
+        busy={busy}
+        onOpen={(t) => navigate(taskUrl(t))}
+        onBacklog={() => navigate("/taskboard?view=all")}
+        onNew={handlers.newTask}
+        handlers={handlers}
+      />
+    );
   } else {
     body = (
       <Board
+        onFocus={() => navigate("/taskboard")}
         data={data}
         idx={idx}
         busy={busy}
