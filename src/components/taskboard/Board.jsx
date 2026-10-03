@@ -1,12 +1,12 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Plus, Search, Upload, Download, Pencil, Archive, RotateCcw, Trash2, ArrowUpRight, ShieldCheck, CalendarDays, FolderTree, ListChecks } from "lucide-react";
+import { Plus, Search, Upload, Download, Pencil, Archive, RotateCcw, Trash2, ArrowUpRight, ShieldCheck, CalendarDays, FolderTree, ListChecks, Crosshair } from "lucide-react";
 import { Button, PriorityBadge, StatusBadge, Tag, ProgressBar, inputCls } from "./ui";
 import {
   STATUSES, STATUS_LABEL, STATUS_STYLE, PRIORITIES, PRIORITY_LABEL, PRIORITY_RANK, PRIORITY_EDGE, CATEGORIES,
   fmtDate, isOverdue, relative,
 } from "./model";
 
-export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, onArchive, onRestore, onDelete, onExport, onImport }) {
+export default function Board({ onFocus, data, idx, busy, onOpen, onNew, onEdit, onMove, onArchive, onRestore, onDelete, onExport, onImport }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("");
   const [priority, setPriority] = useState("");
@@ -74,7 +74,7 @@ export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, 
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[.2em] text-blue-400">VIRORA · Build receipt</div>
-              <h1 className="mt-1 text-2xl font-semibold tracking-tight">Taskboard</h1>
+              <h1 className="mt-1 text-2xl font-semibold tracking-tight">Backlog · all tasks</h1>
               <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-400">
                 <span><b className="text-slate-100">{counts.total}</b> big tasks</span>
                 <span><b className="text-blue-300">{counts.progress}</b> in progress</span>
@@ -83,10 +83,11 @@ export default function Board({ data, idx, busy, onOpen, onNew, onEdit, onMove, 
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-2">
+              {onFocus && <Button variant="primary" icon={Crosshair} onClick={onFocus}>Back to Focus</Button>}
               <input ref={fileRef} type="file" accept=".json,application/json" className="hidden" onChange={pickFile} />
               <Button icon={Upload} onClick={() => fileRef.current?.click()} disabled={busy}>Import</Button>
               <Button icon={Download} onClick={onExport}>Export</Button>
-              <Button variant="primary" size="lg" icon={Plus} onClick={onNew}>Big Task</Button>
+              <Button size="lg" icon={Plus} onClick={onNew}>Big Task</Button>
             </div>
           </div>
 
