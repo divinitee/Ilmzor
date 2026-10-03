@@ -125,10 +125,6 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
             </div>
           );
         })()}
-        <div className="hidden">
-          <div>
-          </div>
-        </div>
 
         <div className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,1fr)_360px]">
           <div className="space-y-5">
