@@ -33,7 +33,7 @@ import {
 // it), TG_WEBHOOK_URL (optional override of the bot webhook URL).
 
 const MAX_OPEN_PER_USER = 3;
-const ADMIN_EMAIL = 'ilmzor.uz@gmail.com';
+const ADMIN_EMAIL = 'gameboey0191@gmail.com';
 const DEFAULT_WEBHOOK_URL = 'https://base44.app/api/apps/6a40f974860993eff3634df0/functions/telegramPayBot';
 
 const displayName = (u: any) => u?.display_name || u?.full_name || u?.email || '';
