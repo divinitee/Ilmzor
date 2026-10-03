@@ -297,7 +297,8 @@ async function setArchived(db: any, actor: string, input: any) {
   const task = await getTask(db, input.id);
   const archived = input.archived !== false;
   if (!!task.archived === archived) return task;
-  const updated = await db.Task.update(task.id, { archived, archived_at: archived ? now() : null, last_actor: actor });
+  // Archiving also takes the task off the Focus roadmap.
+  const updated = await db.Task.update(task.id, { archived, archived_at: archived ? now() : null, last_actor: actor, ...(archived && task.focus_rank ? { focus_rank: 0 } : {}) });
   await log(db, actor, task, { action: archived ? 'archived' : 'restored', details: archived ? `${task.task_code} archived` : `${task.task_code} restored from archive` });
   return updated;
 }
