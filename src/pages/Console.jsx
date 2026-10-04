@@ -6,18 +6,19 @@ import { consoleApi, getConsoleToken, clearConsoleToken, errorText } from "@/lib
 import ConsoleGate, { Shell, Refused } from "@/components/console/ConsoleGate";
 import OverviewSection from "@/components/console/OverviewSection";
 import SecuritySection from "@/components/console/SecuritySection";
+import StudentsSection from "@/components/console/StudentsSection";
 
 // /console: one admin page for students, teachers, groups and payments
 // (VT-35). Sign-in = VIRORA login + authenticator code; enforced on the
 // server by base44/functions/adminApi on every call. Nothing on this page
 // talks to the entity SDK directly.
 //
-// P1 ships Overview + Security. Students / Teachers / Groups arrive in P2 and
-// Payments in P3; until then their tabs point at the existing pages.
+// P1: Overview + Security. P2a: Students. Teachers / Groups follow in P2b/c
+// and Payments in P3; until then their tabs point at the existing pages.
 
 const SECTIONS = [
   { key: "overview", label: "Overview", icon: LayoutDashboard },
-  { key: "students", label: "Students", icon: Users, phase: "P2", legacy: "/admin" },
+  { key: "students", label: "Students", icon: Users },
   { key: "teachers", label: "Teachers", icon: GraduationCap, phase: "P2", legacy: "/admin" },
   { key: "groups", label: "Groups", icon: Network, phase: "P2", legacy: "/teacher" },
   { key: "payments", label: "Payments", icon: Wallet, phase: "P3", legacy: "/admin-qr-payments" },
@@ -80,6 +81,7 @@ function ConsoleShell({ user, onSignOut, onSessionLost }) {
         <div className="mx-auto max-w-5xl">
           {section === "overview" && <OverviewSection onSessionLost={onSessionLost} />}
           {section === "security" && <SecuritySection onSessionLost={onSessionLost} />}
+          {section === "students" && <StudentsSection onSessionLost={onSessionLost} />}
           {current?.phase && <ComingSoon section={current} />}
         </div>
       </main>
