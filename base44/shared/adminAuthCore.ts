@@ -251,32 +251,33 @@ export async function signToken(tokenKey: CryptoKey, claims: { uid: string; ep: 
   return `${payload}.${b64url(sig)}`;
 }
 
-// Throws AuthError(401, ...) with a precise reason; returns the claims if the
+// Throws AuthError(403, ...) with a precise reason (403, not 401: the shared
+// client retries 401s once, which must never happen for a refused token); returns the claims if the
 // token is genuine, unexpired, belongs to this user and is from the current
 // session epoch.
 export async function verifyToken(tokenKey: CryptoKey, token: unknown, expect: { uid: string; ep: number }, nowMs: number): Promise<TokenClaims> {
-  if (!token || typeof token !== 'string') throw new AuthError(401, 'token_missing');
+  if (!token || typeof token !== 'string') throw new AuthError(403, 'token_missing');
   const parts = token.split('.');
-  if (parts.length !== 2 || !parts[0] || !parts[1]) throw new AuthError(401, 'token_malformed');
+  if (parts.length !== 2 || !parts[0] || !parts[1]) throw new AuthError(403, 'token_malformed');
   let sigOk = false;
   try {
     sigOk = await crypto.subtle.verify('HMAC', tokenKey, b64urlDecode(parts[1]), enc.encode(parts[0]));
   } catch {
     sigOk = false;
   }
-  if (!sigOk) throw new AuthError(401, 'token_bad_signature');
+  if (!sigOk) throw new AuthError(403, 'token_bad_signature');
   let c: TokenClaims;
   try {
     c = JSON.parse(dec.decode(b64urlDecode(parts[0])));
   } catch {
-    throw new AuthError(401, 'token_malformed');
+    throw new AuthError(403, 'token_malformed');
   }
   if (!c || typeof c.uid !== 'string' || typeof c.exp !== 'number' || typeof c.ep !== 'number' || typeof c.iat !== 'number') {
-    throw new AuthError(401, 'token_malformed');
+    throw new AuthError(403, 'token_malformed');
   }
-  if (c.exp <= nowMs) throw new AuthError(401, 'token_expired');
-  if (c.iat > nowMs + 60_000) throw new AuthError(401, 'token_malformed');
-  if (c.uid !== expect.uid) throw new AuthError(401, 'token_wrong_user');
-  if (c.ep !== expect.ep) throw new AuthError(401, 'token_revoked');
+  if (c.exp <= nowMs) throw new AuthError(403, 'token_expired');
+  if (c.iat > nowMs + 60_000) throw new AuthError(403, 'token_malformed');
+  if (c.uid !== expect.uid) throw new AuthError(403, 'token_wrong_user');
+  if (c.ep !== expect.ep) throw new AuthError(403, 'token_revoked');
   return c;
 }
