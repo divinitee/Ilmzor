@@ -1,6 +1,6 @@
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
-const bundle = fs.readFileSync('tools/admin-console-tests/render/bundle.js', 'utf8');
+const bundle = fs.readFileSync('/tmp/console-render-bundle.js', 'utf8');
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let failures = 0;
 const check = (cond, msg) => { console.log((cond ? 'PASS ' : 'FAIL ') + msg); if (!cond) failures++; };

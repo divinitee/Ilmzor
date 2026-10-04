@@ -1,7 +1,7 @@
 import { build } from '/app/node_modules/esbuild/lib/main.js';
 import path from 'node:path';
 import fs from 'node:fs';
-const mocks = { '@/api/base44Client': 'tools/admin-console-tests/render/mocks/base44Client.js', '@/lib/AuthContext': 'tools/admin-console-tests/render/mocks/AuthContext.js' };
+const mocks = { '@/api/base44Client': path.resolve('tools/admin-console-tests/render/mocks/base44Client.js'), '@/lib/AuthContext': path.resolve('tools/admin-console-tests/render/mocks/AuthContext.js') };
 const alias = {
   name: 'alias',
   setup(b) {
@@ -13,6 +13,6 @@ const alias = {
     });
   },
 };
-await build({ entryPoints: ['tools/admin-console-tests/render/entry.jsx'], bundle: true, outfile: 'tools/admin-console-tests/render/bundle.js', format: 'iife', platform: 'browser', jsx: 'automatic',
+await build({ entryPoints: [path.resolve('tools/admin-console-tests/render/entry.jsx')], bundle: true, outfile: '/tmp/console-render-bundle.js', format: 'iife', platform: 'browser', jsx: 'automatic',
   nodePaths: ['/app/node_modules'], plugins: [alias], define: { 'process.env.NODE_ENV': '"development"', 'import.meta.env': '{}' }, loader: { '.js': 'jsx' }, logLevel: 'error' });
-console.log('bundled', fs.statSync('tools/admin-console-tests/render/bundle.js').size);
+console.log('bundled', fs.statSync('/tmp/console-render-bundle.js').size);
