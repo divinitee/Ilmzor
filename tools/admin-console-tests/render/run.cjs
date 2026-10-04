@@ -104,6 +104,57 @@ const overview = { as_of: '2026-10-04T08:00:00Z', month: '2026-10', counters: { 
   check(w.sessionStorage.getItem('virora_console_token') === null, 'sign out everywhere clears token');
   check(text(w).includes('signed out of the console everywhere'), 'back at gate with notice');
 
+
+  // 6. Students (P2a): list, filters, drawer, grant payload, live card guard
+  const studentsRows = [
+    { user_id: 'u1', name: 'Aziza Karimova', email: 'aziza@x', role: 'user', teacher_status: '', level: 'B1', last_active_at: new Date(Date.now() - 3600e3).toISOString(),
+      sub: { id: 's1', plan: 'Learner Plan', kind: 'trial', is_trial: true, expires_at: new Date(Date.now() + 86400e3).toISOString().slice(0, 10), status: 'active' }, group: { code: 'MAL1', label: 'Malika B1', teacher_name: 'Malika' }, method: null },
+    { user_id: 'u2', name: 'Bekzod', email: 'bek@x', role: 'user', teacher_status: '', level: 'A2', last_active_at: null,
+      sub: { id: 's2', plan: 'VIP Plan', kind: 'paid', status: 'active', provider: 'dodo', live_card: true, expires_at: '2026-11-01' }, group: null, method: 'card' },
+    { user_id: 'u3', name: 'Teacher Malika', email: 'mal@x', role: 'user', teacher_status: 'approved', level: '', last_active_at: null, sub: null, group: null, method: null },
+  ];
+  const detailFor = (id) => {
+    const r = studentsRows.find((x) => x.user_id === id);
+    return { profile: { user_id: id, name: r.name, email: r.email, teacher_status: r.teacher_status, level: r.level, joined_at: '2026-09-01T00:00:00Z' },
+      subscription: r.sub, other_subscriptions: [], payments: [], history: [], activity: { last_active_at: r.last_active_at, minutes_7d: 12, minutes_30d: 40, sessions_30d: 3 },
+      groups: [{ code: 'MAL1', label: 'Malika B1', teacher_name: 'Malika' }, { code: 'TEE1', label: 'Tee IELTS', teacher_name: 'Tee' }] };
+  };
+  w = boot((s) => {
+    s.user = { id: 'u_tee', role: 'admin', email: 'tee@x' };
+    s.handlers.ping = () => ({ valid: true });
+    s.handlers.studentsList = () => ({ rows: studentsRows, orphans: [{ id: 'o1', email: 'gone@x', name: 'Gone', plan: 'VIP Plan', kind: 'paid' }], groups: [{ code: 'MAL1', label: 'Malika B1', teacher_name: 'Malika' }] });
+    s.handlers.studentDetail = (b) => detailFor(b.user_id);
+    s.handlers.studentAction = (b) => ({ subscription: {} });
+  }, '#students');
+  w.sessionStorage.setItem('virora_console_token', 'tok.sig');
+  await sleep(800);
+  check(text(w).includes('Aziza Karimova') && text(w).includes('Bekzod'), 'students list renders');
+  check(!text(w).includes('Teacher Malika'), 'teachers hidden by default');
+  check(text(w).includes('1 subscription row(s) with no matching account'), 'orphan rows surfaced');
+  click(w, button(w, 'Trial')); await sleep(200);
+  check(text(w).includes('Aziza Karimova') && !text(w).includes('bek@x'), 'kind filter works');
+  click(w, button(w, 'All')); await sleep(100);
+  const searchBox = w.document.querySelector('input[placeholder="Search name or email"]');
+  type(w, searchBox, 'bek'); await sleep(200);
+  check(!text(w).includes('aziza@x') && text(w).includes('Bekzod'), 'search works');
+  // open live-card student
+  click(w, [...w.document.querySelectorAll('tr')].find((tr) => tr.textContent.includes('Bekzod'))); await sleep(600);
+  let body = w.document.body.textContent;
+  check(body.includes('Live card subscription (Dodo)') && !button(w, 'Grant plan') && !!button(w, 'Add to group'), 'live card: plan actions hidden, group move allowed');
+  // close & open trial student, grant VIP
+  type(w, searchBox, ''); await sleep(200);
+  w.document.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true })); await sleep(400);
+  click(w, [...w.document.querySelectorAll('tr')].find((tr) => tr.textContent.includes('Aziza'))); await sleep(600);
+  check(!!button(w, 'Grant plan') && !!button(w, 'Change group') && !!button(w, 'Pause') && !!button(w, 'Extend'), 'trial student: grant/extend/pause/change group offered');
+  click(w, button(w, 'Grant plan')); await sleep(200);
+  const sel = [...w.document.querySelectorAll('select')].find((s) => [...s.options].some((o) => o.value === 'vip'));
+  const setSel = Object.getOwnPropertyDescriptor(w.HTMLSelectElement.prototype, 'value').set; setSel.call(sel, 'vip'); sel.dispatchEvent(new w.Event('change', { bubbles: true })); await sleep(100);
+  click(w, button(w, 'Confirm')); await sleep(500);
+  const g = w.__calls.filter((c) => c.body.action === 'studentAction').pop();
+  check(g && g.body.op === 'grant' && g.body.plan === 'vip' && g.body.user_id === 'u1' && g.body.token === 'tok.sig', 'grant sends op/plan/user/token to adminApi');
+  check(w.document.body.textContent.includes('Done. Saved and logged.'), 'success shown');
+  check(w.__calls.filter((c) => c.body.action === 'studentsList').length >= 2, 'list refreshed after change');
+
   console.log(failures ? `\n${failures} FAILED` : '\nALL RENDER CHECKS PASSED');
   process.exit(failures ? 1 : 0);
 })().catch((e) => { console.error(e); process.exit(1); });
