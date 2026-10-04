@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "npm:@base44/sdk@0.8.31": "./mock_sdk_module.ts",
+    "base44:runtime": "./mock_runtime.ts",
+    "jsr:@std/assert@1": "jsr:@std/assert@1"
+  }
+}
