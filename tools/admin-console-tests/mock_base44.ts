@@ -51,7 +51,7 @@ export class MockEntity {
 }
 
 export function makeWorld() {
-  const names = ['User', 'StudentSubscription', 'ManualPayment', 'AdminSecurity', 'AdminAuditLog'];
+  const names = ['User', 'StudentSubscription', 'ManualPayment', 'AdminSecurity', 'AdminAuditLog', 'TeacherReferral', 'ActivitySession', 'UserCoins'];
   const entities: Record<string, MockEntity> = {};
   for (const n of names) entities[n] = new MockEntity(n);
 
@@ -59,6 +59,7 @@ export function makeWorld() {
     tee: { id: 'u_tee', email: 'gameboey0191@gmail.com', role: 'admin', full_name: 'Tee', created_date: '2026-08-30T04:07:48Z' },
     ilmzor: { id: 'u_ilmzor', email: 'ilmzor.uz@gmail.com', role: 'admin', full_name: 'ILMZOR', created_date: '2026-06-28T10:37:40Z' },
     student: { id: 'u_student', email: 'student@example.com', role: 'user', full_name: 'Student', created_date: '2026-10-01T00:00:00Z' },
+    teacher: { id: 'u_teacher', email: 'teacher@example.com', role: 'user', full_name: 'Malika', teacher_status: 'approved', created_date: '2026-09-01T00:00:00Z' },
   };
   entities.User.rows.push(...Object.values(users).map((u) => ({ ...u })));
 
