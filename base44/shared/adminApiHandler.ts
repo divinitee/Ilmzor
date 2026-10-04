@@ -61,9 +61,8 @@ const str = (v: unknown, n = 2000) => (v === undefined || v === null ? '' : (typ
 
 // Actions that work before a console token exists.
 const PRE_AUTH = new Set(['status', 'enrollStart', 'enrollConfirm', 'verify']);
-// Successful calls to these are not written to the audit log (pure reads the
-// page makes on every load). Refusals of them still are.
-const QUIET = new Set(['status', 'ping']);
+// Note: successful `status` and `ping` calls are not audited (the page makes
+// them on every load); their refusals are, like every other refusal.
 
 async function pageAll(entity: any, query: Record<string, unknown> = {}, cap = 20000) {
   const out: any[] = [];
@@ -340,7 +339,6 @@ export function createAdminApiHandler(deps: HandlerDeps) {
       }
 
       const data = await fn(ctx);
-      if (QUIET.has(action)) { /* not audited on success */ }
       return Response.json({ ok: true, ...data });
     } catch (err) {
       if (err instanceof AuthError) return refuse(err);
