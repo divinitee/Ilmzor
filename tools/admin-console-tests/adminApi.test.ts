@@ -83,11 +83,16 @@ Deno.test('refuses: GET', async () => {
 });
 
 Deno.test('refuses (fail closed): ADMIN_SESSION_KEY missing or short, allowlist empty', async () => {
-  for (const cfg of [{ key: null }, { key: 'short-key' }, { allow: '' }, { allow: null }]) {
+  const cases: [Record<string, string | null>, string][] = [
+    [{ key: null }, 'key_missing'], [{ key: 'short-key' }, 'key_too_short'], [{ allow: '' }, 'allowlist_empty'], [{ allow: null }, 'allowlist_empty'],
+  ];
+  for (const [cfg, detail] of cases) {
     const t = setup(cfg);
     const r = await t.call('tee', 'status');
     assertEquals(r.status, 503, JSON.stringify(cfg));
     assertEquals(r.body.code, 'not_configured');
+    assertEquals(r.body.detail, detail);
+    assert(!JSON.stringify(r.body).includes(KEY), 'never echoes the key');
   }
 });
 
