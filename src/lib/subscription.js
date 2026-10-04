@@ -1,67 +1,41 @@
 import { base44 } from "@/api/base44Client";
 import { studentApi } from "@/lib/serverApi";
+import {
+  subscriptionKind as coreKind,
+  isPaying as coreIsPaying,
+  isRealPlan,
+  paidSinceStamp as corePaidSinceStamp,
+  daysRemaining as coreDaysRemaining,
+  periodEnd as corePeriodEnd,
+  approvePatch,
+  pausePatch,
+  resumePatch,
+  cancelPatch,
+  reactivatePatch,
+} from "../../base44/shared/subscriptionCore.js";
 
-// Whether new registrations get an automatic 1-week trial at all. Flip this
-// to false to retire the trial entirely (the founder has already flagged
-// this as likely, once account-multiplication abuse becomes a problem) —
-// when off, chooseFreePlan() below just grants the real Free Plan directly,
-// no code restructuring needed.
+// The rules themselves live in base44/shared/subscriptionCore.js (VT-35 P2,
+// 2026-10-04), shared with the Admin Console's server function so the old
+// /admin page and the console can never disagree. This file keeps the same
+// exports the app already imports.
+
+// Whether new registrations get an automatic trial at all. Flip to false to
+// retire the trial entirely; chooseFreePlan() then grants the Free Plan.
 export const TRIAL_ENABLED = true;
-// Cut from 7 to 3 on 2026-09-04. The trial still hands out full Learner access
-// (25 AI calls/day), so every throwaway signup draws on the same shared Base44
-// credit pool — shortening the window caps that exposure per farmed account
-// while keeping a strong first impression for real students. If abuse keeps
-// growing, TRIAL_ENABLED above is the kill switch.
+// Cut from 7 to 3 on 2026-09-04 (AI-credit exposure per farmed account).
 export const TRIAL_DAYS = 3;
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-const todayStr = () => new Date().toISOString().slice(0, 10);
-const addDays = (n) => new Date(Date.now() + n * DAY_MS).toISOString().slice(0, 10);
-
 
 // --- Classification -------------------------------------------------------
 
-// `status` alone never meant "paid": the self-serve onboarding trial sets
-// status:"active" with no payment and no approval, and a lapsed trial rolls
-// onto a permanent free plan that is also status:"active" forever. Both
-// dashboards render subscriptions through this one classifier so a teacher
-// and an admin can never be looking at two different versions of the truth.
-export function subscriptionKind(sub) {
-  if (!sub) return "unpaid";
-  if (sub.status === "pending") return "pending";
-  if (sub.status === "paused") return "paused";
-  if (sub.status === "cancelled") return "cancelled";
-  if (sub.status !== "active") return "unpaid";
-  // Cancelled at period end: still has the access they paid for, but it is
-  // scheduled to end and must not be mistaken for a healthy subscription.
-  if (sub.cancelled_at) return "ending";
-  if (sub.is_trial) return "trial";
-  if (!sub.plan || /free/i.test(sub.plan)) return "free";
-  return "paid";
-}
-
-// Only real money counts as revenue — trial, free and cancelled never do.
-export const isPaying = (sub) => ["paid", "ending"].includes(subscriptionKind(sub));
-
-// A plan that costs money — the free plan and an unset plan never qualify.
-const isRealPlan = (sub) => !!sub?.plan && !/free/i.test(sub.plan);
-
-// Patch fragment that records the first day someone paid. Empty when the
-// stamp already exists or nothing was actually bought, so callers can spread
-// it unconditionally. Once written it is never cleared — see paidSince().
-export function paidSinceStamp(sub) {
-  if (!sub || sub.paid_since || sub.is_trial || !isRealPlan(sub)) return {};
-  return { paid_since: todayStr() };
-}
+export const subscriptionKind = (sub) => coreKind(sub);
+export const isPaying = (sub) => coreIsPaying(sub);
+export const paidSinceStamp = (sub) => corePaidSinceStamp(sub);
 
 // When this person first became a paying member, or null if they never have.
-// Reads the permanent paid_since stamp first, so a lapsed or cancelled former
-// subscriber keeps their date. Rows from before the stamp existed fall back
-// to the row's own creation date while they are currently paying.
 export function paidSince(sub) {
   if (!sub || sub.is_trial) return null;
   if (sub.paid_since) return sub.paid_since;
-  return isPaying(sub) ? sub.created_date || null : null;
+  return coreIsPaying(sub) ? sub.created_date || null : null;
 }
 
 export const SUB_KIND_META = {
@@ -75,109 +49,33 @@ export const SUB_KIND_META = {
   unpaid: { label: "❌ Unpaid", cls: "text-destructive bg-destructive/10" },
 };
 
-// Days of access left, or null for a subscription with no expiry at all
-// (the permanent free plan). 0 means it has already run out.
-export function daysRemaining(sub) {
-  if (!sub?.expires_at) return null;
-  return Math.max(0, Math.ceil((new Date(sub.expires_at).getTime() - Date.now()) / DAY_MS));
-}
+export const daysRemaining = (sub) => coreDaysRemaining(sub);
+export const periodEnd = (sub) => corePeriodEnd(sub);
+export { isRealPlan };
 
-// One billing period from today, honouring the sub's own monthly/yearly cycle.
-export function periodEnd(sub) {
-  const d = new Date();
-  if (sub?.billing_cycle === "yearly") d.setFullYear(d.getFullYear() + 1);
-  else d.setMonth(d.getMonth() + 1);
-  return d.toISOString().split("T")[0];
-}
+// --- Admin actions (old /admin page) --------------------------------------
+// Each returns the patched subscription so the caller can update local state.
+// The Admin Console does NOT use these: it goes through adminApi, which
+// builds the same patches server-side.
 
-// --- Admin actions --------------------------------------------------------
-// Each returns the patched subscription so a caller can update local state
-// without a full refetch. All of them clear the pause/cancel bookkeeping they
-// supersede, so a subscription can never sit in two states at once.
-
-// Approve a pending payment, or revive a cancelled/lapsed one, with a fresh
-// billing period. Previously duplicated verbatim in both dashboards.
-export async function approveSubscription(sub) {
-  const patch = {
-    status: "active",
-    expires_at: periodEnd(sub),
-    cancelled_at: "",
-    paused_at: "",
-    paused_days_remaining: null,
-    ...paidSinceStamp(sub),
-  };
+async function applyPatch(sub, patch) {
   await base44.entities.StudentSubscription.update(sub.id, patch);
   return { ...sub, ...patch };
 }
 
-// Halt: suspend access but bank the days they already paid for, so resuming
-// gives the time back instead of letting the calendar eat it.
-export async function pauseSubscription(sub, note = "") {
-  const patch = {
-    status: "paused",
-    paused_at: todayStr(),
-    paused_days_remaining: daysRemaining(sub),
-  };
-  if (note) patch.admin_note = note;
-  await base44.entities.StudentSubscription.update(sub.id, patch);
-  return { ...sub, ...patch };
-}
-
-export async function resumeSubscription(sub, note = "") {
-  const banked = sub.paused_days_remaining;
-  // null/undefined = there was no expiry to bank (permanent free plan), so it
-  // comes back permanent. 0 = it had already run out before being paused, so
-  // it comes back already expired rather than silently gaining time.
-  const expires_at =
-    typeof banked === "number" ? (banked > 0 ? addDays(banked) : todayStr()) : "";
-  const patch = { status: "active", paused_at: "", paused_days_remaining: null, expires_at, ...paidSinceStamp(sub) };
-  if (note) patch.admin_note = note;
-  await base44.entities.StudentSubscription.update(sub.id, patch);
-  return { ...sub, ...patch };
-}
-
-// immediate:true  — access dies now. expires_at is deliberately left intact so
-//                   you can still see how much they had left when you pulled
-//                   the plug (refund math, chargeback evidence).
-// immediate:false — they keep the access they paid for; the sub stays active
-//                   and lapses to "cancelled" on its expiry date, handled by
-//                   handleExpiredSubscription() below.
-export async function cancelSubscription(sub, { immediate = true, note = "" } = {}) {
-  const patch = immediate
-    ? { status: "cancelled", cancelled_at: todayStr(), paused_at: "", paused_days_remaining: null }
-    : { cancelled_at: todayStr() };
-  if (note) patch.admin_note = note;
-  await base44.entities.StudentSubscription.update(sub.id, patch);
-  return { ...sub, ...patch };
-}
-
-// Undo. A scheduled cancellation (still active) just loses its end date and
-// carries on; a fully cancelled one gets a fresh period like an approval.
-export async function reactivateSubscription(sub, note = "") {
-  const scheduledOnly = sub.status === "active" && sub.cancelled_at;
-  const patch = scheduledOnly
-    ? { cancelled_at: "" }
-    : {
-        status: "active",
-        cancelled_at: "",
-        paused_at: "",
-        paused_days_remaining: null,
-        expires_at: periodEnd(sub),
-        ...paidSinceStamp(sub),
-      };
-  if (note) patch.admin_note = note;
-  await base44.entities.StudentSubscription.update(sub.id, patch);
-  return { ...sub, ...patch };
-}
+export const approveSubscription = (sub) => applyPatch(sub, approvePatch(sub));
+export const pauseSubscription = (sub, note = "") => applyPatch(sub, pausePatch(sub, Date.now(), note));
+export const resumeSubscription = (sub, note = "") => applyPatch(sub, resumePatch(sub, Date.now(), note));
+export const cancelSubscription = (sub, { immediate = true, note = "" } = {}) =>
+  applyPatch(sub, cancelPatch(sub, { immediate, note }));
+export const reactivateSubscription = (sub, note = "") => applyPatch(sub, reactivatePatch(sub, Date.now(), note));
 
 // --- Student-facing flows -------------------------------------------------
 //
 // Moved server-side on 2026-09-23 (Teacher Panel phase 1). Students can no
 // longer write their own StudentSubscription row at all — RLS allows only
 // admins — so the trial grant and the expiry transition run in
-// base44/functions/studentApi. That function also enforces one trial per
-// account (User.trial_used_at) and never downgrades a paying member. Keep
-// TRIAL_ENABLED / TRIAL_DAYS above in sync with the constants there.
+// base44/functions/studentApi. Keep TRIAL_ENABLED / TRIAL_DAYS in sync there.
 
 // Called when a student picks "Start Free" during onboarding.
 export async function chooseFreePlan() {
@@ -191,8 +89,7 @@ export async function chooseFreePlan() {
 }
 
 // The caller's own subscription, with any due expiry transition applied
-// server-side (trial → Free Plan, cancelled-at-period-end → cancelled, lapsed
-// paid → inactive). Also returns the caller's class membership.
+// server-side. Also returns the caller's class membership.
 export async function refreshMySubscription() {
   return studentApi("refresh");
 }
