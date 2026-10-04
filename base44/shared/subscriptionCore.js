@@ -19,8 +19,16 @@ export const CYCLES = ["monthly", "yearly"];
 // `status` alone never meant "paid": the onboarding trial is status:"active"
 // with no payment, and a lapsed trial rolls onto a permanent free plan that is
 // also status:"active". Every list classifies through this one function.
-export function subscriptionKind(sub) {
+//
+// `now` makes it read-time true (VT-36): a row whose end has passed is
+// classified as what expiryPatch() would turn it into, so counts are right
+// between sweeps. Pass now = null for the raw stored state.
+export function subscriptionKind(sub, now = Date.now()) {
   if (!sub) return "unpaid";
+  if (now != null && !isLiveCardSub(sub)) {
+    const p = expiryPatch(sub, now);
+    if (p) sub = { ...sub, ...p };
+  }
   if (sub.status === "pending") return "pending";
   if (sub.status === "paused") return "paused";
   if (sub.status === "cancelled") return "cancelled";
@@ -38,6 +46,31 @@ export const isRealPlan = (sub) => !!sub?.plan && !/free/i.test(sub.plan);
 // overwritten on the next renewal, and cancelling here would NOT stop Dodo
 // charging the card. Plan changes for these rows happen in Dodo.
 export const isLiveCardSub = (sub) => !!sub && sub.provider === "dodo" && sub.status === "active" && !sub.cancelled_at;
+
+// --- Expiry (VT-36, 2026-10-04) --------------------------------------------
+// expires_at is a calendar date. Access runs to the END of that day in
+// Tashkent (UTC+5, no DST) — Tee's call: i.e. it ends at 19:00 UTC that day.
+const TASHKENT_OFFSET_MS = 5 * 60 * 60 * 1000;
+
+export function endInstant(sub) {
+  const d = String(sub?.expires_at || "").slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return null;
+  return Date.parse(d + "T00:00:00Z") + DAY_MS - TASHKENT_OFFSET_MS;
+}
+
+export const isPastEnd = (sub, now = Date.now()) => {
+  const t = endInstant(sub);
+  return t != null && now >= t;
+};
+
+// The one expiry transition, used by studentApi.refresh and the daily sweep.
+// Returns null when nothing is due.
+export function expiryPatch(sub, now = Date.now()) {
+  if (!sub || sub.status !== "active" || !isPastEnd(sub, now)) return null;
+  if (sub.cancelled_at) return { status: "cancelled" };
+  if (sub.is_trial) return { status: "active", plan: "Free Plan", is_trial: false, expires_at: "" };
+  return { status: "inactive" };
+}
 
 export function paidSinceStamp(sub, now = Date.now()) {
   if (!sub || sub.paid_since || sub.is_trial || !isRealPlan(sub)) return {};

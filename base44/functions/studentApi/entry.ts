@@ -1,4 +1,5 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
+import { expiryPatch } from '../../shared/subscriptionCore.js';
 
 // studentApi: every write that grants access, sets teacher attribution, or
 // records homework for the CALLING student. (Teacher Panel phase 1, 2026-09-23)
@@ -94,13 +95,9 @@ async function mirrorClassroomCode(svc: any, userId: string, code: string) {
 async function refresh(svc: any, me: any) {
   let sub = await findSub(svc, me);
   // Expiry transition (moved from Home.jsx / handleExpiredSubscription).
-  if (sub && sub.status === 'active' && sub.expires_at && new Date(sub.expires_at) < new Date()) {
-    let patch: any;
-    if (sub.cancelled_at) patch = { status: 'cancelled' };
-    else if (sub.is_trial) patch = { status: 'active', plan: 'Free Plan', is_trial: false, expires_at: '' };
-    else patch = { status: 'inactive' };
-    sub = await svc.StudentSubscription.update(sub.id, patch);
-  }
+  // Rules live in subscriptionCore.expiryPatch (shared with the daily sweep).
+  const patch = sub && sub.provider !== 'dodo' ? expiryPatch(sub) : null;
+  if (patch) sub = await svc.StudentSubscription.update(sub.id, patch);
   let group = null;
   if (sub?.referral_code) group = await findGroupByCode(svc, sub.referral_code);
   return { subscription: sub || null, membership: membershipOf(sub, group) };
@@ -122,9 +119,22 @@ async function startTrial(svc: any, me: any) {
     ? { status: 'active', plan: 'Learner Plan', is_trial: true, expires_at: addDays(TRIAL_DAYS) }
     : { status: 'active', plan: 'Free Plan', is_trial: false, expires_at: '' };
 
-  const sub = existing
+  let sub = existing
     ? await svc.StudentSubscription.update(existing.id, payload)
     : await svc.StudentSubscription.create({ student_name: displayName(me), phone: me.email, ...payload });
+  // VT-36 race: two concurrent calls can both see "no row" and both create.
+  // Re-check after creating: keep the oldest row, delete the newer ones.
+  if (!existing) {
+    const mine = (await svc.StudentSubscription.filter({ phone: me.email }, 'created_date')) || [];
+    if (mine.length > 1) {
+      const keep = mine[0];
+      for (const extra of mine.slice(1)) {
+        if (extra.id === keep.id || extra.dodo_subscription_id || extra.status !== keep.status) continue;
+        try { await svc.StudentSubscription.delete(extra.id); } catch (e) { console.error('dup trial delete', e?.message); }
+      }
+      sub = keep;
+    }
+  }
   if (giveTrial) {
     try { await svc.User.update(me.id, { trial_used_at: nowIso() }); } catch (e) { console.error('trial flag', e?.message); }
   }

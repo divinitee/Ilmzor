@@ -1,5 +1,6 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.31';
 import { readSkillStates } from '../../shared/progressEngine.ts';
+import { subscriptionKind } from '../../shared/subscriptionCore.js';
 
 // teacherApi: the Teacher Panel's only read/write path for classes, rosters,
 // homework and results. (Teacher Panel phase 1, 2026-09-23)
@@ -44,18 +45,7 @@ class ApiError extends Error {
   }
 }
 
-// Same classifier as src/lib/subscription.js subscriptionKind().
-function subscriptionKind(sub: any) {
-  if (!sub) return 'unpaid';
-  if (sub.status === 'pending') return 'pending';
-  if (sub.status === 'paused') return 'paused';
-  if (sub.status === 'cancelled') return 'cancelled';
-  if (sub.status !== 'active') return 'unpaid';
-  if (sub.cancelled_at) return 'ending';
-  if (sub.is_trial) return 'trial';
-  if (!sub.plan || /free/i.test(sub.plan)) return 'free';
-  return 'paid';
-}
+// subscriptionKind: imported from base44/shared/subscriptionCore.js (VT-36).
 
 function generateCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';

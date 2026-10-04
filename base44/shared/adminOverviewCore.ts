@@ -38,7 +38,7 @@ export function computeOverview(input: { users: any[]; subs: any[]; payments: an
   let lapsedUnrefreshed = 0;
   let trialsEnding48h = 0;
   for (const s of subs) {
-    const kind = subscriptionKind(s);
+    const kind = subscriptionKind(s, null); // raw: this loop counts un-refreshed rows itself
     const exp = dateOf(s.expires_at);
     if (kind === 'paid' || kind === 'ending') {
       if (exp && exp < today) lapsedUnrefreshed++;

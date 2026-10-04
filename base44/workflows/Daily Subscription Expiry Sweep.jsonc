@@ -1,0 +1,44 @@
+{
+  "description": "VT-36: ends trials and lapsed plans whose end date has passed, even if the student never returns. Runs just after end of day in Tashkent.",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "5 0 * * *",
+      "one_time_date": null,
+      "timezone": "Asia/Tashkent",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "daily_subscription_expiry_sweep",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "sweep": {
+          "call": "invoke_backend_function",
+          "with": {
+            "function_name": "expireSubscriptions",
+            "args": {}
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Expire ended subscriptions"
+          }
+        }
+      }
+    ]
+  },
+  "name": "Daily Subscription Expiry Sweep"
+}

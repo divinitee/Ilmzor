@@ -78,14 +78,16 @@ export const reactivateSubscription = (sub, note = "") => applyPatch(sub, reacti
 // base44/functions/studentApi. Keep TRIAL_ENABLED / TRIAL_DAYS in sync there.
 
 // Called when a student picks "Start Free" during onboarding.
-export async function chooseFreePlan() {
-  try {
-    const res = await studentApi("startTrial");
-    return res?.subscription || null;
-  } catch (e) {
-    console.error("startTrial failed:", e);
-    return null;
+// One in-flight call at a time (VT-36: a double tap created two trial rows).
+let trialInFlight = null;
+export function chooseFreePlan() {
+  if (!trialInFlight) {
+    trialInFlight = studentApi("startTrial")
+      .then((res) => res?.subscription || null)
+      .catch((e) => { console.error("startTrial failed:", e); return null; })
+      .finally(() => { trialInFlight = null; });
   }
+  return trialInFlight;
 }
 
 // The caller's own subscription, with any due expiry transition applied
