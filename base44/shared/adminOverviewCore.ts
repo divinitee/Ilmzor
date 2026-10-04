@@ -1,8 +1,7 @@
 // Admin Console Overview numbers (VT-35 P1). Pure: takes rows, returns counts.
 //
-// subscriptionKind() is a straight port of src/lib/subscription.js so the
-// console and /admin classify a row identically. Keep the two in sync until
-// P2 moves the subscription logic into one shared module.
+// subscriptionKind() comes from shared/subscriptionCore.js, the same file
+// src/lib/subscription.js (and so /admin) uses.
 //
 // Two traps this file exists to avoid (both verified on live data 2026-10-04):
 //  - A trial row reads status "active". Counting by status would call every
@@ -11,21 +10,12 @@
 //    opens the app). A paid row past expires_at still reads "active" until
 //    then, so "paying" also requires the period not to have ended.
 
+import { subscriptionKind } from './subscriptionCore.js';
+export { subscriptionKind };
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 // VIRORA's business day: Uzbekistan, UTC+5, no DST.
 const TZ_OFFSET_MS = 5 * 60 * 60 * 1000;
-
-export function subscriptionKind(sub: any): string {
-  if (!sub) return 'unpaid';
-  if (sub.status === 'pending') return 'pending';
-  if (sub.status === 'paused') return 'paused';
-  if (sub.status === 'cancelled') return 'cancelled';
-  if (sub.status !== 'active') return 'unpaid';
-  if (sub.cancelled_at) return 'ending';
-  if (sub.is_trial) return 'trial';
-  if (!sub.plan || /free/i.test(sub.plan)) return 'free';
-  return 'paid';
-}
 
 const localDate = (ms: number) => new Date(ms + TZ_OFFSET_MS).toISOString().slice(0, 10);
 const localMonth = (ms: number) => new Date(ms + TZ_OFFSET_MS).toISOString().slice(0, 7);
