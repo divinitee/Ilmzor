@@ -242,7 +242,7 @@ export const translations = {
       premiumAnalytics: "Premium tahlil", premiumAnalyticsDesc: "Issiqlik xaritalari, mastery grafiklar va AI hisobotlar",
       freeLessonBadge: "BEPUL", freeLessonTitle: "Yangi Learning Path'ni bepul sinab ko'ring",
       freeLessonDesc: "Obuna shart emas — 1-darsni hoziroq boshlang", freeLessonCta: "1-darsni boshlash",
-      skillHubHeroTitle: "Ko'nikmalar xaritangiz", skillHubHeroEmpty: "Rivojlanishni kuzatishni boshlash uchun birinchi mashqni o'ynang",
+      skillHubHeroTitle: "Ko‘nikmalar xaritangiz", skillHubHeroEmpty: "Rivojlanishni kuzatishni boshlash uchun birinchi mashqni o'ynang",
       skillHubStat: "O'rtacha {pct}% · {n} marta o'ynaldi",
       skillsEvidenced: "{n}/{total} ko'nikma baholangan", skillNew: "yangi", skillVerify: "tekshirish kerak", skillRusty: "unutilgan bo'lishi mumkin",
       skillVocabulary: "Lug'at", skillGrammar: "Grammatika", skillSpelling: "Imlo", skillComprehension: "Tushunish", skillCreativity: "Ijodkorlik",
