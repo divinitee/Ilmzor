@@ -1,0 +1,87 @@
+{
+  "name": "AdminSecurity",
+  "type": "object",
+  "description": "Admin Console 2FA state, one row per console admin (VT-35). Service role only: no client can read or write it. Only base44/functions/adminApi touches it.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User.id of the console admin."
+    },
+    "email": {
+      "type": "string"
+    },
+    "totp_secret_enc": {
+      "type": "string",
+      "description": "AES-GCM encrypted TOTP seed (key derived from ADMIN_SESSION_KEY). Empty until enrolment is confirmed."
+    },
+    "pending_secret_enc": {
+      "type": "string",
+      "description": "Encrypted seed awaiting its first valid code."
+    },
+    "pending_created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "enrolled_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_used_step": {
+      "type": "integer",
+      "description": "Last accepted TOTP time step. A code at or before it is refused (replay guard)."
+    },
+    "backup_code_hashes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "SHA-256 hashes of unused backup codes."
+    },
+    "failed_attempts": {
+      "type": "integer",
+      "default": 0
+    },
+    "locked_until": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_failed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_epoch": {
+      "type": "integer",
+      "default": 1,
+      "description": "Embedded in every console token. Bumping it revokes all console sessions."
+    },
+    "last_login_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "never"
+      }
+    }
+  }
+}

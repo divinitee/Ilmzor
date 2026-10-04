@@ -1,0 +1,80 @@
+{
+  "name": "AdminAuditLog",
+  "type": "object",
+  "description": "Append-only log of every Admin Console action and sign-in attempt (VT-35). Written and read only by base44/functions/adminApi (service role).",
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "actor_email": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. enroll_start, enroll_confirm, verify, sign_out_all, overview, audit_list"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "refused",
+        "error"
+      ],
+      "default": "ok"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Machine code when refused/error."
+    },
+    "target_type": {
+      "type": "string"
+    },
+    "target_id": {
+      "type": "string"
+    },
+    "before": {
+      "type": "string"
+    },
+    "after": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "string",
+      "description": "console | telegram | system",
+      "default": "console"
+    }
+  },
+  "required": [
+    "action",
+    "outcome"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "never"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "never"
+      }
+    }
+  }
+}
