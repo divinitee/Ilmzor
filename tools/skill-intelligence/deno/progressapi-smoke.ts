@@ -76,8 +76,13 @@ ok('learner cannot rebuild leaf states', (await call({ action: 'rebuildLeafState
 ok('learner cannot verify leaf states', (await call({ action: 'verifyLeafStates', email: 'learner@x' })).code === 'admin_only');
 me = { email: 'admin@x', role: 'admin' };
 const skillBefore = JSON.stringify(tables.SkillState);
+// submitEvidence rebuilds LeafState after every round, so rows already exist and are current here.
+const vPre = await call({ action: 'verifyLeafStates', email: 'learner@x' });
+ok('per-round rebuild keeps rows current: rows exist, zero mismatches', tables.LeafState.length > 0 && vPre.ok && vPre.nondeterministic.length === 0 && vPre.mismatched.length === 0);
+// Drop the rows to check verify still reports missing ones.
+tables.LeafState.length = 0;
 const v0 = await call({ action: 'verifyLeafStates', email: 'learner@x' });
-ok('verify before rebuild: deterministic, all missing', v0.ok && v0.nondeterministic.length === 0 && v0.mismatched.length === 1);
+ok('verify with rows removed: deterministic, all missing', v0.ok && v0.nondeterministic.length === 0 && v0.mismatched.length === 1);
 const rb = await call({ action: 'rebuildLeafStates', email: 'learner@x' });
 ok('rebuild wrote shadow rows', rb.ok && rb.results[0].written > 0 && tables.LeafState.length === rb.results[0].written);
 const v1 = await call({ action: 'verifyLeafStates', email: 'learner@x' });
