@@ -77,7 +77,7 @@ export default function OverviewSection({ onSessionLost }) {
           <h3 className="font-semibold">Needs you</h3>
         </div>
         {data.needs_you.length === 0 ? (
-          <p className="px-4 py-6 text-center text-sm text-white/50">Nothing waiting. 🎉</p>
+          <p className="px-4 py-6 text-center text-sm text-white/50">Nothing waiting on you.</p>
         ) : (
           <ul>
             {data.needs_you.map((n) => (
