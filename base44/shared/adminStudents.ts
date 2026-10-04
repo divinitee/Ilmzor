@@ -124,8 +124,7 @@ export async function studentsList(ctx: any) {
   });
 
   // Subscription rows whose account no longer exists (deleted users, typos).
-  const orphans = subs.filter((s: any) => !claimed.has(s.id)).map(subView).map((s: any) => ({ ...s, email: '' }));
-  for (const o of orphans) o.email = normEmail(subs.find((s: any) => s.id === o.id)?.phone);
+  const orphans = subs.filter((s: any) => !claimed.has(s.id)).map((s: any) => ({ ...subView(s), email: normEmail(s.phone), name: s.student_name || '' }));
 
   const groupOptions = groups
     .filter((g: any) => g.group_status !== 'ended')
@@ -334,7 +333,5 @@ export async function studentAction(ctx: any) {
     after: patch,
     details: `${normEmail(user.email)}: ${details}${note ? ` · note: ${note}` : ''}`,
   });
-  // Also index the history under the user id, so a row created here (or a
-  // later replacement row) still shows the full story in the drawer.
   return { subscription: subView({ ...(sub || {}), ...(row || {}), ...patch }) };
 }
