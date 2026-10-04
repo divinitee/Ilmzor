@@ -108,7 +108,7 @@ const overview = { as_of: '2026-10-04T08:00:00Z', month: '2026-10', counters: { 
   // 6. Students (P2a): list, filters, drawer, grant payload, live card guard
   const studentsRows = [
     { user_id: 'u1', name: 'Aziza Karimova', email: 'aziza@x', role: 'user', teacher_status: '', level: 'B1', last_active_at: new Date(Date.now() - 3600e3).toISOString(),
-      sub: { id: 's1', plan: 'Learner Plan', kind: 'trial', is_trial: true, expires_at: new Date(Date.now() + 86400e3).toISOString().slice(0, 10), status: 'active' }, group: { code: 'MAL1', label: 'Malika B1', teacher_name: 'Malika' }, method: null },
+      sub: { id: 's1', plan: 'Learner Plan', kind: 'trial', is_trial: true, expires_at: new Date(Date.now() + 86400e3).toISOString().slice(0, 10), status: 'active', referral_code: 'MAL1', teacher_name: 'Malika' }, group: { code: 'MAL1', label: 'Malika B1', teacher_name: 'Malika' }, method: null },
     { user_id: 'u2', name: 'Bekzod', email: 'bek@x', role: 'user', teacher_status: '', level: 'A2', last_active_at: null,
       sub: { id: 's2', plan: 'VIP Plan', kind: 'paid', status: 'active', provider: 'dodo', live_card: true, expires_at: '2026-11-01' }, group: null, method: 'card' },
     { user_id: 'u3', name: 'Teacher Malika', email: 'mal@x', role: 'user', teacher_status: 'approved', level: '', last_active_at: null, sub: null, group: null, method: null },
