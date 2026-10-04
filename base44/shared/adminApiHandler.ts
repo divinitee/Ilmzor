@@ -319,9 +319,14 @@ export function createAdminApiHandler(deps: HandlerDeps) {
 
     try {
       // 2. configuration — fail closed
+      // `detail` names WHICH setting is wrong (never its value), so a
+      // misconfiguration explains itself on the page.
+      const rawKey = deps.getSecret('ADMIN_SESSION_KEY') || '';
+      if (!rawKey) throw new AuthError(503, 'not_configured', { detail: 'key_missing' });
+      if (rawKey.length < 32) throw new AuthError(503, 'not_configured', { detail: 'key_too_short' });
       const allowlist = parseAllowlist(deps.getSecret('ADMIN_CONSOLE_USER_IDS'));
-      if (allowlist.size === 0) throw new AuthError(503, 'not_configured');
-      const keys = await deriveKeys(deps.getSecret('ADMIN_SESSION_KEY') || '');
+      if (allowlist.size === 0) throw new AuthError(503, 'not_configured', { detail: 'allowlist_empty' });
+      const keys = await deriveKeys(rawKey);
 
       // 3. role, 4. allowlist
       if (me.role !== 'admin') throw new AuthError(403, 'forbidden');
