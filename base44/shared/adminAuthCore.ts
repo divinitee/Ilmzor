@@ -143,7 +143,7 @@ export async function decryptSeed(seedKey: CryptoKey, blob: string): Promise<str
   const [v, ivS, ctS] = String(blob || '').split('.');
   if (v !== 'v1' || !ivS || !ctS) throw new AuthError(500, 'seed_unreadable');
   try {
-    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64urlDecode(ivS) }, seedKey, b64urlDecode(ctS));
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64urlDecode(ivS) as BufferSource }, seedKey, b64urlDecode(ctS) as BufferSource);
     return dec.decode(pt);
   } catch {
     // Wrong key (ADMIN_SESSION_KEY rotated) or tampered row.
@@ -157,7 +157,7 @@ export const newSeed = () => base32Encode(randomBytes(20)); // 160-bit, RFC 4226
 export const stepAt = (nowMs: number) => Math.floor(nowMs / 1000 / TOTP_PERIOD_S);
 
 export async function totpAt(seedB32: string, step: number): Promise<string> {
-  const key = await crypto.subtle.importKey('raw', base32Decode(seedB32), { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+  const key = await crypto.subtle.importKey('raw', base32Decode(seedB32) as BufferSource, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
   const msg = new Uint8Array(8);
   let s = step;
   for (let i = 7; i >= 0; i--) { msg[i] = s & 0xff; s = Math.floor(s / 256); }
@@ -261,7 +261,7 @@ export async function verifyToken(tokenKey: CryptoKey, token: unknown, expect: {
   if (parts.length !== 2 || !parts[0] || !parts[1]) throw new AuthError(403, 'token_malformed');
   let sigOk = false;
   try {
-    sigOk = await crypto.subtle.verify('HMAC', tokenKey, b64urlDecode(parts[1]), enc.encode(parts[0]));
+    sigOk = await crypto.subtle.verify('HMAC', tokenKey, b64urlDecode(parts[1]) as BufferSource, enc.encode(parts[0]));
   } catch {
     sigOk = false;
   }
