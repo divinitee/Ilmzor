@@ -156,7 +156,7 @@ const ACTIONS: Record<string, (ctx: Ctx) => Promise<Record<string, unknown>>> = 
     // Using a backup code usually means the phone is gone: revoke every other
     // console session at the same time.
     const epoch = f.method === 'backup_code' ? epochOf(ctx.row) + 1 : epochOf(ctx.row);
-    const patch = { ...f.patch, ...successPatch(), session_epoch: epoch, last_login_at: iso(ctx.now) };
+    const patch: Record<string, unknown> = { ...f.patch, ...successPatch(), session_epoch: epoch, last_login_at: iso(ctx.now) };
     await ctx.svc.AdminSecurity.update(ctx.row.id, patch);
     const left = Array.isArray(patch.backup_code_hashes) ? (patch.backup_code_hashes as string[]).length : (ctx.row.backup_code_hashes || []).length;
     await ctx.audit({
