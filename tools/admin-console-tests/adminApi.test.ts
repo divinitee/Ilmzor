@@ -356,7 +356,9 @@ Deno.test('auditList and security need a token and return rows', async () => {
   const a = await t.call('tee', 'auditList', { token });
   assertEquals(a.status, 200);
   assert(a.body.rows.length >= 2);
-  assertEquals(a.body.rows[0].action, 'auditList' === a.body.rows[0].action ? 'auditList' : a.body.rows[0].action);
+  // newest first: the refused token-less auditList call just above
+  assertEquals(a.body.rows[0].outcome, 'refused');
+  assertEquals(a.body.rows[0].reason, 'token_missing');
   const s = await t.call('tee', 'security', { token });
   assertEquals(s.body.backup_codes_left, 8);
   const ilm = s.body.admins.find((x: any) => x.email === 'ilmzor.uz@gmail.com');
