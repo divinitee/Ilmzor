@@ -26,7 +26,8 @@ async function setup() {
   };
   const s = await call('tee', 'enrollStart');
   const c = await call('tee', 'enrollConfirm', { code: await totpAt(s.body.secret, stepAt(now)) });
-  const token = c.body.token as string;
+  const seed = s.body.secret as string;
+  const st = { token: c.body.token as string };
   const E = world.entities;
   // seed data
   E.TeacherReferral.rows.push(
@@ -38,9 +39,11 @@ async function setup() {
     { id: 'a1', student_email: 'student@example.com', ended_at: '2026-10-03T10:00:00Z', duration_seconds: 600 },
     { id: 'a2', student_email: 'student@example.com', ended_at: '2026-09-20T10:00:00Z', duration_seconds: 1200 },
   );
-  const act = (op: string, extra: Record<string, unknown> = {}, user_id = 'u_student') => call('tee', 'studentAction', { token, user_id, op, ...extra });
+  const act = (op: string, extra: Record<string, unknown> = {}, user_id = 'u_student') => call('tee', 'studentAction', { token: st.token, user_id, op, ...extra });
+  // Sign in again (tokens last 12 h; some tests jump weeks ahead).
+  const relogin = async () => { st.token = (await call('tee', 'verify', { code: await totpAt(seed, stepAt(now)) })).body.token; };
   const subOf = (email: string) => E.StudentSubscription.rows.find((r) => r.phone === email);
-  return { world, E, call, token, act, subOf, tick: (ms: number) => { now += ms; } };
+  return { world, E, call, get token() { return st.token; }, act, subOf, relogin, tick: (ms: number) => { now += ms; } };
 }
 
 Deno.test('students: all three actions need a console token and an allowlisted admin', async () => {
@@ -115,6 +118,7 @@ Deno.test('pause banks days, resume gives them back; wrong states refused', asyn
   assertEquals(row.status, 'paused');
   assertEquals(row.paused_days_remaining, 10);
   t.tick(30 * DAY);
+  await t.relogin();
   assertEquals((await t.act('resume')).status, 200);
   assertEquals(t.subOf('student@example.com').expires_at, '2026-11-13');
 });
