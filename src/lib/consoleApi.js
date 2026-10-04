@@ -90,4 +90,11 @@ export const CONSOLE_ERRORS = {
   request_failed: "Couldn't reach the server.",
 };
 
-export const errorText = (e) => CONSOLE_ERRORS[e?.code] || CONSOLE_ERRORS.request_failed;
+const CONFIG_DETAIL = {
+  key_missing: "The server can't see ADMIN_SESSION_KEY. If you just added it, the backend may need a redeploy.",
+  key_too_short: "ADMIN_SESSION_KEY is shorter than 32 characters. Replace it with a longer random value.",
+  allowlist_empty: "ADMIN_CONSOLE_USER_IDS is empty.",
+};
+
+export const errorText = (e) =>
+  (e?.code === "not_configured" && CONFIG_DETAIL[e?.detail]) || CONSOLE_ERRORS[e?.code] || CONSOLE_ERRORS.request_failed;
