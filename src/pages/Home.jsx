@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal, ShieldCheck } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
@@ -395,6 +395,9 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
           { to: "/pricing", label: t("settings.subscription_plans"), icon: Crown },
           { to: "/study-tips", label: t("settings.study_tips"), icon: Lightbulb },
           { to: "/settings", label: t("settings.full_settings"), icon: SlidersHorizontal },
+          // Admins only (VT-35). Not a secret, just not advertised: the server
+          // still demands the allowlist + an authenticator code.
+          ...(user?.role === "admin" ? [{ to: "/console", label: "Admin Console", icon: ShieldCheck }] : []),
         ].map(({ to, label, icon: Icon }) => (
           <Link
             key={to}
