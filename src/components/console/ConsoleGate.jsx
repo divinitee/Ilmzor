@@ -30,7 +30,7 @@ function Header({ icon: Icon = ShieldCheck, title, sub }) {
   );
 }
 
-function QrSvg({ value }) {
+export function QrSvg({ value }) {
   const m = qrMatrix(value);
   const n = m.length;
   const q = 4; // quiet zone
@@ -66,7 +66,7 @@ export function CodeInput({ value, onChange, onComplete, disabled, autoFocus = t
   );
 }
 
-function ErrorLine({ error }) {
+export function ErrorLine({ error }) {
   if (!error) return null;
   return (
     <p className="mt-3 text-center text-sm text-rose-300">
