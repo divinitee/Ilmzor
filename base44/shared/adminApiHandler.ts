@@ -27,6 +27,7 @@ import {
   PENDING_ENROL_TTL_MS, MAX_FAILS, normalizeBackup,
 } from './adminAuthCore.ts';
 import { computeOverview, displayName } from './adminOverviewCore.ts';
+import { studentsList, studentDetail, studentAction } from './adminStudents.ts';
 
 export interface HandlerDeps {
   createClientFromRequest: (req: Request) => any;
@@ -246,6 +247,11 @@ const ACTIONS: Record<string, (ctx: Ctx) => Promise<Record<string, unknown>>> = 
   async reenrollConfirm(ctx) {
     return confirmPending(ctx, 'reenroll_confirm');
   },
+
+  // ----- P2a Students (base44/shared/adminStudents.ts) -----
+  studentsList: (ctx) => studentsList(ctx),
+  studentDetail: (ctx) => studentDetail(ctx),
+  studentAction: (ctx) => studentAction(ctx),
 };
 
 // Shared by first enrolment and re-enrolment: the pending seed becomes the
