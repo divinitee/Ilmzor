@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal, ShieldCheck } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal, ShieldCheck, Compass } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
@@ -13,7 +13,9 @@ import UnitDrawer from "@/components/UnitDrawer";
 import ParticleBackground from "@/components/ParticleBackground";
 import { refreshMySubscription } from "@/lib/subscription";
 import SkillHub from "@/pages/SkillHub";
-import VocabTutorChat from "@/components/tutor/VocabTutorChat";
+import DeepModeComingSoon from "@/components/deepmode/DeepModeComingSoon";
+import AppTour, { startAppTour } from "@/components/tour/AppTour";
+import { TOUR_COPY } from "@/components/tour/tourCopy";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
 import StudentHomework from "@/components/homework/StudentHomework";
@@ -40,7 +42,10 @@ export default function Home() {
   // onboarding to answer those four questions instead of silently defaulting.
   const [needsSetup, setNeedsSetup] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeTab = searchParams.get("tab") || "home";
+  // "tutor" was the old AI Teacher tab, replaced by Deep Mode (2026-10-05).
+  // Old links/bookmarks to ?tab=tutor land on Deep Mode instead.
+  const rawTab = searchParams.get("tab") || "home";
+  const activeTab = rawTab === "tutor" ? "deep" : rawTab;
   // Bumped whenever the dashboard's Random Challenge quick action fires, so
   // SkillHub (which stays mounted only while activeTab === "skillhub") can
   // tell "open the tab" apart from "open the tab AND launch a random game".
@@ -79,6 +84,17 @@ export default function Home() {
   const scrollRef = useRef(null);
 
   useEffect(() => { loadData(); }, []);
+
+  // ?tour=1 (sent by the Help button from other pages) replays the app tour
+  // once the dashboard has loaded and AppTour is mounted.
+  useEffect(() => {
+    if (loading || searchParams.get("tour") !== "1") return;
+    const next = new URLSearchParams(searchParams);
+    next.delete("tour");
+    setSearchParams(next, { replace: true });
+    const timer = window.setTimeout(startAppTour, 400);
+    return () => window.clearTimeout(timer);
+  }, [loading, searchParams, setSearchParams]);
 
   // Older Dodo checkouts were built with a ?payment=done return URL before
   // /payment-complete existed. Any of those still in flight would land here
@@ -292,7 +308,7 @@ export default function Home() {
 
         {activeTab === "skillhub" && !isTeacherAccount && <SkillHub isActive={isActive} user={user} autoRandomToken={randomLaunch} homeworkId={homeworkId} onHomeworkExit={exitHomework} />}
 
-        {activeTab === "tutor" && !isTeacherAccount && (isActive ? <VocabTutorChat /> : <TrialHomeScreen isAdmin={isAdmin} subscription={subscription} />)}
+        {activeTab === "deep" && !isTeacherAccount && <DeepModeComingSoon onNavigate={navigateTab} />}
 
         {activeTab === "settings" && (
           <SettingsTab
@@ -306,6 +322,17 @@ export default function Home() {
 
       {/* Bottom Tab Bar */}
       <BottomTabBar activeTab={activeTab} onTabChange={navigateTab} variant={isTeacherAccount ? "teacher" : "student"} />
+
+      {/* First-run walkthrough (students only). Never auto-starts on top of
+          a game or homework that was opened from a link. */}
+      {!isTeacherAccount && (
+        <AppTour
+          user={user}
+          activeTab={activeTab}
+          onNavigate={navigateTab}
+          autoStart={!searchParams.get("game") && !searchParams.get("hw") && !searchParams.get("play")}
+        />
+      )}
 
       {/* Unit Drawer */}
       <UnitDrawer
@@ -367,7 +394,8 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
 
 function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
   const { theme, setTheme } = useTheme();
-  const { t } = useAppLang();
+  const { t, lang } = useAppLang();
+  const tourCopy = TOUR_COPY[lang] || TOUR_COPY.en;
 
   const themeOptions = [
     { value: "system", label: t("settings.theme_system"), icon: Monitor },
@@ -408,6 +436,14 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
             <span className="text-sm font-medium text-foreground">{label}</span>
           </Link>
         ))}
+        <button
+          type="button"
+          onClick={startAppTour}
+          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors border-t border-border select-none"
+        >
+          <Compass className="w-5 h-5 text-muted-foreground" />
+          <span className="text-sm font-medium text-foreground">{tourCopy.replay}</span>
+        </button>
       </div>
 
       {/* Theme */}
