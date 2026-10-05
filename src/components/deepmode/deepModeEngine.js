@@ -2,86 +2,107 @@
 // requestAnimationFrame loop: nodes ease toward layout targets, links are
 // redrawn from the current node positions, and the camera eases toward a
 // fitted view. Ported from the approved prototype (5 Oct 2026).
+//
+// Any form can become the centre (Tee, 5 Oct 2026: "a lab that breaks a word
+// down from every angle"). Jumping to a form flies it into the core, swaps in
+// that form's own meaning, synonyms and antonyms, and turns the branch ring
+// so the map visibly changes angle.
 import { fill } from "./deepModeMapCopy";
 
 const SVGNS = "http://www.w3.org/2000/svg";
 // Root/etymology was dropped (Tee, 5 Oct 2026): no trusted source, and a
 // wrong origin is worse than none.
 const ORDER = ["meaning", "syn", "ant", "forms", "context", "affixes"];
+const SLOTS = ["noun", "verb", "adjective", "adverb"];
 const CAT = {
   meaning: { c: "var(--c-meaning)", hex: "#9DBBFF" },
   syn: { c: "var(--c-syn)", hex: "#6CCFD6" },
   ant: { c: "var(--c-ant)", hex: "#C98BDB" },
   forms: { c: "var(--c-forms)", hex: "#7E9BFF" },
   context: { c: "var(--c-context)", hex: "#5DB6EC" },
-  root: { c: "var(--c-root)", hex: "#AAB6D3" },
   affixes: { c: "var(--c-affixes)", hex: "#A58DF6" },
   core: { c: "var(--blue-hi)", hex: "#8FB2FF" },
 };
 const R1 = 215, R2 = 420, R3 = 660;
+// How far the branch ring turns for each slot away from the headword's slot.
+const TURN = Math.PI / 6;
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 function highlight(text, words) {
-  const sorted = [...words].sort((a, b) => b.length - a.length);
+  const sorted = [...new Set(words)].sort((a, b) => b.length - a.length);
   const re = new RegExp("\\b(" + sorted.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")(s|d|ed|ing)?\\b", "gi");
   return esc(text).replace(re, (m) => `<mark>${m}</mark>`);
 }
 
-function buildTree(W, c) {
+function buildTree(W, c, centre) {
   const N = {};
+  const F = W.forms[centre];
+  const isHead = centre === W.pos;
+  const P = centre + "|"; // child ids are per-centre so old content never revives
   const add = (id, o) => { N[id] = { id, kids: [], ...o }; if (o.parent) N[o.parent].kids.push(id); return N[id]; };
-  add("core", { type: "core", cat: "core" });
+  add("core", { type: "core", cat: "core", word: F.w, pos: c.pos[centre] || centre, tag: isHead ? W.level : fill(c.familyOf, { w: W.word }) });
   for (const b of ORDER) {
     let count = "";
     if (b === "forms") count = fill(c.of4, { n: Object.values(W.forms).filter(Boolean).length });
-    if (b === "syn") count = W.syn.length;
-    if (b === "ant") count = W.ant.length || "0";
+    if (b === "syn") count = (F.syn || []).length;
+    if (b === "ant") count = (F.ant || []).length || "0";
     if (b === "affixes") count = W.affixes.length || "0";
     add("b:" + b, { type: "branch", cat: b, parent: "core", label: c.branches[b], count });
   }
-  add("l:meaning:def", { type: "leaf", cat: "meaning", parent: "b:meaning", k: fill(c.atLevel, { level: W.level }), html: `<p>${esc(W.meaning)}</p>` });
-  add("l:meaning:tr", { type: "leaf", cat: "meaning", parent: "b:meaning", k: c.inLang, html: `<div class="lang"><b>UZ</b><span>${esc(W.tr.uz)}</span><b>RU</b><span>${esc(W.tr.ru)}</span></div>` });
-  for (const pos of ["noun", "verb", "adjective", "adverb"]) {
-    const f = W.forms[pos]; const id = "i:forms:" + pos; const posLabel = c.pos[pos];
+  // meaning: the headword shows its level-tiered meaning and translation; a form shows its own meaning
+  if (isHead) {
+    add(P + "m:def", { type: "leaf", cat: "meaning", parent: "b:meaning", k: fill(c.atLevel, { level: W.level }), html: `<p>${esc(W.meaning)}</p>` });
+    add(P + "m:tr", { type: "leaf", cat: "meaning", parent: "b:meaning", k: c.inLang, html: `<div class="lang"><b>UZ</b><span>${esc(W.tr.uz)}</span><b>RU</b><span>${esc(W.tr.ru)}</span></div>` });
+  } else {
+    add(P + "m:def", { type: "leaf", cat: "meaning", parent: "b:meaning", k: fill(c.formMeaning, { pos: c.pos[centre] }), html: `<p>${esc(F.def)}</p>` });
+  }
+  add(P + "m:ex", { type: "leaf", cat: "meaning", parent: "b:meaning", k: c.example, html: `<p class="ex">${highlight(F.ex, [F.w])}</p>` });
+  // word forms: the centre is marked "you are here"; any other form can become the centre
+  for (const pos of SLOTS) {
+    const f = W.forms[pos]; const id = P + "f:" + pos; const posLabel = c.pos[pos];
     if (!f) { add(id, { type: "missing", cat: "forms", parent: "b:forms", k: posLabel, v: c.noForm }); continue; }
+    if (pos === centre) { add(id, { type: "here", cat: "forms", parent: "b:forms", k: fill(c.hereLabel, { pos: posLabel }), v: f.w }); continue; }
     add(id, { type: "item", cat: "forms", parent: "b:forms", k: posLabel, v: f.w });
     add(id + ":def", { type: "leaf", cat: "forms", parent: id, k: fill(c.formMeaning, { pos: posLabel }), html: `<p>${esc(f.def)}</p>` });
     add(id + ":ex", { type: "leaf", cat: "forms", parent: id, k: c.example, html: `<p class="ex">${highlight(f.ex, [f.w])}</p>` });
+    add(id + ":go", { type: "jump", cat: "forms", parent: id, slot: pos, label: fill(c.explore, { w: f.w }) });
   }
-  if (!W.affixes.length) add("i:affixes:none", { type: "missing", cat: "affixes", parent: "b:affixes", k: c.branches.affixes, v: c.noAffix });
+  if (!W.affixes.length) add(P + "a:none", { type: "missing", cat: "affixes", parent: "b:affixes", k: c.branches.affixes, v: c.noAffix });
   W.affixes.forEach((a, i) => {
-    const id = "i:affixes:" + i;
+    const id = P + "a:" + i;
     const kind = a.kind === "prefix" ? c.prefix : a.kind === "suffixIn" ? fill(c.suffixIn, { w: a.inWord }) : c.suffix;
     add(id, { type: "item", cat: "affixes", parent: "b:affixes", k: kind, v: a.a, pct: a.m });
     add(id + ":also", { type: "leaf", cat: "affixes", parent: id, k: fill(c.alsoIn, { a: a.a, m: a.m }), html: `<div class="tags">${a.also.map((w) => `<span>${esc(w)}</span>`).join("")}</div>` });
   });
-  W.syn.forEach((s, i) => {
-    const id = "i:syn:" + i; const rel = s.s <= 0.6;
+  (F.syn || []).forEach((s, i) => {
+    const id = P + "s:" + i; const rel = s.s <= 0.6;
     add(id, { type: "item", cat: "syn", parent: "b:syn", k: rel ? c.related : c.synonym, v: s.w, pct: Math.round(s.s * 100) + "%" });
     add(id + ":note", { type: "leaf", cat: "syn", parent: id, k: rel ? c.howDiffers : c.howClose, html: `<p>${esc(s.note)}</p>` });
   });
-  if (!W.ant.length) add("i:ant:none", { type: "missing", cat: "ant", parent: "b:ant", k: c.opposite, v: c.noAntonym });
-  W.ant.forEach((a, i) => {
-    const id = "i:ant:" + i;
+  if (!(F.ant || []).length) add(P + "t:none", { type: "missing", cat: "ant", parent: "b:ant", k: c.opposite, v: c.noAntonym });
+  (F.ant || []).forEach((a, i) => {
+    const id = P + "t:" + i;
     add(id, { type: "item", cat: "ant", parent: "b:ant", k: c.opposite, v: a.w });
     add(id + ":note", { type: "leaf", cat: "ant", parent: id, k: c.note, html: `<p>${esc(a.note)}</p>` });
   });
-  add("l:context", { type: "leaf", cat: "context", parent: "b:context", k: c.contextCard, wide: true, html: `<p class="ex">${highlight(W.context, W.hl)}</p>` });
+  add(P + "ctx", { type: "leaf", cat: "context", parent: "b:context", k: c.contextCard, wide: true, html: `<p class="ex">${highlight(W.context, W.hl)}</p>` });
   return N;
 }
 
 export function createEngine(els, W, c, { autoOpen = false } = {}) {
-  const { stage, world, nodesEl, glowLayer, lineLayer, sky, fitBtn, dock } = els;
+  const { stage, world, nodesEl, glowLayer, lineLayer, sky, fitBtn, dock, crumb } = els;
   const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const T = buildTree(W, c);
+  let centre = W.pos;
+  let T = buildTree(W, c, centre);
   let openBranch = null, openItem = null, alive = true, raf = 0, skyRaf = 0, dragging = false;
   const timers = [];
   const live = new Map();
   const cam = { x: 0, y: 0, k: 1, tx: 0, ty: 0, tk: 1 };
 
   const narrow = () => stage.clientWidth < 600;
-  const angleOf = (i, n) => ((-90 + (i * 360) / n) * Math.PI) / 180;
-  const fan = (center, n, step) => Array.from({ length: n }, (_, i) => center + (i - (n - 1) / 2) * step);
+  const turn = () => (SLOTS.indexOf(centre) - SLOTS.indexOf(W.pos)) * TURN;
+  const angleOf = (i, n) => ((-90 + (i * 360) / n) * Math.PI) / 180 + turn();
+  const fan = (cAng, n, step) => Array.from({ length: n }, (_, i) => cAng + (i - (n - 1) / 2) * step);
   // Phones: leaf cards line up along the branch's direction instead of side by side.
   function stack(a, r0, ids, pos) {
     const sep = Math.abs(Math.cos(a)) * 255 + Math.abs(Math.sin(a)) * 150;
@@ -115,11 +136,17 @@ export function createEngine(els, W, c, { autoOpen = false } = {}) {
 
   function nodeHTML(n) {
     const col = CAT[n.cat].c;
-    if (n.type === "core") return `<button class="inner core" aria-label="${esc(W.word)}, ${esc(W.level)}. ${esc(c.fit)}"><div><div class="w">${esc(W.word)}</div><div class="m">${esc(c.pos[W.pos] || W.pos)} · <i>${esc(W.level)}</i></div></div></button>`;
+    if (n.type === "core") return `<button class="inner core" aria-label="${esc(n.word)}, ${esc(n.pos)}. ${esc(c.fit)}"><div><div class="w">${esc(n.word)}</div><div class="m">${esc(n.pos)} · <i>${esc(n.tag)}</i></div></div></button>`;
     if (n.type === "branch") return `<button class="inner branch" style="--c:${col}" aria-expanded="false"><span class="dot"></span><span class="t">${esc(n.label)}</span><span class="n">${esc(n.count)}</span></button>`;
     if (n.type === "item") return `<button class="inner item" style="--c:${col}" aria-expanded="false"><span class="k">${esc(n.k)}</span><span class="v">${esc(n.v)}${n.pct ? `<span class="pct">${esc(n.pct)}</span>` : ""}</span></button>`;
+    if (n.type === "here") return `<div class="inner item here" style="--c:${col}"><span class="k">${esc(n.k)}</span><span class="v">${esc(n.v)}</span></div>`;
     if (n.type === "missing") return `<div class="inner item missing" style="--c:${col}"><span class="k">${esc(n.k)}</span><span class="v">${esc(n.v)}</span></div>`;
+    if (n.type === "jump") return `<button class="inner jump" style="--c:${col}">${esc(n.label)}</button>`;
     return `<div class="inner leaf${n.wide ? " wide" : ""}" style="--c:${col}"><span class="k">${esc(n.k)}</span>${n.html}</div>`;
+  }
+  function mount(L, n, id) {
+    L.el.innerHTML = nodeHTML(n);
+    const btn = L.el.querySelector("button"); if (btn) btn.addEventListener("click", () => onTap(id));
   }
 
   // Same light as the Skill Hub tree: a line sweeps in from its parent, then breathes.
@@ -151,37 +178,60 @@ export function createEngine(els, W, c, { autoOpen = false } = {}) {
       const n = T[id]; let L = live.get(id);
       if (L && L.leaving) L.leaving = false;
       else if (!L) {
-        const el = document.createElement("div"); el.className = "node"; el.innerHTML = nodeHTML(n);
+        const el = document.createElement("div"); el.className = "node";
         nodesEl.appendChild(el);
         const from = n.parent && live.get(n.parent) ? live.get(n.parent) : { x: 0, y: 0 };
         const delay = n.type === "branch" ? 140 + order * 70 : order * 55;
-        L = { el, x: from.x, y: from.y, s: 0.2, o: 0, start: performance.now() + delay, links: n.parent ? makeLink(n.cat, delay + 60) : null };
-        live.set(id, L);
-        const btn = el.querySelector("button"); if (btn) btn.addEventListener("click", () => onTap(id));
+        L = { el, parent: n.parent, x: from.x, y: from.y, s: 0.2, o: 0, start: performance.now() + delay, links: n.parent ? makeLink(n.cat, delay + 60) : null };
+        live.set(id, L); mount(L, n, id);
         order++;
       }
       L.tx = pos[id].x; L.ty = pos[id].y; L.ts = 1; L.to = 1;
     }
     for (const [id, L] of live) {
       if (!want.has(id) && !L.leaving) {
-        const p = T[id].parent && live.get(T[id].parent);
+        const p = L.parent && live.get(L.parent);
         L.leaving = true; L.tx = p ? p.tx : 0; L.ty = p ? p.ty : 0; L.ts = 0.2; L.to = 0; L.start = performance.now();
       }
     }
     for (const [id, L] of live) {
-      const n = T[id]; const inner = L.el.firstElementChild; const isOpen = id === openBranch || id === openItem;
+      const n = T[id]; if (!n || L.leaving) continue;
+      const inner = L.el.firstElementChild; const isOpen = id === openBranch || id === openItem;
       inner.classList.toggle("open", isOpen);
       if (inner.hasAttribute("aria-expanded")) inner.setAttribute("aria-expanded", String(isOpen));
       const dimmed = (openBranch && n.type === "branch" && id !== openBranch) || (openItem && n.parent === openBranch && id !== openItem && n.type !== "leaf");
       L.el.classList.toggle("dim", !!dimmed);
     }
+    renderCrumb();
     if (fit) fitCamera();
+  }
+
+  // Make another form the centre: it flies into the core, the ring turns.
+  function jump(slot, fromId) {
+    if (!W.forms[slot] || slot === centre) return;
+    const src = fromId && live.get(fromId);
+    const startAt = src ? { x: src.x, y: src.y } : null;
+    centre = slot; T = buildTree(W, c, centre); openBranch = null; openItem = null;
+    for (const id of ["core", ...ORDER.map((b) => "b:" + b)]) { const L = live.get(id); if (L) mount(L, T[id], id); }
+    const core = live.get("core");
+    if (core && startAt && !REDUCED) { core.x = startAt.x; core.y = startAt.y; core.s = 0.45; }
+    sync(true);
+  }
+
+  function renderCrumb() {
+    if (!crumb) return;
+    if (centre === W.pos) { crumb.innerHTML = ""; crumb.hidden = true; return; }
+    crumb.hidden = false;
+    crumb.innerHTML = `<button type="button" class="chip">← ${esc(fill(c.backTo, { w: W.word }))}</button><span>›</span><b>${esc(W.forms[centre].w)}</b>`;
+    crumb.querySelector("button").addEventListener("click", () => jump(W.pos, null));
   }
 
   function onTap(id) {
     const n = T[id];
+    if (!n) return;
     if (n.type === "core") { openBranch = null; openItem = null; }
     else if (n.type === "branch") { if (openBranch === id) { openBranch = null; openItem = null; } else { openBranch = id; openItem = null; } }
+    else if (n.type === "jump") { jump(n.slot, n.parent); return; }
     else if (n.type === "item" && n.kids.length) openItem = openItem === id ? null : id;
     sync(true);
   }
@@ -215,10 +265,10 @@ export function createEngine(els, W, c, { autoOpen = false } = {}) {
       L.x += (L.tx - L.x) * f; L.y += (L.ty - L.y) * f; L.s += (L.ts - L.s) * f; L.o += (L.to - L.o) * f;
       L.el.style.transform = `translate(${L.x}px, ${L.y}px) scale(${L.s})`; L.el.style.opacity = L.o;
       if (L.links) {
-        const n = T[id]; const P = live.get(n.parent);
+        const P = live.get(L.parent);
         let from = P || { x: 0, y: 0 };
         // Lines start at the edge of the centre word, not under it.
-        if (n.parent === "core") { const dx = L.x - from.x, dy = L.y - from.y, len = Math.hypot(dx, dy) || 1, r = Math.min(78, len * 0.6); from = { x: from.x + (dx / len) * r, y: from.y + (dy / len) * r }; }
+        if (L.parent === "core") { const dx = L.x - from.x, dy = L.y - from.y, len = Math.hypot(dx, dy) || 1, r = Math.min(78, len * 0.6); from = { x: from.x + (dx / len) * r, y: from.y + (dy / len) * r }; }
         const d = curve(from, L); L.links.forEach((p) => { p.setAttribute("d", d); p.style.opacity = L.o; });
       }
       if (L.leaving && L.o < 0.03) { L.el.remove(); if (L.links) L.links.forEach((p) => p.remove()); live.delete(id); }
@@ -238,7 +288,7 @@ export function createEngine(els, W, c, { autoOpen = false } = {}) {
     cam.tk = k; cam.tx = ox - wx * k; cam.ty = oy - wy * k;
   }
   const onDown = (e) => {
-    if (e.target.closest("button, .dock, .soon")) return;
+    if (e.target.closest("button, .dock, .soon, .crumb")) return;
     ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
     try { stage.setPointerCapture(e.pointerId); } catch { /* ignore */ }
     dragging = true; stage.classList.add("dragging");
@@ -299,5 +349,6 @@ export function createEngine(els, W, c, { autoOpen = false } = {}) {
     stage.removeEventListener("wheel", onWheel); stage.removeEventListener("scroll", onScroll);
     fitBtn.removeEventListener("click", onFit); window.removeEventListener("keydown", onKey);
     nodesEl.innerHTML = ""; glowLayer.innerHTML = ""; lineLayer.innerHTML = "";
+    if (crumb) { crumb.innerHTML = ""; crumb.hidden = true; }
   };
 }
