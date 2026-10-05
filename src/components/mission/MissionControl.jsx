@@ -151,7 +151,9 @@ export default function MissionControl({
       {homeworkSlot}
       <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillStates={skillState?.skills ?? null} skillStateError={skillStateError} />
       <FreeLessonCard />
-      <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
+      <div data-tour="missions">
+        <MissionsCard missions={missions} accent={ACCENT} accentGlow={ACCENT_GLOW} />
+      </div>
       <ProgressSnapshot totalCorrect={data.totalCorrect} streak={data.streak} xp={data.xp} />
       <RecentAchievement achievement={achievement} />
       <QuickActions onNavigate={onNavigate} accent={ACCENT} />
