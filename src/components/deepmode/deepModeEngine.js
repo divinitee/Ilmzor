@@ -5,7 +5,9 @@
 import { fill } from "./deepModeMapCopy";
 
 const SVGNS = "http://www.w3.org/2000/svg";
-const ORDER = ["meaning", "syn", "ant", "forms", "context", "root", "affixes"];
+// Root/etymology was dropped (Tee, 5 Oct 2026): no trusted source, and a
+// wrong origin is worse than none.
+const ORDER = ["meaning", "syn", "ant", "forms", "context", "affixes"];
 const CAT = {
   meaning: { c: "var(--c-meaning)", hex: "#9DBBFF" },
   syn: { c: "var(--c-syn)", hex: "#6CCFD6" },
@@ -53,9 +55,6 @@ function buildTree(W, c) {
     add(id, { type: "item", cat: "affixes", parent: "b:affixes", k: kind, v: a.a, pct: a.m });
     add(id + ":also", { type: "leaf", cat: "affixes", parent: id, k: fill(c.alsoIn, { a: a.a, m: a.m }), html: `<div class="tags">${a.also.map((w) => `<span>${esc(w)}</span>`).join("")}</div>` });
   });
-  add("i:root", { type: "item", cat: "root", parent: "b:root", k: c.origin, v: W.root.label, pct: W.root.m });
-  add("i:root:story", { type: "leaf", cat: "root", parent: "i:root", k: c.story, html: `<p>${esc(W.root.story)}</p>` });
-  add("i:root:rel", { type: "leaf", cat: "root", parent: "i:root", k: c.sameRoot, html: `<div class="tags">${W.root.related.map((w) => `<span>${esc(w)}</span>`).join("")}</div>` });
   W.syn.forEach((s, i) => {
     const id = "i:syn:" + i; const rel = s.s <= 0.6;
     add(id, { type: "item", cat: "syn", parent: "b:syn", k: rel ? c.related : c.synonym, v: s.w, pct: Math.round(s.s * 100) + "%" });
