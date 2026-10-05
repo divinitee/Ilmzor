@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppLang } from "@/hooks/useAppLang";
 import { startAppTour } from "@/components/tour/AppTour";
-import { TOUR_COPY } from "@/components/tour/tourCopy";
+import { HELP_COPY } from "@/components/helpCopy";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,9 +18,11 @@ export default function HelpReporter({ user }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { lang } = useAppLang();
-  const tourCopy = TOUR_COPY[lang] || TOUR_COPY.en;
-  // The app tour covers the student Home screen. Teacher-track and admin
-  // accounts are routed to /teacher, so they don't get the option.
+  const c = HELP_COPY[lang] || HELP_COPY.en;
+  // Help is the single always-available home for the app tour (Tee,
+  // 2026-10-05), on every page. The tour covers the student Home screen;
+  // teacher-track and admin accounts are routed to /teacher, so they don't
+  // get the option.
   const canTour = !!user && user.role !== "admin" && user.role !== "teacher" &&
     !["approved", "pending", "rejected"].includes(user.teacher_status);
   const fileInputRef = useRef(null);
@@ -54,11 +56,11 @@ export default function HelpReporter({ user }) {
     event.target.value = "";
     if (!file) return;
     if (!file.type.startsWith("image/")) {
-      setError("Please choose an image file.");
+      setError(c.errImage);
       return;
     }
     if (file.size > MAX_SCREENSHOT_BYTES) {
-      setError("Screenshots must be 10 MB or smaller.");
+      setError(c.errSize);
       return;
     }
     setScreenshot(file);
@@ -71,7 +73,7 @@ export default function HelpReporter({ user }) {
     const cleanTitle = title.trim();
 
     if (!cleanDetails || (kind === "bug" && !cleanTitle)) {
-      setError(kind === "bug" ? "Add a title and describe the issue." : "Please enter your feedback.");
+      setError(kind === "bug" ? c.errBugEmpty : c.errFeedbackEmpty);
       return;
     }
 
@@ -102,7 +104,7 @@ export default function HelpReporter({ user }) {
       setKind("submitted");
     } catch (submitError) {
       console.error("Report submission failed:", submitError);
-      setError("Your report could not be sent. Please try again.");
+      setError(c.errSend);
     } finally {
       setSubmitting(false);
     }
@@ -124,10 +126,10 @@ export default function HelpReporter({ user }) {
         onClick={() => setOpen(true)}
         data-tour="help-button"
         className="fixed bottom-24 right-4 z-40 h-12 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 flex items-center gap-2 select-none"
-        aria-label="Get help or send feedback"
+        aria-label={c.buttonAria}
       >
         <HelpCircle className="w-5 h-5" />
-        Help
+        {c.button}
       </button>
 
       <Dialog open={open} onOpenChange={(nextOpen) => nextOpen ? setOpen(true) : close()}>
@@ -137,19 +139,31 @@ export default function HelpReporter({ user }) {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/10">
                 <Send className="h-5 w-5 text-emerald-600" />
               </div>
-              <DialogTitle>Thank you</DialogTitle>
+              <DialogTitle>{c.thanks}</DialogTitle>
               <p className="mt-2 text-sm text-muted-foreground">
-                Your {title ? "bug report" : "feedback"} has been sent to the VIRORA team.
+                {title ? c.sentBug : c.sentFeedback}
               </p>
-              <Button className="mt-6" onClick={close}>Done</Button>
+              <Button className="mt-6" onClick={close}>{c.done}</Button>
             </div>
           ) : !kind ? (
             <>
               <DialogHeader>
-                <DialogTitle>Help VIRORA</DialogTitle>
-                <DialogDescription>Tell us when something is broken or how we can improve.</DialogDescription>
+                <DialogTitle>{c.title}</DialogTitle>
+                <DialogDescription>{c.subtitle}</DialogDescription>
               </DialogHeader>
               <div className="grid gap-3 pt-1">
+                {canTour && (
+                  <button
+                    type="button"
+                    onClick={takeTour}
+                    className="rounded-2xl border border-primary/30 bg-primary/[0.06] p-4 text-left transition-colors hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary"><Compass className="h-5 w-5" /></span>
+                      <span><span className="block font-semibold text-foreground">{c.tourTitle}</span><span className="block pt-0.5 text-sm text-muted-foreground">{c.tourDesc}</span></span>
+                    </div>
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => setKind("bug")}
@@ -157,7 +171,7 @@ export default function HelpReporter({ user }) {
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-destructive/10 text-destructive"><Bug className="h-5 w-5" /></span>
-                    <span><span className="block font-semibold text-foreground">Report a bug</span><span className="block pt-0.5 text-sm text-muted-foreground">Something is broken or unexpected.</span></span>
+                    <span><span className="block font-semibold text-foreground">{c.bugTitle}</span><span className="block pt-0.5 text-sm text-muted-foreground">{c.bugDesc}</span></span>
                   </div>
                 </button>
                 <button
@@ -167,56 +181,44 @@ export default function HelpReporter({ user }) {
                 >
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600"><Lightbulb className="h-5 w-5" /></span>
-                    <span><span className="block font-semibold text-foreground">Send feedback</span><span className="block pt-0.5 text-sm text-muted-foreground">Ideas, requests, or general feedback.</span></span>
+                    <span><span className="block font-semibold text-foreground">{c.feedbackTitle}</span><span className="block pt-0.5 text-sm text-muted-foreground">{c.feedbackDesc}</span></span>
                   </div>
                 </button>
-                {canTour && (
-                  <button
-                    type="button"
-                    onClick={takeTour}
-                    className="rounded-2xl border border-border p-4 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Compass className="h-5 w-5" /></span>
-                      <span><span className="block font-semibold text-foreground">{tourCopy.helpTitle}</span><span className="block pt-0.5 text-sm text-muted-foreground">{tourCopy.helpDesc}</span></span>
-                    </div>
-                  </button>
-                )}
               </div>
             </>
           ) : (
             <form onSubmit={submit} className="space-y-4">
               <DialogHeader>
-                <DialogTitle>{kind === "bug" ? "Report a bug" : "Send feedback"}</DialogTitle>
-                <DialogDescription>We automatically include the page you are on and the time of submission.</DialogDescription>
+                <DialogTitle>{kind === "bug" ? c.bugTitle : c.feedbackTitle}</DialogTitle>
+                <DialogDescription>{c.formNote}</DialogDescription>
               </DialogHeader>
 
               {kind === "bug" && (
                 <>
-                  <Input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={160} placeholder="Short title" autoFocus />
-                  <Textarea value={expectedBehavior} onChange={(event) => setExpectedBehavior(event.target.value)} maxLength={3000} rows={3} placeholder="What did you expect to happen? (optional)" />
+                  <Input value={title} onChange={(event) => setTitle(event.target.value)} maxLength={160} placeholder={c.shortTitle} autoFocus />
+                  <Textarea value={expectedBehavior} onChange={(event) => setExpectedBehavior(event.target.value)} maxLength={3000} rows={3} placeholder={c.expected} />
                 </>
               )}
 
-              <Textarea value={details} onChange={(event) => setDetails(event.target.value)} maxLength={5000} rows={kind === "bug" ? 5 : 6} placeholder={kind === "bug" ? "What happened? Include enough detail to reproduce it." : "What would make VIRORA better for you?"} autoFocus={kind !== "bug"} />
+              <Textarea value={details} onChange={(event) => setDetails(event.target.value)} maxLength={5000} rows={kind === "bug" ? 5 : 6} placeholder={kind === "bug" ? c.bugDetails : c.feedbackDetails} autoFocus={kind !== "bug"} />
 
               {kind === "bug" && (
                 <div>
                   <input ref={fileInputRef} type="file" accept="image/*" className="sr-only" onChange={selectScreenshot} />
                   <button type="button" onClick={() => fileInputRef.current?.click()} className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
                     <ImagePlus className="h-4 w-4" />
-                    {screenshot ? `Screenshot attached: ${screenshot.name}` : "Attach screenshot (optional)"}
+                    {screenshot ? c.attached.replace("{name}", screenshot.name) : c.attach}
                   </button>
-                  {screenshot && <button type="button" onClick={() => setScreenshot(null)} className="ml-3 text-xs text-muted-foreground hover:text-foreground">Remove</button>}
+                  {screenshot && <button type="button" onClick={() => setScreenshot(null)} className="ml-3 text-xs text-muted-foreground hover:text-foreground">{c.remove}</button>}
                 </div>
               )}
 
               {error && <p className="text-sm text-destructive">{error}</p>}
 
               <div className="flex justify-end gap-2">
-                <Button type="button" variant="outline" onClick={() => { setKind(null); setError(""); }}>Back</Button>
+                <Button type="button" variant="outline" onClick={() => { setKind(null); setError(""); }}>{c.back}</Button>
                 <Button type="submit" disabled={submitting}>
-                  {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Sending…</> : "Send"}
+                  {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{c.sending}</> : c.send}
                 </Button>
               </div>
             </form>
