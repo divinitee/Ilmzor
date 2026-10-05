@@ -28,6 +28,10 @@ export const DEEP_MAP_COPY = {
     grammarBody: "The same map, for grammar: how a structure is built, when to use it, the mistakes Uzbek and Russian speakers make, and practice with your AI teacher.",
     backVocab: "Back to vocabulary",
     stageLabel: "Word family map. Tap a branch to grow it.",
+    familyOf: "family of {w}",
+    hereLabel: "{pos} · centre",
+    explore: "Explore {w} →",
+    backTo: "Back to {w}",
   },
   uz: {
     brandSub: "So'z oilasi xaritasi",
@@ -56,6 +60,10 @@ export const DEEP_MAP_COPY = {
     grammarBody: "Xuddi shu xarita, grammatika uchun: tuzilma qanday quriladi, qachon ishlatiladi, o'zbek va rus tilida so'zlashuvchilar qanday xatolarga yo'l qo'yadi va AI ustoz bilan mashq.",
     backVocab: "Lug'atga qaytish",
     stageLabel: "So'z oilasi xaritasi. Shoxni bosing va u o'sadi.",
+    familyOf: "{w} oilasi",
+    hereLabel: "{pos} · markazda",
+    explore: "{w} ni o'rganish →",
+    backTo: "{w} ga qaytish",
   },
   ru: {
     brandSub: "Карта семьи слова",
@@ -84,6 +92,10 @@ export const DEEP_MAP_COPY = {
     grammarBody: "Та же карта для грамматики: как строится конструкция, когда её использовать, какие ошибки делают носители узбекского и русского, и практика с ИИ-учителем.",
     backVocab: "Вернуться к лексике",
     stageLabel: "Карта семьи слова. Нажмите на ветку, чтобы она выросла.",
+    familyOf: "семья слова {w}",
+    hereLabel: "{pos} · в центре",
+    explore: "Изучить {w} →",
+    backTo: "Назад к {w}",
   },
 };
 
