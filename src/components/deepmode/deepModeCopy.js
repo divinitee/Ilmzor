@@ -10,7 +10,7 @@ export const DEEP_MODE_COPY = {
     title: "Deep Mode",
     tagline: "Don't just learn a word. Learn its whole family.",
     intro:
-      "A dictionary tells you what a word means. Deep Mode shows you how it works: where it comes from, how it changes, and how to use every form of it correctly. Your AI teacher builds the map, then practises it with you.",
+      "A dictionary tells you what a word means. Deep Mode shows you how it works: how it is built, how it changes, and how to use every form of it correctly. Your AI teacher builds the map, then practises it with you.",
     previewTitle: "Try it now",
     previewBody: "Explore three sample words. The full word library is coming soon.",
     exampleLabel: "Example",
@@ -46,7 +46,7 @@ export const DEEP_MODE_COPY = {
     title: "Deep Mode",
     tagline: "Faqat so'zni emas, uning butun oilasini o'rganing.",
     intro:
-      "Lug'at so'z nimani anglatishini aytadi. Deep Mode esa so'z qanday ishlashini ko'rsatadi: u qayerdan kelgan, qanday o'zgaradi va uning har bir shaklini qanday to'g'ri ishlatish kerak. AI ustozingiz so'z xaritasini tuzadi, keyin siz bilan birga mashq qiladi.",
+      "Lug'at so'z nimani anglatishini aytadi. Deep Mode esa so'z qanday ishlashini ko'rsatadi: u qanday tuzilgan, qanday o'zgaradi va uning har bir shaklini qanday to'g'ri ishlatish kerak. AI ustozingiz so'z xaritasini tuzadi, keyin siz bilan birga mashq qiladi.",
     previewTitle: "Hozir sinab ko'ring",
     previewBody: "Uchta namunaviy so'zni o'rganing. To'liq so'z kutubxonasi tez orada.",
     exampleLabel: "Misol",
@@ -82,7 +82,7 @@ export const DEEP_MODE_COPY = {
     title: "Deep Mode",
     tagline: "Учите не просто слово, а всю его семью.",
     intro:
-      "Словарь говорит, что слово значит. Deep Mode показывает, как оно работает: откуда оно пришло, как меняется и как правильно использовать каждую его форму. ИИ-учитель строит карту слова, а потом тренирует её вместе с вами.",
+      "Словарь говорит, что слово значит. Deep Mode показывает, как оно работает: как оно устроено, как меняется и как правильно использовать каждую его форму. ИИ-учитель строит карту слова, а потом тренирует её вместе с вами.",
     previewTitle: "Попробуйте сейчас",
     previewBody: "Изучите три слова-примера. Полная библиотека слов скоро появится.",
     exampleLabel: "Пример",

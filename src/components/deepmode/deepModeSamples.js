@@ -21,7 +21,6 @@ export const SAMPLE_WORDS = {
       { a: "uni-", kind: "prefix", m: "one", also: ["uniform", "unique", "universe"] },
       { a: "-fy", kind: "suffix", m: "make, become", also: ["simplify", "clarify", "purify"] },
     ],
-    root: { label: "Latin unus", m: "= one", story: "From Latin unificare: unus “one” + facere “to make”. To unify is to make things one.", related: ["union", "unit", "unity"] },
     syn: [
       { w: "unite", s: 0.95, note: "The closest match. Both work for people, groups and countries." },
       { w: "merge", s: 0.8, note: "Usually for companies, roads or files rather than people." },
@@ -51,7 +50,6 @@ export const SAMPLE_WORDS = {
       { a: "-ive", kind: "suffixIn", inWord: "decisive", m: "makes an adjective", also: ["active", "creative", "expensive"] },
       { a: "-ly", kind: "suffixIn", inWord: "decisively", m: "makes an adverb", also: ["quickly", "clearly", "carefully"] },
     ],
-    root: { label: "Latin decidere", m: "= to cut off", story: "de- “off” + caedere “to cut”. When you decide, you cut off the other choices.", related: ["precise", "concise"] },
     syn: [
       { w: "make up your mind", s: 0.95, note: "Everyday spoken English: “I can’t make up my mind.”" },
       { w: "choose", s: 0.8, note: "Choose picks between options. Decide can be about any question." },
@@ -76,7 +74,6 @@ export const SAMPLE_WORDS = {
     affixes: [
       { a: "-ful", kind: "suffix", m: "full of", also: ["helpful", "useful", "beautiful"] },
     ],
-    root: { label: "Old English caru", m: "= worry", story: "Care first meant worry or sadness. A careful person was “full of worry”, so they paid close attention.", related: ["careless", "caretaker"] },
     syn: [
       { w: "cautious", s: 0.8, note: "Cautious is about avoiding danger or risk. Careful also covers avoiding mistakes." },
       { w: "thorough", s: 0.6, note: "Related: careful and complete, checking every part." },
