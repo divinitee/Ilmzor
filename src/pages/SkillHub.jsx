@@ -438,7 +438,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             rather than nested under a "Vocabulary" list that doesn't exist
             as such in the rendered UI). */}
         {user && !assignmentMode && (
-          <div className="flex flex-wrap justify-center items-center gap-2 mb-2">
+          <div data-tour="hub-toolbar" className="flex flex-wrap justify-center items-center gap-2 mb-2">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/20 text-amber-300 text-xs font-semibold select-none">
               <Star className="w-3.5 h-3.5" /> {userXp?.coins || 0} XP
             </div>
@@ -500,7 +500,7 @@ export default function SkillHub({ isActive = true, user = null, autoRandomToken
             stubby and the boughs splayed nearly flat. The inner layers
             (subskills, challenges) are laid out in percentages too, so they
             just gain a little vertical breathing room. */}
-        <div className="relative w-full aspect-[5/6] max-w-[560px] mx-auto min-h-[430px]">
+        <div data-tour="skill-stage" className="relative w-full aspect-[5/6] max-w-[560px] mx-auto min-h-[430px]">
           <SkillStage
             onPlayGame={assignmentMode ? handleAssignGame : (g) => setActiveGame(g)}
             onComingSoon={(label) => setSoonLabel(label)}
