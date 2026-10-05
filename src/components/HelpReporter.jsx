@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAppLang } from "@/hooks/useAppLang";
+import { startAppTour } from "@/components/tour/AppTour";
+import { TOUR_COPY } from "@/components/tour/tourCopy";
 import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,12 +10,19 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog";
-import { Bug, HelpCircle, ImagePlus, Lightbulb, Loader2, Send } from "lucide-react";
+import { Bug, Compass, HelpCircle, ImagePlus, Lightbulb, Loader2, Send } from "lucide-react";
 
 const MAX_SCREENSHOT_BYTES = 10 * 1024 * 1024;
 
 export default function HelpReporter({ user }) {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { lang } = useAppLang();
+  const tourCopy = TOUR_COPY[lang] || TOUR_COPY.en;
+  // The app tour covers the student Home screen. Teacher-track and admin
+  // accounts are routed to /teacher, so they don't get the option.
+  const canTour = !!user && user.role !== "admin" && user.role !== "teacher" &&
+    !["approved", "pending", "rejected"].includes(user.teacher_status);
   const fileInputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [kind, setKind] = useState(null);
@@ -98,6 +108,13 @@ export default function HelpReporter({ user }) {
     }
   };
 
+  const takeTour = () => {
+    setOpen(false);
+    reset();
+    if (location.pathname === "/") window.setTimeout(startAppTour, 150);
+    else navigate("/?tour=1");
+  };
+
   if (!user) return null;
 
   return (
@@ -105,6 +122,7 @@ export default function HelpReporter({ user }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
+        data-tour="help-button"
         className="fixed bottom-24 right-4 z-40 h-12 rounded-full bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 flex items-center gap-2 select-none"
         aria-label="Get help or send feedback"
       >
@@ -152,6 +170,18 @@ export default function HelpReporter({ user }) {
                     <span><span className="block font-semibold text-foreground">Send feedback</span><span className="block pt-0.5 text-sm text-muted-foreground">Ideas, requests, or general feedback.</span></span>
                   </div>
                 </button>
+                {canTour && (
+                  <button
+                    type="button"
+                    onClick={takeTour}
+                    className="rounded-2xl border border-border p-4 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Compass className="h-5 w-5" /></span>
+                      <span><span className="block font-semibold text-foreground">{tourCopy.helpTitle}</span><span className="block pt-0.5 text-sm text-muted-foreground">{tourCopy.helpDesc}</span></span>
+                    </div>
+                  </button>
+                )}
               </div>
             </>
           ) : (
