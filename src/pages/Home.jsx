@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { base44 } from "@/api/base44Client";
 import { ensureUserLevel } from "@/lib/levelStore";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal, ShieldCheck, Compass } from "lucide-react";
+import { BookOpen, Trophy, LogOut, Trash2, RefreshCw, Moon, Sun, Monitor, TrendingUp, Crown, Lightbulb, SlidersHorizontal, ShieldCheck } from "lucide-react";
 import ProfileEditor from "@/components/ProfileEditor";
 import { Link, Navigate, useSearchParams, useNavigate } from "react-router-dom";
 import { needsProfileSetup } from "@/lib/profileStatus";
@@ -15,7 +15,6 @@ import { refreshMySubscription } from "@/lib/subscription";
 import SkillHub from "@/pages/SkillHub";
 import DeepModeComingSoon from "@/components/deepmode/DeepModeComingSoon";
 import AppTour, { startAppTour } from "@/components/tour/AppTour";
-import { TOUR_COPY } from "@/components/tour/tourCopy";
 import { useAppLang } from "@/hooks/useAppLang";
 import MissionControl from "@/components/mission/MissionControl";
 import StudentHomework from "@/components/homework/StudentHomework";
@@ -394,8 +393,7 @@ function StudentDashboard({ results, units, selectedUnit, selectedUnitName, onOp
 
 function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
   const { theme, setTheme } = useTheme();
-  const { t, lang } = useAppLang();
-  const tourCopy = TOUR_COPY[lang] || TOUR_COPY.en;
+  const { t } = useAppLang();
 
   const themeOptions = [
     { value: "system", label: t("settings.theme_system"), icon: Monitor },
@@ -436,14 +434,6 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
             <span className="text-sm font-medium text-foreground">{label}</span>
           </Link>
         ))}
-        <button
-          type="button"
-          onClick={startAppTour}
-          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors select-none"
-        >
-          <Compass className="w-5 h-5 text-muted-foreground" />
-          <span className="text-sm font-medium text-foreground">{tourCopy.replay}</span>
-        </button>
       </div>
 
       {/* Theme */}
