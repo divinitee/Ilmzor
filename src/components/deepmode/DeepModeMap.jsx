@@ -22,13 +22,14 @@ export default function DeepModeMap() {
   const skyRef = useRef(null);
   const fitRef = useRef(null);
   const dockRef = useRef(null);
+  const crumbRef = useRef(null);
 
   useEffect(() => {
     const destroy = createEngine(
       {
         stage: stageRef.current, world: worldRef.current, nodesEl: nodesRef.current,
         glowLayer: glowRef.current, lineLayer: lineRef.current, sky: skyRef.current,
-        fitBtn: fitRef.current, dock: dockRef.current,
+        fitBtn: fitRef.current, dock: dockRef.current, crumb: crumbRef.current,
       },
       SAMPLE_WORDS[word],
       c,
@@ -53,6 +54,7 @@ export default function DeepModeMap() {
       <div className="stage" ref={stageRef} aria-label={c.stageLabel}>
         <canvas className="dm-sky" ref={skyRef} aria-hidden="true" />
         <div className="proto">{c.preview}</div>
+        <div className="crumb" ref={crumbRef} hidden />
         <div className="world" ref={worldRef}>
           <svg className="dm-links" viewBox="-3000 -3000 6000 6000" aria-hidden="true">
             <defs>
