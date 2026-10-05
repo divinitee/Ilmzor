@@ -9,7 +9,8 @@ import { TOUR_COPY } from "./tourCopy";
 //
 // - Shown once per account per browser, automatically, to every student
 //   (new and existing). Bump TOUR_VERSION to show a revised tour again.
-// - Replayable from Settings and from the floating Help button.
+// - Always replayable from the floating Help button, on every page (the
+//   Help dialog is the tour's one home; see HelpReporter.jsx).
 // - Steps point at elements tagged with data-tour="..."; a step whose
 //   element isn't on screen falls back to a centred card, so a missing tag
 //   degrades the step rather than breaking the tour.
@@ -79,7 +80,7 @@ export default function AppTour({ user, activeTab, onNavigate, autoStart = true 
     return () => window.clearTimeout(timer);
   }, [autoStart, user?.email]);
 
-  // Manual replay (Settings row, Help dialog).
+  // Manual replay (Help dialog).
   useEffect(() => {
     const start = () => { setIndex(0); setOpen(true); };
     window.addEventListener(START_TOUR_EVENT, start);
