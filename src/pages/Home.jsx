@@ -439,7 +439,7 @@ function SettingsTab({ user, onLogout, onDeleteRequest, onProfileSaved }) {
         <button
           type="button"
           onClick={startAppTour}
-          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors border-t border-border select-none"
+          className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-muted/50 transition-colors select-none"
         >
           <Compass className="w-5 h-5 text-muted-foreground" />
           <span className="text-sm font-medium text-foreground">{tourCopy.replay}</span>
