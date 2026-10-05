@@ -131,7 +131,7 @@ export default function DeepModeComingSoon({ onNavigate }) {
         {steps.map(({ icon: Icon, title, body }, i) => (
           <div key={title} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
             <span className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-              <Icon className="w-4.5 h-4.5 text-primary" />
+              <Icon className="w-[18px] h-[18px] text-primary" />
             </span>
             <div className="min-w-0">
               <p className="text-sm font-bold text-foreground">
