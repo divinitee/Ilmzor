@@ -13,7 +13,9 @@ export default function QuickActions({ onNavigate, accent }) {
   const { t } = useAppLang();
   const actions = [
     { id: "review", label: t("dashboard.qaReview"), icon: RotateCw, comingSoon: true },
-    { id: "deep", label: t("dashboard.qaDeep"), icon: Layers, comingSoon: true },
+    // Deep Mode still shows its Coming Soon badge, but now opens the Deep
+    // Mode tab's explainer instead of being a dead, disabled tile.
+    { id: "deep", label: t("dashboard.qaDeep"), icon: Layers, comingSoon: true, previewable: true, onClick: () => onNavigate("deep") },
     { id: "random", label: t("dashboard.qaRandom"), icon: Shuffle, comingSoon: false, onClick: () => onNavigate("skillhub-random") },
   ];
   return (
@@ -22,19 +24,22 @@ export default function QuickActions({ onNavigate, accent }) {
       <div className="grid grid-cols-2 gap-2.5">
         {actions.map((a, i) => {
           const Icon = a.icon;
+          const clickable = !a.comingSoon || a.previewable;
           return (
             <motion.button
               key={a.id}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              onClick={a.comingSoon ? undefined : a.onClick}
-              disabled={a.comingSoon}
-              whileHover={a.comingSoon ? undefined : { y: -2 }}
-              whileTap={a.comingSoon ? undefined : { scale: 0.97 }}
+              onClick={clickable ? a.onClick : undefined}
+              disabled={!clickable}
+              whileHover={clickable ? { y: -2 } : undefined}
+              whileTap={clickable ? { scale: 0.97 } : undefined}
               className={`relative group rounded-2xl border p-3.5 flex flex-col items-start gap-2 transition-colors select-none ${
-                a.comingSoon
+                a.comingSoon && !a.previewable
                   ? "border-white/5 bg-white/[0.02] opacity-60 cursor-default"
+                  : a.comingSoon
+                  ? "border-white/10 bg-white/[0.03] opacity-80 hover:opacity-100 hover:border-white/25"
                   : "border-white/10 bg-white/[0.04] backdrop-blur-md hover:border-white/25 hover:bg-white/[0.07]"
               }`}
             >
