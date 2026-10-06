@@ -1,0 +1,263 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "tired of",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Not a phrasal verb (adjective + preposition), so kind phrase; tired from noted as a trap."
+  },
+  {
+   "headword": "tool",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "tools"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged. toolbox/toolkit are compounds, left out (rule 7)."
+  },
+  {
+   "headword": "tooth",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: teeth (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tooth: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "teeth"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "CORPUS: example says \"brush my tooth\"; normally \"brush my teeth\". toothbrush, toothpaste, toothache are compounds, left out (rule 7)."
+  },
+  {
+   "headword": "trace",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: tracer"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'tracer' (zipf 3.2) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "traces",
+       "trace"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "traced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb trace (follow) is the same family; tracing a picture noted."
+  },
+  {
+   "headword": "traffic",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: lorries"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "traffic"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Verb and trafficker belong to the illegal-trade sense, so other_meaning. traffic jam/lights are compounds, left out."
+  },
+  {
+   "headword": "translate",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: translational"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "translations",
+       "translation"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "translated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "interpreter belongs to interpret, not this family."
+  },
+  {
+   "headword": "traveler",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "noun 'travel' is marked conversion but differs from the headword"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "verb 'travel' is marked base but differs from the headword"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "travel → 'travelling' is a family member, not a synonym"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "travelers"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "traveled",
+       "travelled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the main noun entry (rule 6); travel is the base verb."
+  },
+  {
+   "headword": "tray",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "trays"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No other family forms exist."
+  },
+  {
+   "headword": "try on",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Pronoun position (try it on) shown in context."
+  },
+  {
+   "headword": "tune",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'tunefully' is rare (zipf 1.2)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tuneful: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "tunes",
+       "tune"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "tuned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "tuner is also a device in a radio; job sense kept."
+  }
+ ]
+}

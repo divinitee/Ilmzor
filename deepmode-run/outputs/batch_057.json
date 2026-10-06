@@ -299,10 +299,10 @@
    }
   ],
   "context": {
-   "text": "Someone took Nodira's bag at the station, but there was no trace of the thief. Later the police traced him with the help of a camera.",
+   "text": "Someone took Nodira's bag at the station, but there was no trace of the thief. Luckily, the bag had a phone in it, so it was traceable.",
    "uses": [
     "trace",
-    "traced"
+    "traceable"
    ]
   },
   "reviewer_note": "Verb trace (follow) is the same family; tracing a picture noted."
@@ -528,7 +528,7 @@
     "slot": "noun",
     "status": "existing",
     "form": "traveler",
-    "relation": "derivational",
+    "relation": "base",
     "definition": "a person who is going on a journey",
     "example": "The tired traveler needed a place to sleep.",
     "note": "British English: traveller.",
@@ -552,17 +552,11 @@
     "slot": "noun",
     "status": "existing",
     "form": "travel",
-    "relation": "conversion",
+    "relation": "derivational",
     "definition": "the activity of going from one place to another",
     "example": "Air travel is faster than going by bus.",
     "note": "Usually uncountable: \"travel\", not \"a travel\".",
     "syn": [
-     {
-      "to": "travelling",
-      "relation": "synonym",
-      "strength": 0.8,
-      "note": "The activity of going on journeys."
-     },
      {
       "to": "journey",
       "relation": "related",
@@ -576,7 +570,7 @@
     "slot": "verb",
     "status": "existing",
     "form": "travel",
-    "relation": "base",
+    "relation": "derivational",
     "definition": "to go from one place to another, often far away",
     "example": "We travel to Khiva every summer.",
     "note": "British English: travelled, travelling; American English: traveled, traveling.",
@@ -872,10 +866,10 @@
    }
   ],
   "context": {
-   "text": "My uncle tunes his dutar every evening. Then he plays an old tune that my grandmother loved.",
+   "text": "My uncle plays an old tune on his dutar every evening. It is so tuneful that the neighbours open their windows to listen.",
    "uses": [
-    "tunes",
-    "tune"
+    "tune",
+    "tuneful"
    ]
   },
   "reviewer_note": "tuner is also a device in a radio; job sense kept."
