@@ -1,0 +1,334 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "stuff",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: carelessly"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "stuff"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "stuffed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "stuffy is the blocked-air sense."
+  },
+  {
+   "headword": "style",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: stylistic"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "stylish: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "styles",
+       "style"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "styled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "stylist kept as noun entry (job)."
+  },
+  {
+   "headword": "suck",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: sucker, suction"
+    },
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: suction"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: suctorial"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'sucker' (zipf 3.6) may belong here"
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sucked"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "sucker is informal (easily tricked); placed as other_meaning."
+  },
+  {
+   "headword": "suit",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "suitabilities",
+       "suitability"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "suited"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Clothes sense is a separate map."
+  },
+  {
+   "headword": "suit",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: suitable"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: suit (OK if the learner already knows it)"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: suitably. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "suits"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Separate map from suit = be right for."
+  },
+  {
+   "headword": "support",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: supply. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "supports",
+       "support"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "supported"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "supporter also = sports fan."
+  },
+  {
+   "headword": "sweat",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "sweat: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sweat: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sweaty: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sweats",
+       "sweat"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sweated"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "sweatier"
+      ],
+      "JJS": [
+       "sweatiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "sweater is historically related but means jumper."
+  },
+  {
+   "headword": "sweep",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sweeps"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "swept"
+      ],
+      "VBN": [
+       "swept"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "swept is the past form."
+  },
+  {
+   "headword": "swing",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: swingy"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: swingy, swinish. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "swings",
+       "swing"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "swung"
+      ],
+      "VBN": [
+       "swung"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Noun swing (seat) covered by corpus definition too."
+  },
+  {
+   "headword": "take an exam",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "'make an exam' is a common learner error."
+  },
+  {
+   "headword": "take part in",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": ""
+  }
+ ]
+}

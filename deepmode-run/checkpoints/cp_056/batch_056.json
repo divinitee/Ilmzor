@@ -1,0 +1,872 @@
+[
+ {
+  "headword": "tap",
+  "word_id": "6a6ef9b2a601556148092810",
+  "word_ids": [
+   "6a6ef9b2a601556148092810"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Knock",
+  "sense_pos": "verb",
+  "corpus_definition": "a light knock; also a device that controls water flow",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tap",
+    "relation": "conversion",
+    "definition": "a quick light hit, often with your finger",
+    "example": "I felt a tap on my shoulder.",
+    "syn": [
+     {
+      "to": "knock",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A hit on a door or surface, often louder."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "tap",
+    "definition": "a thing you turn to let water come out",
+    "example": "Turn off the tap when you brush your teeth.",
+    "note": "A different meaning: the water device, not a light knock."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "tap",
+    "relation": "base",
+    "definition": "to hit something quickly and lightly",
+    "example": "She tapped gently on the door.",
+    "syn": [
+     {
+      "to": "knock",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Hit a door to ask to come in."
+     },
+     {
+      "to": "pat",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Touch gently with a flat hand."
+     }
+    ],
+    "ant": [
+     {
+      "to": "bang",
+      "relation": "antonym",
+      "note": "Hit hard and loudly."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Nodira tapped on the window to wake her brother. After the third tap, he finally opened his eyes.",
+   "uses": [
+    "tapped",
+    "tap"
+   ]
+  },
+  "reviewer_note": "CORPUS: definition mixes two meanings; the knock sense is used here, the water tap is other_meaning."
+ },
+ {
+  "headword": "temperature",
+  "word_id": "6a42883f6941e70ad6a00dea",
+  "word_ids": [
+   "6a42883f6941e70ad6a00dea"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Hot or cold",
+  "sense_pos": "noun",
+  "corpus_definition": "How hot or cold something is.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "temperature",
+    "relation": "base",
+    "definition": "how hot or cold something or someone is",
+    "example": "The temperature is rising today.",
+    "syn": [
+     {
+      "to": "heat",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: how hot something is, not how cold."
+     }
+    ],
+    "ant": [],
+    "note": "'have a temperature' = be ill with a fever."
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In July the temperature in Tashkent can reach forty degrees. Doctors tell people to drink a lot of water when temperatures are so high.",
+   "uses": [
+    "temperature",
+    "temperatures"
+   ]
+  },
+  "reviewer_note": "No family forms in learner use."
+ },
+ {
+  "headword": "term",
+  "word_id": "6a4265cce20c7210db6908c5",
+  "word_ids": [
+   "6a4265cce20c7210db6908c5"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "School",
+  "sense_pos": "noun",
+  "corpus_definition": "A period of time during which school takes place.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "term",
+    "relation": "base",
+    "definition": "one of the periods of the school or university year",
+    "example": "The school term ends in June.",
+    "syn": [
+     {
+      "to": "semester",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "One of two parts of the school year, common in American English."
+     }
+    ],
+    "ant": [
+     {
+      "to": "holiday",
+      "relation": "antonym",
+      "note": "Time when there is no school."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "term",
+    "definition": "a word or phrase with a special meaning",
+    "example": "\"Gravity\" is a scientific term.",
+    "note": "A different meaning: a word, not a school period."
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "term",
+    "definition": "to call something by a particular name",
+    "example": "This style is termed modern.",
+    "note": "Belongs to term = a word or name. Formal."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The new term starts in September. In the first term, Sardor wants to study harder.",
+   "uses": [
+    "term"
+   ]
+  },
+  "reviewer_note": "termly (adjective/adverb) is rare British English, so no_form."
+ },
+ {
+  "headword": "thought",
+  "word_id": "6a4282fd46ba24054c1dcdbe",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdbe"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Idea",
+  "sense_pos": "noun",
+  "corpus_definition": "An idea or opinion in your mind.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "thought",
+    "relation": "base",
+    "definition": "an idea or opinion in your mind",
+    "example": "I had a sudden thought about the trip.",
+    "syn": [
+     {
+      "to": "idea",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; very common."
+     },
+     {
+      "to": "opinion",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "What you think about something."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "think",
+    "relation": "suppletive",
+    "definition": "to have an idea or opinion in your mind",
+    "example": "I think it will rain.",
+    "syn": [
+     {
+      "to": "believe",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Feel sure something is true."
+     }
+    ],
+    "ant": [],
+    "note": "Irregular: think, thought, thought."
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "thoughtful",
+    "definition": "kind and thinking about what other people need",
+    "example": "It was thoughtful of you to bring flowers.",
+    "note": "Belongs to thought = care for others, not one idea."
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "thoughtfully",
+    "definition": "in a quiet way, thinking carefully",
+    "example": "He looked thoughtfully out of the window.",
+    "note": "Goes with thoughtful."
+   }
+  ],
+  "people": [
+   {
+    "form": "thinker",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who thinks seriously about ideas",
+    "example": "Ibn Sina was a great thinker."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "thinker",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "A thought came to Malika on the bus. She thought about it all day and then told her teacher.",
+   "uses": [
+    "thought"
+   ]
+  },
+  "reviewer_note": "thought is also the past form of think."
+ },
+ {
+  "headword": "throw away",
+  "word_id": "6a42800cb9d8fc24968a4b4c",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b4c"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Rubbish",
+  "sense_pos": "verb",
+  "corpus_definition": "To put something in the trash because you do not need it.",
+  "particle_note": "Separable: 'throw the paper away' or 'throw away the paper'. With a pronoun, it must go in the middle: 'throw it away'.",
+  "relations": [
+   {
+    "to": "get rid of",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Remove something you do not want."
+   },
+   {
+    "to": "discard",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Formal word for throwing something away.",
+    "register": "formal"
+   },
+   {
+    "to": "bin",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Informal British English: put in the bin.",
+    "register": "informal"
+   },
+   {
+    "to": "keep",
+    "relation": "antonym",
+    "note": "Not throw away; still have it."
+   }
+  ],
+  "context": {
+   "text": "Please do not throw away the old newspapers. Grandpa uses them, so he never throws them away.",
+   "uses": [
+    "throw away",
+    "throws them away"
+   ]
+  },
+  "reviewer_note": "In British English the bin is where you throw things away."
+ },
+ {
+  "headword": "thunder",
+  "word_id": "6a6ef9b2a6015561480926a6",
+  "word_ids": [
+   "6a6ef9b2a6015561480926a6",
+   "6a4282fd46ba24054c1dcd8c"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Weather",
+  "sense_pos": "noun",
+  "corpus_definition": "the loud rumbling sound heard during a storm",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "thunder",
+    "relation": "base",
+    "definition": "the loud noise you hear in a storm after lightning",
+    "example": "Thunder woke the children in the night.",
+    "syn": [
+     {
+      "to": "lightning",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: the flash of light, not the sound."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "thunder",
+    "relation": "conversion",
+    "definition": "to make the loud noise of a storm",
+    "example": "It thundered all night.",
+    "syn": [
+     {
+      "to": "rumble",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Make a long low noise."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "thundery",
+    "relation": "derivational",
+    "definition": "(of weather) with thunder or likely to have thunder",
+    "example": "Expect thundery showers this afternoon.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "thunderous",
+    "relation": "derivational",
+    "definition": "extremely loud, like thunder",
+    "example": "There was thunderous applause.",
+    "syn": [
+     {
+      "to": "deafening",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "So loud you cannot hear anything else."
+     }
+    ],
+    "ant": [
+     {
+      "to": "quiet",
+      "relation": "antonym",
+      "note": "Making little noise."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "thundery",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "We heard thunder all night in our village. It was thunderous, and the dog hid under the bed.",
+   "uses": [
+    "thunder",
+    "thunderous"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B2, A2) merged; A2 used."
+ },
+ {
+  "headword": "tidy",
+  "word_id": "6a6ef9b2a601556148092682",
+  "word_ids": [
+   "6a6ef9b2a601556148092682"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Clean",
+  "sense_pos": "adjective",
+  "corpus_definition": "Keeping things clean and in their proper places.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tidiness",
+    "relation": "derivational",
+    "definition": "the quality of being neat and in order",
+    "example": "Her tidiness surprised her parents.",
+    "syn": [
+     {
+      "to": "neatness",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning."
+     }
+    ],
+    "ant": [
+     {
+      "to": "mess",
+      "relation": "antonym",
+      "note": "A dirty or untidy state."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "tidy",
+    "relation": "conversion",
+    "definition": "to make a place neat by putting things in order",
+    "example": "I tidied my desk this morning.",
+    "syn": [
+     {
+      "to": "clean",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Remove dirt; tidy means put things in order."
+     },
+     {
+      "to": "arrange",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put things in a neat order."
+     }
+    ],
+    "ant": [
+     {
+      "to": "mess up",
+      "relation": "antonym",
+      "note": "Make a place untidy."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "tidy",
+    "relation": "base",
+    "definition": "neat, with everything in its place",
+    "example": "Please keep your room tidy.",
+    "syn": [
+     {
+      "to": "neat",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning."
+     },
+     {
+      "to": "organized",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Arranged in a good order."
+     }
+    ],
+    "ant": [
+     {
+      "to": "untidy",
+      "relation": "antonym",
+      "note": "Not neat."
+     },
+     {
+      "to": "messy",
+      "relation": "antonym",
+      "note": "Dirty or in no order."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "tidily",
+    "relation": "derivational",
+    "definition": "in a neat way",
+    "example": "Put your clothes away tidily.",
+    "syn": [
+     {
+      "to": "neatly",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "tidiness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "tidily",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Aziza is always tidy. She tidies her room every morning and folds her clothes tidily.",
+   "uses": [
+    "tidy",
+    "tidies",
+    "tidily"
+   ]
+  },
+  "reviewer_note": "British English uses tidy more than American English."
+ },
+ {
+  "headword": "tidy up",
+  "word_id": "6a4288ad6941e70ad6a00e69",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e69"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Clean",
+  "sense_pos": "verb",
+  "corpus_definition": "To put things back in their proper places.",
+  "particle_note": "Separable: 'tidy up your room' or 'tidy your room up'. Also used without an object: 'Let's tidy up.'",
+  "relations": [
+   {
+    "to": "clean up",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Make a place clean and in order."
+   },
+   {
+    "to": "put away",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Put things back where they belong."
+   },
+   {
+    "to": "mess up",
+    "relation": "antonym",
+    "note": "Make a place untidy."
+   }
+  ],
+  "context": {
+   "text": "Please tidy up your room before playing. When the children tidied up, the floor was clear again.",
+   "uses": [
+    "tidy up",
+    "tidied up"
+   ]
+  }
+ },
+ {
+  "headword": "tight",
+  "word_id": "6a4282fd46ba24054c1dcd5e",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd5e"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Close fit",
+  "sense_pos": "adjective",
+  "corpus_definition": "fixed firmly in place or fitting very closely to the body.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tightness",
+    "relation": "derivational",
+    "definition": "the feeling or state of being tight",
+    "example": "I felt a tightness in my chest.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "tighten",
+    "relation": "derivational",
+    "definition": "to make something tighter or more firm",
+    "example": "Tighten your seat belt.",
+    "syn": [
+     {
+      "to": "fasten",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Close or fix something firmly."
+     }
+    ],
+    "ant": [
+     {
+      "to": "loosen",
+      "relation": "antonym",
+      "note": "Make something less tight."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "tight",
+    "relation": "base",
+    "definition": "fitting very closely, or fixed firmly",
+    "example": "These jeans are too tight for me.",
+    "syn": [
+     {
+      "to": "firm",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Fixed and not moving."
+     },
+     {
+      "to": "close-fitting",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Fitting closely to the body."
+     }
+    ],
+    "ant": [
+     {
+      "to": "loose",
+      "relation": "antonym",
+      "note": "Not fitting closely."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "tightly",
+    "relation": "derivational",
+    "definition": "in a firm, close way",
+    "example": "Hold the rope tightly.",
+    "syn": [
+     {
+      "to": "firmly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Strongly, so it does not move."
+     }
+    ],
+    "ant": [
+     {
+      "to": "loosely",
+      "relation": "antonym",
+      "note": "Not firmly."
+     }
+    ],
+    "note": "'tight' is also an adverb: 'Hold tight!'"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "tightness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "tightly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My new shoes are too tight. I tied the laces tightly, and now my feet hurt.",
+   "uses": [
+    "tight",
+    "tightly"
+   ]
+  }
+ },
+ {
+  "headword": "tin",
+  "word_id": "6a6ef9b2a60155614809275e",
+  "word_ids": [
+   "6a6ef9b2a60155614809275e"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Container",
+  "sense_pos": "noun",
+  "corpus_definition": "A metal container used for holding food or drinks.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tin",
+    "relation": "base",
+    "definition": "a closed metal container for food",
+    "example": "She opened a tin of beans for lunch.",
+    "syn": [
+     {
+      "to": "can",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; more common in American English."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "tin",
+    "definition": "a soft silver-white metal",
+    "example": "The roof is made of tin.",
+    "note": "The metal itself, not the container."
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "tinned",
+    "relation": "participial",
+    "definition": "kept in a metal container",
+    "example": "We bought tinned tomatoes.",
+    "syn": [
+     {
+      "to": "canned",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; American English."
+     }
+    ],
+    "ant": [
+     {
+      "to": "fresh",
+      "relation": "antonym",
+      "note": "Not kept in a tin; recently picked or made."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Grandma keeps tinned fish in the cupboard. She opens a tin when guests arrive.",
+   "uses": [
+    "tinned",
+    "tin"
+   ]
+  },
+  "reviewer_note": "tin = container is British English; can is American."
+ }
+]

@@ -1,0 +1,318 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "tap",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'taper' (zipf 3.3) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "taps"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "tapped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: definition mixes two meanings; the knock sense is used here, the water tap is other_meaning."
+  },
+  {
+   "headword": "temperature",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "temperatures",
+       "temperature"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No family forms in learner use."
+  },
+  {
+   "headword": "term",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: terence"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: termly. Check."
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: termly. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "terms"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "termly (adjective/adverb) is rare British English, so no_form."
+  },
+  {
+   "headword": "thought",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adverb: real words that may be in the family but aren't shown: thinly"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "thoughts",
+       "thought"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "thought"
+      ],
+      "VBN": [
+       "thought"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "thought is also the past form of think."
+  },
+  {
+   "headword": "throw away",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "In British English the bin is where you throw things away."
+  },
+  {
+   "headword": "thunder",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adjective 'thundery' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: thunder (OK if the learner already knows it)"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: thunder (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "thunder: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "thunderous: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "thunders",
+       "thunder"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "thundered"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B2, A2) merged; A2 used."
+  },
+  {
+   "headword": "tidy",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: tidal"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "noun 'tidiness' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'tidily' is rare (zipf 1.8)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tidiness: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tidily: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "tidiness"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "tidied"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "tidier"
+      ],
+      "JJS": [
+       "tidiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "British English uses tidy more than American English."
+  },
+  {
+   "headword": "tidy up",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": ""
+  },
+  {
+   "headword": "tight",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "noun definition leans on the headword: tight (OK if the learner already knows it)"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "verb definition leans on the headword: tighter (OK if the learner already knows it)"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'tiger' (zipf 4.3) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tighten: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "tightness",
+       "tightnesses"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "tightened"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "tighter"
+      ],
+      "JJS": [
+       "tightest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": ""
+  },
+  {
+   "headword": "tin",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: tiny"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "tinned: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "tin = container is British English; can is American."
+  }
+ ]
+}

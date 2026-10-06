@@ -1,0 +1,316 @@
+{
+ "gate_version": "gate-4.2",
+ "results": [
+  {
+   "headword": "sneeze",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: sneezy"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: sneezy. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sneeze: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sneeze: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sneezes"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sneezed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb are the same spelling; no other family forms exist."
+  },
+  {
+   "headword": "social",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "adjective: common family word 'societal' (zipf 3.6) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    },
+    {
+     "cat": "false affix",
+     "msg": "'sociable' minus '-able' leaves no real word (soci, socie, sociy, socy)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: socialization"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'sociology': family link not confirmed by the dictionary or a suffix rule"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "societies",
+       "society"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "socialized"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "sociable kept as an entry (common family word), not a synonym; antisocial in ant."
+  },
+  {
+   "headword": "soil",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "soils",
+       "soil"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb soil (make dirty) is a different meaning, so other_meaning."
+  },
+  {
+   "headword": "sore",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "soreness"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "sorer"
+      ],
+      "JJS": [
+       "sorest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "sorely is a false friend (means 'very much'), so other_meaning."
+  },
+  {
+   "headword": "sort",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sorted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun sort = kind/type is a different meaning, so other_meaning; unsorted placed in ant."
+  },
+  {
+   "headword": "sour",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'sourly' (other meaning) is rare (zipf 1.6)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sourness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sourness",
+       "sournesses"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "soured"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "sourer"
+      ],
+      "JJS": [
+       "sourest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged; sourly is the bad-temper sense."
+  },
+  {
+   "headword": "souvenir",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "souvenirs"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (A2, B1) merged; lowest level A2 used."
+  },
+  {
+   "headword": "spend",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "spent"
+      ],
+      "VBN": [
+       "spent"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "spent (used up) is a different sense, so other_meaning. spend time is a separate meaning not covered here."
+  },
+  {
+   "headword": "spend on",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text doesn't use the phrasal"
+    }
+   ],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "CORPUS: the example 'I love to spend on new clothes' has no money object; normally 'spend money on'."
+  },
+  {
+   "headword": "spicy",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "verb 'spice' is marked conversion but differs from the headword"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: powders"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "spice: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "spices",
+       "spice"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "spiced"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "spicier"
+      ],
+      "JJS": [
+       "spiciest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "spicy is made from spice, so spice is the noun main entry."
+  }
+ ]
+}
