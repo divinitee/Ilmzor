@@ -12,7 +12,7 @@ sys.path.insert(0, _VENDOR)
 from wordfreq_lite import zipf_frequency
 from lemminflect import getAllInflections, getAllLemmas
 
-GATE_VERSION = "gate-4.3"
+GATE_VERSION = "gate-4.4"
 WN_DIR = next(p for p in (os.environ.get("DEEPMODE_WN_DIR", ""), os.path.join(_VENDOR, "wordnet"), "/tmp/deepmode-lex/node_modules/wordnet-db/dict") if p and os.path.isdir(p))
 
 def _wn_open(name):
@@ -255,6 +255,19 @@ def phrase_regex(hw):
             parts.append(rf"(?:{alt})\s+{gap}" if i < len(toks_) - 1 else rf"(?:{alt})")
     return r"\b" + "".join(parts) + r"\b"
 
+SUFFIXY = {"er", "or", "ist", "ian", "ee", "ess", "ness", "ment", "ing", "ed", "ly", "ful", "less", "ous", "al", "ic", "ive", "able", "ible", "ity", "ship", "hood", "ism", "y", "ish", "ize", "ise", "en", "s", "es"}
+
+def compound_parts(form, bases):
+    """(base, rest) if form = a family word + another real word (thunderstorm, steelworker), else None."""
+    f = form.lower().replace("-", "")
+    for b in sorted({x.lower() for x in bases if x}, key=len, reverse=True):
+        for stem in (b, b + "s"):
+            if len(stem) >= 3 and f.startswith(stem):
+                rest = f[len(stem):]
+                if len(rest) >= 3 and rest not in SUFFIXY and zipf_frequency(rest, "en") >= 3.5 and (word_pos(rest, "noun") or word_pos(rest, "verb") or word_pos(rest, "adjective")):
+                    return stem, rest
+    return None
+
 def check(m, batch_ctx):
     fails, flags = [], []
     F = lambda cat, msg: fails.append({"cat": cat, "msg": msg})
@@ -439,6 +452,20 @@ def check(m, batch_ctx):
                 irregular = True
             if inf and slot not in infl_out:
                 infl_out[slot] = {"forms": inf, "irregular": irregular}
+
+        # gate-4.4: compounds are not forms or people (GENERATOR rule 7)
+        bases_c = [x["form"] for x in existing] + [hw]
+        for x in m.get("forms", []) + m.get("people", []):
+            fm = x.get("form") or ""
+            if fm and fm.lower() not in {b.lower() for b in bases_c}:
+                cp = compound_parts(fm, bases_c)
+                if cp:
+                    F("schema", f"'{fm}' is a compound ({cp[0]} + {cp[1]}): compounds are left out for now (rule 7), remove it")
+        # person nouns belong in People & things, not the noun slot (rule 8)
+        for x in m.get("forms", []):
+            fm = (x.get("form") or "").lower()
+            if x.get("slot") == "noun" and fm != hw.lower() and fm.endswith(("ist", "ian", "ee", "er", "or")) and zipf_frequency(fm, "en") >= 2.0 and fm not in {"order", "power", "water", "paper", "matter", "colour", "color", "error", "honor", "honour", "labor", "labour", "manner", "number", "border", "corner", "anger", "danger", "winter", "summer", "dinner", "letter", "weather", "feather", "leather", "silver", "mirror", "terror", "horror", "favour", "favor", "flavour", "flavor", "humour", "humor", "behaviour", "behavior"}:
+                G("person noun in noun slot?", f"noun '{x.get('form')}' looks like a person/thing noun; rule 8 puts those in People & things")
 
         # People & things branch (gate-4)
         ppl = m.get("people", [])
