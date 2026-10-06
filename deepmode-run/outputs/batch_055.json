@@ -1,0 +1,978 @@
+[
+ {
+  "headword": "stuff",
+  "word_id": "6a6ef83f0f1e82a5a073686b",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073686b"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Things",
+  "sense_pos": "noun",
+  "corpus_definition": "A general word for objects or things.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stuff",
+    "relation": "base",
+    "definition": "things, or a group of things, when you do not say their names",
+    "example": "Please take your stuff off the table.",
+    "syn": [
+     {
+      "to": "things",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; a little less informal."
+     },
+     {
+      "to": "belongings",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The things that a person owns.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "stuff",
+    "relation": "conversion",
+    "definition": "to push things into a space quickly and carelessly",
+    "example": "He stuffed his clothes into the bag.",
+    "syn": [
+     {
+      "to": "cram",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Push too many things into a small space."
+     },
+     {
+      "to": "fill",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Make something full."
+     }
+    ],
+    "ant": [
+     {
+      "to": "empty",
+      "relation": "antonym",
+      "note": "Take everything out of something."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stuffed",
+    "relation": "participial",
+    "definition": "completely full, often of food you have eaten",
+    "example": "I ate three plates of plov and now I am stuffed.",
+    "syn": [
+     {
+      "to": "full",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not hungry any more."
+     }
+    ],
+    "ant": [
+     {
+      "to": "hungry",
+      "relation": "antonym",
+      "note": "Wanting to eat."
+     }
+    ],
+    "register": "informal"
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "stuffy",
+    "definition": "(of a room) hot and without fresh air",
+    "example": "Open the window, it is stuffy in here.",
+    "note": "Belongs to stuff = block up, not things."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Aziz stuffed all his stuff into one small bag before the trip.",
+   "uses": [
+    "stuffed",
+    "stuff"
+   ]
+  },
+  "reviewer_note": "stuffy is the blocked-air sense."
+ },
+ {
+  "headword": "style",
+  "word_id": "6a4282fd46ba24054c1dcd5a",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd5a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Way / fashion",
+  "sense_pos": "noun",
+  "corpus_definition": "a particular way of doing or making something",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "style",
+    "relation": "base",
+    "definition": "a particular way of doing, making or wearing something",
+    "example": "That dress is a very popular style this year.",
+    "syn": [
+     {
+      "to": "fashion",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A style that is popular at one time."
+     },
+     {
+      "to": "design",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The way something is planned and made."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stylist",
+    "relation": "derivational",
+    "definition": "a person whose job is cutting hair or choosing clothes for people",
+    "example": "My sister works as a stylist in a salon.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "style",
+    "relation": "conversion",
+    "definition": "to shape hair or design clothes in a particular way",
+    "example": "She styled her hair for the wedding.",
+    "syn": [
+     {
+      "to": "arrange",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put into a nice shape or order."
+     },
+     {
+      "to": "design",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Plan how something will look."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stylish",
+    "relation": "derivational",
+    "definition": "fashionable and attractive",
+    "example": "He wears very stylish shoes.",
+    "syn": [
+     {
+      "to": "fashionable",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Popular at the moment."
+     },
+     {
+      "to": "elegant",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Beautiful in a simple way."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unfashionable",
+      "relation": "antonym",
+      "note": "Not popular or modern."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "stylishly",
+    "relation": "derivational",
+    "definition": "in a fashionable and attractive way",
+    "example": "She was stylishly dressed for the party.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ],
+    "in_form": "suitably"
+   }
+  ],
+  "context": {
+   "text": "Malika has her own style. She always looks stylish, even in simple clothes.",
+   "uses": [
+    "style",
+    "stylish"
+   ]
+  },
+  "reviewer_note": "stylist kept as noun entry (job)."
+ },
+ {
+  "headword": "suck",
+  "word_id": "6a6ef9b2a60155614809285f",
+  "word_ids": [
+   "6a6ef9b2a60155614809285f"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Mouth",
+  "sense_pos": "verb",
+  "corpus_definition": "to pull liquid or air into your mouth using your lips",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "suck",
+    "relation": "conversion",
+    "definition": "the act of pulling liquid or air into your mouth",
+    "example": "The child took a long suck on the straw.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "suck",
+    "relation": "base",
+    "definition": "to pull liquid or air into your mouth with your lips",
+    "example": "The baby sucks milk from the bottle.",
+    "syn": [
+     {
+      "to": "sip",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Drink in very small amounts."
+     },
+     {
+      "to": "drink",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Take liquid into your body."
+     }
+    ],
+    "ant": [
+     {
+      "to": "blow",
+      "relation": "antonym",
+      "note": "Push air out of your mouth."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "sucker",
+    "definition": "a person who is easy to trick",
+    "example": "He is a sucker for sad stories.",
+    "note": "Belongs to an informal sense, not using your mouth."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The baby sucks her thumb when she is tired. After one long suck she falls asleep.",
+   "uses": [
+    "sucks",
+    "suck"
+   ]
+  },
+  "reviewer_note": "sucker is informal (easily tricked); placed as other_meaning."
+ },
+ {
+  "headword": "suit",
+  "word_id": "6a4282fd46ba24054c1dcd5b",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd5b"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Be right",
+  "sense_pos": "verb",
+  "corpus_definition": "to be right or good for someone",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "suitability",
+    "relation": "derivational",
+    "definition": "how right or good something is for a person or purpose",
+    "example": "We checked the suitability of the room for the class.",
+    "syn": [],
+    "ant": [],
+    "register": "formal"
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "suit",
+    "relation": "base",
+    "definition": "to look good on someone, or be right for them",
+    "example": "That colour does not really suit you.",
+    "syn": [
+     {
+      "to": "fit",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Be the right size or shape."
+     },
+     {
+      "to": "match",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Go well with something else."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "suitable",
+    "relation": "derivational",
+    "definition": "right or good for a particular person or purpose",
+    "example": "This film is not suitable for children.",
+    "syn": [
+     {
+      "to": "appropriate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Right for the situation.",
+      "register": "formal"
+     },
+     {
+      "to": "right",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Correct for the purpose."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unsuitable",
+      "relation": "antonym",
+      "note": "Not right for someone or something."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "suitably",
+    "relation": "derivational",
+    "definition": "in a way that is right for the situation",
+    "example": "He was suitably dressed for the interview.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ],
+    "in_form": "suitably"
+   }
+  ],
+  "context": {
+   "text": "This job suits Sardor well. It is suitable for someone who likes people.",
+   "uses": [
+    "suits",
+    "suitable"
+   ]
+  },
+  "reviewer_note": "Clothes sense is a separate map."
+ },
+ {
+  "headword": "suit",
+  "word_id": "6a6ef83f0f1e82a5a07367e4",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367e4"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Clothes",
+  "sense_pos": "noun",
+  "corpus_definition": "matching jacket and trousers worn for formal business or events",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "suit",
+    "relation": "base",
+    "definition": "a jacket and trousers or skirt made of the same cloth",
+    "example": "He wore a blue suit to the meeting.",
+    "syn": [
+     {
+      "to": "outfit",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A set of clothes worn together."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "Verb suit (be right for) is the other map."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "suited",
+    "relation": "participial",
+    "definition": "wearing a suit",
+    "example": "Two suited men waited at the door.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My father bought a new suit for my brother's wedding. All the suited guests looked very smart.",
+   "uses": [
+    "suit",
+    "suited"
+   ]
+  },
+  "reviewer_note": "Separate map from suit = be right for."
+ },
+ {
+  "headword": "support",
+  "word_id": "6a42659782466c80f8ae0cab",
+  "word_ids": [
+   "6a42659782466c80f8ae0cab"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Help",
+  "sense_pos": "verb",
+  "corpus_definition": "To help or encourage someone you like.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "support",
+    "relation": "conversion",
+    "definition": "help and kind words that you give someone",
+    "example": "Thank you for your support during my exams.",
+    "syn": [
+     {
+      "to": "help",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "General word for doing things for someone."
+     },
+     {
+      "to": "encouragement",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Words that give someone confidence."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "support",
+    "relation": "base",
+    "definition": "to help and encourage someone",
+    "example": "My family will support me in my new job.",
+    "syn": [
+     {
+      "to": "help",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Do things to make something easier for someone."
+     },
+     {
+      "to": "encourage",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Give someone confidence to do something."
+     },
+     {
+      "to": "back",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Say you agree with and help someone."
+     }
+    ],
+    "ant": [
+     {
+      "to": "oppose",
+      "relation": "antonym",
+      "note": "Be against someone or something."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "supportive",
+    "relation": "derivational",
+    "definition": "giving help and kind words",
+    "example": "My teacher was very supportive when I was ill.",
+    "syn": [
+     {
+      "to": "helpful",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Ready to help."
+     },
+     {
+      "to": "encouraging",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Giving confidence."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unsupportive",
+      "relation": "antonym",
+      "note": "Not giving help or encouragement."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "supporter",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who helps someone or likes a sports team",
+    "example": "He is a big supporter of Pakhtakor football club."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ],
+    "in_form": "sweeper"
+   }
+  ],
+  "context": {
+   "text": "Dilnoza's parents support her dream of studying abroad. They are very supportive.",
+   "uses": [
+    "support",
+    "supportive"
+   ]
+  },
+  "reviewer_note": "supporter also = sports fan."
+ },
+ {
+  "headword": "sweat",
+  "word_id": "6a6ef9b2a60155614809289a",
+  "word_ids": [
+   "6a6ef9b2a60155614809289a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Body",
+  "sense_pos": "noun",
+  "corpus_definition": "salty liquid that comes out of your skin when hot or nervous",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "sweat",
+    "relation": "base",
+    "definition": "salty liquid that comes out of your skin when you are hot",
+    "example": "Sweat dripped down his face after the run.",
+    "syn": [
+     {
+      "to": "perspiration",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Formal or medical word.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "sweat",
+    "relation": "conversion",
+    "definition": "to produce salty liquid on your skin because you are hot or nervous",
+    "example": "I always sweat a lot in summer.",
+    "syn": [
+     {
+      "to": "perspire",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Formal word.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "sweaty",
+    "relation": "derivational",
+    "definition": "wet with salty liquid from your skin",
+    "example": "My shirt was sweaty after football.",
+    "syn": [
+     {
+      "to": "damp",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A little wet."
+     }
+    ],
+    "ant": [
+     {
+      "to": "dry",
+      "relation": "antonym",
+      "note": "Not wet."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "sweater",
+    "kind": "thing",
+    "status": "other_meaning",
+    "definition": "a warm piece of clothing for the top of your body",
+    "example": "Wear a sweater, it is cold.",
+    "note": "Now just means a jumper, not something linked to body liquid."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ],
+    "in_form": "sweaty"
+   }
+  ],
+  "context": {
+   "text": "In July in Tashkent you sweat even in the shade. Everyone on the bus is sweaty.",
+   "uses": [
+    "sweat",
+    "sweaty"
+   ]
+  },
+  "reviewer_note": "sweater is historically related but means jumper."
+ },
+ {
+  "headword": "sweep",
+  "word_id": "6a6ef83f0f1e82a5a07366a2",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07366a2"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Cleaning",
+  "sense_pos": "verb",
+  "corpus_definition": "To clean a floor using a long brush.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "sweep",
+    "relation": "conversion",
+    "definition": "the act of cleaning a floor with a long brush",
+    "example": "The kitchen needs a good sweep.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "sweep",
+    "relation": "base",
+    "definition": "to clean a floor using a long brush",
+    "example": "I need to sweep the kitchen floor today.",
+    "syn": [
+     {
+      "to": "brush",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Clean with a brush."
+     },
+     {
+      "to": "clean",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word for removing dirt."
+     }
+    ],
+    "ant": [],
+    "note": "Irregular: sweep, swept, swept."
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "sweeping",
+    "definition": "affecting many things or people",
+    "example": "The government made sweeping changes.",
+    "note": "Belongs to sweep = move over a large area, not cleaning."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "sweeper",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person or machine that cleans floors or streets",
+    "example": "The street sweeper starts work at five in the morning."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ],
+    "in_form": "sweeper"
+   }
+  ],
+  "context": {
+   "text": "Grandma sweeps the yard every morning. Yesterday she swept it twice because of the wind.",
+   "uses": [
+    "sweeps",
+    "swept"
+   ]
+  },
+  "reviewer_note": "swept is the past form."
+ },
+ {
+  "headword": "swing",
+  "word_id": "6a6ef9b2a60155614809279a",
+  "word_ids": [
+   "6a6ef9b2a60155614809279a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Movement",
+  "sense_pos": "verb",
+  "corpus_definition": "to move back and forth; also a seat hanging on ropes for children",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "swing",
+    "relation": "conversion",
+    "definition": "a seat hanging on ropes that children move back and forth on",
+    "example": "There are two swings in the park.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "swing",
+    "relation": "base",
+    "definition": "to move backwards and forwards while hanging from something",
+    "example": "The children loved to swing in the park.",
+    "syn": [
+     {
+      "to": "sway",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Move slowly from side to side."
+     },
+     {
+      "to": "rock",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Move gently backwards and forwards."
+     }
+    ],
+    "ant": [],
+    "note": "Irregular: swing, swung, swung."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My little brother swings on the swing for hours. Yesterday he swung so high he laughed and shouted.",
+   "uses": [
+    "swings",
+    "swing",
+    "swung"
+   ]
+  },
+  "reviewer_note": "Noun swing (seat) covered by corpus definition too."
+ },
+ {
+  "headword": "take an exam",
+  "word_id": "6a4265cce20c7210db6908c3",
+  "word_ids": [
+   "6a4265cce20c7210db6908c3"
+  ],
+  "cefr": "A2",
+  "kind": "phrase",
+  "sense_label": "School",
+  "sense_pos": "verb",
+  "corpus_definition": "To complete a test to show your knowledge.",
+  "usage_note": "British English uses 'take' or 'sit' an exam; 'pass' means you were successful, 'fail' means you were not. Do not say 'make an exam'.",
+  "relations": [
+   {
+    "to": "sit an exam",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "British English, a little formal."
+   },
+   {
+    "to": "do a test",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Informal, often for shorter tests.",
+    "register": "informal"
+   },
+   {
+    "to": "pass an exam",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Be successful in an exam."
+   }
+  ],
+  "context": {
+   "text": "Kamola will take an exam in English tomorrow. She took an exam last year too and passed.",
+   "uses": [
+    "take an exam",
+    "took an exam"
+   ]
+  },
+  "reviewer_note": "'make an exam' is a common learner error."
+ },
+ {
+  "headword": "take part in",
+  "word_id": "6a42659782466c80f8ae0ce5",
+  "word_ids": [
+   "6a42659782466c80f8ae0ce5"
+  ],
+  "cefr": "A2",
+  "kind": "phrase",
+  "sense_label": "Joining",
+  "sense_pos": "verb",
+  "corpus_definition": "To join an activity or event with others.",
+  "usage_note": "Always followed by a noun or -ing form: 'take part in the race', 'take part in singing'. Not 'take part on'.",
+  "relations": [
+   {
+    "to": "participate in",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "More formal.",
+    "register": "formal"
+   },
+   {
+    "to": "join in",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Start doing an activity with others."
+   },
+   {
+    "to": "compete in",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Take part in a race or competition."
+   }
+  ],
+  "context": {
+   "text": "Will you take part in the school competition? Last year twenty students took part in it.",
+   "uses": [
+    "take part in",
+    "took part in"
+   ]
+  }
+ }
+]
