@@ -1,0 +1,883 @@
+[
+ {
+  "headword": "tired of",
+  "word_id": "6a4282fd46ba24054c1dce02",
+  "word_ids": [
+   "6a4282fd46ba24054c1dce02"
+  ],
+  "cefr": "A2",
+  "kind": "phrase",
+  "sense_label": "Bored",
+  "sense_pos": "adjective",
+  "corpus_definition": "feeling bored or annoyed by something you have done too much",
+  "usage_note": "be/get tired of + noun or -ing: \"I am tired of waiting.\" Different from \"tired from\" = needing rest after doing something.",
+  "relations": [
+   {
+    "to": "fed up with",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Informal: bored and annoyed, very common in British English.",
+    "register": "informal"
+   },
+   {
+    "to": "sick of",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Informal and a little stronger.",
+    "register": "informal"
+   },
+   {
+    "to": "bored with",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Not interested any more; less annoyed."
+   },
+   {
+    "to": "keen on",
+    "relation": "antonym",
+    "note": "Liking something and wanting to do it."
+   }
+  ],
+  "context": {
+   "text": "Bobur is tired of eating plov every day. His sister is also getting tired of it, so tonight they are cooking soup.",
+   "uses": [
+    "tired of"
+   ]
+  },
+  "reviewer_note": "Not a phrasal verb (adjective + preposition), so kind phrase; tired from noted as a trap."
+ },
+ {
+  "headword": "tool",
+  "word_id": "6a4282fd46ba24054c1dcd5f",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd5f",
+   "6a4288ad6941e70ad6a00eba"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Object",
+  "sense_pos": "noun",
+  "corpus_definition": "a small object used to help perform a manual task.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tool",
+    "relation": "base",
+    "definition": "an object you hold in your hand to help you do a job",
+    "example": "A hammer is a useful tool.",
+    "syn": [
+     {
+      "to": "instrument",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A tool for careful or exact work, like in medicine or science."
+     },
+     {
+      "to": "device",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A machine or object made for one job, often electric."
+     },
+     {
+      "to": "equipment",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "All the things you need for a job; uncountable."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "\"tool up\" exists only in rare informal use."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My grandfather keeps every tool in an old wooden box. When something breaks at home, he always has the right tool.",
+   "uses": [
+    "tool"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged. toolbox/toolkit are compounds, left out (rule 7)."
+ },
+ {
+  "headword": "tooth",
+  "word_id": "6a4288ad6941e70ad6a00e99",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e99"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Mouth",
+  "sense_pos": "noun",
+  "corpus_definition": "A hard white object in the mouth used for chewing food.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tooth",
+    "relation": "base",
+    "definition": "one of the hard white things in your mouth that you bite with",
+    "example": "The dentist looked at my bad tooth.",
+    "note": "Irregular plural: teeth.",
+    "syn": [
+     {
+      "to": "fang",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A long sharp tooth of an animal like a dog or snake."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "toothless",
+    "relation": "derivational",
+    "definition": "having no teeth",
+    "example": "The baby gave us a toothless smile.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-less",
+    "in_form": "toothless",
+    "meaning_key": "-less",
+    "also": [
+     "careless",
+     "homeless",
+     "useless"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My little brother lost his first tooth yesterday. Now he has a funny toothless smile in every photo.",
+   "uses": [
+    "tooth",
+    "toothless"
+   ]
+  },
+  "reviewer_note": "CORPUS: example says \"brush my tooth\"; normally \"brush my teeth\". toothbrush, toothpaste, toothache are compounds, left out (rule 7)."
+ },
+ {
+  "headword": "trace",
+  "word_id": "6a6ef9b2a601556148092787",
+  "word_ids": [
+   "6a6ef9b2a601556148092787"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Sign",
+  "sense_pos": "noun",
+  "corpus_definition": "a small mark or sign left by someone or something",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "trace",
+    "relation": "base",
+    "definition": "a small sign or mark that shows someone or something was there",
+    "example": "There was no trace of the lost cat.",
+    "syn": [
+     {
+      "to": "sign",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Something that shows that something exists or happened."
+     },
+     {
+      "to": "mark",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A small spot or line on a surface."
+     },
+     {
+      "to": "evidence",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Facts or things that show something is true; more formal."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "trace",
+    "relation": "conversion",
+    "definition": "to find someone or something by following signs they left",
+    "example": "The police traced the phone to a house in Chilonzor.",
+    "note": "Also \"trace a picture\" = copy it through thin paper.",
+    "syn": [
+     {
+      "to": "track",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Follow the marks or signs of something."
+     },
+     {
+      "to": "find",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word; trace means finding step by step."
+     },
+     {
+      "to": "locate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Find the exact place; more formal.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "lose",
+      "relation": "antonym",
+      "note": "Not know any more where someone or something is."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "traceable",
+    "relation": "derivational",
+    "definition": "possible to find or follow back to where it came from",
+    "example": "Every payment is traceable.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "untraceable",
+      "relation": "antonym",
+      "note": "Impossible to find or follow back."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-able",
+    "in_form": "traceable",
+    "meaning_key": "-able",
+    "also": [
+     "washable",
+     "readable",
+     "comfortable"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Someone took Nodira's bag at the station, but there was no trace of the thief. Later the police traced him with the help of a camera.",
+   "uses": [
+    "trace",
+    "traced"
+   ]
+  },
+  "reviewer_note": "Verb trace (follow) is the same family; tracing a picture noted."
+ },
+ {
+  "headword": "traffic",
+  "word_id": "6a4265fb84a10cdfe9e55d85",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d85"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Roads",
+  "sense_pos": "noun",
+  "corpus_definition": "All the cars and trucks on the road.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "traffic",
+    "relation": "base",
+    "definition": "all the cars, buses and lorries moving on the roads",
+    "example": "There is heavy traffic in the city centre this morning.",
+    "note": "Uncountable: \"a lot of traffic\", not \"traffics\".",
+    "syn": [
+     {
+      "to": "congestion",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Too much traffic, so cars move slowly; more formal."
+     },
+     {
+      "to": "vehicles",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "The cars and lorries themselves."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "traffic",
+    "definition": "to buy and sell things like drugs or weapons illegally",
+    "example": "The men were caught trafficking drugs.",
+    "note": "Belongs to traffic = illegal trade, not cars on the road."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "trafficker",
+    "kind": "person",
+    "status": "other_meaning",
+    "definition": "a person who buys and sells drugs or weapons illegally",
+    "example": "The police arrested a drug trafficker.",
+    "note": "Belongs to traffic = illegal trade, not cars."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The traffic on Amir Temur Street was terrible today. Aziza was late for work because of the traffic.",
+   "uses": [
+    "traffic"
+   ]
+  },
+  "reviewer_note": "Verb and trafficker belong to the illegal-trade sense, so other_meaning. traffic jam/lights are compounds, left out."
+ },
+ {
+  "headword": "translate",
+  "word_id": "6a42816a2098612b1526f925",
+  "word_ids": [
+   "6a42816a2098612b1526f925"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Language",
+  "sense_pos": "verb",
+  "corpus_definition": "To change words from one language to another.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "translation",
+    "relation": "derivational",
+    "definition": "words that have been changed into another language, or the work of doing this",
+    "example": "I read the book in Uzbek translation.",
+    "syn": [
+     {
+      "to": "version",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "One form of a text, for example in another language."
+     },
+     {
+      "to": "interpretation",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Changing spoken words into another language."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "translate",
+    "relation": "base",
+    "definition": "to change spoken or written words into another language",
+    "example": "Can you translate this letter into English?",
+    "syn": [
+     {
+      "to": "interpret",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Usually for spoken words, at the same time someone speaks."
+     },
+     {
+      "to": "put into",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "\"Put it into Russian\" = say or write it in Russian."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "translatable",
+    "relation": "derivational",
+    "definition": "possible to change into another language",
+    "example": "Some jokes are not easily translatable.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "untranslatable",
+      "relation": "antonym",
+      "note": "Impossible to say well in another language."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "translator",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person whose job is changing writing into another language",
+    "example": "My aunt works as a translator in Tashkent."
+   }
+  ],
+  "people_not_family": [
+   "interpreter"
+  ],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "translation",
+    "meaning_key": "-ion",
+    "also": [
+     "education",
+     "decision",
+     "invitation"
+    ]
+   },
+   {
+    "affix": "-able",
+    "in_form": "translatable",
+    "meaning_key": "-able",
+    "also": [
+     "washable",
+     "readable",
+     "comfortable"
+    ]
+   },
+   {
+    "affix": "-or",
+    "in_form": "translator",
+    "meaning_key": "-or",
+    "also": [
+     "actor",
+     "doctor",
+     "visitor"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Kamola translates English songs into Uzbek for fun. Her translation of one song became popular online.",
+   "uses": [
+    "translates",
+    "translation"
+   ]
+  },
+  "reviewer_note": "interpreter belongs to interpret, not this family."
+ },
+ {
+  "headword": "traveler",
+  "word_id": "6a4265fb84a10cdfe9e55daa",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55daa"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Person",
+  "sense_pos": "noun",
+  "corpus_definition": "A person who is going on a journey to another place.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "traveler",
+    "relation": "derivational",
+    "definition": "a person who is going on a journey",
+    "example": "The tired traveler needed a place to sleep.",
+    "note": "British English: traveller.",
+    "syn": [
+     {
+      "to": "tourist",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person who travels for holiday and sightseeing."
+     },
+     {
+      "to": "passenger",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person travelling in a bus, train or plane who is not driving."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "travel",
+    "relation": "conversion",
+    "definition": "the activity of going from one place to another",
+    "example": "Air travel is faster than going by bus.",
+    "note": "Usually uncountable: \"travel\", not \"a travel\".",
+    "syn": [
+     {
+      "to": "travelling",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The activity of going on journeys."
+     },
+     {
+      "to": "journey",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "One trip from one place to another; countable."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "travel",
+    "relation": "base",
+    "definition": "to go from one place to another, often far away",
+    "example": "We travel to Khiva every summer.",
+    "note": "British English: travelled, travelling; American English: traveled, traveling.",
+    "syn": [
+     {
+      "to": "journey",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal or literary.",
+      "register": "formal"
+     },
+     {
+      "to": "tour",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Travel to many places on a holiday."
+     },
+     {
+      "to": "go",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "General word."
+     }
+    ],
+    "ant": [
+     {
+      "to": "stay",
+      "relation": "antonym",
+      "note": "Not leave a place."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [
+   "tourist"
+  ],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "traveler",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Many travelers come to Samarkand in spring. They travel from all over the world to see the Registan.",
+   "uses": [
+    "travelers",
+    "travel"
+   ]
+  },
+  "reviewer_note": "Headword is a person noun, so it stays the main noun entry (rule 6); travel is the base verb."
+ },
+ {
+  "headword": "tray",
+  "word_id": "6a6ef83f0f1e82a5a073668d",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073668d"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Kitchen",
+  "sense_pos": "noun",
+  "corpus_definition": "A flat object used for carrying food or drinks.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tray",
+    "relation": "base",
+    "definition": "a flat piece of wood, metal or plastic for carrying food and drinks",
+    "example": "She brought the tea on a tray.",
+    "syn": [
+     {
+      "to": "plate",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "You eat from a plate; you carry things on a tray."
+     },
+     {
+      "to": "platter",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A large flat dish for serving food."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Grandma came into the room with a big tray. On it were bread, tea and a bowl of grapes.",
+   "uses": [
+    "tray"
+   ]
+  },
+  "reviewer_note": "No other family forms exist."
+ },
+ {
+  "headword": "try on",
+  "word_id": "6a4282fd46ba24054c1dcd63",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd63"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Clothes",
+  "sense_pos": "verb",
+  "corpus_definition": "to put on clothing to see if it fits well.",
+  "particle_note": "Separable: \"try on the shoes / try the shoes on\"; with a pronoun only \"try them on\".",
+  "relations": [
+   {
+    "to": "put on",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Put clothes on your body, but not to test them."
+   },
+   {
+    "to": "fit",
+    "relation": "related",
+    "strength": 0.4,
+    "note": "Be the right size: \"Do the shoes fit?\""
+   },
+   {
+    "to": "take off",
+    "relation": "antonym",
+    "note": "Remove clothes from your body."
+   }
+  ],
+  "context": {
+   "text": "At the market, Dilshod tried on three jackets. He liked the brown one, so he tried it on again before he paid.",
+   "uses": [
+    "tried on",
+    "tried it on"
+   ]
+  },
+  "reviewer_note": "Pronoun position (try it on) shown in context."
+ },
+ {
+  "headword": "tune",
+  "word_id": "6a6ef9b2a6015561480926e6",
+  "word_ids": [
+   "6a6ef9b2a6015561480926e6"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Music",
+  "sense_pos": "noun",
+  "corpus_definition": "a simple, pleasant series of musical notes; a melody",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "tune",
+    "relation": "base",
+    "definition": "a series of musical notes that is nice to hear",
+    "example": "She hummed a happy tune while cooking.",
+    "syn": [
+     {
+      "to": "melody",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; a little more formal."
+     },
+     {
+      "to": "song",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Music with words; a tune can have no words."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "tune",
+    "relation": "conversion",
+    "definition": "to make a musical instrument play the right notes",
+    "example": "He tuned his dutar before the concert.",
+    "note": "\"tune in\" = choose a radio or TV station, a different use.",
+    "syn": [
+     {
+      "to": "adjust",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Change something a little so it works better."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "tuneful",
+    "relation": "derivational",
+    "definition": "having a pleasant sound that is nice to listen to",
+    "example": "The children sang a tuneful song.",
+    "syn": [
+     {
+      "to": "melodic",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Having a nice tune."
+     }
+    ],
+    "ant": [
+     {
+      "to": "tuneless",
+      "relation": "antonym",
+      "note": "Without a pleasant tune."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "tunefully",
+    "relation": "derivational",
+    "definition": "in a way that sounds pleasant and musical",
+    "example": "The birds sang tunefully in the garden.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [
+   {
+    "form": "tuner",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person whose job is making pianos play the right notes",
+    "example": "The piano tuner came on Monday."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ful",
+    "in_form": "tuneful",
+    "meaning_key": "-ful",
+    "also": [
+     "careful",
+     "helpful",
+     "beautiful"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "tunefully",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   },
+   {
+    "affix": "-er",
+    "in_form": "tuner",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My uncle tunes his dutar every evening. Then he plays an old tune that my grandmother loved.",
+   "uses": [
+    "tunes",
+    "tune"
+   ]
+  },
+  "reviewer_note": "tuner is also a device in a radio; job sense kept."
+ }
+]
