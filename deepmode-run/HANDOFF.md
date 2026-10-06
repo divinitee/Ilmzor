@@ -31,7 +31,7 @@ Nothing has been written to the database yet. The app's Deep Mode tab currently 
 
 ## 3. Setup (nothing to install)
 
-Since gate-4.3 (6 Oct) **everything the gate needs is committed in `deepmode-run/vendor/`**: `wordfreq_lite.py` with wordfreq 3.1.1's English data (verified identical on the gate's vocabulary), `lemminflect` 0.2.3 with a small `numpy` stub (the gate only uses its dictionary lookups), and WordNet 3.1 data files (`vendor/wordnet/*.gz`). No pip, no npm, no network. A sandbox reset doesn't break it. `bash setup.sh` now only checks that the gate loads (`gate ready: gate-4.3`) and the examples pass.
+Since gate-4.3 (6 Oct) **everything the gate needs is committed in `deepmode-run/vendor/`**: `wordfreq_lite.py` with wordfreq 3.1.1's English data (verified identical on the gate's vocabulary), `lemminflect` 0.2.3 with a small `numpy` stub (the gate only uses its dictionary lookups), and WordNet 3.1 data files (`vendor/wordnet/*.gz`). No pip, no npm, no network. A sandbox reset doesn't break it. `bash setup.sh` now only checks that the gate loads (`gate ready: gate-4.4`) and the examples pass.
 
 Sanity check: `python3 gate_batch.py examples.json` must print `4 maps · 4 pass · 0 fail`. Delete the `examples.json.*.json` logs it writes.
 
@@ -129,7 +129,7 @@ The preview engine is in `src/components/deepmode/` (`DeepModeMap.jsx`, `deepMod
 | `HANDOFF.md` | this file |
 | `GENERATOR.md` | generator-6: the full rule sheet for writing maps |
 | `examples.json` | 4 schema examples (economy, receive, give up, make sure) |
-| `gate.py` | gate-4.3 (WordNet 3.1 + lemminflect + wordfreq, all vendored; affix table affix-2) |
+| `gate.py` | gate-4.4 (WordNet 3.1 + lemminflect + wordfreq, all vendored; affix table affix-2) |
 | `gate_batch.py` | gate one file, print FAILs, log the first pass |
 | `gate_all_outputs.py` | gate every output file in one process |
 | `lexicon_supplement.json` | verified modern words missing from WordNet |
