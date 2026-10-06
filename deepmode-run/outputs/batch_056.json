@@ -445,15 +445,7 @@
     "status": "no_form"
    }
   ],
-  "people": [
-   {
-    "form": "thunderstorm",
-    "kind": "thing",
-    "status": "existing",
-    "definition": "a storm with thunder and lightning",
-    "example": "We stayed inside during the thunderstorm."
-   }
-  ],
+  "people": [],
   "people_not_family": [],
   "affixes": [
    {

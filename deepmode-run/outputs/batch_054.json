@@ -286,17 +286,11 @@
       "note": "Full, more formal name."
      }
     ],
-    "ant": []
-   },
-   {
-    "slot": "noun",
-    "status": "existing",
-    "form": "postage",
-    "relation": "compound",
-    "definition": "the money you pay to send a letter or parcel",
-    "example": "How much is the postage to London?",
-    "syn": [],
-    "ant": []
+    "ant": [],
+    "not_family": [
+     "post",
+     "postage"
+    ]
    },
    {
     "slot": "verb",
@@ -314,10 +308,7 @@
       "note": "Related: put a sign on something."
      }
     ],
-    "ant": [],
-    "not_family": [
-     "post"
-    ]
+    "ant": []
    },
    {
     "slot": "adjective",
@@ -344,7 +335,7 @@
     "stamped"
    ]
   },
-  "reviewer_note": "CORPUS: definition says 'cover'; normally 'envelope'. postage is a related word, not strictly a derivation; check."
+  "reviewer_note": "CORPUS: definition says 'cover'; normally 'envelope'. post and postage are not family."
  },
  {
   "headword": "steal",
@@ -533,15 +524,7 @@
     "status": "no_form"
    }
   ],
-  "people": [
-   {
-    "form": "steelworker",
-    "kind": "job",
-    "status": "existing",
-    "definition": "a person who works in a factory that makes steel",
-    "example": "His father was a steelworker in Bekabad."
-   }
-  ],
+  "people": [],
   "people_not_family": [],
   "affixes": [
    {
@@ -556,7 +539,7 @@
    }
   ],
   "context": {
-   "text": "The new bridge in our city is made of steel. The old steelworker looked at it with a steely, proud face.",
+   "text": "The new bridge in our city is made of steel. The old worker looked at it with a steely, proud face.",
    "uses": [
     "steel",
     "steely"

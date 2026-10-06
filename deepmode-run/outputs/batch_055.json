@@ -149,16 +149,6 @@
     "ant": []
    },
    {
-    "slot": "noun",
-    "status": "existing",
-    "form": "stylist",
-    "relation": "derivational",
-    "definition": "a person whose job is cutting hair or choosing clothes for people",
-    "example": "My sister works as a stylist in a salon.",
-    "syn": [],
-    "ant": []
-   },
-   {
     "slot": "verb",
     "status": "existing",
     "form": "style",
@@ -221,7 +211,15 @@
     "ant": []
    }
   ],
-  "people": [],
+  "people": [
+   {
+    "form": "stylist",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person whose job is cutting hair or choosing clothes for people",
+    "example": "My sister works as a stylist in a salon."
+   }
+  ],
   "people_not_family": [],
   "affixes": [
    {
