@@ -9,7 +9,7 @@ import gzip, json, math, os, re
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _FREQ = None
-_TOKEN = re.compile(r"[^\W_]+(?:'[^\W_]+)*")
+_TOKEN = re.compile(r"[^\W_]+(?:[.'][^\W_]+)*")
 
 
 def _freqs():
