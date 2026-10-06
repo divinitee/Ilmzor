@@ -1,118 +1,1111 @@
 [
-{"headword":"spoil","word_id":"6a6ef9b2a6015561480927fc","word_ids":["6a6ef9b2a6015561480927fc"],"cefr":"A2","kind":"word","sense_label":"Ruin","sense_pos":"verb","corpus_definition":"to damage or ruin something, or to become bad",
-"forms":[
-{"slot":"noun","status":"existing","form":"spoilage","relation":"derivational","definition":"the process of food going bad","example":"Keep milk cold to stop spoilage.","register":"technical","syn":[{"to":"decay","relation":"synonym","strength":0.8,"note":"Slowly becoming bad or rotten."}],"ant":[]},
-{"slot":"noun","status":"other_meaning","form":"spoils","definition":"things taken by the winners of a war or fight","example":"The soldiers shared the spoils of war.","note":"Belongs to an old sense of spoil = take by force, not ruin."},
-{"slot":"verb","status":"existing","form":"spoil","relation":"base","definition":"to make something less good or enjoyable, or to go bad","example":"The bad weather spoiled our holiday.","note":"British English past form: spoilt or spoiled.","syn":[{"to":"ruin","relation":"synonym","strength":0.95,"note":"Destroy something completely; stronger."},{"to":"damage","relation":"synonym","strength":0.8,"note":"Harm something physically."},{"to":"go off","relation":"synonym","strength":0.8,"note":"Informal British English: food becomes bad.","register":"informal"}],"ant":[{"to":"improve","relation":"antonym","note":"Make something better."}]},
-{"slot":"adjective","status":"existing","form":"spoiled","relation":"participial","definition":"gone bad, or (of a child) given too much and badly behaved","example":"Throw away the spoiled fruit.","note":"British English also: spoilt.","syn":[{"to":"rotten","relation":"synonym","strength":0.8,"note":"Gone bad, used for food."}],"ant":[{"to":"fresh","relation":"antonym","note":"Recently made or picked, not bad."}]},
-{"slot":"adverb","status":"no_form"}],
-"people":[{"form":"spoiler","kind":"thing","status":"existing","definition":"information that tells you what happens in a film before you see it","example":"Don't tell me the ending, no spoilers!","note":"Also a part on a car that helps it hold the road."}],
-"people_not_family":[],
-"affixes":[{"affix":"-age","in_form":"spoilage","meaning_key":"-age","also":["breakage","shortage","storage"]},{"affix":"-er","in_form":"spoiler","meaning_key":"-er","also":["teacher","driver","player"]}],
-"context":{"text":"Rain spoiled our picnic in the park. Even the cake was spoiled because it got wet.","uses":["spoiled"]},
-"reviewer_note":"spoils (war prize) is a historical sense, so other_meaning."},
-
-{"headword":"stain","word_id":"6a6ef9b2a601556148092797","word_ids":["6a6ef9b2a601556148092797"],"cefr":"A2","kind":"word","sense_label":"Dirty mark","sense_pos":"noun","corpus_definition":"a dirty mark on a surface that is hard to remove",
-"forms":[
-{"slot":"noun","status":"existing","form":"stain","relation":"base","definition":"a dirty mark that is hard to clean","example":"There is a coffee stain on my shirt.","syn":[{"to":"mark","relation":"synonym","strength":0.8,"note":"General word for a small dirty area."},{"to":"spot","relation":"synonym","strength":0.8,"note":"A small round mark."}],"ant":[]},
-{"slot":"verb","status":"existing","form":"stain","relation":"conversion","definition":"to leave a dirty mark that is hard to remove","example":"Tea can stain your teeth.","syn":[{"to":"mark","relation":"synonym","strength":0.8,"note":"Leave a mark on something."},{"to":"dirty","relation":"synonym","strength":0.8,"note":"Make something not clean."}],"ant":[{"to":"clean","relation":"antonym","note":"Remove dirt from something."}]},
-{"slot":"adjective","status":"existing","form":"stained","relation":"participial","definition":"having dirty marks on it","example":"He wore an old stained jacket.","syn":[{"to":"dirty","relation":"synonym","strength":0.8,"note":"Not clean."}],"ant":[{"to":"spotless","relation":"antonym","note":"Completely clean."}]},
-{"slot":"adjective","status":"existing","form":"stainless","relation":"derivational","definition":"(of steel) that does not get marks or rust","example":"We have stainless steel pots.","syn":[],"ant":[]},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],
-"affixes":[{"affix":"-less","in_form":"stainless","meaning_key":"-less","also":["careless","homeless","useless"]}],
-"context":{"text":"Malika spilled tea on the white tablecloth. Now there is a big stain, and the cloth is stained in two places.","uses":["stain","stained"]},
-"reviewer_note":"stainless mostly in 'stainless steel'."},
-
-{"headword":"stamp","word_id":"6a4288ad6941e70ad6a00e3d","word_ids":["6a4288ad6941e70ad6a00e3d"],"cefr":"A2","kind":"word","sense_label":"Post","sense_pos":"noun","corpus_definition":"A small paper sticker put on a cover to pay for service.",
-"forms":[
-{"slot":"noun","status":"existing","form":"stamp","relation":"base","definition":"a small piece of paper you stick on a letter to pay for sending it","example":"I need two stamps for these letters.","syn":[{"to":"postage stamp","relation":"synonym","strength":0.95,"note":"Full, more formal name."}],"ant":[]},
-{"slot":"noun","status":"existing","form":"postage","relation":"compound","definition":"the money you pay to send a letter or parcel","example":"How much is the postage to London?","syn":[],"ant":[]},
-{"slot":"verb","status":"existing","form":"stamp","relation":"conversion","definition":"to put a stamp or an official mark on something","example":"The officer stamped my passport.","note":"Also 'stamp your foot' = put it down hard, a different meaning.","syn":[{"to":"mark","relation":"related","strength":0.6,"note":"Related: put a sign on something."}],"ant":[]},
-{"slot":"adjective","status":"existing","form":"stamped","relation":"participial","definition":"with a stamp on it","example":"Send a stamped envelope with your form.","syn":[],"ant":[{"to":"unstamped","relation":"antonym","note":"Without a stamp."}]},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],"affixes":[],
-"context":{"text":"Grandpa collects stamps from many countries. He keeps every stamped envelope his friends send him.","uses":["stamps","stamped"]},
-"reviewer_note":"CORPUS: definition says 'cover'; normally 'envelope'. postage is a related word, not strictly a derivation; check."},
-
-{"headword":"steal","word_id":"6a42821646ba24054c1dcc7a","word_ids":["6a42821646ba24054c1dcc7a"],"cefr":"A2","kind":"word","sense_label":"Crime","sense_pos":"verb","corpus_definition":"to take something that does not belong to you.",
-"forms":[
-{"slot":"noun","status":"existing","form":"theft","relation":"suppletive","definition":"the crime of taking something that is not yours","example":"Car theft is a big problem in some cities.","syn":[{"to":"stealing","relation":"synonym","strength":0.95,"note":"Same meaning, less formal."},{"to":"robbery","relation":"synonym","strength":0.8,"note":"Stealing, often with force or threats."}],"ant":[]},
-{"slot":"noun","status":"existing","form":"stealing","relation":"derivational","definition":"the act of taking things that are not yours","example":"Stealing is wrong.","syn":[{"to":"theft","relation":"synonym","strength":0.95,"note":"More formal and legal."}],"ant":[]},
-{"slot":"verb","status":"existing","form":"steal","relation":"base","definition":"to take something that is not yours without asking","example":"Someone stole my bike last night.","note":"Irregular: steal, stole, stolen.","syn":[{"to":"rob","relation":"related","strength":0.6,"note":"You rob a person or bank; you steal a thing."},{"to":"take","relation":"synonym","strength":0.6,"note":"General word, less strong."},{"to":"nick","relation":"synonym","strength":0.8,"note":"Informal British English.","register":"informal"}],"ant":[{"to":"return","relation":"antonym","note":"Give something back."}]},
-{"slot":"adjective","status":"existing","form":"stolen","relation":"participial","definition":"taken by someone who had no right to it","example":"The police found the stolen car.","syn":[],"ant":[]},
-{"slot":"adverb","status":"other_meaning","form":"stealthily","definition":"quietly and secretly so no one notices","example":"The cat moved stealthily.","note":"Comes from stealth, an old sense of steal = move secretly."}],
-"people":[{"form":"thief","kind":"person","status":"existing","definition":"a person who steals things","example":"The thief ran away with her bag."}],
-"people_not_family":["robber"],
-"affixes":[{"affix":"-ing","in_form":"stealing","meaning_key":"-ing","also":["shopping","swimming","building"]}],
-"context":{"text":"Someone stole Aziz's phone at the bazaar. The police are looking for the thief and the stolen phone.","uses":["stole","stolen"]},
-"reviewer_note":"theft and thief are family by meaning, different spelling. robber belongs to rob."},
-
-{"headword":"steel","word_id":"6a6ef9b2a601556148092888","word_ids":["6a6ef9b2a601556148092888","6a4288ad6941e70ad6a00eb8"],"cefr":"A2","kind":"word","sense_label":"Metal","sense_pos":"noun","corpus_definition":"a very strong, hard metal used in building and tools",
-"forms":[
-{"slot":"noun","status":"existing","form":"steel","relation":"base","definition":"a very strong metal made from iron","example":"These knives are made of steel.","syn":[{"to":"iron","relation":"related","strength":0.6,"note":"Related: the metal steel is made from."},{"to":"metal","relation":"related","strength":0.4,"note":"General word for all metals."}],"ant":[]},
-{"slot":"verb","status":"other_meaning","form":"steel","definition":"to prepare yourself to deal with something bad","example":"She steeled herself for the bad news.","note":"Belongs to steel = become strong in mind, not the metal. Used as 'steel yourself'."},
-{"slot":"adjective","status":"existing","form":"steely","relation":"derivational","definition":"like steel in colour, or hard and strong","example":"He gave me a steely look.","syn":[],"ant":[]},
-{"slot":"adverb","status":"no_form"}],
-"people":[{"form":"steelworker","kind":"job","status":"existing","definition":"a person who works in a factory that makes steel","example":"His father was a steelworker in Bekabad."}],
-"people_not_family":[],
-"affixes":[{"affix":"-y","in_form":"steely","meaning_key":"-y","also":["salty","sunny","rainy"]}],
-"context":{"text":"The new bridge in our city is made of steel. Steel is strong, so the bridge will last for many years.","uses":["steel"]},
-"reviewer_note":"Two corpus rows (B2, A2) merged; A2 used."},
-
-{"headword":"stir","word_id":"6a6ef9b2a60155614809280f","word_ids":["6a6ef9b2a60155614809280f","6a42821646ba24054c1dcce0"],"cefr":"A2","kind":"word","sense_label":"Cooking","sense_pos":"verb","corpus_definition":"To move a spoon in circles to mix food.",
-"forms":[
-{"slot":"noun","status":"existing","form":"stir","relation":"conversion","definition":"the act of mixing something with a spoon","example":"Give the soup a stir.","note":"'cause a stir' = make people excited, a different meaning.","syn":[],"ant":[]},
-{"slot":"verb","status":"existing","form":"stir","relation":"base","definition":"to move a spoon round and round to mix food or drink","example":"Stir the tea before you drink it.","syn":[{"to":"mix","relation":"synonym","strength":0.8,"note":"Put things together; more general."},{"to":"whisk","relation":"related","strength":0.6,"note":"Mix very fast, often eggs."},{"to":"blend","relation":"synonym","strength":0.6,"note":"Mix completely, often with a machine."}],"ant":[]},
-{"slot":"adjective","status":"other_meaning","form":"stirring","definition":"making people feel strong emotions","example":"He gave a stirring speech.","note":"Belongs to stir = move feelings, not mixing food."},
-{"slot":"adverb","status":"no_form"}],
-"people":[{"form":"stirrer","kind":"thing","status":"existing","definition":"a small stick for mixing a drink","example":"Take a stirrer for your coffee."}],
-"people_not_family":[],
-"affixes":[{"affix":"-er","in_form":"stirrer","meaning_key":"-er","also":["teacher","driver","player"]}],
-"context":{"text":"Mum stirs the soup slowly with a big spoon. Give it one more stir, she tells me.","uses":["stirs","stir"]},
-"reviewer_note":"Two corpus rows (B1, A2) merged; A2 used."},
-
-{"headword":"storm","word_id":"6a42883f6941e70ad6a00e0b","word_ids":["6a42883f6941e70ad6a00e0b"],"cefr":"A2","kind":"word","sense_label":"Weather","sense_pos":"noun","corpus_definition":"Very bad weather with heavy rain and strong wind.",
-"forms":[
-{"slot":"noun","status":"existing","form":"storm","relation":"base","definition":"very bad weather with strong wind and heavy rain","example":"A big storm hit the city last night.","syn":[{"to":"thunderstorm","relation":"related","strength":0.8,"note":"A storm with thunder and lightning."},{"to":"gale","relation":"related","strength":0.6,"note":"A very strong wind."}],"ant":[{"to":"calm","relation":"antonym","note":"Quiet weather with no wind."}]},
-{"slot":"verb","status":"other_meaning","form":"storm","definition":"to go somewhere quickly and angrily, or attack a place","example":"He stormed out of the room.","note":"Belongs to storm = move angrily, not weather."},
-{"slot":"adjective","status":"existing","form":"stormy","relation":"derivational","definition":"with strong wind and heavy rain","example":"It was a dark, stormy night.","syn":[{"to":"rough","relation":"synonym","strength":0.6,"note":"Used about the sea in bad weather."},{"to":"windy","relation":"related","strength":0.6,"note":"With a lot of wind."}],"ant":[{"to":"calm","relation":"antonym","note":"With no wind or waves."},{"to":"sunny","relation":"antonym","note":"Bright with sun."}]},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],
-"affixes":[{"affix":"-y","in_form":"stormy","meaning_key":"-y","also":["salty","sunny","rainy"]}],
-"context":{"text":"The weather was stormy all weekend. During the storm, two trees fell down in our street.","uses":["stormy","storm"]},
-"reviewer_note":"Verb storm (move angrily) is a different meaning."},
-
-{"headword":"stranger","word_id":"6a42662edeeb39f88113012c","word_ids":["6a42662edeeb39f88113012c"],"cefr":"A2","kind":"word","sense_label":"Person","sense_pos":"noun","corpus_definition":"A person that you do not know.",
-"forms":[
-{"slot":"noun","status":"existing","form":"strangeness","relation":"derivational","definition":"the quality of being unusual or unfamiliar","example":"I felt the strangeness of the new city.","syn":[],"ant":[]},
-{"slot":"verb","status":"no_form"},
-{"slot":"adjective","status":"existing","form":"strange","relation":"base","definition":"unusual, or not known to you before","example":"I woke up in a strange room.","syn":[{"to":"unfamiliar","relation":"synonym","strength":0.8,"note":"Not known to you."},{"to":"odd","relation":"synonym","strength":0.8,"note":"Unusual or surprising."}],"ant":[{"to":"familiar","relation":"antonym","note":"Well known to you."}]},
-{"slot":"adverb","status":"existing","form":"strangely","relation":"derivational","definition":"in an unusual way","example":"He was strangely quiet today.","syn":[{"to":"oddly","relation":"synonym","strength":0.8,"note":"In a surprising way."}],"ant":[]}],
-"people":[{"form":"stranger","kind":"person","status":"existing","definition":"a person you do not know","example":"A stranger asked me the way to the station."}],
-"people_not_family":[],
-"affixes":[{"affix":"-er","in_form":"stranger","meaning_key":"-er","also":["teacher","driver","player"]},{"affix":"-ly","in_form":"strangely","meaning_key":"-ly","also":["quickly","happily","really"]},{"affix":"-ness","in_form":"strangeness","meaning_key":"-ness","also":["kindness","sadness","darkness"]}],
-"context":{"text":"A stranger sat next to me on the bus. It felt strange, but he was friendly and we talked.","uses":["stranger","strange"]},
-"reviewer_note":"Headword is a person noun, so it sits in people; strange is the base adjective. 'stranger' as comparative of strange is a separate meaning."},
-
-{"headword":"string","word_id":"6a6ef83f0f1e82a5a0736792","word_ids":["6a6ef83f0f1e82a5a0736792"],"cefr":"A2","kind":"word","sense_label":"Material","sense_pos":"noun","corpus_definition":"A long thin piece of material used to tie things.",
-"forms":[
-{"slot":"noun","status":"existing","form":"string","relation":"base","definition":"thin cord used for tying things","example":"Tie the parcel with some string.","note":"Also the strings on a guitar or violin.","syn":[{"to":"cord","relation":"synonym","strength":0.8,"note":"Thicker string."},{"to":"thread","relation":"related","strength":0.6,"note":"Very thin string used for sewing."},{"to":"rope","relation":"related","strength":0.6,"note":"Very thick and strong string."}],"ant":[]},
-{"slot":"verb","status":"existing","form":"string","relation":"conversion","definition":"to put things on a string or hang them on a string","example":"We strung lights across the garden.","note":"Irregular: string, strung, strung.","syn":[{"to":"thread","relation":"synonym","strength":0.6,"note":"Put beads onto a string."},{"to":"hang","relation":"related","strength":0.6,"note":"Put something up so it hangs."}],"ant":[]},
-{"slot":"adjective","status":"existing","form":"stringy","relation":"derivational","definition":"(of food) long and thin and hard to chew","example":"This meat is very stringy.","syn":[{"to":"tough","relation":"synonym","strength":0.6,"note":"Hard to cut or chew."}],"ant":[{"to":"tender","relation":"antonym","note":"Soft and easy to chew."}]},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],
-"affixes":[{"affix":"-y","in_form":"stringy","meaning_key":"-y","also":["salty","sunny","rainy"]}],
-"context":{"text":"Grandma tied the bag of apples with string. Then she strung the red peppers up to dry in the sun.","uses":["string","strung"]},
-"reviewer_note":"strung is the past form of verb string."},
-
-{"headword":"stripe","word_id":"6a6ef9b2a6015561480926f8","word_ids":["6a6ef9b2a6015561480926f8"],"cefr":"A2","kind":"word","sense_label":"Pattern","sense_pos":"noun","corpus_definition":"a long, thin band of colour on a surface",
-"forms":[
-{"slot":"noun","status":"existing","form":"stripe","relation":"base","definition":"a long thin line of colour","example":"A zebra has black and white stripes.","syn":[{"to":"line","relation":"synonym","strength":0.8,"note":"General word; a stripe is a wide line of colour."},{"to":"band","relation":"synonym","strength":0.8,"note":"A wide stripe."},{"to":"strip","relation":"related","strength":0.4,"note":"A long narrow piece of material; easily confused."}],"ant":[]},
-{"slot":"verb","status":"no_form","note":"'stripe' as a verb is rare."},
-{"slot":"adjective","status":"existing","form":"striped","relation":"participial","definition":"having stripes","example":"He wore a striped shirt.","syn":[{"to":"stripy","relation":"synonym","strength":0.95,"note":"Informal British English.","register":"informal"}],"ant":[{"to":"plain","relation":"antonym","note":"One colour, with no pattern."}]},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],"affixes":[],
-"context":{"text":"Dilnoza bought a striped dress at the market. It has thin blue stripes on a white background.","uses":["striped","stripes"]},
-"reviewer_note":"stripy kept as synonym of striped (same family, informal)."}
+ {
+  "headword": "spoil",
+  "word_id": "6a6ef9b2a6015561480927fc",
+  "word_ids": [
+   "6a6ef9b2a6015561480927fc"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Ruin",
+  "sense_pos": "verb",
+  "corpus_definition": "to damage or ruin something, or to become bad",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "spoilage",
+    "relation": "derivational",
+    "definition": "the process of food going bad",
+    "example": "Keep milk cold to stop spoilage.",
+    "register": "technical",
+    "syn": [
+     {
+      "to": "decay",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Slowly becoming bad or rotten."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "spoils",
+    "definition": "things taken by the winners of a war or fight",
+    "example": "The soldiers shared the spoils of war.",
+    "note": "Belongs to an old sense of spoil = take by force, not ruin."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "spoil",
+    "relation": "base",
+    "definition": "to make something less good or enjoyable, or to go bad",
+    "example": "The bad weather spoiled our holiday.",
+    "note": "British English past form: spoilt or spoiled.",
+    "syn": [
+     {
+      "to": "ruin",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Destroy something completely; stronger."
+     },
+     {
+      "to": "damage",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Harm something physically."
+     },
+     {
+      "to": "go off",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal British English: food becomes bad.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "improve",
+      "relation": "antonym",
+      "note": "Make something better."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "spoiled",
+    "relation": "participial",
+    "definition": "gone bad, or (of a child) given too much and badly behaved",
+    "example": "Throw away the spoiled fruit.",
+    "note": "British English also: spoilt.",
+    "syn": [
+     {
+      "to": "rotten",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Gone bad, used for food."
+     }
+    ],
+    "ant": [
+     {
+      "to": "fresh",
+      "relation": "antonym",
+      "note": "Recently made or picked, not bad."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "spoiler",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "information that tells you what happens in a film before you see it",
+    "example": "Don't tell me the ending, no spoilers!",
+    "note": "Also a part on a car that helps it hold the road."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "spoiler",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Rain spoiled our picnic in the park. Even the cake was spoiled because it got wet.",
+   "uses": [
+    "spoiled"
+   ]
+  },
+  "reviewer_note": "spoils (war prize) is a historical sense, so other_meaning."
+ },
+ {
+  "headword": "stain",
+  "word_id": "6a6ef9b2a601556148092797",
+  "word_ids": [
+   "6a6ef9b2a601556148092797"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Dirty mark",
+  "sense_pos": "noun",
+  "corpus_definition": "a dirty mark on a surface that is hard to remove",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stain",
+    "relation": "base",
+    "definition": "a dirty mark that is hard to clean",
+    "example": "There is a coffee stain on my shirt.",
+    "syn": [
+     {
+      "to": "mark",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "General word for a small dirty area."
+     },
+     {
+      "to": "spot",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A small round mark."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "stain",
+    "relation": "conversion",
+    "definition": "to leave a dirty mark that is hard to remove",
+    "example": "Tea can stain your teeth.",
+    "syn": [
+     {
+      "to": "mark",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Leave a mark on something."
+     },
+     {
+      "to": "dirty",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Make something not clean."
+     }
+    ],
+    "ant": [
+     {
+      "to": "clean",
+      "relation": "antonym",
+      "note": "Remove dirt from something."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stained",
+    "relation": "participial",
+    "definition": "having dirty marks on it",
+    "example": "He wore an old stained jacket.",
+    "syn": [
+     {
+      "to": "dirty",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not clean."
+     }
+    ],
+    "ant": [
+     {
+      "to": "spotless",
+      "relation": "antonym",
+      "note": "Completely clean."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stainless",
+    "relation": "derivational",
+    "definition": "(of steel) that does not get marks or rust",
+    "example": "We have stainless steel pots.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-less",
+    "in_form": "stainless",
+    "meaning_key": "-less",
+    "also": [
+     "careless",
+     "homeless",
+     "useless"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Malika spilled tea on the white tablecloth. Now there is a big stain, and the cloth is stained in two places.",
+   "uses": [
+    "stain",
+    "stained"
+   ]
+  },
+  "reviewer_note": "stainless mostly in 'stainless steel'."
+ },
+ {
+  "headword": "stamp",
+  "word_id": "6a4288ad6941e70ad6a00e3d",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e3d"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Post",
+  "sense_pos": "noun",
+  "corpus_definition": "A small paper sticker put on a cover to pay for service.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stamp",
+    "relation": "base",
+    "definition": "a small piece of paper you stick on a letter to pay for sending it",
+    "example": "I need two stamps for these letters.",
+    "syn": [
+     {
+      "to": "postage stamp",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Full, more formal name."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "postage",
+    "relation": "compound",
+    "definition": "the money you pay to send a letter or parcel",
+    "example": "How much is the postage to London?",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "stamp",
+    "relation": "conversion",
+    "definition": "to put an official mark on a document with ink",
+    "example": "The officer stamped my passport.",
+    "note": "Also 'stamp your foot' = put it down hard, a different meaning.",
+    "syn": [
+     {
+      "to": "mark",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: put a sign on something."
+     }
+    ],
+    "ant": [],
+    "not_family": [
+     "post"
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stamped",
+    "relation": "participial",
+    "definition": "with a stamp on it",
+    "example": "Send a stamped envelope with your form.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Grandpa collects stamps from many countries. He keeps every stamped envelope his friends send him.",
+   "uses": [
+    "stamps",
+    "stamped"
+   ]
+  },
+  "reviewer_note": "CORPUS: definition says 'cover'; normally 'envelope'. postage is a related word, not strictly a derivation; check."
+ },
+ {
+  "headword": "steal",
+  "word_id": "6a42821646ba24054c1dcc7a",
+  "word_ids": [
+   "6a42821646ba24054c1dcc7a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Crime",
+  "sense_pos": "verb",
+  "corpus_definition": "to take something that does not belong to you.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "theft",
+    "relation": "suppletive",
+    "definition": "the crime of taking something that is not yours",
+    "example": "Car theft is a big problem in some cities.",
+    "syn": [
+     {
+      "to": "robbery",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Stealing, often with force or threats."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stealing",
+    "relation": "derivational",
+    "definition": "the act of taking things that are not yours",
+    "example": "Stealing from shops is a crime.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "steal",
+    "relation": "base",
+    "definition": "to take something that is not yours without asking",
+    "example": "Someone stole my bike last night.",
+    "note": "Irregular: steal, stole, stolen.",
+    "syn": [
+     {
+      "to": "rob",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "You rob a person or bank; you steal a thing."
+     },
+     {
+      "to": "take",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word, less strong."
+     },
+     {
+      "to": "nick",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal British English.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "return",
+      "relation": "antonym",
+      "note": "Give something back."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stolen",
+    "relation": "participial",
+    "definition": "taken by someone who had no right to it",
+    "example": "The police found the stolen car.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "stealthily",
+    "definition": "quietly and secretly so no one notices",
+    "example": "The cat moved stealthily.",
+    "note": "Comes from stealth, an old sense of steal = move secretly."
+   }
+  ],
+  "people": [
+   {
+    "form": "thief",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who steals things",
+    "example": "The thief ran away with her bag."
+   }
+  ],
+  "people_not_family": [
+   "robber"
+  ],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "stealing",
+    "meaning_key": "-ing",
+    "also": [
+     "shopping",
+     "swimming",
+     "building"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Someone stole Aziz's phone at the bazaar. The police are looking for the thief and the stolen phone.",
+   "uses": [
+    "stole",
+    "stolen"
+   ]
+  },
+  "reviewer_note": "theft and thief are family by meaning, different spelling. robber belongs to rob."
+ },
+ {
+  "headword": "steel",
+  "word_id": "6a6ef9b2a601556148092888",
+  "word_ids": [
+   "6a6ef9b2a601556148092888",
+   "6a4288ad6941e70ad6a00eb8"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Metal",
+  "sense_pos": "noun",
+  "corpus_definition": "a very strong, hard metal used in building and tools",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "steel",
+    "relation": "base",
+    "definition": "a very strong metal made from iron",
+    "example": "These knives are made of steel.",
+    "syn": [
+     {
+      "to": "iron",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: the metal steel is made from."
+     },
+     {
+      "to": "metal",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "General word for all metals."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "steel",
+    "definition": "to prepare yourself to deal with something bad",
+    "example": "She steeled herself for the bad news.",
+    "note": "Belongs to steel = become strong in mind, not the metal. Used as 'steel yourself'."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "steely",
+    "relation": "derivational",
+    "definition": "like steel in colour, or hard and strong",
+    "example": "He gave me a steely look.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "steelworker",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person who works in a factory that makes steel",
+    "example": "His father was a steelworker in Bekabad."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "steely",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "The new bridge in our city is made of steel. The old steelworker looked at it with a steely, proud face.",
+   "uses": [
+    "steel",
+    "steely"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B2, A2) merged; A2 used."
+ },
+ {
+  "headword": "stir",
+  "word_id": "6a6ef9b2a60155614809280f",
+  "word_ids": [
+   "6a6ef9b2a60155614809280f",
+   "6a42821646ba24054c1dcce0"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Cooking",
+  "sense_pos": "verb",
+  "corpus_definition": "To move a spoon in circles to mix food.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stir",
+    "relation": "conversion",
+    "definition": "the act of mixing something with a spoon",
+    "example": "Give the soup a stir.",
+    "note": "'cause a stir' = make people excited, a different meaning.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "stir",
+    "relation": "base",
+    "definition": "to move a spoon round and round to mix food or drink",
+    "example": "Stir the tea before you drink it.",
+    "syn": [
+     {
+      "to": "mix",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Put things together; more general."
+     },
+     {
+      "to": "whisk",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Mix very fast, often eggs."
+     },
+     {
+      "to": "blend",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Mix completely, often with a machine."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "stirring",
+    "definition": "making people feel strong emotions",
+    "example": "He gave a stirring speech.",
+    "note": "Belongs to stir = move feelings, not mixing food."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "stirrer",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "a small stick for mixing a drink",
+    "example": "Take a stirrer for your coffee."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "stirrer",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Mum stirs the soup slowly with a big spoon. Give it one more stir, she tells me.",
+   "uses": [
+    "stirs",
+    "stir"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B1, A2) merged; A2 used."
+ },
+ {
+  "headword": "storm",
+  "word_id": "6a42883f6941e70ad6a00e0b",
+  "word_ids": [
+   "6a42883f6941e70ad6a00e0b"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Weather",
+  "sense_pos": "noun",
+  "corpus_definition": "Very bad weather with heavy rain and strong wind.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "storm",
+    "relation": "base",
+    "definition": "very bad weather with strong wind and heavy rain",
+    "example": "A big storm hit the city last night.",
+    "syn": [
+     {
+      "to": "thunderstorm",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A storm with thunder and lightning."
+     },
+     {
+      "to": "gale",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A very strong wind."
+     }
+    ],
+    "ant": [
+     {
+      "to": "calm",
+      "relation": "antonym",
+      "note": "Quiet weather with no wind."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "storm",
+    "definition": "to go somewhere quickly and angrily, or attack a place",
+    "example": "He stormed out of the room.",
+    "note": "Belongs to storm = move angrily, not weather."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stormy",
+    "relation": "derivational",
+    "definition": "with strong wind and heavy rain",
+    "example": "It was a dark, stormy night.",
+    "syn": [
+     {
+      "to": "rough",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Used about the sea in bad weather."
+     },
+     {
+      "to": "windy",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "With a lot of wind."
+     }
+    ],
+    "ant": [
+     {
+      "to": "calm",
+      "relation": "antonym",
+      "note": "With no wind or waves."
+     },
+     {
+      "to": "sunny",
+      "relation": "antonym",
+      "note": "Bright with sun."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "stormy",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "The weather was stormy all weekend. During the storm, two trees fell down in our street.",
+   "uses": [
+    "stormy",
+    "storm"
+   ]
+  },
+  "reviewer_note": "Verb storm (move angrily) is a different meaning."
+ },
+ {
+  "headword": "stranger",
+  "word_id": "6a42662edeeb39f88113012c",
+  "word_ids": [
+   "6a42662edeeb39f88113012c"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Person",
+  "sense_pos": "noun",
+  "corpus_definition": "A person that you do not know.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stranger",
+    "relation": "base",
+    "definition": "a person you do not know",
+    "example": "A stranger asked me the way to the station.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "friend",
+      "relation": "antonym",
+      "note": "A person you know and like."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "strangeness",
+    "relation": "derivational",
+    "definition": "the quality of being unusual or unfamiliar",
+    "example": "I felt the strangeness of the new city.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "strange",
+    "relation": "derivational",
+    "definition": "unusual, or not known to you before",
+    "example": "I woke up in a strange room.",
+    "syn": [
+     {
+      "to": "unfamiliar",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not known to you."
+     },
+     {
+      "to": "odd",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Unusual or surprising."
+     }
+    ],
+    "ant": [
+     {
+      "to": "familiar",
+      "relation": "antonym",
+      "note": "Well known to you."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "strangely",
+    "relation": "derivational",
+    "definition": "in an unusual way",
+    "example": "He was strangely quiet today.",
+    "syn": [
+     {
+      "to": "oddly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In a surprising way."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "stranger",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "strangely",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "strangeness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   }
+  ],
+  "context": {
+   "text": "A stranger sat next to me on the bus. He was strangely quiet at first, but then we talked.",
+   "uses": [
+    "stranger",
+    "strangely"
+   ]
+  },
+  "reviewer_note": "Headword is a person noun, so it sits in people; strange is the base adjective. 'stranger' as comparative of strange is a separate meaning."
+ },
+ {
+  "headword": "string",
+  "word_id": "6a6ef83f0f1e82a5a0736792",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a0736792"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Material",
+  "sense_pos": "noun",
+  "corpus_definition": "A long thin piece of material used to tie things.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "string",
+    "relation": "base",
+    "definition": "thin cord used for tying things",
+    "example": "Tie the parcel with some string.",
+    "note": "Also the strings on a guitar or violin.",
+    "syn": [
+     {
+      "to": "cord",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Thicker string."
+     },
+     {
+      "to": "thread",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Very thin string used for sewing."
+     },
+     {
+      "to": "rope",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Very thick and strong string."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "string",
+    "relation": "conversion",
+    "definition": "to put things on a thin cord or hang them in a line",
+    "example": "We strung lights across the garden.",
+    "note": "Irregular: string, strung, strung.",
+    "syn": [
+     {
+      "to": "thread",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put beads onto a string."
+     },
+     {
+      "to": "hang",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put something up so it hangs."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "stringy",
+    "relation": "derivational",
+    "definition": "(of food) long and thin and hard to chew",
+    "example": "This meat is very stringy.",
+    "syn": [
+     {
+      "to": "tough",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Hard to cut or chew."
+     }
+    ],
+    "ant": [
+     {
+      "to": "tender",
+      "relation": "antonym",
+      "note": "Soft and easy to chew."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "stringy",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Grandma tied the bag of apples with string. The meat in her soup was stringy, so she cooked it longer.",
+   "uses": [
+    "string",
+    "stringy"
+   ]
+  },
+  "reviewer_note": "strung is the past form of verb string."
+ },
+ {
+  "headword": "stripe",
+  "word_id": "6a6ef9b2a6015561480926f8",
+  "word_ids": [
+   "6a6ef9b2a6015561480926f8"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Pattern",
+  "sense_pos": "noun",
+  "corpus_definition": "a long, thin band of colour on a surface",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "stripe",
+    "relation": "base",
+    "definition": "a long thin line of colour",
+    "example": "A zebra has black and white stripes.",
+    "syn": [
+     {
+      "to": "line",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "General word; a stripe is a wide line of colour."
+     },
+     {
+      "to": "band",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A wide stripe."
+     },
+     {
+      "to": "strip",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A long narrow piece of material; easily confused."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "'stripe' as a verb is rare."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "striped",
+    "relation": "derivational",
+    "definition": "having long thin lines of colour on it",
+    "example": "He wore a striped shirt.",
+    "syn": [
+     {
+      "to": "stripy",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Informal British English.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "plain",
+      "relation": "antonym",
+      "note": "One colour, with no pattern."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Dilnoza bought a striped dress at the market. It has thin blue stripes on a white background.",
+   "uses": [
+    "striped",
+    "stripes"
+   ]
+  },
+  "reviewer_note": "stripy kept as synonym of striped (same family, informal)."
+ }
 ]

@@ -1,0 +1,483 @@
+{
+ "gate_version": "gate-4.3",
+ "results": [
+  {
+   "headword": "spoil",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'-age' is not in the affix table"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "spoilage: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "spoiled: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "spoilage"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "spoiled",
+       "spoilt"
+      ],
+      "VBN": [
+       "spoilt"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "spoils (war prize) is a historical sense, so other_meaning."
+  },
+  {
+   "headword": "stain",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "stains",
+       "stain"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "stained"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "stainless mostly in 'stainless steel'."
+  },
+  {
+   "headword": "stamp",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: common family word 'post' (zipf 5.4) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    },
+    {
+     "cat": "bad definition",
+     "msg": "verb definition uses its own word: stamp"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "stamped → 'unstamped' is not a real word/phrase"
+    },
+    {
+     "cat": "bad antonym",
+     "msg": "stamped → 'unstamped' is not a adjective (form is a adjective)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: post, poster, posting"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: postal"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: stamp (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "stamp: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "stamps"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "stamped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: definition says 'cover'; normally 'envelope'. postage is a related word, not strictly a derivation; check."
+  },
+  {
+   "headword": "steal",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "noun example is 3 words (4–25)"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "theft → 'stealing' is a family member, not a synonym"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "stealing → 'theft' is a family member, not a synonym"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "steal → 'take' is called a synonym at 0.6; at 0.60 or below it must be 'related'"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: stoic"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'thief': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'steer' (zipf 3.7) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "thefts",
+       "theft"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "stole"
+      ],
+      "VBN": [
+       "stolen"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "theft and thief are family by meaning, different spelling. robber belongs to rob."
+  },
+  {
+   "headword": "steel",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: steel (OK if the learner already knows it)"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'steelworker': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "people 'steelworker' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'steer' (zipf 3.7) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "steel"
+      ]
+     },
+     "irregular": true
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "steelier"
+      ],
+      "JJS": [
+       "steeliest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B2, A2) merged; A2 used."
+  },
+  {
+   "headword": "stir",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "stir → 'blend' is called a synonym at 0.6; at 0.60 or below it must be 'related'"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "stirs"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "stirred"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B1, A2) merged; A2 used."
+  },
+  {
+   "headword": "storm",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "storm → 'thunderstorm' is 'related' at 0.8; 0.80+ must be 'synonym'"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "stormy → 'rough' is called a synonym at 0.6; at 0.60 or below it must be 'related'"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: stoic"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: stoically. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "storm: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "storms"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "stormier"
+      ],
+      "JJS": [
+       "stormiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb storm (move angrily) is a different meaning."
+  },
+  {
+   "headword": "stranger",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "wrong sense",
+     "msg": "headword 'stranger' is not in its own slot (noun)"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "adjective 'strange' is marked base but differs from the headword"
+    },
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: stray"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "strangely: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "strangeness"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "stranger"
+      ],
+      "JJS": [
+       "strangest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it sits in people; strange is the base adjective. 'stranger' as comparative of strange is a separate meaning."
+  },
+  {
+   "headword": "string",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad definition",
+     "msg": "verb definition uses its own word: string"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "string → 'thread' is called a synonym at 0.6; at 0.60 or below it must be 'related'"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "stringy → 'tough' is called a synonym at 0.6; at 0.60 or below it must be 'related'"
+    },
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: stringer"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'stringer' (zipf 3.0) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "strings",
+       "string"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "strung"
+      ],
+      "VBN": [
+       "strung"
+      ]
+     },
+     "irregular": true
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "stringier"
+      ],
+      "JJS": [
+       "stringiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "strung is the past form of verb string."
+  },
+  {
+   "headword": "stripe",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "adjective 'striped' is marked participial but is not a participle of stripe"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition too short"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: stripes (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "striped: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "stripes"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "stripy kept as synonym of striped (same family, informal)."
+  }
+ ]
+}
