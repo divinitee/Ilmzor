@@ -4,20 +4,27 @@ Deterministic checks on generated word-family maps before any human review.
 Lexicon: WordNet 3.1 (npm wordnet-db), lemminflect (inflections), wordfreq (frequency).
 FAIL = cannot be approved until fixed. FLAG = shown to the reviewer.
 """
-import json, re, sys, glob, collections
-from wordfreq import zipf_frequency
+import json, re, sys, glob, collections, gzip, os
+# gate-4.3: everything the gate needs is vendored in ./vendor (no pip/npm): wordfreq_lite (wordfreq 3.1.1 English
+# data), lemminflect 0.2.3 (+ a numpy stub; only dictionary lookups are used) and WordNet 3.1 data files (.gz).
+_VENDOR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "vendor")
+sys.path.insert(0, _VENDOR)
+from wordfreq_lite import zipf_frequency
 from lemminflect import getAllInflections, getAllLemmas
 
-GATE_VERSION = "gate-4.2"
-import os
-WN_DIR = next(p for p in (os.environ.get("DEEPMODE_WN_DIR", ""), "/tmp/deepmode-lex/node_modules/wordnet-db/dict") if p and os.path.isdir(p))
+GATE_VERSION = "gate-4.3"
+WN_DIR = next(p for p in (os.environ.get("DEEPMODE_WN_DIR", ""), os.path.join(_VENDOR, "wordnet"), "/tmp/deepmode-lex/node_modules/wordnet-db/dict") if p and os.path.isdir(p))
+
+def _wn_open(name):
+    p = os.path.join(WN_DIR, name)
+    return gzip.open(p + ".gz", "rt", encoding="latin-1") if os.path.exists(p + ".gz") else open(p, encoding="latin-1")
 POSMAP = {"noun": "noun", "verb": "verb", "adjective": "adj", "adverb": "adv"}
 SS = {"n": "noun", "v": "verb", "a": "adj", "s": "adj", "r": "adv"}
 
 # ---------- WordNet ----------
 synsets, lemma_pos, lemma_syn = {}, collections.defaultdict(set), collections.defaultdict(list)
 for f in ("noun", "verb", "adj", "adv"):
-    for line in open(f"{WN_DIR}/data.{f}", encoding="latin-1"):
+    for line in _wn_open(f"data.{f}"):
         if line.startswith("  "):
             continue
         p = line.split(" ")
