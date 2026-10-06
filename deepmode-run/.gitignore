@@ -1,0 +1,4 @@
+outputs/*.gate.json
+gate_report.json
+__pycache__/
+corpus.json
