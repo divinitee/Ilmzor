@@ -29,13 +29,9 @@ Nothing has been written to the database yet. The app's Deep Mode tab currently 
 5. The rules are in `GENERATOR.md` (generator-6). Follow it exactly; it encodes 4 rounds of Tee's review. If you think a rule is wrong, tell Tee rather than changing it silently.
 6. Keep a written log in `PROGRESS.md` (section 4) so Tee and any later session can see exactly where things stand.
 
-## 3. Setup (once per sandbox; re-run if the gate can't find WordNet)
+## 3. Setup (nothing to install)
 
-```bash
-cd /app/deepmode-run && bash setup.sh
-```
-
-This installs `wordfreq==3.1.1` and `lemminflect==0.2.3` (pip), and downloads WordNet 3.1 (`npm wordnet-db@3.1.14`) into `/tmp/deepmode-lex` (outside the repo, it's 34 MB). It ends by printing `gate ready: gate-4.2`. If the sandbox restarts, `/tmp` is wiped; run `setup.sh` again.
+Since gate-4.3 (6 Oct) **everything the gate needs is committed in `deepmode-run/vendor/`**: `wordfreq_lite.py` with wordfreq 3.1.1's English data (verified identical on the gate's vocabulary), `lemminflect` 0.2.3 with a small `numpy` stub (the gate only uses its dictionary lookups), and WordNet 3.1 data files (`vendor/wordnet/*.gz`). No pip, no npm, no network. A sandbox reset doesn't break it. `bash setup.sh` now only checks that the gate loads (`gate ready: gate-4.3`) and the examples pass.
 
 Sanity check: `python3 gate_batch.py examples.json` must print `4 maps · 4 pass · 0 fail`. Delete the `examples.json.*.json` logs it writes.
 
@@ -133,11 +129,12 @@ The preview engine is in `src/components/deepmode/` (`DeepModeMap.jsx`, `deepMod
 | `HANDOFF.md` | this file |
 | `GENERATOR.md` | generator-6: the full rule sheet for writing maps |
 | `examples.json` | 4 schema examples (economy, receive, give up, make sure) |
-| `gate.py` | gate-4.2 (WordNet 3.1 + lemminflect + wordfreq; affix table affix-2) |
+| `gate.py` | gate-4.3 (WordNet 3.1 + lemminflect + wordfreq, all vendored; affix table affix-2) |
 | `gate_batch.py` | gate one file, print FAILs, log the first pass |
 | `gate_all_outputs.py` | gate every output file in one process |
 | `lexicon_supplement.json` | verified modern words missing from WordNet |
-| `setup.sh` | installs the gate's dependencies |
+| `setup.sh` | checks the gate loads (nothing to install) |
+| `vendor/` | the gate's bundled dependencies: don't edit |
 | `split_inputs.py` | turns Tee's uploaded inputs file into `inputs/batch_NNN.json` |
 | `make_inputs_from_corpus.py`, `done_index.json` | fallback: rebuild the same inputs from a corpus export |
 | `outputs/` | your output files go here |
