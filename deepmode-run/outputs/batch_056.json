@@ -468,10 +468,10 @@
    }
   ],
   "context": {
-   "text": "It thundered all night in our village. The thunder was so loud that the dog hid under the bed.",
+   "text": "We heard thunder all night in our village. It was thunderous, and the dog hid under the bed.",
    "uses": [
-    "thundered",
-    "thunder"
+    "thunder",
+    "thunderous"
    ]
   },
   "reviewer_note": "Two corpus rows (B2, A2) merged; A2 used."
