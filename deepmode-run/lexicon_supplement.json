@@ -1,0 +1,7 @@
+{
+ "_note": "Real learner-dictionary words missing from WordNet 3.1 (2011). Each entry is checked by the coordinator against Oxford/Cambridge learner dictionaries before it is added. Format: word -> parts of speech.",
+ "carer": ["noun"], "commenter": ["noun"], "overcrowded": ["adj"], "gendered": ["adj"], "hoodie": ["noun"],
+ "online": ["adj", "adv"], "offline": ["adj", "adv"], "text": ["verb", "noun"], "driverless": ["adj"],
+ "dairy": ["adj"], "diet": ["adj"], "texting": ["noun"], "email": ["noun", "verb"], "app": ["noun"], "selfie": ["noun"],
+ "website": ["noun"], "blogger": ["noun"], "vlogger": ["noun"], "smartphone": ["noun"], "upload": ["verb", "noun"], "download": ["verb", "noun"]
+}
