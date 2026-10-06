@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "cheat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c96",
+    "cefr": "B1",
+    "corpus_definition": "To behave in a dishonest way to win or get an advantage.",
+    "example_en": "It is wrong to cheat on your exam."
+   }
+  ]
+ },
+ {
+  "headword": "cheat at/in",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908f0",
+    "cefr": "B1",
+    "corpus_definition": "To act dishonestly to get a better result.",
+    "example_en": "It is wrong to cheat in an exam."
+   }
+  ]
+ },
+ {
+  "headword": "cheer up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf3",
+    "cefr": "B1",
+    "corpus_definition": "to make someone feel happier when they are sad",
+    "example_en": "I bought flowers to cheer up my friend."
+   }
+  ]
+ },
+ {
+  "headword": "chemist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b4f",
+    "cefr": "B1",
+    "corpus_definition": "A person who studies how substances react and change.",
+    "example_en": "The chemist works in a large laboratory."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092763",
+    "cefr": "B1",
+    "corpus_definition": "a scientist who studies or works with chemicals and substances",
+    "example_en": "The chemist discovered a new compound in the laboratory."
+   }
+  ]
+ },
+ {
+  "headword": "chew",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcccb",
+    "cefr": "B1",
+    "corpus_definition": "To use your teeth to break food into small pieces.",
+    "example_en": "Please chew your food carefully before swallowing."
+   }
+  ]
+ },
+ {
+  "headword": "childhood",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc7",
+    "cefr": "B1",
+    "corpus_definition": "The period of time when you are small.",
+    "example_en": "I spent my childhood in the countryside."
+   }
+  ]
+ },
+ {
+  "headword": "chill",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092764",
+    "cefr": "B1",
+    "corpus_definition": "A feeling of being a little bit cold.",
+    "example_en": "There is a chill in the air tonight."
+   }
+  ]
+ },
+ {
+  "headword": "chin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092819",
+    "cefr": "B1",
+    "corpus_definition": "The bottom part of a person's face below their mouth.",
+    "example_en": "He rested his chin on his hands."
+   }
+  ]
+ },
+ {
+  "headword": "choir",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073666e",
+    "cefr": "B1",
+    "corpus_definition": "A group of people who sing together.",
+    "example_en": "She sings in the church choir."
+   }
+  ]
+ },
+ {
+  "headword": "classical music",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c97",
+    "cefr": "B1",
+    "corpus_definition": "Serious, traditional art music written by famous composers long ago.",
+    "example_en": "He enjoys listening to classical music in the evening."
+   }
+  ]
+ }
+]

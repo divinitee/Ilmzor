@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "preserve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd84",
+    "cefr": "B2",
+    "corpus_definition": "To keep something in its original state.",
+    "example_en": "We must preserve the forest for our children."
+   }
+  ]
+ },
+ {
+  "headword": "pressure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccaa",
+    "cefr": "B2",
+    "corpus_definition": "The feeling of being worried and needing to do many things.",
+    "example_en": "He feels a lot of work pressure."
+   }
+  ]
+ },
+ {
+  "headword": "prevent from",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd9a",
+    "cefr": "B2",
+    "corpus_definition": "To make sure that something does not happen.",
+    "example_en": "Rain may prevent from playing the game today."
+   }
+  ]
+ },
+ {
+  "headword": "previous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccab",
+    "cefr": "B2",
+    "corpus_definition": "Happening before the current time.",
+    "example_en": "I did not like his previous job."
+   }
+  ]
+ },
+ {
+  "headword": "principle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736702",
+    "cefr": "B2",
+    "corpus_definition": "A basic rule that guides your behavior or actions.",
+    "example_en": "Honesty is an important principle for many people."
+   }
+  ]
+ },
+ {
+  "headword": "prior",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736896",
+    "cefr": "B2",
+    "corpus_definition": "Happening or existing before a specific time.",
+    "example_en": "I have a prior appointment this afternoon."
+   }
+  ]
+ },
+ {
+  "headword": "priority",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b1",
+    "cefr": "B2",
+    "corpus_definition": "the thing that is most important and must be dealt with first",
+    "example_en": "Her top priority is finishing the report before Friday."
+   }
+  ]
+ },
+ {
+  "headword": "profession",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccac",
+    "cefr": "B2",
+    "corpus_definition": "A type of job that requires special training or education.",
+    "example_en": "Medicine is a very difficult profession."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00db7",
+    "cefr": "B2",
+    "corpus_definition": "a type of job that needs special training",
+    "example_en": "Teaching is a very rewarding profession."
+   }
+  ]
+ },
+ {
+  "headword": "promote",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b0",
+    "cefr": "B2",
+    "corpus_definition": "To help something happen or become popular.",
+    "example_en": "The company hired a firm to promote their product."
+   }
+  ]
+ },
+ {
+  "headword": "promptly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671a",
+    "cefr": "B2",
+    "corpus_definition": "Doing something right away without waiting.",
+    "example_en": "Please answer the email promptly."
+   }
+  ]
+ }
+]

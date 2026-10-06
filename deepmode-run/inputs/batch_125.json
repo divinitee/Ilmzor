@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "calorie",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea2",
+    "cefr": "B2",
+    "corpus_definition": "A unit used to measure the energy provided by food.",
+    "example_en": "This snack has too many calorie counts."
+   }
+  ]
+ },
+ {
+  "headword": "candidate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736746",
+    "cefr": "B2",
+    "corpus_definition": "A person who is trying to get a job or position.",
+    "example_en": "The best candidate will get the open job."
+   }
+  ]
+ },
+ {
+  "headword": "capacity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671f",
+    "cefr": "B2",
+    "corpus_definition": "The amount that can be held inside something.",
+    "example_en": "The stadium was full and reached its total limit."
+   }
+  ]
+ },
+ {
+  "headword": "cargo",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736682",
+    "cefr": "B2",
+    "corpus_definition": "Things that are being moved by a ship, plane, or truck.",
+    "example_en": "The ship carried heavy cargo across the ocean."
+   }
+  ]
+ },
+ {
+  "headword": "cautious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926fd",
+    "cefr": "B2",
+    "corpus_definition": "Being careful to avoid possible problems or dangers.",
+    "example_en": "He is very cautious when walking on slippery ice."
+   }
+  ]
+ },
+ {
+  "headword": "cemetery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ed",
+    "cefr": "B2",
+    "corpus_definition": "A place where people are buried after they die.",
+    "example_en": "They visited the cemetery to see the graves."
+   }
+  ]
+ },
+ {
+  "headword": "charitable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279f",
+    "cefr": "B2",
+    "corpus_definition": "willing to help others and give money or time freely",
+    "example_en": "The charitable man donated food to the homeless shelter."
+   }
+  ]
+ },
+ {
+  "headword": "charm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736861",
+    "cefr": "B2",
+    "corpus_definition": "A quality that makes people like you.",
+    "example_en": "He used his charm to win everyone over."
+   }
+  ]
+ },
+ {
+  "headword": "checked",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd43",
+    "cefr": "B2",
+    "corpus_definition": "having a pattern of squares of different colors",
+    "example_en": "He wore a blue checked shirt to the office."
+   }
+  ]
+ },
+ {
+  "headword": "chemical",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b50",
+    "cefr": "B2",
+    "corpus_definition": "A substance created through a scientific process.",
+    "example_en": "Avoid touching that dangerous chemical."
+   }
+  ]
+ }
+]

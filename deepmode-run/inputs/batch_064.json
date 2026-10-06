@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "apologise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130110",
+    "cefr": "B1",
+    "corpus_definition": "To say sorry for something wrong that you did.",
+    "example_en": "He had to apologise for his rude behavior."
+   }
+  ]
+ },
+ {
+  "headword": "apologise to sb for",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113015b",
+    "cefr": "B1",
+    "corpus_definition": "To tell someone you are sorry for a mistake.",
+    "example_en": "You should apologise to him for the delay."
+   }
+  ]
+ },
+ {
+  "headword": "application",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc96",
+    "cefr": "B1",
+    "corpus_definition": "a formal request to join a school or get a new job",
+    "example_en": "I sent my job application yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "apply for",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc2",
+    "cefr": "B1",
+    "corpus_definition": "To ask for something in writing, like a job or course.",
+    "example_en": "I will apply for that position tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "architect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eb0",
+    "cefr": "B2",
+    "corpus_definition": "A professional who creates the look and structure of new buildings.",
+    "example_en": "The architect drew a plan for our new house."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e6",
+    "cefr": "B1",
+    "corpus_definition": "a person who plans and designs how buildings should be built",
+    "example_en": "The architect drew plans for the new house."
+   }
+  ]
+ },
+ {
+  "headword": "arctic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092761",
+    "cefr": "B1",
+    "corpus_definition": "relating to the very cold region around the North Pole",
+    "example_en": "Arctic temperatures can drop below minus fifty degrees."
+   }
+  ]
+ },
+ {
+  "headword": "armed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736837",
+    "cefr": "B1",
+    "corpus_definition": "Carrying or holding a weapon.",
+    "example_en": "The police were armed for their protection."
+   }
+  ]
+ },
+ {
+  "headword": "armor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092697",
+    "cefr": "B1",
+    "corpus_definition": "protective metal clothing worn by soldiers in past times",
+    "example_en": "The knight wore heavy armor into battle."
+   }
+  ]
+ },
+ {
+  "headword": "arrest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc64",
+    "cefr": "B1",
+    "corpus_definition": "to take someone to the police station because they broke the law.",
+    "example_en": "The police had to arrest the man for theft."
+   }
+  ]
+ },
+ {
+  "headword": "aside",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092739",
+    "cefr": "B1",
+    "corpus_definition": "To one side or out of the way.",
+    "example_en": "Please put your books aside for now."
+   }
+  ]
+ }
+]

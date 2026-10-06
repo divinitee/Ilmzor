@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "flexible",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736876",
+    "cefr": "B1",
+    "corpus_definition": "Able to change or adapt easily to new conditions.",
+    "example_en": "She has a flexible work schedule."
+   }
+  ]
+ },
+ {
+  "headword": "flip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736686",
+    "cefr": "B1",
+    "corpus_definition": "To turn something over very quickly.",
+    "example_en": "Flip the pancake when it turns brown."
+   }
+  ]
+ },
+ {
+  "headword": "flood",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e0d",
+    "cefr": "B1",
+    "corpus_definition": "Too much water covering land that is usually dry.",
+    "example_en": "The flood destroyed many houses near the river."
+   }
+  ]
+ },
+ {
+  "headword": "fog",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd9e",
+    "cefr": "B1",
+    "corpus_definition": "Clouds very close to the ground that make it hard to see.",
+    "example_en": "Thick fog made driving very dangerous this morning."
+   }
+  ]
+ },
+ {
+  "headword": "folk",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d7",
+    "cefr": "B1",
+    "corpus_definition": "Ordinary people within a particular group.",
+    "example_en": "The local folk are very friendly."
+   }
+  ]
+ },
+ {
+  "headword": "folk music",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c9e",
+    "cefr": "B1",
+    "corpus_definition": "Traditional songs or tunes that come from a specific culture.",
+    "example_en": "They performed traditional folk music at the party."
+   }
+  ]
+ },
+ {
+  "headword": "fond",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ae",
+    "cefr": "B1",
+    "corpus_definition": "Feeling a strong liking for someone or something.",
+    "example_en": "I am fond of classic rock music."
+   }
+  ]
+ },
+ {
+  "headword": "fond of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130155",
+    "cefr": "B1",
+    "corpus_definition": "To like something or someone very much.",
+    "example_en": "I am very fond of chocolate cake."
+   }
+  ]
+ },
+ {
+  "headword": "for fun",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb8",
+    "cefr": "B1",
+    "corpus_definition": "Because you enjoy an activity and do not need money.",
+    "example_en": "She plays guitar just for fun."
+   }
+  ]
+ },
+ {
+  "headword": "for instance",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d0",
+    "cefr": "B1",
+    "corpus_definition": "Used to introduce an example of what you are talking about.",
+    "example_en": "I love fruit, for instance, apples and bananas."
+   }
+  ]
+ }
+]

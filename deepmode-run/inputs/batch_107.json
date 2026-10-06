@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "signature",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e45",
+    "cefr": "B1",
+    "corpus_definition": "A person's name written in their own way as proof.",
+    "example_en": "Please add your signature at the bottom."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686a",
+    "cefr": "B1",
+    "corpus_definition": "The way you write your name to show you agree.",
+    "example_en": "Please put your signature on this paper."
+   }
+  ]
+ },
+ {
+  "headword": "silence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ea",
+    "cefr": "B1",
+    "corpus_definition": "A state where there is no sound.",
+    "example_en": "There was complete silence in the room."
+   }
+  ]
+ },
+ {
+  "headword": "silently",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e9",
+    "cefr": "B1",
+    "corpus_definition": "Without making any noise at all.",
+    "example_en": "The cat moved across the floor silently."
+   }
+  ]
+ },
+ {
+  "headword": "sin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275a",
+    "cefr": "B1",
+    "corpus_definition": "An action that breaks a religious or moral rule.",
+    "example_en": "Many people believe lying is a serious sin."
+   }
+  ]
+ },
+ {
+  "headword": "skull",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809280e",
+    "cefr": "B1",
+    "corpus_definition": "the bone structure that forms and protects the head",
+    "example_en": "A skull and crossbones symbol warned of danger ahead."
+   }
+  ]
+ },
+ {
+  "headword": "social media",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e4f",
+    "cefr": "B1",
+    "corpus_definition": "Websites where people talk and share news with friends.",
+    "example_en": "I use social media to find news."
+   }
+  ]
+ },
+ {
+  "headword": "solar energy",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e03",
+    "cefr": "B1",
+    "corpus_definition": "Power that we get directly from the light of the sun.",
+    "example_en": "My house uses solar energy to provide electricity."
+   }
+  ]
+ },
+ {
+  "headword": "solution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdcb",
+    "cefr": "B1",
+    "corpus_definition": "An answer to a problem.",
+    "example_en": "He found a solution to the error."
+   }
+  ]
+ },
+ {
+  "headword": "sort out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc3",
+    "cefr": "B1",
+    "corpus_definition": "To fix a problem or organize things.",
+    "example_en": "Can you sort out this mess?"
+   }
+  ]
+ },
+ {
+  "headword": "source",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736650",
+    "cefr": "B1",
+    "corpus_definition": "Where something comes from or starts.",
+    "example_en": "This river is the source of our water."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "instruct",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e1",
+    "cefr": "B2",
+    "corpus_definition": "To show or tell someone how to perform a task.",
+    "example_en": "The coach will instruct the team on tactics."
+   }
+  ]
+ },
+ {
+  "headword": "insurance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dc5",
+    "cefr": "B2",
+    "corpus_definition": "Paying to protect yourself against loss or damage.",
+    "example_en": "Do you have car insurance for this vehicle?"
+   }
+  ]
+ },
+ {
+  "headword": "integrate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736717",
+    "cefr": "B2",
+    "corpus_definition": "To mix different groups of people or things together.",
+    "example_en": "New students quickly became part of the school group."
+   }
+  ]
+ },
+ {
+  "headword": "intelligence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd68",
+    "cefr": "B2",
+    "corpus_definition": "the mental ability to learn and understand new things.",
+    "example_en": "The professor is known for her high intelligence."
+   }
+  ]
+ },
+ {
+  "headword": "interval",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674e",
+    "cefr": "B2",
+    "corpus_definition": "A short period of time between two events.",
+    "example_en": "There was a long interval between the two acts."
+   }
+  ]
+ },
+ {
+  "headword": "invasion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd9f",
+    "cefr": "C1",
+    "corpus_definition": "When an army enters a country to take control by force.",
+    "example_en": "The country prepared for the invasion at the border."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809269d",
+    "cefr": "B2",
+    "corpus_definition": "when an army or group enters and takes over a place by force",
+    "example_en": "The invasion shocked the entire international community."
+   }
+  ]
+ },
+ {
+  "headword": "invention",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec1",
+    "cefr": "B2",
+    "corpus_definition": "A thing that someone created for the very first time.",
+    "example_en": "The light bulb was a great invention."
+   }
+  ]
+ },
+ {
+  "headword": "invest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b70",
+    "cefr": "B2",
+    "corpus_definition": "to use money to earn more money in the future",
+    "example_en": "She decided to invest her savings in new stocks."
+   }
+  ]
+ },
+ {
+  "headword": "investigate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb1",
+    "cefr": "B2",
+    "corpus_definition": "To look for facts about a crime or a problem.",
+    "example_en": "The police will investigate the cause of the fire."
+   }
+  ]
+ },
+ {
+  "headword": "investment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dc1",
+    "cefr": "B2",
+    "corpus_definition": "Giving money to something to get more money later.",
+    "example_en": "This house is a good long-term investment."
+   }
+  ]
+ }
+]

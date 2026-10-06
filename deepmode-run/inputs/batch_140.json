@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "fancy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f0",
+    "cefr": "B2",
+    "corpus_definition": "decorated in a showy or unusual way; imaginative",
+    "example_en": "They ate at a very fancy restaurant downtown."
+   }
+  ]
+ },
+ {
+  "headword": "fascinating",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b53",
+    "cefr": "B2",
+    "corpus_definition": "Extremely interesting and capturing your attention.",
+    "example_en": "That is a truly fascinating story."
+   }
+  ]
+ },
+ {
+  "headword": "fatal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809286c",
+    "cefr": "B2",
+    "corpus_definition": "causing death or having very serious, unrecoverable results",
+    "example_en": "The driver made a fatal mistake by ignoring the red light."
+   }
+  ]
+ },
+ {
+  "headword": "fate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092689",
+    "cefr": "B2",
+    "corpus_definition": "The things that happen to a person that they cannot change.",
+    "example_en": "He believed it was his fate to become a hero."
+   }
+  ]
+ },
+ {
+  "headword": "feast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926db",
+    "cefr": "B2",
+    "corpus_definition": "A large meal with many types of food.",
+    "example_en": "The family enjoyed a holiday feast."
+   }
+  ]
+ },
+ {
+  "headword": "federal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736729",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the central government of a whole country.",
+    "example_en": "The federal government passed a new law."
+   }
+  ]
+ },
+ {
+  "headword": "fee",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6d",
+    "cefr": "B2",
+    "corpus_definition": "money that you pay for a professional service",
+    "example_en": "You must pay a small fee to enter the park."
+   }
+  ]
+ },
+ {
+  "headword": "fierce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092703",
+    "cefr": "B2",
+    "corpus_definition": "Strong, angry, or very violent behavior.",
+    "example_en": "The fierce storm caused a lot of damage yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "financial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd6",
+    "cefr": "B2",
+    "corpus_definition": "Anything relating to the management of money.",
+    "example_en": "The company faces a major financial problem."
+   }
+  ]
+ },
+ {
+  "headword": "fist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736875",
+    "cefr": "B2",
+    "corpus_definition": "The hand with all fingers held tightly inside.",
+    "example_en": "He held his keys tight in his fist."
+   }
+  ]
+ }
+]

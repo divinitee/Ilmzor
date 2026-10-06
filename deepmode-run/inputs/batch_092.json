@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "mail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e38",
+    "cefr": "B1",
+    "corpus_definition": "Items like paper messages sent through a public service.",
+    "example_en": "I found some mail in my box today."
+   }
+  ]
+ },
+ {
+  "headword": "make progress",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908b6",
+    "cefr": "B1",
+    "corpus_definition": "To improve or move forward toward a goal.",
+    "example_en": "We are making good progress on this project."
+   }
+  ]
+ },
+ {
+  "headword": "make up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b4b",
+    "cefr": "B1",
+    "corpus_definition": "To invent a story or excuse that is not true.",
+    "example_en": "Do not make up silly stories again."
+   }
+  ]
+ },
+ {
+  "headword": "manager",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca7",
+    "cefr": "B1",
+    "corpus_definition": "A person who is responsible for running a business or team.",
+    "example_en": "The manager is in the office."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00de4",
+    "cefr": "B1",
+    "corpus_definition": "A person who is responsible for running part of a company.",
+    "example_en": "Talk to the manager if you have problems."
+   }
+  ]
+ },
+ {
+  "headword": "march",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092895",
+    "cefr": "B1",
+    "corpus_definition": "To walk in a formal way with regular, measured steps.",
+    "example_en": "The soldiers began to march across the field."
+   }
+  ]
+ },
+ {
+  "headword": "marsh",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092870",
+    "cefr": "B1",
+    "corpus_definition": "a low, wet area of soft ground that is difficult to walk through",
+    "example_en": "The hikers had to cross a muddy marsh to reach the cabin."
+   }
+  ]
+ },
+ {
+  "headword": "mass",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073669e",
+    "cefr": "B1",
+    "corpus_definition": "A large amount of people or things grouped together.",
+    "example_en": "A mass of people gathered in the main square."
+   }
+  ]
+ },
+ {
+  "headword": "massive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928af",
+    "cefr": "B1",
+    "corpus_definition": "very large, heavy, and solid in size or amount",
+    "example_en": "The workers moved a massive rock from the road."
+   }
+  ]
+ },
+ {
+  "headword": "material",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd4e",
+    "cefr": "B1",
+    "corpus_definition": "the stuff used to make objects or clothing",
+    "example_en": "The chair is covered in a soft material."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00eb3",
+    "cefr": "B1",
+    "corpus_definition": "Something that you use to make or produce other things.",
+    "example_en": "Cotton is a soft material for making shirts."
+   }
+  ]
+ },
+ {
+  "headword": "maximum",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b3d",
+    "cefr": "B1",
+    "corpus_definition": "The largest amount that is possible.",
+    "example_en": "The maximum speed on this road is fifty."
+   }
+  ]
+ }
+]

@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "get rid of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdad",
+    "cefr": "B1",
+    "corpus_definition": "To throw away things that you do not need anymore.",
+    "example_en": "We need to get rid of this old furniture."
+   }
+  ]
+ },
+ {
+  "headword": "give away",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b80",
+    "cefr": "B1",
+    "corpus_definition": "to let someone have something for free",
+    "example_en": "She will give away her old books to charity."
+   }
+  ]
+ },
+ {
+  "headword": "glance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277d",
+    "cefr": "B1",
+    "corpus_definition": "a quick look at someone or something",
+    "example_en": "She glanced at her watch and hurried away."
+   }
+  ]
+ },
+ {
+  "headword": "global",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd79",
+    "cefr": "B1",
+    "corpus_definition": "relating to the entire world.",
+    "example_en": "Climate change is a global problem."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c3",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the whole world.",
+    "example_en": "Climate change is a major global issue."
+   }
+  ]
+ },
+ {
+  "headword": "go out with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130131",
+    "cefr": "B1",
+    "corpus_definition": "To have a romantic relationship with someone.",
+    "example_en": "Are they going out with each other?"
+   }
+  ]
+ },
+ {
+  "headword": "goods",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00de1",
+    "cefr": "B2",
+    "corpus_definition": "Things that are made to be sold.",
+    "example_en": "The shop sells many different goods."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c0",
+    "cefr": "B1",
+    "corpus_definition": "Items or objects that are made to be sold.",
+    "example_en": "The store sells many different household goods."
+   }
+  ]
+ },
+ {
+  "headword": "graze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092714",
+    "cefr": "B1",
+    "corpus_definition": "when animals eat grass directly from the ground",
+    "example_en": "Cows were grazing peacefully in the green field."
+   }
+  ]
+ },
+ {
+  "headword": "groom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277f",
+    "cefr": "B1",
+    "corpus_definition": "a man on his wedding day, or a person who cares for horses",
+    "example_en": "The groom waited nervously at the front of the church."
+   }
+  ]
+ },
+ {
+  "headword": "habits",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e6e",
+    "cefr": "B1",
+    "corpus_definition": "Things you do often without thinking about them.",
+    "example_en": "Good habits help you stay healthy."
+   }
+  ]
+ },
+ {
+  "headword": "handy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736829",
+    "cefr": "B1",
+    "corpus_definition": "Very useful or easy to use.",
+    "example_en": "This tool is very handy for small repairs."
+   }
+  ]
+ }
+]

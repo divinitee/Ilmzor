@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "senses",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092826",
+    "cefr": "B1",
+    "corpus_definition": "the abilities to see, hear, smell, taste, and feel things",
+    "example_en": "The strong perfume overwhelmed all her senses at once."
+   }
+  ]
+ },
+ {
+  "headword": "sensible",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdba",
+    "cefr": "B1",
+    "corpus_definition": "Having good judgment and making smart choices.",
+    "example_en": "It is sensible to wear a coat."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809267d",
+    "cefr": "B1",
+    "corpus_definition": "Based on good judgment or reason.",
+    "example_en": "It is sensible to wear a coat today."
+   }
+  ]
+ },
+ {
+  "headword": "service",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00de2",
+    "cefr": "B1",
+    "corpus_definition": "Work that someone does for other people.",
+    "example_en": "The restaurant provides excellent service."
+   }
+  ]
+ },
+ {
+  "headword": "set up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb6",
+    "cefr": "B1",
+    "corpus_definition": "To start a new business or organization.",
+    "example_en": "They set up a new company."
+   }
+  ]
+ },
+ {
+  "headword": "shallow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092690",
+    "cefr": "B1",
+    "corpus_definition": "Having a short distance from the top to the bottom.",
+    "example_en": "The water in the pool is very shallow here."
+   }
+  ]
+ },
+ {
+  "headword": "share out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc2",
+    "cefr": "B1",
+    "corpus_definition": "To give parts of something to other people.",
+    "example_en": "Please share out the sweets equally."
+   }
+  ]
+ },
+ {
+  "headword": "shed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092838",
+    "cefr": "B1",
+    "corpus_definition": "a small simple building for storage; to let something fall off",
+    "example_en": "He keeps his tools in the garden shed."
+   }
+  ]
+ },
+ {
+  "headword": "shelter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736845",
+    "cefr": "B1",
+    "corpus_definition": "a place that gives protection from bad weather or danger",
+    "example_en": "We found shelter under a tree during the storm."
+   }
+  ]
+ },
+ {
+  "headword": "shrink",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e0",
+    "cefr": "B1",
+    "corpus_definition": "To become smaller in size.",
+    "example_en": "My sweater will shrink in hot water."
+   }
+  ]
+ },
+ {
+  "headword": "signal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f90f",
+    "cefr": "B1",
+    "corpus_definition": "A sound or sign that gives information or warning.",
+    "example_en": "The traffic light changed to a red signal."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00e4b",
+    "cefr": "B1",
+    "corpus_definition": "A movement or sound used to give information or warning.",
+    "example_en": "My phone has no signal in this room."
+   }
+  ]
+ }
+]

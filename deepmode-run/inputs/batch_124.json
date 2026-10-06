@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "breakdown",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736681",
+    "cefr": "B2",
+    "corpus_definition": "When a machine stops working or a situation fails.",
+    "example_en": "The car had a breakdown on the highway."
+   }
+  ]
+ },
+ {
+  "headword": "breeze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736810",
+    "cefr": "B2",
+    "corpus_definition": "A very light and pleasant wind.",
+    "example_en": "A cool breeze blew across the beach."
+   }
+  ]
+ },
+ {
+  "headword": "broadcast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f8fa",
+    "cefr": "B2",
+    "corpus_definition": "To send out programs via television or radio waves.",
+    "example_en": "They will broadcast the concert live tonight."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092801",
+    "cefr": "B2",
+    "corpus_definition": "Sending signals through the air to televisions or radios.",
+    "example_en": "They will broadcast the news later today."
+   }
+  ]
+ },
+ {
+  "headword": "budget",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dbe",
+    "cefr": "B2",
+    "corpus_definition": "the amount of money you have to spend",
+    "example_en": "We have a small budget for this trip."
+   }
+  ]
+ },
+ {
+  "headword": "bulletin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092802",
+    "cefr": "B2",
+    "corpus_definition": "a short official notice giving news or new information",
+    "example_en": "The school posted a bulletin about the cancelled classes."
+   }
+  ]
+ },
+ {
+  "headword": "bundle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092711",
+    "cefr": "B2",
+    "corpus_definition": "Several things held or tied together.",
+    "example_en": "She carried a large bundle of old newspapers."
+   }
+  ]
+ },
+ {
+  "headword": "burst",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809282b",
+    "cefr": "B2",
+    "corpus_definition": "To break open suddenly because there is too much inside.",
+    "example_en": "The balloon will burst if you blow too hard."
+   }
+  ]
+ },
+ {
+  "headword": "by chance",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b5a",
+    "cefr": "B2",
+    "corpus_definition": "Without planning or intending to do something.",
+    "example_en": "We met by chance at the park."
+   }
+  ]
+ },
+ {
+  "headword": "by heart",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908cf",
+    "cefr": "B2",
+    "corpus_definition": "To know something well enough to say it without looking at text.",
+    "example_en": "She learned the entire poem by heart."
+   }
+  ]
+ },
+ {
+  "headword": "call off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb3",
+    "cefr": "B2",
+    "corpus_definition": "To decide that a planned event will not happen.",
+    "example_en": "They had to call off the meeting."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "instructor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e2",
+    "cefr": "B1",
+    "corpus_definition": "A person who teaches a specific skill or sport.",
+    "example_en": "My yoga instructor is very patient."
+   }
+  ]
+ },
+ {
+  "headword": "insult",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb0",
+    "cefr": "B2",
+    "corpus_definition": "To say something mean to make someone feel bad.",
+    "example_en": "It is rude to insult your friends in public."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092753",
+    "cefr": "B1",
+    "corpus_definition": "a rude or hurtful remark that makes someone feel disrespected",
+    "example_en": "She walked away rather than respond to the insult."
+   }
+  ]
+ },
+ {
+  "headword": "interact",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674d",
+    "cefr": "B1",
+    "corpus_definition": "To talk or do things with other people.",
+    "example_en": "It is fun to interact with other students."
+   }
+  ]
+ },
+ {
+  "headword": "interrupt",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f903",
+    "cefr": "B1",
+    "corpus_definition": "To stop someone while they are speaking or doing something.",
+    "example_en": "Please do not interrupt while I am working."
+   }
+  ]
+ },
+ {
+  "headword": "introduction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113014b",
+    "cefr": "B1",
+    "corpus_definition": "The first part of a book or a meeting of new people.",
+    "example_en": "The book has a very short introduction."
+   }
+  ]
+ },
+ {
+  "headword": "invade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809272c",
+    "cefr": "B1",
+    "corpus_definition": "to enter a country by force, as an enemy",
+    "example_en": "The army invaded the small country at dawn."
+   }
+  ]
+ },
+ {
+  "headword": "involve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b39",
+    "cefr": "B1",
+    "corpus_definition": "To have someone or something as a necessary part.",
+    "example_en": "The job will involve traveling to other cities."
+   }
+  ]
+ },
+ {
+  "headword": "involved in",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd70",
+    "cefr": "B1",
+    "corpus_definition": "to be a part of an activity or group.",
+    "example_en": "He is involved in several sports clubs."
+   }
+  ]
+ },
+ {
+  "headword": "irritate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927cc",
+    "cefr": "B1",
+    "corpus_definition": "to make someone feel slightly angry or annoyed",
+    "example_en": "The constant noise began to irritate the neighbours."
+   }
+  ]
+ },
+ {
+  "headword": "itch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ac",
+    "cefr": "B1",
+    "corpus_definition": "An uncomfortable feeling on the skin that makes you want to scratch.",
+    "example_en": "My mosquito bite has a terrible itch."
+   }
+  ]
+ }
+]

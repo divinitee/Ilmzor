@@ -1,0 +1,140 @@
+[
+ {
+  "headword": "earthquake",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e0c",
+    "cefr": "B1",
+    "corpus_definition": "A sudden shaking of the ground that causes damage.",
+    "example_en": "The earthquake moved the furniture in our house."
+   }
+  ]
+ },
+ {
+  "headword": "eat out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb0",
+    "cefr": "B1",
+    "corpus_definition": "Have a meal at a restaurant instead of your house.",
+    "example_en": "Let us eat out at that new Italian place."
+   }
+  ]
+ },
+ {
+  "headword": "edit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367bf",
+    "cefr": "B1",
+    "corpus_definition": "To make changes to a text or video to improve it.",
+    "example_en": "You need to edit your report for mistakes."
+   }
+  ]
+ },
+ {
+  "headword": "effect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b31",
+    "cefr": "B1",
+    "corpus_definition": "A result or change caused by something.",
+    "example_en": "The medicine had a good effect on him."
+   }
+  ]
+ },
+ {
+  "headword": "employee",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccbb",
+    "cefr": "B1",
+    "corpus_definition": "A person who is paid to do a job for someone else.",
+    "example_en": "The company treats every employee with great respect."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dba",
+    "cefr": "B1",
+    "corpus_definition": "a person who is paid to work for someone",
+    "example_en": "The company has over one hundred employees."
+   }
+  ]
+ },
+ {
+  "headword": "employer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccba",
+    "cefr": "B1",
+    "corpus_definition": "A person or company that gives people jobs to do for money.",
+    "example_en": "My employer is very kind and supportive."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00db9",
+    "cefr": "B2",
+    "corpus_definition": "the person or business that pays people to work",
+    "example_en": "My employer gave me a week off."
+   }
+  ]
+ },
+ {
+  "headword": "entertain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ccb",
+    "cefr": "B1",
+    "corpus_definition": "To keep people interested and happy.",
+    "example_en": "The clown will entertain the kids."
+   }
+  ]
+ },
+ {
+  "headword": "entertaining",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c9d",
+    "cefr": "B1",
+    "corpus_definition": "Something that is interesting and gives you enjoyment.",
+    "example_en": "That film was very entertaining and funny."
+   }
+  ]
+ },
+ {
+  "headword": "entertainment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ccc",
+    "cefr": "B1",
+    "corpus_definition": "Shows, films, or games that people enjoy.",
+    "example_en": "This city has great nightlife entertainment."
+   }
+  ]
+ },
+ {
+  "headword": "enthusiastic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcde0",
+    "cefr": "B2",
+    "corpus_definition": "Feeling very interested and excited about something.",
+    "example_en": "He is very enthusiastic about the new project."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809281c",
+    "cefr": "B1",
+    "corpus_definition": "showing strong excitement and interest about something",
+    "example_en": "The students were enthusiastic about the new science project."
+   }
+  ]
+ }
+]

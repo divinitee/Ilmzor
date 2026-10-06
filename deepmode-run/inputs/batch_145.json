@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "have an operation",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd2",
+    "cefr": "B2",
+    "corpus_definition": "To have a doctor cut open your body to fix something.",
+    "example_en": "He will have an operation on his knee tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "hay",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736789",
+    "cefr": "B2",
+    "corpus_definition": "Dried grass used as food for farm animals.",
+    "example_en": "The horses are eating dry hay in the barn."
+   }
+  ]
+ },
+ {
+  "headword": "heatwave",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd7a",
+    "cefr": "B2",
+    "corpus_definition": "A long period of very hot weather.",
+    "example_en": "The city suffered during the long heatwave."
+   }
+  ]
+ },
+ {
+  "headword": "heritage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092752",
+    "cefr": "B2",
+    "corpus_definition": "The history, traditions, and buildings of a country.",
+    "example_en": "They are proud of their national heritage."
+   }
+  ]
+ },
+ {
+  "headword": "highlands",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092832",
+    "cefr": "B2",
+    "corpus_definition": "a high area of land with hills and mountains",
+    "example_en": "The Scottish highlands attract tourists every summer."
+   }
+  ]
+ },
+ {
+  "headword": "highlight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c5",
+    "cefr": "B2",
+    "corpus_definition": "To make something easier to notice.",
+    "example_en": "Please highlight the most important parts of the text."
+   }
+  ]
+ },
+ {
+  "headword": "hollow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926dd",
+    "cefr": "B2",
+    "corpus_definition": "Having nothing inside.",
+    "example_en": "The old tree trunk was completely hollow."
+   }
+  ]
+ },
+ {
+  "headword": "hoop",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736648",
+    "cefr": "B2",
+    "corpus_definition": "A large ring made of metal or wood.",
+    "example_en": "The girl played with a plastic hoop."
+   }
+  ]
+ },
+ {
+  "headword": "horn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736863",
+    "cefr": "B2",
+    "corpus_definition": "A hard growth on the head of some animals.",
+    "example_en": "The bull had long, sharp horns."
+   }
+  ]
+ },
+ {
+  "headword": "horrified",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678a",
+    "cefr": "B2",
+    "corpus_definition": "Feeling very shocked and afraid.",
+    "example_en": "She was horrified by the news of the accident."
+   }
+  ]
+ }
+]

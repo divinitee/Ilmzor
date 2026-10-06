@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "conclusion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b51",
+    "cefr": "B2",
+    "corpus_definition": "The final part or result of a process.",
+    "example_en": "He reached a strange conclusion."
+   }
+  ]
+ },
+ {
+  "headword": "concrete",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eb5",
+    "cefr": "B2",
+    "corpus_definition": "A strong gray mixture used for building floors and walls.",
+    "example_en": "The sidewalk is made of solid concrete."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f7",
+    "cefr": "B2",
+    "corpus_definition": "A hard building material made of cement and water.",
+    "example_en": "They poured wet concrete for the new floor."
+   }
+  ]
+ },
+ {
+  "headword": "conduct",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367fa",
+    "cefr": "B2",
+    "corpus_definition": "to organize and carry out a task or a process",
+    "example_en": "They will conduct a study on health."
+   }
+  ]
+ },
+ {
+  "headword": "confidential",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736747",
+    "cefr": "B2",
+    "corpus_definition": "Something that must be kept secret and private.",
+    "example_en": "Please keep this information strictly confidential."
+   }
+  ]
+ },
+ {
+  "headword": "confirmation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e46",
+    "cefr": "B2",
+    "corpus_definition": "Proof that something is true or will definitely happen.",
+    "example_en": "I am waiting for confirmation of my flight."
+   }
+  ]
+ },
+ {
+  "headword": "conflict",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073684e",
+    "cefr": "B2",
+    "corpus_definition": "a serious disagreement or argument between people or groups",
+    "example_en": "They had a conflict regarding the new office rules."
+   }
+  ]
+ },
+ {
+  "headword": "confusion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc8",
+    "cefr": "B2",
+    "corpus_definition": "A state where things are not clear.",
+    "example_en": "There was much confusion at school."
+   }
+  ]
+ },
+ {
+  "headword": "congratulate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dce03",
+    "cefr": "B2",
+    "corpus_definition": "to tell someone that you are happy for their success",
+    "example_en": "I want to congratulate you on your promotion."
+   }
+  ]
+ },
+ {
+  "headword": "congress",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092765",
+    "cefr": "B2",
+    "corpus_definition": "a large formal meeting of representatives or lawmakers",
+    "example_en": "The congress voted on the new law yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "conscious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073679a",
+    "cefr": "B2",
+    "corpus_definition": "Awake and aware of what is happening around you.",
+    "example_en": "She remained conscious throughout the whole medical procedure."
+   }
+  ]
+ }
+]

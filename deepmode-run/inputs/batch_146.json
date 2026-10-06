@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "horrifying",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736736",
+    "cefr": "B2",
+    "corpus_definition": "Something that makes you feel very scared or shocked.",
+    "example_en": "We watched a horrifying movie late last night."
+   }
+  ]
+ },
+ {
+  "headword": "horror",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926af",
+    "cefr": "B2",
+    "corpus_definition": "A very strong feeling of fear or dislike.",
+    "example_en": "The movie filled them with absolute horror."
+   }
+  ]
+ },
+ {
+  "headword": "humid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736775",
+    "cefr": "B2",
+    "corpus_definition": "When the air feels very wet and hot.",
+    "example_en": "It is very humid in the jungle today."
+   }
+  ]
+ },
+ {
+  "headword": "ideal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdaf",
+    "cefr": "B2",
+    "corpus_definition": "Being the best that you can imagine.",
+    "example_en": "The park is an ideal place for a picnic."
+   }
+  ]
+ },
+ {
+  "headword": "identical",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b55",
+    "cefr": "C1",
+    "corpus_definition": "Exactly the same as something else.",
+    "example_en": "They wore identical blue shirts."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d5",
+    "cefr": "B2",
+    "corpus_definition": "Exactly the same as another thing.",
+    "example_en": "The twins wore identical blue dresses."
+   }
+  ]
+ },
+ {
+  "headword": "idiot",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073679f",
+    "cefr": "B2",
+    "corpus_definition": "A person who acts in a very foolish way.",
+    "example_en": "Don't be an idiot and wear a coat today."
+   }
+  ]
+ },
+ {
+  "headword": "ignore",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd4",
+    "cefr": "B2",
+    "corpus_definition": "To pretend you do not see or hear someone or something.",
+    "example_en": "It is rude to ignore your friends when they talk."
+   }
+  ]
+ },
+ {
+  "headword": "imaginative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd6d",
+    "cefr": "B2",
+    "corpus_definition": "someone who has many new and original ideas.",
+    "example_en": "The child drew an imaginative space monster."
+   }
+  ]
+ },
+ {
+  "headword": "immense",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a0",
+    "cefr": "B2",
+    "corpus_definition": "Extremely large in size or amount.",
+    "example_en": "The ship is of immense size."
+   }
+  ]
+ },
+ {
+  "headword": "impact",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736842",
+    "cefr": "B2",
+    "corpus_definition": "a powerful effect that something has on a person or situation",
+    "example_en": "The new law had a huge impact on society."
+   }
+  ]
+ }
+]

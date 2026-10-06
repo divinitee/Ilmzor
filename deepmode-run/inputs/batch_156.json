@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "notify",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736688",
+    "cefr": "B2",
+    "corpus_definition": "To tell someone about something officially.",
+    "example_en": "Did you notify them about the meeting change?"
+   }
+  ]
+ },
+ {
+  "headword": "nourish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f4",
+    "cefr": "B2",
+    "corpus_definition": "to give a person or plant the food needed to grow and be healthy",
+    "example_en": "A good diet nourishes both body and mind."
+   }
+  ]
+ },
+ {
+  "headword": "nuclear",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092782",
+    "cefr": "B2",
+    "corpus_definition": "Relating to energy produced by splitting the center of atoms.",
+    "example_en": "The country produces power using a nuclear reactor."
+   }
+  ]
+ },
+ {
+  "headword": "numerous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682c",
+    "cefr": "B2",
+    "corpus_definition": "Existing in large quantities.",
+    "example_en": "There are numerous reasons to visit the park."
+   }
+  ]
+ },
+ {
+  "headword": "nutrition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea0",
+    "cefr": "B2",
+    "corpus_definition": "The process of getting the right food to grow and stay healthy.",
+    "example_en": "Good nutrition is important for a long life."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736719",
+    "cefr": "B2",
+    "corpus_definition": "The healthy food that bodies need to grow.",
+    "example_en": "Eating vegetables provides the body with important energy."
+   }
+  ]
+ },
+ {
+  "headword": "objective",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672c",
+    "cefr": "B2",
+    "corpus_definition": "Something you are working hard to achieve.",
+    "example_en": "Our main goal is to finish the project today."
+   }
+  ]
+ },
+ {
+  "headword": "obstacle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736844",
+    "cefr": "B2",
+    "corpus_definition": "a thing that blocks one's way or prevents progress",
+    "example_en": "Lack of money was the biggest obstacle for us."
+   }
+  ]
+ },
+ {
+  "headword": "occupation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccbd",
+    "cefr": "B2",
+    "corpus_definition": "The type of job or work that a person usually does.",
+    "example_en": "Please state your name and current occupation."
+   }
+  ]
+ },
+ {
+  "headword": "odor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736776",
+    "cefr": "B2",
+    "corpus_definition": "A smell that is often unpleasant.",
+    "example_en": "There was a strange odor coming from the basement."
+   }
+  ]
+ },
+ {
+  "headword": "offence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f1",
+    "cefr": "B2",
+    "corpus_definition": "an act that is against the law or causes upset",
+    "example_en": "He committed a minor traffic offence."
+   }
+  ]
+ }
+]

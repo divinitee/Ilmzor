@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "illness",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e86",
+    "cefr": "B1",
+    "corpus_definition": "A specific sickness or disease.",
+    "example_en": "She recovered from her long illness."
+   }
+  ]
+ },
+ {
+  "headword": "imagination",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd67",
+    "cefr": "B1",
+    "corpus_definition": "the ability to create new ideas or pictures in your mind.",
+    "example_en": "The story really captured my imagination."
+   }
+  ]
+ },
+ {
+  "headword": "imitate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092856",
+    "cefr": "B1",
+    "corpus_definition": "to copy how someone speaks, moves, or behaves",
+    "example_en": "The child tried to imitate her teacher's accent."
+   }
+  ]
+ },
+ {
+  "headword": "impatient",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809286d",
+    "cefr": "B1",
+    "corpus_definition": "Not wanting to wait for something or someone.",
+    "example_en": "He became impatient waiting for the train."
+   }
+  ]
+ },
+ {
+  "headword": "improvement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd4a",
+    "cefr": "B1",
+    "corpus_definition": "when something becomes better than it was before",
+    "example_en": "There is a great improvement in her test scores."
+   }
+  ]
+ },
+ {
+  "headword": "in cash",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b94",
+    "cefr": "B1",
+    "corpus_definition": "Using paper money or coins instead of a card.",
+    "example_en": "I prefer to pay in cash."
+   }
+  ]
+ },
+ {
+  "headword": "in common with",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130137",
+    "cefr": "B1",
+    "corpus_definition": "To share the same interests or features as another.",
+    "example_en": "I have a lot in common with my sister."
+   }
+  ]
+ },
+ {
+  "headword": "in contact with",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130138",
+    "cefr": "B1",
+    "corpus_definition": "Communicating or staying connected with someone.",
+    "example_en": "I am still in contact with my old school friends."
+   }
+  ]
+ },
+ {
+  "headword": "in fact",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d2",
+    "cefr": "B1",
+    "corpus_definition": "Used to show that what you are saying is truly the case.",
+    "example_en": "The exam was not hard; in fact, it was easy."
+   }
+  ]
+ },
+ {
+  "headword": "in general",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d4",
+    "cefr": "B1",
+    "corpus_definition": "Used to talk about most people or things in most situations.",
+    "example_en": "In general, the weather here is quite nice."
+   }
+  ]
+ }
+]

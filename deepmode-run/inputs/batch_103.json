@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "ridiculous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdea",
+    "cefr": "B2",
+    "corpus_definition": "Something very silly or impossible to believe.",
+    "example_en": "That is a ridiculous idea!"
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480927bf",
+    "cefr": "B1",
+    "corpus_definition": "so silly or wrong that it makes people want to laugh",
+    "example_en": "That excuse sounds completely ridiculous to me."
+   }
+  ]
+ },
+ {
+  "headword": "rip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073664d",
+    "cefr": "B1",
+    "corpus_definition": "To break or pull something apart quickly.",
+    "example_en": "Be careful not to rip your paper."
+   }
+  ]
+ },
+ {
+  "headword": "rip up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908cb",
+    "cefr": "B1",
+    "corpus_definition": "To destroy a sheet of paper by pulling it into many small pieces.",
+    "example_en": "Please rip up that old letter now."
+   }
+  ]
+ },
+ {
+  "headword": "ripe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928c1",
+    "cefr": "B1",
+    "corpus_definition": "When fruit is ready to be eaten.",
+    "example_en": "The red apple is very sweet and ripe."
+   }
+  ]
+ },
+ {
+  "headword": "risk",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ca9",
+    "cefr": "B1",
+    "corpus_definition": "The possibility of something bad happening.",
+    "example_en": "There is a small risk of rain today."
+   }
+  ]
+ },
+ {
+  "headword": "rival",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284a",
+    "cefr": "B1",
+    "corpus_definition": "a person who competes against another person",
+    "example_en": "He trained hard to beat his closest rival."
+   }
+  ]
+ },
+ {
+  "headword": "robe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b2",
+    "cefr": "B1",
+    "corpus_definition": "a long loose piece of clothing, like a dressing gown or coat",
+    "example_en": "The judge entered the courtroom wearing a long black robe."
+   }
+  ]
+ },
+ {
+  "headword": "role",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367df",
+    "cefr": "B1",
+    "corpus_definition": "The function or part played by someone.",
+    "example_en": "Everyone has an important role in the team."
+   }
+  ]
+ },
+ {
+  "headword": "romantic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdeb",
+    "cefr": "B1",
+    "corpus_definition": "Related to love or deep feelings of affection.",
+    "example_en": "They had a romantic dinner by the sea."
+   }
+  ]
+ },
+ {
+  "headword": "rot",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f8",
+    "cefr": "B1",
+    "corpus_definition": "to slowly decay and break down in a bad way",
+    "example_en": "The old wood began to rot in the rain."
+   }
+  ]
+ }
+]

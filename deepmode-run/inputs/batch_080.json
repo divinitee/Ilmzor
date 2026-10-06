@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "envy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092742",
+    "cefr": "B1",
+    "corpus_definition": "a feeling of wanting what someone else has",
+    "example_en": "His envy grew when he saw her new car."
+   }
+  ]
+ },
+ {
+  "headword": "equipment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b32",
+    "cefr": "B1",
+    "corpus_definition": "The tools or things needed for a special job.",
+    "example_en": "We bought new sports equipment for the game."
+   }
+  ]
+ },
+ {
+  "headword": "escape from",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd99",
+    "cefr": "B1",
+    "corpus_definition": "To leave a place where you are kept against your will.",
+    "example_en": "The prisoners managed to escape from the jail."
+   }
+  ]
+ },
+ {
+  "headword": "exact",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b34",
+    "cefr": "B1",
+    "corpus_definition": "Completely correct or accurate.",
+    "example_en": "I do not know the exact time right now."
+   }
+  ]
+ },
+ {
+  "headword": "examination",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b52",
+    "cefr": "B1",
+    "corpus_definition": "A formal test of knowledge or ability.",
+    "example_en": "She passed her history examination."
+   }
+  ]
+ },
+ {
+  "headword": "excitement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf8",
+    "cefr": "B1",
+    "corpus_definition": "the feeling of being very happy and enthusiastic",
+    "example_en": "There was much excitement before the big game."
+   }
+  ]
+ },
+ {
+  "headword": "exhibition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd65",
+    "cefr": "B1",
+    "corpus_definition": "a public show where art or objects are displayed.",
+    "example_en": "We visited the art exhibition yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "expense",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00ddb",
+    "cefr": "B1",
+    "corpus_definition": "Money that you spend on things you need.",
+    "example_en": "Travel is a large expense for the business."
+   }
+  ]
+ },
+ {
+  "headword": "experiment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b35",
+    "cefr": "B1",
+    "corpus_definition": "A test to learn how something works or if something is true.",
+    "example_en": "The students did a science experiment in class."
+   }
+  ]
+ },
+ {
+  "headword": "extinct",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd76",
+    "cefr": "B1",
+    "corpus_definition": "when a type of animal no longer exists today.",
+    "example_en": "The dinosaurs became extinct millions of years ago."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366fb",
+    "cefr": "B2",
+    "corpus_definition": "Having no living members remaining in the world.",
+    "example_en": "The giant dinosaur is now completely extinct."
+   }
+  ]
+ }
+]

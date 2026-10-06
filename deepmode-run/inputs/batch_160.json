@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "portable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809271f",
+    "cefr": "B2",
+    "corpus_definition": "Easy to move or carry from place to place.",
+    "example_en": "I bought a small portable radio for the beach."
+   }
+  ]
+ },
+ {
+  "headword": "portray",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092783",
+    "cefr": "B2",
+    "corpus_definition": "to show or describe someone or something in a picture or story",
+    "example_en": "The film portrays the scientist as a caring hero."
+   }
+  ]
+ },
+ {
+  "headword": "pose",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f5",
+    "cefr": "B2",
+    "corpus_definition": "To sit or stand still for a photograph or painting.",
+    "example_en": "Please sit still and hold that pose for me."
+   }
+  ]
+ },
+ {
+  "headword": "postpone",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809276e",
+    "cefr": "B2",
+    "corpus_definition": "To decide to do something at a later time.",
+    "example_en": "They had to postpone the meeting until next week."
+   }
+  ]
+ },
+ {
+  "headword": "praise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb4",
+    "cefr": "B2",
+    "corpus_definition": "To say good things about someone to show you like it.",
+    "example_en": "The boss will praise the team for their results."
+   }
+  ]
+ },
+ {
+  "headword": "preach",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ab",
+    "cefr": "B2",
+    "corpus_definition": "to speak strongly about moral or religious beliefs in public",
+    "example_en": "The minister preached about kindness every Sunday morning."
+   }
+  ]
+ },
+ {
+  "headword": "predator",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ec",
+    "cefr": "B2",
+    "corpus_definition": "An animal that hunts and eats other animals.",
+    "example_en": "Lions are a common predator in the wild."
+   }
+  ]
+ },
+ {
+  "headword": "prediction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f922",
+    "cefr": "B2",
+    "corpus_definition": "A statement about what might happen in the future.",
+    "example_en": "His weather prediction was correct."
+   }
+  ]
+ },
+ {
+  "headword": "pregnant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b5",
+    "cefr": "B2",
+    "corpus_definition": "Having a baby growing inside one's body.",
+    "example_en": "She is pregnant with her first child."
+   }
+  ]
+ },
+ {
+  "headword": "prejudice",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092758",
+    "cefr": "B2",
+    "corpus_definition": "An unfair opinion about someone that is not based on facts.",
+    "example_en": "Laws were made to stop racial prejudice."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "presently",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673c",
+    "cefr": "C1",
+    "corpus_definition": "Happening right now at this current time.",
+    "example_en": "The office is presently closed for the holiday."
+   }
+  ]
+ },
+ {
+  "headword": "presume",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809267a",
+    "cefr": "C1",
+    "corpus_definition": "To believe something is true without having total proof.",
+    "example_en": "I presume you are hungry after the long walk."
+   }
+  ]
+ },
+ {
+  "headword": "proclaim",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f2",
+    "cefr": "C1",
+    "corpus_definition": "to say something publicly or officially to everyone",
+    "example_en": "The king did proclaim peace across land."
+   }
+  ]
+ },
+ {
+  "headword": "productivity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e80",
+    "cefr": "C1",
+    "corpus_definition": "The rate at which work is finished.",
+    "example_en": "Focusing well can improve your productivity."
+   }
+  ]
+ },
+ {
+  "headword": "profound",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926cc",
+    "cefr": "C1",
+    "corpus_definition": "Showing great knowledge or very deep feelings.",
+    "example_en": "The book had a profound impact on me."
+   }
+  ]
+ },
+ {
+  "headword": "quarrel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092849",
+    "cefr": "C1",
+    "corpus_definition": "An angry disagreement between people who know each other.",
+    "example_en": "They had a minor quarrel about money."
+   }
+  ]
+ },
+ {
+  "headword": "rage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b6",
+    "cefr": "C1",
+    "corpus_definition": "A state of feeling extremely angry.",
+    "example_en": "His face turned red with sudden rage."
+   }
+  ]
+ },
+ {
+  "headword": "reconcile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687b",
+    "cefr": "C1",
+    "corpus_definition": "To find a way to make two different ideas work together.",
+    "example_en": "They must reconcile their differences to succeed."
+   }
+  ]
+ },
+ {
+  "headword": "reed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736663",
+    "cefr": "C1",
+    "corpus_definition": "A tall grass that grows in wet ground.",
+    "example_en": "The wind whistled through the green reed."
+   }
+  ]
+ },
+ {
+  "headword": "refrain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682f",
+    "cefr": "C1",
+    "corpus_definition": "To stop yourself from doing something.",
+    "example_en": "Please refrain from talking in the library."
+   }
+  ]
+ }
+]

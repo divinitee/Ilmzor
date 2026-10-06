@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "soar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b8",
+    "cefr": "C1",
+    "corpus_definition": "To fly high into the air with little effort.",
+    "example_en": "The eagle began to soar above the valley."
+   }
+  ]
+ },
+ {
+  "headword": "solitude",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736741",
+    "cefr": "C1",
+    "corpus_definition": "The state of being alone and enjoying it.",
+    "example_en": "He enjoyed the solitude of his quiet mountain home."
+   }
+  ]
+ },
+ {
+  "headword": "sophisticated",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736831",
+    "cefr": "C1",
+    "corpus_definition": "Very advanced and complex in design.",
+    "example_en": "They use very sophisticated computer programs."
+   }
+  ]
+ },
+ {
+  "headword": "sorrow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809267f",
+    "cefr": "C1",
+    "corpus_definition": "A deep feeling of sadness.",
+    "example_en": "He expressed his sorrow about the bad news."
+   }
+  ]
+ },
+ {
+  "headword": "stagger",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f0",
+    "cefr": "C1",
+    "corpus_definition": "To walk or move as if you might fall over.",
+    "example_en": "He had to stagger home after the accident."
+   }
+  ]
+ },
+ {
+  "headword": "stake",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736790",
+    "cefr": "C1",
+    "corpus_definition": "A pointed piece of wood driven into the ground.",
+    "example_en": "He drove a wooden stake into the earth."
+   }
+  ]
+ },
+ {
+  "headword": "stance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736766",
+    "cefr": "C1",
+    "corpus_definition": "An opinion or viewpoint about a topic.",
+    "example_en": "What is his stance on the new tax?"
+   }
+  ]
+ },
+ {
+  "headword": "stark",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736742",
+    "cefr": "C1",
+    "corpus_definition": "Very plain and clear, without any extra decorations.",
+    "example_en": "The room looked very stark with no furniture."
+   }
+  ]
+ },
+ {
+  "headword": "stern",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736651",
+    "cefr": "C1",
+    "corpus_definition": "Very serious and strict in behavior.",
+    "example_en": "The teacher had a stern look."
+   }
+  ]
+ },
+ {
+  "headword": "stricken",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366de",
+    "cefr": "C1",
+    "corpus_definition": "Seriously affected by an unpleasant situation or illness.",
+    "example_en": "The region is stricken by poverty."
+   }
+  ]
+ }
+]

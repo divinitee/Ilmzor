@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "feeble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736814",
+    "cefr": "C1",
+    "corpus_definition": "Very weak or not strong.",
+    "example_en": "The old man felt very feeble today."
+   }
+  ]
+ },
+ {
+  "headword": "fiery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736786",
+    "cefr": "C1",
+    "corpus_definition": "Consisting of or full of fire.",
+    "example_en": "The sunset had a beautiful and fiery glow."
+   }
+  ]
+ },
+ {
+  "headword": "flint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736715",
+    "cefr": "C1",
+    "corpus_definition": "A very hard grey stone used in the past to make fire.",
+    "example_en": "They used a sharp stone to create sparks for warmth."
+   }
+  ]
+ },
+ {
+  "headword": "flush",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736877",
+    "cefr": "C1",
+    "corpus_definition": "To become red in the face because of heat or strong feelings.",
+    "example_en": "He started to flush when she praised him."
+   }
+  ]
+ },
+ {
+  "headword": "foresee",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736646",
+    "cefr": "C1",
+    "corpus_definition": "To know that something will happen in the future.",
+    "example_en": "We did not foresee any problems."
+   }
+  ]
+ },
+ {
+  "headword": "fortune",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6e",
+    "cefr": "C1",
+    "corpus_definition": "a very large amount of money or wealth",
+    "example_en": "He made a fortune in the technology business."
+   }
+  ]
+ },
+ {
+  "headword": "foster",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e8",
+    "cefr": "C1",
+    "corpus_definition": "To help something or someone grow and develop.",
+    "example_en": "The school wants to foster a love of reading."
+   }
+  ]
+ },
+ {
+  "headword": "freelance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd3",
+    "cefr": "C1",
+    "corpus_definition": "Working for many different companies without being one person's employee.",
+    "example_en": "She enjoys the freedom of freelance writing."
+   }
+  ]
+ },
+ {
+  "headword": "furnace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736890",
+    "cefr": "C1",
+    "corpus_definition": "A large device that uses heat to warm a building.",
+    "example_en": "The furnace keeps the house very warm."
+   }
+  ]
+ },
+ {
+  "headword": "fuse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092745",
+    "cefr": "C1",
+    "corpus_definition": "A small safety device that stops electricity if there is a problem.",
+    "example_en": "The lights went out when the fuse blew."
+   }
+  ]
+ }
+]

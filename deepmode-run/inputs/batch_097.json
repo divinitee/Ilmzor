@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "pill",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccda",
+    "cefr": "B1",
+    "corpus_definition": "A small round piece of medicine you swallow.",
+    "example_en": "She took a pill for her headache."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092679",
+    "cefr": "B1",
+    "corpus_definition": "A small solid object containing medicine you swallow.",
+    "example_en": "The doctor told him to take one pill daily."
+   }
+  ]
+ },
+ {
+  "headword": "pirate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f5",
+    "cefr": "B1",
+    "corpus_definition": "A criminal who steals things from ships at sea.",
+    "example_en": "The pirate looked for hidden gold."
+   }
+  ]
+ },
+ {
+  "headword": "planning",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e7f",
+    "cefr": "B1",
+    "corpus_definition": "Deciding how to do something before you start.",
+    "example_en": "Careful planning made the event successful."
+   }
+  ]
+ },
+ {
+  "headword": "poison",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736662",
+    "cefr": "B1",
+    "corpus_definition": "A substance that causes illness or death if eaten.",
+    "example_en": "Keep the poison away from children."
+   }
+  ]
+ },
+ {
+  "headword": "polish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092836",
+    "cefr": "B1",
+    "corpus_definition": "to rub a surface until it becomes smooth and shiny",
+    "example_en": "She spent the morning polishing the old wooden floor."
+   }
+  ]
+ },
+ {
+  "headword": "politics",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc6f",
+    "cefr": "B1",
+    "corpus_definition": "the activities related to how a country is governed.",
+    "example_en": "She enjoys reading about modern politics."
+   }
+  ]
+ },
+ {
+  "headword": "pollution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd96",
+    "cefr": "B1",
+    "corpus_definition": "Dirty or harmful substances in the air or water.",
+    "example_en": "Factory smoke causes a lot of pollution."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dfe",
+    "cefr": "B1",
+    "corpus_definition": "Dirty air, water, or land caused by human actions.",
+    "example_en": "Factories cause a lot of pollution in the city."
+   }
+  ]
+ },
+ {
+  "headword": "pop",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367db",
+    "cefr": "B1",
+    "corpus_definition": "To make a short, sharp sound like a small explosion.",
+    "example_en": "The balloon will pop if you touch it."
+   }
+  ]
+ },
+ {
+  "headword": "position",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dcc",
+    "cefr": "B1",
+    "corpus_definition": "The specific role or job that you hold.",
+    "example_en": "He applied for a position as manager."
+   }
+  ]
+ },
+ {
+  "headword": "practical",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd52",
+    "cefr": "B1",
+    "corpus_definition": "useful and effective in a real situation",
+    "example_en": "A coat is a practical choice for cold weather."
+   }
+  ]
+ }
+]

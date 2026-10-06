@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "choke",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736695",
+    "cefr": "B2",
+    "corpus_definition": "To have difficulty breathing because the throat is blocked.",
+    "example_en": "Do not eat too fast or you might choke."
+   }
+  ]
+ },
+ {
+  "headword": "circulate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092724",
+    "cefr": "B2",
+    "corpus_definition": "to move or spread continuously around or through an area",
+    "example_en": "Blood circulates through the body via the heart."
+   }
+  ]
+ },
+ {
+  "headword": "circumstance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092776",
+    "cefr": "B2",
+    "corpus_definition": "A fact or condition connected with or relevant to an event.",
+    "example_en": "I cannot change the current difficult circumstance."
+   }
+  ]
+ },
+ {
+  "headword": "civil",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736696",
+    "cefr": "B2",
+    "corpus_definition": "Related to people living in a country or their rights.",
+    "example_en": "They discussed the importance of civil rights."
+   }
+  ]
+ },
+ {
+  "headword": "civilization",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736655",
+    "cefr": "B2",
+    "corpus_definition": "A human society with its own culture and government.",
+    "example_en": "They studied an ancient civilization."
+   }
+  ]
+ },
+ {
+  "headword": "claim",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda5",
+    "cefr": "B2",
+    "corpus_definition": "To say that something is true even without proof.",
+    "example_en": "They claim that this machine saves a lot of time."
+   }
+  ]
+ },
+ {
+  "headword": "classify",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736822",
+    "cefr": "B2",
+    "corpus_definition": "To group things based on similar features.",
+    "example_en": "The teacher asked us to classify these animals."
+   }
+  ]
+ },
+ {
+  "headword": "climate change",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e00",
+    "cefr": "B2",
+    "corpus_definition": "A long-term shift in the usual weather patterns of the world.",
+    "example_en": "Scientists study climate change to protect our future."
+   }
+  ]
+ },
+ {
+  "headword": "coal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809282d",
+    "cefr": "B2",
+    "corpus_definition": "A black rock used to make heat or energy.",
+    "example_en": "They burned coal to keep the house warm."
+   }
+  ]
+ },
+ {
+  "headword": "collector",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cca",
+    "cefr": "B2",
+    "corpus_definition": "A person who likes to gather and keep specific items.",
+    "example_en": "He is a well-known art collector."
+   }
+  ]
+ }
+]

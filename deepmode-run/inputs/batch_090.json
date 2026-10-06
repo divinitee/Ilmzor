@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "leak",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e0",
+    "cefr": "B1",
+    "corpus_definition": "A hole where liquid or gas escapes.",
+    "example_en": "There is a leak in the water pipe."
+   }
+  ]
+ },
+ {
+  "headword": "lean",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736854",
+    "cefr": "B1",
+    "corpus_definition": "to move your body to rest against a surface",
+    "example_en": "Do not lean against the wet paint."
+   }
+  ]
+ },
+ {
+  "headword": "leave out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd62",
+    "cefr": "B1",
+    "corpus_definition": "to not include something or someone in a group.",
+    "example_en": "Do not leave out any important details."
+   }
+  ]
+ },
+ {
+  "headword": "legal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ee",
+    "cefr": "B1",
+    "corpus_definition": "allowed or required by the rules of a country",
+    "example_en": "Smoking is not legal in this building."
+   }
+  ]
+ },
+ {
+  "headword": "leisure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e2",
+    "cefr": "B1",
+    "corpus_definition": "free time when you are not working and can relax or have fun",
+    "example_en": "He spends his leisure time reading and gardening."
+   }
+  ]
+ },
+ {
+  "headword": "lend to",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b8f",
+    "cefr": "B1",
+    "corpus_definition": "To give something to someone for a short time.",
+    "example_en": "I will lend my car to my brother."
+   }
+  ]
+ },
+ {
+  "headword": "let down",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130133",
+    "cefr": "B1",
+    "corpus_definition": "To make someone feel sad by not doing what you promised.",
+    "example_en": "Please do not let me down this time."
+   }
+  ]
+ },
+ {
+  "headword": "liar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113014d",
+    "cefr": "B1",
+    "corpus_definition": "A person who says things that are not true.",
+    "example_en": "Nobody believes him because he is a known liar."
+   }
+  ]
+ },
+ {
+  "headword": "license",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092780",
+    "cefr": "B1",
+    "corpus_definition": "An official paper that allows you to do or own something.",
+    "example_en": "You need a driving license to operate this car."
+   }
+  ]
+ },
+ {
+  "headword": "limit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd8",
+    "cefr": "B1",
+    "corpus_definition": "The greatest amount of something that is allowed.",
+    "example_en": "Please keep your phone calls to a short time."
+   }
+  ]
+ }
+]

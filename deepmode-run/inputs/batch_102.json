@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "repair",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec9",
+    "cefr": "B1",
+    "corpus_definition": "To fix something that is broken or not working.",
+    "example_en": "Can you repair my broken watch?"
+   }
+  ]
+ },
+ {
+  "headword": "repay",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927be",
+    "cefr": "B1",
+    "corpus_definition": "to give back money that you owe someone",
+    "example_en": "He promised to repay the loan by next month."
+   }
+  ]
+ },
+ {
+  "headword": "request",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f90d",
+    "cefr": "B1",
+    "corpus_definition": "To ask for something in a polite manner.",
+    "example_en": "I will request a meeting with him."
+   }
+  ]
+ },
+ {
+  "headword": "rescue",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd87",
+    "cefr": "B1",
+    "corpus_definition": "To save someone or something from danger.",
+    "example_en": "The team helped rescue the lost hiker."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736858",
+    "cefr": "B1",
+    "corpus_definition": "to save someone from a dangerous or difficult situation",
+    "example_en": "The lifeguard will rescue the swimmer."
+   }
+  ]
+ },
+ {
+  "headword": "research",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b42",
+    "cefr": "B1",
+    "corpus_definition": "Studying a subject carefully to discover new facts.",
+    "example_en": "I did some research for my history project."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736897",
+    "cefr": "B1",
+    "corpus_definition": "The detailed study of a subject to learn new facts.",
+    "example_en": "She spends her day doing medical research."
+   }
+  ]
+ },
+ {
+  "headword": "reserve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736678",
+    "cefr": "B1",
+    "corpus_definition": "To keep something for a special purpose.",
+    "example_en": "I would like to reserve a table."
+   }
+  ]
+ },
+ {
+  "headword": "resort",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d83",
+    "cefr": "B1",
+    "corpus_definition": "A place where many people go for a holiday.",
+    "example_en": "We stayed at a quiet beach resort."
+   }
+  ]
+ },
+ {
+  "headword": "responsible",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc74",
+    "cefr": "B1",
+    "corpus_definition": "having the duty to take care of someone or something.",
+    "example_en": "You are responsible for your own actions."
+   }
+  ]
+ },
+ {
+  "headword": "restore",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092824",
+    "cefr": "B1",
+    "corpus_definition": "to bring something back to its original good condition",
+    "example_en": "Workers restored the old painting carefully."
+   }
+  ]
+ },
+ {
+  "headword": "revise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908be",
+    "cefr": "B1",
+    "corpus_definition": "To look at work again to prepare for a test.",
+    "example_en": "I need to revise my notes tonight."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "embarrassing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdde",
+    "cefr": "B2",
+    "corpus_definition": "Making you feel shy, awkward, or ashamed.",
+    "example_en": "It was an embarrassing mistake to make."
+   }
+  ]
+ },
+ {
+  "headword": "embassy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736713",
+    "cefr": "B2",
+    "corpus_definition": "An official building where a country's representatives work abroad.",
+    "example_en": "He visited the building to apply for a travel visa."
+   }
+  ]
+ },
+ {
+  "headword": "embrace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092741",
+    "cefr": "B2",
+    "corpus_definition": "To hold someone tightly in your arms to show love.",
+    "example_en": "They shared a warm embrace at the airport."
+   }
+  ]
+ },
+ {
+  "headword": "emerge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809278e",
+    "cefr": "B2",
+    "corpus_definition": "To come out of a place or from behind something.",
+    "example_en": "The sun did emerge from behind the clouds."
+   }
+  ]
+ },
+ {
+  "headword": "emotion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcddf",
+    "cefr": "B2",
+    "corpus_definition": "A strong feeling like love, anger, or joy.",
+    "example_en": "She showed a lot of emotion at the wedding."
+   }
+  ]
+ },
+ {
+  "headword": "emphasis",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d9",
+    "cefr": "B2",
+    "corpus_definition": "Special attention given to something.",
+    "example_en": "The school puts emphasis on reading skills."
+   }
+  ]
+ },
+ {
+  "headword": "empire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366bf",
+    "cefr": "B2",
+    "corpus_definition": "A group of countries controlled by one ruler or government.",
+    "example_en": "The Roman empire covered a vast amount of land."
+   }
+  ]
+ },
+ {
+  "headword": "enclose",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367fe",
+    "cefr": "B2",
+    "corpus_definition": "to surround something completely with a wall or fence",
+    "example_en": "They will enclose the yard with trees."
+   }
+  ]
+ },
+ {
+  "headword": "encounter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a2",
+    "cefr": "B2",
+    "corpus_definition": "an unexpected meeting with someone or something",
+    "example_en": "She had a strange encounter with a stranger downtown."
+   }
+  ]
+ },
+ {
+  "headword": "encourage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdac",
+    "cefr": "B2",
+    "corpus_definition": "To help someone feel brave to try something new.",
+    "example_en": "My parents always encourage me to do my best."
+   }
+  ]
+ }
+]

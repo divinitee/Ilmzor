@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "turn over",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908cd",
+    "cefr": "A2",
+    "corpus_definition": "To move to the next side of a sheet of paper.",
+    "example_en": "Please turn over to see the next section."
+   }
+  ]
+ },
+ {
+  "headword": "turn up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb6",
+    "cefr": "A2",
+    "corpus_definition": "Make the sound of a device louder.",
+    "example_en": "Can you turn up the music?"
+   }
+  ]
+ },
+ {
+  "headword": "type",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f911",
+    "cefr": "A2",
+    "corpus_definition": "To write using a keyboard on a computer.",
+    "example_en": "Please type your name on the document."
+   }
+  ]
+ },
+ {
+  "headword": "unable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113013f",
+    "cefr": "A2",
+    "corpus_definition": "Not having the skill or chance to do something.",
+    "example_en": "I was unable to find the correct key."
+   }
+  ]
+ },
+ {
+  "headword": "underneath",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092812",
+    "cefr": "A2",
+    "corpus_definition": "below or beneath something else",
+    "example_en": "She hid the letter underneath her pillow."
+   }
+  ]
+ },
+ {
+  "headword": "update",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b6",
+    "cefr": "A2",
+    "corpus_definition": "To give the latest information or change to a newer version.",
+    "example_en": "Please update your computer software right now."
+   }
+  ]
+ },
+ {
+  "headword": "upload",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e4e",
+    "cefr": "A2",
+    "corpus_definition": "To move digital content from your device to the web.",
+    "example_en": "You can upload your photos to the site."
+   }
+  ]
+ },
+ {
+  "headword": "useful",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b8a",
+    "cefr": "A2",
+    "corpus_definition": "Something that helps you do a job or task effectively.",
+    "example_en": "This map is very useful for finding the way."
+   }
+  ]
+ },
+ {
+  "headword": "valentine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d7",
+    "cefr": "A2",
+    "corpus_definition": "a card or gift given to someone you love on February 14th",
+    "example_en": "He sent her a valentine with a short poem inside."
+   }
+  ]
+ },
+ {
+  "headword": "van",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686d",
+    "cefr": "A2",
+    "corpus_definition": "A vehicle used for carrying goods or a large group.",
+    "example_en": "They loaded all the boxes into the van."
+   }
+  ]
+ }
+]

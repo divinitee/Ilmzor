@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "boom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092699",
+    "cefr": "B1",
+    "corpus_definition": "a sudden loud deep sound, or a period of fast growth",
+    "example_en": "The town experienced a boom in tourism last year."
+   }
+  ]
+ },
+ {
+  "headword": "brand",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b64",
+    "cefr": "B1",
+    "corpus_definition": "The name of a product made by one company.",
+    "example_en": "Do you prefer this shoe brand?"
+   }
+  ]
+ },
+ {
+  "headword": "break down",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b48",
+    "cefr": "B1",
+    "corpus_definition": "To stop working because of a mechanical problem.",
+    "example_en": "Our car did break down on the way."
+   }
+  ]
+ },
+ {
+  "headword": "break into",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7f",
+    "cefr": "B1",
+    "corpus_definition": "to enter a building using force and without permission to steal things",
+    "example_en": "Someone tried to break into our house last night."
+   }
+  ]
+ },
+ {
+  "headword": "breathing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e8b",
+    "cefr": "B1",
+    "corpus_definition": "Taking air in and out of your lungs.",
+    "example_en": "Deep breathing can help you relax."
+   }
+  ]
+ },
+ {
+  "headword": "bring up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113012e",
+    "cefr": "B1",
+    "corpus_definition": "To care for a child until they become an adult.",
+    "example_en": "She had to bring up four children alone."
+   }
+  ]
+ },
+ {
+  "headword": "browser",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e59",
+    "cefr": "B1",
+    "corpus_definition": "A program used to look at websites on the computer.",
+    "example_en": "Open your browser to search for information."
+   }
+  ]
+ },
+ {
+  "headword": "build up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd90",
+    "cefr": "B1",
+    "corpus_definition": "To increase in amount over a period of time.",
+    "example_en": "Trash will build up if we do not clean."
+   }
+  ]
+ },
+ {
+  "headword": "bump",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092803",
+    "cefr": "B1",
+    "corpus_definition": "To hit something or someone by accident.",
+    "example_en": "I did not mean to bump into you."
+   }
+  ]
+ },
+ {
+  "headword": "by air",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d90",
+    "cefr": "B1",
+    "corpus_definition": "Traveling using an airplane.",
+    "example_en": "We are traveling by air to reach Italy."
+   }
+  ]
+ }
+]

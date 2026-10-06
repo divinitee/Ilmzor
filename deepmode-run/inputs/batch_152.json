@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "lodge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b9",
+    "cefr": "B2",
+    "corpus_definition": "a small simple house; or to stay somewhere temporarily",
+    "example_en": "They decided to lodge at a small inn for the night."
+   }
+  ]
+ },
+ {
+  "headword": "lump",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736879",
+    "cefr": "B2",
+    "corpus_definition": "A solid mass of something with no clear shape.",
+    "example_en": "There is a lump of sugar in my tea."
+   }
+  ]
+ },
+ {
+  "headword": "magnificent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c8",
+    "cefr": "B2",
+    "corpus_definition": "Very beautiful, impressive, or great.",
+    "example_en": "The mountain view was truly magnificent."
+   }
+  ]
+ },
+ {
+  "headword": "maintain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd4c",
+    "cefr": "B2",
+    "corpus_definition": "to keep something in good condition",
+    "example_en": "It is expensive to maintain an old car."
+   }
+  ]
+ },
+ {
+  "headword": "majority",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d7",
+    "cefr": "B2",
+    "corpus_definition": "More than half of a group or collection.",
+    "example_en": "The majority of students voted for her."
+   }
+  ]
+ },
+ {
+  "headword": "mammal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd80",
+    "cefr": "B2",
+    "corpus_definition": "An animal that feeds its babies with its own milk.",
+    "example_en": "Humans are a type of mammal."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d8",
+    "cefr": "B2",
+    "corpus_definition": "An animal that feeds its babies with milk from its body.",
+    "example_en": "A whale is a large sea mammal."
+   }
+  ]
+ },
+ {
+  "headword": "management",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00de3",
+    "cefr": "B2",
+    "corpus_definition": "The act of organizing and controlling a business or group.",
+    "example_en": "She works in the bank's management."
+   }
+  ]
+ },
+ {
+  "headword": "mankind",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e3",
+    "cefr": "B2",
+    "corpus_definition": "All people living in the world today.",
+    "example_en": "Pollution is a major problem for all mankind."
+   }
+  ]
+ },
+ {
+  "headword": "marine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809272e",
+    "cefr": "B2",
+    "corpus_definition": "related to the sea or a soldier who fights at sea",
+    "example_en": "She joined the marine corps after finishing university."
+   }
+  ]
+ },
+ {
+  "headword": "mature",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736892",
+    "cefr": "B2",
+    "corpus_definition": "To behave in a sensible and responsible way.",
+    "example_en": "He acts in a very mature way."
+   }
+  ]
+ }
+]

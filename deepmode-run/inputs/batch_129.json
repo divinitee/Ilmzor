@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "conserve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736722",
+    "cefr": "B2",
+    "corpus_definition": "To protect things so they are not wasted or destroyed.",
+    "example_en": "It is important to save water during the dry summer."
+   }
+  ]
+ },
+ {
+  "headword": "constant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367fb",
+    "cefr": "B2",
+    "corpus_definition": "happening all the time without any pause or stop",
+    "example_en": "There was a constant noise from traffic."
+   }
+  ]
+ },
+ {
+  "headword": "construct",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736825",
+    "cefr": "B2",
+    "corpus_definition": "To build something large like a house or bridge.",
+    "example_en": "They will construct a new school nearby."
+   }
+  ]
+ },
+ {
+  "headword": "contagious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670d",
+    "cefr": "B2",
+    "corpus_definition": "Easily passed from one person to another by touch.",
+    "example_en": "The doctor said his sickness was very contagious."
+   }
+  ]
+ },
+ {
+  "headword": "contemporary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736772",
+    "cefr": "B2",
+    "corpus_definition": "Related to the current time period.",
+    "example_en": "This museum displays interesting contemporary art."
+   }
+  ]
+ },
+ {
+  "headword": "contrary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287d",
+    "cefr": "B2",
+    "corpus_definition": "Showing that something is the complete opposite of what was said.",
+    "example_en": "The evidence proved the contrary of his story."
+   }
+  ]
+ },
+ {
+  "headword": "controversy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d0",
+    "cefr": "B2",
+    "corpus_definition": "A lot of public disagreement about a topic.",
+    "example_en": "The new law caused a lot of controversy."
+   }
+  ]
+ },
+ {
+  "headword": "convince",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda7",
+    "cefr": "B2",
+    "corpus_definition": "To make someone believe that your idea is correct.",
+    "example_en": "I could not convince him to come with us."
+   }
+  ]
+ },
+ {
+  "headword": "cope with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908f3",
+    "cefr": "B2",
+    "corpus_definition": "To manage to deal with a difficult situation.",
+    "example_en": "She learned how to cope with heavy stress."
+   }
+  ]
+ },
+ {
+  "headword": "core",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e4",
+    "cefr": "B2",
+    "corpus_definition": "The most important or central part of something.",
+    "example_en": "This issue lies at the core of our problem."
+   }
+  ]
+ }
+]

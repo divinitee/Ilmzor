@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "strike",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb0",
+    "cefr": "C1",
+    "corpus_definition": "Refusing to work as a protest against the employer.",
+    "example_en": "The workers went on a strike."
+   }
+  ]
+ },
+ {
+  "headword": "subconscious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686c",
+    "cefr": "C1",
+    "corpus_definition": "The part of your mind that stores thoughts you do not know.",
+    "example_en": "He did it without a subconscious thought."
+   }
+  ]
+ },
+ {
+  "headword": "subtle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677d",
+    "cefr": "C1",
+    "corpus_definition": "Not easy to notice or describe.",
+    "example_en": "There was a subtle change in his voice today."
+   }
+  ]
+ },
+ {
+  "headword": "succession",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736859",
+    "cefr": "C1",
+    "corpus_definition": "A number of things that happen one after another.",
+    "example_en": "He won three games in quick succession."
+   }
+  ]
+ },
+ {
+  "headword": "summon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736743",
+    "cefr": "C1",
+    "corpus_definition": "To ask or order someone to come to you.",
+    "example_en": "The teacher had to summon the student to her desk."
+   }
+  ]
+ },
+ {
+  "headword": "superstition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092693",
+    "cefr": "C1",
+    "corpus_definition": "A belief in things that are not based on science or facts.",
+    "example_en": "It is a common superstition that black cats bring bad luck."
+   }
+  ]
+ },
+ {
+  "headword": "supreme",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926cf",
+    "cefr": "C1",
+    "corpus_definition": "Highest in rank or power.",
+    "example_en": "The court made a supreme decision today."
+   }
+  ]
+ },
+ {
+  "headword": "telegraph",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736767",
+    "cefr": "C1",
+    "corpus_definition": "An old system for sending messages over long distances.",
+    "example_en": "They sent the news by telegraph."
+   }
+  ]
+ },
+ {
+  "headword": "tender",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926be",
+    "cefr": "C1",
+    "corpus_definition": "Gentle, kind, or easy to cut and chew.",
+    "example_en": "The meat was very tender and delicious."
+   }
+  ]
+ },
+ {
+  "headword": "terrain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685a",
+    "cefr": "C1",
+    "corpus_definition": "A specific type of ground or area of land.",
+    "example_en": "The rugged terrain made walking very difficult."
+   }
+  ]
+ }
+]

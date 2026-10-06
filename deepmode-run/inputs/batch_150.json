@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "isolate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682a",
+    "cefr": "B2",
+    "corpus_definition": "To keep something away from other things.",
+    "example_en": "We must isolate the sick patient immediately."
+   }
+  ]
+ },
+ {
+  "headword": "jealousy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366fe",
+    "cefr": "B2",
+    "corpus_definition": "An unhappy feeling when wanting what someone else has.",
+    "example_en": "His jealousy caused problems in their close friendship."
+   }
+  ]
+ },
+ {
+  "headword": "joint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926df",
+    "cefr": "B2",
+    "corpus_definition": "A place where two things are connected.",
+    "example_en": "My knee joint hurts after the race."
+   }
+  ]
+ },
+ {
+  "headword": "journalism",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092673",
+    "cefr": "B2",
+    "corpus_definition": "The work of writing for newspapers or news channels.",
+    "example_en": "He decided to study journalism at university."
+   }
+  ]
+ },
+ {
+  "headword": "judge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b87",
+    "cefr": "B2",
+    "corpus_definition": "to form an opinion about someone or something",
+    "example_en": "Do not judge people by their clothes."
+   }
+  ]
+ },
+ {
+  "headword": "jury",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092674",
+    "cefr": "B2",
+    "corpus_definition": "A group of citizens who decide if someone is guilty.",
+    "example_en": "The jury heard all the evidence today."
+   }
+  ]
+ },
+ {
+  "headword": "justice",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092675",
+    "cefr": "B2",
+    "corpus_definition": "Fair treatment according to the law.",
+    "example_en": "The judge worked to ensure justice for everyone."
+   }
+  ]
+ },
+ {
+  "headword": "keen on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ce1",
+    "cefr": "B2",
+    "corpus_definition": "Very enthusiastic about doing or learning something.",
+    "example_en": "They are keen on starting a new business."
+   }
+  ]
+ },
+ {
+  "headword": "knight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809269e",
+    "cefr": "B2",
+    "corpus_definition": "A soldier in the past who rode a horse and wore armor.",
+    "example_en": "The brave knight protected the queen from harm."
+   }
+  ]
+ },
+ {
+  "headword": "laboratory",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b3a",
+    "cefr": "B2",
+    "corpus_definition": "A room for scientists to do tests.",
+    "example_en": "She works in a medical laboratory all day."
+   }
+  ]
+ }
+]

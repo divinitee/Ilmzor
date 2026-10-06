@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "await",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736887",
+    "cefr": "B2",
+    "corpus_definition": "To stay in a place until something happens.",
+    "example_en": "We await your answer with great interest."
+   }
+  ]
+ },
+ {
+  "headword": "aware of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda0",
+    "cefr": "B2",
+    "corpus_definition": "Knowing about something that is happening or exists.",
+    "example_en": "Are you aware of the new rules at work?"
+   }
+  ]
+ },
+ {
+  "headword": "awhile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367bd",
+    "cefr": "B2",
+    "corpus_definition": "For a short period of time.",
+    "example_en": "Can you stay here for awhile?"
+   }
+  ]
+ },
+ {
+  "headword": "backup",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e55",
+    "cefr": "B2",
+    "corpus_definition": "An extra copy of information kept in case of loss.",
+    "example_en": "Always keep a backup of your important files."
+   }
+  ]
+ },
+ {
+  "headword": "bad-tempered",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd7",
+    "cefr": "B2",
+    "corpus_definition": "Easily becoming angry or annoyed.",
+    "example_en": "The bad-tempered man shouted at the bus driver."
+   }
+  ]
+ },
+ {
+  "headword": "bait",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a6",
+    "cefr": "B2",
+    "corpus_definition": "Food used to catch fish or other animals.",
+    "example_en": "He put some bait on the hook to catch fish."
+   }
+  ]
+ },
+ {
+  "headword": "bald",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092852",
+    "cefr": "B2",
+    "corpus_definition": "Having no hair on the top of your head.",
+    "example_en": "My grandfather is completely bald."
+   }
+  ]
+ },
+ {
+  "headword": "bargain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b63",
+    "cefr": "B2",
+    "corpus_definition": "A good price for something bought.",
+    "example_en": "That jacket was a real bargain."
+   }
+  ]
+ },
+ {
+  "headword": "barrel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092879",
+    "cefr": "B2",
+    "corpus_definition": "A round container made of wood or metal for storing liquids.",
+    "example_en": "The old barrel was filled with fresh water."
+   }
+  ]
+ },
+ {
+  "headword": "bay",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092817",
+    "cefr": "B2",
+    "corpus_definition": "Part of the sea that goes into the land.",
+    "example_en": "We watched the boats in the bay."
+   }
+  ]
+ }
+]

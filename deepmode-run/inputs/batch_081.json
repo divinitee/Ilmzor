@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "fabric",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092831",
+    "cefr": "B1",
+    "corpus_definition": "Material that is used to make clothes or furniture covers.",
+    "example_en": "This fabric feels very soft to the touch."
+   }
+  ]
+ },
+ {
+  "headword": "factor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d2",
+    "cefr": "B1",
+    "corpus_definition": "A fact or situation that influences a result.",
+    "example_en": "Price is a key factor in our choice."
+   }
+  ]
+ },
+ {
+  "headword": "fade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092702",
+    "cefr": "B1",
+    "corpus_definition": "to slowly lose colour, brightness, or strength",
+    "example_en": "The old photograph had faded to almost nothing."
+   }
+  ]
+ },
+ {
+  "headword": "faint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c2",
+    "cefr": "B1",
+    "corpus_definition": "To lose consciousness for a short time.",
+    "example_en": "She felt faint because of the extreme heat."
+   }
+  ]
+ },
+ {
+  "headword": "familiar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc6a",
+    "cefr": "B1",
+    "corpus_definition": "something or someone that you know well.",
+    "example_en": "That man looks familiar to me."
+   }
+  ]
+ },
+ {
+  "headword": "familiar with",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd71",
+    "cefr": "B1",
+    "corpus_definition": "to know something or someone quite well.",
+    "example_en": "Are you familiar with this computer program?"
+   }
+  ]
+ },
+ {
+  "headword": "fasten",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092881",
+    "cefr": "B1",
+    "corpus_definition": "To close or join two parts together tightly.",
+    "example_en": "Please fasten your seatbelt before the flight takes off."
+   }
+  ]
+ },
+ {
+  "headword": "feel like",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ce3",
+    "cefr": "B1",
+    "corpus_definition": "To want to have or do something at this moment.",
+    "example_en": "I feel like eating pizza for dinner today."
+   }
+  ]
+ },
+ {
+  "headword": "ferry",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d77",
+    "cefr": "B1",
+    "corpus_definition": "A large boat that carries people or cars across a river or sea.",
+    "example_en": "We took the ferry across the river this morning."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736828",
+    "cefr": "B1",
+    "corpus_definition": "A boat that carries people or cars across water.",
+    "example_en": "The ferry arrives at the port at noon."
+   }
+  ]
+ },
+ {
+  "headword": "fiber",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928aa",
+    "cefr": "B1",
+    "corpus_definition": "a thin thread-like part of a plant, fabric, or material",
+    "example_en": "Whole grains contain more fiber than white bread."
+   }
+  ]
+ }
+]

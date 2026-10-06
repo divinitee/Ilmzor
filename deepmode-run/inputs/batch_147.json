@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "import",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6f",
+    "cefr": "B2",
+    "corpus_definition": "to bring products from another country into your own",
+    "example_en": "We import most of our coffee from abroad."
+   }
+  ]
+ },
+ {
+  "headword": "impress",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca2",
+    "cefr": "B2",
+    "corpus_definition": "To make someone feel admiration for you.",
+    "example_en": "She wants to impress her new boss."
+   }
+  ]
+ },
+ {
+  "headword": "in conclusion",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d1",
+    "cefr": "B2",
+    "corpus_definition": "Used to introduce the final part of a talk or written piece.",
+    "example_en": "In conclusion, the plan is too expensive."
+   }
+  ]
+ },
+ {
+  "headword": "in debt",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b95",
+    "cefr": "B2",
+    "corpus_definition": "A state where you have not yet returned borrowed money.",
+    "example_en": "He is currently in debt to the bank."
+   }
+  ]
+ },
+ {
+  "headword": "in favour (of)",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d3",
+    "cefr": "B2",
+    "corpus_definition": "To support or approve of a person, group, or idea.",
+    "example_en": "Are you in favour of the new rule?"
+   }
+  ]
+ },
+ {
+  "headword": "inactive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc0",
+    "cefr": "B2",
+    "corpus_definition": "Not doing much or moving very little.",
+    "example_en": "He has been inactive for several months."
+   }
+  ]
+ },
+ {
+  "headword": "incident",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b0",
+    "cefr": "B2",
+    "corpus_definition": "An event that happens, often causing some trouble.",
+    "example_en": "The police investigated the recent incident."
+   }
+  ]
+ },
+ {
+  "headword": "independent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113011e",
+    "cefr": "B2",
+    "corpus_definition": "Able to do things by yourself without help.",
+    "example_en": "Moving out helped him become more independent."
+   }
+  ]
+ },
+ {
+  "headword": "indirect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a1",
+    "cefr": "B2",
+    "corpus_definition": "Not going straight to the point.",
+    "example_en": "He gave an indirect answer to my simple question."
+   }
+  ]
+ },
+ {
+  "headword": "inexpensive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b86",
+    "cefr": "B2",
+    "corpus_definition": "costing only a little money",
+    "example_en": "This is a simple and inexpensive gift."
+   }
+  ]
+ }
+]

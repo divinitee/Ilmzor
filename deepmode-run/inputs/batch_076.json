@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "degree",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908af",
+    "cefr": "B1",
+    "corpus_definition": "An academic title given by a university after finishing studies.",
+    "example_en": "He earned his law degree last year."
+   }
+  ]
+ },
+ {
+  "headword": "delay",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d75",
+    "cefr": "B1",
+    "corpus_definition": "To make something happen later than planned.",
+    "example_en": "Bad weather will delay our departure time."
+   }
+  ]
+ },
+ {
+  "headword": "deliver",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f91f",
+    "cefr": "B1",
+    "corpus_definition": "To bring goods or letters to a specific address.",
+    "example_en": "They deliver the mail every morning."
+   }
+  ]
+ },
+ {
+  "headword": "delivery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e40",
+    "cefr": "B1",
+    "corpus_definition": "The act of bringing things to a person or place.",
+    "example_en": "The delivery arrived at my door this morning."
+   }
+  ]
+ },
+ {
+  "headword": "department",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc9d",
+    "cefr": "B1",
+    "corpus_definition": "A section of a large organization or business.",
+    "example_en": "She works in the sales department."
+   }
+  ]
+ },
+ {
+  "headword": "departure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55da4",
+    "cefr": "B2",
+    "corpus_definition": "The act of leaving a place to start a journey.",
+    "example_en": "Check your ticket for the departure time."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480928a7",
+    "cefr": "B1",
+    "corpus_definition": "the act of leaving a place, especially at the start of a journey",
+    "example_en": "Our departure was delayed by two hours."
+   }
+  ]
+ },
+ {
+  "headword": "descend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092767",
+    "cefr": "B1",
+    "corpus_definition": "to move downward from a higher to a lower place",
+    "example_en": "The hikers began to descend the mountain before sunset."
+   }
+  ]
+ },
+ {
+  "headword": "design (n)",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec7",
+    "cefr": "B1",
+    "corpus_definition": "The way something looks or is organized.",
+    "example_en": "I really like the simple design of this phone."
+   }
+  ]
+ },
+ {
+  "headword": "destination",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d76",
+    "cefr": "B1",
+    "corpus_definition": "The place where someone is going to.",
+    "example_en": "We finally reached our final destination."
+   }
+  ]
+ },
+ {
+  "headword": "destroy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd95",
+    "cefr": "B1",
+    "corpus_definition": "To break something so it cannot be used again.",
+    "example_en": "The fire will destroy the old house."
+   }
+  ]
+ }
+]

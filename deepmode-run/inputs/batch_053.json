@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "sneeze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e8",
+    "cefr": "A2",
+    "corpus_definition": "to suddenly push air out through your nose and mouth",
+    "example_en": "He sneezed loudly during the quiet meeting."
+   }
+  ]
+ },
+ {
+  "headword": "social",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc79",
+    "cefr": "A2",
+    "corpus_definition": "relating to people and how they live together in groups.",
+    "example_en": "We enjoy having social time with friends."
+   }
+  ]
+ },
+ {
+  "headword": "soil",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e07",
+    "cefr": "A2",
+    "corpus_definition": "The dark earth on the ground where plants grow.",
+    "example_en": "The farmer put seeds into the rich soil."
+   }
+  ]
+ },
+ {
+  "headword": "sore",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284b",
+    "cefr": "A2",
+    "corpus_definition": "When a part of your body feels hurt.",
+    "example_en": "My throat feels sore this morning."
+   }
+  ]
+ },
+ {
+  "headword": "sort",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736846",
+    "cefr": "A2",
+    "corpus_definition": "to put things into groups based on their type or features",
+    "example_en": "Please sort these papers into two piles."
+   }
+  ]
+ },
+ {
+  "headword": "sour",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccde",
+    "cefr": "A2",
+    "corpus_definition": "Having a sharp, acidic taste like a lemon.",
+    "example_en": "The milk went sour in the heat."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678f",
+    "cefr": "A2",
+    "corpus_definition": "Having a sharp or acidic taste like a lemon.",
+    "example_en": "The milk tastes sour because it is old."
+   }
+  ]
+ },
+ {
+  "headword": "souvenir",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d84",
+    "cefr": "B1",
+    "corpus_definition": "Something you buy to remember a place you visited.",
+    "example_en": "I bought a small souvenir from the market."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092785",
+    "cefr": "A2",
+    "corpus_definition": "a small gift bought to remember a place you visited",
+    "example_en": "She bought a souvenir magnet from Paris."
+   }
+  ]
+ },
+ {
+  "headword": "spend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dde",
+    "cefr": "A2",
+    "corpus_definition": "To give money to pay for things you want or need.",
+    "example_en": "Do not spend all your money at once."
+   }
+  ]
+ },
+ {
+  "headword": "spend on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b91",
+    "cefr": "A2",
+    "corpus_definition": "To use money to buy items or services.",
+    "example_en": "I love to spend on new clothes."
+   }
+  ]
+ },
+ {
+  "headword": "spicy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccdf",
+    "cefr": "A2",
+    "corpus_definition": "Having a strong, hot flavor from peppers or spices.",
+    "example_en": "I love eating spicy food at that restaurant."
+   }
+  ]
+ }
+]

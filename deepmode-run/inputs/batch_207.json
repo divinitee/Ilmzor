@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "vehement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736654",
+    "cefr": "C1",
+    "corpus_definition": "Showing very strong and angry feelings.",
+    "example_en": "She made a vehement protest."
+   }
+  ]
+ },
+ {
+  "headword": "venom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b8",
+    "cefr": "C1",
+    "corpus_definition": "A harmful liquid produced by some animals to kill or hurt others.",
+    "example_en": "The snake used its sharp teeth to inject venom."
+   }
+  ]
+ },
+ {
+  "headword": "vibrate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092695",
+    "cefr": "C1",
+    "corpus_definition": "To move back and forth very quickly.",
+    "example_en": "My phone began to vibrate on the table."
+   }
+  ]
+ },
+ {
+  "headword": "victor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366cc",
+    "cefr": "C1",
+    "corpus_definition": "The person or group that wins a fight or competition.",
+    "example_en": "The victor celebrated their hard-earned win."
+   }
+  ]
+ },
+ {
+  "headword": "vivid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668f",
+    "cefr": "C1",
+    "corpus_definition": "Very bright in color or very clear in the mind.",
+    "example_en": "She had a vivid dream last night."
+   }
+  ]
+ },
+ {
+  "headword": "wade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736668",
+    "cefr": "C1",
+    "corpus_definition": "To walk through water that is not very deep.",
+    "example_en": "We had to wade across the shallow stream."
+   }
+  ]
+ },
+ {
+  "headword": "wail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676b",
+    "cefr": "C1",
+    "corpus_definition": "To make a long, high sound because of sadness or pain.",
+    "example_en": "The baby began to wail in the middle of the night."
+   }
+  ]
+ },
+ {
+  "headword": "whatsoever",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680c",
+    "cefr": "C1",
+    "corpus_definition": "Used to add emphasis to a negative statement.",
+    "example_en": "He has no interest whatsoever in sports."
+   }
+  ]
+ },
+ {
+  "headword": "whereas",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736820",
+    "cefr": "C1",
+    "corpus_definition": "A word used to show that two things are different.",
+    "example_en": "I like tea, whereas she prefers coffee."
+   }
+  ]
+ },
+ {
+  "headword": "wicked",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ff",
+    "cefr": "C1",
+    "corpus_definition": "Someone who is very bad or does cruel things.",
+    "example_en": "The wicked man stole all the money."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "beware",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736798",
+    "cefr": "B2",
+    "corpus_definition": "To be careful because of a possible danger.",
+    "example_en": "Beware of the dog when entering the yard."
+   }
+  ]
+ },
+ {
+  "headword": "bid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073684c",
+    "cefr": "B2",
+    "corpus_definition": "to offer a specific amount of money to buy something",
+    "example_en": "She placed a high bid for the rare painting."
+   }
+  ]
+ },
+ {
+  "headword": "bind",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736642",
+    "cefr": "B2",
+    "corpus_definition": "To tie objects together using rope or string.",
+    "example_en": "They used rope to bind the wood together."
+   }
+  ]
+ },
+ {
+  "headword": "blast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736692",
+    "cefr": "B2",
+    "corpus_definition": "A strong and sudden explosion of energy or wind.",
+    "example_en": "The loud blast broke the nearby windows."
+   }
+  ]
+ },
+ {
+  "headword": "blow up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8f",
+    "cefr": "B2",
+    "corpus_definition": "To cause something to explode.",
+    "example_en": "They had to blow up the old bridge."
+   }
+  ]
+ },
+ {
+  "headword": "bond",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928a4",
+    "cefr": "B2",
+    "corpus_definition": "A close connection or strong feeling of friendship between people.",
+    "example_en": "They share a special bond after working together years."
+   }
+  ]
+ },
+ {
+  "headword": "bonus",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dcd",
+    "cefr": "B2",
+    "corpus_definition": "Extra money given for doing a very good job.",
+    "example_en": "The staff received a holiday bonus."
+   }
+  ]
+ },
+ {
+  "headword": "boundary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675a",
+    "cefr": "B2",
+    "corpus_definition": "A line that marks the edge of an area.",
+    "example_en": "The river forms a boundary between the countries."
+   }
+  ]
+ },
+ {
+  "headword": "brag",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736799",
+    "cefr": "B2",
+    "corpus_definition": "To talk too proudly about your own achievements.",
+    "example_en": "He likes to brag about his expensive car."
+   }
+  ]
+ },
+ {
+  "headword": "bravery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908d9",
+    "cefr": "B2",
+    "corpus_definition": "The quality of showing courage in dangerous situations.",
+    "example_en": "The soldier was honored for his bravery."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "tap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092810",
+    "cefr": "A2",
+    "corpus_definition": "a light knock; also a device that controls water flow",
+    "example_en": "She tapped gently on the door before entering."
+   }
+  ]
+ },
+ {
+  "headword": "temperature",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dea",
+    "cefr": "A2",
+    "corpus_definition": "How hot or cold something is.",
+    "example_en": "The temperature is rising today."
+   }
+  ]
+ },
+ {
+  "headword": "term",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908c5",
+    "cefr": "A2",
+    "corpus_definition": "A period of time during which school takes place.",
+    "example_en": "The school term ends in June."
+   }
+  ]
+ },
+ {
+  "headword": "thought",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdbe",
+    "cefr": "A2",
+    "corpus_definition": "An idea or opinion in your mind.",
+    "example_en": "I had a sudden thought about it."
+   }
+  ]
+ },
+ {
+  "headword": "throw away",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b4c",
+    "cefr": "A2",
+    "corpus_definition": "To put something in the trash because you do not need it.",
+    "example_en": "Please do not throw away that old paper."
+   }
+  ]
+ },
+ {
+  "headword": "thunder",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8c",
+    "cefr": "B2",
+    "corpus_definition": "The loud noise heard after a flash of light.",
+    "example_en": "The loud thunder scared the small dog."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480926a6",
+    "cefr": "A2",
+    "corpus_definition": "the loud rumbling sound heard during a storm",
+    "example_en": "Thunder woke the children in the middle of the night."
+   }
+  ]
+ },
+ {
+  "headword": "tidy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092682",
+    "cefr": "A2",
+    "corpus_definition": "Keeping things clean and in their proper places.",
+    "example_en": "Please keep your room tidy every day."
+   }
+  ]
+ },
+ {
+  "headword": "tidy up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e69",
+    "cefr": "A2",
+    "corpus_definition": "To put things back in their proper places.",
+    "example_en": "Please tidy up your room before playing."
+   }
+  ]
+ },
+ {
+  "headword": "tight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5e",
+    "cefr": "A2",
+    "corpus_definition": "fixed firmly in place or fitting very closely to the body.",
+    "example_en": "These jeans are too tight for me."
+   }
+  ]
+ },
+ {
+  "headword": "tin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275e",
+    "cefr": "A2",
+    "corpus_definition": "A metal container used for holding food or drinks.",
+    "example_en": "She opened a tin of beans for lunch."
+   }
+  ]
+ }
+]

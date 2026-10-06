@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "paraphrase",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673a",
+    "cefr": "C1",
+    "corpus_definition": "To say something again using different words to make it clearer.",
+    "example_en": "Please paraphrase the main idea of that long paragraph."
+   }
+  ]
+ },
+ {
+  "headword": "pardon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928bf",
+    "cefr": "C1",
+    "corpus_definition": "To forgive someone for a mistake or a bad action.",
+    "example_en": "The king decided to pardon the prisoner."
+   }
+  ]
+ },
+ {
+  "headword": "particle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682d",
+    "cefr": "C1",
+    "corpus_definition": "A very small piece of matter.",
+    "example_en": "A dust particle flew into my eye."
+   }
+  ]
+ },
+ {
+  "headword": "perish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b3",
+    "cefr": "C1",
+    "corpus_definition": "To die, usually in a violent or sudden way.",
+    "example_en": "Many animals perish in the harsh winter cold."
+   }
+  ]
+ },
+ {
+  "headword": "persecute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c5",
+    "cefr": "C1",
+    "corpus_definition": "To treat someone cruelly because of their beliefs or race.",
+    "example_en": "Many people fled the country to avoid being persecuted."
+   }
+  ]
+ },
+ {
+  "headword": "perspire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736805",
+    "cefr": "C1",
+    "corpus_definition": "To have salty liquid come through your skin when hot.",
+    "example_en": "I always perspire during a hard workout."
+   }
+  ]
+ },
+ {
+  "headword": "pessimistic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073681a",
+    "cefr": "C1",
+    "corpus_definition": "Thinking that bad things will happen.",
+    "example_en": "Do not be so pessimistic about the future."
+   }
+  ]
+ },
+ {
+  "headword": "pesticide",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366db",
+    "cefr": "C1",
+    "corpus_definition": "A chemical used to kill insects that damage crops.",
+    "example_en": "Farmers use pesticide to save their harvest."
+   }
+  ]
+ },
+ {
+  "headword": "phantom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809271e",
+    "cefr": "C1",
+    "corpus_definition": "a ghost or spirit that appears but is not real",
+    "example_en": "Villagers believed a phantom haunted the old abandoned house."
+   }
+  ]
+ },
+ {
+  "headword": "phenomenon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736752",
+    "cefr": "C1",
+    "corpus_definition": "Something that happens in the world which can be seen.",
+    "example_en": "Gravity is a natural phenomenon."
+   }
+  ]
+ }
+]

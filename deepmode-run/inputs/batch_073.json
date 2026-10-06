@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "construction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eae",
+    "cefr": "B1",
+    "corpus_definition": "The work of putting together the parts to make something large.",
+    "example_en": "The construction of the house will take many months."
+   }
+  ]
+ },
+ {
+  "headword": "contact",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f8fd",
+    "cefr": "B1",
+    "corpus_definition": "To talk or write to someone to share news.",
+    "example_en": "Please contact me if you need help."
+   }
+  ]
+ },
+ {
+  "headword": "contain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcccd",
+    "cefr": "B1",
+    "corpus_definition": "To have something inside as part of it.",
+    "example_en": "This box does not contain any plastic."
+   }
+  ]
+ },
+ {
+  "headword": "contract",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc9c",
+    "cefr": "B2",
+    "corpus_definition": "A formal written agreement between two or more people or groups.",
+    "example_en": "They signed a new contract yesterday."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dc6",
+    "cefr": "B1",
+    "corpus_definition": "A legal written paper that sets the rules for an agreement.",
+    "example_en": "Please sign the contract before you start."
+   }
+  ]
+ },
+ {
+  "headword": "cope",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092778",
+    "cefr": "B1",
+    "corpus_definition": "To deal successfully with a difficult situation.",
+    "example_en": "It is hard to cope with so much work."
+   }
+  ]
+ },
+ {
+  "headword": "copper",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a8",
+    "cefr": "B1",
+    "corpus_definition": "A soft reddish metal used for electricity wires.",
+    "example_en": "The coins were made of copper and silver."
+   }
+  ]
+ },
+ {
+  "headword": "correction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908db",
+    "cefr": "B1",
+    "corpus_definition": "A change that makes something right.",
+    "example_en": "I need to make a small correction here."
+   }
+  ]
+ },
+ {
+  "headword": "cozy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366bc",
+    "cefr": "B1",
+    "corpus_definition": "Feeling warm, comfortable, and pleasant.",
+    "example_en": "We sat by the fire in the cozy room."
+   }
+  ]
+ },
+ {
+  "headword": "crack",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367fc",
+    "cefr": "B1",
+    "corpus_definition": "a thin line that appears when something is damaged or broken",
+    "example_en": "There is a small crack in the glass."
+   }
+  ]
+ },
+ {
+  "headword": "crash",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d72",
+    "cefr": "B1",
+    "corpus_definition": "A bad accident involving a moving vehicle.",
+    "example_en": "The car was damaged in the crash."
+   }
+  ]
+ }
+]

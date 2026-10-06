@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "offense",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927bc",
+    "cefr": "B2",
+    "corpus_definition": "an act that is illegal or that upsets or insults someone",
+    "example_en": "He was charged with a serious offense last week."
+   }
+  ]
+ },
+ {
+  "headword": "official",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccbe",
+    "cefr": "B2",
+    "corpus_definition": "Approved or agreed to by someone in a position of authority.",
+    "example_en": "He made an official announcement to the media."
+   }
+  ]
+ },
+ {
+  "headword": "on board",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d94",
+    "cefr": "B2",
+    "corpus_definition": "Inside a plane, ship, or train.",
+    "example_en": "Welcome on board the airplane."
+   }
+  ]
+ },
+ {
+  "headword": "operate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b3f",
+    "cefr": "B2",
+    "corpus_definition": "To make a machine work or control it.",
+    "example_en": "She knows how to operate this heavy machine."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ca",
+    "cefr": "B2",
+    "corpus_definition": "To work or function in a certain way.",
+    "example_en": "Do you know how to operate this machine?"
+   }
+  ]
+ },
+ {
+  "headword": "optimist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809271b",
+    "cefr": "B2",
+    "corpus_definition": "A person who believes that good things will happen.",
+    "example_en": "She is an optimist who always sees the bright side."
+   }
+  ]
+ },
+ {
+  "headword": "organic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736761",
+    "cefr": "B2",
+    "corpus_definition": "Grown without the use of artificial chemicals.",
+    "example_en": "We only buy organic vegetables at the market."
+   }
+  ]
+ },
+ {
+  "headword": "origin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd82",
+    "cefr": "B2",
+    "corpus_definition": "Where something comes from or how it began.",
+    "example_en": "He studied the origin of the language."
+   }
+  ]
+ },
+ {
+  "headword": "orphan",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b3",
+    "cefr": "B2",
+    "corpus_definition": "A child whose parents have died.",
+    "example_en": "The orphan found a new home."
+   }
+  ]
+ },
+ {
+  "headword": "outcome",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ca",
+    "cefr": "B2",
+    "corpus_definition": "The final result of a process or event.",
+    "example_en": "We were happy with the final outcome."
+   }
+  ]
+ },
+ {
+  "headword": "overhead",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736701",
+    "cefr": "B2",
+    "corpus_definition": "Located high up in the sky or above you.",
+    "example_en": "A bright plane flew overhead during the day."
+   }
+  ]
+ }
+]

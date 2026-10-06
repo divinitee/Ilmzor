@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "textile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736768",
+    "cefr": "C1",
+    "corpus_definition": "A type of cloth or woven fabric.",
+    "example_en": "This factory produces high quality textile goods."
+   }
+  ]
+ },
+ {
+  "headword": "thorn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736793",
+    "cefr": "C1",
+    "corpus_definition": "A sharp point on the stem of some plants.",
+    "example_en": "Be careful of the thorn on that rose bush."
+   }
+  ]
+ },
+ {
+  "headword": "thorough",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a7",
+    "cefr": "C1",
+    "corpus_definition": "Including every detail so that nothing is left out.",
+    "example_en": "The police conducted a thorough investigation."
+   }
+  ]
+ },
+ {
+  "headword": "thump",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736653",
+    "cefr": "C1",
+    "corpus_definition": "A dull sound made by a heavy object hitting something.",
+    "example_en": "The bag fell with a loud thump."
+   }
+  ]
+ },
+ {
+  "headword": "timid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685b",
+    "cefr": "C1",
+    "corpus_definition": "A person who is shy and lacks confidence.",
+    "example_en": "The timid child hid behind her mother."
+   }
+  ]
+ },
+ {
+  "headword": "torment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a8",
+    "cefr": "C1",
+    "corpus_definition": "Great pain or suffering that lasts for a long time.",
+    "example_en": "The noise was a constant torment to him."
+   }
+  ]
+ },
+ {
+  "headword": "trait",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d1",
+    "cefr": "C1",
+    "corpus_definition": "A quality that makes a person or thing different.",
+    "example_en": "Honesty is a positive personality trait."
+   }
+  ]
+ },
+ {
+  "headword": "traverse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736707",
+    "cefr": "C1",
+    "corpus_definition": "To move across or over a large area.",
+    "example_en": "They had to traverse the mountains to get home."
+   }
+  ]
+ },
+ {
+  "headword": "treachery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a3",
+    "cefr": "C1",
+    "corpus_definition": "Behavior that is not loyal to someone who trusts you.",
+    "example_en": "The king was killed because of his advisor's treachery."
+   }
+  ]
+ },
+ {
+  "headword": "tremendous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092811",
+    "cefr": "C1",
+    "corpus_definition": "Something that is very, very large or great.",
+    "example_en": "There was a tremendous explosion at the factory."
+   }
+  ]
+ }
+]

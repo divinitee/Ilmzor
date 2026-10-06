@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "link",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f904",
+    "cefr": "B1",
+    "corpus_definition": "A connection between two things or places.",
+    "example_en": "Click the link to visit the website."
+   }
+  ]
+ },
+ {
+  "headword": "lively",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736816",
+    "cefr": "B1",
+    "corpus_definition": "Full of energy and very active.",
+    "example_en": "It was a very lively party last night."
+   }
+  ]
+ },
+ {
+  "headword": "loan",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd7",
+    "cefr": "B1",
+    "corpus_definition": "Money that is borrowed and must be given back later.",
+    "example_en": "He took out a bank loan for his car."
+   }
+  ]
+ },
+ {
+  "headword": "log off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f919",
+    "cefr": "B1",
+    "corpus_definition": "To exit a computer system.",
+    "example_en": "Remember to log off before leaving the office."
+   }
+  ]
+ },
+ {
+  "headword": "log on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f91a",
+    "cefr": "B1",
+    "corpus_definition": "To start using a computer program by entering your name.",
+    "example_en": "You need a password to log on."
+   }
+  ]
+ },
+ {
+  "headword": "loop",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678c",
+    "cefr": "B1",
+    "corpus_definition": "A round shape created by a line crossing itself.",
+    "example_en": "Tie the rope into a small loop."
+   }
+  ]
+ },
+ {
+  "headword": "loving",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130120",
+    "cefr": "B1",
+    "corpus_definition": "Showing that you care a lot about someone.",
+    "example_en": "She comes from a very loving family."
+   }
+  ]
+ },
+ {
+  "headword": "loyal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130121",
+    "cefr": "B2",
+    "corpus_definition": "Always staying on the side of your friends.",
+    "example_en": "He is a loyal friend who never leaves."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809281f",
+    "cefr": "B1",
+    "corpus_definition": "Always standing by someone and never leaving them.",
+    "example_en": "Dogs are known for being very loyal."
+   }
+  ]
+ },
+ {
+  "headword": "lungs",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e9b",
+    "cefr": "B1",
+    "corpus_definition": "Two organs in the chest used for taking in air.",
+    "example_en": "Smoking is very bad for your lungs."
+   }
+  ]
+ },
+ {
+  "headword": "luxury",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928ae",
+    "cefr": "B1",
+    "corpus_definition": "something very expensive and comfortable, not a basic need",
+    "example_en": "Staying in that hotel was a real luxury for them."
+   }
+  ]
+ }
+]

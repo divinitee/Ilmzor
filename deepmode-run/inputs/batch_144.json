@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "guideline",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674b",
+    "cefr": "B2",
+    "corpus_definition": "A rule or instruction on how to do something correctly.",
+    "example_en": "Follow the safety guideline for using this machine."
+   }
+  ]
+ },
+ {
+  "headword": "gymnasium",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c4",
+    "cefr": "B2",
+    "corpus_definition": "A large room where people go to play sports.",
+    "example_en": "The students are playing basketball in the gymnasium."
+   }
+  ]
+ },
+ {
+  "headword": "habitat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367eb",
+    "cefr": "B2",
+    "corpus_definition": "the natural home of an animal or a plant",
+    "example_en": "The jungle is a natural habitat for tigers."
+   }
+  ]
+ },
+ {
+  "headword": "halt",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736800",
+    "cefr": "B2",
+    "corpus_definition": "To make something stop moving or happening.",
+    "example_en": "The train came to a sudden halt."
+   }
+  ]
+ },
+ {
+  "headword": "handicap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809278f",
+    "cefr": "B2",
+    "corpus_definition": "something that makes progress or success more difficult",
+    "example_en": "His lack of experience was a real handicap in the competition."
+   }
+  ]
+ },
+ {
+  "headword": "harass",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736716",
+    "cefr": "B2",
+    "corpus_definition": "To behave in an annoying or hurtful way toward someone repeatedly.",
+    "example_en": "The workers asked their manager to stop bothering them."
+   }
+  ]
+ },
+ {
+  "headword": "harbor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d7a",
+    "cefr": "B2",
+    "corpus_definition": "A place near the coast where ships are safe from storms.",
+    "example_en": "The boats returned to the harbor before the storm."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092893",
+    "cefr": "B2",
+    "corpus_definition": "A sheltered place by the sea where boats can safely stay.",
+    "example_en": "The ships waited in the harbor during the storm."
+   }
+  ]
+ },
+ {
+  "headword": "hardware",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b37",
+    "cefr": "B2",
+    "corpus_definition": "The physical parts of a computer system.",
+    "example_en": "The technician repaired the computer hardware yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "harsh",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736853",
+    "cefr": "B2",
+    "corpus_definition": "very unkind, cruel, or difficult to deal with",
+    "example_en": "The desert has a very harsh climate."
+   }
+  ]
+ },
+ {
+  "headword": "harvest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928bc",
+    "cefr": "B2",
+    "corpus_definition": "To gather crops from fields at the end of the season.",
+    "example_en": "Farmers will harvest the corn before the rain starts."
+   }
+  ]
+ }
+]

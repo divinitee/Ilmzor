@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "soothing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677c",
+    "cefr": "B2",
+    "corpus_definition": "Making someone feel calm and less worried.",
+    "example_en": "The soft music had a soothing effect on everyone."
+   }
+  ]
+ },
+ {
+  "headword": "spam",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e53",
+    "cefr": "B2",
+    "corpus_definition": "Unwanted junk sent in large amounts to many people.",
+    "example_en": "Most of my spam goes to the trash."
+   }
+  ]
+ },
+ {
+  "headword": "span",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092692",
+    "cefr": "B2",
+    "corpus_definition": "The length of time or distance between two points.",
+    "example_en": "His career had a span of thirty years."
+   }
+  ]
+ },
+ {
+  "headword": "spark",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e2",
+    "cefr": "B2",
+    "corpus_definition": "a tiny bit of fire that flies from something burning",
+    "example_en": "A small spark started the forest fire."
+   }
+  ]
+ },
+ {
+  "headword": "sparkle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736881",
+    "cefr": "B2",
+    "corpus_definition": "To shine with many tiny flashes of bright light.",
+    "example_en": "Her diamond rings sparkle in the light."
+   }
+  ]
+ },
+ {
+  "headword": "species",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8b",
+    "cefr": "B2",
+    "corpus_definition": "A group of animals or plants that are the same.",
+    "example_en": "Many species live in the deep ocean."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736705",
+    "cefr": "B2",
+    "corpus_definition": "A group of animals or plants that are similar.",
+    "example_en": "Scientists discovered a new species of small fish."
+   }
+  ]
+ },
+ {
+  "headword": "spectacle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275b",
+    "cefr": "B2",
+    "corpus_definition": "an impressive or unusual sight that many people look at",
+    "example_en": "The fireworks display was a magnificent spectacle."
+   }
+  ]
+ },
+ {
+  "headword": "spine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092796",
+    "cefr": "B2",
+    "corpus_definition": "The row of bones down the center of your back.",
+    "example_en": "She has a very straight and strong spine."
+   }
+  ]
+ },
+ {
+  "headword": "sprinkle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736882",
+    "cefr": "B2",
+    "corpus_definition": "To drop small pieces of something over a surface.",
+    "example_en": "Sprinkle some salt on your food."
+   }
+  ]
+ },
+ {
+  "headword": "stale",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736883",
+    "cefr": "B2",
+    "corpus_definition": "No longer fresh or pleasant to eat.",
+    "example_en": "This bread is stale and very hard."
+   }
+  ]
+ }
+]

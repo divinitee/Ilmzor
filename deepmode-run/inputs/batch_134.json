@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "dispute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ae",
+    "cefr": "B2",
+    "corpus_definition": "A strong disagreement or argument between people.",
+    "example_en": "The two neighbors had a dispute about their fence."
+   }
+  ]
+ },
+ {
+  "headword": "disrespect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736851",
+    "cefr": "B2",
+    "corpus_definition": "a lack of politeness or kindness toward someone",
+    "example_en": "It is rude to show disrespect to your elders."
+   }
+  ]
+ },
+ {
+  "headword": "dissatisfied",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c2",
+    "cefr": "B2",
+    "corpus_definition": "Not happy with the way things are.",
+    "example_en": "The customer was dissatisfied with the service."
+   }
+  ]
+ },
+ {
+  "headword": "dissolve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287f",
+    "cefr": "B2",
+    "corpus_definition": "To become mixed into a liquid until it disappears completely.",
+    "example_en": "Stir the sugar until it begins to dissolve."
+   }
+  ]
+ },
+ {
+  "headword": "distribute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736726",
+    "cefr": "B2",
+    "corpus_definition": "To give items to several different people.",
+    "example_en": "The teacher handed out papers to every student."
+   }
+  ]
+ },
+ {
+  "headword": "district",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092807",
+    "cefr": "B2",
+    "corpus_definition": "A part of a city or country with its own name.",
+    "example_en": "He lives in the business district downtown."
+   }
+  ]
+ },
+ {
+  "headword": "distrust",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073669a",
+    "cefr": "B2",
+    "corpus_definition": "The feeling that someone is not honest or cannot be relied upon.",
+    "example_en": "She felt a strong distrust of the stranger's motives."
+   }
+  ]
+ },
+ {
+  "headword": "division",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908de",
+    "cefr": "B2",
+    "corpus_definition": "The act of separating something into parts.",
+    "example_en": "The division of the work was fair."
+   }
+  ]
+ },
+ {
+  "headword": "dose",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926eb",
+    "cefr": "B2",
+    "corpus_definition": "A specific amount of medicine to take.",
+    "example_en": "Take one dose of medicine every morning."
+   }
+  ]
+ },
+ {
+  "headword": "dough",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736873",
+    "cefr": "B2",
+    "corpus_definition": "A soft mixture of flour and water used for baking.",
+    "example_en": "She kneaded the dough for the bread."
+   }
+  ]
+ }
+]

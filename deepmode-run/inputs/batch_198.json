@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "physician",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e1",
+    "cefr": "C1",
+    "corpus_definition": "A person who is trained to help sick people.",
+    "example_en": "The physician checked my blood pressure."
+   }
+  ]
+ },
+ {
+  "headword": "pinpoint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a5",
+    "cefr": "C1",
+    "corpus_definition": "To find or explain the exact cause or place of something.",
+    "example_en": "Scientists can pinpoint the source of the noise."
+   }
+  ]
+ },
+ {
+  "headword": "plague",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673b",
+    "cefr": "C1",
+    "corpus_definition": "A very bad disease that kills many people quickly.",
+    "example_en": "A terrible plague hit the town many years ago."
+   }
+  ]
+ },
+ {
+  "headword": "plea",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682e",
+    "cefr": "C1",
+    "corpus_definition": "An urgent and emotional request.",
+    "example_en": "He made a plea for more help."
+   }
+  ]
+ },
+ {
+  "headword": "plead",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073664c",
+    "cefr": "C1",
+    "corpus_definition": "To ask for something in a very serious way.",
+    "example_en": "He had to plead for his life."
+   }
+  ]
+ },
+ {
+  "headword": "polar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092731",
+    "cefr": "C1",
+    "corpus_definition": "Relating to the very cold areas at the top or bottom earth.",
+    "example_en": "Polar bears live in freezing regions."
+   }
+  ]
+ },
+ {
+  "headword": "ponder",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736677",
+    "cefr": "C1",
+    "corpus_definition": "To think about something very carefully.",
+    "example_en": "She began to ponder her next move."
+   }
+  ]
+ },
+ {
+  "headword": "postmark",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e3e",
+    "cefr": "C1",
+    "corpus_definition": "A mark on a cover showing when it was processed.",
+    "example_en": "The postmark showed it was sent last week."
+   }
+  ]
+ },
+ {
+  "headword": "poultry",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736762",
+    "cefr": "C1",
+    "corpus_definition": "Birds like chickens or ducks kept for food.",
+    "example_en": "The farm raises poultry for eggs and meat."
+   }
+  ]
+ },
+ {
+  "headword": "poverty",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca9",
+    "cefr": "C1",
+    "corpus_definition": "The state of having very little money.",
+    "example_en": "Many families live in deep poverty."
+   }
+  ]
+ }
+]

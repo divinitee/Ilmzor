@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "sculpture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec4",
+    "cefr": "B2",
+    "corpus_definition": "A solid object made to look like a person or thing.",
+    "example_en": "There is a beautiful marble sculpture in the park."
+   }
+  ]
+ },
+ {
+  "headword": "seldom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809270b",
+    "cefr": "B2",
+    "corpus_definition": "Not happening very often.",
+    "example_en": "He seldom visits us because he lives very far."
+   }
+  ]
+ },
+ {
+  "headword": "select",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b7b",
+    "cefr": "B2",
+    "corpus_definition": "to pick one thing from a group of choices",
+    "example_en": "Please select the color you like best."
+   }
+  ]
+ },
+ {
+  "headword": "senator",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809280d",
+    "cefr": "B2",
+    "corpus_definition": "A person elected to help make the country's laws.",
+    "example_en": "The senator gave a speech yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "send off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb3",
+    "cefr": "B2",
+    "corpus_definition": "Tell a player to leave the field because they broke rules.",
+    "example_en": "The referee had to send off the aggressive player."
+   }
+  ]
+ },
+ {
+  "headword": "sensation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d4",
+    "cefr": "B2",
+    "corpus_definition": "A physical feeling or a general awareness.",
+    "example_en": "I had a strange sensation in my arm."
+   }
+  ]
+ },
+ {
+  "headword": "sense of humour",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcded",
+    "cefr": "B2",
+    "corpus_definition": "The ability to find things funny.",
+    "example_en": "He has a great sense of humour."
+   }
+  ]
+ },
+ {
+  "headword": "set off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d8e",
+    "cefr": "B2",
+    "corpus_definition": "To begin a long travel.",
+    "example_en": "We set off early to avoid traffic."
+   }
+  ]
+ },
+ {
+  "headword": "shame",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b8",
+    "cefr": "B2",
+    "corpus_definition": "A painful feeling of being embarrassed or bad.",
+    "example_en": "He felt great shame for his actions."
+   }
+  ]
+ },
+ {
+  "headword": "shatter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687d",
+    "cefr": "B2",
+    "corpus_definition": "To break suddenly into many very small pieces.",
+    "example_en": "The glass will shatter if it hits the floor."
+   }
+  ]
+ }
+]

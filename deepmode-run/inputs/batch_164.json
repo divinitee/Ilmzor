@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "referee",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ca7",
+    "cefr": "B2",
+    "corpus_definition": "The official who makes sure players follow rules during games.",
+    "example_en": "The referee blew his whistle to stop play."
+   }
+  ]
+ },
+ {
+  "headword": "reference",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e7",
+    "cefr": "B2",
+    "corpus_definition": "A note or document that provides information about something.",
+    "example_en": "I used the book as a reference."
+   }
+  ]
+ },
+ {
+  "headword": "regret",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcde9",
+    "cefr": "B2",
+    "corpus_definition": "To feel sad or sorry about something you did.",
+    "example_en": "I regret not studying harder for the exam."
+   }
+  ]
+ },
+ {
+  "headword": "relate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130152",
+    "cefr": "B2",
+    "corpus_definition": "To show how two things are connected or linked together.",
+    "example_en": "These two problems relate to each other."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b1",
+    "cefr": "B2",
+    "corpus_definition": "To show or find a link between two things.",
+    "example_en": "Can you relate this problem to the recent changes?"
+   }
+  ]
+ },
+ {
+  "headword": "remainder",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809268e",
+    "cefr": "B2",
+    "corpus_definition": "The part of something that is left over after the rest is gone.",
+    "example_en": "We spent the remainder of the day reading books."
+   }
+  ]
+ },
+ {
+  "headword": "reproduce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809285d",
+    "cefr": "B2",
+    "corpus_definition": "to produce young; to make a copy of something",
+    "example_en": "Some animals reproduce only once a year."
+   }
+  ]
+ },
+ {
+  "headword": "reptile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd86",
+    "cefr": "B2",
+    "corpus_definition": "A cold-blooded animal that has skin covered in scales.",
+    "example_en": "A snake is a common type of reptile."
+   }
+  ]
+ },
+ {
+  "headword": "require",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b78",
+    "cefr": "B2",
+    "corpus_definition": "to need something for a specific purpose",
+    "example_en": "This job will require a lot of patience."
+   }
+  ]
+ },
+ {
+  "headword": "resident",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc73",
+    "cefr": "B2",
+    "corpus_definition": "a person who lives in a specific house or place.",
+    "example_en": "Every resident must follow these building rules."
+   }
+  ]
+ },
+ {
+  "headword": "resign",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092733",
+    "cefr": "B2",
+    "corpus_definition": "To officially leave a job or position.",
+    "example_en": "She decided to resign from her post yesterday."
+   }
+  ]
+ }
+]

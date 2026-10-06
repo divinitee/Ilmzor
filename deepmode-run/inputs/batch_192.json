@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "immoral",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367af",
+    "cefr": "C1",
+    "corpus_definition": "Actions that are considered wrong or against social standards.",
+    "example_en": "Stealing money from others is clearly immoral."
+   }
+  ]
+ },
+ {
+  "headword": "impending",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736801",
+    "cefr": "C1",
+    "corpus_definition": "About to happen very soon.",
+    "example_en": "Everyone prepared for the impending storm."
+   }
+  ]
+ },
+ {
+  "headword": "incorporate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674c",
+    "cefr": "C1",
+    "corpus_definition": "To include something as part of a larger group or system.",
+    "example_en": "We will incorporate your ideas into the final plan."
+   }
+  ]
+ },
+ {
+  "headword": "incredulous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736737",
+    "cefr": "C1",
+    "corpus_definition": "Not wanting or able to believe that something is true.",
+    "example_en": "She was incredulous when she heard the surprising news."
+   }
+  ]
+ },
+ {
+  "headword": "index",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c7",
+    "cefr": "C1",
+    "corpus_definition": "An alphabetical list of topics at the back of a book.",
+    "example_en": "Check the index to find the page number."
+   }
+  ]
+ },
+ {
+  "headword": "initiate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092717",
+    "cefr": "C1",
+    "corpus_definition": "To make something start.",
+    "example_en": "The government will initiate a new plan for schools."
+   }
+  ]
+ },
+ {
+  "headword": "innovation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec0",
+    "cefr": "C1",
+    "corpus_definition": "A new idea or method that improves how we do things.",
+    "example_en": "The company is known for its constant innovation."
+   }
+  ]
+ },
+ {
+  "headword": "inquire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f1",
+    "cefr": "C1",
+    "corpus_definition": "To ask for information about something.",
+    "example_en": "I want to inquire about your services."
+   }
+  ]
+ },
+ {
+  "headword": "instinct",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926de",
+    "cefr": "C1",
+    "corpus_definition": "A natural way of acting without thinking.",
+    "example_en": "Birds fly south by natural instinct."
+   }
+  ]
+ },
+ {
+  "headword": "intellectual",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d6",
+    "cefr": "C1",
+    "corpus_definition": "Relating to the ability to think and understand complex ideas.",
+    "example_en": "She enjoys intense intellectual discussions."
+   }
+  ]
+ }
+]

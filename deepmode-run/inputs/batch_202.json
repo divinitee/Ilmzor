@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "secluded",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736704",
+    "cefr": "C1",
+    "corpus_definition": "Quiet and private with few other people around.",
+    "example_en": "We stayed in a secluded house by the lake."
+   }
+  ]
+ },
+ {
+  "headword": "seize",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926cd",
+    "cefr": "C1",
+    "corpus_definition": "To grab something suddenly and with force.",
+    "example_en": "The police had to seize the dangerous weapon."
+   }
+  ]
+ },
+ {
+  "headword": "self-employment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd2",
+    "cefr": "C1",
+    "corpus_definition": "Being your own boss instead of working for others.",
+    "example_en": "Self-employment requires a lot of discipline."
+   }
+  ]
+ },
+ {
+  "headword": "sergeant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736764",
+    "cefr": "C1",
+    "corpus_definition": "A person with a middle rank in the army.",
+    "example_en": "The sergeant gave orders to the group."
+   }
+  ]
+ },
+ {
+  "headword": "sheer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736765",
+    "cefr": "C1",
+    "corpus_definition": "Complete or total used to emphasize a quality.",
+    "example_en": "The climb was pure joy and sheer effort."
+   }
+  ]
+ },
+ {
+  "headword": "shrine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736740",
+    "cefr": "C1",
+    "corpus_definition": "A special place built to remember someone or something holy.",
+    "example_en": "People visit the small shrine to say prayers."
+   }
+  ]
+ },
+ {
+  "headword": "shutter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687e",
+    "cefr": "C1",
+    "corpus_definition": "A wooden or metal cover on the outside of a window.",
+    "example_en": "Close the shutter to keep the sun out."
+   }
+  ]
+ },
+ {
+  "headword": "sift",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687f",
+    "cefr": "C1",
+    "corpus_definition": "To put powder through a tool to remove large pieces.",
+    "example_en": "Sift the flour before baking the cake."
+   }
+  ]
+ },
+ {
+  "headword": "simplicity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ed",
+    "cefr": "C1",
+    "corpus_definition": "The quality of being easy to understand.",
+    "example_en": "I love the simplicity of this design."
+   }
+  ]
+ },
+ {
+  "headword": "sly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736808",
+    "cefr": "C1",
+    "corpus_definition": "Acting in a secret or clever way to trick others.",
+    "example_en": "He had a sly look on his face."
+   }
+  ]
+ }
+]

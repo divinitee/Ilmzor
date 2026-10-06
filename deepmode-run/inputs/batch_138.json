@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "estimate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b33",
+    "cefr": "B2",
+    "corpus_definition": "To guess the size or cost of something using numbers.",
+    "example_en": "Can you estimate how long the trip takes?"
+   }
+  ]
+ },
+ {
+  "headword": "ethical",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366fa",
+    "cefr": "B2",
+    "corpus_definition": "Relating to what is morally right and good.",
+    "example_en": "It is not an ethical way to treat people."
+   }
+  ]
+ },
+ {
+  "headword": "evaluate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c1",
+    "cefr": "B2",
+    "corpus_definition": "To judge the quality or value of something carefully.",
+    "example_en": "We need to evaluate the results of the test."
+   }
+  ]
+ },
+ {
+  "headword": "evenly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d6",
+    "cefr": "B2",
+    "corpus_definition": "Divided into parts that are all the same size.",
+    "example_en": "Divide the money evenly among the three children."
+   }
+  ]
+ },
+ {
+  "headword": "eventual",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073679d",
+    "cefr": "B2",
+    "corpus_definition": "Happening at the end of a long process.",
+    "example_en": "The team worked hard for their eventual victory."
+   }
+  ]
+ },
+ {
+  "headword": "evolve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d1",
+    "cefr": "B2",
+    "corpus_definition": "To develop gradually over a long period of time.",
+    "example_en": "How did these animals evolve over time?"
+   }
+  ]
+ },
+ {
+  "headword": "exaggerate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092751",
+    "cefr": "B2",
+    "corpus_definition": "to make something seem bigger or worse than it really is",
+    "example_en": "He always exaggerates how difficult his job is."
+   }
+  ]
+ },
+ {
+  "headword": "exceed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a3",
+    "cefr": "B2",
+    "corpus_definition": "to go beyond a limit or be greater than a number",
+    "example_en": "Your spending must not exceed the monthly budget limit."
+   }
+  ]
+ },
+ {
+  "headword": "exception",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736840",
+    "cefr": "B2",
+    "corpus_definition": "something that does not follow the general rule",
+    "example_en": "Every rule has at least one exception."
+   }
+  ]
+ },
+ {
+  "headword": "execute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809280a",
+    "cefr": "B2",
+    "corpus_definition": "to carry out or complete a plan, task, or order",
+    "example_en": "The team executed the plan perfectly without any mistakes."
+   }
+  ]
+ }
+]

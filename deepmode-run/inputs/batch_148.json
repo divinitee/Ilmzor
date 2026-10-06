@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "infect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ab",
+    "cefr": "B2",
+    "corpus_definition": "To pass a sickness to a person or animal.",
+    "example_en": "The virus can infect many people very quickly."
+   }
+  ]
+ },
+ {
+  "headword": "infection",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd5",
+    "cefr": "B2",
+    "corpus_definition": "A sickness caused by germs in the body.",
+    "example_en": "The cut on his hand has an infection."
+   }
+  ]
+ },
+ {
+  "headword": "inferior",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b8",
+    "cefr": "B2",
+    "corpus_definition": "lower in quality, rank, or importance than something else",
+    "example_en": "This material is inferior to the one we used before."
+   }
+  ]
+ },
+ {
+  "headword": "influence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736802",
+    "cefr": "B2",
+    "corpus_definition": "The power to change how someone thinks or behaves.",
+    "example_en": "He had a great influence on my career."
+   }
+  ]
+ },
+ {
+  "headword": "inhabit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092894",
+    "cefr": "B2",
+    "corpus_definition": "to live in or make your home in a particular place",
+    "example_en": "Millions of people inhabit that small island nation."
+   }
+  ]
+ },
+ {
+  "headword": "inhabitant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f3",
+    "cefr": "B2",
+    "corpus_definition": "A person who lives in a certain place.",
+    "example_en": "Every inhabitant of the city received a letter."
+   }
+  ]
+ },
+ {
+  "headword": "injury",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd7",
+    "cefr": "B2",
+    "corpus_definition": "Damage done to your body during an accident or sport.",
+    "example_en": "He has a leg injury from the football match."
+   }
+  ]
+ },
+ {
+  "headword": "insist on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd2",
+    "cefr": "B2",
+    "corpus_definition": "To say strongly that something must happen.",
+    "example_en": "They insist on paying the bill."
+   }
+  ]
+ },
+ {
+  "headword": "institute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366fd",
+    "cefr": "B2",
+    "corpus_definition": "An organization that performs research or teaches subjects.",
+    "example_en": "She works at a research institute in London."
+   }
+  ]
+ },
+ {
+  "headword": "institution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809276a",
+    "cefr": "B2",
+    "corpus_definition": "A large formal organization like a school, hospital, or bank.",
+    "example_en": "She works at a large financial institution."
+   }
+  ]
+ }
+]

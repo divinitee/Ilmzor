@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "nature reserve",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e14",
+    "cefr": "B2",
+    "corpus_definition": "A protected area where animals can live safely.",
+    "example_en": "We saw many rare birds in the nature reserve."
+   }
+  ]
+ },
+ {
+  "headword": "navigate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809268c",
+    "cefr": "B2",
+    "corpus_definition": "To find the right direction when traveling to a place.",
+    "example_en": "We used a map to navigate through the dark forest."
+   }
+  ]
+ },
+ {
+  "headword": "necessity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c9",
+    "cefr": "B2",
+    "corpus_definition": "Something that you must have.",
+    "example_en": "Water is a necessity for all life."
+   }
+  ]
+ },
+ {
+  "headword": "neglect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ba",
+    "cefr": "B2",
+    "corpus_definition": "to fail to take care of someone or something properly",
+    "example_en": "Don't neglect your health while working long hours."
+   }
+  ]
+ },
+ {
+  "headword": "network",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e4a",
+    "cefr": "B2",
+    "corpus_definition": "A system of many things connected to each other.",
+    "example_en": "The computer network is down today."
+   }
+  ]
+ },
+ {
+  "headword": "neutral",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c4",
+    "cefr": "B2",
+    "corpus_definition": "Not supporting either side in an argument or war.",
+    "example_en": "The country remained neutral during the conflict."
+   }
+  ]
+ },
+ {
+  "headword": "nightmare",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736867",
+    "cefr": "B2",
+    "corpus_definition": "A very bad or frightening dream.",
+    "example_en": "I had a nightmare about being lost."
+   }
+  ]
+ },
+ {
+  "headword": "noble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092756",
+    "cefr": "B2",
+    "corpus_definition": "Having high moral qualities or belonging to a high rank.",
+    "example_en": "It was a noble act to help them."
+   }
+  ]
+ },
+ {
+  "headword": "nor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736818",
+    "cefr": "B2",
+    "corpus_definition": "Used to connect negative ideas.",
+    "example_en": "He did not talk, nor did he listen."
+   }
+  ]
+ },
+ {
+  "headword": "notification",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e47",
+    "cefr": "B2",
+    "corpus_definition": "A message that tells you about something new.",
+    "example_en": "I got a notification on my phone."
+   }
+  ]
+ }
+]

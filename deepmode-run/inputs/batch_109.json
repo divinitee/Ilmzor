@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "state",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668c",
+    "cefr": "B1",
+    "corpus_definition": "The way someone or something is at a particular time.",
+    "example_en": "The house was in a bad state."
+   }
+  ]
+ },
+ {
+  "headword": "stay up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb7",
+    "cefr": "B1",
+    "corpus_definition": "To go to bed later than usual.",
+    "example_en": "I stayed up all night working."
+   }
+  ]
+ },
+ {
+  "headword": "steep",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a4",
+    "cefr": "B1",
+    "corpus_definition": "Having a sharp angle, making it hard to go up or down.",
+    "example_en": "The path to the top was very steep."
+   }
+  ]
+ },
+ {
+  "headword": "sting",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284c",
+    "cefr": "B1",
+    "corpus_definition": "to cause a sharp burning pain; a wound from an insect's needle",
+    "example_en": "A bee stung him on the arm."
+   }
+  ]
+ },
+ {
+  "headword": "stormy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736665",
+    "cefr": "B1",
+    "corpus_definition": "Having very bad weather with strong wind and rain.",
+    "example_en": "It was a very stormy night yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "strength",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ecc",
+    "cefr": "B1",
+    "corpus_definition": "The quality of being physically powerful or not breaking easily.",
+    "example_en": "The rope has enough strength to hold him."
+   }
+  ]
+ },
+ {
+  "headword": "stress",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdef",
+    "cefr": "B1",
+    "corpus_definition": "A feeling of worry caused by difficult situations.",
+    "example_en": "Too much work causes a lot of stress."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea6",
+    "cefr": "B1",
+    "corpus_definition": "A worried feeling caused by difficult situations in your life.",
+    "example_en": "Too much work can cause a lot of stress."
+   }
+  ]
+ },
+ {
+  "headword": "stretch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd58",
+    "cefr": "B1",
+    "corpus_definition": "to make something longer or wider by pulling it",
+    "example_en": "This fabric will stretch after you wash it."
+   }
+  ]
+ },
+ {
+  "headword": "strip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092798",
+    "cefr": "B1",
+    "corpus_definition": "a long thin piece cut from something; to remove a covering",
+    "example_en": "He stripped the old paint off the wooden door."
+   }
+  ]
+ },
+ {
+  "headword": "striped",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd59",
+    "cefr": "B1",
+    "corpus_definition": "having lines of color on it",
+    "example_en": "He wore a striped tie with his suit."
+   }
+  ]
+ }
+]

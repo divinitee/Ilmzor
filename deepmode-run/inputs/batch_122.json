@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "bead",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685f",
+    "cefr": "B2",
+    "corpus_definition": "A small object with a hole for stringing on thread.",
+    "example_en": "She made a necklace with blue beads."
+   }
+  ]
+ },
+ {
+  "headword": "beak",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a9",
+    "cefr": "B2",
+    "corpus_definition": "The hard pointed mouth part of a bird.",
+    "example_en": "The bird carried food in its beak."
+   }
+  ]
+ },
+ {
+  "headword": "beast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670b",
+    "cefr": "B2",
+    "corpus_definition": "A large, strong, or wild animal.",
+    "example_en": "The huge beast ran quickly into the dark forest."
+   }
+  ]
+ },
+ {
+  "headword": "belief",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc88",
+    "cefr": "B2",
+    "corpus_definition": "the feeling that something is true or exists even without proof",
+    "example_en": "She has a strong belief in her own abilities."
+   }
+  ]
+ },
+ {
+  "headword": "beloved",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736888",
+    "cefr": "B2",
+    "corpus_definition": "Something or someone that is very dear to you.",
+    "example_en": "She visited her beloved grandmother today."
+   }
+  ]
+ },
+ {
+  "headword": "beneath",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926bf",
+    "cefr": "B2",
+    "corpus_definition": "In a position lower than something else.",
+    "example_en": "The cat hid beneath the table."
+   }
+  ]
+ },
+ {
+  "headword": "beneficial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671d",
+    "cefr": "B2",
+    "corpus_definition": "Having a good effect on someone or something.",
+    "example_en": "Daily exercise is beneficial to your health."
+   }
+  ]
+ },
+ {
+  "headword": "benefit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc9",
+    "cefr": "B2",
+    "corpus_definition": "A good result or advantage from something.",
+    "example_en": "Regular running is a big benefit to your health."
+   }
+  ]
+ },
+ {
+  "headword": "betray",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736691",
+    "cefr": "B2",
+    "corpus_definition": "To be disloyal to someone who trusts you.",
+    "example_en": "He felt they would never betray his trust."
+   }
+  ]
+ },
+ {
+  "headword": "beverage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676e",
+    "cefr": "B2",
+    "corpus_definition": "Any type of liquid that you can drink.",
+    "example_en": "Water is the best beverage to drink during exercise."
+   }
+  ]
+ }
+]

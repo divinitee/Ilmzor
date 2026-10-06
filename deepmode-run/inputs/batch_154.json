@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "migrate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ff",
+    "cefr": "B2",
+    "corpus_definition": "To travel from one place to another for the season.",
+    "example_en": "Birds migrate south when the weather gets cold."
+   }
+  ]
+ },
+ {
+  "headword": "millennium",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ae",
+    "cefr": "B2",
+    "corpus_definition": "A period of one thousand years.",
+    "example_en": "The building has stood for nearly a millennium."
+   }
+  ]
+ },
+ {
+  "headword": "mist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b1",
+    "cefr": "B2",
+    "corpus_definition": "Small drops of water in the air near the ground.",
+    "example_en": "A thick mist covered the morning forest."
+   }
+  ]
+ },
+ {
+  "headword": "moan",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b1",
+    "cefr": "B2",
+    "corpus_definition": "To make a long, low sound because of pain or sadness.",
+    "example_en": "The injured man let out a soft moan."
+   }
+  ]
+ },
+ {
+  "headword": "mock",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c3",
+    "cefr": "B2",
+    "corpus_definition": "To laugh at someone in an unkind way.",
+    "example_en": "It is mean to mock people for their mistakes."
+   }
+  ]
+ },
+ {
+  "headword": "mode",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736804",
+    "cefr": "B2",
+    "corpus_definition": "A particular way of doing or operating something.",
+    "example_en": "Switch the phone to silent mode."
+   }
+  ]
+ },
+ {
+  "headword": "modify",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736750",
+    "cefr": "B2",
+    "corpus_definition": "To make small changes to something to improve it.",
+    "example_en": "We need to modify the design to fit better."
+   }
+  ]
+ },
+ {
+  "headword": "moral",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c9",
+    "cefr": "B2",
+    "corpus_definition": "Relating to what is right and wrong.",
+    "example_en": "Stealing is against my moral values."
+   }
+  ]
+ },
+ {
+  "headword": "native",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736661",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the place where someone was born.",
+    "example_en": "She returned to her native city."
+   }
+  ]
+ },
+ {
+  "headword": "natural disaster",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e10",
+    "cefr": "B2",
+    "corpus_definition": "A sudden event like a flood or earthquake causing harm.",
+    "example_en": "Every natural disaster requires a fast response."
+   }
+  ]
+ }
+]

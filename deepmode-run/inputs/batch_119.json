@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "apprentice",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928a0",
+    "cefr": "B2",
+    "corpus_definition": "a person learning a skill by working with an expert",
+    "example_en": "He started as an apprentice to a skilled carpenter."
+   }
+  ]
+ },
+ {
+  "headword": "approve of",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd3",
+    "cefr": "B2",
+    "corpus_definition": "To think that something is right or good.",
+    "example_en": "My parents approve of my friends."
+   }
+  ]
+ },
+ {
+  "headword": "arise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279c",
+    "cefr": "B2",
+    "corpus_definition": "to begin to happen or exist; to come up as a new issue",
+    "example_en": "Problems arose when the project lost its funding."
+   }
+  ]
+ },
+ {
+  "headword": "arithmetic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092829",
+    "cefr": "B2",
+    "corpus_definition": "The study of numbers and basic ways to combine them.",
+    "example_en": "We practiced arithmetic in math class today."
+   }
+  ]
+ },
+ {
+  "headword": "artificial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b2c",
+    "cefr": "B2",
+    "corpus_definition": "Not natural, made by people.",
+    "example_en": "These flowers are made of artificial silk."
+   }
+  ]
+ },
+ {
+  "headword": "ash",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092685",
+    "cefr": "B2",
+    "corpus_definition": "The grey powder left after something has burned.",
+    "example_en": "The fire left only ash in the fireplace."
+   }
+  ]
+ },
+ {
+  "headword": "ashamed of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdfd",
+    "cefr": "B2",
+    "corpus_definition": "feeling bad because you did something wrong",
+    "example_en": "He was ashamed of his poor behavior."
+   }
+  ]
+ },
+ {
+  "headword": "assemble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eca",
+    "cefr": "B2",
+    "corpus_definition": "To put together all the parts of a piece of equipment.",
+    "example_en": "It is easy to assemble this new chair."
+   }
+  ]
+ },
+ {
+  "headword": "assembly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b5",
+    "cefr": "B2",
+    "corpus_definition": "A large group of people meeting in one place for a reason.",
+    "example_en": "The school held an assembly in the main hall."
+   }
+  ]
+ },
+ {
+  "headword": "assist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680f",
+    "cefr": "B2",
+    "corpus_definition": "To help someone do a task.",
+    "example_en": "Can you assist me with these boxes?"
+   }
+  ]
+ }
+]

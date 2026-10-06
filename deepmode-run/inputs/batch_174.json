@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "tend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736809",
+    "cefr": "B2",
+    "corpus_definition": "To often do a particular thing or have a habit.",
+    "example_en": "I tend to wake up very early."
+   }
+  ]
+ },
+ {
+  "headword": "tense",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f2",
+    "cefr": "B2",
+    "corpus_definition": "Feeling worried and unable to relax.",
+    "example_en": "The atmosphere in the room was very tense."
+   }
+  ]
+ },
+ {
+  "headword": "terrific",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d0",
+    "cefr": "B2",
+    "corpus_definition": "Extremely good or impressive.",
+    "example_en": "You did a terrific job on the project."
+   }
+  ]
+ },
+ {
+  "headword": "terrified",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809270d",
+    "cefr": "B2",
+    "corpus_definition": "Feeling very afraid of something.",
+    "example_en": "The child was terrified of the dark room."
+   }
+  ]
+ },
+ {
+  "headword": "territory",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736756",
+    "cefr": "B2",
+    "corpus_definition": "A large area of land owned by a country.",
+    "example_en": "The animal protects its territory from others."
+   }
+  ]
+ },
+ {
+  "headword": "texture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677e",
+    "cefr": "B2",
+    "corpus_definition": "The way that something feels when you touch it.",
+    "example_en": "I like the smooth texture of this silk fabric."
+   }
+  ]
+ },
+ {
+  "headword": "theory",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdbd",
+    "cefr": "B2",
+    "corpus_definition": "An idea that explains why something happens.",
+    "example_en": "That is just an interesting theory."
+   }
+  ]
+ },
+ {
+  "headword": "throne",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ca",
+    "cefr": "B2",
+    "corpus_definition": "A special chair used by a king or queen.",
+    "example_en": "The king sat on his golden throne."
+   }
+  ]
+ },
+ {
+  "headword": "tide",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092772",
+    "cefr": "B2",
+    "corpus_definition": "The regular rise and fall of the sea level.",
+    "example_en": "The tide is coming in very quickly now."
+   }
+  ]
+ },
+ {
+  "headword": "tornado",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736769",
+    "cefr": "B2",
+    "corpus_definition": "A powerful wind that spins and moves across the ground.",
+    "example_en": "The tornado caused much damage to the town."
+   }
+  ]
+ }
+]

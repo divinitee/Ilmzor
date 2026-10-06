@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "hang up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f918",
+    "cefr": "B1",
+    "corpus_definition": "To end a phone conversation by putting the receiver down.",
+    "example_en": "He did not say goodbye before he hung up."
+   }
+  ]
+ },
+ {
+  "headword": "hatred",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdfc",
+    "cefr": "C1",
+    "corpus_definition": "a very strong feeling of dislike for someone",
+    "example_en": "There is no place for hatred in this world."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480927b6",
+    "cefr": "B1",
+    "corpus_definition": "a very strong feeling of dislike or anger toward someone",
+    "example_en": "His hatred of injustice drove him to become a lawyer."
+   }
+  ]
+ },
+ {
+  "headword": "have on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd61",
+    "cefr": "B1",
+    "corpus_definition": "to be wearing a piece of clothing.",
+    "example_en": "She had a red hat on today."
+   }
+  ]
+ },
+ {
+  "headword": "headline",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ef",
+    "cefr": "B1",
+    "corpus_definition": "The main title of a news story.",
+    "example_en": "I read the headline in the newspaper."
+   }
+  ]
+ },
+ {
+  "headword": "heel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e94",
+    "cefr": "B1",
+    "corpus_definition": "The back rounded part of the bottom of a foot.",
+    "example_en": "Her heel was sore from wearing those uncomfortable shoes."
+   }
+  ]
+ },
+ {
+  "headword": "hesitate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908b4",
+    "cefr": "B2",
+    "corpus_definition": "To pause before doing something because you are not sure.",
+    "example_en": "Do not hesitate to call if you need help."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092769",
+    "cefr": "B1",
+    "corpus_definition": "to pause because you are not sure what to do or say",
+    "example_en": "She hesitated before answering the difficult question."
+   }
+  ]
+ },
+ {
+  "headword": "hint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073679e",
+    "cefr": "B1",
+    "corpus_definition": "A small piece of information that helps you guess something.",
+    "example_en": "She gave me a hint about my surprise party."
+   }
+  ]
+ },
+ {
+  "headword": "honesty",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113014a",
+    "cefr": "B1",
+    "corpus_definition": "The quality of always speaking the truth to other people.",
+    "example_en": "Honesty is the most important part of our friendship."
+   }
+  ]
+ },
+ {
+  "headword": "humble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a5",
+    "cefr": "B1",
+    "corpus_definition": "not thinking you are better or more important than others",
+    "example_en": "Despite his fame, the actor remained humble and kind."
+   }
+  ]
+ },
+ {
+  "headword": "illegal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc6e",
+    "cefr": "B1",
+    "corpus_definition": "not allowed by the laws of a place.",
+    "example_en": "It is illegal to drive without a license."
+   }
+  ]
+ }
+]

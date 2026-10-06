@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "tear",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5d",
+    "cefr": "B1",
+    "corpus_definition": "to pull something apart into two or more pieces.",
+    "example_en": "Be careful not to tear the thin paper."
+   }
+  ]
+ },
+ {
+  "headword": "technician",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671b",
+    "cefr": "B1",
+    "corpus_definition": "A worker who is trained to repair machines or electronic systems.",
+    "example_en": "A skilled worker came to fix our broken computer."
+   }
+  ]
+ },
+ {
+  "headword": "technology",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b46",
+    "cefr": "B1",
+    "corpus_definition": "Modern tools and machines based on scientific knowledge.",
+    "example_en": "Modern technology makes our lives much easier."
+   }
+  ]
+ },
+ {
+  "headword": "tell a joke",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf0",
+    "cefr": "B1",
+    "corpus_definition": "To say something funny to make people laugh.",
+    "example_en": "He loves to tell a joke at parties."
+   }
+  ]
+ },
+ {
+  "headword": "tempt",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926fa",
+    "cefr": "B1",
+    "corpus_definition": "to make someone want to do something they should avoid",
+    "example_en": "The smell of cake tempted her to eat another slice."
+   }
+  ]
+ },
+ {
+  "headword": "theft",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928c7",
+    "cefr": "B1",
+    "corpus_definition": "the crime of taking something that belongs to someone else",
+    "example_en": "He was arrested for theft at the shopping centre."
+   }
+  ]
+ },
+ {
+  "headword": "thread",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092839",
+    "cefr": "B1",
+    "corpus_definition": "A long thin string used for joining pieces of material.",
+    "example_en": "I need to put thread through the eye."
+   }
+  ]
+ },
+ {
+  "headword": "thrill",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927fe",
+    "cefr": "B1",
+    "corpus_definition": "a sudden strong feeling of excitement or happiness",
+    "example_en": "She felt a thrill of excitement as the concert began."
+   }
+  ]
+ },
+ {
+  "headword": "toss",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809288a",
+    "cefr": "B1",
+    "corpus_definition": "to throw something lightly or carelessly through the air",
+    "example_en": "She tossed the keys to him across the room."
+   }
+  ]
+ },
+ {
+  "headword": "tournament",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736757",
+    "cefr": "B1",
+    "corpus_definition": "A series of games where the winner is decided.",
+    "example_en": "She won the tennis tournament last summer."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "spare",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdbc",
+    "cefr": "B1",
+    "corpus_definition": "Extra things kept for when you need them.",
+    "example_en": "I have a spare key for you."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480926bb",
+    "cefr": "B2",
+    "corpus_definition": "To keep something extra that is not currently used.",
+    "example_en": "Do you have a spare key?"
+   }
+  ]
+ },
+ {
+  "headword": "spear",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a3",
+    "cefr": "B1",
+    "corpus_definition": "a long weapon with a sharp point on the end, used in fighting",
+    "example_en": "The warrior threw his spear at the target."
+   }
+  ]
+ },
+ {
+  "headword": "speech",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f924",
+    "cefr": "B1",
+    "corpus_definition": "A formal talk given to a group of people.",
+    "example_en": "She gave a great speech at the party."
+   }
+  ]
+ },
+ {
+  "headword": "spice",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e9",
+    "cefr": "B1",
+    "corpus_definition": "A plant part used to give food a strong taste.",
+    "example_en": "This soup needs a little more spice."
+   }
+  ]
+ },
+ {
+  "headword": "splash",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809276f",
+    "cefr": "B1",
+    "corpus_definition": "to throw liquid in drops that scatter in all directions",
+    "example_en": "The children splash water at each other in the pool."
+   }
+  ]
+ },
+ {
+  "headword": "split up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130135",
+    "cefr": "B1",
+    "corpus_definition": "To end a romantic relationship.",
+    "example_en": "They decided to split up after three years."
+   }
+  ]
+ },
+ {
+  "headword": "squeeze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ce",
+    "cefr": "B1",
+    "corpus_definition": "To press something firmly with your hands.",
+    "example_en": "Please squeeze the lemon over the fish."
+   }
+  ]
+ },
+ {
+  "headword": "stack",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275c",
+    "cefr": "B1",
+    "corpus_definition": "A pile of items placed one on top of another.",
+    "example_en": "He put the stack of papers on my desk."
+   }
+  ]
+ },
+ {
+  "headword": "staff",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccaf",
+    "cefr": "B1",
+    "corpus_definition": "The group of people who work for an organization.",
+    "example_en": "The staff is very friendly here."
+   }
+  ]
+ },
+ {
+  "headword": "staircase",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073667c",
+    "cefr": "B1",
+    "corpus_definition": "A set of steps that lead from one floor to another.",
+    "example_en": "She walked slowly down the long staircase."
+   }
+  ]
+ }
+]

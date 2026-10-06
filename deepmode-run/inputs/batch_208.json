@@ -1,0 +1,62 @@
+[
+ {
+  "headword": "withdraw",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a9",
+    "cefr": "C1",
+    "corpus_definition": "To pull back or leave a place or situation.",
+    "example_en": "The army decided to withdraw from the city."
+   }
+  ]
+ },
+ {
+  "headword": "withhold",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f4",
+    "cefr": "C1",
+    "corpus_definition": "To refuse to give something that is asked for.",
+    "example_en": "The company decided to withhold information from the public."
+   }
+  ]
+ },
+ {
+  "headword": "wooded",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736730",
+    "cefr": "C1",
+    "corpus_definition": "An area of land that has many trees growing on it.",
+    "example_en": "We walked through the quiet wooded hills all morning."
+   }
+  ]
+ },
+ {
+  "headword": "yield",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926aa",
+    "cefr": "C1",
+    "corpus_definition": "To give up control or produce a result like food.",
+    "example_en": "Farmers expect their crops to yield plenty of corn."
+   }
+  ]
+ },
+ {
+  "headword": "zoology",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736708",
+    "cefr": "C1",
+    "corpus_definition": "The study of animals and their life.",
+    "example_en": "She decided to study zoology at the university."
+   }
+  ]
+ }
+]

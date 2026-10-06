@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "frequency",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672b",
+    "cefr": "B2",
+    "corpus_definition": "How often something happens.",
+    "example_en": "We check the weather on a daily basis."
+   }
+  ]
+ },
+ {
+  "headword": "fund",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00de0",
+    "cefr": "B2",
+    "corpus_definition": "An amount of money kept for a particular purpose.",
+    "example_en": "The charity set up a new fund."
+   }
+  ]
+ },
+ {
+  "headword": "fundamental",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736735",
+    "cefr": "B2",
+    "corpus_definition": "The most important or basic part of something.",
+    "example_en": "Honesty is a fundamental part of our friendship."
+   }
+  ]
+ },
+ {
+  "headword": "gadget",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b36",
+    "cefr": "B2",
+    "corpus_definition": "A small machine or tool that performs a useful job.",
+    "example_en": "He loves buying every new kitchen gadget."
+   }
+  ]
+ },
+ {
+  "headword": "genetic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d3",
+    "cefr": "B2",
+    "corpus_definition": "Related to the DNA passed from parents to children.",
+    "example_en": "They are studying his unique genetic traits."
+   }
+  ]
+ },
+ {
+  "headword": "genre",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736841",
+    "cefr": "B2",
+    "corpus_definition": "a particular style or category of art, music, or literature",
+    "example_en": "My favorite music genre is jazz."
+   }
+  ]
+ },
+ {
+  "headword": "get away with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc81",
+    "cefr": "B2",
+    "corpus_definition": "to escape being punished for doing something wrong or illegal",
+    "example_en": "He thought he could get away with stealing money."
+   }
+  ]
+ },
+ {
+  "headword": "get over",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce6",
+    "cefr": "B2",
+    "corpus_definition": "To recover from an illness or a bad experience.",
+    "example_en": "It takes time to get over a bad cold."
+   }
+  ]
+ },
+ {
+  "headword": "global warming",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dff",
+    "cefr": "B2",
+    "corpus_definition": "The steady rise in the temperature of the planet.",
+    "example_en": "Global warming causes glaciers to melt very fast."
+   }
+  ]
+ },
+ {
+  "headword": "glow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926dc",
+    "cefr": "B2",
+    "corpus_definition": "To produce a soft light.",
+    "example_en": "The candle began to glow in the dark."
+   }
+  ]
+ }
+]

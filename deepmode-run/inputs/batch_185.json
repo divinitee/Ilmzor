@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "consistent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675c",
+    "cefr": "C1",
+    "corpus_definition": "Always behaving or happening in the same way.",
+    "example_en": "She is a consistent worker who meets all deadlines."
+   }
+  ]
+ },
+ {
+  "headword": "corpse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670e",
+    "cefr": "C1",
+    "corpus_definition": "The body of a person who has passed away.",
+    "example_en": "They found the old corpse in the dark cave."
+   }
+  ]
+ },
+ {
+  "headword": "crumble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736872",
+    "cefr": "C1",
+    "corpus_definition": "To break into very small pieces.",
+    "example_en": "The dry cake began to crumble away."
+   }
+  ]
+ },
+ {
+  "headword": "cub",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c0",
+    "cefr": "C1",
+    "corpus_definition": "The young offspring of certain wild animals.",
+    "example_en": "The bear cub played near its mother."
+   }
+  ]
+ },
+ {
+  "headword": "cultivate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736773",
+    "cefr": "C1",
+    "corpus_definition": "To prepare land and grow crops on it.",
+    "example_en": "The farmers cultivate corn on their large land."
+   }
+  ]
+ },
+ {
+  "headword": "cumulative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736724",
+    "cefr": "C1",
+    "corpus_definition": "Increasing by adding more parts together over time.",
+    "example_en": "The cumulative effect of pollution is damaging the environment."
+   }
+  ]
+ },
+ {
+  "headword": "cunning",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e5",
+    "cefr": "C1",
+    "corpus_definition": "Clever at getting what you want, often by tricking others.",
+    "example_en": "The cunning fox escaped the trap easily."
+   }
+  ]
+ },
+ {
+  "headword": "cyberspace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367be",
+    "cefr": "C1",
+    "corpus_definition": "The virtual place where computer users communicate and share information.",
+    "example_en": "Much of our life is now spent in cyberspace."
+   }
+  ]
+ },
+ {
+  "headword": "cyclone",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675d",
+    "cefr": "C1",
+    "corpus_definition": "A violent storm with winds that turn in a circle.",
+    "example_en": "The cyclone destroyed many houses in the area."
+   }
+  ]
+ },
+ {
+  "headword": "deformed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736711",
+    "cefr": "C1",
+    "corpus_definition": "Having an unusual or wrong physical shape.",
+    "example_en": "The metal bar was twisted and clearly deformed."
+   }
+  ]
+ }
+]

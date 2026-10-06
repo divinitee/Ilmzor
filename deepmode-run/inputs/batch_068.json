@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "by sea",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d91",
+    "cefr": "B1",
+    "corpus_definition": "Traveling using a boat or ship.",
+    "example_en": "The goods were sent by sea."
+   }
+  ]
+ },
+ {
+  "headword": "call back",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f915",
+    "cefr": "B1",
+    "corpus_definition": "To phone someone again later.",
+    "example_en": "I am busy, I will call back later."
+   }
+  ]
+ },
+ {
+  "headword": "calm down",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf2",
+    "cefr": "B1",
+    "corpus_definition": "to become quiet and less angry or upset",
+    "example_en": "Please try to calm down after that argument."
+   }
+  ]
+ },
+ {
+  "headword": "canal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092762",
+    "cefr": "B1",
+    "corpus_definition": "A long, narrow passage of water made for boats or irrigation.",
+    "example_en": "The boat sailed slowly down the canal."
+   }
+  ]
+ },
+ {
+  "headword": "capable of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ee",
+    "cefr": "B1",
+    "corpus_definition": "Having the skill or power to do something.",
+    "example_en": "She is capable of finishing the work today."
+   }
+  ]
+ },
+ {
+  "headword": "captain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c93",
+    "cefr": "B1",
+    "corpus_definition": "The person who is the leader of a sports group.",
+    "example_en": "The captain led our team to victory."
+   }
+  ]
+ },
+ {
+  "headword": "career",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc99",
+    "cefr": "B1",
+    "corpus_definition": "the job or series of jobs you do during your working life",
+    "example_en": "She wants a career in science."
+   }
+  ]
+ },
+ {
+  "headword": "careless",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130144",
+    "cefr": "B1",
+    "corpus_definition": "Not paying enough attention to what you are doing.",
+    "example_en": "That was a careless mistake to make."
+   }
+  ]
+ },
+ {
+  "headword": "caretaker",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b2",
+    "cefr": "B1",
+    "corpus_definition": "a person who looks after a building or place",
+    "example_en": "The caretaker locked the school gates every evening."
+   }
+  ]
+ },
+ {
+  "headword": "casual",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287b",
+    "cefr": "B1",
+    "corpus_definition": "Not formal or fancy, suitable for everyday wear.",
+    "example_en": "She wore casual clothes to the party."
+   }
+  ]
+ }
+]

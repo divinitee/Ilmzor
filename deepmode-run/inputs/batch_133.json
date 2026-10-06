@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "desperate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092701",
+    "cefr": "B2",
+    "corpus_definition": "Feeling a strong need for help because of a very bad situation.",
+    "example_en": "They made a desperate attempt to save the sinking ship."
+   }
+  ]
+ },
+ {
+  "headword": "dialect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092868",
+    "cefr": "B2",
+    "corpus_definition": "a form of a language spoken in one region or by one group",
+    "example_en": "People in that village speak an old local dialect."
+   }
+  ]
+ },
+ {
+  "headword": "diligent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928a8",
+    "cefr": "B2",
+    "corpus_definition": "working very hard and carefully over a long time",
+    "example_en": "The diligent student reviewed her notes every evening."
+   }
+  ]
+ },
+ {
+  "headword": "disapprove",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ab",
+    "cefr": "B2",
+    "corpus_definition": "To think that something or someone is wrong or bad.",
+    "example_en": "My parents strongly disapprove of my new hobby."
+   }
+  ]
+ },
+ {
+  "headword": "discipline",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e7d",
+    "cefr": "B2",
+    "corpus_definition": "The ability to control your behavior to achieve something.",
+    "example_en": "He has the discipline to practice daily."
+   }
+  ]
+ },
+ {
+  "headword": "discourage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b4",
+    "cefr": "B2",
+    "corpus_definition": "to make someone feel less confident or less willing to do something",
+    "example_en": "Constant criticism can discourage even the best students."
+   }
+  ]
+ },
+ {
+  "headword": "discriminate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736712",
+    "cefr": "B2",
+    "corpus_definition": "To treat some people worse than others because of who they are.",
+    "example_en": "It is wrong to judge people based on their skin color."
+   }
+  ]
+ },
+ {
+  "headword": "disgrace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c9",
+    "cefr": "B2",
+    "corpus_definition": "the loss of respect and honor due to shameful behaviour",
+    "example_en": "His dishonesty brought disgrace upon his entire family."
+   }
+  ]
+ },
+ {
+  "headword": "disguise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ef",
+    "cefr": "B2",
+    "corpus_definition": "Changing your look so that people do not recognize you.",
+    "example_en": "He wore a disguise to hide his face."
+   }
+  ]
+ },
+ {
+  "headword": "dismiss",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092687",
+    "cefr": "B2",
+    "corpus_definition": "To tell someone they are no longer needed at work.",
+    "example_en": "The company had to dismiss several workers."
+   }
+  ]
+ }
+]

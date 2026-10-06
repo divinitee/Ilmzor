@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "defy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736811",
+    "cefr": "C1",
+    "corpus_definition": "To refuse to obey a person or rule.",
+    "example_en": "The protesters decided to defy the police."
+   }
+  ]
+ },
+ {
+  "headword": "deplete",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366bd",
+    "cefr": "C1",
+    "corpus_definition": "To use up a supply of something so that little remains.",
+    "example_en": "Heavy farming can deplete the soil of nutrients."
+   }
+  ]
+ },
+ {
+  "headword": "destiny",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736862",
+    "cefr": "C1",
+    "corpus_definition": "The events that will happen to you in the future.",
+    "example_en": "He felt it was his destiny to succeed."
+   }
+  ]
+ },
+ {
+  "headword": "devastate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277a",
+    "cefr": "C1",
+    "corpus_definition": "To destroy a place or thing very badly.",
+    "example_en": "The earthquake did devastate the small coastal town."
+   }
+  ]
+ },
+ {
+  "headword": "dew",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736658",
+    "cefr": "C1",
+    "corpus_definition": "Small drops of water on grass in the morning.",
+    "example_en": "The grass was wet with morning dew."
+   }
+  ]
+ },
+ {
+  "headword": "diameter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b9",
+    "cefr": "C1",
+    "corpus_definition": "The straight line passing through the middle of a circle.",
+    "example_en": "The circle has a diameter of ten centimeters."
+   }
+  ]
+ },
+ {
+  "headword": "dimension",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ecb",
+    "cefr": "C1",
+    "corpus_definition": "The height, width, or length of an object.",
+    "example_en": "We need to measure the dimension of the table."
+   }
+  ]
+ },
+ {
+  "headword": "dismissal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dce",
+    "cefr": "C1",
+    "corpus_definition": "When an employer tells you that you must leave.",
+    "example_en": "The sudden dismissal upset the whole team."
+   }
+  ]
+ },
+ {
+  "headword": "disobedient",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736645",
+    "cefr": "C1",
+    "corpus_definition": "Not doing what you are told to do.",
+    "example_en": "The child was disobedient at school today."
+   }
+  ]
+ },
+ {
+  "headword": "diverse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073683d",
+    "cefr": "C1",
+    "corpus_definition": "showing a great deal of variety or many different kinds",
+    "example_en": "The school has a very diverse group of students."
+   }
+  ]
+ }
+]

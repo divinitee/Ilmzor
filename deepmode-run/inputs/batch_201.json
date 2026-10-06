@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "ridicule",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736754",
+    "cefr": "C1",
+    "corpus_definition": "To laugh at someone in a mean or unkind way.",
+    "example_en": "He did not want his peers to ridicule him."
+   }
+  ]
+ },
+ {
+  "headword": "rife",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a0",
+    "cefr": "C1",
+    "corpus_definition": "Very common and usually bad.",
+    "example_en": "Rumors were rife after the CEO suddenly resigned."
+   }
+  ]
+ },
+ {
+  "headword": "riot",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673e",
+    "cefr": "C1",
+    "corpus_definition": "A loud and violent protest by a group of people.",
+    "example_en": "The city was quiet after the scary riot ended."
+   }
+  ]
+ },
+ {
+  "headword": "roost",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b6",
+    "cefr": "C1",
+    "corpus_definition": "A place where birds sit or sleep at night.",
+    "example_en": "The birds returned to their roost before dark."
+   }
+  ]
+ },
+ {
+  "headword": "sacrifice",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e2",
+    "cefr": "C1",
+    "corpus_definition": "To give up something valuable for a good reason.",
+    "example_en": "She had to sacrifice sleep to study."
+   }
+  ]
+ },
+ {
+  "headword": "sake",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073664e",
+    "cefr": "C1",
+    "corpus_definition": "For the purpose of helping someone or something.",
+    "example_en": "I did it for the sake of peace."
+   }
+  ]
+ },
+ {
+  "headword": "sane",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ed",
+    "cefr": "C1",
+    "corpus_definition": "Having a healthy and normal mind.",
+    "example_en": "It is hard to remain sane in this noise."
+   }
+  ]
+ },
+ {
+  "headword": "scramble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736763",
+    "cefr": "C1",
+    "corpus_definition": "To move quickly using your hands and feet.",
+    "example_en": "They had to scramble up the rocky hill."
+   }
+  ]
+ },
+ {
+  "headword": "scribble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673f",
+    "cefr": "C1",
+    "corpus_definition": "To write something quickly in a messy way.",
+    "example_en": "Do not scribble on the back of your test."
+   }
+  ]
+ },
+ {
+  "headword": "scribe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c8",
+    "cefr": "C1",
+    "corpus_definition": "A person whose job is to copy documents by hand.",
+    "example_en": "The ancient scribe wrote the story on parchment."
+   }
+  ]
+ }
+]

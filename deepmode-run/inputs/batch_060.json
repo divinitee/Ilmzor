@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "watch out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc4",
+    "cefr": "A2",
+    "corpus_definition": "To be careful because something bad might happen.",
+    "example_en": "Watch out for the wet floor!"
+   }
+  ]
+ },
+ {
+  "headword": "website",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f913",
+    "cefr": "A2",
+    "corpus_definition": "A place on the internet with pages about a topic.",
+    "example_en": "Check our website for more information."
+   }
+  ]
+ },
+ {
+  "headword": "weight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccf5",
+    "cefr": "A2",
+    "corpus_definition": "How heavy something or someone is.",
+    "example_en": "I checked my weight on the scale."
+   }
+  ]
+ },
+ {
+  "headword": "wheat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c3",
+    "cefr": "A2",
+    "corpus_definition": "a common grain used to make bread and pasta",
+    "example_en": "Farmers grow wheat in large fields across the country."
+   }
+  ]
+ },
+ {
+  "headword": "whistle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ea",
+    "cefr": "A2",
+    "corpus_definition": "a high clear sound made by blowing air through lips or a tool",
+    "example_en": "The referee blew his whistle to stop the game."
+   }
+  ]
+ },
+ {
+  "headword": "wifi",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e5b",
+    "cefr": "A2",
+    "corpus_definition": "A technology that lets computers connect to the web without cables.",
+    "example_en": "Is there free wifi in this cafe?"
+   }
+  ]
+ },
+ {
+  "headword": "wild",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8d",
+    "cefr": "A2",
+    "corpus_definition": "Living or growing in nature, not kept by humans.",
+    "example_en": "I saw a wild animal in the woods."
+   }
+  ]
+ },
+ {
+  "headword": "wipe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809274a",
+    "cefr": "A2",
+    "corpus_definition": "To clean a surface by rubbing it with a cloth.",
+    "example_en": "Please wipe the table after you eat."
+   }
+  ]
+ },
+ {
+  "headword": "wire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809274b",
+    "cefr": "A2",
+    "corpus_definition": "a thin piece of metal used to carry electricity or hold things",
+    "example_en": "The electrician connected the wire to the light switch."
+   }
+  ]
+ },
+ {
+  "headword": "wizard",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809270e",
+    "cefr": "A2",
+    "corpus_definition": "a person in stories who has magical powers",
+    "example_en": "The old wizard cast a spell to protect the village."
+   }
+  ]
+ }
+]

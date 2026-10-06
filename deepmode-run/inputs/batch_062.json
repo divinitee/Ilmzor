@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "abnormal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092864",
+    "cefr": "B1",
+    "corpus_definition": "different from what is usual, expected, or typical",
+    "example_en": "The doctor said the test results were slightly abnormal."
+   }
+  ]
+ },
+ {
+  "headword": "absence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092850",
+    "cefr": "B1",
+    "corpus_definition": "the state of not being present somewhere",
+    "example_en": "Her absence from class worried the teacher greatly."
+   }
+  ]
+ },
+ {
+  "headword": "accent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f928",
+    "cefr": "B2",
+    "corpus_definition": "A special way of speaking common to a specific place.",
+    "example_en": "He has a very strong French accent."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736669",
+    "cefr": "B1",
+    "corpus_definition": "A way of speaking typical of a certain region.",
+    "example_en": "She has a very strong French accent."
+   }
+  ]
+ },
+ {
+  "headword": "access",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f9",
+    "cefr": "B1",
+    "corpus_definition": "the right or ability to enter or use something",
+    "example_en": "We have easy access to the internet."
+   }
+  ]
+ },
+ {
+  "headword": "accommodation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d6b",
+    "cefr": "B1",
+    "corpus_definition": "A place to stay like a hotel room.",
+    "example_en": "The hotel provides free accommodation for guests."
+   }
+  ]
+ },
+ {
+  "headword": "accurate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366cd",
+    "cefr": "B1",
+    "corpus_definition": "Correct and without any mistakes.",
+    "example_en": "She gave an accurate report of what happened."
+   }
+  ]
+ },
+ {
+  "headword": "ache",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092760",
+    "cefr": "B1",
+    "corpus_definition": "A dull, continuous feeling of being hurt in your body.",
+    "example_en": "I have a bad ache in my back."
+   }
+  ]
+ },
+ {
+  "headword": "add up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b7f",
+    "cefr": "B1",
+    "corpus_definition": "to calculate the total amount of several numbers",
+    "example_en": "Can you add up these numbers for me?"
+   }
+  ]
+ },
+ {
+  "headword": "affair",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b4",
+    "cefr": "B1",
+    "corpus_definition": "an event, situation, or matter that needs attention",
+    "example_en": "The missing money became a serious affair for everyone."
+   }
+  ]
+ },
+ {
+  "headword": "affect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc7",
+    "cefr": "B2",
+    "corpus_definition": "To cause a change in someone or something.",
+    "example_en": "The loud noise did not affect my concentration."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685d",
+    "cefr": "B1",
+    "corpus_definition": "To cause a change in someone or something.",
+    "example_en": "The cold weather will affect the crops."
+   }
+  ]
+ }
+]

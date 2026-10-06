@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "multiply",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d9",
+    "cefr": "B1",
+    "corpus_definition": "To increase the amount or number of something significantly.",
+    "example_en": "Rabbits can multiply very quickly."
+   }
+  ]
+ },
+ {
+  "headword": "myth",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366af",
+    "cefr": "B1",
+    "corpus_definition": "An old, imaginary story used to explain natural events.",
+    "example_en": "Many people enjoy reading the ancient Greek myth."
+   }
+  ]
+ },
+ {
+  "headword": "nail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ebb",
+    "cefr": "B1",
+    "corpus_definition": "A small, thin piece of metal used to join two things.",
+    "example_en": "Use a hammer to hit the nail into the wall."
+   }
+  ]
+ },
+ {
+  "headword": "navy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092730",
+    "cefr": "B1",
+    "corpus_definition": "a country's military sea forces and ships",
+    "example_en": "He served in the navy for ten years."
+   }
+  ]
+ },
+ {
+  "headword": "nearby",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d7d",
+    "cefr": "B1",
+    "corpus_definition": "Not far away.",
+    "example_en": "Is there a store nearby?"
+   }
+  ]
+ },
+ {
+  "headword": "negative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb2",
+    "cefr": "B1",
+    "corpus_definition": "Having a bad or unhappy view of things.",
+    "example_en": "Try to avoid having such a negative attitude."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073664a",
+    "cefr": "B1",
+    "corpus_definition": "Having no good qualities or showing a bad attitude.",
+    "example_en": "He had a very negative outlook."
+   }
+  ]
+ },
+ {
+  "headword": "neighbourhood",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130123",
+    "cefr": "B1",
+    "corpus_definition": "The area of a town where people live.",
+    "example_en": "I love living in this quiet neighbourhood."
+   }
+  ]
+ },
+ {
+  "headword": "nod",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092847",
+    "cefr": "B1",
+    "corpus_definition": "To move your head down and up to say yes.",
+    "example_en": "She gave a small nod to agree."
+   }
+  ]
+ },
+ {
+  "headword": "occupy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a9",
+    "cefr": "B1",
+    "corpus_definition": "to fill or use a space, place, or time",
+    "example_en": "Protesters occupied the square for several days."
+   }
+  ]
+ },
+ {
+  "headword": "offend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927cf",
+    "cefr": "B1",
+    "corpus_definition": "to make someone feel hurt or upset by words or actions",
+    "example_en": "He did not mean to offend her with that comment."
+   }
+  ]
+ }
+]

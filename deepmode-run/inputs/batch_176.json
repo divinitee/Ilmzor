@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "trustworthy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b5",
+    "cefr": "B2",
+    "corpus_definition": "Someone who is honest and can be counted on.",
+    "example_en": "He is a trustworthy person who always tells truth."
+   }
+  ]
+ },
+ {
+  "headword": "tuck",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a4",
+    "cefr": "B2",
+    "corpus_definition": "To push the edge of something into a small space.",
+    "example_en": "Please tuck your shirt into your trousers."
+   }
+  ]
+ },
+ {
+  "headword": "tumble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f3",
+    "cefr": "B2",
+    "corpus_definition": "To fall down suddenly in an uncontrolled way.",
+    "example_en": "He watched the small child tumble on the grass."
+   }
+  ]
+ },
+ {
+  "headword": "unemployment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccbc",
+    "cefr": "B2",
+    "corpus_definition": "The state of not having a job when you want one.",
+    "example_en": "High unemployment causes many social problems in the city."
+   }
+  ]
+ },
+ {
+  "headword": "unique",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b47",
+    "cefr": "B2",
+    "corpus_definition": "Being the only one of its kind.",
+    "example_en": "Every person has a unique voice."
+   }
+  ]
+ },
+ {
+  "headword": "upwards",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809283b",
+    "cefr": "B2",
+    "corpus_definition": "Moving toward a higher place or position.",
+    "example_en": "He looked upwards at the tall building."
+   }
+  ]
+ },
+ {
+  "headword": "urban",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736667",
+    "cefr": "B2",
+    "corpus_definition": "Relating to a city or a large town.",
+    "example_en": "He enjoys the fast urban life."
+   }
+  ]
+ },
+ {
+  "headword": "utterly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367bb",
+    "cefr": "B2",
+    "corpus_definition": "Completely or in every single way.",
+    "example_en": "I was utterly exhausted after the long race."
+   }
+  ]
+ },
+ {
+  "headword": "vaccine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea8",
+    "cefr": "B2",
+    "corpus_definition": "A medicine given to help the body fight a specific disease.",
+    "example_en": "The new vaccine helps prevent the flu."
+   }
+  ]
+ },
+ {
+  "headword": "valid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680a",
+    "cefr": "B2",
+    "corpus_definition": "Something that is acceptable and can be used officially.",
+    "example_en": "Is your passport still valid?"
+   }
+  ]
+ }
+]

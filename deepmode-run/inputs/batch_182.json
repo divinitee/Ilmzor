@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "barley",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670a",
+    "cefr": "C1",
+    "corpus_definition": "A grain used for making food or drinks.",
+    "example_en": "Farmers grew fields of barley for the market."
+   }
+  ]
+ },
+ {
+  "headword": "beggar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc6",
+    "cefr": "C1",
+    "corpus_definition": "A poor person who asks others for money in public places.",
+    "example_en": "The beggar asked for coins on the street corner."
+   }
+  ]
+ },
+ {
+  "headword": "benefactor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279d",
+    "cefr": "C1",
+    "corpus_definition": "a person who gives help or money to support others",
+    "example_en": "An anonymous benefactor donated funds to the local hospital."
+   }
+  ]
+ },
+ {
+  "headword": "biodiversity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e12",
+    "cefr": "C1",
+    "corpus_definition": "The variety of all living things in a specific area.",
+    "example_en": "We must protect the biodiversity of our oceans."
+   }
+  ]
+ },
+ {
+  "headword": "blaze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092698",
+    "cefr": "C1",
+    "corpus_definition": "A very large, bright, and strong fire.",
+    "example_en": "The blaze destroyed the old wooden house."
+   }
+  ]
+ },
+ {
+  "headword": "brew",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736860",
+    "cefr": "C1",
+    "corpus_definition": "To make a hot drink like tea or coffee.",
+    "example_en": "He went to the kitchen to brew some coffee."
+   }
+  ]
+ },
+ {
+  "headword": "bruise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736643",
+    "cefr": "C1",
+    "corpus_definition": "A dark mark on your skin after a hit.",
+    "example_en": "He got a big bruise on his leg."
+   }
+  ]
+ },
+ {
+  "headword": "cape",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d4",
+    "cefr": "C1",
+    "corpus_definition": "A piece of land that sticks out into the sea.",
+    "example_en": "The ship sailed around the rocky cape."
+   }
+  ]
+ },
+ {
+  "headword": "carbohydrate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092841",
+    "cefr": "C1",
+    "corpus_definition": "A substance in food that gives the body energy.",
+    "example_en": "Bread is a common source of carbohydrate."
+   }
+  ]
+ },
+ {
+  "headword": "carbon footprint",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e16",
+    "cefr": "C1",
+    "corpus_definition": "The total amount of gases a person puts into the air.",
+    "example_en": "I want to reduce my carbon footprint by cycling."
+   }
+  ]
+ }
+]

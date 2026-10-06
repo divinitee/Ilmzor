@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "cliff",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00df5",
+    "cefr": "B2",
+    "corpus_definition": "A very steep rock face, usually by the water.",
+    "example_en": "Be careful near the edge of the cliff."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809269a",
+    "cefr": "B1",
+    "corpus_definition": "A high, steep rock face by the sea or mountains.",
+    "example_en": "The birds nested high on the rocky cliff."
+   }
+  ]
+ },
+ {
+  "headword": "coast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00df1",
+    "cefr": "B1",
+    "corpus_definition": "The land next to the large salt water areas.",
+    "example_en": "They live on the west coast."
+   }
+  ]
+ },
+ {
+  "headword": "coffin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092777",
+    "cefr": "B1",
+    "corpus_definition": "a long box in which a dead person is buried",
+    "example_en": "They carried the coffin slowly into the church."
+   }
+  ]
+ },
+ {
+  "headword": "collapse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809273c",
+    "cefr": "B1",
+    "corpus_definition": "to suddenly fall down or fail completely",
+    "example_en": "The old bridge collapsed under the weight of the truck."
+   }
+  ]
+ },
+ {
+  "headword": "colleague",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc9a",
+    "cefr": "B1",
+    "corpus_definition": "someone that you work with at the same place",
+    "example_en": "My colleague is helping me with this project."
+   }
+  ]
+ },
+ {
+  "headword": "collection",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc9",
+    "cefr": "B1",
+    "corpus_definition": "A group of things that you have gathered.",
+    "example_en": "He has a large stamp collection."
+   }
+  ]
+ },
+ {
+  "headword": "comedian",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf7",
+    "cefr": "B1",
+    "corpus_definition": "a person who tells jokes to make people laugh",
+    "example_en": "The famous comedian made the audience laugh."
+   }
+  ]
+ },
+ {
+  "headword": "commission",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ea",
+    "cefr": "B1",
+    "corpus_definition": "a group given authority to do a task, or a fee paid for work",
+    "example_en": "The agent earned a commission on every house sold."
+   }
+  ]
+ },
+ {
+  "headword": "community",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc67",
+    "cefr": "B1",
+    "corpus_definition": "the group of people who live in the same area.",
+    "example_en": "Everyone in the community helped clean the park."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00e7b",
+    "cefr": "B1",
+    "corpus_definition": "All the people living in one specific area.",
+    "example_en": "The community worked together to help."
+   }
+  ]
+ },
+ {
+  "headword": "compact",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d9",
+    "cefr": "B1",
+    "corpus_definition": "small and neatly arranged to save space",
+    "example_en": "She bought a compact camera for the trip."
+   }
+  ]
+ }
+]

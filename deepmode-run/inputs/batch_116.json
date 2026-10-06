@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "worship",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809289f",
+    "cefr": "B1",
+    "corpus_definition": "To show deep respect or love for a god or spirit.",
+    "example_en": "They go to the temple to worship every Sunday."
+   }
+  ]
+ },
+ {
+  "headword": "wrinkle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092863",
+    "cefr": "B1",
+    "corpus_definition": "a small line or fold that forms in skin or cloth",
+    "example_en": "She noticed a wrinkle on her forehead in the mirror."
+   }
+  ]
+ },
+ {
+  "headword": "yoga",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea4",
+    "cefr": "B1",
+    "corpus_definition": "A system of physical poses and breathing to relax the body.",
+    "example_en": "I practice yoga every morning to reduce stress."
+   }
+  ]
+ },
+ {
+  "headword": "youth club",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7e",
+    "cefr": "B1",
+    "corpus_definition": "a place where young people go for fun activities and to meet friends",
+    "example_en": "I go to the youth club every Friday night."
+   }
+  ]
+ },
+ {
+  "headword": "accuse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc91",
+    "cefr": "B2",
+    "corpus_definition": "to say that someone did something wrong or broke the law",
+    "example_en": "They did not accuse him of the crime."
+   }
+  ]
+ },
+ {
+  "headword": "accustomed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d3",
+    "cefr": "B2",
+    "corpus_definition": "To be used to something or someone.",
+    "example_en": "I am accustomed to the cold weather."
+   }
+  ]
+ },
+ {
+  "headword": "achieve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908a9",
+    "cefr": "B2",
+    "corpus_definition": "To finish something successfully after much effort.",
+    "example_en": "She worked hard to achieve her life goals."
+   }
+  ]
+ },
+ {
+  "headword": "acknowledge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809274c",
+    "cefr": "B2",
+    "corpus_definition": "To accept that something is true or exists.",
+    "example_en": "She did not acknowledge my greeting."
+   }
+  ]
+ },
+ {
+  "headword": "acquaint",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ec",
+    "cefr": "B2",
+    "corpus_definition": "to help someone get to know another person or thing",
+    "example_en": "Let me acquaint you with the new office rules."
+   }
+  ]
+ },
+ {
+  "headword": "acquire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b0",
+    "cefr": "B2",
+    "corpus_definition": "to get or gain something, especially through effort or experience",
+    "example_en": "She acquired new skills during her time abroad."
+   }
+  ]
+ }
+]

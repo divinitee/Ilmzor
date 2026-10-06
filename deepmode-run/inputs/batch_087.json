@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "in my opinion",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b58",
+    "cefr": "B1",
+    "corpus_definition": "How I personally feel about a topic.",
+    "example_en": "In my opinion, this plan works."
+   }
+  ]
+ },
+ {
+  "headword": "in time (for)",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cba",
+    "cefr": "B1",
+    "corpus_definition": "Early enough for a planned event or task.",
+    "example_en": "We arrived in time for the concert."
+   }
+  ]
+ },
+ {
+  "headword": "income",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca3",
+    "cefr": "B2",
+    "corpus_definition": "Money that a person receives from work or business.",
+    "example_en": "His income is very small."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00ddc",
+    "cefr": "B1",
+    "corpus_definition": "Money that you earn from your job or other sources.",
+    "example_en": "Her main income comes from her salary."
+   }
+  ]
+ },
+ {
+  "headword": "independence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809269c",
+    "cefr": "B1",
+    "corpus_definition": "The state of being free and not ruled by others.",
+    "example_en": "The country fought hard to win its independence."
+   }
+  ]
+ },
+ {
+  "headword": "infant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092857",
+    "cefr": "B1",
+    "corpus_definition": "a very young baby or child in the first year of life",
+    "example_en": "The infant slept peacefully in her mother's arms."
+   }
+  ]
+ },
+ {
+  "headword": "informal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f901",
+    "cefr": "B2",
+    "corpus_definition": "Suitable for relaxed or friendly social situations.",
+    "example_en": "The party will be quite informal."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480926f0",
+    "cefr": "B1",
+    "corpus_definition": "relaxed and casual, not official or serious in style",
+    "example_en": "The meeting had an informal atmosphere with no strict agenda."
+   }
+  ]
+ },
+ {
+  "headword": "ingredient",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccd6",
+    "cefr": "B1",
+    "corpus_definition": "One of the food items needed to make a dish.",
+    "example_en": "The main ingredient of this cake is sugar."
+   }
+  ]
+ },
+ {
+  "headword": "injure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736878",
+    "cefr": "B1",
+    "corpus_definition": "To cause physical harm to a person or animal.",
+    "example_en": "Did you injure your leg during the game?"
+   }
+  ]
+ },
+ {
+  "headword": "instant message",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e48",
+    "cefr": "B1",
+    "corpus_definition": "A quick note sent to someone on the web right now.",
+    "example_en": "She sent an instant message to her friend."
+   }
+  ]
+ },
+ {
+  "headword": "instruction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908b5",
+    "cefr": "B1",
+    "corpus_definition": "Information about how to do or use something.",
+    "example_en": "Please follow every instruction on the page."
+   }
+  ]
+ }
+]

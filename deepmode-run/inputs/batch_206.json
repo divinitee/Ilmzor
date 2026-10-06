@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "trivial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b9",
+    "cefr": "C1",
+    "corpus_definition": "Something that is not important or has very little value.",
+    "example_en": "They spent hours arguing over a trivial matter."
+   }
+  ]
+ },
+ {
+  "headword": "typewritten",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367cf",
+    "cefr": "C1",
+    "corpus_definition": "Produced using a mechanical machine with keys.",
+    "example_en": "The old document was clearly typewritten."
+   }
+  ]
+ },
+ {
+  "headword": "typhoon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676a",
+    "cefr": "C1",
+    "corpus_definition": "A very large and powerful tropical storm with strong winds.",
+    "example_en": "The typhoon caused massive damage along the coast."
+   }
+  ]
+ },
+ {
+  "headword": "underlying",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092736",
+    "cefr": "C1",
+    "corpus_definition": "existing as a hidden or basic cause of something",
+    "example_en": "Stress may be the underlying cause of his illness."
+   }
+  ]
+ },
+ {
+  "headword": "unity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366cb",
+    "cefr": "C1",
+    "corpus_definition": "The state of being joined together as one.",
+    "example_en": "Their team showed great unity during the game."
+   }
+  ]
+ },
+ {
+  "headword": "upright",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736833",
+    "cefr": "C1",
+    "corpus_definition": "In a vertical or straight position.",
+    "example_en": "Please keep the box in an upright position."
+   }
+  ]
+ },
+ {
+  "headword": "utilize",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279b",
+    "cefr": "C1",
+    "corpus_definition": "To make practical use of something.",
+    "example_en": "We must utilize all available resources effectively."
+   }
+  ]
+ },
+ {
+  "headword": "utter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736884",
+    "cefr": "C1",
+    "corpus_definition": "To make a sound with your voice or say words.",
+    "example_en": "She did not utter a single word."
+   }
+  ]
+ },
+ {
+  "headword": "vacancy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dc8",
+    "cefr": "C1",
+    "corpus_definition": "A job that is available for someone to take.",
+    "example_en": "There is a vacancy in the marketing department."
+   }
+  ]
+ },
+ {
+  "headword": "vain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736848",
+    "cefr": "C1",
+    "corpus_definition": "without success or producing no useful result",
+    "example_en": "The firefighters made a vain attempt to save the house."
+   }
+  ]
+ }
+]

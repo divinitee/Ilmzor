@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "crazy about",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cde",
+    "cefr": "B1",
+    "corpus_definition": "To really love or enjoy something very much.",
+    "example_en": "He is crazy about the new video game."
+   }
+  ]
+ },
+ {
+  "headword": "criminal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc69",
+    "cefr": "B1",
+    "corpus_definition": "a person who does something against the law.",
+    "example_en": "The police caught the criminal yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "criticism",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092779",
+    "cefr": "B1",
+    "corpus_definition": "the act of saying what is wrong or bad about something",
+    "example_en": "He accepted the criticism and tried to improve."
+   }
+  ]
+ },
+ {
+  "headword": "cross out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908c7",
+    "cefr": "B1",
+    "corpus_definition": "To draw a line through writing because it is wrong.",
+    "example_en": "Please cross out the mistakes on your page."
+   }
+  ]
+ },
+ {
+  "headword": "cruise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d74",
+    "cefr": "B1",
+    "corpus_definition": "A holiday trip on a large boat.",
+    "example_en": "They went on a cruise around the islands."
+   }
+  ]
+ },
+ {
+  "headword": "crush",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809273d",
+    "cefr": "B1",
+    "corpus_definition": "To press something so that it loses its shape.",
+    "example_en": "Do not crush the flowers in your hand."
+   }
+  ]
+ },
+ {
+  "headword": "cure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcccf",
+    "cefr": "B2",
+    "corpus_definition": "To make someone who is ill healthy again.",
+    "example_en": "The doctor gave her medicine to cure the illness."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736710",
+    "cefr": "B1",
+    "corpus_definition": "To make a sick person healthy again.",
+    "example_en": "Doctors found a new way to help him get better."
+   }
+  ]
+ },
+ {
+  "headword": "curl",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927da",
+    "cefr": "B1",
+    "corpus_definition": "To form into a twisted or rounded shape.",
+    "example_en": "She likes to curl her hair every morning."
+   }
+  ]
+ },
+ {
+  "headword": "current",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736850",
+    "cefr": "B1",
+    "corpus_definition": "happening or existing at this present moment",
+    "example_en": "What is your current address?"
+   }
+  ]
+ },
+ {
+  "headword": "curse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ee",
+    "cefr": "B1",
+    "corpus_definition": "a wish for something bad to happen to someone",
+    "example_en": "The old story told of a terrible curse on the family."
+   }
+  ]
+ }
+]

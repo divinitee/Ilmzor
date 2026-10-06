@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "go off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce7",
+    "cefr": "B2",
+    "corpus_definition": "To start to rot or become bad to eat.",
+    "example_en": "This meat will go off if it stays outside."
+   }
+  ]
+ },
+ {
+  "headword": "gossip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdae",
+    "cefr": "B2",
+    "corpus_definition": "To talk about other people's private lives.",
+    "example_en": "People love to gossip at the office party."
+   }
+  ]
+ },
+ {
+  "headword": "grapefruit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736788",
+    "cefr": "B2",
+    "corpus_definition": "A large round yellow citrus fruit with a tart pink or red center.",
+    "example_en": "I drink fresh grapefruit juice every morning for breakfast."
+   }
+  ]
+ },
+ {
+  "headword": "grasp",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809280b",
+    "cefr": "B2",
+    "corpus_definition": "To understand something that is hard to learn.",
+    "example_en": "He could not grasp the main idea."
+   }
+  ]
+ },
+ {
+  "headword": "greed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092715",
+    "cefr": "B2",
+    "corpus_definition": "A strong wish to have more food, money, or things than needed.",
+    "example_en": "His greed for gold led to his eventual ruin."
+   }
+  ]
+ },
+ {
+  "headword": "grief",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277e",
+    "cefr": "B2",
+    "corpus_definition": "Extreme sadness, especially when someone you love dies.",
+    "example_en": "He felt great grief after his mother died."
+   }
+  ]
+ },
+ {
+  "headword": "grind",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e9",
+    "cefr": "B2",
+    "corpus_definition": "To crush something into small pieces or powder.",
+    "example_en": "They grind coffee beans to make fresh drinks."
+   }
+  ]
+ },
+ {
+  "headword": "grip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ff",
+    "cefr": "B2",
+    "corpus_definition": "To hold something very tightly with your hand.",
+    "example_en": "She kept a firm grip on the rope."
+   }
+  ]
+ },
+ {
+  "headword": "grocer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092768",
+    "cefr": "B2",
+    "corpus_definition": "A person who sells food and small household items in a shop.",
+    "example_en": "I bought fresh fruit from the local grocer today."
+   }
+  ]
+ },
+ {
+  "headword": "growl",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ea",
+    "cefr": "B2",
+    "corpus_definition": "To make a low, rough sound in the throat.",
+    "example_en": "The hungry dog began to growl softly."
+   }
+  ]
+ }
+]

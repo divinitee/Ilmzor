@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "sway",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736666",
+    "cefr": "B2",
+    "corpus_definition": "To move slowly from side to side.",
+    "example_en": "The trees began to sway in the breeze."
+   }
+  ]
+ },
+ {
+  "headword": "swell",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092681",
+    "cefr": "B2",
+    "corpus_definition": "To get larger or rounder than usual.",
+    "example_en": "My hand began to swell after the sting."
+   }
+  ]
+ },
+ {
+  "headword": "sympathy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdfa",
+    "cefr": "C1",
+    "corpus_definition": "the feeling of being sorry for someone else",
+    "example_en": "She offered her sympathy to the grieving family."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092694",
+    "cefr": "B2",
+    "corpus_definition": "The feeling of being sorry for someone who is in pain.",
+    "example_en": "I have great sympathy for those who lost their homes."
+   }
+  ]
+ },
+ {
+  "headword": "take over",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb8",
+    "cefr": "B2",
+    "corpus_definition": "To take control of something from someone else.",
+    "example_en": "She will take over the business."
+   }
+  ]
+ },
+ {
+  "headword": "take up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb4",
+    "cefr": "B2",
+    "corpus_definition": "Start a new hobby or activity.",
+    "example_en": "I want to take up tennis this summer."
+   }
+  ]
+ },
+ {
+  "headword": "talented",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908c4",
+    "cefr": "B2",
+    "corpus_definition": "Having a natural ability to do something well.",
+    "example_en": "She is a very talented young painter."
+   }
+  ]
+ },
+ {
+  "headword": "tame",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f9",
+    "cefr": "B2",
+    "corpus_definition": "Not dangerous or wild, and used to living with humans.",
+    "example_en": "The horse was very tame and ate from my hand."
+   }
+  ]
+ },
+ {
+  "headword": "tease",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d6",
+    "cefr": "B2",
+    "corpus_definition": "To say unkind things to someone to make them angry.",
+    "example_en": "Do not tease your younger brother for crying."
+   }
+  ]
+ },
+ {
+  "headword": "teller",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b4",
+    "cefr": "B2",
+    "corpus_definition": "A person who works at a bank helping customers with money.",
+    "example_en": "I spoke to the teller to deposit my cash."
+   }
+  ]
+ },
+ {
+  "headword": "temper",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c9",
+    "cefr": "B2",
+    "corpus_definition": "A tendency to become angry very easily.",
+    "example_en": "He has a very short temper."
+   }
+  ]
+ }
+]

@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "assistant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb9",
+    "cefr": "B1",
+    "corpus_definition": "A person who helps someone else in their work.",
+    "example_en": "My assistant will help you today."
+   }
+  ]
+ },
+ {
+  "headword": "athlete",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc2",
+    "cefr": "B1",
+    "corpus_definition": "A person who is very good at sports.",
+    "example_en": "The athlete won a gold medal."
+   }
+  ]
+ },
+ {
+  "headword": "athletics",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc4",
+    "cefr": "B1",
+    "corpus_definition": "Sports such as running, jumping, and throwing.",
+    "example_en": "She competes in athletics at school."
+   }
+  ]
+ },
+ {
+  "headword": "attraction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d9b",
+    "cefr": "B1",
+    "corpus_definition": "A place or thing that people like to visit for fun.",
+    "example_en": "The museum is a popular local attraction."
+   }
+  ]
+ },
+ {
+  "headword": "awkward",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b1",
+    "cefr": "B1",
+    "corpus_definition": "uncomfortable or embarrassing; not smooth or easy",
+    "example_en": "There was an awkward silence after his strange comment."
+   }
+  ]
+ },
+ {
+  "headword": "baggage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809270f",
+    "cefr": "B1",
+    "corpus_definition": "The bags and suitcases you carry when traveling.",
+    "example_en": "Please collect your baggage at the arrival hall."
+   }
+  ]
+ },
+ {
+  "headword": "balance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc8",
+    "cefr": "B1",
+    "corpus_definition": "A state where things are equal and not falling over.",
+    "example_en": "It is hard to keep my balance on ice."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00e81",
+    "cefr": "B1",
+    "corpus_definition": "A state where things are equal and do not fall over.",
+    "example_en": "She lost her balance and fell down."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00ecd",
+    "cefr": "B1",
+    "corpus_definition": "A state where things are equal and do not fall over.",
+    "example_en": "She lost her balance and fell down."
+   }
+  ]
+ },
+ {
+  "headword": "barber",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073666a",
+    "cefr": "B1",
+    "corpus_definition": "A person who cuts hair for men.",
+    "example_en": "I went to the barber for a haircut."
+   }
+  ]
+ },
+ {
+  "headword": "beam",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287a",
+    "cefr": "B1",
+    "corpus_definition": "a line of light, or a long strong piece of wood or metal",
+    "example_en": "A beam of sunlight came through the window."
+   }
+  ]
+ },
+ {
+  "headword": "belly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073684b",
+    "cefr": "B1",
+    "corpus_definition": "the front part of the human body below the chest",
+    "example_en": "The boy has a pain in his belly."
+   }
+  ]
+ }
+]

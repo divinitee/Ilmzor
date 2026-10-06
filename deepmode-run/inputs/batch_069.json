@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "catalogue",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b65",
+    "cefr": "B1",
+    "corpus_definition": "A list of things you can buy.",
+    "example_en": "Look at the items in our catalogue."
+   }
+  ]
+ },
+ {
+  "headword": "catch up with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc80",
+    "cefr": "B1",
+    "corpus_definition": "to reach someone who is in front of you by moving faster",
+    "example_en": "Run faster so you can catch up with the group."
+   }
+  ]
+ },
+ {
+  "headword": "cattle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092712",
+    "cefr": "B1",
+    "corpus_definition": "cows and bulls kept on a farm for meat or milk",
+    "example_en": "The farmer moved his cattle to a new field."
+   }
+  ]
+ },
+ {
+  "headword": "cause",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda4",
+    "cefr": "B1",
+    "corpus_definition": "To make something happen, usually a bad event.",
+    "example_en": "Smoking can cause serious health problems for people."
+   }
+  ]
+ },
+ {
+  "headword": "caution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287c",
+    "cefr": "B1",
+    "corpus_definition": "great care taken to avoid danger or mistakes",
+    "example_en": "Please proceed with caution on the icy road ahead."
+   }
+  ]
+ },
+ {
+  "headword": "celebrity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f6",
+    "cefr": "B1",
+    "corpus_definition": "A very famous person known to many people.",
+    "example_en": "A famous celebrity walked down the red carpet."
+   }
+  ]
+ },
+ {
+  "headword": "ceremony",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736839",
+    "cefr": "B1",
+    "corpus_definition": "A formal event to celebrate something special.",
+    "example_en": "They attended a graduation ceremony yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "challenge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c94",
+    "cefr": "B1",
+    "corpus_definition": "A difficult task that tests your ability to do something well.",
+    "example_en": "Learning a new language is a fun challenge."
+   }
+  ]
+ },
+ {
+  "headword": "champion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c95",
+    "cefr": "B1",
+    "corpus_definition": "The person who wins the first prize in a sport or activity.",
+    "example_en": "She is the national tennis champion this year."
+   }
+  ]
+ },
+ {
+  "headword": "charity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc65",
+    "cefr": "B1",
+    "corpus_definition": "an organization that helps people who are in need.",
+    "example_en": "We gave money to a local charity."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b9",
+    "cefr": "B1",
+    "corpus_definition": "An organization that gives money or help to people in need.",
+    "example_en": "She donated old clothes to a local charity."
+   }
+  ]
+ }
+]

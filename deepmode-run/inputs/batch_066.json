@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "birthplace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671e",
+    "cefr": "B1",
+    "corpus_definition": "The specific city or country where a person was born.",
+    "example_en": "He returned to the town where he was born."
+   }
+  ]
+ },
+ {
+  "headword": "bitter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809288d",
+    "cefr": "B1",
+    "corpus_definition": "Having a sharp and unpleasant taste like black coffee.",
+    "example_en": "This medicine has a very bitter taste."
+   }
+  ]
+ },
+ {
+  "headword": "blacksmith",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279e",
+    "cefr": "B1",
+    "corpus_definition": "a person whose job is making and repairing metal objects",
+    "example_en": "The blacksmith hammered the hot iron into a horseshoe."
+   }
+  ]
+ },
+ {
+  "headword": "blame",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc92",
+    "cefr": "B1",
+    "corpus_definition": "to say that someone is responsible for a bad event or mistake",
+    "example_en": "Do not blame me for your own mistake."
+   }
+  ]
+ },
+ {
+  "headword": "blend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809273b",
+    "cefr": "B1",
+    "corpus_definition": "To mix two or more things together.",
+    "example_en": "Blend the fruit and milk together well."
+   }
+  ]
+ },
+ {
+  "headword": "bless",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b6",
+    "cefr": "B1",
+    "corpus_definition": "To ask for good things to happen to someone.",
+    "example_en": "The priest arrived to bless the new house."
+   }
+  ]
+ },
+ {
+  "headword": "blink",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073666d",
+    "cefr": "B1",
+    "corpus_definition": "To open and close the eyes very quickly.",
+    "example_en": "Don't blink or you will miss it."
+   }
+  ]
+ },
+ {
+  "headword": "bloom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d8",
+    "cefr": "B1",
+    "corpus_definition": "When a plant produces flowers.",
+    "example_en": "The garden flowers begin to bloom in spring."
+   }
+  ]
+ },
+ {
+  "headword": "blossom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092866",
+    "cefr": "B1",
+    "corpus_definition": "when flowers open on a plant, or to develop and grow well",
+    "example_en": "The cherry trees blossom beautifully every spring."
+   }
+  ]
+ },
+ {
+  "headword": "boast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809283e",
+    "cefr": "B1",
+    "corpus_definition": "to talk too proudly about what you have or can do",
+    "example_en": "He always boasts about his high exam scores."
+   }
+  ]
+ }
+]

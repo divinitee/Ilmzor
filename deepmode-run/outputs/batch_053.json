@@ -1,0 +1,111 @@
+[
+{"headword":"sneeze","word_id":"6a6ef9b2a6015561480927e8","word_ids":["6a6ef9b2a6015561480927e8"],"cefr":"A2","kind":"word","sense_label":"Body","sense_pos":"verb","corpus_definition":"to suddenly push air out through your nose and mouth",
+"forms":[
+{"slot":"noun","status":"existing","form":"sneeze","relation":"conversion","definition":"a sudden loud push of air out of your nose","example":"I heard a loud sneeze from the back of the bus.","syn":[{"to":"cough","relation":"related","strength":0.4,"note":"Related: air comes out of your mouth from the chest, not suddenly through the nose."}],"ant":[]},
+{"slot":"verb","status":"existing","form":"sneeze","relation":"base","definition":"to suddenly push air out through your nose, often when ill","example":"Dust always makes me sneeze.","syn":[{"to":"cough","relation":"related","strength":0.4,"note":"Related body action, but from the chest and mouth."}],"ant":[]},
+{"slot":"adjective","status":"no_form","note":"'sneezy' appears only in very informal English; not a learner-dictionary word."},
+{"slot":"adverb","status":"no_form"}],
+"people":[],"people_not_family":[],"affixes":[],
+"context":{"text":"In spring Dilnoza sneezes all day because of the flowers. One loud sneeze in class made everyone laugh.","uses":["sneezes","sneeze"]},
+"reviewer_note":"Noun and verb are the same spelling; no other family forms exist."},
+
+{"headword":"social","word_id":"6a42821646ba24054c1dcc79","word_ids":["6a42821646ba24054c1dcc79"],"cefr":"A2","kind":"word","sense_label":"People","sense_pos":"adjective","corpus_definition":"relating to people and how they live together in groups.",
+"forms":[
+{"slot":"noun","status":"existing","form":"society","relation":"derivational","definition":"people living together in a country or group, with shared laws and customs","example":"Teachers play an important role in our society.","syn":[{"to":"community","relation":"synonym","strength":0.8,"note":"A smaller group of people living in one place or sharing interests."},{"to":"the public","relation":"related","strength":0.6,"note":"Related: ordinary people in general."}],"ant":[]},
+{"slot":"verb","status":"existing","form":"socialize","relation":"derivational","definition":"to spend time with other people in a friendly way","example":"After work we like to socialize in a cafe.","note":"British English also spells it socialise.","syn":[{"to":"mix","relation":"synonym","strength":0.8,"note":"Meet and talk with different people at an event."},{"to":"hang out","relation":"synonym","strength":0.8,"note":"Informal: spend free time with friends.","register":"informal"}],"ant":[]},
+{"slot":"adjective","status":"existing","form":"social","relation":"base","definition":"connected with people and how they live and spend time together","example":"Social media helps me stay in touch with friends.","syn":[{"to":"public","relation":"related","strength":0.6,"note":"Related: about people in general, not one person."},{"to":"communal","relation":"related","strength":0.6,"note":"Shared by a group of people living together."}],"ant":[{"to":"antisocial","relation":"antonym","note":"Not wanting to be with other people, or harmful to them."},{"to":"solitary","relation":"antonym","note":"Done alone, without other people."}]},
+{"slot":"adjective","status":"existing","form":"sociable","relation":"derivational","definition":"friendly and enjoying being with other people","example":"My brother is very sociable and talks to everyone.","syn":[{"to":"friendly","relation":"synonym","strength":0.8,"note":"Kind and pleasant to others."},{"to":"outgoing","relation":"synonym","strength":0.8,"note":"Likes meeting new people."}],"ant":[{"to":"shy","relation":"antonym","note":"Nervous about talking to people."}]},
+{"slot":"adjective","status":"existing","form":"societal","relation":"derivational","definition":"connected with the whole of a country's people and their way of life","example":"Unemployment is a big societal problem.","register":"formal","syn":[],"ant":[]},
+{"slot":"adverb","status":"existing","form":"socially","relation":"derivational","definition":"in a way connected with meeting and being with people","example":"We work together, but we never meet socially.","syn":[],"ant":[]}],
+"people":[{"form":"sociology","kind":"field","status":"existing","definition":"the study of how people live in groups","example":"She studies sociology at university in Tashkent."},{"form":"sociologist","kind":"job","status":"existing","definition":"a person who studies how groups of people live","example":"A sociologist asked us questions about our families."},{"form":"socialist","kind":"person","status":"other_meaning","definition":"a person who supports shared ownership of industry by the state","example":"His grandfather was a socialist.","note":"Belongs to social = a political system, not people spending time together."}],
+"people_not_family":[],
+"affixes":[{"affix":"-ize","in_form":"socialize","meaning_key":"-ize","also":["organize","realize","modernize"]},{"affix":"-ly","in_form":"socially","meaning_key":"-ly","also":["quickly","happily","really"]}],
+"context":{"text":"Aziz is very sociable. He loves social events and socializes with his neighbours every evening.","uses":["sociable","social","socializes"]},
+"reviewer_note":"sociable kept as an entry (common family word), not a synonym; antisocial in ant."},
+
+{"headword":"soil","word_id":"6a42883f6941e70ad6a00e07","word_ids":["6a42883f6941e70ad6a00e07"],"cefr":"A2","kind":"word","sense_label":"Earth","sense_pos":"noun","corpus_definition":"The dark earth on the ground where plants grow.",
+"forms":[
+{"slot":"noun","status":"existing","form":"soil","relation":"base","definition":"the top layer of the ground where plants grow","example":"Tomatoes grow well in this soil.","syn":[{"to":"earth","relation":"synonym","strength":0.95,"note":"Same meaning; very common in gardening."},{"to":"ground","relation":"synonym","strength":0.8,"note":"The surface you walk on; also used for soil."},{"to":"dirt","relation":"synonym","strength":0.8,"note":"Common in American English; in British English it often means something unclean."}],"ant":[]},
+{"slot":"verb","status":"other_meaning","form":"soil","definition":"to make something dirty","example":"The child soiled his new shirt.","note":"Belongs to soil = make dirty, not the earth where plants grow. Formal."},
+{"slot":"adjective","status":"other_meaning","form":"soiled","definition":"dirty, especially clothes or sheets","example":"Put the soiled towels in the basket.","note":"Goes with soil = make dirty."},
+{"slot":"adverb","status":"no_form"}],
+"people":[],"people_not_family":[],"affixes":[],
+"context":{"text":"In the Fergana Valley the soil is rich and dark. Farmers there grow cotton, fruit and vegetables.","uses":["soil"]},
+"reviewer_note":"Verb soil (make dirty) is a different meaning, so other_meaning."},
+
+{"headword":"sore","word_id":"6a6ef9b2a60155614809284b","word_ids":["6a6ef9b2a60155614809284b"],"cefr":"A2","kind":"word","sense_label":"Pain","sense_pos":"adjective","corpus_definition":"When a part of your body feels hurt.",
+"forms":[
+{"slot":"noun","status":"existing","form":"soreness","relation":"derivational","definition":"a feeling of pain in a part of the body","example":"The soreness in my legs went away after two days.","syn":[{"to":"pain","relation":"synonym","strength":0.8,"note":"General word; pain can be much stronger."},{"to":"ache","relation":"synonym","strength":0.8,"note":"A pain that goes on for some time."}],"ant":[]},
+{"slot":"noun","status":"existing","form":"sore","relation":"conversion","definition":"a painful red place on the skin","example":"He had a small sore on his lip.","syn":[{"to":"wound","relation":"related","strength":0.6,"note":"Related: an injury that cuts the skin."}],"ant":[]},
+{"slot":"verb","status":"no_form"},
+{"slot":"adjective","status":"existing","form":"sore","relation":"base","definition":"painful, usually because of an illness or too much use","example":"I have a sore throat today.","syn":[{"to":"painful","relation":"synonym","strength":0.95,"note":"Same meaning; easy word."},{"to":"aching","relation":"synonym","strength":0.8,"note":"Hurting for a long time, like tired muscles."},{"to":"tender","relation":"synonym","strength":0.8,"note":"Painful when you touch it."}],"ant":[]},
+{"slot":"adverb","status":"other_meaning","form":"sorely","definition":"very much, used about needing or missing something","example":"Help is sorely needed in the village.","note":"Belongs to a different sense: 'very much', not body pain. Formal."}],
+"people":[],"people_not_family":[],
+"affixes":[{"affix":"-ness","in_form":"soreness","meaning_key":"-ness","also":["kindness","sadness","darkness"]}],
+"context":{"text":"After the football match my legs were sore. The soreness lasted until Monday.","uses":["sore","soreness"]},
+"reviewer_note":"sorely is a false friend (means 'very much'), so other_meaning."},
+
+{"headword":"sort","word_id":"6a6ef83f0f1e82a5a0736846","word_ids":["6a6ef83f0f1e82a5a0736846"],"cefr":"A2","kind":"word","sense_label":"Grouping","sense_pos":"verb","corpus_definition":"to put things into groups based on their type or features",
+"forms":[
+{"slot":"noun","status":"existing","form":"sorting","relation":"derivational","definition":"the work of putting things into groups","example":"Waste sorting is now common in many cities.","syn":[{"to":"classification","relation":"synonym","strength":0.8,"note":"Formal: putting things into groups by type.","register":"formal"}],"ant":[]},
+{"slot":"noun","status":"other_meaning","form":"sort","definition":"a type or kind of person or thing","example":"What sort of music do you like?","note":"Belongs to sort = kind or type, not putting things into groups."},
+{"slot":"verb","status":"existing","form":"sort","relation":"base","definition":"to put things into groups by type, size or colour","example":"Please sort the books by size.","syn":[{"to":"organize","relation":"synonym","strength":0.8,"note":"Put things in a clear order."},{"to":"arrange","relation":"synonym","strength":0.8,"note":"Put things in a neat or useful order."},{"to":"group","relation":"synonym","strength":0.8,"note":"Put things together that are similar."},{"to":"classify","relation":"synonym","strength":0.8,"note":"Formal and scientific.","register":"formal"}],"ant":[{"to":"mix","relation":"antonym","note":"Put different things together with no order."}]},
+{"slot":"adjective","status":"existing","form":"sorted","relation":"participial","definition":"put into groups or into the correct order","example":"The sorted letters are on the desk.","note":"In informal British English 'It's sorted' also means a problem is solved.","syn":[{"to":"organized","relation":"synonym","strength":0.8,"note":"In good order."}],"ant":[{"to":"unsorted","relation":"antonym","note":"Not yet put into groups."}]},
+{"slot":"adverb","status":"no_form"}],
+"people":[{"form":"sorter","kind":"person","status":"existing","definition":"a person or machine that puts things into groups","example":"She works as a sorter at the post office."}],
+"people_not_family":[],
+"affixes":[{"affix":"-ing","in_form":"sorting","meaning_key":"-ing","also":["shopping","swimming","building"]},{"affix":"-er","in_form":"sorter","meaning_key":"-er","also":["teacher","driver","player"]}],
+"context":{"text":"At the market, Malika sorts the apples by size. The sorted apples go into different boxes.","uses":["sorts","sorted"]},
+"reviewer_note":"Noun sort = kind/type is a different meaning, so other_meaning; unsorted placed in ant."},
+
+{"headword":"sour","word_id":"6a42821646ba24054c1dccde","word_ids":["6a42821646ba24054c1dccde","6a6ef83f0f1e82a5a073678f"],"cefr":"A2","kind":"word","sense_label":"Taste","sense_pos":"adjective","corpus_definition":"Having a sharp, acidic taste like a lemon.",
+"forms":[
+{"slot":"noun","status":"existing","form":"sourness","relation":"derivational","definition":"a sharp taste like a lemon","example":"I like the sourness of green apples.","syn":[{"to":"sharpness","relation":"synonym","strength":0.8,"note":"A strong, sharp taste."},{"to":"acidity","relation":"synonym","strength":0.8,"note":"More scientific; used about food and wine."}],"ant":[{"to":"sweetness","relation":"antonym","note":"A taste like sugar."}]},
+{"slot":"verb","status":"existing","form":"sour","relation":"conversion","definition":"to go bad and get a sharp taste, like old milk","example":"The milk soured in the hot kitchen.","note":"Also used for relationships: 'Their friendship soured.'","syn":[{"to":"go off","relation":"synonym","strength":0.8,"note":"British English, informal: food becomes bad.","register":"informal"},{"to":"spoil","relation":"synonym","strength":0.8,"note":"Become bad and not safe to eat."}],"ant":[]},
+{"slot":"adjective","status":"existing","form":"sour","relation":"base","definition":"having a sharp taste like a lemon or old milk","example":"These cherries are too sour to eat.","syn":[{"to":"sharp","relation":"synonym","strength":0.8,"note":"A strong taste that makes your mouth react."},{"to":"acidic","relation":"synonym","strength":0.8,"note":"More scientific word."},{"to":"tart","relation":"synonym","strength":0.8,"note":"Pleasantly sour, used about fruit."}],"ant":[{"to":"sweet","relation":"antonym","note":"Tasting of sugar or honey."}]},
+{"slot":"adverb","status":"other_meaning","form":"sourly","definition":"in an unfriendly or unhappy way","example":"'Fine,' he said sourly.","note":"Belongs to sour = bad-tempered, not taste."}],
+"people":[],"people_not_family":[],
+"affixes":[{"affix":"-ness","in_form":"sourness","meaning_key":"-ness","also":["kindness","sadness","darkness"]}],
+"context":{"text":"Grandma's green plums are very sour. I love their sourness with a little salt.","uses":["sour","sourness"]},
+"reviewer_note":"Two corpus rows with the same meaning merged; sourly is the bad-temper sense."},
+
+{"headword":"souvenir","word_id":"6a6ef9b2a601556148092785","word_ids":["6a6ef9b2a601556148092785","6a4265fb84a10cdfe9e55d84"],"cefr":"A2","kind":"word","sense_label":"Travel","sense_pos":"noun","corpus_definition":"a small gift bought to remember a place you visited",
+"forms":[
+{"slot":"noun","status":"existing","form":"souvenir","relation":"base","definition":"a small thing you buy to remember a place you visited","example":"We bought a souvenir plate in Bukhara.","syn":[{"to":"memento","relation":"synonym","strength":0.8,"note":"Something you keep to remember a person or event.","register":"formal"},{"to":"keepsake","relation":"synonym","strength":0.8,"note":"A small thing you keep, often a gift from someone."},{"to":"gift","relation":"related","strength":0.6,"note":"Related: a souvenir is often a gift, but not always."}],"ant":[]},
+{"slot":"verb","status":"no_form"},
+{"slot":"adjective","status":"no_form"},
+{"slot":"adverb","status":"no_form"}],
+"people":[],"people_not_family":[],"affixes":[],
+"context":{"text":"Tourists in Samarkand often buy a souvenir at the bazaar. A small painted plate is a popular choice.","uses":["souvenir"]},
+"reviewer_note":"Two corpus rows (A2, B1) merged; lowest level A2 used."},
+
+{"headword":"spend","word_id":"6a42883f6941e70ad6a00dde","word_ids":["6a42883f6941e70ad6a00dde"],"cefr":"A2","kind":"word","sense_label":"Money","sense_pos":"verb","corpus_definition":"To give money to pay for things you want or need.",
+"forms":[
+{"slot":"noun","status":"existing","form":"spending","relation":"derivational","definition":"the money that a person or government uses to buy things","example":"Government spending on schools went up this year.","syn":[{"to":"expenditure","relation":"synonym","strength":0.8,"note":"Formal word used in business and government.","register":"formal"},{"to":"costs","relation":"related","strength":0.6,"note":"Related: the money you have to pay."}],"ant":[{"to":"saving","relation":"antonym","note":"Keeping money instead of using it."}]},
+{"slot":"verb","status":"existing","form":"spend","relation":"base","definition":"to give money to pay for things","example":"How much did you spend on your phone?","syn":[{"to":"pay","relation":"related","strength":0.6,"note":"Related: you pay for one thing; you spend money in general."},{"to":"splash out","relation":"synonym","strength":0.8,"note":"Informal British English: spend a lot on something nice.","register":"informal"}],"ant":[{"to":"save","relation":"antonym","note":"Keep money for later."},{"to":"earn","relation":"antonym","note":"Get money by working."}]},
+{"slot":"adjective","status":"other_meaning","form":"spent","definition":"already used, so it has no more power or use","example":"Throw the spent batteries away safely.","note":"Belongs to spend = use up, not paying money."},
+{"slot":"adverb","status":"no_form"}],
+"people":[{"form":"spender","kind":"person","status":"existing","definition":"a person who uses money in a certain way","example":"My sister is a big spender when she goes shopping."}],
+"people_not_family":[],
+"affixes":[{"affix":"-ing","in_form":"spending","meaning_key":"-ing","also":["shopping","building","meeting"]},{"affix":"-er","in_form":"spender","meaning_key":"-er","also":["teacher","driver","player"]}],
+"context":{"text":"Sardor spends too much money on coffee. His mother says his spending is too high and he should save more.","uses":["spends","spending"]},
+"reviewer_note":"spent (used up) is a different sense, so other_meaning. spend time is a separate meaning not covered here."},
+
+{"headword":"spend on","word_id":"6a42800cb9d8fc24968a4b91","word_ids":["6a42800cb9d8fc24968a4b91"],"cefr":"A2","kind":"phrasal","sense_label":"Money","sense_pos":"verb","corpus_definition":"To use money to buy items or services.",
+"particle_note":"Not separable around 'on': spend + money/amount + on + thing: 'spend 50,000 som on books'. Also spend + time + on: 'spend an hour on homework'.",
+"relations":[{"to":"pay for","relation":"synonym","strength":0.8,"note":"Give money for one thing: 'pay for the tickets'."},{"to":"splash out on","relation":"synonym","strength":0.8,"note":"Informal British English: spend a lot on something special.","register":"informal"},{"to":"save on","relation":"antonym","note":"Spend less money on something: 'save on electricity'."}],
+"context":{"text":"How much do you spend on food each month? My cousin spends on clothes more than on anything else.","uses":["spend on","spends on"]},
+"reviewer_note":"CORPUS: the example 'I love to spend on new clothes' has no money object; normally 'spend money on'."},
+
+{"headword":"spicy","word_id":"6a42821646ba24054c1dccdf","word_ids":["6a42821646ba24054c1dccdf"],"cefr":"A2","kind":"word","sense_label":"Taste","sense_pos":"adjective","corpus_definition":"Having a strong, hot flavor from peppers or spices.",
+"forms":[
+{"slot":"noun","status":"existing","form":"spice","relation":"derivational","definition":"a powder or seed that gives food a strong taste","example":"Cumin is an important spice in plov.","syn":[{"to":"seasoning","relation":"synonym","strength":0.8,"note":"Anything added to food for taste, including salt."},{"to":"herb","relation":"related","strength":0.4,"note":"Related: leaves of a plant used in cooking, not seeds or powder."}],"ant":[]},
+{"slot":"noun","status":"existing","form":"spiciness","relation":"derivational","definition":"how hot and strong the taste of food is","example":"The spiciness of the soup surprised me.","syn":[{"to":"heat","relation":"synonym","strength":0.8,"note":"Used about hot food: 'I like the heat of chilli.'"}],"ant":[]},
+{"slot":"verb","status":"existing","form":"spice","relation":"derivational","definition":"to add powders or seeds to food for a strong taste","example":"She spiced the meat with black pepper.","note":"'spice up' also means to make something more interesting.","syn":[{"to":"season","relation":"synonym","strength":0.8,"note":"Add salt, pepper or other things to food."},{"to":"flavor","relation":"synonym","strength":0.8,"note":"British English: flavour."}],"ant":[]},
+{"slot":"adjective","status":"existing","form":"spicy","relation":"derivational","definition":"having a strong, hot taste from peppers","example":"Is this sauce very spicy?","syn":[{"to":"hot","relation":"synonym","strength":0.95,"note":"Easy word; but hot can also mean high temperature."},{"to":"peppery","relation":"synonym","strength":0.8,"note":"Tasting strongly of pepper."},{"to":"fiery","relation":"related","strength":0.6,"note":"Very, very hot in taste."}],"ant":[{"to":"mild","relation":"antonym","note":"Not strong or hot in taste."},{"to":"bland","relation":"antonym","note":"Without much taste at all."}]},
+{"slot":"adverb","status":"no_form"}],
+"people":[],"people_not_family":[],
+"affixes":[{"affix":"-y","in_form":"spicy","meaning_key":"-y","also":["salty","sunny","rainy"]},{"affix":"-ness","in_form":"spiciness","meaning_key":"-ness","also":["kindness","sadness","darkness"]}],
+"context":{"text":"My uncle adds a lot of spice to his lagman. It is too spicy for me, but my brother loves it.","uses":["spice","spicy"]},
+"reviewer_note":"spicy is made from spice, so spice is the noun main entry."}
+]

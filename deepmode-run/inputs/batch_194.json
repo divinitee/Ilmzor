@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "linger",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736738",
+    "cefr": "C1",
+    "corpus_definition": "To stay in a place for a long time after leaving.",
+    "example_en": "The smell of dinner will linger in the kitchen."
+   }
+  ]
+ },
+ {
+  "headword": "literary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092677",
+    "cefr": "C1",
+    "corpus_definition": "Related to books, poems, or stories.",
+    "example_en": "She enjoys attending literary events in town."
+   }
+  ]
+ },
+ {
+  "headword": "longing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073682b",
+    "cefr": "C1",
+    "corpus_definition": "A strong feeling of wanting something.",
+    "example_en": "She felt a deep longing for her home."
+   }
+  ]
+ },
+ {
+  "headword": "loom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073665e",
+    "cefr": "C1",
+    "corpus_definition": "To appear as a large or threatening shape.",
+    "example_en": "Dark clouds began to loom over the hills."
+   }
+  ]
+ },
+ {
+  "headword": "lure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736843",
+    "cefr": "C1",
+    "corpus_definition": "to attract someone to a place or into a trap",
+    "example_en": "The sweet smell did lure the cat to the kitchen."
+   }
+  ]
+ },
+ {
+  "headword": "majestic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736817",
+    "cefr": "C1",
+    "corpus_definition": "Large, beautiful, and very impressive.",
+    "example_en": "We saw a majestic eagle flying overhead."
+   }
+  ]
+ },
+ {
+  "headword": "manuscript",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809286f",
+    "cefr": "C1",
+    "corpus_definition": "An old document written by hand before printing machines were common.",
+    "example_en": "The researcher found an ancient manuscript in the dusty library."
+   }
+  ]
+ },
+ {
+  "headword": "martial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736760",
+    "cefr": "C1",
+    "corpus_definition": "Relating to fighting or war.",
+    "example_en": "He studies martial arts every weekend."
+   }
+  ]
+ },
+ {
+  "headword": "maximize",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736866",
+    "cefr": "C1",
+    "corpus_definition": "To make something as large or great as possible.",
+    "example_en": "We must maximize our use of time."
+   }
+  ]
+ },
+ {
+  "headword": "memorial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e5",
+    "cefr": "C1",
+    "corpus_definition": "An object or building made to help people remember someone.",
+    "example_en": "We visited the war memorial in the city."
+   }
+  ]
+ }
+]

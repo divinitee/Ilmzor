@@ -1,0 +1,140 @@
+[
+ {
+  "headword": "vitamin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce4",
+    "cefr": "B1",
+    "corpus_definition": "A natural substance in food that keeps you healthy.",
+    "example_en": "Oranges are full of healthy vitamin C."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea1",
+    "cefr": "B1",
+    "corpus_definition": "A natural substance in food that keeps the body functioning well.",
+    "example_en": "Oranges provide a lot of vitamin C."
+   }
+  ]
+ },
+ {
+  "headword": "volunteer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f7",
+    "cefr": "B1",
+    "corpus_definition": "someone who works without pay to help other people",
+    "example_en": "She is a volunteer at the local hospital."
+   }
+  ]
+ },
+ {
+  "headword": "voyage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809289e",
+    "cefr": "B1",
+    "corpus_definition": "a long journey, especially by sea",
+    "example_en": "The voyage across the Atlantic took three weeks."
+   }
+  ]
+ },
+ {
+  "headword": "wage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd5",
+    "cefr": "B1",
+    "corpus_definition": "The regular money paid to a person for their labor.",
+    "example_en": "He receives a weekly wage for his labor."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073681f",
+    "cefr": "B2",
+    "corpus_definition": "Money paid to a worker for the time they worked.",
+    "example_en": "They receive a weekly wage for their labor."
+   }
+  ]
+ },
+ {
+  "headword": "wander",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092696",
+    "cefr": "B1",
+    "corpus_definition": "To walk around slowly without a clear goal or path.",
+    "example_en": "They decided to wander through the quiet city streets."
+   }
+  ]
+ },
+ {
+  "headword": "warn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdbf",
+    "cefr": "B1",
+    "corpus_definition": "To tell someone about a possible danger.",
+    "example_en": "They tried to warn him about traffic."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686e",
+    "cefr": "B1",
+    "corpus_definition": "To tell someone about possible danger before it happens.",
+    "example_en": "I tried to warn him about the ice."
+   }
+  ]
+ },
+ {
+  "headword": "weird",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d0",
+    "cefr": "B1",
+    "corpus_definition": "Very strange or unusual.",
+    "example_en": "That is a very weird color for a car."
+   }
+  ]
+ },
+ {
+  "headword": "work experience",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd0",
+    "cefr": "B1",
+    "corpus_definition": "The skills and knowledge you gained from past jobs.",
+    "example_en": "They look for people with relevant work experience."
+   }
+  ]
+ },
+ {
+  "headword": "workout",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686f",
+    "cefr": "B1",
+    "corpus_definition": "A series of exercises done to get fit.",
+    "example_en": "I feel great after my morning workout."
+   }
+  ]
+ },
+ {
+  "headword": "workplace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dc7",
+    "cefr": "B1",
+    "corpus_definition": "The office or building where you do your job.",
+    "example_en": "Safety is important in every workplace."
+   }
+  ]
+ }
+]

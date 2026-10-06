@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "put out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd92",
+    "cefr": "B1",
+    "corpus_definition": "To stop a fire from burning.",
+    "example_en": "The team worked hard to put out the fire."
+   }
+  ]
+ },
+ {
+  "headword": "rag",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092885",
+    "cefr": "B1",
+    "corpus_definition": "a torn or worn piece of old cloth",
+    "example_en": "He wiped his hands on an old rag."
+   }
+  ]
+ },
+ {
+  "headword": "rail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367dd",
+    "cefr": "B1",
+    "corpus_definition": "A metal bar used as part of a track.",
+    "example_en": "The train stayed on the steel rail."
+   }
+  ]
+ },
+ {
+  "headword": "raisin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668a",
+    "cefr": "B1",
+    "corpus_definition": "A dried grape used in cooking or as a snack.",
+    "example_en": "I like to add a raisin to my cereal."
+   }
+  ]
+ },
+ {
+  "headword": "rate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677b",
+    "cefr": "B1",
+    "corpus_definition": "The speed or frequency at which something happens.",
+    "example_en": "The heart rate of the athlete is very low."
+   }
+  ]
+ },
+ {
+  "headword": "reach",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d82",
+    "cefr": "B1",
+    "corpus_definition": "To arrive at a place after traveling.",
+    "example_en": "We will reach the hotel by eight."
+   }
+  ]
+ },
+ {
+  "headword": "react",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcde8",
+    "cefr": "B1",
+    "corpus_definition": "To act in a certain way because of something.",
+    "example_en": "How did he react to the news?"
+   }
+  ]
+ },
+ {
+  "headword": "read out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ca",
+    "cefr": "B1",
+    "corpus_definition": "To speak written words aloud so others can hear.",
+    "example_en": "Please read out your story to the class."
+   }
+  ]
+ },
+ {
+  "headword": "rear",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809280c",
+    "cefr": "B1",
+    "corpus_definition": "the back part of something; also to raise a child or animal",
+    "example_en": "The soldiers attacked from the rear."
+   }
+  ]
+ },
+ {
+  "headword": "recite",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092876",
+    "cefr": "B1",
+    "corpus_definition": "to say aloud something you have learned and remembered",
+    "example_en": "The student stood up to recite the poem from memory."
+   }
+  ]
+ }
+]

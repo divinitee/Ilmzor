@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "forecast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd77",
+    "cefr": "B1",
+    "corpus_definition": "a statement about what the weather will be like.",
+    "example_en": "The weather forecast says it will rain tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "foreign",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d79",
+    "cefr": "B1",
+    "corpus_definition": "From another country.",
+    "example_en": "She can speak many foreign languages."
+   }
+  ]
+ },
+ {
+  "headword": "formal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f8ff",
+    "cefr": "B1",
+    "corpus_definition": "Suitable for serious or official events and occasions.",
+    "example_en": "He wore a formal suit to the meeting."
+   }
+  ]
+ },
+ {
+  "headword": "freedom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd66",
+    "cefr": "B1",
+    "corpus_definition": "the state of being able to do what you want.",
+    "example_en": "They enjoyed their new freedom after graduation."
+   }
+  ]
+ },
+ {
+  "headword": "frown",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277b",
+    "cefr": "B1",
+    "corpus_definition": "to bring your eyebrows together to show anger or worry",
+    "example_en": "She frowned when she read the unexpected bad news."
+   }
+  ]
+ },
+ {
+  "headword": "gallery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd49",
+    "cefr": "B1",
+    "corpus_definition": "a place where people go to see art",
+    "example_en": "We spent all afternoon at the art gallery."
+   }
+  ]
+ },
+ {
+  "headword": "gamble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092704",
+    "cefr": "B1",
+    "corpus_definition": "to risk money on a game or event hoping to win more",
+    "example_en": "He gambled away all his savings at the casino."
+   }
+  ]
+ },
+ {
+  "headword": "generous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113011a",
+    "cefr": "B1",
+    "corpus_definition": "Happy to share your money or things with others.",
+    "example_en": "He is very generous with his time."
+   }
+  ]
+ },
+ {
+  "headword": "germ",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092882",
+    "cefr": "B1",
+    "corpus_definition": "a very tiny living thing that can cause illness",
+    "example_en": "Wash your hands to stop the spread of germs."
+   }
+  ]
+ },
+ {
+  "headword": "get on with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130130",
+    "cefr": "B1",
+    "corpus_definition": "To have a good and friendly connection with someone.",
+    "example_en": "I get on well with my new coworkers."
+   }
+  ]
+ }
+]

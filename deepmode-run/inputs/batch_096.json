@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "painful",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccf2",
+    "cefr": "B1",
+    "corpus_definition": "Something that causes you to feel physical hurt.",
+    "example_en": "Walking is still very painful for him."
+   }
+  ]
+ },
+ {
+  "headword": "panic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b0",
+    "cefr": "B1",
+    "corpus_definition": "a sudden strong feeling of great fear you cannot control",
+    "example_en": "A sudden loud noise caused panic in the crowd."
+   }
+  ]
+ },
+ {
+  "headword": "parcel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e3a",
+    "cefr": "B1",
+    "corpus_definition": "A box or large package wrapped in paper to be sent away.",
+    "example_en": "The postman brought a large parcel for me."
+   }
+  ]
+ },
+ {
+  "headword": "pat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809285b",
+    "cefr": "B1",
+    "corpus_definition": "to touch someone gently and quickly with a flat hand",
+    "example_en": "She patted the dog gently on its head."
+   }
+  ]
+ },
+ {
+  "headword": "patch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d9",
+    "cefr": "B1",
+    "corpus_definition": "A small piece of material used to fix a hole.",
+    "example_en": "He put a patch on his torn jeans."
+   }
+  ]
+ },
+ {
+  "headword": "patience",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092871",
+    "cefr": "B1",
+    "corpus_definition": "The ability to stay calm while waiting for something to happen.",
+    "example_en": "You need a lot of patience to teach young children."
+   }
+  ]
+ },
+ {
+  "headword": "pause",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42818546ba24054c1dcb48",
+    "cefr": "B1",
+    "corpus_definition": "To stop an activity for a short time.",
+    "example_en": "Please pause the movie for a moment."
+   }
+  ]
+ },
+ {
+  "headword": "pay back",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b81",
+    "cefr": "B1",
+    "corpus_definition": "to return money that you borrowed from someone",
+    "example_en": "I will pay back the money tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "personality",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130150",
+    "cefr": "B1",
+    "corpus_definition": "The type of character a person has.",
+    "example_en": "She has a very outgoing and friendly personality."
+   }
+  ]
+ },
+ {
+  "headword": "photography",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec6",
+    "cefr": "B1",
+    "corpus_definition": "The activity of taking and creating pictures with a camera.",
+    "example_en": "She enjoys photography and travels to take pictures."
+   }
+  ]
+ }
+]

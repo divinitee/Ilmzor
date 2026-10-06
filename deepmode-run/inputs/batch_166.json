@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "rotate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092784",
+    "cefr": "B2",
+    "corpus_definition": "To turn in a circle around a central point.",
+    "example_en": "The earth continues to rotate on its axis."
+   }
+  ]
+ },
+ {
+  "headword": "rumour",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb9",
+    "cefr": "B2",
+    "corpus_definition": "Information spread by people that may not be true.",
+    "example_en": "There is a rumour about the boss."
+   }
+  ]
+ },
+ {
+  "headword": "rural",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736703",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the countryside rather than the city.",
+    "example_en": "They moved to a small rural town last year."
+   }
+  ]
+ },
+ {
+  "headword": "satellite",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd88",
+    "cefr": "B2",
+    "corpus_definition": "A device sent into space to travel around Earth.",
+    "example_en": "The satellite sends signals for our television."
+   }
+  ]
+ },
+ {
+  "headword": "saucer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ee",
+    "cefr": "B2",
+    "corpus_definition": "A small round plate for a cup to sit on.",
+    "example_en": "He placed his tea cup on the saucer."
+   }
+  ]
+ },
+ {
+  "headword": "scent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092887",
+    "cefr": "B2",
+    "corpus_definition": "a pleasant smell produced by something",
+    "example_en": "The scent of flowers filled the entire room."
+   }
+  ]
+ },
+ {
+  "headword": "scheme",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928c4",
+    "cefr": "B2",
+    "corpus_definition": "A plan or system created to achieve a specific goal.",
+    "example_en": "They created a new scheme to save money."
+   }
+  ]
+ },
+ {
+  "headword": "scold",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928b3",
+    "cefr": "B2",
+    "corpus_definition": "To speak angrily to someone because they did something wrong.",
+    "example_en": "His mother had to scold him for breaking the vase."
+   }
+  ]
+ },
+ {
+  "headword": "scrape",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073664f",
+    "cefr": "B2",
+    "corpus_definition": "To remove dirt or material by rubbing with a tool.",
+    "example_en": "I need to scrape the ice off the window."
+   }
+  ]
+ },
+ {
+  "headword": "script",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736679",
+    "cefr": "B2",
+    "corpus_definition": "The written text of a play or film.",
+    "example_en": "The actor studied the script all night."
+   }
+  ]
+ }
+]

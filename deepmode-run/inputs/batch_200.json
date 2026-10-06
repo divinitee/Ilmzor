@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "refuge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092823",
+    "cefr": "C1",
+    "corpus_definition": "A safe place where people go to get away from danger.",
+    "example_en": "The villagers found refuge in the old church."
+   }
+  ]
+ },
+ {
+  "headword": "regulate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366dc",
+    "cefr": "C1",
+    "corpus_definition": "To control a process or system with rules.",
+    "example_en": "New laws will regulate air pollution."
+   }
+  ]
+ },
+ {
+  "headword": "rehabilitation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eac",
+    "cefr": "C1",
+    "corpus_definition": "The process of getting back to normal after a sickness or injury.",
+    "example_en": "He began physical rehabilitation to walk again."
+   }
+  ]
+ },
+ {
+  "headword": "reinforce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366dd",
+    "cefr": "C1",
+    "corpus_definition": "To make something stronger or more secure.",
+    "example_en": "The wooden beams reinforce the roof structure."
+   }
+  ]
+ },
+ {
+  "headword": "reluctant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092794",
+    "cefr": "C1",
+    "corpus_definition": "Not wanting to do something.",
+    "example_en": "He was reluctant to share his private plans."
+   }
+  ]
+ },
+ {
+  "headword": "resignation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dcf",
+    "cefr": "C1",
+    "corpus_definition": "The act of telling your boss you are leaving.",
+    "example_en": "She handed in her resignation this morning."
+   }
+  ]
+ },
+ {
+  "headword": "resolution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367cd",
+    "cefr": "C1",
+    "corpus_definition": "A firm decision to do or not do something.",
+    "example_en": "I made a New Year resolution to exercise."
+   }
+  ]
+ },
+ {
+  "headword": "retain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668b",
+    "cefr": "C1",
+    "corpus_definition": "To continue to have or keep something.",
+    "example_en": "Try to retain all the new information."
+   }
+  ]
+ },
+ {
+  "headword": "retrieve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809268f",
+    "cefr": "C1",
+    "corpus_definition": "To go and get something and bring it back.",
+    "example_en": "The dog ran to retrieve the ball for me."
+   }
+  ]
+ },
+ {
+  "headword": "revenge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b7",
+    "cefr": "C1",
+    "corpus_definition": "Harming someone because they harmed you first.",
+    "example_en": "He wanted revenge for the broken promise."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "jealous",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092747",
+    "cefr": "B1",
+    "corpus_definition": "Feeling unhappy because you want what someone else has.",
+    "example_en": "He felt jealous of his brother's success."
+   }
+  ]
+ },
+ {
+  "headword": "jealous of",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130156",
+    "cefr": "B1",
+    "corpus_definition": "Feeling sad or angry because you want what someone else has.",
+    "example_en": "He is jealous of his brother's new car."
+   }
+  ]
+ },
+ {
+  "headword": "job advertisement",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dcb",
+    "cefr": "B1",
+    "corpus_definition": "A public notice about a position that is open.",
+    "example_en": "I saw a job advertisement online yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "join in",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cb2",
+    "cefr": "B1",
+    "corpus_definition": "Take part in an activity with other people.",
+    "example_en": "Please join in our game."
+   }
+  ]
+ },
+ {
+  "headword": "kidnap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092858",
+    "cefr": "B1",
+    "corpus_definition": "to take someone away illegally by force and demand money",
+    "example_en": "The businessman's son was kidnapped and held for ransom."
+   }
+  ]
+ },
+ {
+  "headword": "kneel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928ad",
+    "cefr": "B1",
+    "corpus_definition": "to go down onto one or both knees on the ground",
+    "example_en": "She had to kneel to pick up the fallen coins."
+   }
+  ]
+ },
+ {
+  "headword": "lack",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b3b",
+    "cefr": "B1",
+    "corpus_definition": "To not have enough of something.",
+    "example_en": "They lack the money to buy a house."
+   }
+  ]
+ },
+ {
+  "headword": "landmark",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ed",
+    "cefr": "B1",
+    "corpus_definition": "a famous building or object that helps you find your way",
+    "example_en": "The Eiffel Tower is a famous landmark."
+   }
+  ]
+ },
+ {
+  "headword": "lane",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092718",
+    "cefr": "B1",
+    "corpus_definition": "a narrow road or a marked strip on a wide road",
+    "example_en": "The driver stayed in the right lane on the highway."
+   }
+  ]
+ },
+ {
+  "headword": "leader",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca6",
+    "cefr": "B1",
+    "corpus_definition": "A person who is in charge of a group or organization.",
+    "example_en": "She is a natural leader."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "property",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b75",
+    "cefr": "B2",
+    "corpus_definition": "things that a person or company possesses",
+    "example_en": "This land is private property."
+   }
+  ]
+ },
+ {
+  "headword": "prospect",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092708",
+    "cefr": "B2",
+    "corpus_definition": "the possibility of something happening in the future",
+    "example_en": "She is excited about the prospect of living abroad."
+   }
+  ]
+ },
+ {
+  "headword": "prosper",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ac",
+    "cefr": "B2",
+    "corpus_definition": "to become very successful, especially in business or life",
+    "example_en": "The small business began to prosper after a year."
+   }
+  ]
+ },
+ {
+  "headword": "protein",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736869",
+    "cefr": "B2",
+    "corpus_definition": "A substance in food like meat or beans needed for growth.",
+    "example_en": "Beans are a good source of protein."
+   }
+  ]
+ },
+ {
+  "headword": "protest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc72",
+    "cefr": "B2",
+    "corpus_definition": "a public action to show that you disagree with something.",
+    "example_en": "The workers organized a protest in the city center."
+   }
+  ]
+ },
+ {
+  "headword": "provide sb with",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55db7",
+    "cefr": "B2",
+    "corpus_definition": "To give something needed to another person.",
+    "example_en": "The hotel will provide us with clean towels."
+   }
+  ]
+ },
+ {
+  "headword": "publication",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f6",
+    "cefr": "B2",
+    "corpus_definition": "a book, article, or document made available to readers",
+    "example_en": "Her latest publication received excellent reviews worldwide."
+   }
+  ]
+ },
+ {
+  "headword": "puff",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092884",
+    "cefr": "B2",
+    "corpus_definition": "To breathe quickly and loudly after doing heavy physical work.",
+    "example_en": "He had to puff after running up the stairs."
+   }
+  ]
+ },
+ {
+  "headword": "purchase",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b76",
+    "cefr": "B2",
+    "corpus_definition": "to pay money to get something",
+    "example_en": "Please purchase your tickets before the show."
+   }
+  ]
+ },
+ {
+  "headword": "pursuit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092875",
+    "cefr": "B2",
+    "corpus_definition": "The act of following someone or something to catch them.",
+    "example_en": "The police were in high-speed pursuit of the criminal."
+   }
+  ]
+ }
+]

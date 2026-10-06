@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "cease",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736694",
+    "cefr": "C1",
+    "corpus_definition": "To stop doing something or to come to an end.",
+    "example_en": "The rain will cease in the afternoon."
+   }
+  ]
+ },
+ {
+  "headword": "chaos",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675b",
+    "cefr": "C1",
+    "corpus_definition": "A situation where everything is confused and not organized.",
+    "example_en": "The room was in total chaos after the party."
+   }
+  ]
+ },
+ {
+  "headword": "cherish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e1",
+    "cefr": "C1",
+    "corpus_definition": "To love someone or something very much.",
+    "example_en": "I cherish the memories of our trip."
+   }
+  ]
+ },
+ {
+  "headword": "chronicle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a7",
+    "cefr": "C1",
+    "corpus_definition": "A written record of events in the order they happened.",
+    "example_en": "This book is a detailed chronicle of the war."
+   }
+  ]
+ },
+ {
+  "headword": "clan",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d7",
+    "cefr": "C1",
+    "corpus_definition": "A large family or group of relatives.",
+    "example_en": "The whole clan gathered for the party."
+   }
+  ]
+ },
+ {
+  "headword": "cluster",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676f",
+    "cefr": "C1",
+    "corpus_definition": "A group of things that are close together.",
+    "example_en": "A small cluster of stars was visible in the sky."
+   }
+  ]
+ },
+ {
+  "headword": "coincide",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e9",
+    "cefr": "C1",
+    "corpus_definition": "To happen at the same time.",
+    "example_en": "Our vacations will coincide this year."
+   }
+  ]
+ },
+ {
+  "headword": "colonel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670c",
+    "cefr": "C1",
+    "corpus_definition": "A high-ranking officer in the army.",
+    "example_en": "The colonel gave orders to the waiting soldiers."
+   }
+  ]
+ },
+ {
+  "headword": "commerce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ba",
+    "cefr": "C1",
+    "corpus_definition": "The activity of buying and selling products on a large scale.",
+    "example_en": "Global commerce helps countries grow their wealth."
+   }
+  ]
+ },
+ {
+  "headword": "compassion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e2",
+    "cefr": "C1",
+    "corpus_definition": "A strong feeling of sadness for those who are suffering.",
+    "example_en": "He showed great compassion for the victims."
+   }
+  ]
+ }
+]

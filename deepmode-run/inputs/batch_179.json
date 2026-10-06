@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "worsen",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736744",
+    "cefr": "B2",
+    "corpus_definition": "To become worse than before.",
+    "example_en": "The weather will worsen as the night goes on."
+   }
+  ]
+ },
+ {
+  "headword": "worthwhile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736834",
+    "cefr": "B2",
+    "corpus_definition": "Enjoyable or useful enough to justify the time spent.",
+    "example_en": "Helping others is a worthwhile experience."
+   }
+  ]
+ },
+ {
+  "headword": "wreck",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736794",
+    "cefr": "B2",
+    "corpus_definition": "A vehicle that has been badly damaged in an accident.",
+    "example_en": "The car was a complete wreck after the crash."
+   }
+  ]
+ },
+ {
+  "headword": "wrestle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284f",
+    "cefr": "B2",
+    "corpus_definition": "To fight by pushing and holding another person to the ground.",
+    "example_en": "The boys like to wrestle on grass."
+   }
+  ]
+ },
+ {
+  "headword": "zoom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736870",
+    "cefr": "B2",
+    "corpus_definition": "To change the view to make images look larger.",
+    "example_en": "Please zoom in on the small text."
+   }
+  ]
+ },
+ {
+  "headword": "Aborigine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926fb",
+    "cefr": "C1",
+    "corpus_definition": "A member of the first people to live in a place.",
+    "example_en": "The Aborigine people have a rich and ancient culture."
+   }
+  ]
+ },
+ {
+  "headword": "absolute",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d1",
+    "cefr": "C1",
+    "corpus_definition": "Total and complete.",
+    "example_en": "It was an absolute disaster."
+   }
+  ]
+ },
+ {
+  "headword": "accommodate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e7",
+    "cefr": "C1",
+    "corpus_definition": "To provide enough space for someone.",
+    "example_en": "This hotel can accommodate fifty guests."
+   }
+  ]
+ },
+ {
+  "headword": "admiral",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736782",
+    "cefr": "C1",
+    "corpus_definition": "A very high-ranking officer in the navy.",
+    "example_en": "The admiral led the fleet across the ocean."
+   }
+  ]
+ },
+ {
+  "headword": "admonish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736795",
+    "cefr": "C1",
+    "corpus_definition": "To tell someone clearly that they have done something wrong.",
+    "example_en": "The teacher had to admonish the noisy students."
+   }
+  ]
+ }
+]

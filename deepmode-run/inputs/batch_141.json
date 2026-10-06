@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "flee",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092713",
+    "cefr": "B2",
+    "corpus_definition": "To run away from a dangerous place or person.",
+    "example_en": "Many people had to flee their homes during war."
+   }
+  ]
+ },
+ {
+  "headword": "flesh",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736787",
+    "cefr": "B2",
+    "corpus_definition": "The soft part of an animal or person under the skin.",
+    "example_en": "This fruit has sweet, soft flesh inside."
+   }
+  ]
+ },
+ {
+  "headword": "flock",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073665b",
+    "cefr": "B2",
+    "corpus_definition": "A large group of birds or sheep together.",
+    "example_en": "A flock of birds flew over us."
+   }
+  ]
+ },
+ {
+  "headword": "folklore",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366aa",
+    "cefr": "B2",
+    "corpus_definition": "Traditional stories and beliefs shared by a group of people.",
+    "example_en": "The villagers enjoy sharing ancient local folklore."
+   }
+  ]
+ },
+ {
+  "headword": "forge",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a4",
+    "cefr": "B2",
+    "corpus_definition": "to shape metal by heating it, or to make a fake copy of something",
+    "example_en": "Someone tried to forge his signature on the document."
+   }
+  ]
+ },
+ {
+  "headword": "forgiveness",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130147",
+    "cefr": "B2",
+    "corpus_definition": "The act of stopping your anger toward someone for their bad actions.",
+    "example_en": "He asked for her forgiveness after the argument."
+   }
+  ]
+ },
+ {
+  "headword": "formation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672a",
+    "cefr": "B2",
+    "corpus_definition": "The process of something starting to exist or be created.",
+    "example_en": "Scientists studied the early making of these mountain rocks."
+   }
+  ]
+ },
+ {
+  "headword": "fort",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073669b",
+    "cefr": "B2",
+    "corpus_definition": "A strong building designed to protect soldiers during a war.",
+    "example_en": "The soldiers stood guard at the old stone fort."
+   }
+  ]
+ },
+ {
+  "headword": "found",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073669c",
+    "cefr": "B2",
+    "corpus_definition": "To start a new organization or build a place.",
+    "example_en": "They decided to found a new company together."
+   }
+  ]
+ },
+ {
+  "headword": "fraction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092729",
+    "cefr": "B2",
+    "corpus_definition": "A small part or amount of something.",
+    "example_en": "Only a small fraction of the students passed today."
+   }
+  ]
+ }
+]

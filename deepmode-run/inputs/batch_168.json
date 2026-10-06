@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "shield",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736664",
+    "cefr": "B2",
+    "corpus_definition": "A piece of armor used to protect oneself in battle.",
+    "example_en": "The knight held his shield high."
+   }
+  ]
+ },
+ {
+  "headword": "shipment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e43",
+    "cefr": "B2",
+    "corpus_definition": "A large amount of goods moved from one place to another.",
+    "example_en": "The shipment of goods arrived at the shop."
+   }
+  ]
+ },
+ {
+  "headword": "shooting",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc90",
+    "cefr": "B2",
+    "corpus_definition": "the act of using a gun to fire at someone or something",
+    "example_en": "The news reported a shooting in the city center."
+   }
+  ]
+ },
+ {
+  "headword": "shut up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf5",
+    "cefr": "B2",
+    "corpus_definition": "to stop speaking",
+    "example_en": "He told the noisy children to shut up."
+   }
+  ]
+ },
+ {
+  "headword": "sigh",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b9",
+    "cefr": "B2",
+    "corpus_definition": "To let out a long breath to show tiredness or sadness.",
+    "example_en": "She let out a long, tired sigh."
+   }
+  ]
+ },
+ {
+  "headword": "silk",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd55",
+    "cefr": "B2",
+    "corpus_definition": "a smooth and expensive cloth from a special worm",
+    "example_en": "She wore a beautiful red silk dress."
+   }
+  ]
+ },
+ {
+  "headword": "simplify",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ec",
+    "cefr": "B2",
+    "corpus_definition": "To make something easier to do or grasp.",
+    "example_en": "Please simplify your explanation for the children."
+   }
+  ]
+ },
+ {
+  "headword": "skeleton",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927fb",
+    "cefr": "B2",
+    "corpus_definition": "The hard frame of bones inside a person or animal.",
+    "example_en": "The students studied the human skeleton in class."
+   }
+  ]
+ },
+ {
+  "headword": "slam",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073667b",
+    "cefr": "B2",
+    "corpus_definition": "To shut a door or window with a very loud noise.",
+    "example_en": "Don't slam the door when you leave."
+   }
+  ]
+ },
+ {
+  "headword": "slap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073681c",
+    "cefr": "B2",
+    "corpus_definition": "To hit someone with the palm of your hand.",
+    "example_en": "He tried to slap the mosquito away."
+   }
+  ]
+ }
+]

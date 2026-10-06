@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "valuable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b89",
+    "cefr": "B2",
+    "corpus_definition": "worth a lot of money or very important",
+    "example_en": "This ring is very valuable to my family."
+   }
+  ]
+ },
+ {
+  "headword": "vast",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366df",
+    "cefr": "B2",
+    "corpus_definition": "Extremely large in size, area, or amount.",
+    "example_en": "The ocean is a vast blue space."
+   }
+  ]
+ },
+ {
+  "headword": "vein",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e9d",
+    "cefr": "B2",
+    "corpus_definition": "A tube that carries blood back to the central organ.",
+    "example_en": "The nurse found a vein to draw blood."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b7",
+    "cefr": "B2",
+    "corpus_definition": "A thin tube in your body carrying blood back to your heart.",
+    "example_en": "The nurse found a vein in his arm."
+   }
+  ]
+ },
+ {
+  "headword": "venture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c2",
+    "cefr": "B2",
+    "corpus_definition": "a risky new business activity or project",
+    "example_en": "They launched a new business venture together last year."
+   }
+  ]
+ },
+ {
+  "headword": "veterinarian",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092827",
+    "cefr": "B2",
+    "corpus_definition": "A doctor who treats sick or hurt animals.",
+    "example_en": "The veterinarian helped my cat feel better."
+   }
+  ]
+ },
+ {
+  "headword": "via",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092737",
+    "cefr": "B2",
+    "corpus_definition": "By going through or using a certain route.",
+    "example_en": "We traveled to London via Paris."
+   }
+  ]
+ },
+ {
+  "headword": "viewer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f912",
+    "cefr": "B2",
+    "corpus_definition": "A person who watches a television program.",
+    "example_en": "The show attracted millions of viewers worldwide."
+   }
+  ]
+ },
+ {
+  "headword": "violence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685c",
+    "cefr": "B2",
+    "corpus_definition": "Physical force used to hurt or kill people.",
+    "example_en": "The movie contained too much violence."
+   }
+  ]
+ },
+ {
+  "headword": "vital",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d2",
+    "cefr": "B2",
+    "corpus_definition": "Very important or necessary for life.",
+    "example_en": "Water is vital for all living things."
+   }
+  ]
+ },
+ {
+  "headword": "volunteering",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd1",
+    "cefr": "B2",
+    "corpus_definition": "Doing a task for no pay to help others.",
+    "example_en": "He likes volunteering at the local animal shelter."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "divine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736774",
+    "cefr": "C1",
+    "corpus_definition": "Coming from or related to a god.",
+    "example_en": "They believe the ancient temple is a divine place."
+   }
+  ]
+ },
+ {
+  "headword": "dominant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092845",
+    "cefr": "C1",
+    "corpus_definition": "Being more powerful or important than others.",
+    "example_en": "He played a dominant role in the company."
+   }
+  ]
+ },
+ {
+  "headword": "doomed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675e",
+    "cefr": "C1",
+    "corpus_definition": "Certain to have a bad ending or to fail.",
+    "example_en": "The project was doomed from the very start."
+   }
+  ]
+ },
+ {
+  "headword": "drafting",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ece",
+    "cefr": "C1",
+    "corpus_definition": "Creating a detailed technical plan or drawing.",
+    "example_en": "He is drafting the plans for the new bridge."
+   }
+  ]
+ },
+ {
+  "headword": "drastic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736659",
+    "cefr": "C1",
+    "corpus_definition": "Very big and noticeable changes.",
+    "example_en": "The company had to take drastic action."
+   }
+  ]
+ },
+ {
+  "headword": "dread",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736734",
+    "cefr": "C1",
+    "corpus_definition": "A very strong feeling of fear about something that might happen.",
+    "example_en": "I feel a sense of dread about the exam tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "eclipse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927df",
+    "cefr": "C1",
+    "corpus_definition": "When the sun or moon is hidden by another body.",
+    "example_en": "We watched the solar eclipse through special glasses."
+   }
+  ]
+ },
+ {
+  "headword": "ecology",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e11",
+    "cefr": "C1",
+    "corpus_definition": "The study of how living things interact with their environment.",
+    "example_en": "She studies ecology to save the local forest."
+   }
+  ]
+ },
+ {
+  "headword": "enchant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073683e",
+    "cefr": "C1",
+    "corpus_definition": "to fill someone with great delight or charm",
+    "example_en": "Her beautiful singing voice did enchant the whole audience."
+   }
+  ]
+ },
+ {
+  "headword": "encryption",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e56",
+    "cefr": "C1",
+    "corpus_definition": "A way to hide data so only certain people can read it.",
+    "example_en": "Modern messaging apps use strong encryption for privacy."
+   }
+  ]
+ }
+]

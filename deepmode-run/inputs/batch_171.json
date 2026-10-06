@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "startle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092899",
+    "cefr": "B2",
+    "corpus_definition": "To surprise or frighten someone suddenly.",
+    "example_en": "The loud noise did startle the sleeping dog."
+   }
+  ]
+ },
+ {
+  "headword": "starve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927fd",
+    "cefr": "B2",
+    "corpus_definition": "To suffer or die because you have no food.",
+    "example_en": "The poor animals will starve without food."
+   }
+  ]
+ },
+ {
+  "headword": "steer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f7",
+    "cefr": "B2",
+    "corpus_definition": "To control the direction of a vehicle like a car or boat.",
+    "example_en": "It is difficult to steer the boat in strong winds."
+   }
+  ]
+ },
+ {
+  "headword": "stem",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926bc",
+    "cefr": "B2",
+    "corpus_definition": "The thin part of a plant that holds the leaves.",
+    "example_en": "The rose had a very long stem."
+   }
+  ]
+ },
+ {
+  "headword": "steward",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736791",
+    "cefr": "B2",
+    "corpus_definition": "A person whose job is to serve passengers on a plane.",
+    "example_en": "The steward brought me a cold drink."
+   }
+  ]
+ },
+ {
+  "headword": "stiff",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e3",
+    "cefr": "B2",
+    "corpus_definition": "Difficult to bend or move.",
+    "example_en": "My neck feels stiff this morning."
+   }
+  ]
+ },
+ {
+  "headword": "stitch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736652",
+    "cefr": "B2",
+    "corpus_definition": "To fix cloth using a needle and thread.",
+    "example_en": "She will stitch the hole in my shirt."
+   }
+  ]
+ },
+ {
+  "headword": "strain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284d",
+    "cefr": "B2",
+    "corpus_definition": "To pull or push something too hard until it hurts.",
+    "example_en": "Do not strain your back lifting boxes."
+   }
+  ]
+ },
+ {
+  "headword": "strategy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672f",
+    "cefr": "B2",
+    "corpus_definition": "A careful plan made to reach a specific goal.",
+    "example_en": "We need a better strategy to win this game."
+   }
+  ]
+ },
+ {
+  "headword": "stroke",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e4",
+    "cefr": "B2",
+    "corpus_definition": "a gentle rub; also a sudden illness affecting the brain",
+    "example_en": "He suffered a stroke and spent weeks in hospital."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "torture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809284e",
+    "cefr": "B2",
+    "corpus_definition": "the act of causing great physical or mental pain on purpose",
+    "example_en": "The use of torture is forbidden under international law."
+   }
+  ]
+ },
+ {
+  "headword": "toxic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677f",
+    "cefr": "B2",
+    "corpus_definition": "Something that is poisonous and can kill you.",
+    "example_en": "Do not drink from that bottle as it is toxic."
+   }
+  ]
+ },
+ {
+  "headword": "track",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e44",
+    "cefr": "B2",
+    "corpus_definition": "To follow the path or location of something.",
+    "example_en": "I can track my order on the website."
+   }
+  ]
+ },
+ {
+  "headword": "trade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dda",
+    "cefr": "B2",
+    "corpus_definition": "The act of buying and selling goods.",
+    "example_en": "International trade helps countries grow."
+   }
+  ]
+ },
+ {
+  "headword": "tragic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e5",
+    "cefr": "B2",
+    "corpus_definition": "Very sad, often involving death or loss.",
+    "example_en": "It was a tragic accident for everyone."
+   }
+  ]
+ },
+ {
+  "headword": "tremble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092735",
+    "cefr": "B2",
+    "corpus_definition": "To shake slightly because of cold or strong feelings.",
+    "example_en": "My hands began to tremble with fear."
+   }
+  ]
+ },
+ {
+  "headword": "trigger",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809289b",
+    "cefr": "B2",
+    "corpus_definition": "To make something start or happen very quickly.",
+    "example_en": "Loud noises can trigger his bad memories."
+   }
+  ]
+ },
+ {
+  "headword": "triumph",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809288b",
+    "cefr": "B2",
+    "corpus_definition": "A great success or victory after a difficult situation.",
+    "example_en": "The athlete enjoyed a great triumph at the Olympics."
+   }
+  ]
+ },
+ {
+  "headword": "troops",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a7",
+    "cefr": "B2",
+    "corpus_definition": "Groups of soldiers who work for the army.",
+    "example_en": "The troops marched across the field at dawn."
+   }
+  ]
+ },
+ {
+  "headword": "tropics",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073671c",
+    "cefr": "B2",
+    "corpus_definition": "Hot and wet regions located near the middle of the world.",
+    "example_en": "Many colorful birds live in these warm forest areas."
+   }
+  ]
+ }
+]

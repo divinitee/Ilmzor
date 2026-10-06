@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "intention",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccee",
+    "cefr": "C1",
+    "corpus_definition": "Something that you plan to do.",
+    "example_en": "It was not my intention to hurt you."
+   }
+  ]
+ },
+ {
+  "headword": "intervene",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ec",
+    "cefr": "C1",
+    "corpus_definition": "to become involved in a situation to stop a problem",
+    "example_en": "The teacher had to intervene in the fight."
+   }
+  ]
+ },
+ {
+  "headword": "irritable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736864",
+    "cefr": "C1",
+    "corpus_definition": "Getting angry very easily.",
+    "example_en": "He is always irritable when he is tired."
+   }
+  ]
+ },
+ {
+  "headword": "ivory",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092833",
+    "cefr": "C1",
+    "corpus_definition": "The hard white material from the tusks of an elephant.",
+    "example_en": "The statue was carved from white ivory."
+   }
+  ]
+ },
+ {
+  "headword": "ivy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b0",
+    "cefr": "C1",
+    "corpus_definition": "A plant with green leaves that climbs up walls.",
+    "example_en": "The old house was covered in ivy."
+   }
+  ]
+ },
+ {
+  "headword": "justly",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736675",
+    "cefr": "C1",
+    "corpus_definition": "In a fair or right way.",
+    "example_en": "The judge ruled the case justly."
+   }
+  ]
+ },
+ {
+  "headword": "kerosene",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678b",
+    "cefr": "C1",
+    "corpus_definition": "A liquid oil used for heating or as fuel.",
+    "example_en": "The lamp runs on kerosene to produce light."
+   }
+  ]
+ },
+ {
+  "headword": "lag",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736865",
+    "cefr": "C1",
+    "corpus_definition": "To move or develop slower than others.",
+    "example_en": "Our internet connection began to lag badly."
+   }
+  ]
+ },
+ {
+  "headword": "lava",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809268a",
+    "cefr": "C1",
+    "corpus_definition": "Very hot liquid rock that comes out of a volcano.",
+    "example_en": "The hot lava flowed down the mountain side."
+   }
+  ]
+ },
+ {
+  "headword": "lieutenant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809272d",
+    "cefr": "C1",
+    "corpus_definition": "An officer with a rank below a captain in the military.",
+    "example_en": "The lieutenant led his soldiers into the field."
+   }
+  ]
+ }
+]

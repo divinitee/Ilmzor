@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "hermit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736674",
+    "cefr": "C1",
+    "corpus_definition": "A person who lives alone, away from others.",
+    "example_en": "The hermit lived alone in the cave."
+   }
+  ]
+ },
+ {
+  "headword": "heroic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cce",
+    "cefr": "C1",
+    "corpus_definition": "Very brave and showing great courage in difficult situations.",
+    "example_en": "The soldier made a heroic effort to save his friend."
+   }
+  ]
+ },
+ {
+  "headword": "heroine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ccf",
+    "cefr": "C1",
+    "corpus_definition": "A woman who is admired for her brave actions or character.",
+    "example_en": "She is the heroine of this famous adventure story."
+   }
+  ]
+ },
+ {
+  "headword": "hinder",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092672",
+    "cefr": "C1",
+    "corpus_definition": "To make it hard for someone to do something.",
+    "example_en": "Bad weather will hinder our travel plans."
+   }
+  ]
+ },
+ {
+  "headword": "historian",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b54",
+    "cefr": "C1",
+    "corpus_definition": "An expert who studies the events of the past.",
+    "example_en": "The historian wrote about ancient Rome."
+   }
+  ]
+ },
+ {
+  "headword": "hitchhike",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c2",
+    "cefr": "C1",
+    "corpus_definition": "To travel by asking drivers for a free ride.",
+    "example_en": "They decided to hitchhike across the country."
+   }
+  ]
+ },
+ {
+  "headword": "howl",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c6",
+    "cefr": "C1",
+    "corpus_definition": "A long, loud, sad sound made by an animal.",
+    "example_en": "We heard the wolf howl at night."
+   }
+  ]
+ },
+ {
+  "headword": "idle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736687",
+    "cefr": "C1",
+    "corpus_definition": "Not doing anything or having no work to do.",
+    "example_en": "It is not good to remain idle all day."
+   }
+  ]
+ },
+ {
+  "headword": "ignorant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c6",
+    "cefr": "C1",
+    "corpus_definition": "Not knowing about a specific topic.",
+    "example_en": "He was ignorant of the new company rules."
+   }
+  ]
+ },
+ {
+  "headword": "illusion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809272b",
+    "cefr": "C1",
+    "corpus_definition": "Something that seems real but is not.",
+    "example_en": "The mirror created an illusion of a larger room."
+   }
+  ]
+ }
+]

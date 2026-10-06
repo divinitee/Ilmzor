@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "spoil",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927fc",
+    "cefr": "A2",
+    "corpus_definition": "to damage or ruin something, or to become bad",
+    "example_en": "Don't let the rain spoil your picnic plans."
+   }
+  ]
+ },
+ {
+  "headword": "stain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092797",
+    "cefr": "A2",
+    "corpus_definition": "a dirty mark on a surface that is hard to remove",
+    "example_en": "She scrubbed the red wine stain from the tablecloth."
+   }
+  ]
+ },
+ {
+  "headword": "stamp",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e3d",
+    "cefr": "A2",
+    "corpus_definition": "A small paper sticker put on a cover to pay for service.",
+    "example_en": "You need a stamp to send this paper."
+   }
+  ]
+ },
+ {
+  "headword": "steal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7a",
+    "cefr": "A2",
+    "corpus_definition": "to take something that does not belong to you.",
+    "example_en": "Do not steal things from the shop."
+   }
+  ]
+ },
+ {
+  "headword": "steel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eb8",
+    "cefr": "B2",
+    "corpus_definition": "A very strong metal made from a mixture of iron and carbon.",
+    "example_en": "The bridge is built with strong steel beams."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092888",
+    "cefr": "A2",
+    "corpus_definition": "a very strong, hard metal used in building and tools",
+    "example_en": "The bridge was built from steel and concrete."
+   }
+  ]
+ },
+ {
+  "headword": "stir",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce0",
+    "cefr": "B1",
+    "corpus_definition": "To move a spoon in a circle to mix ingredients.",
+    "example_en": "Stir the soup well before serving it."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809280f",
+    "cefr": "A2",
+    "corpus_definition": "To move a spoon in circles to mix food.",
+    "example_en": "Please stir the soup while it cooks."
+   }
+  ]
+ },
+ {
+  "headword": "storm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e0b",
+    "cefr": "A2",
+    "corpus_definition": "Very bad weather with heavy rain and strong wind.",
+    "example_en": "The storm caused trees to fall down."
+   }
+  ]
+ },
+ {
+  "headword": "stranger",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113012c",
+    "cefr": "A2",
+    "corpus_definition": "A person that you do not know.",
+    "example_en": "Do not talk to a stranger on the street."
+   }
+  ]
+ },
+ {
+  "headword": "string",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736792",
+    "cefr": "A2",
+    "corpus_definition": "A long thin piece of material used to tie things.",
+    "example_en": "Tie the box closed with this piece of string."
+   }
+  ]
+ },
+ {
+  "headword": "stripe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f8",
+    "cefr": "A2",
+    "corpus_definition": "a long, thin band of colour on a surface",
+    "example_en": "Her shirt had blue and white stripes on it."
+   }
+  ]
+ }
+]

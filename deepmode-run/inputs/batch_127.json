@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "come across",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b49",
+    "cefr": "B2",
+    "corpus_definition": "To find something or meet someone by chance.",
+    "example_en": "I did come across an old photo today."
+   }
+  ]
+ },
+ {
+  "headword": "commit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc66",
+    "cefr": "B2",
+    "corpus_definition": "to do something wrong or against the law.",
+    "example_en": "People should not commit any crimes."
+   }
+  ]
+ },
+ {
+  "headword": "communication",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f91d",
+    "cefr": "B2",
+    "corpus_definition": "The act of sharing thoughts or news with others.",
+    "example_en": "Good communication is important in a team."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00e49",
+    "cefr": "B2",
+    "corpus_definition": "The act of sharing thoughts or facts with others.",
+    "example_en": "Good communication is important at work."
+   }
+  ]
+ },
+ {
+  "headword": "comparative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736720",
+    "cefr": "B2",
+    "corpus_definition": "Used to judge how two things are different or similar.",
+    "example_en": "This is a comparative study of two different education systems."
+   }
+  ]
+ },
+ {
+  "headword": "compensate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a1",
+    "cefr": "B2",
+    "corpus_definition": "to give something to make up for a loss or problem",
+    "example_en": "The company agreed to compensate her for the damaged goods."
+   }
+  ]
+ },
+ {
+  "headword": "complicate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736670",
+    "cefr": "B2",
+    "corpus_definition": "To make something harder to understand or do.",
+    "example_en": "Do not complicate the simple plan."
+   }
+  ]
+ },
+ {
+  "headword": "compliment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092671",
+    "cefr": "B2",
+    "corpus_definition": "Kind words said to someone to show you like something.",
+    "example_en": "She gave me a nice compliment on my dress."
+   }
+  ]
+ },
+ {
+  "headword": "composer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd6b",
+    "cefr": "B2",
+    "corpus_definition": "a person who writes musical pieces.",
+    "example_en": "The composer wrote a lovely new symphony."
+   }
+  ]
+ },
+ {
+  "headword": "composition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd6c",
+    "cefr": "B2",
+    "corpus_definition": "a piece of writing or music created by someone.",
+    "example_en": "She finished her school composition last night."
+   }
+  ]
+ },
+ {
+  "headword": "concept",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736824",
+    "cefr": "B2",
+    "corpus_definition": "A general idea or principle.",
+    "example_en": "The basic concept is easy to understand."
+   }
+  ]
+ }
+]

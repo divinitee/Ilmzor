@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "aisle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073667e",
+    "cefr": "B2",
+    "corpus_definition": "The walking space between rows of seats in a plane or shop.",
+    "example_en": "Please keep the aisle clear for other people."
+   }
+  ]
+ },
+ {
+  "headword": "allergic to",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccf7",
+    "cefr": "B2",
+    "corpus_definition": "becoming sick if you touch or eat a specific thing",
+    "example_en": "She is allergic to peanuts and must avoid them."
+   }
+  ]
+ },
+ {
+  "headword": "allergy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea9",
+    "cefr": "B2",
+    "corpus_definition": "A reaction where your body feels sick after eating or touching something.",
+    "example_en": "She has a serious allergy to peanuts."
+   }
+  ]
+ },
+ {
+  "headword": "alternative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736849",
+    "cefr": "B2",
+    "corpus_definition": "another choice or option available to someone",
+    "example_en": "We need to find an alternative way to travel."
+   }
+  ]
+ },
+ {
+  "headword": "altogether",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736641",
+    "cefr": "B2",
+    "corpus_definition": "Used to emphasize that something is completely finished.",
+    "example_en": "The project was stopped altogether."
+   }
+  ]
+ },
+ {
+  "headword": "ambitious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092815",
+    "cefr": "B2",
+    "corpus_definition": "Having a strong desire to be successful or powerful.",
+    "example_en": "She is an ambitious student who works hard."
+   }
+  ]
+ },
+ {
+  "headword": "anticipate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092878",
+    "cefr": "B2",
+    "corpus_definition": "to expect something to happen and prepare for it in advance",
+    "example_en": "We did not anticipate such a large number of guests."
+   }
+  ]
+ },
+ {
+  "headword": "appetite",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680e",
+    "cefr": "B2",
+    "corpus_definition": "The natural desire to eat food.",
+    "example_en": "Walking outside gave me a good appetite."
+   }
+  ]
+ },
+ {
+  "headword": "applause",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736836",
+    "cefr": "B2",
+    "corpus_definition": "Clapping hands to show enjoyment or praise.",
+    "example_en": "The actor received loud applause after the show."
+   }
+  ]
+ },
+ {
+  "headword": "appliance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092788",
+    "cefr": "B2",
+    "corpus_definition": "A machine used in the home for specific tasks.",
+    "example_en": "The kitchen has every modern electric appliance."
+   }
+  ]
+ }
+]

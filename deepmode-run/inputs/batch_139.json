@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "exotic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736728",
+    "cefr": "B2",
+    "corpus_definition": "From a faraway and unusual place.",
+    "example_en": "She loves trying exotic fruits from different countries."
+   }
+  ]
+ },
+ {
+  "headword": "expand",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736732",
+    "cefr": "B2",
+    "corpus_definition": "To make something larger in size, amount, or area.",
+    "example_en": "The business will expand into new cities next year."
+   }
+  ]
+ },
+ {
+  "headword": "expert",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908b1",
+    "cefr": "B2",
+    "corpus_definition": "A person who knows a lot about a particular subject.",
+    "example_en": "He is an expert at fixing old computers."
+   }
+  ]
+ },
+ {
+  "headword": "exploit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928ba",
+    "cefr": "B2",
+    "corpus_definition": "to use someone unfairly for your own benefit",
+    "example_en": "The company exploited its workers with low wages."
+   }
+  ]
+ },
+ {
+  "headword": "export",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6c",
+    "cefr": "B2",
+    "corpus_definition": "to send goods to another country to sell them there",
+    "example_en": "Our country will export more grain this year."
+   }
+  ]
+ },
+ {
+  "headword": "expression",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f920",
+    "cefr": "B2",
+    "corpus_definition": "A common group of words used to mean something specific.",
+    "example_en": "That is an interesting expression."
+   }
+  ]
+ },
+ {
+  "headword": "extent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ed",
+    "cefr": "B2",
+    "corpus_definition": "The size, length, or amount of something.",
+    "example_en": "I know the full extent of the damage."
+   }
+  ]
+ },
+ {
+  "headword": "fable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926da",
+    "cefr": "B2",
+    "corpus_definition": "A short story that teaches a moral lesson.",
+    "example_en": "He read a short fable to his children."
+   }
+  ]
+ },
+ {
+  "headword": "fall out with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113012f",
+    "cefr": "B2",
+    "corpus_definition": "To have an argument and stop being friendly with someone.",
+    "example_en": "He did fall out with his brother last year."
+   }
+  ]
+ },
+ {
+  "headword": "fame",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca0",
+    "cefr": "B2",
+    "corpus_definition": "Being known by many people.",
+    "example_en": "He found fame as an actor."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "unfortunate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668e",
+    "cefr": "B1",
+    "corpus_definition": "Having bad luck or feeling sad about a situation.",
+    "example_en": "It was an unfortunate mistake for us."
+   }
+  ]
+ },
+ {
+  "headword": "upset",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdf1",
+    "cefr": "B1",
+    "corpus_definition": "To make someone feel sad or worried.",
+    "example_en": "Don't let his comments make you upset."
+   }
+  ]
+ },
+ {
+  "headword": "urgent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092860",
+    "cefr": "B1",
+    "corpus_definition": "needing immediate attention or action very soon",
+    "example_en": "She sent an urgent message asking for help right away."
+   }
+  ]
+ },
+ {
+  "headword": "useless",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b8b",
+    "cefr": "B1",
+    "corpus_definition": "Something that does not help or serve any purpose.",
+    "example_en": "The broken umbrella is completely useless now."
+   }
+  ]
+ },
+ {
+  "headword": "valley",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00df4",
+    "cefr": "B1",
+    "corpus_definition": "A low area of land between two hills or mountains.",
+    "example_en": "A small village lies in the valley."
+   }
+  ]
+ },
+ {
+  "headword": "vanish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092861",
+    "cefr": "B1",
+    "corpus_definition": "to disappear suddenly and completely",
+    "example_en": "The magician made the coin vanish in seconds."
+   }
+  ]
+ },
+ {
+  "headword": "vary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736780",
+    "cefr": "B1",
+    "corpus_definition": "To be different from each other.",
+    "example_en": "Prices for fruit vary depending on the season."
+   }
+  ]
+ },
+ {
+  "headword": "vegetarian",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e0",
+    "cefr": "B1",
+    "corpus_definition": "A person who does not eat any meat or fish.",
+    "example_en": "My brother has been a vegetarian since college."
+   }
+  ]
+ },
+ {
+  "headword": "vehicle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d87",
+    "cefr": "B1",
+    "corpus_definition": "A machine like a car or bus used for travel.",
+    "example_en": "Please move your vehicle from the entrance."
+   }
+  ]
+ },
+ {
+  "headword": "version",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680b",
+    "cefr": "B1",
+    "corpus_definition": "A form of something that is slightly different from others.",
+    "example_en": "This is a new version of the software."
+   }
+  ]
+ }
+]

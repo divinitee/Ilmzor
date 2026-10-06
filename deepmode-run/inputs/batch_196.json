@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "nutritious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736868",
+    "cefr": "C1",
+    "corpus_definition": "Food that is very healthy for your body.",
+    "example_en": "Eating nutritious meals helps you stay strong."
+   }
+  ]
+ },
+ {
+  "headword": "oblige",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f0",
+    "cefr": "C1",
+    "corpus_definition": "to force someone to do something because of a duty",
+    "example_en": "The law will oblige him to pay."
+   }
+  ]
+ },
+ {
+  "headword": "oblivious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b2",
+    "cefr": "C1",
+    "corpus_definition": "Not knowing or noticing what is happening around you.",
+    "example_en": "He was oblivious to the danger nearby."
+   }
+  ]
+ },
+ {
+  "headword": "obtain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b71",
+    "cefr": "C1",
+    "corpus_definition": "to get something that you want or need",
+    "example_en": "You need to obtain a permit before starting work."
+   }
+  ]
+ },
+ {
+  "headword": "offspring",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366da",
+    "cefr": "C1",
+    "corpus_definition": "The child or young animal of parents.",
+    "example_en": "The mother protected her offspring from danger."
+   }
+  ]
+ },
+ {
+  "headword": "organism",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736739",
+    "cefr": "C1",
+    "corpus_definition": "Any living thing such as a plant or an animal.",
+    "example_en": "Each tiny organism plays a part in nature."
+   }
+  ]
+ },
+ {
+  "headword": "originate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809268d",
+    "cefr": "C1",
+    "corpus_definition": "To come from a specific place or start at a certain time.",
+    "example_en": "These traditions originate from ancient times."
+   }
+  ]
+ },
+ {
+  "headword": "outlaw",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092707",
+    "cefr": "C1",
+    "corpus_definition": "A person who has broken the law and is hiding.",
+    "example_en": "The legend tells of an outlaw living in the forest."
+   }
+  ]
+ },
+ {
+  "headword": "outraged",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736819",
+    "cefr": "C1",
+    "corpus_definition": "Feeling extreme anger about an unfair situation.",
+    "example_en": "The public was outraged by the decision."
+   }
+  ]
+ },
+ {
+  "headword": "palate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736777",
+    "cefr": "C1",
+    "corpus_definition": "A person's ability to appreciate and distinguish different tastes.",
+    "example_en": "The dish was created for a very refined palate."
+   }
+  ]
+ }
+]

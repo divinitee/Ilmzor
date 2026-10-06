@@ -1,0 +1,140 @@
+[
+ {
+  "headword": "tradition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7b",
+    "cefr": "B1",
+    "corpus_definition": "a belief or activity passed down through many years.",
+    "example_en": "It is a family tradition to eat together."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00e77",
+    "cefr": "B1",
+    "corpus_definition": "Customs passed down through generations in a group.",
+    "example_en": "That is a local tradition here."
+   }
+  ]
+ },
+ {
+  "headword": "tragedy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092773",
+    "cefr": "B1",
+    "corpus_definition": "a very sad event that causes great suffering or loss",
+    "example_en": "The plane crash was a terrible tragedy for the families."
+   }
+  ]
+ },
+ {
+  "headword": "translation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f926",
+    "cefr": "B1",
+    "corpus_definition": "The result of changing text into a different language.",
+    "example_en": "The translation was quite difficult to read."
+   }
+  ]
+ },
+ {
+  "headword": "translator",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f927",
+    "cefr": "B1",
+    "corpus_definition": "A person whose job is to change text between languages.",
+    "example_en": "She works as a professional translator."
+   }
+  ]
+ },
+ {
+  "headword": "transportation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736758",
+    "cefr": "B1",
+    "corpus_definition": "Ways to move people or goods from place to place.",
+    "example_en": "We need better public transportation in this city."
+   }
+  ]
+ },
+ {
+  "headword": "treatment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce3",
+    "cefr": "B2",
+    "corpus_definition": "Things done by doctors to cure a sickness.",
+    "example_en": "The patient needs urgent medical treatment today."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00eaa",
+    "cefr": "B1",
+    "corpus_definition": "Things done to help someone who is sick or hurt.",
+    "example_en": "The doctor started a new treatment for his cough."
+   }
+  ]
+ },
+ {
+  "headword": "trim",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809283a",
+    "cefr": "B1",
+    "corpus_definition": "to cut a small amount from something to make it neat",
+    "example_en": "He asked the barber to trim his beard a little."
+   }
+  ]
+ },
+ {
+  "headword": "truth",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b8c",
+    "cefr": "B1",
+    "corpus_definition": "Information that is correct and not based on lies.",
+    "example_en": "She told the truth about what happened yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "typical",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7c",
+    "cefr": "B1",
+    "corpus_definition": "the usual or normal way that someone or something acts.",
+    "example_en": "This is a typical day for me."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ba",
+    "cefr": "B1",
+    "corpus_definition": "Showing the usual features that you expect from something.",
+    "example_en": "This is a typical example of her style."
+   }
+  ]
+ },
+ {
+  "headword": "uncomfortable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55da2",
+    "cefr": "B1",
+    "corpus_definition": "Feeling a little bit of pain or not being relaxed.",
+    "example_en": "The wooden seat was very uncomfortable."
+   }
+  ]
+ }
+]

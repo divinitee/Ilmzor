@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "tired of",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dce02",
+    "cefr": "A2",
+    "corpus_definition": "feeling bored or annoyed by something you have done too much",
+    "example_en": "I am tired of eating the same food."
+   }
+  ]
+ },
+ {
+  "headword": "tool",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5f",
+    "cefr": "A2",
+    "corpus_definition": "a small object used to help perform a manual task.",
+    "example_en": "He kept every tool in the wooden box."
+   },
+   {
+    "word_id": "6a4288ad6941e70ad6a00eba",
+    "cefr": "A2",
+    "corpus_definition": "An object held in the hand to help you do a job.",
+    "example_en": "He keeps every tool in a big box."
+   }
+  ]
+ },
+ {
+  "headword": "tooth",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e99",
+    "cefr": "A2",
+    "corpus_definition": "A hard white object in the mouth used for chewing food.",
+    "example_en": "I need to brush my tooth before going to bed."
+   }
+  ]
+ },
+ {
+  "headword": "trace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092787",
+    "cefr": "A2",
+    "corpus_definition": "a small mark or sign left by someone or something",
+    "example_en": "Police found a trace of mud near the door."
+   }
+  ]
+ },
+ {
+  "headword": "traffic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d85",
+    "cefr": "A2",
+    "corpus_definition": "All the cars and trucks on the road.",
+    "example_en": "There is a lot of traffic today."
+   }
+  ]
+ },
+ {
+  "headword": "translate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f925",
+    "cefr": "A2",
+    "corpus_definition": "To change words from one language to another.",
+    "example_en": "Can you translate this letter for me?"
+   }
+  ]
+ },
+ {
+  "headword": "traveler",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55daa",
+    "cefr": "A2",
+    "corpus_definition": "A person who is going on a journey to another place.",
+    "example_en": "The tired traveler needed a place to sleep."
+   }
+  ]
+ },
+ {
+  "headword": "tray",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073668d",
+    "cefr": "A2",
+    "corpus_definition": "A flat object used for carrying food or drinks.",
+    "example_en": "The waiter carried the tray of drinks carefully."
+   }
+  ]
+ },
+ {
+  "headword": "try on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd63",
+    "cefr": "A2",
+    "corpus_definition": "to put on clothing to see if it fits well.",
+    "example_en": "I want to try on these blue shoes."
+   }
+  ]
+ },
+ {
+  "headword": "tune",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926e6",
+    "cefr": "A2",
+    "corpus_definition": "a simple, pleasant series of musical notes; a melody",
+    "example_en": "She hummed a familiar tune while cooking dinner."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "dawn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c1",
+    "cefr": "B2",
+    "corpus_definition": "The time of day when light first appears.",
+    "example_en": "They woke up at the crack of dawn."
+   }
+  ]
+ },
+ {
+  "headword": "debt",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6a",
+    "cefr": "B2",
+    "corpus_definition": "Money that you owe to another person.",
+    "example_en": "He must pay off his debt."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dc2",
+    "cefr": "B2",
+    "corpus_definition": "Money that you must pay back to someone else.",
+    "example_en": "They are working hard to pay off their debt."
+   }
+  ]
+ },
+ {
+  "headword": "decide on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b93",
+    "cefr": "B2",
+    "corpus_definition": "To make a choice after thinking about options.",
+    "example_en": "We must decide on a date for the party."
+   }
+  ]
+ },
+ {
+  "headword": "decisive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f8",
+    "cefr": "B2",
+    "corpus_definition": "Being able to make choices quickly and clearly.",
+    "example_en": "She is a decisive leader who makes fast choices."
+   }
+  ]
+ },
+ {
+  "headword": "decline",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736671",
+    "cefr": "B2",
+    "corpus_definition": "To go down in number or value.",
+    "example_en": "The sales began to decline last month."
+   }
+  ]
+ },
+ {
+  "headword": "deed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e9",
+    "cefr": "B2",
+    "corpus_definition": "something that a person does usually requiring effort",
+    "example_en": "She is known for her good deed."
+   }
+  ]
+ },
+ {
+  "headword": "defend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130117",
+    "cefr": "B2",
+    "corpus_definition": "To protect someone or something from danger.",
+    "example_en": "The dog will defend its home from strangers."
+   }
+  ]
+ },
+ {
+  "headword": "defense",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073683b",
+    "cefr": "B2",
+    "corpus_definition": "the action of keeping something safe from harm or attack",
+    "example_en": "The soldiers stood guard for the country's defense."
+   }
+  ]
+ },
+ {
+  "headword": "define",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736733",
+    "cefr": "B2",
+    "corpus_definition": "To explain the exact meaning of a word or idea.",
+    "example_en": "Can you define the meaning of this difficult word?"
+   }
+  ]
+ },
+ {
+  "headword": "deliberate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809287e",
+    "cefr": "B2",
+    "corpus_definition": "done on purpose, not by accident; slow and careful",
+    "example_en": "It was a deliberate attempt to mislead everyone."
+   }
+  ]
+ }
+]

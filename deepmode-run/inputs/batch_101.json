@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "recommend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdcd",
+    "cefr": "B1",
+    "corpus_definition": "To say that something is good and worth having.",
+    "example_en": "I recommend this book to everyone."
+   }
+  ]
+ },
+ {
+  "headword": "recover from",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccf8",
+    "cefr": "B1",
+    "corpus_definition": "to become healthy again after being sick or hurt",
+    "example_en": "It took him a week to recover from the flu."
+   }
+  ]
+ },
+ {
+  "headword": "recycling",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e01",
+    "cefr": "B1",
+    "corpus_definition": "Turning old items into new materials to use again.",
+    "example_en": "Recycling helps to keep our streets and parks clean."
+   }
+  ]
+ },
+ {
+  "headword": "refresh",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e7",
+    "cefr": "B1",
+    "corpus_definition": "To make someone feel less tired or hot.",
+    "example_en": "A cold drink will refresh you."
+   }
+  ]
+ },
+ {
+  "headword": "relation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130128",
+    "cefr": "B1",
+    "corpus_definition": "A person who is part of your family.",
+    "example_en": "I invited all my relations to the wedding."
+   }
+  ]
+ },
+ {
+  "headword": "relationship",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130154",
+    "cefr": "B1",
+    "corpus_definition": "The way two people or groups feel and act toward each other.",
+    "example_en": "They have a very strong relationship."
+   }
+  ]
+ },
+ {
+  "headword": "relief",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809285c",
+    "cefr": "B1",
+    "corpus_definition": "a feeling of comfort when worry or pain goes away",
+    "example_en": "She felt great relief when she heard the good news."
+   }
+  ]
+ },
+ {
+  "headword": "rely on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd1",
+    "cefr": "B1",
+    "corpus_definition": "To trust that someone will help you.",
+    "example_en": "You can rely on my help."
+   }
+  ]
+ },
+ {
+  "headword": "remind",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908bc",
+    "cefr": "B1",
+    "corpus_definition": "To help someone remember something they might forget.",
+    "example_en": "Please remind me to call my mother."
+   }
+  ]
+ },
+ {
+  "headword": "rent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130129",
+    "cefr": "B1",
+    "corpus_definition": "To pay money to use something that belongs to someone else.",
+    "example_en": "We pay rent for our apartment every month."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "assume",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda3",
+    "cefr": "B2",
+    "corpus_definition": "To believe something is true without having proof.",
+    "example_en": "Do not assume that everyone likes the same food."
+   }
+  ]
+ },
+ {
+  "headword": "assure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928a1",
+    "cefr": "B2",
+    "corpus_definition": "To tell someone that something is true to make them feel calm.",
+    "example_en": "I assure you that the work will be finished."
+   }
+  ]
+ },
+ {
+  "headword": "astonished",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d5",
+    "cefr": "B2",
+    "corpus_definition": "Very surprised by something.",
+    "example_en": "I was astonished by the beautiful view."
+   }
+  ]
+ },
+ {
+  "headword": "athletic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cc3",
+    "cefr": "B2",
+    "corpus_definition": "Strong, healthy, and good at sports.",
+    "example_en": "He has an athletic body."
+   }
+  ]
+ },
+ {
+  "headword": "atmosphere",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073667f",
+    "cefr": "B2",
+    "corpus_definition": "The air that surrounds the world or a specific mood in a place.",
+    "example_en": "The restaurant had a very friendly atmosphere."
+   }
+  ]
+ },
+ {
+  "headword": "attachment",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e54",
+    "cefr": "B2",
+    "corpus_definition": "A file added to a digital note to be sent together.",
+    "example_en": "Did you see the attachment I added?"
+   }
+  ]
+ },
+ {
+  "headword": "attitude",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd6",
+    "cefr": "B2",
+    "corpus_definition": "The way you think or feel about someone or something.",
+    "example_en": "She has a positive attitude toward her new job."
+   }
+  ]
+ },
+ {
+  "headword": "automatic",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b2d",
+    "cefr": "B2",
+    "corpus_definition": "Working by itself without needing people to control it.",
+    "example_en": "The shop door opens in an automatic way."
+   }
+  ]
+ },
+ {
+  "headword": "automobile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736745",
+    "cefr": "B2",
+    "corpus_definition": "A road vehicle with an engine for carrying people.",
+    "example_en": "He parked his new automobile in the driveway."
+   }
+  ]
+ },
+ {
+  "headword": "avenue",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073684a",
+    "cefr": "B2",
+    "corpus_definition": "a wide street in a town or city, often with trees",
+    "example_en": "We walked down the main avenue yesterday."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "pronounce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42818546ba24054c1dcb4a",
+    "cefr": "B1",
+    "corpus_definition": "to make the sounds of a word using your mouth and voice.",
+    "example_en": "Can you pronounce this word correctly?"
+   }
+  ]
+ },
+ {
+  "headword": "proverb",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092874",
+    "cefr": "B1",
+    "corpus_definition": "a short, well-known saying that gives wise advice",
+    "example_en": "There is a proverb that says honesty is the best policy."
+   }
+  ]
+ },
+ {
+  "headword": "province",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ad",
+    "cefr": "B1",
+    "corpus_definition": "a large region or area that is part of a country",
+    "example_en": "She grew up in a small province far from the capital."
+   }
+  ]
+ },
+ {
+  "headword": "public transport",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d81",
+    "cefr": "B1",
+    "corpus_definition": "Buses and trains that anyone can use.",
+    "example_en": "I prefer using public transport instead of driving."
+   }
+  ]
+ },
+ {
+  "headword": "publish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42818546ba24054c1dcb4b",
+    "cefr": "B1",
+    "corpus_definition": "to prepare and produce a book or magazine for people to buy.",
+    "example_en": "She wants to publish her new book next year."
+   }
+  ]
+ },
+ {
+  "headword": "pudding",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367dc",
+    "cefr": "B1",
+    "corpus_definition": "A soft, sweet dessert served after a meal.",
+    "example_en": "We ate chocolate pudding for dessert."
+   }
+  ]
+ },
+ {
+  "headword": "pulse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e6",
+    "cefr": "B1",
+    "corpus_definition": "the regular beat of the heart felt in the body",
+    "example_en": "The doctor checked the patient's pulse carefully."
+   }
+  ]
+ },
+ {
+  "headword": "punish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc93",
+    "cefr": "B1",
+    "corpus_definition": "to make someone suffer because they did something bad or wrong",
+    "example_en": "The teacher had to punish the noisy student."
+   }
+  ]
+ },
+ {
+  "headword": "purpose",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb6",
+    "cefr": "B1",
+    "corpus_definition": "The main goal or reason for doing something.",
+    "example_en": "What is the purpose of this meeting?"
+   }
+  ]
+ },
+ {
+  "headword": "pursue",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092793",
+    "cefr": "B1",
+    "corpus_definition": "to follow or try hard to achieve something",
+    "example_en": "She decided to pursue a career in medicine."
+   }
+  ]
+ }
+]

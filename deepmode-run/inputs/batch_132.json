@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "delicate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809278d",
+    "cefr": "B2",
+    "corpus_definition": "needing careful handling; easily damaged or sensitive",
+    "example_en": "This is a delicate situation that requires careful thought."
+   }
+  ]
+ },
+ {
+  "headword": "demand",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b6b",
+    "cefr": "B2",
+    "corpus_definition": "A strong need for products by buyers.",
+    "example_en": "The demand for fresh fruit is high."
+   }
+  ]
+ },
+ {
+  "headword": "den",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736657",
+    "cefr": "B2",
+    "corpus_definition": "A home where wild animals sleep.",
+    "example_en": "The bear went back to its den."
+   }
+  ]
+ },
+ {
+  "headword": "dent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736699",
+    "cefr": "B2",
+    "corpus_definition": "A hollow mark left on a flat surface after being hit.",
+    "example_en": "The car door has a large dent from the accident."
+   }
+  ]
+ },
+ {
+  "headword": "deny",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda9",
+    "cefr": "B2",
+    "corpus_definition": "To say that something is not true.",
+    "example_en": "The actor continues to deny all the rumors."
+   }
+  ]
+ },
+ {
+  "headword": "depart",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55da3",
+    "cefr": "B2",
+    "corpus_definition": "To leave a place to go somewhere else.",
+    "example_en": "The plane will depart in ten minutes."
+   }
+  ]
+ },
+ {
+  "headword": "deposit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736725",
+    "cefr": "B2",
+    "corpus_definition": "Money placed into a bank account.",
+    "example_en": "I put some cash into my bank account yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "depressed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcddd",
+    "cefr": "B2",
+    "corpus_definition": "Feeling very sad and having no energy.",
+    "example_en": "He felt depressed after losing his job."
+   }
+  ]
+ },
+ {
+  "headword": "derive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092726",
+    "cefr": "B2",
+    "corpus_definition": "to get or develop something from a particular source",
+    "example_en": "Many English words derive from Latin roots."
+   }
+  ]
+ },
+ {
+  "headword": "deserve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc9e",
+    "cefr": "B2",
+    "corpus_definition": "To have earned something because of your good actions.",
+    "example_en": "You deserve a long vacation."
+   }
+  ]
+ }
+]

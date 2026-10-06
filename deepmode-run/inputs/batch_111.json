@@ -1,0 +1,140 @@
+[
+ {
+  "headword": "supply",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b7c",
+    "cefr": "B2",
+    "corpus_definition": "to provide something that people need",
+    "example_en": "This company will supply parts for our factory."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736847",
+    "cefr": "B1",
+    "corpus_definition": "to provide something that is needed or wanted",
+    "example_en": "They supply food to the local schools daily."
+   }
+  ]
+ },
+ {
+  "headword": "surprised at",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dce01",
+    "cefr": "B1",
+    "corpus_definition": "feeling shocked because something was unexpected",
+    "example_en": "I was surprised at how fast she learned."
+   }
+  ]
+ },
+ {
+  "headword": "suspicious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275d",
+    "cefr": "B1",
+    "corpus_definition": "feeling that something might be wrong or dishonest",
+    "example_en": "The police were suspicious of his strange behavior."
+   }
+  ]
+ },
+ {
+  "headword": "swear",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f910",
+    "cefr": "B2",
+    "corpus_definition": "To use very bad or rude language when you are angry.",
+    "example_en": "Do not swear in front of the children."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092799",
+    "cefr": "B1",
+    "corpus_definition": "to make a very serious promise; to use very bad language",
+    "example_en": "He swore he would never lie to her again."
+   }
+  ]
+ },
+ {
+  "headword": "swift",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092889",
+    "cefr": "B1",
+    "corpus_definition": "moving or happening very fast",
+    "example_en": "The swift river carried the boat downstream quickly."
+   }
+  ]
+ },
+ {
+  "headword": "switch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a6",
+    "cefr": "B1",
+    "corpus_definition": "To change from one thing or action to another.",
+    "example_en": "We decided to switch our travel plans."
+   }
+  ]
+ },
+ {
+  "headword": "symphony",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092722",
+    "cefr": "B1",
+    "corpus_definition": "a long piece of serious music for a full orchestra",
+    "example_en": "The orchestra performed Beethoven's fifth symphony last night."
+   }
+  ]
+ },
+ {
+  "headword": "take back",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b83",
+    "cefr": "B1",
+    "corpus_definition": "to return something to a store for a refund",
+    "example_en": "I need to take back these shoes tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "talented at",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ef",
+    "cefr": "B1",
+    "corpus_definition": "Naturally good at doing a specific activity.",
+    "example_en": "He is very talented at playing piano."
+   }
+  ]
+ },
+ {
+  "headword": "tax",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb1",
+    "cefr": "B1",
+    "corpus_definition": "Money that you pay to the government.",
+    "example_en": "They raised the income tax again."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dc3",
+    "cefr": "B1",
+    "corpus_definition": "Money you must pay to the government.",
+    "example_en": "Everyone has to pay income tax."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "endangered species",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e13",
+    "cefr": "B2",
+    "corpus_definition": "A group of animals that might soon die out forever.",
+    "example_en": "Tigers are now considered an endangered species."
+   }
+  ]
+ },
+ {
+  "headword": "enforce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092891",
+    "cefr": "B2",
+    "corpus_definition": "To make sure that people follow the laws and rules.",
+    "example_en": "The police are here to enforce the new traffic laws."
+   }
+  ]
+ },
+ {
+  "headword": "enhance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736749",
+    "cefr": "B2",
+    "corpus_definition": "To make something better or improve its value.",
+    "example_en": "These herbs will enhance the flavor of the soup."
+   }
+  ]
+ },
+ {
+  "headword": "enthusiasm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736852",
+    "cefr": "B2",
+    "corpus_definition": "a feeling of great excitement and interest about something",
+    "example_en": "She shows great enthusiasm for her new project."
+   }
+  ]
+ },
+ {
+  "headword": "enthusiastic about",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda1",
+    "cefr": "B2",
+    "corpus_definition": "Feeling very happy and interested in doing something.",
+    "example_en": "The students are enthusiastic about the science trip."
+   }
+  ]
+ },
+ {
+  "headword": "equality",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc8b",
+    "cefr": "B2",
+    "corpus_definition": "the state where everyone has the same rights and opportunities",
+    "example_en": "We must fight for equality for all people."
+   }
+  ]
+ },
+ {
+  "headword": "equator",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736727",
+    "cefr": "B2",
+    "corpus_definition": "An imaginary line around the middle of the earth.",
+    "example_en": "The sun is very hot near the center line."
+   }
+  ]
+ },
+ {
+  "headword": "equip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073683f",
+    "cefr": "B2",
+    "corpus_definition": "to provide a person or place with necessary tools or supplies",
+    "example_en": "We must equip the team with the right gear."
+   }
+  ]
+ },
+ {
+  "headword": "era",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674a",
+    "cefr": "B2",
+    "corpus_definition": "A long period of time in history.",
+    "example_en": "We live in a new era of digital technology."
+   }
+  ]
+ },
+ {
+  "headword": "establish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073688f",
+    "cefr": "B2",
+    "corpus_definition": "To start a business or organization that will last.",
+    "example_en": "They hope to establish a new school soon."
+   }
+  ]
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "resolve",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f4",
+    "cefr": "B2",
+    "corpus_definition": "to find a successful way to fix a difficult situation",
+    "example_en": "We must resolve this problem very soon."
+   }
+  ]
+ },
+ {
+  "headword": "resource",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f5",
+    "cefr": "B2",
+    "corpus_definition": "something useful that a country or person can use",
+    "example_en": "Water is a very important natural resource."
+   }
+  ]
+ },
+ {
+  "headword": "resume",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dca",
+    "cefr": "B2",
+    "corpus_definition": "A document listing your skills and past jobs.",
+    "example_en": "She updated her resume before applying."
+   }
+  ]
+ },
+ {
+  "headword": "retire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccad",
+    "cefr": "B2",
+    "corpus_definition": "To stop working, usually because you are old.",
+    "example_en": "My father will retire next month."
+   }
+  ]
+ },
+ {
+  "headword": "retirement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccbf",
+    "cefr": "B2",
+    "corpus_definition": "The time when you stop working, usually because you are older.",
+    "example_en": "She is looking forward to her retirement next year."
+   }
+  ]
+ },
+ {
+  "headword": "retreat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a1",
+    "cefr": "B2",
+    "corpus_definition": "to move back or away from a difficult or dangerous situation",
+    "example_en": "The army decided to retreat after losing many soldiers."
+   }
+  ]
+ },
+ {
+  "headword": "revolution",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a2",
+    "cefr": "B2",
+    "corpus_definition": "A big change in the way a country is governed.",
+    "example_en": "The revolution changed the country forever."
+   }
+  ]
+ },
+ {
+  "headword": "rhythm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ca8",
+    "cefr": "B2",
+    "corpus_definition": "A regular pattern of sounds or movements.",
+    "example_en": "This song has a fast, happy rhythm."
+   }
+  ]
+ },
+ {
+  "headword": "riddle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927f7",
+    "cefr": "B2",
+    "corpus_definition": "A hard question that is like a puzzle.",
+    "example_en": "Can you solve this difficult riddle?"
+   }
+  ]
+ },
+ {
+  "headword": "rim",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b5",
+    "cefr": "B2",
+    "corpus_definition": "The edge or outer border of something round.",
+    "example_en": "She filled the glass to the very rim."
+   }
+  ]
+ }
+]

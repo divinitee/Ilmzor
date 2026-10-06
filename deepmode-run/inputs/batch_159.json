@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "persist",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d1",
+    "cefr": "B2",
+    "corpus_definition": "to continue doing something even when it is difficult",
+    "example_en": "She persisted with her studies despite many difficulties."
+   }
+  ]
+ },
+ {
+  "headword": "persuade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42818546ba24054c1dcb49",
+    "cefr": "B2",
+    "corpus_definition": "To make someone agree with you by talking.",
+    "example_en": "Try to persuade her to come with us."
+   }
+  ]
+ },
+ {
+  "headword": "physical health",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e82",
+    "cefr": "B2",
+    "corpus_definition": "The state of your body being strong and free from sickness.",
+    "example_en": "Exercise is important for your physical health."
+   }
+  ]
+ },
+ {
+  "headword": "pine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d2",
+    "cefr": "B2",
+    "corpus_definition": "A tall evergreen tree with thin sharp leaves.",
+    "example_en": "The forest is filled with tall pine trees."
+   }
+  ]
+ },
+ {
+  "headword": "pit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367b4",
+    "cefr": "B2",
+    "corpus_definition": "A large deep hole in the ground.",
+    "example_en": "The workers dug a large pit for the tree."
+   }
+  ]
+ },
+ {
+  "headword": "pity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c6",
+    "cefr": "B2",
+    "corpus_definition": "A feeling of sadness for someone else's trouble.",
+    "example_en": "I felt pity for the lost dog."
+   }
+  ]
+ },
+ {
+  "headword": "plantation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736779",
+    "cefr": "B2",
+    "corpus_definition": "A large area of land where crops are grown.",
+    "example_en": "They work on a large coffee plantation every day."
+   }
+  ]
+ },
+ {
+  "headword": "playful",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cd5",
+    "cefr": "B2",
+    "corpus_definition": "Full of energy and wanting to have fun.",
+    "example_en": "The puppy was very playful this morning."
+   }
+  ]
+ },
+ {
+  "headword": "plot",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926b4",
+    "cefr": "B2",
+    "corpus_definition": "The series of events that form the story of a book.",
+    "example_en": "The movie has a very complex plot."
+   }
+  ]
+ },
+ {
+  "headword": "point out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908c9",
+    "cefr": "B2",
+    "corpus_definition": "To draw attention to a specific fact.",
+    "example_en": "The teacher had to point out my errors."
+   }
+  ]
+ }
+]

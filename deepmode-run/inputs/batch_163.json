@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "qualification",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908bb",
+    "cefr": "B2",
+    "corpus_definition": "An official document showing you have finished a course.",
+    "example_en": "She has the right qualification for the job."
+   }
+  ]
+ },
+ {
+  "headword": "raft",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678e",
+    "cefr": "B2",
+    "corpus_definition": "A flat floating structure used for traveling on water.",
+    "example_en": "We crossed the river on a wooden raft."
+   }
+  ]
+ },
+ {
+  "headword": "rainforest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672e",
+    "cefr": "B2",
+    "corpus_definition": "A thick forest with many tall trees that gets a lot of rain.",
+    "example_en": "The monkeys live deep in the thick tropical rainforest."
+   }
+  ]
+ },
+ {
+  "headword": "rally",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f3",
+    "cefr": "B2",
+    "corpus_definition": "a large public meeting to support an idea or person",
+    "example_en": "Thousands joined the rally in the park."
+   }
+  ]
+ },
+ {
+  "headword": "random",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073673d",
+    "cefr": "B2",
+    "corpus_definition": "Chosen without a specific plan or order.",
+    "example_en": "The computer picked a random number for us."
+   }
+  ]
+ },
+ {
+  "headword": "rapid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073677a",
+    "cefr": "B2",
+    "corpus_definition": "Happening or moving very quickly.",
+    "example_en": "The patient showed a rapid recovery after the surgery."
+   }
+  ]
+ },
+ {
+  "headword": "rebel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a0",
+    "cefr": "B2",
+    "corpus_definition": "A person who fights against the government or leaders.",
+    "example_en": "The rebel refused to follow the new rules."
+   }
+  ]
+ },
+ {
+  "headword": "recognize",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130127",
+    "cefr": "B2",
+    "corpus_definition": "To know someone or something because you saw them before.",
+    "example_en": "I did not recognize you with your hat."
+   }
+  ]
+ },
+ {
+  "headword": "recover",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccdb",
+    "cefr": "B2",
+    "corpus_definition": "To become healthy again after being sick.",
+    "example_en": "It took him a week to recover from the flu."
+   }
+  ]
+ },
+ {
+  "headword": "refer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e6",
+    "cefr": "B2",
+    "corpus_definition": "To mention or speak about someone or something.",
+    "example_en": "Did he refer to the new rules?"
+   }
+  ]
+ }
+]

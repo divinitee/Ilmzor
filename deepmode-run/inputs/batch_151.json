@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "lawn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092705",
+    "cefr": "B2",
+    "corpus_definition": "An area of short green grass in a garden.",
+    "example_en": "We sat on the lawn and enjoyed the sunshine."
+   }
+  ]
+ },
+ {
+  "headword": "leap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c7",
+    "cefr": "B2",
+    "corpus_definition": "To jump a long way or high into the air.",
+    "example_en": "The frog decided to leap across water."
+   }
+  ]
+ },
+ {
+  "headword": "leash",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736891",
+    "cefr": "B2",
+    "corpus_definition": "A long rope used to control a dog while walking.",
+    "example_en": "Always keep your dog on a leash."
+   }
+  ]
+ },
+ {
+  "headword": "lecture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367c8",
+    "cefr": "B2",
+    "corpus_definition": "A formal talk given to a group of students.",
+    "example_en": "The professor gave a long lecture on history."
+   }
+  ]
+ },
+ {
+  "headword": "liberty",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092676",
+    "cefr": "B2",
+    "corpus_definition": "The power to act or speak without being restricted.",
+    "example_en": "They fought for their personal liberty."
+   }
+  ]
+ },
+ {
+  "headword": "lid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073665d",
+    "cefr": "B2",
+    "corpus_definition": "A cover for a container.",
+    "example_en": "Put the lid back on the jar."
+   }
+  ]
+ },
+ {
+  "headword": "lifestyle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e7c",
+    "cefr": "B2",
+    "corpus_definition": "The way a person lives their daily life.",
+    "example_en": "She leads a very healthy lifestyle."
+   }
+  ]
+ },
+ {
+  "headword": "lining",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073669d",
+    "cefr": "B2",
+    "corpus_definition": "A layer of material used to cover the inside of clothes.",
+    "example_en": "The coat has a warm silk lining."
+   }
+  ]
+ },
+ {
+  "headword": "litter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd7d",
+    "cefr": "B2",
+    "corpus_definition": "Small pieces of waste left on the ground in public places.",
+    "example_en": "Please do not drop litter in the park."
+   }
+  ]
+ },
+ {
+  "headword": "locate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd7f",
+    "cefr": "B2",
+    "corpus_definition": "To find the exact position of something.",
+    "example_en": "Can you locate the town on the map?"
+   }
+  ]
+ }
+]

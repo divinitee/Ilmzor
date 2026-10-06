@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "adolescent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809266f",
+    "cefr": "C1",
+    "corpus_definition": "A young person who is between childhood and adulthood.",
+    "example_en": "The adolescent boy is growing very quickly."
+   }
+  ]
+ },
+ {
+  "headword": "affirm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d4",
+    "cefr": "C1",
+    "corpus_definition": "To say that something is true.",
+    "example_en": "The teacher will affirm the student's hard work."
+   }
+  ]
+ },
+ {
+  "headword": "afflicted",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073667d",
+    "cefr": "C1",
+    "corpus_definition": "Feeling great pain or sadness due to a problem.",
+    "example_en": "He was afflicted by a terrible illness."
+   }
+  ]
+ },
+ {
+  "headword": "ail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809283c",
+    "cefr": "C1",
+    "corpus_definition": "to feel ill or suffer from a problem over time",
+    "example_en": "Nobody knew what was ailing the old professor."
+   }
+  ]
+ },
+ {
+  "headword": "alas",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d2",
+    "cefr": "C1",
+    "corpus_definition": "Used to show sadness or regret.",
+    "example_en": "Alas, I cannot come to your party."
+   }
+  ]
+ },
+ {
+  "headword": "alliance",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736835",
+    "cefr": "C1",
+    "corpus_definition": "A formal agreement between groups to work together.",
+    "example_en": "The two countries formed a strong military alliance."
+   }
+  ]
+ },
+ {
+  "headword": "ally",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809283d",
+    "cefr": "C1",
+    "corpus_definition": "A person or country that helps you in a fight.",
+    "example_en": "They are a close ally in the war."
+   }
+  ]
+ },
+ {
+  "headword": "ambition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc95",
+    "cefr": "C1",
+    "corpus_definition": "a strong desire to achieve something important or successful",
+    "example_en": "Her main ambition is to become a doctor."
+   }
+  ]
+ },
+ {
+  "headword": "animate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736821",
+    "cefr": "C1",
+    "corpus_definition": "To make a drawing or object look like it is moving.",
+    "example_en": "It takes time to animate this cartoon character."
+   }
+  ]
+ },
+ {
+  "headword": "aptitude",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092670",
+    "cefr": "C1",
+    "corpus_definition": "A natural ability to do a task well.",
+    "example_en": "He shows a great aptitude for learning languages."
+   }
+  ]
+ }
+]

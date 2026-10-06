@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "endure",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092809",
+    "cefr": "C1",
+    "corpus_definition": "To deal with a difficult situation for a long time.",
+    "example_en": "She had to endure the cold winter."
+   }
+  ]
+ },
+ {
+  "headword": "envision",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d5",
+    "cefr": "C1",
+    "corpus_definition": "To imagine something happening in the future.",
+    "example_en": "Can you envision yourself living abroad?"
+   }
+  ]
+ },
+ {
+  "headword": "equilibrium",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e7",
+    "cefr": "C1",
+    "corpus_definition": "A state of balance between different forces.",
+    "example_en": "The economy needs to find a new equilibrium."
+   }
+  ]
+ },
+ {
+  "headword": "errand",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736672",
+    "cefr": "C1",
+    "corpus_definition": "A short trip to do a specific task.",
+    "example_en": "I need to run an errand today."
+   }
+  ]
+ },
+ {
+  "headword": "erupt",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092688",
+    "cefr": "C1",
+    "corpus_definition": "To suddenly burst out with hot liquid or gas from a mountain.",
+    "example_en": "The volcano will erupt later this evening."
+   }
+  ]
+ },
+ {
+  "headword": "esteemed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f9",
+    "cefr": "C1",
+    "corpus_definition": "Having a high level of respect from others.",
+    "example_en": "The esteemed professor gave a wonderful speech today."
+   }
+  ]
+ },
+ {
+  "headword": "evident",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c4",
+    "cefr": "C1",
+    "corpus_definition": "Easy to see or understand.",
+    "example_en": "It was evident that he was tired."
+   }
+  ]
+ },
+ {
+  "headword": "expedition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809281d",
+    "cefr": "C1",
+    "corpus_definition": "A long trip to explore or study a new place.",
+    "example_en": "They went on an expedition to the mountains."
+   }
+  ]
+ },
+ {
+  "headword": "extinguish",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736714",
+    "cefr": "C1",
+    "corpus_definition": "To stop a fire from burning.",
+    "example_en": "Firefighters worked fast to put out the dangerous flames."
+   }
+  ]
+ },
+ {
+  "headword": "famine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480928bb",
+    "cefr": "C1",
+    "corpus_definition": "A long time when there is not enough food for people.",
+    "example_en": "Many people suffered during the terrible famine."
+   }
+  ]
+ }
+]

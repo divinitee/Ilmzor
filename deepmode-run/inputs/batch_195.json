@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "merchant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809276c",
+    "cefr": "C1",
+    "corpus_definition": "Someone who buys and sells goods for profit.",
+    "example_en": "The merchant sold spices at the busy market."
+   }
+  ]
+ },
+ {
+  "headword": "merit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809272f",
+    "cefr": "C1",
+    "corpus_definition": "The quality of being good and deserving of praise.",
+    "example_en": "Your suggestion has a lot of merit."
+   }
+  ]
+ },
+ {
+  "headword": "midst",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736894",
+    "cefr": "C1",
+    "corpus_definition": "The very center point of a group or an area.",
+    "example_en": "She stood in the midst of the noisy crowd."
+   }
+  ]
+ },
+ {
+  "headword": "miniature",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736718",
+    "cefr": "C1",
+    "corpus_definition": "A very small version of something larger.",
+    "example_en": "She keeps a tiny model of a house on her shelf."
+   }
+  ]
+ },
+ {
+  "headword": "mischief",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736856",
+    "cefr": "C1",
+    "corpus_definition": "behavior that is playful but may cause small problems",
+    "example_en": "The children were full of mischief today."
+   }
+  ]
+ },
+ {
+  "headword": "misery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736895",
+    "cefr": "C1",
+    "corpus_definition": "A state of being extremely unhappy or having great pain.",
+    "example_en": "War brings great misery to all people involved."
+   }
+  ]
+ },
+ {
+  "headword": "misfortune",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736649",
+    "cefr": "C1",
+    "corpus_definition": "A period of bad luck or an unlucky event.",
+    "example_en": "She had the misfortune to lose her wallet."
+   }
+  ]
+ },
+ {
+  "headword": "moderation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366eb",
+    "cefr": "C1",
+    "corpus_definition": "The quality of doing things within reasonable limits.",
+    "example_en": "Everything should be enjoyed in moderation."
+   }
+  ]
+ },
+ {
+  "headword": "mutual",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092821",
+    "cefr": "C1",
+    "corpus_definition": "Shared or felt by two or more people together.",
+    "example_en": "They share a mutual interest in music."
+   }
+  ]
+ },
+ {
+  "headword": "nurture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736700",
+    "cefr": "C1",
+    "corpus_definition": "To take care of someone or something while growing.",
+    "example_en": "Teachers help to nurture the talent of young students."
+   }
+  ]
+ }
+]

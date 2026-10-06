@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "meadow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00df3",
+    "cefr": "B2",
+    "corpus_definition": "A field covered in grass and often wild flowers.",
+    "example_en": "Cows were eating in the green meadow."
+   }
+  ]
+ },
+ {
+  "headword": "meantime",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736855",
+    "cefr": "B2",
+    "corpus_definition": "the time that passes between two events",
+    "example_en": "In the meantime, you can wait here."
+   }
+  ]
+ },
+ {
+  "headword": "measurement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b56",
+    "cefr": "B2",
+    "corpus_definition": "The size, length, or amount of something.",
+    "example_en": "Check the measurement of the box."
+   }
+  ]
+ },
+ {
+  "headword": "media",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f905",
+    "cefr": "B2",
+    "corpus_definition": "Ways of communicating information to a large public audience.",
+    "example_en": "The media covered the event all day."
+   }
+  ]
+ },
+ {
+  "headword": "memorable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ef",
+    "cefr": "B2",
+    "corpus_definition": "easy to remember because it is very special or interesting",
+    "example_en": "We had a memorable trip to Italy."
+   }
+  ]
+ },
+ {
+  "headword": "memorize",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908e4",
+    "cefr": "B2",
+    "corpus_definition": "To learn information so that you can recall it perfectly later.",
+    "example_en": "I must memorize these words for the test."
+   }
+  ]
+ },
+ {
+  "headword": "mental",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908b9",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the mind or thinking process.",
+    "example_en": "Math is good for your mental health."
+   }
+  ]
+ },
+ {
+  "headword": "mental health",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ea7",
+    "cefr": "B2",
+    "corpus_definition": "How you feel inside and how you manage your thoughts.",
+    "example_en": "Talking to friends helps improve your mental health."
+   }
+  ]
+ },
+ {
+  "headword": "mercy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092846",
+    "cefr": "B2",
+    "corpus_definition": "kindness shown to someone you have power to punish",
+    "example_en": "The judge showed mercy and gave a lighter sentence."
+   }
+  ]
+ },
+ {
+  "headword": "mighty",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073665f",
+    "cefr": "B2",
+    "corpus_definition": "Very strong and powerful.",
+    "example_en": "The mighty giant shook the earth."
+   }
+  ]
+ }
+]

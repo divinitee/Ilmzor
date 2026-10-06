@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "satisfaction",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927ae",
+    "cefr": "B1",
+    "corpus_definition": "a good feeling you get when something meets your needs or wishes",
+    "example_en": "He smiled with satisfaction after finishing the project."
+   }
+  ]
+ },
+ {
+  "headword": "satisfactory",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c0",
+    "cefr": "B1",
+    "corpus_definition": "good enough but not excellent; meeting the basic required standard",
+    "example_en": "Her exam results were satisfactory but could be better."
+   }
+  ]
+ },
+ {
+  "headword": "save up for",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b82",
+    "cefr": "B1",
+    "corpus_definition": "to collect money over time to buy something",
+    "example_en": "They save up for a summer holiday every year."
+   }
+  ]
+ },
+ {
+  "headword": "saw",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ebe",
+    "cefr": "B1",
+    "corpus_definition": "A tool with sharp teeth used for cutting wood or metal.",
+    "example_en": "The worker used a sharp saw to cut the board."
+   }
+  ]
+ },
+ {
+  "headword": "scar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d3",
+    "cefr": "B1",
+    "corpus_definition": "a permanent mark left on skin after a wound heals",
+    "example_en": "He had a small scar on his chin from childhood."
+   }
+  ]
+ },
+ {
+  "headword": "scatter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092886",
+    "cefr": "B1",
+    "corpus_definition": "to throw or spread things in many different directions",
+    "example_en": "The wind scattered the fallen leaves across the yard."
+   }
+  ]
+ },
+ {
+  "headword": "scratch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092721",
+    "cefr": "B1",
+    "corpus_definition": "To rub your skin with your nails to stop an itch.",
+    "example_en": "The cat will scratch you if you pull its tail."
+   }
+  ]
+ },
+ {
+  "headword": "screw",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ebc",
+    "cefr": "B1",
+    "corpus_definition": "A metal piece that you twist to join things together.",
+    "example_en": "I need to turn the screw to fix the chair."
+   }
+  ]
+ },
+ {
+  "headword": "security",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e58",
+    "cefr": "B1",
+    "corpus_definition": "The state of being safe from harm or danger.",
+    "example_en": "The airport has strict security checks."
+   }
+  ]
+ },
+ {
+  "headword": "semester",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ce",
+    "cefr": "B1",
+    "corpus_definition": "One of two periods in a school year.",
+    "example_en": "The first semester ends in December."
+   }
+  ]
+ }
+]

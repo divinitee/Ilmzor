@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "drift",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092890",
+    "cefr": "B2",
+    "corpus_definition": "to move slowly without control, carried by water or wind",
+    "example_en": "The small boat began to drift out to sea."
+   }
+  ]
+ },
+ {
+  "headword": "drip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809282f",
+    "cefr": "B2",
+    "corpus_definition": "To fall in very small liquid drops.",
+    "example_en": "Water began to drip from the broken pipe."
+   }
+  ]
+ },
+ {
+  "headword": "drought",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e0e",
+    "cefr": "B2",
+    "corpus_definition": "A long period with no rain at all.",
+    "example_en": "The long drought killed all the farm crops."
+   }
+  ]
+ },
+ {
+  "headword": "drown",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092727",
+    "cefr": "B2",
+    "corpus_definition": "To die from being under water for too long.",
+    "example_en": "The swimmer nearly did drown in the deep lake."
+   }
+  ]
+ },
+ {
+  "headword": "ease",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c3",
+    "cefr": "B2",
+    "corpus_definition": "The state of having no trouble or difficulty.",
+    "example_en": "She passed the exam with great ease."
+   }
+  ]
+ },
+ {
+  "headword": "echo",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073679c",
+    "cefr": "B2",
+    "corpus_definition": "The sound that is sent back to your ears.",
+    "example_en": "My shout made a loud echo in the cave."
+   }
+  ]
+ },
+ {
+  "headword": "ecosystem",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809286b",
+    "cefr": "B2",
+    "corpus_definition": "all the living things in an area and how they interact together",
+    "example_en": "Pollution is destroying the ocean ecosystem at an alarming rate."
+   }
+  ]
+ },
+ {
+  "headword": "efficient",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736813",
+    "cefr": "B2",
+    "corpus_definition": "Doing something well without wasting time or energy.",
+    "example_en": "She is a very efficient worker."
+   }
+  ]
+ },
+ {
+  "headword": "election",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc8a",
+    "cefr": "B2",
+    "corpus_definition": "a process where people vote to choose who will lead the country",
+    "example_en": "The national election happens every four years."
+   }
+  ]
+ },
+ {
+  "headword": "elegant",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092830",
+    "cefr": "B2",
+    "corpus_definition": "graceful and stylish in appearance or manner",
+    "example_en": "She looked elegant in her long blue dress."
+   }
+  ]
+ }
+]

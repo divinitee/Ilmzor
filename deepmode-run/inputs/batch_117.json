@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "addicted to",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccf6",
+    "cefr": "B2",
+    "corpus_definition": "unable to stop doing something because you need it very much",
+    "example_en": "He is addicted to playing video games every single night."
+   }
+  ]
+ },
+ {
+  "headword": "admiration",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130141",
+    "cefr": "B2",
+    "corpus_definition": "A feeling of deep respect and liking.",
+    "example_en": "I have great admiration for your talent."
+   }
+  ]
+ },
+ {
+  "headword": "admire sb for",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113015a",
+    "cefr": "B2",
+    "corpus_definition": "To respect someone for something good they have done.",
+    "example_en": "I admire her for her hard work."
+   }
+  ]
+ },
+ {
+  "headword": "admit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc63",
+    "cefr": "B2",
+    "corpus_definition": "to say that something is true, especially when you are unhappy.",
+    "example_en": "He had to admit his mistake to the teacher."
+   }
+  ]
+ },
+ {
+  "headword": "adviser",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc7",
+    "cefr": "B2",
+    "corpus_definition": "A person who gives help and suggestions.",
+    "example_en": "The financial adviser helped me save."
+   }
+  ]
+ },
+ {
+  "headword": "affection",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092683",
+    "cefr": "B2",
+    "corpus_definition": "A warm, loving feeling for someone.",
+    "example_en": "He showed great affection for his pet dog."
+   }
+  ]
+ },
+ {
+  "headword": "affordable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b84",
+    "cefr": "B2",
+    "corpus_definition": "not too expensive for people to buy",
+    "example_en": "They offer affordable meals for students."
+   }
+  ]
+ },
+ {
+  "headword": "agency",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092684",
+    "cefr": "B2",
+    "corpus_definition": "A business that provides a service for others.",
+    "example_en": "They hired a travel agency to plan trips."
+   }
+  ]
+ },
+ {
+  "headword": "agreement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc87",
+    "cefr": "B2",
+    "corpus_definition": "a situation where two or more people share the same opinion or decision",
+    "example_en": "They finally reached an agreement about the plans."
+   }
+  ]
+ },
+ {
+  "headword": "aircraft",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f5",
+    "cefr": "B2",
+    "corpus_definition": "Any vehicle that can fly through the air.",
+    "example_en": "The military aircraft flew over the city."
+   }
+  ]
+ }
+]

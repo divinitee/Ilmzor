@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "wool",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927eb",
+    "cefr": "A2",
+    "corpus_definition": "Soft, thick hair taken from sheep to make clothes.",
+    "example_en": "This sweater is made of warm wool."
+   }
+  ]
+ },
+ {
+  "headword": "work as",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc4",
+    "cefr": "A2",
+    "corpus_definition": "To have a specific job or role.",
+    "example_en": "She wants to work as a teacher."
+   }
+  ]
+ },
+ {
+  "headword": "work for",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc5",
+    "cefr": "A2",
+    "corpus_definition": "To have a person or company as your boss.",
+    "example_en": "I work for a large international firm."
+   }
+  ]
+ },
+ {
+  "headword": "work out",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc5",
+    "cefr": "A2",
+    "corpus_definition": "To find the answer to a problem.",
+    "example_en": "I cannot work out this math problem."
+   }
+  ]
+ },
+ {
+  "headword": "working hours",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dd4",
+    "cefr": "A2",
+    "corpus_definition": "The time of day you spend doing your job.",
+    "example_en": "My working hours are nine to five."
+   }
+  ]
+ },
+ {
+  "headword": "worm",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092813",
+    "cefr": "A2",
+    "corpus_definition": "A small animal with a long, thin, soft body.",
+    "example_en": "The bird found a worm in the grass."
+   }
+  ]
+ },
+ {
+  "headword": "worry about",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd9d",
+    "cefr": "A2",
+    "corpus_definition": "To feel unhappy because you feel something bad might happen.",
+    "example_en": "Do not worry about the math test tomorrow."
+   }
+  ]
+ },
+ {
+  "headword": "write down",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ce",
+    "cefr": "A2",
+    "corpus_definition": "To put words on paper so that you do not forget them.",
+    "example_en": "You should write down the meeting time."
+   }
+  ]
+ },
+ {
+  "headword": "a relationship with",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113015f",
+    "cefr": "B1",
+    "corpus_definition": "A connection between two people.",
+    "example_en": "He has a great relationship with his teacher."
+   }
+  ]
+ },
+ {
+  "headword": "abandon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092814",
+    "cefr": "B1",
+    "corpus_definition": "to leave a person or place forever without intending to return",
+    "example_en": "He abandoned his car on the side of the road."
+   }
+  ]
+ }
+]

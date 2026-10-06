@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "slight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736880",
+    "cefr": "B2",
+    "corpus_definition": "Very small in degree or amount.",
+    "example_en": "There was a slight change in the plan."
+   }
+  ]
+ },
+ {
+  "headword": "smash",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073681d",
+    "cefr": "B2",
+    "corpus_definition": "To break something into many small pieces with force.",
+    "example_en": "He managed to smash the window with a rock."
+   }
+  ]
+ },
+ {
+  "headword": "snap",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736807",
+    "cefr": "B2",
+    "corpus_definition": "To make a short, sharp sound.",
+    "example_en": "The dry branch started to snap."
+   }
+  ]
+ },
+ {
+  "headword": "snatch",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366ef",
+    "cefr": "B2",
+    "corpus_definition": "To take something away quickly and suddenly.",
+    "example_en": "The bird tried to snatch the bread away."
+   }
+  ]
+ },
+ {
+  "headword": "sneak",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ba",
+    "cefr": "B2",
+    "corpus_definition": "To move somewhere quietly so that no one sees you.",
+    "example_en": "He tried to sneak out of the room."
+   }
+  ]
+ },
+ {
+  "headword": "soak",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e1",
+    "cefr": "B2",
+    "corpus_definition": "to stay in water for a long time to get very wet",
+    "example_en": "Let the dirty plates soak in the sink."
+   }
+  ]
+ },
+ {
+  "headword": "software",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b44",
+    "cefr": "B2",
+    "corpus_definition": "Programs used by a computer to function.",
+    "example_en": "You need to update your phone software now."
+   }
+  ]
+ },
+ {
+  "headword": "solar",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736755",
+    "cefr": "B2",
+    "corpus_definition": "Relating to the light or heat from the sun.",
+    "example_en": "They installed solar panels on the roof."
+   }
+  ]
+ },
+ {
+  "headword": "solar system",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8a",
+    "cefr": "B2",
+    "corpus_definition": "The sun and all the objects that travel around it.",
+    "example_en": "Nine planets are in our solar system."
+   }
+  ]
+ },
+ {
+  "headword": "sole",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a1",
+    "cefr": "B2",
+    "corpus_definition": "Being the only one of its kind.",
+    "example_en": "He is the sole owner of this small shop."
+   }
+  ]
+ }
+]

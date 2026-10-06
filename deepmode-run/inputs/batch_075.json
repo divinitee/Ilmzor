@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "custom",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736644",
+    "cefr": "B1",
+    "corpus_definition": "A habit or tradition shared by a group of people.",
+    "example_en": "It is a local custom to bow."
+   }
+  ]
+ },
+ {
+  "headword": "damp",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367aa",
+    "cefr": "B1",
+    "corpus_definition": "Slightly wet in an unpleasant or cold way.",
+    "example_en": "The grass was damp from the morning dew."
+   }
+  ]
+ },
+ {
+  "headword": "deal with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd0",
+    "cefr": "B1",
+    "corpus_definition": "To take action to fix a problem.",
+    "example_en": "I will deal with this task now."
+   }
+  ]
+ },
+ {
+  "headword": "decade",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736826",
+    "cefr": "B1",
+    "corpus_definition": "A period of ten years.",
+    "example_en": "She has lived here for over a decade."
+   }
+  ]
+ },
+ {
+  "headword": "decay",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927db",
+    "cefr": "B1",
+    "corpus_definition": "to slowly break down and rot over time",
+    "example_en": "Fallen leaves decay on the forest floor each autumn."
+   }
+  ]
+ },
+ {
+  "headword": "deceive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927b3",
+    "cefr": "B1",
+    "corpus_definition": "to make someone believe something that is not true",
+    "example_en": "He tried to deceive his teacher about the missing homework."
+   }
+  ]
+ },
+ {
+  "headword": "decent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c8",
+    "cefr": "B1",
+    "corpus_definition": "acceptable, good enough, or appropriate for a situation",
+    "example_en": "Make sure you wear decent clothes to the interview."
+   }
+  ]
+ },
+ {
+  "headword": "decorate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130116",
+    "cefr": "B1",
+    "corpus_definition": "To make something look more beautiful by adding things.",
+    "example_en": "We will decorate the room with balloons."
+   }
+  ]
+ },
+ {
+  "headword": "decrease",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b2f",
+    "cefr": "B1",
+    "corpus_definition": "To make or become smaller in amount or size.",
+    "example_en": "We must decrease the amount of salt we eat."
+   }
+  ]
+ },
+ {
+  "headword": "defeat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c9c",
+    "cefr": "B2",
+    "corpus_definition": "To win against someone in a game or fight.",
+    "example_en": "Our players hope to defeat the other team today."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092843",
+    "cefr": "B1",
+    "corpus_definition": "To win against someone in a game or fight.",
+    "example_en": "Our team hopes to defeat them today."
+   }
+  ]
+ }
+]

@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "stuff",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073686b",
+    "cefr": "A2",
+    "corpus_definition": "A general word for objects or things.",
+    "example_en": "Please clear your stuff off the table."
+   }
+  ]
+ },
+ {
+  "headword": "style",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5a",
+    "cefr": "A2",
+    "corpus_definition": "a particular way of doing or making something",
+    "example_en": "That dress is a very popular style this year."
+   }
+  ]
+ },
+ {
+  "headword": "suck",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809285f",
+    "cefr": "A2",
+    "corpus_definition": "to pull liquid or air into your mouth using your lips",
+    "example_en": "The baby sucks milk from the bottle easily."
+   }
+  ]
+ },
+ {
+  "headword": "suit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5b",
+    "cefr": "B1",
+    "corpus_definition": "to be right or good for someone",
+    "example_en": "That color does not really suit you."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e4",
+    "cefr": "A2",
+    "corpus_definition": "matching jacket and trousers worn for formal business or events",
+    "example_en": "He wore a blue suit to the meeting."
+   }
+  ]
+ },
+ {
+  "headword": "support",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cab",
+    "cefr": "A2",
+    "corpus_definition": "To help or encourage someone you like.",
+    "example_en": "My family will support me in my new job."
+   }
+  ]
+ },
+ {
+  "headword": "sweat",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809289a",
+    "cefr": "A2",
+    "corpus_definition": "salty liquid that comes out of your skin when hot or nervous",
+    "example_en": "Sweat dripped down his face after the run."
+   }
+  ]
+ },
+ {
+  "headword": "sweep",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366a2",
+    "cefr": "A2",
+    "corpus_definition": "To clean a floor using a long brush.",
+    "example_en": "I need to sweep the kitchen floor today."
+   }
+  ]
+ },
+ {
+  "headword": "swing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809279a",
+    "cefr": "A2",
+    "corpus_definition": "to move back and forth; also a seat hanging on ropes for children",
+    "example_en": "The children loved to swing in the park."
+   }
+  ]
+ },
+ {
+  "headword": "take an exam",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908c3",
+    "cefr": "A2",
+    "corpus_definition": "To complete a test to show your knowledge.",
+    "example_en": "I have to take an exam tomorrow morning."
+   }
+  ]
+ },
+ {
+  "headword": "take part in",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ce5",
+    "cefr": "A2",
+    "corpus_definition": "To join an activity or event with others.",
+    "example_en": "Will you take part in the school competition?"
+   }
+  ]
+ }
+]

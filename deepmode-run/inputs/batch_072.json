@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "compare with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b92",
+    "cefr": "B1",
+    "corpus_definition": "To look at two things to see how they differ.",
+    "example_en": "Compare this photo with the old one."
+   }
+  ]
+ },
+ {
+  "headword": "competition",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0c9a",
+    "cefr": "B1",
+    "corpus_definition": "An event where people try to be better than others.",
+    "example_en": "She entered a dance competition last week."
+   }
+  ]
+ },
+ {
+  "headword": "complicated",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b2e",
+    "cefr": "B1",
+    "corpus_definition": "Very difficult to understand because it has many parts.",
+    "example_en": "This math problem is too complicated for me."
+   }
+  ]
+ },
+ {
+  "headword": "concentrate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908ac",
+    "cefr": "B1",
+    "corpus_definition": "To direct all your mental effort on one thing.",
+    "example_en": "It is hard to concentrate with this noise."
+   }
+  ]
+ },
+ {
+  "headword": "confess",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926fe",
+    "cefr": "B1",
+    "corpus_definition": "to admit that you did something wrong or bad",
+    "example_en": "She confessed that she had broken the vase."
+   }
+  ]
+ },
+ {
+  "headword": "confidence",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130145",
+    "cefr": "B1",
+    "corpus_definition": "Feeling sure about your own skills or success.",
+    "example_en": "She has the confidence to speak in public."
+   }
+  ]
+ },
+ {
+  "headword": "confident",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130113",
+    "cefr": "B1",
+    "corpus_definition": "Feeling sure about your own skills or success.",
+    "example_en": "He feels confident about passing the test."
+   }
+  ]
+ },
+ {
+  "headword": "confuse with",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908f1",
+    "cefr": "B1",
+    "corpus_definition": "To think two things are the same by mistake.",
+    "example_en": "Do not confuse the twins with each other."
+   }
+  ]
+ },
+ {
+  "headword": "conquer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809274f",
+    "cefr": "B1",
+    "corpus_definition": "to take control of a place or people by using force",
+    "example_en": "Alexander the Great managed to conquer many powerful nations."
+   }
+  ]
+ },
+ {
+  "headword": "console",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092806",
+    "cefr": "B1",
+    "corpus_definition": "to make someone feel better when they are sad or upset",
+    "example_en": "She tried to console her friend after the bad news."
+   }
+  ]
+ }
+]

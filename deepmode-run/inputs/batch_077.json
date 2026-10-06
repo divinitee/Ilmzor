@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "detail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073683c",
+    "cefr": "B1",
+    "corpus_definition": "a small specific part or feature of something larger",
+    "example_en": "He told me every tiny detail of the story."
+   }
+  ]
+ },
+ {
+  "headword": "devil",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809288f",
+    "cefr": "B1",
+    "corpus_definition": "A very bad spirit that causes evil in many stories.",
+    "example_en": "He told a story about a trickster devil."
+   }
+  ]
+ },
+ {
+  "headword": "diagram",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736827",
+    "cefr": "B1",
+    "corpus_definition": "A drawing that explains how something works.",
+    "example_en": "Look at the diagram to fix the machine."
+   }
+  ]
+ },
+ {
+  "headword": "dial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092844",
+    "cefr": "B1",
+    "corpus_definition": "to turn a control to select a number or setting; a round control panel",
+    "example_en": "She dialed the number and waited for an answer."
+   }
+  ]
+ },
+ {
+  "headword": "digital",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b30",
+    "cefr": "B1",
+    "corpus_definition": "Using computer technology to store or show information as numbers.",
+    "example_en": "I prefer reading digital books instead of paper ones."
+   }
+  ]
+ },
+ {
+  "headword": "dim",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926d8",
+    "cefr": "B1",
+    "corpus_definition": "Not bright or clear.",
+    "example_en": "The light in the room was very dim."
+   }
+  ]
+ },
+ {
+  "headword": "dip",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927dd",
+    "cefr": "B1",
+    "corpus_definition": "To put something into a liquid for a short time.",
+    "example_en": "She likes to dip bread into olive oil."
+   }
+  ]
+ },
+ {
+  "headword": "disabled",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113013e",
+    "cefr": "B1",
+    "corpus_definition": "Having a physical or mental condition that limits movement or learning.",
+    "example_en": "The building has easy access for disabled people."
+   }
+  ]
+ },
+ {
+  "headword": "discussion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdaa",
+    "cefr": "B1",
+    "corpus_definition": "A conversation where people share their opinions on a topic.",
+    "example_en": "We had a long discussion about the future plan."
+   }
+  ]
+ },
+ {
+  "headword": "display",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736812",
+    "cefr": "B1",
+    "corpus_definition": "To put something where people can see it.",
+    "example_en": "The museum will display rare paintings."
+   }
+  ]
+ }
+]

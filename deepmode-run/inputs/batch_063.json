@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "afford",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b62",
+    "cefr": "B1",
+    "corpus_definition": "To have enough money to buy something.",
+    "example_en": "I cannot afford that expensive car."
+   }
+  ]
+ },
+ {
+  "headword": "alert",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092800",
+    "cefr": "B1",
+    "corpus_definition": "quick to notice danger; a warning of possible danger",
+    "example_en": "The guard stayed alert throughout the whole night."
+   }
+  ]
+ },
+ {
+  "headword": "alley",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927c4",
+    "cefr": "B1",
+    "corpus_definition": "a narrow street or path between or behind buildings",
+    "example_en": "They walked through a dark alley to reach the market."
+   }
+  ]
+ },
+ {
+  "headword": "alongside",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073680d",
+    "cefr": "B1",
+    "corpus_definition": "Next to or together with someone or something.",
+    "example_en": "He worked alongside his father for years."
+   }
+  ]
+ },
+ {
+  "headword": "alter",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092738",
+    "cefr": "B1",
+    "corpus_definition": "to make a change to something so it is different",
+    "example_en": "We need to alter the plan slightly."
+   }
+  ]
+ },
+ {
+  "headword": "ambassador",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809274d",
+    "cefr": "B1",
+    "corpus_definition": "a senior official sent by a country to represent it abroad",
+    "example_en": "The ambassador met the president yesterday."
+   }
+  ]
+ },
+ {
+  "headword": "amusing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd4",
+    "cefr": "B1",
+    "corpus_definition": "Something that makes you smile or laugh.",
+    "example_en": "We watched an amusing film last night."
+   }
+  ]
+ },
+ {
+  "headword": "ancient",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd42",
+    "cefr": "B1",
+    "corpus_definition": "something that is from a very long time ago",
+    "example_en": "We visited ancient ruins during our summer holiday."
+   }
+  ]
+ },
+ {
+  "headword": "announcement",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f8f9",
+    "cefr": "B1",
+    "corpus_definition": "A public statement about something important to everyone.",
+    "example_en": "The school made an important announcement today."
+   }
+  ]
+ },
+ {
+  "headword": "annoy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdd5",
+    "cefr": "B1",
+    "corpus_definition": "To make someone feel a little angry or impatient.",
+    "example_en": "Please stop tapping your pen, it annoys me."
+   }
+  ]
+ }
+]

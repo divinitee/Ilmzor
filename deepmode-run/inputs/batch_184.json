@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "comprehensive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736721",
+    "cefr": "C1",
+    "corpus_definition": "Including all the necessary parts or details.",
+    "example_en": "The report provides a comprehensive guide to the project."
+   }
+  ]
+ },
+ {
+  "headword": "conceal",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367e7",
+    "cefr": "C1",
+    "corpus_definition": "to keep something hidden so that nobody can see it",
+    "example_en": "He tried to conceal his fear from them."
+   }
+  ]
+ },
+ {
+  "headword": "concede",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736823",
+    "cefr": "C1",
+    "corpus_definition": "To admit that something is true after first denying it.",
+    "example_en": "He had to concede that he was wrong."
+   }
+  ]
+ },
+ {
+  "headword": "condemn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366bb",
+    "cefr": "C1",
+    "corpus_definition": "To express strong public disapproval of something or someone.",
+    "example_en": "The leaders chose to condemn the recent violence."
+   }
+  ]
+ },
+ {
+  "headword": "condensed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736771",
+    "cefr": "C1",
+    "corpus_definition": "Made shorter or thicker by removing water.",
+    "example_en": "We added condensed milk to make the dessert sweet."
+   }
+  ]
+ },
+ {
+  "headword": "confine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092686",
+    "cefr": "C1",
+    "corpus_definition": "To keep someone or something within certain limits.",
+    "example_en": "They must confine their dogs to the yard."
+   }
+  ]
+ },
+ {
+  "headword": "confront",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ac",
+    "cefr": "C1",
+    "corpus_definition": "To face someone in a difficult or angry situation.",
+    "example_en": "She decided to confront him about his lies."
+   }
+  ]
+ },
+ {
+  "headword": "conscience",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736785",
+    "cefr": "C1",
+    "corpus_definition": "The part of your mind that tells you what is right.",
+    "example_en": "My conscience feels clear after helping my friend."
+   }
+  ]
+ },
+ {
+  "headword": "consent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e3",
+    "cefr": "C1",
+    "corpus_definition": "To give permission for something to happen.",
+    "example_en": "They need your consent to start building."
+   }
+  ]
+ },
+ {
+  "headword": "consequent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092725",
+    "cefr": "C1",
+    "corpus_definition": "Happening as a result of something else.",
+    "example_en": "Heavy rain and consequent flooding destroyed the town."
+   }
+  ]
+ }
+]

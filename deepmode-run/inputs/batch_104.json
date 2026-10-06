@@ -1,0 +1,140 @@
+[
+ {
+  "headword": "routine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc76",
+    "cefr": "B1",
+    "corpus_definition": "the normal way that you do things every day.",
+    "example_en": "My morning routine takes about thirty minutes."
+   },
+   {
+    "word_id": "6a6ef9b2a6015561480928c3",
+    "cefr": "B1",
+    "corpus_definition": "Things you do in the same way every single day.",
+    "example_en": "My morning routine always includes a cup of coffee."
+   }
+  ]
+ },
+ {
+  "headword": "rub",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092825",
+    "cefr": "B1",
+    "corpus_definition": "To move your hand back and forth over a surface.",
+    "example_en": "Please rub some lotion on your dry hands."
+   }
+  ]
+ },
+ {
+  "headword": "rude",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdec",
+    "cefr": "B1",
+    "corpus_definition": "Not being nice or kind to other people.",
+    "example_en": "It is rude to talk while eating."
+   }
+  ]
+ },
+ {
+  "headword": "ruin",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687c",
+    "cefr": "B1",
+    "corpus_definition": "To spoil or destroy something completely.",
+    "example_en": "The rain will ruin our picnic."
+   }
+  ]
+ },
+ {
+  "headword": "rumor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073681b",
+    "cefr": "B2",
+    "corpus_definition": "Information spread by people that may not be true.",
+    "example_en": "I heard a rumor about the new boss."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092759",
+    "cefr": "B1",
+    "corpus_definition": "information that people share but that may not be true",
+    "example_en": "I heard a rumor that the school will close."
+   }
+  ]
+ },
+ {
+  "headword": "run out of",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdc1",
+    "cefr": "B1",
+    "corpus_definition": "To have nothing left of something.",
+    "example_en": "We will run out of milk soon."
+   }
+  ]
+ },
+ {
+  "headword": "sail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cd6",
+    "cefr": "B1",
+    "corpus_definition": "To travel across water using a boat.",
+    "example_en": "We plan to sail across the ocean next summer."
+   }
+  ]
+ },
+ {
+  "headword": "sailing",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cd7",
+    "cefr": "B1",
+    "corpus_definition": "The activity of using a boat with a sheet for travel.",
+    "example_en": "Sailing is a very relaxing hobby for me."
+   }
+  ]
+ },
+ {
+  "headword": "sailor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cd8",
+    "cefr": "B1",
+    "corpus_definition": "A person who works or travels on a ship.",
+    "example_en": "The sailor navigated the ship through the storm."
+   }
+  ]
+ },
+ {
+  "headword": "salary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccae",
+    "cefr": "B1",
+    "corpus_definition": "Fixed regular payments made by an employer to an employee.",
+    "example_en": "She receives her salary every month."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00db6",
+    "cefr": "B1",
+    "corpus_definition": "the money you get for doing your job every month",
+    "example_en": "He gets a good salary at the bank."
+   }
+  ]
+ }
+]

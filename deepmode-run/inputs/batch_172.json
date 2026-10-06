@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "stubborn",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092770",
+    "cefr": "B2",
+    "corpus_definition": "Not wanting to change your opinion or follow advice.",
+    "example_en": "He is too stubborn to admit he was wrong."
+   }
+  ]
+ },
+ {
+  "headword": "stumble",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366f1",
+    "cefr": "B2",
+    "corpus_definition": "To trip and nearly fall while walking.",
+    "example_en": "I did stumble on the uneven sidewalk."
+   }
+  ]
+ },
+ {
+  "headword": "submarine",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092786",
+    "cefr": "B2",
+    "corpus_definition": "A ship that can travel under the water.",
+    "example_en": "The submarine dived deep into the dark ocean."
+   }
+  ]
+ },
+ {
+  "headword": "subscription",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e50",
+    "cefr": "B2",
+    "corpus_definition": "A regular payment to keep getting a service or product.",
+    "example_en": "I have a yearly subscription for this magazine."
+   }
+  ]
+ },
+ {
+  "headword": "suffer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce1",
+    "cefr": "B2",
+    "corpus_definition": "To experience physical or mental pain.",
+    "example_en": "He continues to suffer from chronic back problems."
+   }
+  ]
+ },
+ {
+  "headword": "summit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a5",
+    "cefr": "B2",
+    "corpus_definition": "the highest point of a mountain or an important meeting of leaders",
+    "example_en": "They finally reached the summit after two days of climbing."
+   }
+  ]
+ },
+ {
+  "headword": "surgery",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eab",
+    "cefr": "B2",
+    "corpus_definition": "A medical procedure where a doctor cuts into the body to fix something.",
+    "example_en": "He will need surgery to fix his broken arm."
+   }
+  ]
+ },
+ {
+  "headword": "surrender",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736832",
+    "cefr": "B2",
+    "corpus_definition": "To stop fighting and admit defeat.",
+    "example_en": "The army decided to surrender the city."
+   }
+  ]
+ },
+ {
+  "headword": "sustain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927af",
+    "cefr": "B2",
+    "corpus_definition": "to keep something going or at the same level over time",
+    "example_en": "It is hard to sustain motivation throughout the whole project."
+   }
+  ]
+ },
+ {
+  "headword": "swamp",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736706",
+    "cefr": "B2",
+    "corpus_definition": "An area of land that is very wet and muddy.",
+    "example_en": "The explorers walked carefully through the deep swamp."
+   }
+  ]
+ }
+]

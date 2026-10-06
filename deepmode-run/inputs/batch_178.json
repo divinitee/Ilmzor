@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "vomit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736690",
+    "cefr": "B2",
+    "corpus_definition": "To bring food up from the stomach through the mouth.",
+    "example_en": "He started to vomit after eating bad fish."
+   }
+  ]
+ },
+ {
+  "headword": "warrior",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926a8",
+    "cefr": "B2",
+    "corpus_definition": "A person who is skilled at fighting in battles.",
+    "example_en": "The ancient warrior carried a heavy iron sword."
+   }
+  ]
+ },
+ {
+  "headword": "wealthy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccb2",
+    "cefr": "B2",
+    "corpus_definition": "Having a lot of money or assets.",
+    "example_en": "She comes from a wealthy family."
+   }
+  ]
+ },
+ {
+  "headword": "weep",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367bc",
+    "cefr": "B2",
+    "corpus_definition": "To cry because you are feeling very sad.",
+    "example_en": "She began to weep after hearing the bad news."
+   }
+  ]
+ },
+ {
+  "headword": "whisper",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f914",
+    "cefr": "B2",
+    "corpus_definition": "To speak very quietly so only one person can hear.",
+    "example_en": "She had to whisper in the library."
+   }
+  ]
+ },
+ {
+  "headword": "widow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092723",
+    "cefr": "B2",
+    "corpus_definition": "A woman whose husband has died.",
+    "example_en": "The widow lived alone in her quiet house."
+   }
+  ]
+ },
+ {
+  "headword": "wilderness",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092877",
+    "cefr": "B2",
+    "corpus_definition": "A large area of land where no people live and nature grows.",
+    "example_en": "They went hiking deep into the Alaskan wilderness."
+   }
+  ]
+ },
+ {
+  "headword": "wildfire",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e0f",
+    "cefr": "B2",
+    "corpus_definition": "A large and dangerous fire spreading across trees and grass.",
+    "example_en": "The wildfire burned a large part of the forest."
+   }
+  ]
+ },
+ {
+  "headword": "wildlife",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd8e",
+    "cefr": "B2",
+    "corpus_definition": "Animals and plants living in their natural environment.",
+    "example_en": "The park protects the local wildlife."
+   }
+  ]
+ },
+ {
+  "headword": "witness",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367f8",
+    "cefr": "B2",
+    "corpus_definition": "someone who sees a disaster or event happen personally",
+    "example_en": "The witness saw the accident on the road."
+   }
+  ]
+ }
+]

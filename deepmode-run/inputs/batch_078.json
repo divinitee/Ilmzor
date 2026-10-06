@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "divide",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908dd",
+    "cefr": "B1",
+    "corpus_definition": "To separate something into two or more parts.",
+    "example_en": "Can we divide the cake into four pieces?"
+   }
+  ]
+ },
+ {
+  "headword": "divorce",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092855",
+    "cefr": "B1",
+    "corpus_definition": "the legal ending of a marriage",
+    "example_en": "Their divorce was finalised last spring."
+   }
+  ]
+ },
+ {
+  "headword": "divorced",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130118",
+    "cefr": "B1",
+    "corpus_definition": "No longer married to the person you were once wed to.",
+    "example_en": "My parents are divorced but remain friends."
+   }
+  ]
+ },
+ {
+  "headword": "dizzy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366e6",
+    "cefr": "B1",
+    "corpus_definition": "Feeling like the world is spinning around you.",
+    "example_en": "The heat made me feel quite dizzy."
+   }
+  ]
+ },
+ {
+  "headword": "do up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd60",
+    "cefr": "B1",
+    "corpus_definition": "to fasten clothes or a bag using buttons or zippers.",
+    "example_en": "Please do up your coat before going outside."
+   }
+  ]
+ },
+ {
+  "headword": "drag",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092750",
+    "cefr": "B1",
+    "corpus_definition": "To pull something along the ground with effort.",
+    "example_en": "He tried to drag the heavy bag inside."
+   }
+  ]
+ },
+ {
+  "headword": "drain",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092740",
+    "cefr": "B1",
+    "corpus_definition": "to cause liquid to flow away; to use up energy or resources",
+    "example_en": "Remember to drain the pasta before serving."
+   }
+  ]
+ },
+ {
+  "headword": "dwarf",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809286a",
+    "cefr": "B1",
+    "corpus_definition": "a person or creature much smaller than normal size",
+    "example_en": "The fantasy story featured a brave dwarf warrior."
+   }
+  ]
+ },
+ {
+  "headword": "dye",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ec",
+    "cefr": "B1",
+    "corpus_definition": "a substance used to change the colour of hair, cloth, or food",
+    "example_en": "She used blue dye to colour her hair."
+   }
+  ]
+ },
+ {
+  "headword": "dynasty",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092728",
+    "cefr": "B1",
+    "corpus_definition": "a series of rulers from the same family over many years",
+    "example_en": "The Ming dynasty ruled China for nearly 300 years."
+   }
+  ]
+ }
+]

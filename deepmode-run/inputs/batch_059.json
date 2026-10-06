@@ -1,0 +1,134 @@
+[
+ {
+  "headword": "variety",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b7d",
+    "cefr": "B2",
+    "corpus_definition": "a range of different types of things",
+    "example_en": "There is a wide variety of fruit in the shop."
+   },
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736898",
+    "cefr": "A2",
+    "corpus_definition": "A collection of many different types of things.",
+    "example_en": "This shop sells a wide variety of snacks."
+   }
+  ]
+ },
+ {
+  "headword": "vase",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809275f",
+    "cefr": "A2",
+    "corpus_definition": "a decorative container used for holding flowers or water",
+    "example_en": "She placed the roses carefully in a tall glass vase."
+   }
+  ]
+ },
+ {
+  "headword": "video call",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e5e",
+    "cefr": "A2",
+    "corpus_definition": "A long-distance chat where you can see the other person.",
+    "example_en": "We had a video call with our family."
+   }
+  ]
+ },
+ {
+  "headword": "video game",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cae",
+    "cefr": "A2",
+    "corpus_definition": "A digital game played on a computer or television screen.",
+    "example_en": "He plays a video game after school."
+   }
+  ]
+ },
+ {
+  "headword": "visitor",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55dac",
+    "cefr": "A2",
+    "corpus_definition": "Someone who goes to see a person or a place.",
+    "example_en": "The museum welcomes every visitor with a smile."
+   }
+  ]
+ },
+ {
+  "headword": "vote",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc7d",
+    "cefr": "A2",
+    "corpus_definition": "to choose your leader or preference in an election.",
+    "example_en": "Everyone has the right to vote."
+   }
+  ]
+ },
+ {
+  "headword": "wagon",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092862",
+    "cefr": "A2",
+    "corpus_definition": "a vehicle with four wheels pulled by a horse",
+    "example_en": "The farmer loaded hay onto the wooden wagon."
+   }
+  ]
+ },
+ {
+  "headword": "wardrobe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676c",
+    "cefr": "A2",
+    "corpus_definition": "A large piece of furniture used for hanging up clothes.",
+    "example_en": "She hung her new dress in the large wooden wardrobe."
+   }
+  ]
+ },
+ {
+  "headword": "wash up",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc86",
+    "cefr": "A2",
+    "corpus_definition": "to clean the plates, cups, and cutlery used for eating",
+    "example_en": "I will wash up after we finish our meal."
+   }
+  ]
+ },
+ {
+  "headword": "waste",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b7e",
+    "cefr": "B1",
+    "corpus_definition": "to use something in a bad way so it is gone",
+    "example_en": "Do not waste your time playing games all day."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00e04",
+    "cefr": "A2",
+    "corpus_definition": "Things that are not needed and are thrown away.",
+    "example_en": "We should put our waste in the bin."
+   }
+  ]
+ }
+]

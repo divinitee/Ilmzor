@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "corporate",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736748",
+    "cefr": "B2",
+    "corpus_definition": "Related to a large company or business.",
+    "example_en": "She works in a tall corporate office downtown."
+   }
+  ]
+ },
+ {
+  "headword": "cottage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926ff",
+    "cefr": "B2",
+    "corpus_definition": "A small house located in the countryside.",
+    "example_en": "We stayed at a cozy cottage during the summer."
+   }
+  ]
+ },
+ {
+  "headword": "courage",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc89",
+    "cefr": "B2",
+    "corpus_definition": "the ability to do something difficult or dangerous without feeling fear",
+    "example_en": "It took great courage to speak in front of everyone."
+   }
+  ]
+ },
+ {
+  "headword": "creativity",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00ec2",
+    "cefr": "B2",
+    "corpus_definition": "The ability to produce original and imaginative ideas.",
+    "example_en": "She shows great creativity in her painting."
+   }
+  ]
+ },
+ {
+  "headword": "crisis",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073670f",
+    "cefr": "B2",
+    "corpus_definition": "A very difficult or dangerous time or situation.",
+    "example_en": "The country is facing a major economic crisis."
+   }
+  ]
+ },
+ {
+  "headword": "criticise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcda8",
+    "cefr": "B2",
+    "corpus_definition": "To say that you do not like someone or their work.",
+    "example_en": "It is unkind to criticise his hard work."
+   }
+  ]
+ },
+ {
+  "headword": "crucial",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736723",
+    "cefr": "B2",
+    "corpus_definition": "Something that is extremely important.",
+    "example_en": "It is crucial to arrive on time for the interview."
+   }
+  ]
+ },
+ {
+  "headword": "currency",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00ddf",
+    "cefr": "B2",
+    "corpus_definition": "The type of money used in a particular country.",
+    "example_en": "They exchanged their money for local currency."
+   }
+  ]
+ },
+ {
+  "headword": "cut down on",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcce5",
+    "cefr": "B2",
+    "corpus_definition": "To use or eat less of something.",
+    "example_en": "I need to cut down on eating sugar."
+   }
+  ]
+ },
+ {
+  "headword": "cut off",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a42816a2098612b1526f916",
+    "cefr": "B2",
+    "corpus_definition": "To stop someone from talking on the phone suddenly.",
+    "example_en": "We were cut off during our conversation."
+   }
+  ]
+ }
+]

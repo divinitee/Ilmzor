@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "overlook",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927bd",
+    "cefr": "B2",
+    "corpus_definition": "to fail to notice something; to ignore a mistake or fault",
+    "example_en": "The manager decided to overlook his employee's small error."
+   }
+  ]
+ },
+ {
+  "headword": "oxygen",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073672d",
+    "cefr": "B2",
+    "corpus_definition": "A gas in the air that people and animals need to breathe.",
+    "example_en": "We must have this gas to live and breathe."
+   }
+  ]
+ },
+ {
+  "headword": "paddle",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073678d",
+    "cefr": "B2",
+    "corpus_definition": "A long pole with a flat blade used to move a boat.",
+    "example_en": "Use the paddle to move the boat across the lake."
+   }
+  ]
+ },
+ {
+  "headword": "paradise",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736778",
+    "cefr": "B2",
+    "corpus_definition": "A perfect and beautiful place where people are very happy.",
+    "example_en": "The tropical island felt like a true paradise."
+   }
+  ]
+ },
+ {
+  "headword": "parallel",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736751",
+    "cefr": "B2",
+    "corpus_definition": "Two lines that stay the same distance apart.",
+    "example_en": "The two roads run parallel to each other."
+   }
+  ]
+ },
+ {
+  "headword": "passion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e4",
+    "cefr": "B2",
+    "corpus_definition": "a very strong feeling of love or deep enthusiasm for something",
+    "example_en": "She has a real passion for playing the violin."
+   }
+  ]
+ },
+ {
+  "headword": "pastime",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a3",
+    "cefr": "B2",
+    "corpus_definition": "Something you enjoy doing in your free time.",
+    "example_en": "Reading is my favorite pastime on rainy days."
+   }
+  ]
+ },
+ {
+  "headword": "pave",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809271d",
+    "cefr": "B2",
+    "corpus_definition": "To cover a surface with hard material like stone or cement.",
+    "example_en": "They decided to pave the driveway with red bricks."
+   }
+  ]
+ },
+ {
+  "headword": "peer",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926f3",
+    "cefr": "B2",
+    "corpus_definition": "A person who is the same age or status as you.",
+    "example_en": "Children often copy the behavior of their peer group."
+   }
+  ]
+ },
+ {
+  "headword": "pension",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcca8",
+    "cefr": "C1",
+    "corpus_definition": "Money paid regularly by the government to retired people.",
+    "example_en": "She lives on a small pension."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dc4",
+    "cefr": "B2",
+    "corpus_definition": "Money paid regularly to someone who has stopped working due to age.",
+    "example_en": "He looks forward to his monthly pension payment."
+   }
+  ]
+ }
+]

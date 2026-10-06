@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "on CD/DVD/video",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cbb",
+    "cefr": "B1",
+    "corpus_definition": "Recorded on a digital disc or video format.",
+    "example_en": "I have the movie on DVD."
+   }
+  ]
+ },
+ {
+  "headword": "on purpose",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f88113013a",
+    "cefr": "B1",
+    "corpus_definition": "Doing something because you wanted to, not by mistake.",
+    "example_en": "He did not break the vase on purpose."
+   }
+  ]
+ },
+ {
+  "headword": "on schedule",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55d97",
+    "cefr": "B1",
+    "corpus_definition": "Happening exactly at the planned or expected time.",
+    "example_en": "The train arrived exactly on schedule today."
+   }
+  ]
+ },
+ {
+  "headword": "on stage",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0cbc",
+    "cefr": "B1",
+    "corpus_definition": "The raised floor where people perform in a theater.",
+    "example_en": "The singer looked great on stage."
+   }
+  ]
+ },
+ {
+  "headword": "opponent",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42659782466c80f8ae0ca4",
+    "cefr": "B2",
+    "corpus_definition": "The person you are playing or fighting against in a contest.",
+    "example_en": "My opponent played a very good game."
+   },
+   {
+    "word_id": "6a6ef9b2a601556148092848",
+    "cefr": "B1",
+    "corpus_definition": "a person who competes against you in a game or argument",
+    "example_en": "His opponent scored two goals in the final match."
+   }
+  ]
+ },
+ {
+  "headword": "option",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367a2",
+    "cefr": "B1",
+    "corpus_definition": "A choice that you can make.",
+    "example_en": "We have another option if this plan fails."
+   }
+  ]
+ },
+ {
+  "headword": "ordinary",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130124",
+    "cefr": "B1",
+    "corpus_definition": "Not special, different, or strange; quite normal.",
+    "example_en": "It was just an ordinary day at work."
+   }
+  ]
+ },
+ {
+  "headword": "out of order",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b5b",
+    "cefr": "B1",
+    "corpus_definition": "When a machine is broken and not working.",
+    "example_en": "The elevator is out of order."
+   }
+  ]
+ },
+ {
+  "headword": "overnight",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927d0",
+    "cefr": "B1",
+    "corpus_definition": "during or for the whole night; happening very quickly or suddenly",
+    "example_en": "The town became famous almost overnight after the news."
+   }
+  ]
+ },
+ {
+  "headword": "owe",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b72",
+    "cefr": "B1",
+    "corpus_definition": "To have an obligation to give money back to someone.",
+    "example_en": "I owe my friend ten dollars."
+   }
+  ]
+ }
+]

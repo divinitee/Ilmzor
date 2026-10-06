@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "gaze",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809277c",
+    "cefr": "C1",
+    "corpus_definition": "To look at someone or something for a long time.",
+    "example_en": "She continued to gaze out of the window."
+   }
+  ]
+ },
+ {
+  "headword": "genome",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366d4",
+    "cefr": "C1",
+    "corpus_definition": "The complete set of biological information in a living thing.",
+    "example_en": "The scientists mapped the human genome."
+   }
+  ]
+ },
+ {
+  "headword": "glimpse",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736647",
+    "cefr": "C1",
+    "corpus_definition": "A very quick look at something.",
+    "example_en": "I caught a glimpse of the queen."
+   }
+  ]
+ },
+ {
+  "headword": "grace",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927e1",
+    "cefr": "C1",
+    "corpus_definition": "A smooth, beautiful, and elegant way of moving.",
+    "example_en": "The dancer moved with incredible grace."
+   }
+  ]
+ },
+ {
+  "headword": "gratitude",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367ea",
+    "cefr": "C1",
+    "corpus_definition": "the feeling of being thankful for something received",
+    "example_en": "She showed gratitude for his kind help."
+   }
+  ]
+ },
+ {
+  "headword": "greenhouse effect",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00e15",
+    "cefr": "C1",
+    "corpus_definition": "The process where gases trap heat around our planet.",
+    "example_en": "The greenhouse effect is changing our world's temperature."
+   }
+  ]
+ },
+ {
+  "headword": "hail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926c5",
+    "cefr": "C1",
+    "corpus_definition": "Small balls of frozen rain that fall from the sky.",
+    "example_en": "The heavy hail damaged the car roof."
+   }
+  ]
+ },
+ {
+  "headword": "hardy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366fc",
+    "cefr": "C1",
+    "corpus_definition": "Strong enough to live through difficult or cold conditions.",
+    "example_en": "Only a hardy plant can grow in this desert."
+   }
+  ]
+ },
+ {
+  "headword": "heed",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366c1",
+    "cefr": "C1",
+    "corpus_definition": "To listen to and follow advice or a warning.",
+    "example_en": "Drivers should heed the speed limit signs."
+   }
+  ]
+ },
+ {
+  "headword": "heir",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073675f",
+    "cefr": "C1",
+    "corpus_definition": "A person who receives money or property when someone dies.",
+    "example_en": "He is the sole heir to the large fortune."
+   }
+  ]
+ }
+]

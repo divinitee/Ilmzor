@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "arc",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736783",
+    "cefr": "C1",
+    "corpus_definition": "A shape that looks like part of a circle.",
+    "example_en": "The bird flew in a graceful arc."
+   }
+  ]
+ },
+ {
+  "headword": "architectural",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00eaf",
+    "cefr": "C1",
+    "corpus_definition": "Relating to the art of designing buildings and large structures.",
+    "example_en": "The bridge has a very unique architectural style."
+   }
+  ]
+ },
+ {
+  "headword": "aroma",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073676d",
+    "cefr": "C1",
+    "corpus_definition": "A pleasant and nice smell.",
+    "example_en": "The aroma of fresh coffee filled the entire kitchen."
+   }
+  ]
+ },
+ {
+  "headword": "assumption",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736709",
+    "cefr": "C1",
+    "corpus_definition": "A belief that something is true without needing proof.",
+    "example_en": "His assumption about the test was entirely wrong."
+   }
+  ]
+ },
+ {
+  "headword": "asteroid",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366cf",
+    "cefr": "C1",
+    "corpus_definition": "A large rock that moves through space around the sun.",
+    "example_en": "The asteroid passed close to the Earth."
+   }
+  ]
+ },
+ {
+  "headword": "attentive",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07367d3",
+    "cefr": "C1",
+    "corpus_definition": "Listening and watching carefully.",
+    "example_en": "The teacher appreciated her attentive students."
+   }
+  ]
+ },
+ {
+  "headword": "audible",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736796",
+    "cefr": "C1",
+    "corpus_definition": "Able to be heard clearly.",
+    "example_en": "Her soft voice was barely audible in the room."
+   }
+  ]
+ },
+ {
+  "headword": "authoritative",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736838",
+    "cefr": "C1",
+    "corpus_definition": "Showing that you are in charge and know things.",
+    "example_en": "She spoke in an authoritative tone of voice."
+   }
+  ]
+ },
+ {
+  "headword": "autograph",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073685e",
+    "cefr": "C1",
+    "corpus_definition": "The name of a famous person written by them.",
+    "example_en": "Can I have your autograph, please?"
+   }
+  ]
+ },
+ {
+  "headword": "avail",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a0736731",
+    "cefr": "C1",
+    "corpus_definition": "To be of help or use in achieving something.",
+    "example_en": "His efforts to stop the rain were of no avail."
+   }
+  ]
+ }
+]

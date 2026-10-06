@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "meanwhile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092754",
+    "cefr": "B1",
+    "corpus_definition": "During the same time that something else is happening.",
+    "example_en": "I cooked dinner; meanwhile, he set the table."
+   }
+  ]
+ },
+ {
+  "headword": "messaging",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e52",
+    "cefr": "B1",
+    "corpus_definition": "The act of writing quick notes to other people.",
+    "example_en": "We are messaging each other all day."
+   }
+  ]
+ },
+ {
+  "headword": "mild",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd81",
+    "cefr": "B1",
+    "corpus_definition": "Not very cold and not very hot weather.",
+    "example_en": "The weather is very mild today."
+   }
+  ]
+ },
+ {
+  "headword": "minimum",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b3e",
+    "cefr": "B1",
+    "corpus_definition": "The smallest amount that is allowed or possible.",
+    "example_en": "The minimum age to enter is eighteen."
+   }
+  ]
+ },
+ {
+  "headword": "miserable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcde4",
+    "cefr": "B2",
+    "corpus_definition": "Very unhappy or uncomfortable.",
+    "example_en": "The rainy weather made us feel miserable."
+   },
+   {
+    "word_id": "6a6ef9b2a60155614809268b",
+    "cefr": "B1",
+    "corpus_definition": "Feeling very unhappy and sad for a long time.",
+    "example_en": "The rainy weather made everyone feel quite miserable."
+   }
+  ]
+ },
+ {
+  "headword": "mixture",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073687a",
+    "cefr": "B1",
+    "corpus_definition": "A combination of different things put together.",
+    "example_en": "This cake is a mixture of flour and eggs."
+   }
+  ]
+ },
+ {
+  "headword": "mobile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a073674f",
+    "cefr": "B1",
+    "corpus_definition": "Something that is able to move or be moved easily.",
+    "example_en": "She enjoys her mobile lifestyle."
+   }
+  ]
+ },
+ {
+  "headword": "modest",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480927a8",
+    "cefr": "B1",
+    "corpus_definition": "not showing off; simple and not too large or expensive",
+    "example_en": "She wore a modest dress to the ceremony."
+   }
+  ]
+ },
+ {
+  "headword": "mood",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42662edeeb39f881130122",
+    "cefr": "B1",
+    "corpus_definition": "The way you feel at a certain time.",
+    "example_en": "She is in a very good mood today."
+   }
+  ]
+ },
+ {
+  "headword": "mow",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092706",
+    "cefr": "B1",
+    "corpus_definition": "to cut grass or crops using a machine or blade",
+    "example_en": "He mows the lawn every Saturday morning."
+   }
+  ]
+ }
+]

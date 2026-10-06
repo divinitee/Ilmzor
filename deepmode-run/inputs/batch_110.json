@@ -1,0 +1,122 @@
+[
+ {
+  "headword": "suburb",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092771",
+    "cefr": "B1",
+    "corpus_definition": "an area of houses outside the centre of a city",
+    "example_en": "They moved to a quiet suburb last year."
+   }
+  ]
+ },
+ {
+  "headword": "succeed in",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265cce20c7210db6908f7",
+    "cefr": "B1",
+    "corpus_definition": "To reach a goal or finish a job well.",
+    "example_en": "They will succeed in their mission eventually."
+   }
+  ]
+ },
+ {
+  "headword": "successful",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dccc1",
+    "cefr": "B1",
+    "corpus_definition": "Reaching the results that you wanted.",
+    "example_en": "They are very successful in their new business."
+   }
+  ]
+ },
+ {
+  "headword": "sudden",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b45",
+    "cefr": "B1",
+    "corpus_definition": "Happening very quickly and without warning.",
+    "example_en": "The sudden noise made us all jump."
+   }
+  ]
+ },
+ {
+  "headword": "suggestion",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdcc",
+    "cefr": "B1",
+    "corpus_definition": "An idea that you tell someone to consider.",
+    "example_en": "That is a very good suggestion."
+   }
+  ]
+ },
+ {
+  "headword": "suicide",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092734",
+    "cefr": "B1",
+    "corpus_definition": "the act of killing oneself intentionally",
+    "example_en": "The charity works to prevent suicide among young people."
+   }
+  ]
+ },
+ {
+  "headword": "suitable",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd5c",
+    "cefr": "B1",
+    "corpus_definition": "right or good for a specific purpose or situation.",
+    "example_en": "This jacket is suitable for the cold weather."
+   }
+  ]
+ },
+ {
+  "headword": "suitable for",
+  "kind_hint": "phrase",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55db1",
+    "cefr": "B1",
+    "corpus_definition": "Good or right for a particular purpose or person.",
+    "example_en": "This movie is not suitable for young children."
+   }
+  ]
+ },
+ {
+  "headword": "sum",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef83f0f1e82a5a07366b3",
+    "cefr": "B1",
+    "corpus_definition": "The amount found by adding several numbers together.",
+    "example_en": "What is the sum of five and seven?"
+   }
+  ]
+ },
+ {
+  "headword": "supper",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a6015561480926bd",
+    "cefr": "B1",
+    "corpus_definition": "A meal eaten in the evening.",
+    "example_en": "We ate a simple supper together."
+   }
+  ]
+ }
+]

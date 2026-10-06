@@ -1,0 +1,128 @@
+[
+ {
+  "headword": "precious",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a601556148092757",
+    "cefr": "B1",
+    "corpus_definition": "very valuable and important, worth a great deal",
+    "example_en": "The ring contained precious stones worth a fortune."
+   }
+  ]
+ },
+ {
+  "headword": "preparation",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcd6a",
+    "cefr": "B1",
+    "corpus_definition": "the act of getting ready for something to happen.",
+    "example_en": "Hard work is the best preparation for success."
+   }
+  ]
+ },
+ {
+  "headword": "prepare for",
+  "kind_hint": "phrasal",
+  "rows": [
+   {
+    "word_id": "6a4265fb84a10cdfe9e55db6",
+    "cefr": "B1",
+    "corpus_definition": "To get ready for something that will happen soon.",
+    "example_en": "We must prepare for the final exam."
+   }
+  ]
+ },
+ {
+  "headword": "pretend",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4282fd46ba24054c1dcdb5",
+    "cefr": "B1",
+    "corpus_definition": "To act like something is true when it is not.",
+    "example_en": "The children love to pretend they are space travelers."
+   }
+  ]
+ },
+ {
+  "headword": "prisoner",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42821646ba24054c1dcc8f",
+    "cefr": "B1",
+    "corpus_definition": "someone kept in a jail because they did something against the law",
+    "example_en": "The prisoner was kept in a small cell."
+   }
+  ]
+ },
+ {
+  "headword": "privacy",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a6ef9b2a60155614809267b",
+    "cefr": "B1",
+    "corpus_definition": "The state of being alone without being watched.",
+    "example_en": "I need some privacy to finish my work."
+   }
+  ]
+ },
+ {
+  "headword": "profile",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a4288ad6941e70ad6a00e51",
+    "cefr": "B1",
+    "corpus_definition": "Information about a person shown on a web page.",
+    "example_en": "He updated his profile with a new photo."
+   }
+  ]
+ },
+ {
+  "headword": "profit",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b74",
+    "cefr": "B2",
+    "corpus_definition": "money earned from a business after paying all costs",
+    "example_en": "The shop made a big profit this month."
+   },
+   {
+    "word_id": "6a42883f6941e70ad6a00dd8",
+    "cefr": "B1",
+    "corpus_definition": "The extra money you have after all costs are paid.",
+    "example_en": "The store made a big profit last month."
+   }
+  ]
+ },
+ {
+  "headword": "program",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42800cb9d8fc24968a4b41",
+    "cefr": "B1",
+    "corpus_definition": "A set of instructions that tells a computer what to do.",
+    "example_en": "He wrote a new program to organize data."
+   }
+  ]
+ },
+ {
+  "headword": "project",
+  "kind_hint": "word",
+  "rows": [
+   {
+    "word_id": "6a42883f6941e70ad6a00dbd",
+    "cefr": "B1",
+    "corpus_definition": "a planned piece of work with a specific goal",
+    "example_en": "Our team finished the new project early."
+   }
+  ]
+ }
+]
