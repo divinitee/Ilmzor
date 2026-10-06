@@ -468,9 +468,9 @@
    }
   ],
   "context": {
-   "text": "It thundered all night in our village. The thunder was so loud that the dog hid under the bed.",
+   "text": "There was a big thunderstorm last night. The thunder was so loud that the dog hid under the bed.",
    "uses": [
-    "thundered",
+    "thunderstorm",
     "thunder"
    ]
   },
@@ -589,7 +589,13 @@
       "note": "Same meaning."
      }
     ],
-    "ant": []
+    "ant": [
+     {
+      "to": "untidily",
+      "relation": "antonym",
+      "note": "In a messy way."
+     }
+    ]
    }
   ],
   "people": [],
