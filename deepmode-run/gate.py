@@ -264,6 +264,8 @@ def compound_parts(form, bases):
         for stem in (b, b + "s"):
             if len(stem) >= 3 and f.startswith(stem):
                 rest = f[len(stem):]
+                if rest[0] == stem[-1] and rest[1:] in SUFFIXY:
+                    continue  # doubled consonant + suffix: stir-r-ing, stop-p-er
                 if len(rest) >= 3 and rest not in SUFFIXY and zipf_frequency(rest, "en") >= 3.5 and (word_pos(rest, "noun") or word_pos(rest, "verb") or word_pos(rest, "adjective")):
                     return stem, rest
     return None
