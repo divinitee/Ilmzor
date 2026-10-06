@@ -105,7 +105,7 @@
   "people_not_family": [],
   "affixes": [],
   "context": {
-   "text": "Aziz stuffed all his stuff into one small bag before the trip.",
+   "text": "Aziz had too much stuff for one small bag. He stuffed it all in anyway.",
    "uses": [
     "stuffed",
     "stuff"
@@ -297,11 +297,7 @@
    },
    {
     "slot": "adjective",
-    "status": "other_meaning",
-    "form": "sucker",
-    "definition": "a person who is easy to trick",
-    "example": "He is a sucker for sad stories.",
-    "note": "Belongs to an informal sense, not using your mouth."
+    "status": "no_form"
    },
    {
     "slot": "adverb",
@@ -364,7 +360,10 @@
       "note": "Go well with something else."
      }
     ],
-    "ant": []
+    "ant": [],
+    "not_family": [
+     "sue"
+    ]
    },
    {
     "slot": "adjective",
@@ -462,7 +461,10 @@
    {
     "slot": "verb",
     "status": "no_form",
-    "note": "Verb suit (be right for) is the other map."
+    "note": "Verb suit (be right for) is the other map.",
+    "not_family": [
+     "sue"
+    ]
    },
    {
     "slot": "adjective",
