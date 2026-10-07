@@ -1,196 +1,1191 @@
 [
-{"headword": "cliff", "word_id": "6a6ef9b2a60155614809269a", "word_ids": ["6a6ef9b2a60155614809269a", "6a42883f6941e70ad6a00df5"], "cefr": "B1", "kind": "word", "sense_label": "Rock", "sense_pos": "noun", "corpus_definition": "A high, steep rock face by the sea or mountains.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "cliff", "relation": "base", "definition": "a high, steep wall of rock, often next to the sea", "example": "Be careful near the edge of the cliff.", "syn": [
-    {"to": "precipice", "relation": "synonym", "strength": 0.8, "note": "A very steep side of a high rock or mountain; a more formal, literary word.", "register": "formal"},
-    {"to": "bluff", "relation": "related", "strength": 0.6, "note": "A high, steep bank, often by a river or the sea; less common than cliff."},
-    {"to": "crag", "relation": "related", "strength": 0.6, "note": "A rough, steep piece of rock, usually on a mountain."},
-    {"to": "rock", "relation": "related", "strength": 0.4, "note": "Easy, general word: the hard stone a cliff is made of."}], "ant": []},
-  {"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this family."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [], "affixes": [],
- "context": {"text": "In the mountains near Chimgan there is a high cliff above the river. Birds build their nests on the cliff, so climbers must be careful.", "uses": ["cliff"]},
- "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). Compounds such as clifftop are left out."},
-
-{"headword": "coast", "word_id": "6a42883f6941e70ad6a00df1", "word_ids": ["6a42883f6941e70ad6a00df1"], "cefr": "B1", "kind": "word", "sense_label": "Sea", "sense_pos": "noun", "corpus_definition": "The land next to the large salt water areas.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "coast", "relation": "base", "definition": "the land next to the sea", "example": "They live on the west coast.", "syn": [
-    {"to": "shore", "relation": "synonym", "strength": 0.8, "note": "The land at the edge of the sea or a lake; coast is used for larger areas and for regions."},
-    {"to": "seaside", "relation": "related", "strength": 0.6, "note": "British English: a place by the sea where people go on holiday."},
-    {"to": "beach", "relation": "related", "strength": 0.6, "note": "Easy word: the area of sand or stones by the sea, a small part of a coast."}], "ant": []},
-  {"slot": "verb", "status": "other_meaning", "form": "coast", "definition": "to move forward without using power, like a bike going downhill", "example": "We stopped pedalling and coasted down the hill.", "note": "Belongs to coast = move without effort or power, not the land next to the sea."},
-  {"slot": "adjective", "status": "existing", "form": "coastal", "relation": "derivational", "definition": "on or near the land next to the sea", "example": "Many coastal towns are busy in summer.", "syn": [
-    {"to": "maritime", "relation": "related", "strength": 0.6, "note": "Connected with the sea or ships; more formal.", "register": "formal"}], "ant": [
-    {"to": "inland", "relation": "antonym", "note": "Inland places are far from the sea, like Tashkent."}]},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [],
- "affixes": [{"affix": "-al", "in_form": "coastal", "meaning_key": "-al", "also": ["national", "musical", "personal"]}],
- "context": {"text": "Uzbekistan has no coast, so many families go to the sea in other countries. Last summer we stayed in a small coastal town and swam every day.", "uses": ["coast", "coastal"]},
- "reviewer_note": "Verb coast (move without power) is a different meaning, shown as other_meaning. Compounds coastline and coastguard are left out."},
-
-{"headword": "coffin", "word_id": "6a6ef9b2a601556148092777", "word_ids": ["6a6ef9b2a601556148092777"], "cefr": "B1", "kind": "word", "sense_label": "Funeral", "sense_pos": "noun", "corpus_definition": "a long box in which a dead person is buried",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "coffin", "relation": "base", "definition": "a long box that a dead body is put in before burial", "example": "They carried the coffin slowly into the church.", "syn": [
-    {"to": "casket", "relation": "synonym", "strength": 0.8, "note": "American English uses casket for the same box; in British English a casket is also a small box for jewels."},
-    {"to": "box", "relation": "related", "strength": 0.4, "note": "Easy, general word; a coffin is a special box for a dead person."}], "ant": []},
-  {"slot": "verb", "status": "no_form", "note": "There is no common verb in this family."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no adjective in this family."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [], "affixes": [],
- "context": {"text": "In the film, six men carried the coffin out of the old house. Everyone stood quietly as the coffin passed.", "uses": ["coffin"]},
- "reviewer_note": "Only one form exists; sensitive topic kept short and neutral."},
-
-{"headword": "collapse", "word_id": "6a6ef9b2a60155614809273c", "word_ids": ["6a6ef9b2a60155614809273c"], "cefr": "B1", "kind": "word", "sense_label": "Falling", "sense_pos": "verb", "corpus_definition": "to suddenly fall down or fail completely",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "collapse", "relation": "conversion", "definition": "a sudden fall of a building or person, or a sudden failure", "example": "The collapse of the bridge closed the road for a month.", "syn": [
-    {"to": "fall", "relation": "related", "strength": 0.6, "note": "Easy, general word; a collapse is a sudden and complete fall."},
-    {"to": "failure", "relation": "related", "strength": 0.6, "note": "Used when a business or plan stops working; collapse is more sudden."},
-    {"to": "breakdown", "relation": "related", "strength": 0.6, "note": "When a system, machine or talks stop working."}], "ant": []},
-  {"slot": "verb", "status": "existing", "form": "collapse", "relation": "base", "definition": "to fall down suddenly, or to fail completely", "example": "The old bridge collapsed under the weight of the truck.", "syn": [
-    {"to": "fall", "relation": "synonym", "strength": 0.8, "note": "Easy word; collapse means a sudden fall, often of a whole building or person."},
-    {"to": "cave in", "relation": "synonym", "strength": 0.8, "note": "Used for roofs, walls and tunnels that fall inwards."},
-    {"to": "crumble", "relation": "related", "strength": 0.6, "note": "To break slowly into small pieces, like an old wall."},
-    {"to": "fail", "relation": "related", "strength": 0.6, "note": "For a business or plan; collapse means it fails suddenly and completely."}], "ant": []},
-  {"slot": "adjective", "status": "other_meaning", "form": "collapsible", "definition": "able to be folded so that it takes less space", "example": "We took a collapsible table to the picnic.", "note": "Belongs to collapse = fold something to make it smaller, not falling down or failing."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [], "affixes": [],
- "context": {"text": "After three days of heavy rain, part of the old wall collapsed. Luckily, nobody was hurt in the collapse.", "uses": ["collapsed", "collapse"]},
- "reviewer_note": "Verb and noun are the same spelling (conversion). Collapsible belongs to the folding meaning, so it is other_meaning; no affix is claimed on it."},
-
-{"headword": "colleague", "word_id": "6a42821646ba24054c1dcc9a", "word_ids": ["6a42821646ba24054c1dcc9a"], "cefr": "B1", "kind": "word", "sense_label": "Work", "sense_pos": "noun", "corpus_definition": "someone that you work with at the same place",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "colleague", "relation": "base", "definition": "a person who works in the same place or company as you", "example": "My colleague is helping me with this project.", "syn": [
-    {"to": "co-worker", "relation": "synonym", "strength": 0.95, "note": "Same meaning; more common in American English."},
-    {"to": "workmate", "relation": "synonym", "strength": 0.8, "note": "Informal British English, often for people doing the same kind of job.", "register": "informal"},
-    {"to": "associate", "relation": "related", "strength": 0.6, "note": "A person you work or do business with, often from another company.", "register": "formal"},
-    {"to": "partner", "relation": "related", "strength": 0.4, "note": "Easy word, but a partner shares a business or a task with you, not just a workplace."}], "ant": []},
-  {"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this family."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [], "affixes": [],
- "context": {"text": "Malika has worked at the bank for five years. Her colleagues often ask her for help, and on Fridays the colleagues eat plov together.", "uses": ["colleagues"]},
- "reviewer_note": "Headword is itself a person noun, so it stays the main noun entry; no other family forms."},
-
-{"headword": "collection", "word_id": "6a42659782466c80f8ae0cc9", "word_ids": ["6a42659782466c80f8ae0cc9"], "cefr": "B1", "kind": "word", "sense_label": "Hobby", "sense_pos": "noun", "corpus_definition": "A group of things that you have gathered.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "collection", "relation": "base", "definition": "a group of things of one kind that someone has gathered", "example": "He has a large stamp collection.", "syn": [
-    {"to": "set", "relation": "related", "strength": 0.6, "note": "A group of things that belong together, like a set of cups."},
-    {"to": "group", "relation": "related", "strength": 0.6, "note": "Easy, general word for several things or people together."},
-    {"to": "assortment", "relation": "related", "strength": 0.6, "note": "A mix of different kinds of things, not always gathered with care."}], "ant": []},
-  {"slot": "verb", "status": "existing", "form": "collect", "relation": "derivational", "definition": "to bring things of one kind together, often as a hobby", "example": "My grandfather collects old coins from Central Asia.", "syn": [
-    {"to": "gather", "relation": "synonym", "strength": 0.8, "note": "To bring things together; collect suggests a hobby or careful choice."},
-    {"to": "accumulate", "relation": "synonym", "strength": 0.8, "note": "Formal: to get more and more of something over time.", "register": "formal"},
-    {"to": "save", "relation": "related", "strength": 0.4, "note": "Easy word: to keep things so you can use or enjoy them later."}], "ant": [
-    {"to": "scatter", "relation": "antonym", "note": "To spread things in many different places instead of bringing them together."}]},
-  {"slot": "adjective", "status": "existing", "form": "collectable", "relation": "derivational", "definition": "worth gathering and keeping because people like to own it", "example": "Old Soviet stamps are very collectable now.", "note": "American spelling: collectible.", "syn": [
-    {"to": "valuable", "relation": "related", "strength": 0.4, "note": "Worth a lot of money; a collectable thing is wanted by people who keep such things."}], "ant": []},
-  {"slot": "adjective", "status": "other_meaning", "form": "collective", "definition": "shared or done by all the members of a group", "example": "Cleaning the street was a collective effort.", "note": "Belongs to collect = bring people together as a group, not gathering things as a hobby."},
-  {"slot": "adverb", "status": "other_meaning", "form": "collectively", "definition": "together, as a group", "example": "The neighbours collectively decided to plant trees.", "note": "Goes with collective = done by a whole group, not a hobby collection."}],
- "people": [
-  {"form": "collector", "kind": "person", "status": "existing", "definition": "a person who gathers things of one kind as a hobby", "example": "The stamp collector showed us his rarest stamps."}],
- "affixes": [
-  {"affix": "-ion", "in_form": "collection", "meaning_key": "-ion", "also": ["action", "invention", "protection"]},
-  {"affix": "-able", "in_form": "collectable", "meaning_key": "-able", "also": ["washable", "readable", "breakable"]},
-  {"affix": "-or", "in_form": "collector", "meaning_key": "-or", "also": ["actor", "visitor", "inventor"]}],
- "context": {"text": "My brother collects old coins. His collection now has more than 300 coins, and some of them are very collectable.", "uses": ["collects", "collection", "collectable"]},
- "reviewer_note": "Headword is the -ion noun; collect is its base verb. Collective/collectively are the group meaning, so other_meaning. Collect in the sense 'pick someone up' is not shown."},
-
-{"headword": "comedian", "word_id": "6a4282fd46ba24054c1dcdf7", "word_ids": ["6a4282fd46ba24054c1dcdf7"], "cefr": "B1", "kind": "word", "sense_label": "Jokes", "sense_pos": "noun", "corpus_definition": "a person who tells jokes to make people laugh",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "comedian", "relation": "base", "definition": "a person whose job is to tell jokes and make people laugh", "example": "The famous comedian made the audience laugh.", "syn": [
-    {"to": "humorist", "relation": "synonym", "strength": 0.8, "note": "A person who writes or tells funny stories; a more formal word.", "register": "formal"},
-    {"to": "entertainer", "relation": "related", "strength": 0.6, "note": "Anyone whose job is to entertain people, for example a singer or a magician."},
-    {"to": "joker", "relation": "related", "strength": 0.6, "note": "Easy word: a person who likes telling jokes, not usually as a job."},
-    {"to": "clown", "relation": "related", "strength": 0.4, "note": "A performer in funny clothes and make-up, often in a circus."}], "ant": []},
-  {"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
-  {"slot": "adjective", "status": "existing", "form": "comic", "relation": "derivational", "definition": "funny, or connected with funny films, plays and shows", "example": "The film has some great comic moments.", "note": "Comic is also a noun: a comic is a comedian, or a magazine with picture stories.", "syn": [
-    {"to": "funny", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word with almost the same meaning."},
-    {"to": "humorous", "relation": "synonym", "strength": 0.8, "note": "A little more formal; often used for writing and stories."},
-    {"to": "amusing", "relation": "synonym", "strength": 0.8, "note": "Funny in a pleasant way; usually less strong than comic."}], "ant": [
-    {"to": "tragic", "relation": "antonym", "note": "Very sad, especially in plays and stories."},
-    {"to": "serious", "relation": "antonym", "note": "Not trying to be funny."}]},
-  {"slot": "adjective", "status": "existing", "form": "comical", "relation": "derivational", "definition": "funny in a strange or silly way", "example": "The puppy looked comical in its big hat.", "syn": [
-    {"to": "funny", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; comical often means funny without meaning to be."},
-    {"to": "ridiculous", "relation": "related", "strength": 0.6, "note": "So silly that people laugh at it; can be unkind."}], "ant": []},
-  {"slot": "adverb", "status": "existing", "form": "comically", "relation": "derivational", "definition": "in a funny or silly way", "example": "The tiny car was comically small for such a tall man.", "syn": [
-    {"to": "humorously", "relation": "synonym", "strength": 0.8, "note": "In a funny way; a little more formal."},
-    {"to": "amusingly", "relation": "synonym", "strength": 0.8, "note": "In a way that makes people smile or laugh."}], "ant": [
-    {"to": "seriously", "relation": "antonym", "note": "In a way that is not funny or joking."}]}],
- "people": [
-  {"form": "comedy", "kind": "field", "status": "existing", "definition": "funny films, plays and shows, or the art of making people laugh", "example": "He loves watching comedy on TV after work."},
-  {"form": "comedienne", "kind": "person", "status": "existing", "definition": "a woman who tells jokes and makes people laugh", "example": "The comedienne told stories about her mother-in-law.", "note": "Old-fashioned; today comedian is used for women and men."}],
- "affixes": [
-  {"affix": "-ian", "in_form": "comedian", "meaning_key": "-ian", "also": ["musician", "librarian", "historian"]},
-  {"affix": "-al", "in_form": "comical", "meaning_key": "-al", "also": ["musical", "magical", "historical"]},
-  {"affix": "-ly", "in_form": "comically", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]}],
- "context": {"text": "Bobur is a comedian on a popular TV show in Tashkent. His comic stories about family weddings are so comical that my grandmother laughs until she cries.", "uses": ["comedian", "comic", "comical"]},
- "reviewer_note": "Headword is a person noun, so it stays the main noun entry; comedy goes in People & things as the field. Comic is not listed as a synonym because it is a family member."},
-
-{"headword": "commission", "word_id": "6a6ef9b2a6015561480926ea", "word_ids": ["6a6ef9b2a6015561480926ea"], "cefr": "B1", "kind": "word", "sense_label": "Money", "sense_pos": "noun", "corpus_definition": "a group given authority to do a task, or a fee paid for work",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "commission", "relation": "base", "definition": "money paid to someone for each thing they sell", "example": "The agent earned a commission on every house sold.", "syn": [
-    {"to": "fee", "relation": "synonym", "strength": 0.8, "note": "Money paid for a service; a commission is usually a percentage of a sale."},
-    {"to": "percentage", "relation": "related", "strength": 0.6, "note": "A part of every 100; a commission is often a percentage of the price."},
-    {"to": "payment", "relation": "related", "strength": 0.4, "note": "Easy, general word for money that is paid."}], "ant": []},
-  {"slot": "verb", "status": "other_meaning", "form": "commission", "definition": "to officially ask an artist or writer to make something for you", "example": "The city commissioned a new statue for the park.", "note": "Belongs to commission = an order for a piece of work, not money for selling."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this meaning."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [
-  {"form": "commissioner", "kind": "job", "status": "other_meaning", "definition": "a member of an official group, or the head of a government department", "example": "The police commissioner spoke to the reporters.", "note": "Belongs to commission = an official group, not money for selling."}],
- "affixes": [],
- "context": {"text": "Dilshod sells cars in Samarkand. He gets a commission of two percent on each car, and last month his commission was bigger than his salary.", "uses": ["commission"]},
- "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee); its example is the fee meaning. Split into Money and Group maps on the same word_id."},
-
-{"headword": "commission", "word_id": "6a6ef9b2a6015561480926ea", "word_ids": ["6a6ef9b2a6015561480926ea"], "cefr": "B1", "kind": "word", "sense_label": "Group", "sense_pos": "noun", "corpus_definition": "a group given authority to do a task, or a fee paid for work",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "commission", "relation": "base", "definition": "an official group of people chosen to check or decide something", "example": "The government set up a commission to study air pollution.", "syn": [
-    {"to": "committee", "relation": "synonym", "strength": 0.8, "note": "A group chosen to make decisions; a commission is usually more official and often set up by a government."},
-    {"to": "board", "relation": "related", "strength": 0.6, "note": "A group that controls a company or organization."},
-    {"to": "panel", "relation": "related", "strength": 0.6, "note": "A small group of experts who give advice or judge something."},
-    {"to": "group", "relation": "related", "strength": 0.4, "note": "Easy, general word for people together."}], "ant": []},
-  {"slot": "verb", "status": "other_meaning", "form": "commission", "definition": "to officially ask an artist or writer to make something for you", "example": "The museum commissioned a painting of the old city.", "note": "Belongs to commission = an order for a piece of work, not an official group."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this meaning."},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [
-  {"form": "commissioner", "kind": "job", "status": "existing", "definition": "a member of an official group with special power", "example": "Each commissioner will visit five schools this month."}],
- "affixes": [
-  {"affix": "-er", "in_form": "commissioner", "meaning_key": "-er", "also": ["teacher", "worker", "farmer"]}],
- "context": {"text": "The election commission met in Tashkent on Monday. One commissioner said the new rules will be ready next month.", "uses": ["commission", "commissioner"]},
- "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee). This is the Group map; the fee meaning has its own Money map."},
-
-{"headword": "community", "word_id": "6a42821646ba24054c1dcc67", "word_ids": ["6a42821646ba24054c1dcc67", "6a4288ad6941e70ad6a00e7b"], "cefr": "B1", "kind": "word", "sense_label": "People", "sense_pos": "noun", "corpus_definition": "the group of people who live in the same area.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "community", "relation": "base", "definition": "all the people who live in one area, town or neighbourhood", "example": "Everyone in the community helped clean the park.", "syn": [
-    {"to": "neighbourhood", "relation": "related", "strength": 0.6, "note": "An area of a town and the people in it; American spelling: neighborhood."},
-    {"to": "society", "relation": "related", "strength": 0.6, "note": "A much bigger group: all the people in a country."},
-    {"to": "population", "relation": "related", "strength": 0.6, "note": "The number of people living in a place, not the group itself."},
-    {"to": "people", "relation": "related", "strength": 0.4, "note": "Easy, general word for men, women and children."}], "ant": []},
-  {"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
-  {"slot": "adjective", "status": "no_form", "note": "There is no adjective made from this word.", "not_family": ["communal"]},
-  {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}],
- "people": [], "affixes": [],
- "context": {"text": "In our mahalla, the whole community helps when a family has a wedding. People from the community cook plov and set up the tables together.", "uses": ["community"]},
- "reviewer_note": "Two corpus rows with the same meaning merged (B1). Communal shares an old root but is not made from community, so it is listed as not_family."},
-
-{"headword": "compact", "word_id": "6a6ef9b2a6015561480927d9", "word_ids": ["6a6ef9b2a6015561480927d9"], "cefr": "B1", "kind": "word", "sense_label": "Size", "sense_pos": "adjective", "corpus_definition": "small and neatly arranged to save space",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "compactness", "relation": "derivational", "definition": "the quality of being small and using little space", "example": "People like this phone for its compactness.", "syn": [
-    {"to": "smallness", "relation": "related", "strength": 0.6, "note": "Being small; compactness also means everything is neatly fitted in."}], "ant": []},
-  {"slot": "noun", "status": "other_meaning", "form": "compact", "definition": "a small flat case with a mirror and face powder", "example": "She took a compact out of her bag and checked her face.", "note": "Belongs to compact = a small make-up case, not the quality of being small."},
-  {"slot": "verb", "status": "other_meaning", "form": "compact", "definition": "to press something together so that it becomes hard and tight", "example": "The heavy trucks compacted the soil on the road.", "note": "Belongs to compact = pressed tightly together, not small and neatly arranged."},
-  {"slot": "adjective", "status": "existing", "form": "compact", "relation": "base", "definition": "small and arranged neatly so that it saves space", "example": "She bought a compact camera for the trip.", "syn": [
-    {"to": "small", "relation": "related", "strength": 0.6, "note": "Easy word; compact means small in a useful, well-planned way."},
-    {"to": "neat", "relation": "related", "strength": 0.6, "note": "Tidy and well arranged."},
-    {"to": "portable", "relation": "related", "strength": 0.4, "note": "Easy to carry; compact things are often portable."}], "ant": [
-    {"to": "bulky", "relation": "antonym", "note": "Big and taking up a lot of space, so hard to carry or store."}]},
-  {"slot": "adverb", "status": "existing", "form": "compactly", "relation": "derivational", "definition": "in a small, neat way that saves space", "example": "Everything in the tiny kitchen is arranged compactly.", "syn": [
-    {"to": "neatly", "relation": "related", "strength": 0.6, "note": "In a tidy, careful way; compactly also means using little space."},
-    {"to": "tightly", "relation": "related", "strength": 0.4, "note": "Closely together, with no space between."}], "ant": []}],
- "people": [],
- "affixes": [
-  {"affix": "-ness", "in_form": "compactness", "meaning_key": "-ness", "also": ["kindness", "darkness", "happiness"]},
-  {"affix": "-ly", "in_form": "compactly", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]}],
- "context": {"text": "My new flat in Chilonzor is very compact. The kitchen is arranged so compactly that I can reach everything from one place.", "uses": ["compact", "compactly"]},
- "reviewer_note": "Noun compact (make-up case) and verb compact (press together) are other meanings. Compound compact disc is left out."}
+ {
+  "headword": "cliff",
+  "word_id": "6a6ef9b2a60155614809269a",
+  "word_ids": [
+   "6a6ef9b2a60155614809269a",
+   "6a42883f6941e70ad6a00df5"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Rock",
+  "sense_pos": "noun",
+  "corpus_definition": "A high, steep rock face by the sea or mountains.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "cliff",
+    "relation": "base",
+    "definition": "a high, steep wall of rock, often next to the sea",
+    "example": "Be careful near the edge of the cliff.",
+    "syn": [
+     {
+      "to": "precipice",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A very steep side of a high rock or mountain; a more formal, literary word.",
+      "register": "formal"
+     },
+     {
+      "to": "bluff",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A high, steep bank, often by a river or the sea; less common than cliff."
+     },
+     {
+      "to": "crag",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A rough, steep piece of rock, usually on a mountain."
+     },
+     {
+      "to": "rock",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy, general word: the hard stone a cliff is made of."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no common adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "In the mountains near Chimgan there is a high cliff above the river. Birds build their nests on the cliff, so climbers must be careful.",
+   "uses": [
+    "cliff"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). Compounds such as clifftop are left out."
+ },
+ {
+  "headword": "coast",
+  "word_id": "6a42883f6941e70ad6a00df1",
+  "word_ids": [
+   "6a42883f6941e70ad6a00df1"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Sea",
+  "sense_pos": "noun",
+  "corpus_definition": "The land next to the large salt water areas.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "coast",
+    "relation": "base",
+    "definition": "the land next to the sea",
+    "example": "They live on the west coast.",
+    "syn": [
+     {
+      "to": "shore",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The land at the edge of the sea or a lake; coast is used for larger areas and for regions."
+     },
+     {
+      "to": "seaside",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "British English: a place by the sea where people go on holiday."
+     },
+     {
+      "to": "beach",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word: the area of sand or stones by the sea, a small part of a coast."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "coast",
+    "definition": "to move forward without using power, like a bike going downhill",
+    "example": "We stopped pedalling and coasted down the hill.",
+    "note": "Belongs to coast = move without effort or power, not the land next to the sea."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "coastal",
+    "relation": "derivational",
+    "definition": "on or near the land next to the sea",
+    "example": "Many coastal towns are busy in summer.",
+    "syn": [
+     {
+      "to": "maritime",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Connected with the sea or ships; more formal.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "inland",
+      "relation": "antonym",
+      "note": "Inland places are far from the sea, like Tashkent."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {
+    "affix": "-al",
+    "in_form": "coastal",
+    "meaning_key": "-al",
+    "also": [
+     "national",
+     "musical",
+     "personal"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Uzbekistan has no coast, so many families go to the sea in other countries. Last summer we stayed in a small coastal town and swam every day.",
+   "uses": [
+    "coast",
+    "coastal"
+   ]
+  },
+  "reviewer_note": "Verb coast (move without power) is a different meaning, shown as other_meaning. Compounds coastline and coastguard are left out."
+ },
+ {
+  "headword": "coffin",
+  "word_id": "6a6ef9b2a601556148092777",
+  "word_ids": [
+   "6a6ef9b2a601556148092777"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Funeral",
+  "sense_pos": "noun",
+  "corpus_definition": "a long box in which a dead person is buried",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "coffin",
+    "relation": "base",
+    "definition": "a long box that a dead body is put in before burial",
+    "example": "They carried the coffin slowly into the church.",
+    "syn": [
+     {
+      "to": "casket",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "American English uses casket for the same box; in British English a casket is also a small box for jewels."
+     },
+     {
+      "to": "box",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy, general word; a coffin is a special box for a dead person."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no common verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "In the film, six men carried the coffin out of the old house. Everyone stood quietly as the coffin passed.",
+   "uses": [
+    "coffin"
+   ]
+  },
+  "reviewer_note": "Only one form exists; sensitive topic kept short and neutral."
+ },
+ {
+  "headword": "collapse",
+  "word_id": "6a6ef9b2a60155614809273c",
+  "word_ids": [
+   "6a6ef9b2a60155614809273c"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Falling",
+  "sense_pos": "verb",
+  "corpus_definition": "to suddenly fall down or fail completely",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "collapse",
+    "relation": "conversion",
+    "definition": "a sudden fall of a building or person, or a sudden failure",
+    "example": "The collapse of the bridge closed the road for a month.",
+    "syn": [
+     {
+      "to": "fall",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy, general word; a collapse is a sudden and complete fall."
+     },
+     {
+      "to": "failure",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Used when a business or plan stops working; collapse is more sudden."
+     },
+     {
+      "to": "breakdown",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "When a system, machine or talks stop working."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "collapse",
+    "relation": "base",
+    "definition": "to fall down suddenly, or to fail completely",
+    "example": "The old bridge collapsed under the weight of the truck.",
+    "syn": [
+     {
+      "to": "fall",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word; collapse means a sudden fall, often of a whole building or person."
+     },
+     {
+      "to": "cave in",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used for roofs, walls and tunnels that fall inwards."
+     },
+     {
+      "to": "crumble",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To break slowly into small pieces, like an old wall."
+     },
+     {
+      "to": "fail",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "For a business or plan; collapse means it fails suddenly and completely."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "collapsible",
+    "definition": "able to be folded so that it takes less space",
+    "example": "We took a collapsible table to the picnic.",
+    "note": "Belongs to collapse = fold something to make it smaller, not falling down or failing."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "After three days of heavy rain, part of the old wall collapsed. Luckily, nobody was hurt in the collapse.",
+   "uses": [
+    "collapsed",
+    "collapse"
+   ]
+  },
+  "reviewer_note": "Verb and noun are the same spelling (conversion). Collapsible belongs to the folding meaning, so it is other_meaning; no affix is claimed on it."
+ },
+ {
+  "headword": "colleague",
+  "word_id": "6a42821646ba24054c1dcc9a",
+  "word_ids": [
+   "6a42821646ba24054c1dcc9a"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Work",
+  "sense_pos": "noun",
+  "corpus_definition": "someone that you work with at the same place",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "colleague",
+    "relation": "base",
+    "definition": "a person who works in the same place or company as you",
+    "example": "My colleague is helping me with this project.",
+    "syn": [
+     {
+      "to": "co-worker",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; more common in American English."
+     },
+     {
+      "to": "workmate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal British English, often for people doing the same kind of job.",
+      "register": "informal"
+     },
+     {
+      "to": "associate",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person you work or do business with, often from another company.",
+      "register": "formal"
+     },
+     {
+      "to": "partner",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy word, but a partner shares a business or a task with you, not just a workplace."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no common adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "Malika has worked at the bank for five years. Her colleagues often ask her for help, and on Fridays the colleagues eat plov together.",
+   "uses": [
+    "colleagues"
+   ]
+  },
+  "reviewer_note": "Headword is itself a person noun, so it stays the main noun entry; no other family forms."
+ },
+ {
+  "headword": "collection",
+  "word_id": "6a42659782466c80f8ae0cc9",
+  "word_ids": [
+   "6a42659782466c80f8ae0cc9"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Hobby",
+  "sense_pos": "noun",
+  "corpus_definition": "A group of things that you have gathered.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "collection",
+    "relation": "base",
+    "definition": "a group of things of one kind that someone has gathered",
+    "example": "He has a large stamp collection.",
+    "syn": [
+     {
+      "to": "set",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A group of things that belong together, like a set of cups."
+     },
+     {
+      "to": "group",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy, general word for several things or people together."
+     },
+     {
+      "to": "assortment",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A mix of different kinds of things, not always gathered with care."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "collect",
+    "relation": "derivational",
+    "definition": "to bring things of one kind together, often as a hobby",
+    "example": "My grandfather collects old coins from Central Asia.",
+    "syn": [
+     {
+      "to": "gather",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To bring things together; collect suggests a hobby or careful choice."
+     },
+     {
+      "to": "accumulate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: to get more and more of something over time.",
+      "register": "formal"
+     },
+     {
+      "to": "save",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy word: to keep things so you can use or enjoy them later."
+     }
+    ],
+    "ant": [
+     {
+      "to": "scatter",
+      "relation": "antonym",
+      "note": "To spread things in many different places instead of bringing them together."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "collectable",
+    "relation": "derivational",
+    "definition": "worth gathering and keeping because people like to own it",
+    "example": "Old Soviet stamps are very collectable now.",
+    "note": "American spelling: collectible.",
+    "syn": [
+     {
+      "to": "valuable",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Worth a lot of money; a collectable thing is wanted by people who keep such things."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "collective",
+    "definition": "shared or done by all the members of a group",
+    "example": "Cleaning the street was a collective effort.",
+    "note": "Belongs to collect = bring people together as a group, not gathering things as a hobby."
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "collectively",
+    "definition": "together, as a group",
+    "example": "The neighbours collectively decided to plant trees.",
+    "note": "Goes with collective = done by a whole group, not a hobby collection."
+   }
+  ],
+  "people": [
+   {
+    "form": "collector",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who gathers things of one kind as a hobby",
+    "example": "The stamp collector showed us his rarest stamps."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "collection",
+    "meaning_key": "-ion",
+    "also": [
+     "action",
+     "invention",
+     "protection"
+    ]
+   },
+   {
+    "affix": "-able",
+    "in_form": "collectable",
+    "meaning_key": "-able",
+    "also": [
+     "washable",
+     "readable",
+     "breakable"
+    ]
+   },
+   {
+    "affix": "-or",
+    "in_form": "collector",
+    "meaning_key": "-or",
+    "also": [
+     "actor",
+     "visitor",
+     "inventor"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My brother collects old coins. His collection now has more than 300 coins, and some of them are very collectable.",
+   "uses": [
+    "collects",
+    "collection",
+    "collectable"
+   ]
+  },
+  "reviewer_note": "Headword is the -ion noun; collect is its base verb. Collective/collectively are the group meaning, so other_meaning. Collect in the sense 'pick someone up' is not shown."
+ },
+ {
+  "headword": "comedian",
+  "word_id": "6a4282fd46ba24054c1dcdf7",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdf7"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Jokes",
+  "sense_pos": "noun",
+  "corpus_definition": "a person who tells jokes to make people laugh",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "comedian",
+    "relation": "base",
+    "definition": "a person whose job is to tell jokes and make people laugh",
+    "example": "The famous comedian made the audience laugh.",
+    "syn": [
+     {
+      "to": "humorist",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A person who writes or tells funny stories; a more formal word.",
+      "register": "formal"
+     },
+     {
+      "to": "entertainer",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Anyone whose job is to entertain people, for example a singer or a magician."
+     },
+     {
+      "to": "joker",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word: a person who likes telling jokes, not usually as a job."
+     },
+     {
+      "to": "clown",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A performer in funny clothes and make-up, often in a circus."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "comic",
+    "relation": "derivational",
+    "definition": "funny, or connected with funny films, plays and shows",
+    "example": "The film has some great comic moments.",
+    "note": "Comic is also a noun: a comic is a comedian, or a magazine with picture stories.",
+    "syn": [
+     {
+      "to": "funny",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, everyday word with almost the same meaning."
+     },
+     {
+      "to": "humorous",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A little more formal; often used for writing and stories."
+     },
+     {
+      "to": "amusing",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Funny in a pleasant way; usually less strong than comic."
+     }
+    ],
+    "ant": [
+     {
+      "to": "tragic",
+      "relation": "antonym",
+      "note": "Very sad, especially in plays and stories."
+     },
+     {
+      "to": "serious",
+      "relation": "antonym",
+      "note": "Not trying to be funny."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "comical",
+    "relation": "derivational",
+    "definition": "funny in a strange or silly way",
+    "example": "The puppy looked comical in its big hat.",
+    "syn": [
+     {
+      "to": "funny",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, general word; comical often means funny without meaning to be."
+     },
+     {
+      "to": "ridiculous",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "So silly that people laugh at it; can be unkind."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "comically",
+    "relation": "derivational",
+    "definition": "in a funny or silly way",
+    "example": "The tiny car was comically small for such a tall man.",
+    "syn": [
+     {
+      "to": "humorously",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In a funny way; a little more formal."
+     },
+     {
+      "to": "amusingly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In a way that makes people smile or laugh."
+     }
+    ],
+    "ant": [
+     {
+      "to": "seriously",
+      "relation": "antonym",
+      "note": "In a way that is not funny or joking."
+     }
+    ]
+   }
+  ],
+  "people": [
+   {
+    "form": "comedy",
+    "kind": "field",
+    "status": "existing",
+    "definition": "funny films, plays and shows, or the art of making people laugh",
+    "example": "He loves watching comedy on TV after work."
+   },
+   {
+    "form": "comedienne",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a woman who tells jokes and makes people laugh",
+    "example": "The comedienne told stories about her mother-in-law.",
+    "note": "Old-fashioned; today comedian is used for women and men."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-ian",
+    "in_form": "comedian",
+    "meaning_key": "-ian",
+    "also": [
+     "musician",
+     "librarian",
+     "historian"
+    ]
+   },
+   {
+    "affix": "-al",
+    "in_form": "comical",
+    "meaning_key": "-al",
+    "also": [
+     "musical",
+     "magical",
+     "historical"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "comically",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "happily"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Bobur is a comedian on a popular TV show in Tashkent. His comic stories about family weddings are so comical that my grandmother laughs until she cries.",
+   "uses": [
+    "comedian",
+    "comic",
+    "comical"
+   ]
+  },
+  "reviewer_note": "Headword is a person noun, so it stays the main noun entry; comedy goes in People & things as the field. Comic is not listed as a synonym because it is a family member."
+ },
+ {
+  "headword": "commission",
+  "word_id": "6a6ef9b2a6015561480926ea",
+  "word_ids": [
+   "6a6ef9b2a6015561480926ea"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Money",
+  "sense_pos": "noun",
+  "corpus_definition": "a group given authority to do a task, or a fee paid for work",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "commission",
+    "relation": "base",
+    "definition": "money paid to someone for each thing they sell",
+    "example": "The agent earned a commission on every house sold.",
+    "syn": [
+     {
+      "to": "fee",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Money paid for a service; a commission is usually a percentage of a sale."
+     },
+     {
+      "to": "percentage",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A part of every 100; a commission is often a percentage of the price."
+     },
+     {
+      "to": "payment",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy, general word for money that is paid."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "commission",
+    "definition": "to officially ask an artist or writer to make something for you",
+    "example": "The city commissioned a new statue for the park.",
+    "note": "Belongs to commission = an order for a piece of work, not money for selling."
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "commit",
+    "definition": "to do something wrong or against the law",
+    "example": "The police believe he committed the robbery.",
+    "note": "Belongs to commission = the act of doing a crime (formal: 'the commission of a crime'), not money for selling."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no common adjective in this meaning."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [
+   {
+    "form": "commissioner",
+    "kind": "job",
+    "status": "other_meaning",
+    "definition": "a member of an official group, or the head of a government department",
+    "example": "The police commissioner spoke to the reporters.",
+    "note": "Belongs to commission = an official group, not money for selling."
+   }
+  ],
+  "affixes": [],
+  "context": {
+   "text": "Dilshod sells cars in Samarkand. He gets a commission of two percent on each car, and last month his commission was bigger than his salary.",
+   "uses": [
+    "commission"
+   ]
+  },
+  "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee); its example is the fee meaning. Split into Money and Group maps on the same word_id."
+ },
+ {
+  "headword": "commission",
+  "word_id": "6a6ef9b2a6015561480926ea",
+  "word_ids": [
+   "6a6ef9b2a6015561480926ea"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Group",
+  "sense_pos": "noun",
+  "corpus_definition": "a group given authority to do a task, or a fee paid for work",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "commission",
+    "relation": "base",
+    "definition": "an official group of people chosen to check or decide something",
+    "example": "The government set up a commission to study air pollution.",
+    "syn": [
+     {
+      "to": "committee",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A group chosen to make decisions; a commission is usually more official and often set up by a government."
+     },
+     {
+      "to": "board",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A group that controls a company or organization."
+     },
+     {
+      "to": "panel",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A small group of experts who give advice or judge something."
+     },
+     {
+      "to": "group",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy, general word for people together."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "commission",
+    "definition": "to officially ask an artist or writer to make something for you",
+    "example": "The museum commissioned a painting of the old city.",
+    "note": "Belongs to commission = an order for a piece of work, not an official group."
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "commit",
+    "definition": "to do something wrong or against the law",
+    "example": "The police believe he committed the robbery.",
+    "note": "Belongs to commission = the act of doing a crime (formal: 'the commission of a crime'), not an official group."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no common adjective in this meaning."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [
+   {
+    "form": "commissioner",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a member of an official group with special power",
+    "example": "Each commissioner will visit five schools this month."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "commissioner",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "worker",
+     "farmer"
+    ]
+   }
+  ],
+  "context": {
+   "text": "The election commission met in Tashkent on Monday. One commissioner said the new rules will be ready next month.",
+   "uses": [
+    "commission",
+    "commissioner"
+   ]
+  },
+  "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee). This is the Group map; the fee meaning has its own Money map."
+ },
+ {
+  "headword": "community",
+  "word_id": "6a42821646ba24054c1dcc67",
+  "word_ids": [
+   "6a42821646ba24054c1dcc67",
+   "6a4288ad6941e70ad6a00e7b"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "People",
+  "sense_pos": "noun",
+  "corpus_definition": "the group of people who live in the same area.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "community",
+    "relation": "base",
+    "definition": "all the people who live in one area, town or neighbourhood",
+    "example": "Everyone in the community helped clean the park.",
+    "syn": [
+     {
+      "to": "neighbourhood",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "An area of a town and the people in it; American spelling: neighborhood."
+     },
+     {
+      "to": "society",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A much bigger group: all the people in a country."
+     },
+     {
+      "to": "population",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The number of people living in a place, not the group itself."
+     },
+     {
+      "to": "people",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy, general word for men, women and children."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no verb made from this word.",
+    "not_family": [
+     "commune"
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no adjective made from this word. Communal shares an old root with community but is not made from it.",
+    "not_family": [
+     "communal"
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "In our mahalla, the whole community helps when a family has a wedding. People from the community cook plov and set up the tables together.",
+   "uses": [
+    "community"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged (B1). Communal shares an old root but is not made from community, so it is listed as not_family."
+ },
+ {
+  "headword": "compact",
+  "word_id": "6a6ef9b2a6015561480927d9",
+  "word_ids": [
+   "6a6ef9b2a6015561480927d9"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Size",
+  "sense_pos": "adjective",
+  "corpus_definition": "small and neatly arranged to save space",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "compactness",
+    "relation": "derivational",
+    "definition": "the quality of being small and using little space",
+    "example": "People like this phone for its compactness.",
+    "syn": [
+     {
+      "to": "smallness",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Being small; compactness also means everything is neatly fitted in."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "compact",
+    "definition": "a small flat case with a mirror and face powder",
+    "example": "She took a compact out of her bag and checked her face.",
+    "note": "Belongs to compact = a small make-up case, not the quality of being small."
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "compact",
+    "definition": "to press something together so that it becomes hard and tight",
+    "example": "The heavy trucks compacted the soil on the road.",
+    "note": "Belongs to compact = pressed tightly together, not small and neatly arranged."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "compact",
+    "relation": "base",
+    "definition": "small and arranged neatly so that it saves space",
+    "example": "She bought a compact camera for the trip.",
+    "syn": [
+     {
+      "to": "small",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word; compact means small in a useful, well-planned way."
+     },
+     {
+      "to": "neat",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Tidy and well arranged."
+     },
+     {
+      "to": "portable",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy to carry; compact things are often portable."
+     }
+    ],
+    "ant": [
+     {
+      "to": "bulky",
+      "relation": "antonym",
+      "note": "Big and taking up a lot of space, so hard to carry or store."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "compactly",
+    "relation": "derivational",
+    "definition": "in a small, neat way that saves space",
+    "example": "Everything in the tiny kitchen is arranged compactly.",
+    "syn": [
+     {
+      "to": "neatly",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "In a tidy, careful way; compactly also means using little space."
+     },
+     {
+      "to": "tightly",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Closely together, with no space between."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "compactness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "darkness",
+     "happiness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "compactly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "happily"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My new flat in Chilonzor is very compact. The kitchen is arranged so compactly that I can reach everything from one place.",
+   "uses": [
+    "compact",
+    "compactly"
+   ]
+  },
+  "reviewer_note": "Noun compact (make-up case) and verb compact (press together) are other meanings. Compound compact disc is left out."
+ }
 ]
