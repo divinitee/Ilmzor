@@ -1,0 +1,268 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "variety",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition too short"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: variability, variance"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "varieties",
+       "variety"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "varied"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows share one meaning (range of types), merged at A2. variable kept as other_meaning (vary = change)."
+  },
+  {
+   "headword": "vase",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "vases"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No other family forms exist; pronunciation difference noted."
+  },
+  {
+   "headword": "video call",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Compound noun, kind phrase; informal verb use noted."
+  },
+  {
+   "headword": "video game",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Compound noun, kind phrase."
+  },
+  {
+   "headword": "visitor",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: vision, visitation"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: visible"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "visitors"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "visited"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays main in the noun slot (rule 6); visit noun added as extra."
+  },
+  {
+   "headword": "vote",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: votive. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "votes"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "voted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "vote verb and noun share spelling (conversion); voter is a person, so it is in People."
+  },
+  {
+   "headword": "wagon",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'wager' (zipf 3.4) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "wagon: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wagons",
+       "wagon"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No other family forms; spelling and train-car meaning noted."
+  },
+  {
+   "headword": "wardrobe",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wardrobes"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No other family forms; second meaning (all your clothes) noted."
+  },
+  {
+   "headword": "wash up",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "British vs American meaning difference noted."
+  },
+  {
+   "headword": "waste",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'wastefully' is rare (zipf 1.8)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "wasteful: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "wastefully: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wastes",
+       "waste"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "wasted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Split from the 'rubbish' row (separate map). wasted (adj) kept to the 'not useful' sense; informal slang 'drunk' omitted."
+  },
+  {
+   "headword": "waste",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'wastefully' (other meaning) is rare (zipf 1.8)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wastes",
+       "waste"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Split from the 'use badly' row; compounds like wastebasket and wasteland left for the Compounds branch."
+  }
+ ]
+}
