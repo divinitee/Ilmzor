@@ -1,0 +1,303 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "pill",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pills"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged. Compounds (pillbox) left out."
+  },
+  {
+   "headword": "pirate",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "pirate: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "piracy: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pirates"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is itself a person noun, so it stays the main noun entry; the verb and pirated belong to the copying meaning."
+  },
+  {
+   "headword": "planning",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "plannings"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "planned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing noun; plan (noun and verb) is the root, so both are shown as forms. Unplanned kept as an opposite, not a form."
+  },
+  {
+   "headword": "poison",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: poisonously. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "people 'poisoner' is rare (zipf 2.0)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "poison: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "poison: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "poisons",
+       "poison"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "poisoned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Poisonous (naturally dangerous) vs poisoned (a dangerous substance was added); both kept."
+  },
+  {
+   "headword": "polish",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: poland"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "polished: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "polishes",
+       "polish"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "polished"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Trap: Polish with a capital P (from Poland) is a different word with a different sound; not part of this family."
+  },
+  {
+   "headword": "politics",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "false affix",
+     "msg": "'politician' = 'politic' + '-ian', but 'politic' isn't confirmed as related. Real split?"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "politics"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "politicized"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Politics takes a singular verb; politic (wise) and policy left out as different words for learners."
+  },
+  {
+   "headword": "pollution",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pollutions",
+       "pollution"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "polluted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged. Pollutant (the substance) and polluter (who does it) kept in People & things, not the noun slot."
+  },
+  {
+   "headword": "pop",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: popish. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pops",
+       "pop"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "popped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Trap: pop music and pop (fizzy drink) are different words, not this sound family; compound popcorn left out of forms."
+  },
+  {
+   "headword": "position",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "adjective: the note names positive but the slot says 'no such form'. Show it (existing or other_meaning), or list it in not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: positively. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "positions",
+       "position"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Kept to the job meaning; the verb belongs to the place meaning. Positive is not family. No affix claimed (posit + -ion is not a learner split)."
+  },
+  {
+   "headword": "practical",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'practitioner': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "practically: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "practicalities",
+       "practicality"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "False-friend trap: practically usually means 'almost'; kept as existing with a clear note. Impractical is an opposite, not a form."
+  }
+ ]
+}
