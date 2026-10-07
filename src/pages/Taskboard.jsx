@@ -15,7 +15,7 @@ import { buildIndex, buildExport, downloadJson, taskUrl, STATUS_LABEL } from "@/
 // /taskboard?view=all, recursive task workspace at /taskboard/:taskCode.
 // All reads/writes go through base44/functions/taskboardApi.
 
-const EMPTY = { tasks: [], steps: [], evidence: [], events: [] };
+const EMPTY = { tasks: [], steps: [], evidence: [], events: [], workLogs: [] };
 
 export default function Taskboard() {
   const { user } = useAuth();
@@ -43,7 +43,7 @@ export default function Taskboard() {
   const load = useCallback(async () => {
     try {
       const b = await taskboardApi("bundle");
-      setData({ tasks: b?.tasks || [], steps: b?.steps || [], evidence: b?.evidence || [], events: b?.events || [] });
+      setData({ tasks: b?.tasks || [], steps: b?.steps || [], evidence: b?.evidence || [], events: b?.events || [], workLogs: b?.workLogs || [] });
       setLoadError("");
     } catch (e) {
       setLoadError(e.message || "Taskboard unavailable");
@@ -92,6 +92,7 @@ export default function Taskboard() {
     createStep: (taskId, f) => run("create_step", { task_id: taskId, ...f }, (s) => `Step ${s?.step_code || ""} added`),
     updateStep: (id, patch) => run("update_step", { id, patch }, patch.status ? `Step marked ${patch.status.replace("_", " ")}` : "Step saved"),
     addEvidence: (payload) => run("add_evidence", payload, "Evidence attached"),
+    recordWork: (payload) => run("record_work", payload, "Work logged"),
     // Focus roadmap: ids[0] = Now, the rest = Up next.
     setRoadmap: (ids, msg) => run("set_roadmap", { ids }, msg || "Roadmap updated"),
     roadmap: () => roadmapOf(data, idx),
@@ -105,14 +106,14 @@ export default function Taskboard() {
     exportSubtree: (task) => {
       const out = buildExport(data, task);
       downloadJson(out, `virora-taskboard-${task.task_code}-${new Date().toISOString().slice(0, 10)}.json`);
-      notify(`Exported ${task.task_code}: ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events`);
+      notify(`Exported ${task.task_code}: ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events, ${out.counts.workLogs} work logs`);
     },
   }), [idx, run, data, notify]);
 
   const exportAll = () => {
     const out = buildExport(data);
     downloadJson(out, `virora-taskboard-${new Date().toISOString().slice(0, 10)}.json`);
-    notify(`Exported ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events`);
+    notify(`Exported ${out.counts.tasks} tasks, ${out.counts.steps} steps, ${out.counts.evidence} evidence, ${out.counts.events} events, ${out.counts.workLogs} work logs`);
   };
 
   const importFile = async (text, name) => {
@@ -121,7 +122,7 @@ export default function Taskboard() {
     await run("import", { data: parsed }, (r) => {
       const c = r?.created || {};
       const s = r?.skipped || {};
-      return `Imported (${r?.format}): ${c.tasks || 0} tasks, ${c.steps || 0} steps, ${c.evidence || 0} evidence, ${c.events || 0} events created · ${s.tasks || 0} tasks already present`;
+      return `Imported (${r?.format}): ${c.tasks || 0} tasks, ${c.steps || 0} steps, ${c.evidence || 0} evidence, ${c.events || 0} events, ${c.workLogs || 0} work logs created · ${s.tasks || 0} tasks already present`;
     });
   };
 
