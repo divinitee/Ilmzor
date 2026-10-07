@@ -1,320 +1,1274 @@
 [
-{"headword": "hang up", "word_id": "6a42816a2098612b1526f918", "word_ids": ["6a42816a2098612b1526f918"], "cefr": "B1", "kind": "phrasal", "sense_label": "Phone", "sense_pos": "verb", "corpus_definition": "To end a phone conversation by putting the receiver down.",
- "particle_note": "Usually used without an object: 'He hung up.' 'Hang up the phone' or 'hang the phone up' is also possible. 'Hang up on someone' = end the call suddenly while they are still talking.",
- "relations": [
-  {"to": "ring off", "relation": "synonym", "strength": 0.95, "note": "Same meaning; mostly British English."},
-  {"to": "put the phone down", "relation": "synonym", "strength": 0.8, "note": "Easy everyday phrase with the same idea."},
-  {"to": "end the call", "relation": "synonym", "strength": 0.8, "note": "Plain and clear; common with mobile phones."},
-  {"to": "pick up", "relation": "antonym", "note": "To answer the phone and start talking."},
-  {"to": "answer", "relation": "antonym", "note": "To start a phone call when it rings; hang up is how a call ends."}
- ],
- "context": {"text": "My grandmother always hangs up before I can say goodbye. Yesterday I called her back and laughed, 'Please don't hang up on me again!'", "uses": ["hangs up", "hang up"]},
- "reviewer_note": "Only the phone meaning; 'hang up clothes' (put on a hook) is a different meaning and is not used here."},
-
-{"headword": "hatred", "word_id": "6a4282fd46ba24054c1dcdfc", "word_ids": ["6a4282fd46ba24054c1dcdfc", "6a6ef9b2a6015561480927b6"], "cefr": "B1", "kind": "word", "sense_label": "Feeling", "sense_pos": "noun", "corpus_definition": "a very strong feeling of dislike for someone",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "hatred", "relation": "base", "definition": "a very strong feeling of dislike or anger toward someone", "example": "His hatred of injustice made him become a lawyer.",
-   "syn": [
-    {"to": "loathing", "relation": "synonym", "strength": 0.95, "note": "Very close; a strong and more literary word.", "register": "formal"},
-    {"to": "hostility", "relation": "synonym", "strength": 0.8, "note": "Unfriendly feelings or behaviour, often between groups or countries."},
-    {"to": "dislike", "relation": "related", "strength": 0.6, "note": "Easy word, but much weaker: you can dislike something without strong feelings."},
-    {"to": "anger", "relation": "related", "strength": 0.4, "note": "Anger can be short; hatred usually lasts a long time."}
-   ],
-   "ant": [
-    {"to": "love", "relation": "antonym", "note": "A strong warm feeling for someone."},
-    {"to": "affection", "relation": "antonym", "note": "A gentle feeling of liking and caring for someone."}
-   ]},
-  {"slot": "verb", "status": "existing", "form": "hate", "relation": "derivational", "definition": "to dislike someone or something very much", "example": "I hate waiting for the bus in the rain.", "note": "Hate is also a noun with almost the same meaning as hatred: 'full of hate'.",
-   "syn": [
-    {"to": "detest", "relation": "synonym", "strength": 0.95, "note": "Very strong and a little formal.", "register": "formal"},
-    {"to": "loathe", "relation": "synonym", "strength": 0.95, "note": "Very strong; often about people or food."},
-    {"to": "can't stand", "relation": "synonym", "strength": 0.8, "note": "Easy, informal phrase: 'I can't stand loud music.'", "register": "informal"},
-    {"to": "dislike", "relation": "related", "strength": 0.6, "note": "Much weaker; you just don't like it."}
-   ],
-   "ant": [
-    {"to": "love", "relation": "antonym", "note": "To like someone or something very much."},
-    {"to": "like", "relation": "antonym", "note": "To enjoy or think something is nice."}
-   ]},
-  {"slot": "adjective", "status": "existing", "form": "hateful", "relation": "derivational", "definition": "very unkind and unpleasant, showing strong dislike", "example": "He said some hateful things to his neighbour.",
-   "syn": [
-    {"to": "nasty", "relation": "related", "strength": 0.6, "note": "Easy word for very unkind or unpleasant."},
-    {"to": "spiteful", "relation": "synonym", "strength": 0.8, "note": "Wanting to hurt or upset someone."},
-    {"to": "cruel", "relation": "related", "strength": 0.6, "note": "Cruel is about causing pain on purpose."}
-   ],
-   "ant": [
-    {"to": "kind", "relation": "antonym", "note": "Friendly and caring."},
-    {"to": "loving", "relation": "antonym", "note": "Showing warm feelings for someone."}
-   ]},
-  {"slot": "adverb", "status": "no_form", "note": "There is no common adverb. 'Hatefully' exists but is very rare; learners say 'with hatred'."}
- ],
- "people": [
-  {"form": "hater", "kind": "person", "status": "existing", "definition": "a person who often says bad things about others, especially online", "example": "Don't listen to the haters; your video is great.", "register": "informal"}
- ],
- "people_not_family": [],
- "affixes": [
-  {"affix": "-ful", "in_form": "hateful", "meaning_key": "-ful", "also": ["helpful", "careful", "beautiful"]},
-  {"affix": "-er", "in_form": "hater", "meaning_key": "-er", "also": ["teacher", "player", "driver"]}
- ],
- "context": {"text": "Hatred between the two families lasted for many years. Now their children say they don't hate anyone; they just want to play football together.", "uses": ["Hatred", "hate"]},
- "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -red in hatred is not a transparent learner affix, so no affix is claimed for it."},
-
-{"headword": "have on", "word_id": "6a4282fd46ba24054c1dcd61", "word_ids": ["6a4282fd46ba24054c1dcd61"], "cefr": "B1", "kind": "phrasal", "sense_label": "Clothes", "sense_pos": "verb", "corpus_definition": "to be wearing a piece of clothing.",
- "particle_note": "Separable and usually split: 'She had a red hat on.' Not used in continuous forms: say 'He has a coat on', not 'He is having a coat on'. In British English 'have got on' is also common.",
- "relations": [
-  {"to": "wear", "relation": "synonym", "strength": 0.95, "note": "Same meaning and more common in writing: 'She was wearing a red hat.'"},
-  {"to": "be dressed in", "relation": "synonym", "strength": 0.8, "note": "Often used to describe all of someone's clothes."},
-  {"to": "take off", "relation": "antonym", "note": "To remove clothes; after you take off a coat, you no longer have it on."}
- ],
- "context": {"text": "It was cold, but Aziz only had a T-shirt on. His mother asked, 'Why don't you have your warm jacket on?'", "uses": ["had a T-shirt on", "have your warm jacket on"]},
- "reviewer_note": "Stative phrasal verb: warned against continuous use. Not the 'trick someone' meaning (have someone on)."},
-
-{"headword": "headline", "word_id": "6a6ef9b2a6015561480926ef", "word_ids": ["6a6ef9b2a6015561480926ef"], "cefr": "B1", "kind": "word", "sense_label": "News", "sense_pos": "noun", "corpus_definition": "The main title of a news story.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "headline", "relation": "base", "definition": "the title printed in large letters above a news story", "example": "I read the headline in the newspaper.", "note": "'The headlines' can also mean the most important news on TV or radio.",
-   "syn": [
-    {"to": "title", "relation": "synonym", "strength": 0.8, "note": "Title is general (books, films); a headline is for news."},
-    {"to": "heading", "relation": "synonym", "strength": 0.8, "note": "A title at the top of a page or part of a text."},
-    {"to": "caption", "relation": "related", "strength": 0.4, "note": "Words under a photo, not above a story."}
-   ],
-   "ant": []},
-  {"slot": "verb", "status": "existing", "form": "headline", "relation": "conversion", "definition": "to give a news story a particular title", "example": "The story was headlined 'Heat wave hits Tashkent'.", "note": "Usually passive. It also means 'to be the main performer at a concert'.",
-   "syn": [
-    {"to": "title", "relation": "synonym", "strength": 0.8, "note": "To give something a name; used for books, songs and articles."}
-   ],
-   "ant": []},
-  {"slot": "adjective", "status": "no_form", "note": "No adjective. 'Headline' is used before a noun instead: 'headline news'."},
-  {"slot": "adverb", "status": "no_form"}
- ],
- "people": [
-  {"form": "headliner", "kind": "person", "status": "other_meaning", "definition": "the main and most famous performer at a concert or festival", "example": "The headliner came on stage at ten o'clock.", "note": "Belongs to headline = be the main act at a show, not a news title."}
- ],
- "people_not_family": [],
- "affixes": [],
- "context": {"text": "Did you see the headline this morning? The story was headlined 'New metro line opens in Tashkent', and everyone on the bus was talking about it.", "uses": ["headline", "headlined"]},
- "reviewer_note": "Headline is itself a compound (head + line), so no affix is claimed; headliner is the concert meaning."},
-
-{"headword": "heel", "word_id": "6a4288ad6941e70ad6a00e94", "word_ids": ["6a4288ad6941e70ad6a00e94"], "cefr": "B1", "kind": "word", "sense_label": "Body", "sense_pos": "noun", "corpus_definition": "The back rounded part of the bottom of a foot.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "heel", "relation": "base", "definition": "the round back part of your foot, under the ankle", "example": "Her heel was sore from wearing uncomfortable shoes.", "note": "It also means the raised back part of a shoe: 'shoes with high heels'.",
-   "syn": [
-    {"to": "foot", "relation": "related", "strength": 0.4, "note": "The heel is one part of the foot."},
-    {"to": "sole", "relation": "related", "strength": 0.4, "note": "The whole bottom of the foot or shoe."}
-   ],
-   "ant": [
-    {"to": "toe", "relation": "antonym", "note": "Toes are at the front of the foot; the heel is at the back."}
-   ]},
-  {"slot": "verb", "status": "other_meaning", "form": "heel", "definition": "of a dog, to walk close behind its owner", "example": "The dog heeled when the farmer called it.", "note": "Belongs to heel = staying at someone's heels; mostly used as a command to a dog: 'Heel!'"},
-  {"slot": "adjective", "status": "no_form", "note": "Only compounds such as high-heeled and well-heeled (rich); these go to the Compounds branch."},
-  {"slot": "adverb", "status": "no_form"}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [],
- "context": {"text": "My new shoes hurt my heel on the walk to school. Tonight I will put a plaster on both heels.", "uses": ["heel", "heels"]},
- "reviewer_note": "Body meaning only; shoe heel mentioned in a note. Compounds (high-heeled) left out."},
-
-{"headword": "hesitate", "word_id": "6a6ef9b2a601556148092769", "word_ids": ["6a6ef9b2a601556148092769", "6a4265cce20c7210db6908b4"], "cefr": "B1", "kind": "word", "sense_label": "Unsure", "sense_pos": "verb", "corpus_definition": "to pause because you are not sure what to do or say",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "hesitation", "relation": "derivational", "definition": "a short pause because you are not sure", "example": "She answered the question without hesitation.",
-   "syn": [
-    {"to": "pause", "relation": "synonym", "strength": 0.8, "note": "Easy word for a short stop; it doesn't always mean you are unsure."},
-    {"to": "doubt", "relation": "related", "strength": 0.6, "note": "The feeling of not being sure."},
-    {"to": "uncertainty", "relation": "related", "strength": 0.6, "note": "The state of not being sure about something."},
-    {"to": "delay", "relation": "related", "strength": 0.4, "note": "Something happens later than planned."}
-   ],
-   "ant": [
-    {"to": "confidence", "relation": "antonym", "note": "The feeling of being sure about what you do."}
-   ]},
-  {"slot": "noun", "status": "existing", "form": "hesitancy", "relation": "derivational", "definition": "the feeling of being unsure and slow to act", "example": "There was some hesitancy among parents about the new school rules.", "register": "formal", "syn": [], "ant": []},
-  {"slot": "verb", "status": "existing", "form": "hesitate", "relation": "base", "definition": "to stop for a moment because you are not sure", "example": "She hesitated before answering the difficult question.", "note": "Common in polite phrases: 'Don't hesitate to call me.'",
-   "syn": [
-    {"to": "pause", "relation": "synonym", "strength": 0.8, "note": "Stop for a short time; easy and common."},
-    {"to": "hold back", "relation": "synonym", "strength": 0.8, "note": "Not do something because you are unsure or afraid."},
-    {"to": "waver", "relation": "synonym", "strength": 0.8, "note": "Be unable to decide between two things."},
-    {"to": "wait", "relation": "related", "strength": 0.4, "note": "Wait is general; it doesn't mean you are unsure."}
-   ],
-   "ant": []},
-  {"slot": "adjective", "status": "existing", "form": "hesitant", "relation": "derivational", "definition": "slow to do or say something because you are unsure", "example": "He was hesitant to ask the teacher for help.",
-   "syn": [
-    {"to": "unsure", "relation": "synonym", "strength": 0.8, "note": "Easy word: not certain."},
-    {"to": "uncertain", "relation": "synonym", "strength": 0.8, "note": "Not sure what to do or believe."},
-    {"to": "reluctant", "relation": "related", "strength": 0.6, "note": "Not wanting to do something, not only unsure."},
-    {"to": "doubtful", "relation": "related", "strength": 0.6, "note": "Not sure that something is true or good."}
-   ],
-   "ant": [
-    {"to": "confident", "relation": "antonym", "note": "Sure of yourself and your actions."},
-    {"to": "sure", "relation": "antonym", "note": "Certain about what to do."}
-   ]},
-  {"slot": "adverb", "status": "existing", "form": "hesitantly", "relation": "derivational", "definition": "in a slow way that shows you are not sure", "example": "She smiled hesitantly at the new students.",
-   "syn": [
-    {"to": "uncertainly", "relation": "synonym", "strength": 0.8, "note": "In a way that shows you are not sure."},
-    {"to": "slowly", "relation": "related", "strength": 0.4, "note": "Easy word, but only about speed."}
-   ],
-   "ant": [
-    {"to": "confidently", "relation": "antonym", "note": "In a way that shows you are sure."}
-   ]}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [
-  {"affix": "-ion", "in_form": "hesitation", "meaning_key": "-ion", "also": ["education", "decision", "action"]},
-  {"affix": "-ly", "in_form": "hesitantly", "meaning_key": "-ly", "also": ["quickly", "slowly", "quietly"]}
- ],
- "context": {"text": "Don't hesitate to ask questions in class. Last year I was hesitant to speak English, but now I answer without hesitation.", "uses": ["hesitate", "hesitant", "hesitation"]},
- "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -ant in hesitant not claimed as an affix (no clean English base)."},
-
-{"headword": "hint", "word_id": "6a6ef83f0f1e82a5a073679e", "word_ids": ["6a6ef83f0f1e82a5a073679e"], "cefr": "B1", "kind": "word", "sense_label": "Clue", "sense_pos": "noun", "corpus_definition": "A small piece of information that helps you guess something.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "hint", "relation": "base", "definition": "a small piece of information that helps you guess", "example": "She gave me a hint about my surprise party.", "note": "It can also mean a useful tip ('cooking hints') or a very small amount ('a hint of lemon').",
-   "syn": [
-    {"to": "clue", "relation": "synonym", "strength": 0.95, "note": "Almost the same; very common in games and puzzles."},
-    {"to": "sign", "relation": "related", "strength": 0.6, "note": "Something that shows what is true or will happen."},
-    {"to": "suggestion", "relation": "related", "strength": 0.6, "note": "An idea someone gives you, often more direct."},
-    {"to": "tip", "relation": "related", "strength": 0.4, "note": "A piece of useful advice, not help to guess."}
-   ],
-   "ant": []},
-  {"slot": "verb", "status": "existing", "form": "hint", "relation": "conversion", "definition": "to say something in an indirect way so others can guess", "example": "She hinted that she wanted a new phone for her birthday.", "note": "Patterns: hint that + clause; hint at something.",
-   "syn": [
-    {"to": "suggest", "relation": "synonym", "strength": 0.8, "note": "Easy and common; can be direct or indirect."},
-    {"to": "imply", "relation": "synonym", "strength": 0.8, "note": "More formal: show something without saying it.", "register": "formal"},
-    {"to": "indicate", "relation": "related", "strength": 0.6, "note": "Show that something is true; often formal."}
-   ],
-   "ant": []},
-  {"slot": "adjective", "status": "no_form"},
-  {"slot": "adverb", "status": "no_form"}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [],
- "context": {"text": "My sister wouldn't tell me about my present, but she gave me a hint: it's something to read. Later she hinted that it was by an Uzbek writer.", "uses": ["hint", "hinted"]},
- "reviewer_note": "Noun meaning 'clue'; the 'small amount' and 'tip' uses are in a note only."},
-
-{"headword": "honesty", "word_id": "6a42662edeeb39f88113014a", "word_ids": ["6a42662edeeb39f88113014a"], "cefr": "B1", "kind": "word", "sense_label": "Truth", "sense_pos": "noun", "corpus_definition": "The quality of always speaking the truth to other people.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "honesty", "relation": "base", "definition": "the quality of always telling the truth and not cheating", "example": "Honesty is the most important part of our friendship.",
-   "syn": [
-    {"to": "truthfulness", "relation": "synonym", "strength": 0.95, "note": "Almost the same, but less common."},
-    {"to": "sincerity", "relation": "synonym", "strength": 0.8, "note": "Meaning what you say and feel."},
-    {"to": "frankness", "relation": "synonym", "strength": 0.8, "note": "Saying what you think openly, even if it is not nice."},
-    {"to": "integrity", "relation": "related", "strength": 0.6, "note": "Having strong moral rules and following them."}
-   ],
-   "ant": [
-    {"to": "dishonesty", "relation": "antonym", "note": "Lying, cheating or stealing."},
-    {"to": "deceit", "relation": "antonym", "note": "Trying to make people believe something false."}
-   ]},
-  {"slot": "verb", "status": "no_form"},
-  {"slot": "adjective", "status": "existing", "form": "honest", "relation": "derivational", "definition": "always telling the truth and never cheating", "example": "Thank you for your honest answer.", "note": "The h is silent: /ˈɒnɪst/.",
-   "syn": [
-    {"to": "truthful", "relation": "synonym", "strength": 0.95, "note": "Telling the truth."},
-    {"to": "sincere", "relation": "synonym", "strength": 0.8, "note": "Really meaning what you say."},
-    {"to": "frank", "relation": "synonym", "strength": 0.8, "note": "Saying what you think directly."},
-    {"to": "fair", "relation": "related", "strength": 0.6, "note": "Treating people equally; easy word."}
-   ],
-   "ant": [
-    {"to": "dishonest", "relation": "antonym", "note": "Lying or cheating."}
-   ]},
-  {"slot": "adverb", "status": "existing", "form": "honestly", "relation": "derivational", "definition": "in a truthful way, without lying or cheating", "example": "Please answer all the questions honestly.", "note": "Also used to show you mean what you say: 'Honestly, I don't know.'",
-   "syn": [
-    {"to": "truthfully", "relation": "synonym", "strength": 0.95, "note": "In a way that tells the truth."},
-    {"to": "sincerely", "relation": "synonym", "strength": 0.8, "note": "Really meaning it."},
-    {"to": "frankly", "relation": "synonym", "strength": 0.8, "note": "Openly and directly."}
-   ],
-   "ant": [
-    {"to": "dishonestly", "relation": "antonym", "note": "In a way that involves lying or cheating."}
-   ]}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [
-  {"affix": "-y", "in_form": "honesty", "meaning_key": "-y", "also": ["difficulty", "jealousy", "modesty"]},
-  {"affix": "-ly", "in_form": "honestly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]}
- ],
- "context": {"text": "Our teacher says honesty matters more than marks. If you answer honestly, people will see that you are an honest person.", "uses": ["honesty", "honestly", "honest"]},
- "reviewer_note": "Headword is the noun; honest is its base. Negative forms (dishonest, dishonesty) kept in ant lists only."},
-
-{"headword": "humble", "word_id": "6a6ef9b2a6015561480927a5", "word_ids": ["6a6ef9b2a6015561480927a5"], "cefr": "B1", "kind": "word", "sense_label": "Modest", "sense_pos": "adjective", "corpus_definition": "not thinking you are better or more important than others",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "humility", "relation": "derivational", "definition": "the quality of not thinking you are better than others", "example": "He accepted the prize with great humility.",
-   "syn": [
-    {"to": "modesty", "relation": "synonym", "strength": 0.95, "note": "Very close; modesty is also about not talking about your success."},
-    {"to": "simplicity", "relation": "related", "strength": 0.4, "note": "Living or acting in a plain, simple way."}
-   ],
-   "ant": [
-    {"to": "pride", "relation": "antonym", "note": "Feeling that you are better or more important than others."},
-    {"to": "arrogance", "relation": "antonym", "note": "Showing that you think you are better than others."}
-   ]},
-  {"slot": "verb", "status": "existing", "form": "humble", "relation": "conversion", "definition": "to make someone feel less important or proud", "example": "Losing the final match humbled the team.", "note": "Often in the passive: 'I was humbled by their kindness.'",
-   "syn": [
-    {"to": "shame", "relation": "related", "strength": 0.6, "note": "Make someone feel bad; stronger and more negative."},
-    {"to": "bring down", "relation": "related", "strength": 0.4, "note": "Make someone less powerful or proud."}
-   ],
-   "ant": []},
-  {"slot": "adjective", "status": "existing", "form": "humble", "relation": "base", "definition": "not thinking you are better or more important than others", "example": "Despite his fame, the actor remained kind and modest; he was always humble.", "note": "It can also mean 'poor or low in rank': 'a humble home'.",
-   "syn": [
-    {"to": "modest", "relation": "synonym", "strength": 0.95, "note": "Easy and very close in meaning."},
-    {"to": "unassuming", "relation": "synonym", "strength": 0.8, "note": "Quiet and not wanting attention.", "register": "formal"},
-    {"to": "down-to-earth", "relation": "synonym", "strength": 0.8, "note": "Practical and friendly, not proud."}
-   ],
-   "ant": [
-    {"to": "proud", "relation": "antonym", "note": "Thinking you are more important than others."},
-    {"to": "arrogant", "relation": "antonym", "note": "Showing too clearly that you think you are better."}
-   ]},
-  {"slot": "adjective", "status": "existing", "form": "humbling", "relation": "participial", "definition": "making you feel less important or proud", "example": "Meeting the old war veterans was a humbling experience.", "syn": [], "ant": []},
-  {"slot": "adverb", "status": "existing", "form": "humbly", "relation": "derivational", "definition": "in a modest way, without feeling more important than others", "example": "He humbly thanked everyone for their help.",
-   "syn": [
-    {"to": "modestly", "relation": "synonym", "strength": 0.95, "note": "Easy and very close in meaning."}
-   ],
-   "ant": [
-    {"to": "proudly", "relation": "antonym", "note": "In a way that shows you feel important."},
-    {"to": "arrogantly", "relation": "antonym", "note": "In a way that shows you think you are better."}
-   ]}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [
-  {"affix": "-ly", "in_form": "humbly", "meaning_key": "-ly", "also": ["quickly", "gently", "simply"]},
-  {"affix": "-ing", "in_form": "humbling", "meaning_key": "-ing", "also": ["boring", "amazing", "interesting"]}
- ],
- "context": {"text": "Our grandfather is a humble man. He talks about his success humbly and says humility is the key to a happy life.", "uses": ["humble", "humbly", "humility"]},
- "reviewer_note": "Humility is the learner-dictionary noun of humble (Latin humilis), not humbleness; 'humble = low in rank' mentioned in a note only."},
-
-{"headword": "illegal", "word_id": "6a42821646ba24054c1dcc6e", "word_ids": ["6a42821646ba24054c1dcc6e"], "cefr": "B1", "kind": "word", "sense_label": "Law", "sense_pos": "adjective", "corpus_definition": "not allowed by the laws of a place.",
- "forms": [
-  {"slot": "noun", "status": "existing", "form": "illegality", "relation": "derivational", "definition": "the fact of being against the law", "example": "The court looked at the illegality of the new building.", "register": "formal",
-   "syn": [
-    {"to": "unlawfulness", "relation": "synonym", "strength": 0.95, "note": "Same meaning; very formal.", "register": "formal"},
-    {"to": "crime", "relation": "related", "strength": 0.4, "note": "An action that breaks the law; easy word."}
-   ],
-   "ant": [
-    {"to": "legality", "relation": "antonym", "note": "The fact of being allowed by law."}
-   ]},
-  {"slot": "verb", "status": "no_form", "note": "No verb. To make something against the law we say 'ban' or 'outlaw'. The opposite family has legalize (make something allowed)."},
-  {"slot": "adjective", "status": "existing", "form": "illegal", "relation": "base", "definition": "not allowed by the law of a country or place", "example": "It is illegal to drive without a licence.", "note": "American spelling: license.",
-   "syn": [
-    {"to": "against the law", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."},
-    {"to": "unlawful", "relation": "synonym", "strength": 0.95, "note": "Same meaning; formal and used in legal texts.", "register": "formal"},
-    {"to": "banned", "relation": "synonym", "strength": 0.8, "note": "Officially not allowed, often by a rule, not only a law."},
-    {"to": "forbidden", "relation": "synonym", "strength": 0.8, "note": "Not allowed by a rule, law or person."},
-    {"to": "criminal", "relation": "related", "strength": 0.6, "note": "About crime; stronger than illegal."}
-   ],
-   "ant": [
-    {"to": "legal", "relation": "antonym", "note": "Allowed by law."},
-    {"to": "lawful", "relation": "antonym", "note": "Formal: allowed by law."}
-   ]},
-  {"slot": "adverb", "status": "existing", "form": "illegally", "relation": "derivational", "definition": "in a way that is against the law", "example": "He parked illegally outside the school.",
-   "syn": [
-    {"to": "unlawfully", "relation": "synonym", "strength": 0.95, "note": "Same meaning; formal.", "register": "formal"}
-   ],
-   "ant": [
-    {"to": "legally", "relation": "antonym", "note": "In a way that the law allows."}
-   ]}
- ],
- "people": [],
- "people_not_family": [],
- "affixes": [
-  {"affix": "-ity", "in_form": "illegality", "meaning_key": "-ity", "also": ["reality", "ability", "activity"]},
-  {"affix": "-ly", "in_form": "illegally", "meaning_key": "-ly", "also": ["quickly", "usually", "finally"]}
- ],
- "context": {"text": "It is illegal to sell cigarettes to children in Uzbekistan. Shops that do it illegally can lose their licence.", "uses": ["illegal", "illegally"]},
- "reviewer_note": "Negative-prefix headword: il- is not in the affix table, so it isn't claimed; legal/legality/legally kept as antonyms, not forms."}
+ {
+  "headword": "hang up",
+  "word_id": "6a42816a2098612b1526f918",
+  "word_ids": [
+   "6a42816a2098612b1526f918"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Phone",
+  "sense_pos": "verb",
+  "corpus_definition": "To end a phone conversation by putting the receiver down.",
+  "particle_note": "Usually used without an object: 'He hung up.' 'Hang up the phone' or 'hang the phone up' is also possible. 'Hang up on someone' = end the call suddenly while they are still talking.",
+  "relations": [
+   {
+    "to": "ring off",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; mostly British English."
+   },
+   {
+    "to": "put the phone down",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Easy everyday phrase with the same idea."
+   },
+   {
+    "to": "end the call",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Plain and clear; common with mobile phones."
+   },
+   {
+    "to": "pick up",
+    "relation": "antonym",
+    "note": "To answer the phone and start talking."
+   },
+   {
+    "to": "answer",
+    "relation": "antonym",
+    "note": "To start a phone call when it rings; hang up is how a call ends."
+   }
+  ],
+  "context": {
+   "text": "My grandmother always hangs up before I can say goodbye. Yesterday I called her back and laughed, 'Please don't hang up on me again!'",
+   "uses": [
+    "hangs up",
+    "hang up"
+   ]
+  },
+  "reviewer_note": "Only the phone meaning; 'hang up clothes' (put on a hook) is a different meaning and is not used here."
+ },
+ {
+  "headword": "hatred",
+  "word_id": "6a4282fd46ba24054c1dcdfc",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdfc",
+   "6a6ef9b2a6015561480927b6"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Feeling",
+  "sense_pos": "noun",
+  "corpus_definition": "a very strong feeling of dislike for someone",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "hatred",
+    "relation": "base",
+    "definition": "a very strong feeling of dislike or anger toward someone",
+    "example": "His hatred of injustice made him become a lawyer.",
+    "syn": [
+     {
+      "to": "loathing",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; a strong and more literary word.",
+      "register": "formal"
+     },
+     {
+      "to": "hostility",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Unfriendly feelings or behaviour, often between groups or countries."
+     },
+     {
+      "to": "dislike",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word, but much weaker: you can dislike something without strong feelings."
+     },
+     {
+      "to": "anger",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Anger can be short; hatred usually lasts a long time."
+     }
+    ],
+    "ant": [
+     {
+      "to": "love",
+      "relation": "antonym",
+      "note": "A strong warm feeling for someone."
+     },
+     {
+      "to": "affection",
+      "relation": "antonym",
+      "note": "A gentle feeling of liking and caring for someone."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "hate",
+    "relation": "derivational",
+    "definition": "to dislike someone or something very much",
+    "example": "I hate waiting for the bus in the rain.",
+    "note": "Hate is also a noun with almost the same meaning as hatred: 'full of hate'.",
+    "syn": [
+     {
+      "to": "detest",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very strong and a little formal.",
+      "register": "formal"
+     },
+     {
+      "to": "loathe",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very strong; often about people or food."
+     },
+     {
+      "to": "can't stand",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, informal phrase: 'I can't stand loud music.'",
+      "register": "informal"
+     },
+     {
+      "to": "dislike",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Much weaker; you just don't like it."
+     }
+    ],
+    "ant": [
+     {
+      "to": "love",
+      "relation": "antonym",
+      "note": "To like someone or something very much."
+     },
+     {
+      "to": "like",
+      "relation": "antonym",
+      "note": "To enjoy or think something is nice."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "hateful",
+    "relation": "derivational",
+    "definition": "very unkind and unpleasant, showing strong dislike",
+    "example": "He said some hateful things to his neighbour.",
+    "syn": [
+     {
+      "to": "nasty",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word for very unkind or unpleasant."
+     },
+     {
+      "to": "spiteful",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Wanting to hurt or upset someone."
+     },
+     {
+      "to": "cruel",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Cruel is about causing pain on purpose."
+     }
+    ],
+    "ant": [
+     {
+      "to": "kind",
+      "relation": "antonym",
+      "note": "Friendly and caring."
+     },
+     {
+      "to": "loving",
+      "relation": "antonym",
+      "note": "Showing warm feelings for someone."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no common adverb. 'Hatefully' exists but is very rare; learners say 'with hatred'."
+   }
+  ],
+  "people": [
+   {
+    "form": "hater",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who often says bad things about others, especially online",
+    "example": "Don't worry about one hater in the comments; your video is great.",
+    "register": "informal"
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ful",
+    "in_form": "hateful",
+    "meaning_key": "-ful",
+    "also": [
+     "helpful",
+     "careful",
+     "beautiful"
+    ]
+   },
+   {
+    "affix": "-er",
+    "in_form": "hater",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "player",
+     "driver"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Hatred between the two families lasted for many years. Now their children say they don't hate anyone; they just want to play football together.",
+   "uses": [
+    "Hatred",
+    "hate"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -red in hatred is not a transparent learner affix, so no affix is claimed for it."
+ },
+ {
+  "headword": "have on",
+  "word_id": "6a4282fd46ba24054c1dcd61",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd61"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Clothes",
+  "sense_pos": "verb",
+  "corpus_definition": "to be wearing a piece of clothing.",
+  "particle_note": "Separable and usually split: 'She had a red hat on.' Not used in continuous forms: say 'He has a coat on', not 'He is having a coat on'. In British English 'have got on' is also common.",
+  "relations": [
+   {
+    "to": "wear",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning and more common in writing: 'She was wearing a red hat.'"
+   },
+   {
+    "to": "be dressed in",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Often used to describe all of someone's clothes."
+   },
+   {
+    "to": "take off",
+    "relation": "antonym",
+    "note": "To remove clothes; after you take off a coat, you no longer have it on."
+   }
+  ],
+  "context": {
+   "text": "It was cold, but Aziz only had a T-shirt on. His mother asked, 'Why don't you have your warm jacket on?'",
+   "uses": [
+    "had a T-shirt on",
+    "have your warm jacket on"
+   ]
+  },
+  "reviewer_note": "Stative phrasal verb: warned against continuous use. Not the 'trick someone' meaning (have someone on)."
+ },
+ {
+  "headword": "headline",
+  "word_id": "6a6ef9b2a6015561480926ef",
+  "word_ids": [
+   "6a6ef9b2a6015561480926ef"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "News",
+  "sense_pos": "noun",
+  "corpus_definition": "The main title of a news story.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "headline",
+    "relation": "base",
+    "definition": "the title printed in large letters above a news story",
+    "example": "I read the headline in the newspaper.",
+    "note": "'The headlines' can also mean the most important news on TV or radio.",
+    "syn": [
+     {
+      "to": "title",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Title is general (books, films); a headline is for news."
+     },
+     {
+      "to": "heading",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A title at the top of a page or part of a text."
+     },
+     {
+      "to": "caption",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Words under a photo, not above a story."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "headline",
+    "relation": "conversion",
+    "definition": "to give a news story a particular title",
+    "example": "The story was headlined 'Heat wave hits Tashkent'.",
+    "note": "Usually passive. It also means 'to be the main performer at a concert'.",
+    "syn": [
+     {
+      "to": "title",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To give something a name; used for books, songs and articles."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No adjective. 'Headline' is used before a noun instead: 'headline news'."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "headliner",
+    "kind": "person",
+    "status": "other_meaning",
+    "definition": "the main and most famous performer at a concert or festival",
+    "example": "The headliner came on stage at ten o'clock.",
+    "note": "Belongs to headline = be the main act at a show, not a news title."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Did you see the headline this morning? The story was headlined 'New metro line opens in Tashkent', and everyone on the bus was talking about it.",
+   "uses": [
+    "headline",
+    "headlined"
+   ]
+  },
+  "reviewer_note": "Headline is itself a compound (head + line), so no affix is claimed; headliner is the concert meaning."
+ },
+ {
+  "headword": "heel",
+  "word_id": "6a4288ad6941e70ad6a00e94",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e94"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Body",
+  "sense_pos": "noun",
+  "corpus_definition": "The back rounded part of the bottom of a foot.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "heel",
+    "relation": "base",
+    "definition": "the round back part of your foot, under the ankle",
+    "example": "Her heel was sore from wearing uncomfortable shoes.",
+    "note": "It also means the raised back part of a shoe: 'shoes with high heels'.",
+    "syn": [
+     {
+      "to": "foot",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "The heel is one part of the foot."
+     },
+     {
+      "to": "sole",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "The whole bottom of the foot or shoe."
+     }
+    ],
+    "ant": [
+     {
+      "to": "toe",
+      "relation": "antonym",
+      "note": "Toes are at the front of the foot; the heel is at the back."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "heel",
+    "definition": "of a dog, to walk close behind its owner",
+    "example": "The dog heeled when the farmer called it.",
+    "note": "Belongs to heel = staying at someone's heels; mostly used as a command to a dog: 'Heel!'"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "Only compounds such as high-heeled and well-heeled (rich); these go to the Compounds branch."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My new shoes hurt my heel on the walk to school. Tonight I will put a plaster on both heels.",
+   "uses": [
+    "heel",
+    "heels"
+   ]
+  },
+  "reviewer_note": "Body meaning only; shoe heel mentioned in a note. Compounds (high-heeled) left out."
+ },
+ {
+  "headword": "hesitate",
+  "word_id": "6a6ef9b2a601556148092769",
+  "word_ids": [
+   "6a6ef9b2a601556148092769",
+   "6a4265cce20c7210db6908b4"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Unsure",
+  "sense_pos": "verb",
+  "corpus_definition": "to pause because you are not sure what to do or say",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "hesitation",
+    "relation": "derivational",
+    "definition": "a short pause because you are not sure",
+    "example": "She answered the question without hesitation.",
+    "syn": [
+     {
+      "to": "pause",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word for a short stop; it doesn't always mean you are unsure."
+     },
+     {
+      "to": "doubt",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The feeling of not being sure."
+     },
+     {
+      "to": "uncertainty",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The state of not being sure about something."
+     },
+     {
+      "to": "delay",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Something happens later than planned."
+     }
+    ],
+    "ant": [
+     {
+      "to": "confidence",
+      "relation": "antonym",
+      "note": "The feeling of being sure about what you do."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "hesitancy",
+    "relation": "derivational",
+    "definition": "the feeling of being unsure and slow to act",
+    "example": "There was some hesitancy among parents about the new school rules.",
+    "register": "formal",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "hesitate",
+    "relation": "base",
+    "definition": "to stop for a moment because you are not sure",
+    "example": "She hesitated before answering the difficult question.",
+    "note": "Common in polite phrases: 'Don't hesitate to call me.'",
+    "syn": [
+     {
+      "to": "pause",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Stop for a short time; easy and common."
+     },
+     {
+      "to": "hold back",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not do something because you are unsure or afraid."
+     },
+     {
+      "to": "waver",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Be unable to decide between two things."
+     },
+     {
+      "to": "wait",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Wait is general; it doesn't mean you are unsure."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "hesitant",
+    "relation": "derivational",
+    "definition": "slow to do or say something because you are unsure",
+    "example": "He was hesitant to ask the teacher for help.",
+    "syn": [
+     {
+      "to": "unsure",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word: not certain."
+     },
+     {
+      "to": "uncertain",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not sure what to do or believe."
+     },
+     {
+      "to": "reluctant",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not wanting to do something, not only unsure."
+     },
+     {
+      "to": "doubtful",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not sure that something is true or good."
+     }
+    ],
+    "ant": [
+     {
+      "to": "confident",
+      "relation": "antonym",
+      "note": "Sure of yourself and your actions."
+     },
+     {
+      "to": "sure",
+      "relation": "antonym",
+      "note": "Certain about what to do."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "hesitantly",
+    "relation": "derivational",
+    "definition": "in a slow way that shows you are not sure",
+    "example": "She smiled hesitantly at the new students.",
+    "syn": [
+     {
+      "to": "uncertainly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In a way that shows you are not sure."
+     },
+     {
+      "to": "slowly",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Easy word, but only about speed."
+     }
+    ],
+    "ant": [
+     {
+      "to": "confidently",
+      "relation": "antonym",
+      "note": "In a way that shows you are sure."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "hesitation",
+    "meaning_key": "-ion",
+    "also": [
+     "education",
+     "decision",
+     "action"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "hesitantly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "quietly"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Don't hesitate to ask questions in class. Last year I was hesitant to speak English, but now I answer without hesitation.",
+   "uses": [
+    "hesitate",
+    "hesitant",
+    "hesitation"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -ant in hesitant not claimed as an affix (no clean English base)."
+ },
+ {
+  "headword": "hint",
+  "word_id": "6a6ef83f0f1e82a5a073679e",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073679e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Clue",
+  "sense_pos": "noun",
+  "corpus_definition": "A small piece of information that helps you guess something.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "hint",
+    "relation": "base",
+    "definition": "a small piece of information that helps you guess",
+    "example": "She gave me a hint about my surprise party.",
+    "note": "It can also mean a useful tip ('cooking hints') or a very small amount ('a hint of lemon').",
+    "syn": [
+     {
+      "to": "clue",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Almost the same; very common in games and puzzles."
+     },
+     {
+      "to": "sign",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something that shows what is true or will happen."
+     },
+     {
+      "to": "suggestion",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "An idea someone gives you, often more direct."
+     },
+     {
+      "to": "tip",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A piece of useful advice, not help to guess."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "hint",
+    "relation": "conversion",
+    "definition": "to say something in an indirect way so others can guess",
+    "example": "She hinted that she wanted a new phone for her birthday.",
+    "note": "Patterns: hint that + clause; hint at something.",
+    "syn": [
+     {
+      "to": "suggest",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy and common; can be direct or indirect."
+     },
+     {
+      "to": "imply",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal: show something without saying it.",
+      "register": "formal"
+     },
+     {
+      "to": "indicate",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Show that something is true; often formal."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My sister wouldn't tell me about my present, but she gave me a hint: it's something to read. Later she hinted that it was by an Uzbek writer.",
+   "uses": [
+    "hint",
+    "hinted"
+   ]
+  },
+  "reviewer_note": "Noun meaning 'clue'; the 'small amount' and 'tip' uses are in a note only."
+ },
+ {
+  "headword": "honesty",
+  "word_id": "6a42662edeeb39f88113014a",
+  "word_ids": [
+   "6a42662edeeb39f88113014a"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Truth",
+  "sense_pos": "noun",
+  "corpus_definition": "The quality of always speaking the truth to other people.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "honesty",
+    "relation": "base",
+    "definition": "the quality of always telling the truth and not cheating",
+    "example": "Honesty is the most important part of our friendship.",
+    "syn": [
+     {
+      "to": "truthfulness",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Almost the same, but less common."
+     },
+     {
+      "to": "sincerity",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Meaning what you say and feel."
+     },
+     {
+      "to": "frankness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Saying what you think openly, even if it is not nice."
+     },
+     {
+      "to": "integrity",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Having strong moral rules and following them."
+     }
+    ],
+    "ant": [
+     {
+      "to": "dishonesty",
+      "relation": "antonym",
+      "note": "Lying, cheating or stealing."
+     },
+     {
+      "to": "deceit",
+      "relation": "antonym",
+      "note": "Trying to make people believe something false."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "honest",
+    "relation": "derivational",
+    "definition": "always telling the truth and never cheating",
+    "example": "Thank you for your honest answer.",
+    "note": "The h is silent: /ˈɒnɪst/.",
+    "syn": [
+     {
+      "to": "truthful",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Telling the truth."
+     },
+     {
+      "to": "sincere",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Really meaning what you say."
+     },
+     {
+      "to": "frank",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Saying what you think directly."
+     },
+     {
+      "to": "fair",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Treating people equally; easy word."
+     }
+    ],
+    "ant": [
+     {
+      "to": "dishonest",
+      "relation": "antonym",
+      "note": "Lying or cheating."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "honestly",
+    "relation": "derivational",
+    "definition": "in a truthful way, without lying or cheating",
+    "example": "Please answer all the questions honestly.",
+    "note": "Also used to show you mean what you say: 'Honestly, I don't know.'",
+    "syn": [
+     {
+      "to": "truthfully",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "In a way that tells the truth."
+     },
+     {
+      "to": "sincerely",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Really meaning it."
+     },
+     {
+      "to": "frankly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Openly and directly."
+     }
+    ],
+    "ant": [
+     {
+      "to": "dishonestly",
+      "relation": "antonym",
+      "note": "In a way that involves lying or cheating."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "honesty",
+    "meaning_key": "-y",
+    "also": [
+     "difficulty",
+     "jealousy",
+     "modesty"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "honestly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "carefully"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Our teacher says honesty matters more than marks. If you answer honestly, people will see that you are an honest person.",
+   "uses": [
+    "honesty",
+    "honestly",
+    "honest"
+   ]
+  },
+  "reviewer_note": "Headword is the noun; honest is its base. Negative forms (dishonest, dishonesty) kept in ant lists only."
+ },
+ {
+  "headword": "humble",
+  "word_id": "6a6ef9b2a6015561480927a5",
+  "word_ids": [
+   "6a6ef9b2a6015561480927a5"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Modest",
+  "sense_pos": "adjective",
+  "corpus_definition": "not thinking you are better or more important than others",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "humility",
+    "relation": "derivational",
+    "definition": "the quality of not thinking you are better than others",
+    "example": "He accepted the prize with great humility.",
+    "syn": [
+     {
+      "to": "modesty",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; modesty is also about not talking about your success."
+     },
+     {
+      "to": "simplicity",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Living or acting in a plain, simple way."
+     }
+    ],
+    "ant": [
+     {
+      "to": "pride",
+      "relation": "antonym",
+      "note": "Feeling that you are better or more important than others."
+     },
+     {
+      "to": "arrogance",
+      "relation": "antonym",
+      "note": "Showing that you think you are better than others."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "humble",
+    "relation": "conversion",
+    "definition": "to make someone feel less important or proud",
+    "example": "Losing the final match humbled the team.",
+    "note": "Often in the passive: 'I was humbled by their kindness.'",
+    "syn": [
+     {
+      "to": "shame",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Make someone feel bad; stronger and more negative."
+     },
+     {
+      "to": "bring down",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Make someone less powerful or proud."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "humble",
+    "relation": "base",
+    "definition": "not thinking you are better or more important than others",
+    "example": "Despite his fame, the actor remained kind and modest; he was always humble.",
+    "note": "It can also mean 'poor or low in rank': 'a humble home'.",
+    "syn": [
+     {
+      "to": "modest",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and very close in meaning."
+     },
+     {
+      "to": "unassuming",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Quiet and not wanting attention.",
+      "register": "formal"
+     },
+     {
+      "to": "down-to-earth",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Practical and friendly, not proud."
+     }
+    ],
+    "ant": [
+     {
+      "to": "proud",
+      "relation": "antonym",
+      "note": "Thinking you are more important than others."
+     },
+     {
+      "to": "arrogant",
+      "relation": "antonym",
+      "note": "Showing too clearly that you think you are better."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "humbling",
+    "relation": "participial",
+    "definition": "making you feel less important or proud",
+    "example": "Meeting the old war veterans was a humbling experience.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "humbly",
+    "relation": "derivational",
+    "definition": "in a modest way, without feeling more important than others",
+    "example": "He humbly thanked everyone for their help.",
+    "syn": [
+     {
+      "to": "modestly",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and very close in meaning."
+     }
+    ],
+    "ant": [
+     {
+      "to": "proudly",
+      "relation": "antonym",
+      "note": "In a way that shows you feel important."
+     },
+     {
+      "to": "arrogantly",
+      "relation": "antonym",
+      "note": "In a way that shows you think you are better."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "humbling",
+    "meaning_key": "-ing",
+    "also": [
+     "boring",
+     "amazing",
+     "interesting"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Our grandfather is a humble man. He talks about his success humbly and says humility is the key to a happy life.",
+   "uses": [
+    "humble",
+    "humbly",
+    "humility"
+   ]
+  },
+  "reviewer_note": "Humility is the learner-dictionary noun of humble (Latin humilis), not humbleness; 'humble = low in rank' mentioned in a note only."
+ },
+ {
+  "headword": "illegal",
+  "word_id": "6a42821646ba24054c1dcc6e",
+  "word_ids": [
+   "6a42821646ba24054c1dcc6e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Law",
+  "sense_pos": "adjective",
+  "corpus_definition": "not allowed by the laws of a place.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "illegality",
+    "relation": "derivational",
+    "definition": "the fact of being against the law",
+    "example": "The court looked at the illegality of the new building.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "crime",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "An action that breaks the law; easy word."
+     },
+     {
+      "to": "wrongdoing",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Bad or illegal behaviour; a formal word.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "legality",
+      "relation": "antonym",
+      "note": "The fact of being allowed by law."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb. To make something against the law we say 'ban' or 'outlaw'. The opposite family has legalize (make something allowed)."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "illegal",
+    "relation": "base",
+    "definition": "not allowed by the law of a country or place",
+    "example": "It is illegal to drive without a licence.",
+    "note": "American spelling: license.",
+    "syn": [
+     {
+      "to": "against the law",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy phrase with the same meaning."
+     },
+     {
+      "to": "unlawful",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; formal and used in legal texts.",
+      "register": "formal"
+     },
+     {
+      "to": "banned",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Officially not allowed, often by a rule, not only a law."
+     },
+     {
+      "to": "forbidden",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not allowed by a rule, law or person."
+     },
+     {
+      "to": "criminal",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "About crime; stronger than illegal."
+     }
+    ],
+    "ant": [
+     {
+      "to": "legal",
+      "relation": "antonym",
+      "note": "Allowed by law."
+     },
+     {
+      "to": "lawful",
+      "relation": "antonym",
+      "note": "Formal: allowed by law."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "illegally",
+    "relation": "derivational",
+    "definition": "in a way that is against the law",
+    "example": "He parked illegally outside the school.",
+    "syn": [
+     {
+      "to": "unlawfully",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; formal.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "legally",
+      "relation": "antonym",
+      "note": "In a way that the law allows."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ity",
+    "in_form": "illegality",
+    "meaning_key": "-ity",
+    "also": [
+     "reality",
+     "ability",
+     "activity"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "illegally",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "usually",
+     "finally"
+    ]
+   }
+  ],
+  "context": {
+   "text": "It is illegal to sell cigarettes to children in Uzbekistan. Shops that do it illegally can lose their licence.",
+   "uses": [
+    "illegal",
+    "illegally"
+   ]
+  },
+  "reviewer_note": "Negative-prefix headword: il- is not in the affix table, so it isn't claimed; legal/legality/legally kept as antonyms, not forms."
+ }
 ]
