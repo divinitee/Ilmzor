@@ -38,7 +38,7 @@ this file and `grammar-run/PROGRESS.md` and continues from there.
 - Answers in choose/build/transform are graded **on the server** from
   `base44/shared/grammarKeys.js` and stored as `GrammarAttempt` evidence. A topic
   missing from that file still plays, but its answers never count toward
-  progress. `build-keys.mjs` (step 5 below) handles this; never skip it.
+  progress. `run_topic.sh` (§3f) rebuilds that file every time; never skip it.
 - CREATE and EXPRESS stages are **locked in the app** (AI marking isn't built yet).
   Write them anyway (8 + 5 per topic) so they're ready when marking ships.
 
@@ -51,7 +51,7 @@ placement bank's own description of what each topic tests. Rebuild it any time:
 
 | wave | what | topics | when |
 |---|---|---|---|
-| **A** | finish `tenses.present`: 6 new + rebuild third-person-s | 7 | now |
+| **A** | finish `tenses.present`: 6 new + rebuild third-person-s (write it fresh like any new topic; your file replaces the old content) | 7 | now |
 | **B** | the rest of the Foundational tier (lowest level A1–A2), core domains first: tenses, nouns-articles, questions-negation, sentence-structure, then the rest | 129 | only after Tee approves wave A |
 | C | B1 topics | 83 | after Tee's go |
 | D | B2–C2 topics | 162 | after Tee's go |
@@ -161,8 +161,8 @@ anything doubtful, then re-run.
 Append one row to `grammar-run/PROGRESS.md`:
 `| # | topic | level | lint FAIL→FLAG | variants c/b/t | status | notes |`
 Status values: `done` (passed everything), `needs Tee` (triage),
-`blocked` (gate refused 3 times). Then create a checkpoint named
-`grammar <topic>`.
+`blocked` (gate refused 3 times). Then create a checkpoint (describe it as
+`grammar <topic>` if your tool takes a description).
 
 Every 5 topics (end of each turn), also run `npm run build` and `npm run lint`.
 Both must pass; a stale Browserslist warning is fine.
