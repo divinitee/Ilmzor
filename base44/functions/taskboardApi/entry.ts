@@ -331,7 +331,8 @@ async function recordWork(db: any, actor: string, input: any) {
   if (human + ai <= 0) throw bad('Record at least 1 minute of work.');
   const outcome = ['completed', 'partial', 'blocked', 'abandoned'].includes(String(input.outcome)) ? String(input.outcome) : 'partial';
   const row = await db.TaskWorkLog.create({
-    task_id: task.id, task_code: task.task_code, mode, human_minutes: human, ai_minutes: ai,
+    task_id: task.id, task_code: task.task_code, project: str(task.project, 200), estimate_minutes: Math.max(1, Number(task.estimate_minutes) || 15),
+    mode, human_minutes: human, ai_minutes: ai,
     started_at: iso(input.started_at), ended_at: iso(input.ended_at) || now(), outcome, actor: actorOf(input.actor || actor), notes: str(input.notes, 4000),
   });
   await log(db, actor, task, { action: 'work_logged', details: `Work logged: ${human}m human${ai ? ` + ${ai}m AI` : ''} · ${outcome}`, field: 'work_log' });
@@ -534,7 +535,7 @@ async function importNative(db: any, actor: string, data: any) {
     const taskId = codeToId.get(w.task_code) || '';
     if (!taskId || !w.mode) continue;
     workRows.push({
-      task_id: taskId, task_code: w.task_code, mode: ['hands_on', 'claude', 'hybrid'].includes(w.mode) ? w.mode : 'hands_on',
+      task_id: taskId, task_code: w.task_code, project: str(w.project, 200), estimate_minutes: Math.max(1, Math.round(Number(w.estimate_minutes) || 15)), mode: ['hands_on', 'claude', 'hybrid'].includes(w.mode) ? w.mode : 'hands_on',
       human_minutes: Math.max(0, Math.round(Number(w.human_minutes) || 0)), ai_minutes: Math.max(0, Math.round(Number(w.ai_minutes) || 0)),
       started_at: iso(w.started_at), ended_at: iso(w.ended_at), outcome: ['completed','partial','blocked','abandoned'].includes(w.outcome) ? w.outcome : 'partial',
       actor: actorOf(w.actor), notes: str(w.notes, 4000),
