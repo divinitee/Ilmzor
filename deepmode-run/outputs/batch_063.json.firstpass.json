@@ -1,0 +1,275 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "afford",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad antonym",
+     "msg": "affordable → 'unaffordable' is not a adjective (form is a adjective)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "noun 'affordability': not in WordNet, but common in real text (zipf 3.2) and built by a suffix rule"
+    },
+    {
+     "cat": "unchecked POS",
+     "msg": "adverb 'affordably': not in WordNet, but common in real text (zipf 2.1) and built by a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "affordability: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "affordably: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "afforded"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "afford is almost always used with can/could/be able to; no affix claimed on affordability (-ity leaves no clean word)."
+  },
+  {
+   "headword": "alert",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: alertly. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "alerts"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "alerted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Corpus definition mixes adjective and noun; one map with the adjective as base and the noun/verb as conversions."
+  },
+  {
+   "headword": "alley",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "alleys"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Compounds (alleyway, bowling alley) left out for the Compounds branch."
+  },
+  {
+   "headword": "alongside",
+   "kind": "function",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "kind corrected from word to function (preposition/adverb); no word forms."
+  },
+  {
+   "headword": "alter",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "alterations",
+       "alteration"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "altered"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Homophone trap alter/altar noted; alternate kept out as not_family."
+  },
+  {
+   "headword": "ambassador",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: ambassadorial"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ambassadors"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the main noun entry; no affix claimed (ambassad- is not a word)."
+  },
+  {
+   "headword": "amusing",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "amusingly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "amusements",
+       "amusement"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "amused"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "-ing/-ed trap: amusing (causes the feeling) vs amused (has the feeling); amusement park left out as a compound."
+  },
+  {
+   "headword": "ancient",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "noun: marked 'no such form'; rare or doubtful family words exist: ancientness"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: anciently. Check."
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "Only one existing form; the ancients and anciently mentioned in notes as rare/literary."
+  },
+  {
+   "headword": "announcement",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: annunciatory"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "announcements"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "announced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ment noun; verb announce is the base of the family. unannounced mentioned only in a note."
+  },
+  {
+   "headword": "annoy",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "annoying: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "annoyingly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "annoyances",
+       "annoyance"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "annoyed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "-ing/-ed trap: annoying (causes the feeling) vs annoyed (has the feeling)."
+  }
+ ]
+}
