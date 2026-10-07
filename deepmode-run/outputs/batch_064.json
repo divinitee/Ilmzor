@@ -539,10 +539,17 @@
     "status": "no_form"
    }
   ],
-  "people": [],
-  "people_not_family": [
-   "armor"
+  "people": [
+   {
+    "form": "armor",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "metal clothes that protected soldiers long ago",
+    "example": "The soldier wore heavy armor.",
+    "note": "British English: armour."
+   }
   ],
+  "people_not_family": [],
   "affixes": [],
   "context": {
    "text": "Armed guards stand outside the bank every day. They check that nobody brings arms inside.",
