@@ -1,0 +1,355 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "satisfaction",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "satisfy → 'dissatisfy' is not a real word/phrase"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "satisfying: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'fulfilment' is a synonym/related target for satisfaction, satisfactory"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "satisfactions",
+       "satisfaction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "satisfied"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Satisfactory/satisfactorily belong to the 'good enough' meaning (separate map), shown here as other_meaning. Opposites with dis-/un- are in ant lists."
+  },
+  {
+   "headword": "satisfactory",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "satisfaction: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'fulfilment' is a synonym/related target for satisfaction, satisfactory"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "satisfactions",
+       "satisfaction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "satisfied"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Kept to the 'good enough / meet a standard' meaning: satisfy = meet requirements, satisfaction only in formal 'to someone's satisfaction'. Satisfied/satisfying are other_meaning (the good feeling)."
+  },
+  {
+   "headword": "save up for",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Phrasal verb; no forms. Related noun 'savings' is not shown because phrasal maps have no forms."
+  },
+  {
+   "headword": "saw",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: sawyer"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: toothed"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'sawyer' (zipf 3.5) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "saws"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sawed"
+      ],
+      "VBN": [
+       "sawn"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Homonym trap: saw = past tense of see is a different word, noted on the noun. Compounds (sawdust, sawmill, chainsaw) left out."
+  },
+  {
+   "headword": "scar",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: scary"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: scarily. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "scars"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "scarred"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Spelling trap: scarred / scarring double the r. Scary and scare are not family (different word)."
+  },
+  {
+   "headword": "scatter",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "scattering: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "scatter: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "scatterings"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "scattered"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Scatterbrain is a compound and is left out."
+  },
+  {
+   "headword": "scratch",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: itches"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: itches"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "scratch: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "scratch: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "scratches",
+       "scratch"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "scratched"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "scratchier"
+      ],
+      "JJS": [
+       "scratchiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: the example 'The cat will scratch you' uses the 'cut with claws' meaning, not rubbing an itch; map follows the definition. Scratch card is a compound and is left out."
+  },
+  {
+   "headword": "screw",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: screen"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: screwy. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "screws",
+       "screw"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "screwed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Screwdriver is a compound and is left out. Adjective 'screwed' (in trouble) is vulgar slang and not shown."
+  },
+  {
+   "headword": "security",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "securities",
+       "security"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "secured"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "securer"
+      ],
+      "JJS": [
+       "securest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Security comes from secure; secure is both verb and adjective here. Insecure/insecurity are in ant lists. Security guard is a compound and is left out."
+  },
+  {
+   "headword": "semester",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: semestral, semestrial"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "semesters"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only one form exists; semestral is too rare for learners."
+  }
+ ]
+}
