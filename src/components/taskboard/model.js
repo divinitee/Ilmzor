@@ -221,7 +221,7 @@ export function buildExport(data, rootTask = null) {
   const events = data.events.filter((e) => keep(e.task_code));
   return {
     format: "virora-taskboard",
-    version: 1,
+    version: 2,
     exported_at: new Date().toISOString(),
     scope: rootTask ? rootTask.task_code : "all",
     counts: { tasks: tasks.length, steps: steps.length, evidence: evidence.length, events: events.length, workLogs: (data.workLogs || []).filter((w) => ids.has(w.task_id)).length },
