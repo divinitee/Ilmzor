@@ -2,111 +2,375 @@
  {
   "headword": "ridiculous",
   "word_id": "6a4282fd46ba24054c1dcdea",
-  "word_ids": ["6a4282fd46ba24054c1dcdea", "6a6ef9b2a6015561480927bf"],
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdea",
+   "6a6ef9b2a6015561480927bf"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Silly",
   "sense_pos": "adjective",
   "corpus_definition": "Something very silly or impossible to believe.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "ridicule", "relation": "derivational", "definition": "unkind laughter or words that make someone look silly", "example": "He faced ridicule from his classmates because of his strange hat.", "register": "formal",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "ridicule",
+    "relation": "derivational",
+    "definition": "unkind laughter or words that make someone look silly",
+    "example": "He faced ridicule from his classmates because of his strange hat.",
+    "register": "formal",
     "syn": [
-     {"to": "mockery", "relation": "synonym", "strength": 0.95, "note": "Very close: laughing at someone in an unkind way."},
-     {"to": "scorn", "relation": "related", "strength": 0.6, "note": "Related: a strong feeling that someone is not worth respect."},
-     {"to": "laughter", "relation": "related", "strength": 0.4, "note": "Laughter is general and can be kind; ridicule is always unkind."}
+     {
+      "to": "mockery",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close: laughing at someone in an unkind way."
+     },
+     {
+      "to": "scorn",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: a strong feeling that someone is not worth respect."
+     },
+     {
+      "to": "laughter",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Laughter is general and can be kind; ridicule is always unkind."
+     }
     ],
     "ant": [
-     {"to": "respect", "relation": "antonym", "note": "Respect is a good opinion of someone, the opposite of laughing at them."},
-     {"to": "praise", "relation": "antonym", "note": "Praise means saying good things about someone."}
-    ]},
-   {"slot": "noun", "status": "existing", "form": "ridiculousness", "relation": "derivational", "definition": "the quality of being very silly and hard to believe", "example": "Everyone laughed at the ridiculousness of the situation.", "syn": [
-     {"to": "absurdity", "relation": "synonym", "strength": 0.95, "note": "Very close, a little more formal."},
-     {"to": "silliness", "relation": "synonym", "strength": 0.8, "note": "Easier word; silliness can be friendly and funny."}
-    ], "ant": []},
-   {"slot": "verb", "status": "existing", "form": "ridicule", "relation": "conversion", "definition": "to laugh at someone or something in an unkind way", "example": "They ridiculed his plan at first, but it worked.",
+     {
+      "to": "respect",
+      "relation": "antonym",
+      "note": "Respect is a good opinion of someone, the opposite of laughing at them."
+     },
+     {
+      "to": "praise",
+      "relation": "antonym",
+      "note": "Praise means saying good things about someone."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "ridiculousness",
+    "relation": "derivational",
+    "definition": "the quality of being very silly and hard to believe",
+    "example": "Everyone laughed at the ridiculousness of the situation.",
     "syn": [
-     {"to": "mock", "relation": "synonym", "strength": 0.95, "note": "Very close: laugh at someone and copy them unkindly."},
-     {"to": "make fun of", "relation": "synonym", "strength": 0.95, "note": "Everyday phrase with the same meaning."},
-     {"to": "laugh at", "relation": "synonym", "strength": 0.8, "note": "Easy phrase; ridicule is stronger and more formal."},
-     {"to": "tease", "relation": "related", "strength": 0.6, "note": "Teasing is often friendly; ridiculing is unkind."}
+     {
+      "to": "absurdity",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close, a little more formal."
+     },
+     {
+      "to": "silliness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easier word; silliness can be friendly and funny."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "ridicule",
+    "relation": "derivational",
+    "definition": "to laugh at someone or something in an unkind way",
+    "example": "They ridiculed his plan at first, but it worked.",
+    "syn": [
+     {
+      "to": "mock",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close: laugh at someone and copy them unkindly."
+     },
+     {
+      "to": "make fun of",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Everyday phrase with the same meaning."
+     },
+     {
+      "to": "laugh at",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy phrase; ridicule is stronger and more formal."
+     },
+     {
+      "to": "tease",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Teasing is often friendly; ridiculing is unkind."
+     }
     ],
     "ant": [
-     {"to": "praise", "relation": "antonym", "note": "To say good things about someone."},
-     {"to": "respect", "relation": "antonym", "note": "To have a good opinion of someone and treat them well."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "ridiculous", "relation": "base", "definition": "so silly or unreasonable that people want to laugh", "example": "That excuse sounds completely ridiculous to me.",
+     {
+      "to": "praise",
+      "relation": "antonym",
+      "note": "To say good things about someone."
+     },
+     {
+      "to": "respect",
+      "relation": "antonym",
+      "note": "To have a good opinion of someone and treat them well."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "ridiculous",
+    "relation": "base",
+    "definition": "so silly or unreasonable that people want to laugh",
+    "example": "That excuse sounds completely ridiculous to me.",
     "syn": [
-     {"to": "silly", "relation": "synonym", "strength": 0.8, "note": "Easy word; silly is softer and can be friendly."},
-     {"to": "absurd", "relation": "synonym", "strength": 0.95, "note": "Very close, a little more formal."},
-     {"to": "ludicrous", "relation": "synonym", "strength": 0.95, "note": "Very close, a stronger and less common word."},
-     {"to": "crazy", "relation": "related", "strength": 0.6, "note": "Informal: 'That's a crazy idea!'", "register": "informal"},
-     {"to": "unreasonable", "relation": "related", "strength": 0.6, "note": "Related: not fair or sensible, but not always funny."}
+     {
+      "to": "silly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word; silly is softer and can be friendly."
+     },
+     {
+      "to": "absurd",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close, a little more formal."
+     },
+     {
+      "to": "ludicrous",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close, a stronger and less common word."
+     },
+     {
+      "to": "crazy",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: 'That's a crazy idea!'",
+      "register": "informal"
+     },
+     {
+      "to": "unreasonable",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: not fair or sensible, but not always funny."
+     }
     ],
     "ant": [
-     {"to": "sensible", "relation": "antonym", "note": "Sensible means showing good judgement."},
-     {"to": "reasonable", "relation": "antonym", "note": "Reasonable means fair and easy to accept."}
-    ]},
-   {"slot": "adverb", "status": "existing", "form": "ridiculously", "relation": "derivational", "definition": "in a very silly way; also used to mean 'much too' or 'extremely'", "example": "The tickets were ridiculously expensive.", "note": "Most often used before adjectives: ridiculously cheap, ridiculously easy.",
+     {
+      "to": "sensible",
+      "relation": "antonym",
+      "note": "Sensible means showing good judgement."
+     },
+     {
+      "to": "reasonable",
+      "relation": "antonym",
+      "note": "Reasonable means fair and easy to accept."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "ridiculously",
+    "relation": "derivational",
+    "definition": "in a very silly way; also used to mean 'much too' or 'extremely'",
+    "example": "The tickets were ridiculously expensive.",
+    "note": "Most often used before adjectives: ridiculously cheap, ridiculously easy.",
     "syn": [
-     {"to": "absurdly", "relation": "synonym", "strength": 0.95, "note": "Very close, a little more formal."},
-     {"to": "extremely", "relation": "related", "strength": 0.6, "note": "Extremely just means 'very very'; ridiculously adds that it is silly or hard to believe."}
+     {
+      "to": "absurdly",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close, a little more formal."
+     },
+     {
+      "to": "extremely",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Extremely just means 'very very'; ridiculously adds that it is silly or hard to believe."
+     }
     ],
     "ant": [
-     {"to": "reasonably", "relation": "antonym", "note": "Reasonably means to a fair, acceptable degree: reasonably cheap."}
-    ]}
+     {
+      "to": "reasonably",
+      "relation": "antonym",
+      "note": "Reasonably means to a fair, acceptable degree: reasonably cheap."
+     }
+    ]
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ous", "in_form": "ridiculous", "meaning_key": "-ous", "also": ["dangerous", "famous", "nervous"]},
-   {"affix": "-ly", "in_form": "ridiculously", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]},
-   {"affix": "-ness", "in_form": "ridiculousness", "meaning_key": "-ness", "also": ["kindness", "sadness", "darkness"]}
+   {
+    "affix": "-ous",
+    "in_form": "ridiculous",
+    "meaning_key": "-ous",
+    "also": [
+     "dangerous",
+     "famous",
+     "nervous"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "ridiculously",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "happily"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "ridiculousness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   }
   ],
-  "context": {"text": "My brother wore a ridiculous hat to a wedding in Samarkand. Some cousins ridiculed him, but he just laughed. The hat was ridiculously big, but he loved it.", "uses": ["ridiculous", "ridiculed", "ridiculously"]},
+  "context": {
+   "text": "My brother wore a ridiculous hat to a wedding in Samarkand. Some cousins ridiculed him, but he just laughed. The hat was ridiculously big, but he loved it.",
+   "uses": [
+    "ridiculous",
+    "ridiculed",
+    "ridiculously"
+   ]
+  },
   "reviewer_note": "Two rows with the same meaning merged (B1). Ridicule is the source noun and verb (ridiculous is made from it), so both are existing forms."
  },
  {
   "headword": "rip",
   "word_id": "6a6ef83f0f1e82a5a073664d",
-  "word_ids": ["6a6ef83f0f1e82a5a073664d"],
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073664d"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Tearing",
   "sense_pos": "verb",
   "corpus_definition": "To break or pull something apart quickly.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "rip", "relation": "conversion", "definition": "a long hole in cloth or paper where it was pulled apart", "example": "There is a rip in the sleeve of my jacket.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "rip",
+    "relation": "conversion",
+    "definition": "a long hole in cloth or paper where it was pulled apart",
+    "example": "There is a rip in the sleeve of my jacket.",
     "syn": [
-     {"to": "tear", "relation": "synonym", "strength": 0.95, "note": "Very close and common. Careful: this tear rhymes with 'hair', not 'here'."},
-     {"to": "hole", "relation": "related", "strength": 0.6, "note": "Easy, general word; a rip is usually long and made by pulling."},
-     {"to": "split", "relation": "related", "strength": 0.6, "note": "A split is a long crack or opening, often along a line."}
+     {
+      "to": "tear",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close and common. Careful: this tear rhymes with 'hair', not 'here'."
+     },
+     {
+      "to": "hole",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy, general word; a rip is usually long and made by pulling."
+     },
+     {
+      "to": "split",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A split is a long crack or opening, often along a line."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "rip", "relation": "base", "definition": "to pull something apart quickly and with force", "example": "Be careful not to rip your paper.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "rip",
+    "relation": "base",
+    "definition": "to pull something apart quickly and with force",
+    "example": "Be careful not to rip your paper.",
     "syn": [
-     {"to": "tear", "relation": "synonym", "strength": 0.95, "note": "Very close; rip is quicker and stronger."},
-     {"to": "split", "relation": "related", "strength": 0.6, "note": "To break into two parts, often along a line."},
-     {"to": "shred", "relation": "related", "strength": 0.6, "note": "To cut or tear into many very small pieces."}
+     {
+      "to": "tear",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; rip is quicker and stronger."
+     },
+     {
+      "to": "split",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To break into two parts, often along a line."
+     },
+     {
+      "to": "shred",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To cut or tear into many very small pieces."
+     }
     ],
     "ant": [
-     {"to": "mend", "relation": "antonym", "note": "To repair a hole in clothes, often by sewing."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "ripped", "relation": "participial", "definition": "torn, with long holes in it", "example": "He wore ripped jeans to the party.",
+     {
+      "to": "mend",
+      "relation": "antonym",
+      "note": "To repair a hole in clothes, often by sewing."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "ripped",
+    "relation": "participial",
+    "definition": "torn, with long holes in it",
+    "example": "He wore ripped jeans to the party.",
     "syn": [
-     {"to": "torn", "relation": "synonym", "strength": 0.95, "note": "Very close and common."},
-     {"to": "ragged", "relation": "related", "strength": 0.6, "note": "Old and torn in many places."}
+     {
+      "to": "torn",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close and common."
+     },
+     {
+      "to": "ragged",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Old and torn in many places."
+     }
     ],
-    "ant": []},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Timur loves his ripped jeans, but his grandmother thinks they are just old. Yesterday he caught them on a fence, and now the rip is too big to wear.", "uses": ["ripped", "rip"]},
+  "context": {
+   "text": "Timur loves his ripped jeans, but his grandmother thinks they are just old. Yesterday he caught them on a fence, and now the rip is too big to wear.",
+   "uses": [
+    "ripped",
+    "rip"
+   ]
+  },
   "reviewer_note": "Noun rip is a same-spelling conversion; rip off / rip up are phrasal verbs and the informal 'ripped' (very muscular) is left out of the forms."
  },
  {
   "headword": "rip up",
   "word_id": "6a4265cce20c7210db6908cb",
-  "word_ids": ["6a4265cce20c7210db6908cb"],
+  "word_ids": [
+   "6a4265cce20c7210db6908cb"
+  ],
   "cefr": "B1",
   "kind": "phrasal",
   "sense_label": "Paper",
@@ -114,289 +378,890 @@
   "corpus_definition": "To destroy a sheet of paper by pulling it into many small pieces.",
   "particle_note": "Separable: 'rip up the letter' or 'rip the letter up'. With a pronoun the particle goes after it: 'rip it up'.",
   "relations": [
-   {"to": "tear up", "relation": "synonym", "strength": 0.95, "note": "Very close and very common: 'She tore up the photo.'"},
-   {"to": "shred", "relation": "synonym", "strength": 0.8, "note": "To cut or tear into very thin pieces, often with a machine."},
-   {"to": "destroy", "relation": "related", "strength": 0.6, "note": "General word: to damage something so it cannot be used."}
+   {
+    "to": "tear up",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Very close and very common: 'She tore up the photo.'"
+   },
+   {
+    "to": "shred",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "To cut or tear into very thin pieces, often with a machine."
+   },
+   {
+    "to": "destroy",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "General word: to damage something so it cannot be used."
+   }
   ],
-  "context": {"text": "Aziz ripped up the old letter and threw the pieces away. Don't rip up your receipts; you may need them later.", "uses": ["ripped up", "rip up"]},
+  "context": {
+   "text": "Aziz ripped up the old letter and threw the pieces away. Don't rip up your receipts; you may need them later.",
+   "uses": [
+    "ripped up",
+    "rip up"
+   ]
+  },
   "reviewer_note": "Phrasal verb; no forms. No true antonym listed."
  },
  {
   "headword": "ripe",
   "word_id": "6a6ef9b2a6015561480928c1",
-  "word_ids": ["6a6ef9b2a6015561480928c1"],
+  "word_ids": [
+   "6a6ef9b2a6015561480928c1"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Fruit",
   "sense_pos": "adjective",
   "corpus_definition": "When fruit is ready to be eaten.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "ripeness", "relation": "derivational", "definition": "the state of fruit being fully grown and ready to eat", "example": "You can check the ripeness of a melon by smelling it.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "ripeness",
+    "relation": "derivational",
+    "definition": "the state of fruit being fully grown and ready to eat",
+    "example": "You can check the ripeness of a melon by smelling it.",
     "syn": [
-     {"to": "maturity", "relation": "related", "strength": 0.6, "note": "Formal word for being fully grown or developed.", "register": "formal"}
+     {
+      "to": "maturity",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Formal word for being fully grown or developed.",
+      "register": "formal"
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "ripen", "relation": "derivational", "definition": "to become fully grown and ready to eat", "example": "Apricots ripen in June in the Fergana Valley.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "ripen",
+    "relation": "derivational",
+    "definition": "to become fully grown and ready to eat",
+    "example": "Apricots ripen in June in the Fergana Valley.",
     "syn": [
-     {"to": "mature", "relation": "synonym", "strength": 0.8, "note": "More general: to become fully grown or developed."},
-     {"to": "develop", "relation": "related", "strength": 0.4, "note": "General word for growing or changing over time."}
+     {
+      "to": "mature",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More general: to become fully grown or developed."
+     },
+     {
+      "to": "develop",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "General word for growing or changing over time."
+     }
     ],
-    "ant": []},
-   {"slot": "adjective", "status": "existing", "form": "ripe", "relation": "base", "definition": "fully grown and ready to be eaten", "example": "The red apple is very sweet and ripe.",
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "ripe",
+    "relation": "base",
+    "definition": "fully grown and ready to be eaten",
+    "example": "The red apple is very sweet and ripe.",
     "syn": [
-     {"to": "ready", "relation": "related", "strength": 0.6, "note": "Easy word: 'The tomatoes are ready to pick.'"},
-     {"to": "mature", "relation": "synonym", "strength": 0.8, "note": "More formal; also used for cheese and wine."}
+     {
+      "to": "ready",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word: 'The tomatoes are ready to pick.'"
+     },
+     {
+      "to": "mature",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal; also used for cheese and wine."
+     }
     ],
     "ant": [
-     {"to": "unripe", "relation": "antonym", "note": "Not yet ready to eat."},
-     {"to": "green", "relation": "antonym", "note": "Used for fruit that is not ready yet: 'These bananas are still green.'"}
-    ]},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+     {
+      "to": "unripe",
+      "relation": "antonym",
+      "note": "Not yet ready to eat."
+     },
+     {
+      "to": "green",
+      "relation": "antonym",
+      "note": "Used for fruit that is not ready yet: 'These bananas are still green.'"
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ness", "in_form": "ripeness", "meaning_key": "-ness", "also": ["kindness", "darkness", "sadness"]}
+   {
+    "affix": "-ness",
+    "in_form": "ripeness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "darkness",
+     "sadness"
+    ]
+   }
   ],
-  "context": {"text": "Melons ripen in the hot sun of Khorezm in August. When they are ripe, the whole market smells sweet.", "uses": ["ripen", "ripe"]},
+  "context": {
+   "text": "Melons ripen in the hot sun of Khorezm in August. When they are ripe, the whole market smells sweet.",
+   "uses": [
+    "ripen",
+    "ripe"
+   ]
+  },
   "reviewer_note": "Unripe kept as an antonym, not a form. Ripen uses the -en verb ending (not in the affix table), so no affix is claimed for it."
  },
  {
   "headword": "risk",
   "word_id": "6a42659782466c80f8ae0ca9",
-  "word_ids": ["6a42659782466c80f8ae0ca9"],
+  "word_ids": [
+   "6a42659782466c80f8ae0ca9"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Danger",
   "sense_pos": "noun",
   "corpus_definition": "The possibility of something bad happening.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "risk", "relation": "base", "definition": "the chance that something bad or dangerous may happen", "example": "There is a small risk of rain today.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "risk",
+    "relation": "base",
+    "definition": "the chance that something bad or dangerous may happen",
+    "example": "There is a small risk of rain today.",
     "syn": [
-     {"to": "danger", "relation": "synonym", "strength": 0.8, "note": "Easy word; danger is the bad thing itself, a risk is the chance of it."},
-     {"to": "hazard", "relation": "synonym", "strength": 0.8, "note": "Something that can cause harm, often used in safety signs."},
-     {"to": "threat", "relation": "related", "strength": 0.6, "note": "Something that may cause harm in the future."},
-     {"to": "chance", "relation": "related", "strength": 0.6, "note": "Neutral: a chance can be good or bad; a risk is always bad."}
+     {
+      "to": "danger",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word; danger is the bad thing itself, a risk is the chance of it."
+     },
+     {
+      "to": "hazard",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Something that can cause harm, often used in safety signs."
+     },
+     {
+      "to": "threat",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something that may cause harm in the future."
+     },
+     {
+      "to": "chance",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Neutral: a chance can be good or bad; a risk is always bad."
+     }
     ],
     "ant": [
-     {"to": "safety", "relation": "antonym", "note": "Safety is being free from danger."}
-    ]},
-   {"slot": "verb", "status": "existing", "form": "risk", "relation": "conversion", "definition": "to do something that could cause a bad result or loss", "example": "He risked his life to save the child from the river.", "note": "Often risk + -ing: 'Don't risk losing your job.'",
+     {
+      "to": "safety",
+      "relation": "antonym",
+      "note": "Safety is being free from danger."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "risk",
+    "relation": "conversion",
+    "definition": "to do something that could cause a bad result or loss",
+    "example": "He risked his life to save the child from the river.",
+    "note": "Often risk + -ing: 'Don't risk losing your job.'",
     "syn": [
-     {"to": "endanger", "relation": "synonym", "strength": 0.8, "note": "To put someone or something in danger; a little formal."},
-     {"to": "gamble", "relation": "related", "strength": 0.6, "note": "To take a chance hoping for a good result."},
-     {"to": "dare", "relation": "related", "strength": 0.4, "note": "To be brave enough to do something difficult."}
+     {
+      "to": "endanger",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To put someone or something in danger; a little formal."
+     },
+     {
+      "to": "gamble",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To take a chance hoping for a good result."
+     },
+     {
+      "to": "dare",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "To be brave enough to do something difficult."
+     }
     ],
     "ant": [
-     {"to": "protect", "relation": "antonym", "note": "To keep something safe from harm."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "risky", "relation": "derivational", "definition": "possibly dangerous or likely to end badly", "example": "Driving fast in the rain is very risky.",
+     {
+      "to": "protect",
+      "relation": "antonym",
+      "note": "To keep something safe from harm."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "risky",
+    "relation": "derivational",
+    "definition": "possibly dangerous or likely to end badly",
+    "example": "Driving fast in the rain is very risky.",
     "syn": [
-     {"to": "dangerous", "relation": "synonym", "strength": 0.8, "note": "Easy and common; dangerous is often stronger."},
-     {"to": "unsafe", "relation": "synonym", "strength": 0.8, "note": "Not safe; very close in everyday English."},
-     {"to": "hazardous", "relation": "synonym", "strength": 0.8, "note": "Formal, used for work and health dangers.", "register": "formal"}
+     {
+      "to": "dangerous",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy and common; dangerous is often stronger."
+     },
+     {
+      "to": "unsafe",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not safe; very close in everyday English."
+     },
+     {
+      "to": "hazardous",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal, used for work and health dangers.",
+      "register": "formal"
+     }
     ],
     "ant": [
-     {"to": "safe", "relation": "antonym", "note": "Not dangerous."}
-    ]},
-   {"slot": "adverb", "status": "no_form", "note": "No common adverb in this family; riskily exists but is very rare."}
+     {
+      "to": "safe",
+      "relation": "antonym",
+      "note": "Not dangerous."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No common adverb in this family; riskily exists but is very rare."
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-y", "in_form": "risky", "meaning_key": "-y", "also": ["sunny", "rainy", "noisy"]}
+   {
+    "affix": "-y",
+    "in_form": "risky",
+    "meaning_key": "-y",
+    "also": [
+     "sunny",
+     "rainy",
+     "noisy"
+    ]
+   }
   ],
-  "context": {"text": "Crossing the road without looking is risky. There is a real risk of an accident, so don't risk it just to save a minute.", "uses": ["risky", "risk", "risk"]},
+  "context": {
+   "text": "Crossing the road without looking is risky. There is a real risk of an accident, so don't risk it just to save a minute.",
+   "uses": [
+    "risky",
+    "risk",
+    "risk"
+   ]
+  },
   "reviewer_note": "Noun and verb are same-spelling conversions; risk-taker is a compound and left out."
  },
  {
   "headword": "rival",
   "word_id": "6a6ef9b2a60155614809284a",
-  "word_ids": ["6a6ef9b2a60155614809284a"],
+  "word_ids": [
+   "6a6ef9b2a60155614809284a"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Competition",
   "sense_pos": "noun",
   "corpus_definition": "a person who competes against another person",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "rival", "relation": "base", "definition": "a person or team that tries to win against another", "example": "He trained hard to beat his closest rival.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "rival",
+    "relation": "base",
+    "definition": "a person or team that tries to win against another",
+    "example": "He trained hard to beat his closest rival.",
     "syn": [
-     {"to": "competitor", "relation": "synonym", "strength": 0.95, "note": "Very close; also used for companies."},
-     {"to": "opponent", "relation": "synonym", "strength": 0.8, "note": "The person you play against in one game or fight."},
-     {"to": "enemy", "relation": "related", "strength": 0.4, "note": "Much stronger: an enemy hates you or wants to hurt you."}
+     {
+      "to": "competitor",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; also used for companies."
+     },
+     {
+      "to": "opponent",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The person you play against in one game or fight."
+     },
+     {
+      "to": "enemy",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Much stronger: an enemy hates you or wants to hurt you."
+     }
     ],
     "ant": [
-     {"to": "ally", "relation": "antonym", "note": "Someone who helps and supports you."},
-     {"to": "partner", "relation": "antonym", "note": "Someone who works with you, not against you."}
-    ]},
-   {"slot": "noun", "status": "existing", "form": "rivalry", "relation": "derivational", "definition": "a situation where people or groups keep competing with each other", "example": "There is a strong rivalry between the two football clubs.",
+     {
+      "to": "ally",
+      "relation": "antonym",
+      "note": "Someone who helps and supports you."
+     },
+     {
+      "to": "partner",
+      "relation": "antonym",
+      "note": "Someone who works with you, not against you."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "rivalry",
+    "relation": "derivational",
+    "definition": "a situation where people or groups keep competing with each other",
+    "example": "There is a strong rivalry between the two football clubs.",
     "syn": [
-     {"to": "competition", "relation": "synonym", "strength": 0.8, "note": "More general; rivalry is often long and strong."}
+     {
+      "to": "competition",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More general; rivalry is often long and strong."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "rival", "relation": "conversion", "definition": "to be as good or as important as someone or something else", "example": "Few cities can rival Samarkand for beauty.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "rival",
+    "relation": "conversion",
+    "definition": "to be as good or as important as someone or something else",
+    "example": "Few cities can rival Samarkand for beauty.",
     "syn": [
-     {"to": "match", "relation": "synonym", "strength": 0.8, "note": "To be equal to something in quality."},
-     {"to": "equal", "relation": "synonym", "strength": 0.8, "note": "To be the same in size, number or quality."},
-     {"to": "compete with", "relation": "related", "strength": 0.6, "note": "To try to be better than others."}
+     {
+      "to": "match",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To be equal to something in quality."
+     },
+     {
+      "to": "equal",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To be the same in size, number or quality."
+     },
+     {
+      "to": "compete with",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To try to be better than others."
+     }
     ],
-    "ant": []},
-   {"slot": "adjective", "status": "no_form", "note": "No adjective in this family. In 'rival teams' or 'a rival company', rival is a noun used before another noun."},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No adjective in this family. In 'rival teams' or 'a rival company', rival is a noun used before another noun."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Pakhtakor and their old rival play in Tashkent this Saturday. The rivalry between the two clubs is famous, and few matches can rival it for noise.", "uses": ["rival", "rivalry", "rival"]},
+  "context": {
+   "text": "Pakhtakor and their old rival play in Tashkent this Saturday. The rivalry between the two clubs is famous, and few matches can rival it for noise.",
+   "uses": [
+    "rival",
+    "rivalry",
+    "rival"
+   ]
+  },
   "reviewer_note": "Person-noun headword stays the main noun entry; rivalry is an extra noun. Rival before nouns is attributive noun use, so the adjective slot is no_form."
  },
  {
   "headword": "robe",
   "word_id": "6a6ef9b2a6015561480928b2",
-  "word_ids": ["6a6ef9b2a6015561480928b2"],
+  "word_ids": [
+   "6a6ef9b2a6015561480928b2"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Clothing",
   "sense_pos": "noun",
   "corpus_definition": "a long loose piece of clothing, like a dressing gown or coat",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "robe", "relation": "base", "definition": "a long loose piece of clothing, worn at home or for special events", "example": "The judge entered the courtroom wearing a long black robe.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "robe",
+    "relation": "base",
+    "definition": "a long loose piece of clothing, worn at home or for special events",
+    "example": "The judge entered the courtroom wearing a long black robe.",
     "syn": [
-     {"to": "gown", "relation": "synonym", "strength": 0.8, "note": "A long dress or a long official piece of clothing."},
-     {"to": "dressing gown", "relation": "synonym", "strength": 0.8, "note": "British: a robe you wear at home over your night clothes."},
-     {"to": "bathrobe", "relation": "synonym", "strength": 0.8, "note": "A soft robe you wear after a bath; common in American English."},
-     {"to": "cloak", "relation": "related", "strength": 0.4, "note": "A long coat with no sleeves that hangs from the shoulders."}
+     {
+      "to": "gown",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A long dress or a long official piece of clothing."
+     },
+     {
+      "to": "dressing gown",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "British: a robe you wear at home over your night clothes."
+     },
+     {
+      "to": "bathrobe",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A soft robe you wear after a bath; common in American English."
+     },
+     {
+      "to": "cloak",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A long coat with no sleeves that hangs from the shoulders."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "robe", "relation": "conversion", "definition": "to dress someone in long loose formal clothes", "example": "The judges were robed in black.", "register": "formal", "note": "Mostly used in the passive: be robed in.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "robe",
+    "relation": "conversion",
+    "definition": "to dress someone in long loose formal clothes",
+    "example": "The judges were robed in black.",
+    "register": "formal",
+    "note": "Mostly used in the passive: be robed in.",
     "syn": [
-     {"to": "dress", "relation": "synonym", "strength": 0.8, "note": "Easy and general."},
-     {"to": "clothe", "relation": "related", "strength": 0.6, "note": "Formal word for giving or putting on clothes."}
+     {
+      "to": "dress",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy and general."
+     },
+     {
+      "to": "clothe",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Formal word for giving or putting on clothes."
+     }
     ],
     "ant": [
-     {"to": "undress", "relation": "antonym", "note": "To take clothes off."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "robed", "relation": "participial", "definition": "wearing a long loose piece of formal clothing", "example": "The robed musicians played all night.", "register": "formal",
+     {
+      "to": "undress",
+      "relation": "antonym",
+      "note": "To take clothes off."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "robed",
+    "relation": "participial",
+    "definition": "wearing a long loose piece of formal clothing",
+    "example": "The robed musicians played all night.",
+    "register": "formal",
     "syn": [
-     {"to": "dressed", "relation": "related", "strength": 0.6, "note": "General: wearing clothes."}
+     {
+      "to": "dressed",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General: wearing clothes."
+     }
     ],
-    "ant": []},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "My grandfather wore a long blue robe called a chapan at the wedding in Bukhara. Next to him, the robed musicians played until morning.", "uses": ["robe", "robed"]},
+  "context": {
+   "text": "My grandfather wore a long blue robe called a chapan at the wedding in Bukhara. Next to him, the robed musicians played until morning.",
+   "uses": [
+    "robe",
+    "robed"
+   ]
+  },
   "reviewer_note": "Wardrobe looks related but is a compound and is left out; robe verb and robed are formal."
  },
  {
   "headword": "role",
   "word_id": "6a6ef83f0f1e82a5a07367df",
-  "word_ids": ["6a6ef83f0f1e82a5a07367df"],
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367df"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Part",
   "sense_pos": "noun",
   "corpus_definition": "The function or part played by someone.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "role", "relation": "base", "definition": "the job or part that someone has in a group or situation", "example": "Everyone has an important role in the team.", "note": "Also the character an actor plays in a film. Don't confuse with roll (bread, or to turn over).",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "role",
+    "relation": "base",
+    "definition": "the job or part that someone has in a group or situation",
+    "example": "Everyone has an important role in the team.",
+    "note": "Also the character an actor plays in a film. Don't confuse with roll (bread, or to turn over).",
     "syn": [
-     {"to": "part", "relation": "synonym", "strength": 0.95, "note": "Easy and very close: 'play a part / play a role'."},
-     {"to": "function", "relation": "synonym", "strength": 0.8, "note": "More formal; often used for things as well as people."},
-     {"to": "job", "relation": "related", "strength": 0.6, "note": "Easy word for the work someone must do."},
-     {"to": "position", "relation": "related", "strength": 0.6, "note": "A place or job in an organization."},
-     {"to": "duty", "relation": "related", "strength": 0.6, "note": "Something you must do because it is your job."}
+     {
+      "to": "part",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and very close: 'play a part / play a role'."
+     },
+     {
+      "to": "function",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal; often used for things as well as people."
+     },
+     {
+      "to": "job",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word for the work someone must do."
+     },
+     {
+      "to": "position",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A place or job in an organization."
+     },
+     {
+      "to": "duty",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something you must do because it is your job."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "No verb in this family."},
-   {"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "In our class project, every student had a role. My role was to find pictures, and Malika wrote the text.", "uses": ["role"]},
+  "context": {
+   "text": "In our class project, every student had a role. My role was to find pictures, and Malika wrote the text.",
+   "uses": [
+    "role"
+   ]
+  },
   "reviewer_note": "Single-form family; role model and role-play are compounds and left out; roll is a different word."
  },
  {
   "headword": "romantic",
   "word_id": "6a4282fd46ba24054c1dcdeb",
-  "word_ids": ["6a4282fd46ba24054c1dcdeb"],
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdeb"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Love",
   "sense_pos": "adjective",
   "corpus_definition": "Related to love or deep feelings of affection.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "romance", "relation": "derivational", "definition": "a loving relationship between two people, often a short one", "example": "Their romance started at university in Tashkent.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "romance",
+    "relation": "derivational",
+    "definition": "a loving relationship between two people, often a short one",
+    "example": "Their romance started at university in Tashkent.",
     "syn": [
-     {"to": "love affair", "relation": "synonym", "strength": 0.8, "note": "A relationship between two people in love, often secret or short."},
-     {"to": "relationship", "relation": "related", "strength": 0.6, "note": "General word for two people who are together."},
-     {"to": "love", "relation": "related", "strength": 0.6, "note": "The feeling itself; romance is the relationship or the mood."}
+     {
+      "to": "love affair",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A relationship between two people in love, often secret or short."
+     },
+     {
+      "to": "relationship",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word for two people who are together."
+     },
+     {
+      "to": "love",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The feeling itself; romance is the relationship or the mood."
+     }
     ],
-    "ant": []},
-   {"slot": "noun", "status": "other_meaning", "form": "romanticism", "definition": "a style of art and writing from about 1800 that shows strong feelings and nature", "example": "We studied romanticism in our literature class.", "note": "Belongs to romantic = the art and writing style (the Romantic poets), not love between people."},
-   {"slot": "verb", "status": "other_meaning", "form": "romanticize", "definition": "to show something as better or more exciting than it really is", "example": "Films often romanticize life in big cities.", "note": "Belongs to romantic = seeing things in a beautiful but unreal way, not love between people. British spelling: romanticise."},
-   {"slot": "adjective", "status": "existing", "form": "romantic", "relation": "base", "definition": "connected with love and deep, warm feelings for someone", "example": "They had a romantic dinner by the sea.", "note": "Also a noun for a person who believes in love and beauty: 'He is a real romantic.'",
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "romanticism",
+    "definition": "a style of art and writing from about 1800 that shows strong feelings and nature",
+    "example": "We studied romanticism in our literature class.",
+    "note": "Belongs to romantic = the art and writing style (the Romantic poets), not love between people."
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "romanticize",
+    "definition": "to show something as better or more exciting than it really is",
+    "example": "Films often romanticize life in big cities.",
+    "note": "Belongs to romantic = seeing things in a beautiful but unreal way, not love between people. British spelling: romanticise."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "romantic",
+    "relation": "base",
+    "definition": "connected with love and deep, warm feelings for someone",
+    "example": "They had a romantic dinner by the sea.",
+    "note": "Also a noun for a person who believes in love and beauty: 'He is a real romantic.'",
     "syn": [
-     {"to": "loving", "relation": "related", "strength": 0.6, "note": "Showing love and care, also for family and friends."},
-     {"to": "tender", "relation": "related", "strength": 0.6, "note": "Gentle and loving."},
-     {"to": "passionate", "relation": "related", "strength": 0.6, "note": "Having very strong feelings, including love."},
-     {"to": "sentimental", "relation": "related", "strength": 0.4, "note": "Showing soft feelings, sometimes too much."}
+     {
+      "to": "loving",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Showing love and care, also for family and friends."
+     },
+     {
+      "to": "tender",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Gentle and loving."
+     },
+     {
+      "to": "passionate",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Having very strong feelings, including love."
+     },
+     {
+      "to": "sentimental",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Showing soft feelings, sometimes too much."
+     }
     ],
     "ant": [
-     {"to": "unromantic", "relation": "antonym", "note": "Not showing love or warm feelings; practical."}
-    ]},
-   {"slot": "adverb", "status": "existing", "form": "romantically", "relation": "derivational", "definition": "in a way that is connected with love between two people", "example": "They are not romantically involved; they are just friends.",
+     {
+      "to": "unromantic",
+      "relation": "antonym",
+      "note": "Not showing love or warm feelings; practical."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "romantically",
+    "relation": "derivational",
+    "definition": "in a way that is connected with love between two people",
+    "example": "They are not romantically involved; they are just friends.",
     "syn": [
-     {"to": "lovingly", "relation": "related", "strength": 0.6, "note": "In a way that shows love or care."},
-     {"to": "tenderly", "relation": "related", "strength": 0.6, "note": "In a gentle, loving way."}
+     {
+      "to": "lovingly",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "In a way that shows love or care."
+     },
+     {
+      "to": "tenderly",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "In a gentle, loving way."
+     }
     ],
-    "ant": []}
+    "ant": []
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Dilnoza and Bekzod had a romantic dinner in a small cafe in Tashkent. Their romance started at university, and he still behaves very romantically.", "uses": ["romantic", "romance", "romantically"]},
+  "context": {
+   "text": "Dilnoza and Bekzod had a romantic dinner in a small cafe in Tashkent. Their romance started at university, and he still behaves very romantically.",
+   "uses": [
+    "romantic",
+    "romance",
+    "romantically"
+   ]
+  },
   "reviewer_note": "Romanticism and romanticize belong to the art/idealizing sense, so they are other_meaning; no transparent affix split (romant- is not a word), so affixes are empty."
  },
  {
   "headword": "rot",
   "word_id": "6a6ef9b2a6015561480927f8",
-  "word_ids": ["6a6ef9b2a6015561480927f8"],
+  "word_ids": [
+   "6a6ef9b2a6015561480927f8"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Decay",
   "sense_pos": "verb",
   "corpus_definition": "to slowly decay and break down in a bad way",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "rot", "relation": "conversion", "definition": "the slow process of going soft and bad, or the bad part itself", "example": "There was rot in the old wooden floor.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "rot",
+    "relation": "conversion",
+    "definition": "the slow process of going soft and bad, or the bad part itself",
+    "example": "There was rot in the old wooden floor.",
     "syn": [
-     {"to": "decay", "relation": "synonym", "strength": 0.95, "note": "Very close; decay is a little more formal."},
-     {"to": "mould", "relation": "related", "strength": 0.4, "note": "A soft green or grey growth on old food. American spelling: mold."}
+     {
+      "to": "decay",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; decay is a little more formal."
+     },
+     {
+      "to": "mould",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A soft green or grey growth on old food. American spelling: mold."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "rot", "relation": "base", "definition": "to slowly go soft and bad because of age or water", "example": "The old wood began to rot in the rain.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "rot",
+    "relation": "base",
+    "definition": "to slowly go soft and bad because of age or water",
+    "example": "The old wood began to rot in the rain.",
     "syn": [
-     {"to": "decay", "relation": "synonym", "strength": 0.95, "note": "Very close; decay is a little more formal."},
-     {"to": "go bad", "relation": "synonym", "strength": 0.8, "note": "Easy phrase, used for food: 'The milk went bad.'"},
-     {"to": "decompose", "relation": "synonym", "strength": 0.8, "note": "Scientific word for breaking down naturally."},
-     {"to": "spoil", "relation": "related", "strength": 0.6, "note": "Used for food that is no longer good to eat."}
+     {
+      "to": "decay",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; decay is a little more formal."
+     },
+     {
+      "to": "go bad",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy phrase, used for food: 'The milk went bad.'"
+     },
+     {
+      "to": "decompose",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Scientific word for breaking down naturally."
+     },
+     {
+      "to": "spoil",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Used for food that is no longer good to eat."
+     }
     ],
-    "ant": []},
-   {"slot": "adjective", "status": "existing", "form": "rotten", "relation": "derivational", "definition": "gone soft and bad, so it cannot be eaten or used", "example": "Throw away the rotten tomatoes.", "note": "Informally it also means 'very bad': rotten weather.",
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "rotten",
+    "relation": "derivational",
+    "definition": "gone soft and bad, so it cannot be eaten or used",
+    "example": "Throw away the rotten tomatoes.",
+    "note": "Informally it also means 'very bad': rotten weather.",
     "syn": [
-     {"to": "bad", "relation": "related", "strength": 0.6, "note": "Easy word: 'This egg is bad.'"},
-     {"to": "decayed", "relation": "synonym", "strength": 0.8, "note": "More formal, often for wood or teeth."},
-     {"to": "spoiled", "relation": "synonym", "strength": 0.8, "note": "Used for food. British also: spoilt."}
+     {
+      "to": "bad",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word: 'This egg is bad.'"
+     },
+     {
+      "to": "decayed",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal, often for wood or teeth."
+     },
+     {
+      "to": "spoiled",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used for food. British also: spoilt."
+     }
     ],
     "ant": [
-     {"to": "fresh", "relation": "antonym", "note": "Fresh food is new and good to eat."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "rotting", "relation": "participial", "definition": "slowly going soft and bad at this moment", "example": "The smell of rotting fruit filled the market.",
+     {
+      "to": "fresh",
+      "relation": "antonym",
+      "note": "Fresh food is new and good to eat."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "rotting",
+    "relation": "participial",
+    "definition": "slowly going soft and bad at this moment",
+    "example": "The smell of rotting fruit filled the market.",
     "syn": [
-     {"to": "decaying", "relation": "synonym", "strength": 0.95, "note": "Very close, a little more formal."}
+     {
+      "to": "decaying",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close, a little more formal."
+     }
     ],
-    "ant": []},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family in this meaning."}
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family in this meaning."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Don't leave the apples in a plastic bag, or they will rot. Last week I found three rotten ones at the bottom of the bag.", "uses": ["rot", "rotten"]},
+  "context": {
+   "text": "Don't leave the apples in a plastic bag, or they will rot. Last week I found three rotten ones at the bottom of the bag.",
+   "uses": [
+    "rot",
+    "rotten"
+   ]
+  },
   "reviewer_note": "Rotten is the old participle used as the main adjective; rotting is an extra participial adjective."
  }
 ]
