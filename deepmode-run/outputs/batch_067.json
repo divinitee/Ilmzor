@@ -1,0 +1,519 @@
+[
+ {
+  "headword": "boom",
+  "word_id": "6a6ef9b2a601556148092699",
+  "word_ids": ["6a6ef9b2a601556148092699"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Growth",
+  "sense_pos": "noun",
+  "corpus_definition": "a sudden loud deep sound, or a period of fast growth",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "boom", "relation": "base",
+    "definition": "a time when trade or business grows very quickly",
+    "example": "There was a building boom in Tashkent after 2017.",
+    "syn": [
+     {"to": "upturn", "relation": "synonym", "strength": 0.8, "note": "A time when business starts to get better; a boom is bigger and faster."},
+     {"to": "growth", "relation": "related", "strength": 0.6, "note": "Easy, general word; growth can be slow, a boom is always fast."},
+     {"to": "increase", "relation": "related", "strength": 0.6, "note": "Any rise in number or amount; a boom is a big rise in business or interest."}
+    ],
+    "ant": [
+     {"to": "slump", "relation": "antonym", "note": "A time when sales or prices suddenly fall."},
+     {"to": "recession", "relation": "antonym", "note": "A time when a country's trade and industry are not doing well."}
+    ]
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "boom", "relation": "conversion",
+    "definition": "to grow very quickly and become very successful",
+    "example": "Online shopping is booming in Uzbekistan.",
+    "syn": [
+     {"to": "thrive", "relation": "synonym", "strength": 0.8, "note": "To do very well and keep growing; a little more formal."},
+     {"to": "flourish", "relation": "synonym", "strength": 0.8, "note": "To grow and do well; often used for businesses, plants and arts."},
+     {"to": "prosper", "relation": "synonym", "strength": 0.8, "note": "Formal: to become rich and successful.", "register": "formal"},
+     {"to": "grow", "relation": "related", "strength": 0.6, "note": "Easy, general word; grow can be slow, boom means very fast."}
+    ],
+    "ant": [
+     {"to": "decline", "relation": "antonym", "note": "To become smaller, weaker or less successful."},
+     {"to": "slump", "relation": "antonym", "note": "To fall suddenly in price, number or value."}
+    ]
+   },
+   {
+    "slot": "adjective", "status": "existing", "form": "booming", "relation": "participial",
+    "definition": "growing very fast and doing very well",
+    "example": "Samarkand has a booming tourist industry.",
+    "syn": [
+     {"to": "thriving", "relation": "synonym", "strength": 0.95, "note": "Very close: doing very well and growing."},
+     {"to": "flourishing", "relation": "synonym", "strength": 0.8, "note": "Doing well; a little more formal or literary."},
+     {"to": "successful", "relation": "related", "strength": 0.6, "note": "Easy word; successful means doing well, but not always growing fast."}
+    ],
+    "ant": [
+     {"to": "stagnant", "relation": "antonym", "note": "Not growing or changing at all."}
+    ]
+   },
+   {
+    "slot": "adverb", "status": "no_form",
+    "note": "Learner dictionaries have no adverb for boom."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {"affix": "-ing", "in_form": "booming", "meaning_key": "-ing", "also": ["exciting", "interesting", "growing"]}
+  ],
+  "context": {
+   "text": "There is a tourism boom in Bukhara this year. New hotels open every month, and the booming restaurant business needs more cooks.",
+   "uses": ["boom", "booming"]
+  },
+  "reviewer_note": "CORPUS: the definition joins two meanings (sound + fast growth); the example uses growth. Split into two maps, Growth and Sound, sharing the same word_id."
+ },
+ {
+  "headword": "boom",
+  "word_id": "6a6ef9b2a601556148092699",
+  "word_ids": ["6a6ef9b2a601556148092699"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Sound",
+  "sense_pos": "noun",
+  "corpus_definition": "a sudden loud deep sound, or a period of fast growth",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "boom", "relation": "base",
+    "definition": "a loud, deep sound that lasts for a short time",
+    "example": "We heard the boom of thunder over the mountains.",
+    "syn": [
+     {"to": "bang", "relation": "synonym", "strength": 0.8, "note": "A sudden loud noise; a bang is sharper, a boom is deeper."},
+     {"to": "rumble", "relation": "related", "strength": 0.6, "note": "A long, low sound, like far-away thunder; quieter than a boom."},
+     {"to": "roar", "relation": "related", "strength": 0.6, "note": "A long, loud, deep sound, like a lion or an engine."},
+     {"to": "noise", "relation": "related", "strength": 0.4, "note": "Easy, general word for any sound, often unpleasant."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "boom", "relation": "conversion",
+    "definition": "to make a loud, deep sound",
+    "example": "The teacher's voice boomed across the hall.",
+    "syn": [
+     {"to": "thunder", "relation": "synonym", "strength": 0.8, "note": "To make a very loud, deep sound, like a storm."},
+     {"to": "roar", "relation": "synonym", "strength": 0.8, "note": "To make a long, loud, deep sound; also used for engines and lions."},
+     {"to": "rumble", "relation": "related", "strength": 0.6, "note": "To make a long, low sound; quieter than boom."},
+     {"to": "shout", "relation": "related", "strength": 0.4, "note": "Easy word: to speak very loudly. Boom is used for deep, strong voices."}
+    ],
+    "ant": [
+     {"to": "whisper", "relation": "antonym", "note": "To speak very quietly, using only your breath."}
+    ]
+   },
+   {
+    "slot": "adjective", "status": "existing", "form": "booming", "relation": "participial",
+    "definition": "very loud and deep, usually about a voice",
+    "example": "My grandfather has a booming voice.",
+    "syn": [
+     {"to": "loud", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; booming is loud and also deep."},
+     {"to": "thunderous", "relation": "synonym", "strength": 0.8, "note": "Extremely loud, like thunder; often used for applause."},
+     {"to": "deep", "relation": "related", "strength": 0.6, "note": "Low in sound; a deep voice is not always loud."}
+    ],
+    "ant": [
+     {"to": "quiet", "relation": "antonym", "note": "Making very little noise."},
+     {"to": "soft", "relation": "antonym", "note": "Not loud, gentle to hear."}
+    ]
+   },
+   {
+    "slot": "adverb", "status": "no_form",
+    "note": "Learner dictionaries have no adverb for boom."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {"affix": "-ing", "in_form": "booming", "meaning_key": "-ing", "also": ["exciting", "interesting", "amazing"]}
+  ],
+  "context": {
+   "text": "Last night we heard a loud boom from the mountains. Thunder boomed for hours, and my father said in his booming voice, \"Go to sleep!\"",
+   "uses": ["boom", "boomed", "booming"]
+  },
+  "reviewer_note": "CORPUS: the definition joins two meanings; this is the Sound map (the Growth map shares the word_id)."
+ },
+ {
+  "headword": "brand",
+  "word_id": "6a42800cb9d8fc24968a4b64",
+  "word_ids": ["6a42800cb9d8fc24968a4b64"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Product",
+  "sense_pos": "noun",
+  "corpus_definition": "The name of a product made by one company.",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "brand", "relation": "base",
+    "definition": "the name a company gives to the products it makes",
+    "example": "Which brand of tea do you usually buy?",
+    "syn": [
+     {"to": "make", "relation": "synonym", "strength": 0.8, "note": "Used mostly for cars, phones and machines: \"What make is your car?\""},
+     {"to": "label", "relation": "synonym", "strength": 0.8, "note": "Used mostly for clothes and music: \"a designer label\"."},
+     {"to": "trademark", "relation": "related", "strength": 0.6, "note": "A name or sign that only one company is allowed to use by law."},
+     {"to": "logo", "relation": "related", "strength": 0.4, "note": "The picture or sign of a company, not its name."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun", "status": "existing", "form": "branding", "relation": "derivational",
+    "definition": "the work of giving a product a name and an image that people remember",
+    "example": "Good branding helps a small shop look professional.",
+    "syn": [
+     {"to": "marketing", "relation": "related", "strength": 0.6, "note": "All the work of selling and advertising a product, not only its name and image."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "brand", "relation": "conversion",
+    "definition": "to give a product a special name, design or image so people know it",
+    "example": "The company branded its new juice as a healthy drink for children.",
+    "syn": [
+     {"to": "label", "relation": "related", "strength": 0.6, "note": "To put a name or words on something; brand is about the product's whole image."},
+     {"to": "market", "relation": "related", "strength": 0.6, "note": "To advertise and sell a product in a certain way."}
+    ],
+    "ant": [],
+    "note": "Brand someone as a liar = call someone something bad; that is a different meaning."
+   },
+   {
+    "slot": "adjective", "status": "existing", "form": "branded", "relation": "participial",
+    "definition": "made by a well-known company and sold with its name",
+    "example": "Branded clothes are more expensive at the bazaar.",
+    "syn": [
+     {"to": "proprietary", "relation": "related", "strength": 0.6, "note": "Formal: owned and sold only by one company.", "register": "formal"}
+    ],
+    "ant": [
+     {"to": "generic", "relation": "antonym", "note": "Sold without a famous company name, usually cheaper: generic medicine."}
+    ]
+   },
+   {
+    "slot": "adverb", "status": "no_form",
+    "note": "Learner dictionaries have no adverb for brand."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {"affix": "-ing", "in_form": "branding", "meaning_key": "-ing", "also": ["marketing", "advertising", "shopping"]}
+  ],
+  "context": {
+   "text": "My cousin opened a small bakery in Namangan. She spent a lot on branding, and now her brand is famous in the city. People even ask for her branded boxes of cookies.",
+   "uses": ["branding", "brand", "branded"]
+  },
+  "reviewer_note": "brand-new comes from an older meaning (fire) and is a compound, so it is left out; brand someone as is noted as a different meaning."
+ },
+ {
+  "headword": "break down",
+  "word_id": "6a42800cb9d8fc24968a4b48",
+  "word_ids": ["6a42800cb9d8fc24968a4b48"],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Machine",
+  "sense_pos": "verb",
+  "corpus_definition": "To stop working because of a mechanical problem.",
+  "particle_note": "In this meaning it has no object, so it is not separated: \"The car broke down.\" Break something down (separable) has other meanings, like dividing into parts. Noun: a breakdown.",
+  "relations": [
+   {"to": "stop working", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."},
+   {"to": "fail", "relation": "synonym", "strength": 0.8, "note": "Used for machines and parts: \"The brakes failed.\""},
+   {"to": "conk out", "relation": "synonym", "strength": 0.8, "note": "Informal: \"The old fridge finally conked out.\"", "register": "informal"},
+   {"to": "malfunction", "relation": "related", "strength": 0.6, "note": "Formal, technical: to not work correctly, but maybe not stop.", "register": "formal"}
+  ],
+  "context": {
+   "text": "Our car broke down on the road to Fergana. We waited two hours for help, because cars often break down in the summer heat.",
+   "uses": ["broke down", "break down"]
+  },
+  "reviewer_note": "Kept only the machine meaning; noted the separable 'divide into parts' meaning and the noun breakdown in the particle note."
+ },
+ {
+  "headword": "break into",
+  "word_id": "6a42821646ba24054c1dcc7f",
+  "word_ids": ["6a42821646ba24054c1dcc7f"],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Crime",
+  "sense_pos": "verb",
+  "corpus_definition": "to enter a building using force and without permission to steal things",
+  "particle_note": "Not separable: \"break into a house\", never \"break a house into\". Without an object use break in: \"Thieves broke in last night.\"",
+  "relations": [
+   {"to": "burgle", "relation": "synonym", "strength": 0.8, "note": "British English: \"Our flat was burgled.\" American English says burglarize."},
+   {"to": "break in", "relation": "synonym", "strength": 0.8, "note": "Same meaning, but used without an object: \"Someone broke in.\""},
+   {"to": "rob", "relation": "related", "strength": 0.6, "note": "To steal from a person or place; you can rob without breaking in."},
+   {"to": "enter", "relation": "related", "strength": 0.4, "note": "Easy, general word for going into a place, with or without permission."}
+  ],
+  "context": {
+   "text": "Someone tried to break into our neighbour's house last night. The thieves broke into the kitchen through a window, but the dog woke everyone up.",
+   "uses": ["break into", "broke into"]
+  },
+  "reviewer_note": "Kept the crime meaning only; break into song/laughter is a different meaning."
+ },
+ {
+  "headword": "breathing",
+  "word_id": "6a4288ad6941e70ad6a00e8b",
+  "word_ids": ["6a4288ad6941e70ad6a00e8b"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Air",
+  "sense_pos": "noun",
+  "corpus_definition": "Taking air in and out of your lungs.",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "breathing", "relation": "base",
+    "definition": "the action of taking air into your lungs and letting it out",
+    "example": "Deep breathing can help you relax before an exam.",
+    "syn": [
+     {"to": "respiration", "relation": "synonym", "strength": 0.8, "note": "Formal or medical word with the same meaning.", "register": "formal"},
+     {"to": "inhalation", "relation": "related", "strength": 0.4, "note": "Formal: only taking air in, not letting it out.", "register": "formal"}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun", "status": "existing", "form": "breath", "relation": "derivational",
+    "definition": "the air that goes into and out of your lungs",
+    "example": "Take a deep breath and count to ten.",
+    "note": "Spelling and sound: breath /breθ/ is the noun, breathe /briːð/ is the verb.",
+    "syn": [
+     {"to": "air", "relation": "related", "strength": 0.4, "note": "Easy, general word for what we take in; breath is the air of one person."},
+     {"to": "gasp", "relation": "related", "strength": 0.4, "note": "A quick, loud intake of air, often from surprise or pain."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "breathe", "relation": "derivational",
+    "definition": "to take air into your lungs and let it out again",
+    "example": "It was hard to breathe in the hot, crowded bus.",
+    "syn": [
+     {"to": "respire", "relation": "synonym", "strength": 0.8, "note": "Formal, scientific word with the same meaning.", "register": "formal"},
+     {"to": "inhale", "relation": "related", "strength": 0.6, "note": "Only taking air in."},
+     {"to": "exhale", "relation": "related", "strength": 0.6, "note": "Only letting air out."},
+     {"to": "pant", "relation": "related", "strength": 0.4, "note": "To take short, quick breaths, for example after running."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective", "status": "existing", "form": "breathless", "relation": "derivational",
+    "definition": "having difficulty getting enough air, for example after running",
+    "example": "I was breathless after climbing to the fifth floor.",
+    "syn": [
+     {"to": "winded", "relation": "synonym", "strength": 0.8, "note": "Unable to get enough air for a short time after exercise or a hit."},
+     {"to": "panting", "relation": "related", "strength": 0.6, "note": "Taking quick, short breaths with an open mouth."},
+     {"to": "tired", "relation": "related", "strength": 0.4, "note": "Easy word: needing rest; you can be tired without trouble getting air."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective", "status": "other_meaning", "form": "breathable",
+    "definition": "letting air pass through easily, used about cloth",
+    "example": "Cotton is a breathable fabric, good for the summer.",
+    "note": "Belongs to breathe = letting air through cloth or a material, not taking air into your lungs."
+   },
+   {
+    "slot": "adverb", "status": "existing", "form": "breathlessly", "relation": "derivational",
+    "definition": "in a way that shows you can hardly get enough air",
+    "example": "She ran into the room and spoke breathlessly.",
+    "syn": [
+     {"to": "heavily", "relation": "related", "strength": 0.4, "note": "Breathe heavily = take slow, loud, deep breaths, for example when tired."}
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {"affix": "-less", "in_form": "breathless", "meaning_key": "-less", "also": ["homeless", "careless", "useless"]},
+   {"affix": "-ly", "in_form": "breathlessly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]}
+  ],
+  "context": {
+   "text": "Deep breathing helps me relax. After I ran up the stairs in our building in Chilonzor, I was breathless and could hardly breathe.",
+   "uses": ["breathing", "breathless", "breathe"]
+  },
+  "reviewer_note": "Headword is the -ing noun; breath and breathe both shown. breathtaking left out (compound); breathable is other_meaning (cloth)."
+ },
+ {
+  "headword": "bring up",
+  "word_id": "6a42662edeeb39f88113012e",
+  "word_ids": ["6a42662edeeb39f88113012e"],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Children",
+  "sense_pos": "verb",
+  "corpus_definition": "To care for a child until they become an adult.",
+  "particle_note": "Separable: \"bring up four children\" or \"bring them up\" (a pronoun goes in the middle). Often passive: \"I was brought up in Samarkand.\" Noun: upbringing.",
+  "relations": [
+   {"to": "raise", "relation": "synonym", "strength": 0.95, "note": "Same meaning; very common in American English."},
+   {"to": "rear", "relation": "synonym", "strength": 0.8, "note": "Formal or old-fashioned; also used for animals.", "register": "formal"},
+   {"to": "look after", "relation": "related", "strength": 0.6, "note": "To take care of someone for a time, not always until they are adults."},
+   {"to": "nurture", "relation": "related", "strength": 0.6, "note": "Formal: to care for and help someone grow and develop.", "register": "formal"}
+  ],
+  "context": {
+   "text": "My grandmother brought up six children in a small village near Khiva. She says bringing them up was hard work but the happiest time of her life.",
+   "uses": ["brought up", "bringing them up"]
+  },
+  "reviewer_note": "Kept the children meaning; bring up a topic (mention) is a different meaning."
+ },
+ {
+  "headword": "browser",
+  "word_id": "6a4288ad6941e70ad6a00e59",
+  "word_ids": ["6a4288ad6941e70ad6a00e59"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Internet",
+  "sense_pos": "noun",
+  "corpus_definition": "A program used to look at websites on the computer.",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "browser", "relation": "base",
+    "definition": "a computer program that you use to look at websites",
+    "example": "Open your browser and type the address of the website.",
+    "syn": [
+     {"to": "program", "relation": "related", "strength": 0.4, "note": "Easy, general word; a browser is one kind of program."},
+     {"to": "search engine", "relation": "related", "strength": 0.4, "note": "Careful: a search engine like Google finds websites; the browser shows them."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun", "status": "existing", "form": "browsing", "relation": "derivational",
+    "definition": "the activity of looking at different websites on the internet",
+    "example": "You can delete your browsing history in the settings.",
+    "syn": [
+     {"to": "surfing", "relation": "related", "strength": 0.6, "note": "Informal: moving from one website to another for fun.", "register": "informal"}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "browse", "relation": "derivational",
+    "definition": "to look at different pages on the internet",
+    "example": "I browsed online shops to find a cheap phone.",
+    "note": "Browse also means to look at things in a shop without a plan to buy.",
+    "syn": [
+     {"to": "surf", "relation": "synonym", "strength": 0.8, "note": "Surf the internet = move from one website to another, often for fun."},
+     {"to": "search", "relation": "related", "strength": 0.6, "note": "To look for something special; browse is looking without a clear plan."},
+     {"to": "scan", "relation": "related", "strength": 0.4, "note": "To look at something quickly to find the important parts."}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective", "status": "no_form",
+    "note": "Learner dictionaries have no adjective for browse or browser."
+   },
+   {
+    "slot": "adverb", "status": "no_form",
+    "note": "Learner dictionaries have no adverb for browse or browser."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {"affix": "-er", "in_form": "browser", "meaning_key": "-er", "also": ["printer", "computer", "player"]}
+  ],
+  "context": {
+   "text": "I opened my browser and browsed a few online shops in Tashkent. Now my browsing history is full of phones.",
+   "uses": ["browser", "browsed", "browsing"]
+  },
+  "reviewer_note": "Headword is itself a thing noun, so it stays main entry of the noun slot (rule 6); 'web browser' not listed as a synonym because it contains the headword."
+ },
+ {
+  "headword": "build up",
+  "word_id": "6a4282fd46ba24054c1dcd90",
+  "word_ids": ["6a4282fd46ba24054c1dcd90"],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Increase",
+  "sense_pos": "verb",
+  "corpus_definition": "To increase in amount over a period of time.",
+  "particle_note": "In this meaning it has no object, so it is not separated: \"Traffic builds up after 5 p.m.\" With an object it is separable: \"build up your strength / build it up\". Noun: a build-up.",
+  "relations": [
+   {"to": "accumulate", "relation": "synonym", "strength": 0.95, "note": "Same meaning, more formal and common in writing.", "register": "formal"},
+   {"to": "pile up", "relation": "synonym", "strength": 0.8, "note": "Informal; used for things like work, dishes or rubbish."},
+   {"to": "increase", "relation": "synonym", "strength": 0.8, "note": "General word; build up adds the idea of slowly, little by little."},
+   {"to": "grow", "relation": "related", "strength": 0.6, "note": "Easy, general word for becoming bigger."},
+   {"to": "decrease", "relation": "antonym", "note": "To become smaller in amount or number."}
+  ],
+  "context": {
+   "text": "If we don't clean the yard, rubbish will build up quickly. Last summer it built up so much that the neighbours complained.",
+   "uses": ["build up", "built up"]
+  },
+  "reviewer_note": "Kept the intransitive 'increase' meaning; build up strength/a business (transitive) is noted in the particle note."
+ },
+ {
+  "headword": "bump",
+  "word_id": "6a6ef9b2a601556148092803",
+  "word_ids": ["6a6ef9b2a601556148092803"],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Hitting",
+  "sense_pos": "verb",
+  "corpus_definition": "To hit something or someone by accident.",
+  "forms": [
+   {
+    "slot": "noun", "status": "existing", "form": "bump", "relation": "conversion",
+    "definition": "a light hit, or the sound of something hitting a surface",
+    "example": "I heard a bump when the bag fell off the shelf.",
+    "note": "A bump can also be a small raised area, for example on your head after a hit.",
+    "syn": [
+     {"to": "knock", "relation": "synonym", "strength": 0.95, "note": "Very close: a light hit, or its sound."},
+     {"to": "bang", "relation": "synonym", "strength": 0.8, "note": "A harder hit with a louder noise."},
+     {"to": "collision", "relation": "related", "strength": 0.6, "note": "Formal: when two things, like cars, hit each other.", "register": "formal"}
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb", "status": "existing", "form": "bump", "relation": "base",
+    "definition": "to hit something or someone by accident",
+    "example": "I bumped my knee on the table.",
+    "note": "Bump into someone also means to meet them by chance: \"I bumped into my teacher at the bazaar.\"",
+    "syn": [
+     {"to": "knock", "relation": "synonym", "strength": 0.8, "note": "To hit something, often lightly or by accident."},
+     {"to": "hit", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; hit can be on purpose, bump is by accident."},
+     {"to": "bang", "relation": "synonym", "strength": 0.8, "note": "To hit something hard and noisily."},
+     {"to": "collide", "relation": "related", "strength": 0.6, "note": "Formal: when two moving things hit each other.", "register": "formal"}
+    ],
+    "ant": [
+     {"to": "miss", "relation": "antonym", "note": "To not hit something you were close to."}
+    ]
+   },
+   {
+    "slot": "adjective", "status": "other_meaning", "form": "bumpy",
+    "definition": "having many raised parts, so it is not smooth",
+    "example": "The road to the village is very bumpy.",
+    "note": "Belongs to bump = a raised area on a surface (and a bumpy ride), not hitting something by accident."
+   },
+   {
+    "slot": "adverb", "status": "no_form",
+    "note": "No common adverb; bumpily is very rare."
+   }
+  ],
+  "people": [
+   {
+    "form": "bumper", "kind": "thing", "status": "existing",
+    "definition": "the bar at the front and back of a car that protects it in a small accident",
+    "example": "The bumper of my car was damaged in the parking lot."
+   }
+  ],
+  "affixes": [
+   {"affix": "-er", "in_form": "bumper", "meaning_key": "-er", "also": ["heater", "cooker", "printer"]}
+  ],
+  "context": {
+   "text": "On the bus to Andijan, I bumped my head on the window. There was a loud bump, and everyone looked at me.",
+   "uses": ["bumped", "bump"]
+  },
+  "reviewer_note": "Headword is a verb; noun bump is a conversion. bumpy is other_meaning (raised areas). bump into = meet by chance noted on the verb."
+ },
+ {
+  "headword": "by air",
+  "word_id": "6a4265fb84a10cdfe9e55d90",
+  "word_ids": ["6a4265fb84a10cdfe9e55d90"],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Travel",
+  "sense_pos": "adverb",
+  "corpus_definition": "Traveling using an airplane.",
+  "usage_note": "travel / go / send something + by air, with no article: \"We went by air\" (not \"by the air\"). Same pattern: by car, by train, by sea.",
+  "relations": [
+   {"to": "by plane", "relation": "synonym", "strength": 0.95, "note": "Same meaning, a little less formal."},
+   {"to": "fly", "relation": "related", "strength": 0.6, "note": "Easy verb: \"We flew to Istanbul\" = we went by air."},
+   {"to": "airmail", "relation": "related", "strength": 0.4, "note": "Letters and parcels sent by air."},
+   {"to": "by land", "relation": "antonym", "note": "Travelling on the ground, by car, bus or train."},
+   {"to": "by sea", "relation": "antonym", "note": "Travelling on a ship."}
+  ],
+  "context": {
+   "text": "Going to Moscow by air takes about four hours. By train it takes three days, so most people prefer to travel by air.",
+   "uses": ["by air"]
+  },
+  "reviewer_note": "CORPUS: 'Traveling' is American spelling (British: travelling). Antonyms are other ways to travel, by land and by sea."
+ }
+]
