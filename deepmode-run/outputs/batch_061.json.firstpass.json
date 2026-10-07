@@ -1,0 +1,171 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "wool",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "woollen: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wool",
+       "wools"
+      ]
+     },
+     "irregular": true
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "woollier"
+      ],
+      "JJS": [
+       "woolliest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Spelling trap: British woollen/woolly vs American woolen/wooly; no affix claimed because -en is not in the affix table and the -y split doubles the l."
+  },
+  {
+   "headword": "work as",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Article trap for Uzbek/Russian speakers: work as + a/an + job."
+  },
+  {
+   "headword": "work for",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Verb + preposition kept as phrasal per kind_hint; work for vs work at explained."
+  },
+  {
+   "headword": "work out",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Map keeps only the 'find the answer' sense; the exercise sense (work out at the gym) is a different meaning and is not mixed in."
+  },
+  {
+   "headword": "working hours",
+   "kind": "phrase",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed noun phrase; plural verb agreement noted."
+  },
+  {
+   "headword": "worm",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: wormy"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: wormy. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "worm: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "worms",
+       "worm"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Compounds (earthworm, silkworm) left out per rule 7; same-spelling verb is other_meaning."
+  },
+  {
+   "headword": "worry about",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Verb + preposition kept as phrasal per kind_hint; worry about vs care about contrasted."
+  },
+  {
+   "headword": "write down",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text has 1 sentence(s), needs 2–3"
+    }
+   ],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "No true antonym, so the list has none."
+  },
+  {
+   "headword": "a relationship with",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Preposition trap: relationship with a person, relationship between two people."
+  },
+  {
+   "headword": "abandon",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "abandonment: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "abandonment"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "abandoned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun 'abandon' (with wild abandon) is a different meaning, shown as other_meaning extra; map keeps the 'leave forever' sense."
+  }
+ ]
+}
