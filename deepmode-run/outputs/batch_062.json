@@ -1,0 +1,965 @@
+[
+ {
+  "headword": "abnormal",
+  "word_id": "6a6ef9b2a601556148092864",
+  "word_ids": [
+   "6a6ef9b2a601556148092864"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Unusual",
+  "sense_pos": "adjective",
+  "corpus_definition": "different from what is usual, expected, or typical",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "abnormality",
+    "relation": "derivational",
+    "definition": "something that is not usual, often in the body",
+    "example": "The doctor found no abnormality in the X-ray.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "abnormal",
+    "relation": "base",
+    "definition": "different from what is usual, often in a worrying way",
+    "example": "This hot weather is abnormal for March.",
+    "syn": [
+     {
+      "to": "unusual",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not common; less worrying."
+     },
+     {
+      "to": "strange",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Unusual and hard to explain."
+     },
+     {
+      "to": "irregular",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not happening in the usual pattern."
+     }
+    ],
+    "ant": [
+     {
+      "to": "normal",
+      "relation": "antonym",
+      "note": "Usual and expected."
+     },
+     {
+      "to": "typical",
+      "relation": "antonym",
+      "note": "Showing the usual qualities."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "abnormally",
+    "relation": "derivational",
+    "definition": "in a way that is not usual",
+    "example": "It was abnormally cold in April.",
+    "syn": [
+     {
+      "to": "unusually",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; more common."
+     }
+    ],
+    "ant": [
+     {
+      "to": "normally",
+      "relation": "antonym",
+      "note": "In the usual way."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "in_form": "abnormally",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "The doctor said Akmal's high temperature was abnormal. It stayed abnormally high for three days.",
+   "uses": [
+    "abnormal",
+    "abnormally"
+   ]
+  },
+  "reviewer_note": "normal is the opposite, so it sits in ant."
+ },
+ {
+  "headword": "absence",
+  "word_id": "6a6ef9b2a601556148092850",
+  "word_ids": [
+   "6a6ef9b2a601556148092850"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Not there",
+  "sense_pos": "noun",
+  "corpus_definition": "the state of not being present somewhere",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "absence",
+    "relation": "base",
+    "definition": "the fact of not being in a place where you should be",
+    "example": "Her absence from class worried the teacher.",
+    "syn": [
+     {
+      "to": "non-attendance",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: not going to school or work."
+     }
+    ],
+    "ant": [
+     {
+      "to": "presence",
+      "relation": "antonym",
+      "note": "Being in a place."
+     },
+     {
+      "to": "attendance",
+      "relation": "antonym",
+      "note": "Being present at school or work."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "absent",
+    "relation": "derivational",
+    "definition": "not in the place where you are expected to be",
+    "example": "Three students are absent today.",
+    "syn": [
+     {
+      "to": "away",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not here; informal."
+     },
+     {
+      "to": "missing",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not where it should be, and nobody knows where."
+     }
+    ],
+    "ant": [
+     {
+      "to": "present",
+      "relation": "antonym",
+      "note": "In the place; here."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "absently",
+    "definition": "in a way that shows you are thinking about something else",
+    "example": "He nodded absently.",
+    "note": "Belongs to absent = not paying attention, not being away."
+   }
+  ],
+  "people": [
+   {
+    "form": "absentee",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who is not at school or work when expected",
+    "example": "There were five absentees at the meeting."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ee",
+    "in_form": "absentee",
+    "meaning_key": "-ee",
+    "also": [
+     "employee",
+     "refugee",
+     "trainee"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Bekzod was absent from school on Monday. His teacher asked his mother about the reason for his absence.",
+   "uses": [
+    "absent",
+    "absence"
+   ]
+  },
+  "reviewer_note": "absently is a different sense. verb \"absent yourself\" is formal and rare, so no_form."
+ },
+ {
+  "headword": "accent",
+  "word_id": "6a6ef83f0f1e82a5a0736669",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a0736669",
+   "6a42816a2098612b1526f928"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Speaking",
+  "sense_pos": "noun",
+  "corpus_definition": "A way of speaking typical of a certain region.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "accent",
+    "relation": "base",
+    "definition": "the way people from one place or country say words",
+    "example": "She speaks English with a Russian accent.",
+    "syn": [
+     {
+      "to": "pronunciation",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "How a person says words."
+     },
+     {
+      "to": "dialect",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A local form of a language, with its own words too."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "accentuate",
+    "definition": "to make something easier to notice",
+    "example": "The dress accentuates her eyes.",
+    "note": "Belongs to accent = special attention to something, not a way of speaking."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "accented",
+    "relation": "participial",
+    "definition": "spoken with the accent of another place",
+    "example": "He speaks heavily accented English.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My cousin from Khorezm has a strong local accent. Even his accented Russian sounds friendly and warm.",
+   "uses": [
+    "accent",
+    "accented"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. Accent on a letter or word is a different sense, not covered."
+ },
+ {
+  "headword": "access",
+  "word_id": "6a6ef83f0f1e82a5a07367f9",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367f9"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Entry",
+  "sense_pos": "noun",
+  "corpus_definition": "the right or ability to enter or use something",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "access",
+    "relation": "base",
+    "definition": "the right or chance to enter a place or use something",
+    "example": "Students have free access to the library.",
+    "syn": [
+     {
+      "to": "entry",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The right to go into a place."
+     },
+     {
+      "to": "admission",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Permission to enter, often with a ticket."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "accessibility",
+    "relation": "derivational",
+    "definition": "how easy something is to reach, enter or use",
+    "example": "The new metro improved accessibility for wheelchair users.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "access",
+    "relation": "conversion",
+    "definition": "to enter a place or get information, often on a computer",
+    "example": "You can access your results online.",
+    "syn": [
+     {
+      "to": "reach",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Get to a place."
+     },
+     {
+      "to": "open",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Open a file or program."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "accessible",
+    "relation": "derivational",
+    "definition": "easy to reach, enter or use",
+    "example": "The museum is accessible by bus.",
+    "syn": [
+     {
+      "to": "reachable",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Possible to get to."
+     },
+     {
+      "to": "available",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Possible to get or use."
+     }
+    ],
+    "ant": [
+     {
+      "to": "inaccessible",
+      "relation": "antonym",
+      "note": "Impossible or very hard to reach."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ible",
+    "in_form": "accessible",
+    "meaning_key": "-ible",
+    "also": [
+     "possible",
+     "visible",
+     "terrible"
+    ]
+   },
+   {
+    "affix": "-ity",
+    "in_form": "accessibility",
+    "meaning_key": "-ity",
+    "also": [
+     "ability",
+     "activity",
+     "reality"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Our new school building has a ramp, so it is accessible for everyone. All pupils also get free internet access in the library.",
+   "uses": [
+    "accessible",
+    "access"
+   ]
+  },
+  "reviewer_note": "inaccessible placed in ant."
+ },
+ {
+  "headword": "accommodation",
+  "word_id": "6a4265fb84a10cdfe9e55d6b",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d6b"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Place to stay",
+  "sense_pos": "noun",
+  "corpus_definition": "A place to stay like a hotel room.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "accommodation",
+    "relation": "base",
+    "definition": "a place where you live or stay, like a room or flat",
+    "example": "The price includes flights and accommodation.",
+    "note": "Uncountable in British English; American English often uses \"accommodations\".",
+    "syn": [
+     {
+      "to": "lodging",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A place to stay, more formal or old-fashioned."
+     },
+     {
+      "to": "housing",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Houses and flats for people to live in."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "accommodate",
+    "relation": "derivational",
+    "definition": "to give someone a place to stay, or to have room for",
+    "example": "The hotel can accommodate two hundred guests.",
+    "syn": [
+     {
+      "to": "house",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Give people a place to live."
+     },
+     {
+      "to": "hold",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Have space for."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "accommodating",
+    "definition": "happy to help and do what people want",
+    "example": "The staff were very accommodating.",
+    "note": "Belongs to accommodate = help, not giving a room."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ation",
+    "in_form": "accommodation",
+    "meaning_key": "-ation",
+    "also": [
+     "education",
+     "decision",
+     "invitation"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Finding accommodation in Samarkand is easy in winter. In spring, small hotels can only accommodate a few guests, so book early.",
+   "uses": [
+    "accommodation",
+    "accommodate"
+   ]
+  },
+  "reviewer_note": "accommodating = helpful is a different sense."
+ },
+ {
+  "headword": "accurate",
+  "word_id": "6a6ef83f0f1e82a5a07366cd",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07366cd"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Correct",
+  "sense_pos": "adjective",
+  "corpus_definition": "Correct and without any mistakes.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "accuracy",
+    "relation": "derivational",
+    "definition": "the quality of being correct and exact",
+    "example": "Check the accuracy of your answers.",
+    "syn": [
+     {
+      "to": "precision",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Being very exact."
+     },
+     {
+      "to": "correctness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Being right."
+     }
+    ],
+    "ant": [
+     {
+      "to": "inaccuracy",
+      "relation": "antonym",
+      "note": "A mistake, or not being exact."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "accurate",
+    "relation": "base",
+    "definition": "correct and exact, with no mistakes",
+    "example": "The weather report was accurate.",
+    "syn": [
+     {
+      "to": "correct",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Right; easy word."
+     },
+     {
+      "to": "exact",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Correct in every detail."
+     },
+     {
+      "to": "precise",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very exact; more formal."
+     }
+    ],
+    "ant": [
+     {
+      "to": "inaccurate",
+      "relation": "antonym",
+      "note": "Not correct or exact."
+     },
+     {
+      "to": "wrong",
+      "relation": "antonym",
+      "note": "Not correct."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "accurately",
+    "relation": "derivational",
+    "definition": "in a correct and exact way",
+    "example": "Measure the room accurately.",
+    "syn": [
+     {
+      "to": "exactly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In an exact way."
+     },
+     {
+      "to": "correctly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In a right way."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "in_form": "accurately",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "The new map app is very accurate. It shows accurately where every bus is in Tashkent.",
+   "uses": [
+    "accurate",
+    "accurately"
+   ]
+  },
+  "reviewer_note": "inaccurate placed in ant."
+ },
+ {
+  "headword": "ache",
+  "word_id": "6a6ef9b2a601556148092760",
+  "word_ids": [
+   "6a6ef9b2a601556148092760"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Pain",
+  "sense_pos": "noun",
+  "corpus_definition": "A dull, continuous feeling of being hurt in your body.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "ache",
+    "relation": "base",
+    "definition": "a pain that is not strong but goes on for a long time",
+    "example": "I have an ache in my back.",
+    "syn": [
+     {
+      "to": "pain",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "General word; can be sudden or strong."
+     },
+     {
+      "to": "soreness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Pain from tired or hurt muscles."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "ache",
+    "relation": "conversion",
+    "definition": "to feel a dull pain that goes on and on",
+    "example": "My legs ached after the long walk.",
+    "syn": [
+     {
+      "to": "hurt",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Feel pain."
+     },
+     {
+      "to": "throb",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Hurt with a beating feeling."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "aching",
+    "relation": "participial",
+    "definition": "feeling a dull, long pain",
+    "example": "He rubbed his aching shoulders.",
+    "syn": [
+     {
+      "to": "sore",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Painful."
+     },
+     {
+      "to": "achy",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Informal, same meaning."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "After a day in the cotton fields, Grandpa feels an ache in his back. He sits down and rests his aching legs.",
+   "uses": [
+    "ache",
+    "aching"
+   ]
+  },
+  "reviewer_note": "headache, toothache are compounds, left out (rule 7)."
+ },
+ {
+  "headword": "add up",
+  "word_id": "6a42800cb9d8fc24968a4b7f",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b7f"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Numbers",
+  "sense_pos": "verb",
+  "corpus_definition": "to calculate the total amount of several numbers",
+  "particle_note": "Separable: \"add up the numbers / add the numbers up\"; with a pronoun only \"add them up\". \"add up to\" = make a total: \"It adds up to 50,000 som.\"",
+  "relations": [
+   {
+    "to": "total",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Find or make the total."
+   },
+   {
+    "to": "calculate",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Find an answer using numbers."
+   },
+   {
+    "to": "count up",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Find how many there are."
+   },
+   {
+    "to": "take away",
+    "relation": "antonym",
+    "note": "Remove one number from another."
+   }
+  ],
+  "context": {
+   "text": "At the bazaar Ulugbek added up the prices in his head. The fruit and bread added up to 45,000 som.",
+   "uses": [
+    "added up",
+    "added up to"
+   ]
+  },
+  "reviewer_note": "\"It doesn't add up\" (makes no sense) not covered."
+ },
+ {
+  "headword": "affair",
+  "word_id": "6a6ef9b2a6015561480928b4",
+  "word_ids": [
+   "6a6ef9b2a6015561480928b4"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Matter",
+  "sense_pos": "noun",
+  "corpus_definition": "an event, situation, or matter that needs attention",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "affair",
+    "relation": "base",
+    "definition": "an event or situation, or a matter people must deal with",
+    "example": "The wedding was a big family affair.",
+    "note": "Plural affairs = public or personal business: \"current affairs\". \"an affair\" can also mean a secret love relationship.",
+    "syn": [
+     {
+      "to": "matter",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A subject or situation to deal with."
+     },
+     {
+      "to": "business",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something that is your concern: \"It is my business.\""
+     },
+     {
+      "to": "event",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something that happens, like a party."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The opening of the new park was a big affair in our town. The mayor said the park is now an affair for all citizens.",
+   "uses": [
+    "affair"
+   ]
+  },
+  "reviewer_note": "Love-relationship sense noted, not covered."
+ },
+ {
+  "headword": "affect",
+  "word_id": "6a6ef83f0f1e82a5a073685d",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073685d",
+   "6a42821646ba24054c1dccc7"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Change",
+  "sense_pos": "verb",
+  "corpus_definition": "To cause a change in someone or something.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "affection",
+    "definition": "a feeling of liking and love for someone",
+    "example": "She has great affection for her grandmother.",
+    "note": "Belongs to an old sense of affect = feelings, not causing change."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "affect",
+    "relation": "base",
+    "definition": "to change or influence someone or something",
+    "example": "Cold weather affects the cotton harvest.",
+    "note": "affect is a verb; effect is the noun (the result).",
+    "syn": [
+     {
+      "to": "influence",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Have an effect on how something develops."
+     },
+     {
+      "to": "change",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Make something different."
+     },
+     {
+      "to": "impact",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Have a strong effect; more formal."
+     }
+    ],
+    "ant": [],
+    "not_family": [
+     "effect"
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "affected",
+    "relation": "participial",
+    "definition": "changed or harmed by something",
+    "example": "People in affected areas need help.",
+    "syn": [
+     {
+      "to": "hit",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Badly affected: \"the hardest-hit areas\"."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unaffected",
+      "relation": "antonym",
+      "note": "Not changed by something."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The long summer heat affected many farms. Families in the affected villages got water from the government.",
+   "uses": [
+    "affected",
+    "affected villages"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. effect is a different word, listed as not_family."
+ }
+]

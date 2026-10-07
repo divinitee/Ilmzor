@@ -1,0 +1,976 @@
+[
+ {
+  "headword": "birthplace",
+  "word_id": "6a6ef83f0f1e82a5a073671e",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073671e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Place",
+  "sense_pos": "noun",
+  "corpus_definition": "The specific city or country where a person was born.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "birthplace",
+    "relation": "base",
+    "definition": "the town or country where someone was born",
+    "example": "Shahrisabz is the birthplace of Amir Timur.",
+    "syn": [
+     {
+      "to": "home town",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The town where you grew up."
+     },
+     {
+      "to": "native land",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The country where you were born; literary."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Many tourists visit Shahrisabz because it is Timur's birthplace. My grandmother's birthplace is a small village near there.",
+   "uses": [
+    "birthplace"
+   ]
+  },
+  "reviewer_note": "Headword is itself a compound; no family forms."
+ },
+ {
+  "headword": "bitter",
+  "word_id": "6a6ef9b2a60155614809288d",
+  "word_ids": [
+   "6a6ef9b2a60155614809288d"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Taste",
+  "sense_pos": "adjective",
+  "corpus_definition": "Having a sharp and unpleasant taste like black coffee.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "bitterness",
+    "relation": "derivational",
+    "definition": "a strong, sharp taste that is not sweet",
+    "example": "The bitterness of the coffee surprised me.",
+    "syn": [
+     {
+      "to": "sharpness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A strong taste."
+     }
+    ],
+    "ant": [
+     {
+      "to": "sweetness",
+      "relation": "antonym",
+      "note": "A taste like sugar."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "bitter",
+    "relation": "base",
+    "definition": "having a strong, sharp taste, not sweet",
+    "example": "This medicine is very bitter.",
+    "syn": [
+     {
+      "to": "sharp",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Strong and slightly unpleasant."
+     },
+     {
+      "to": "sour",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Sharp like lemon; different from bitter."
+     },
+     {
+      "to": "acrid",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Bitter and unpleasant, often about smoke."
+     }
+    ],
+    "ant": [
+     {
+      "to": "sweet",
+      "relation": "antonym",
+      "note": "Tasting of sugar."
+     },
+     {
+      "to": "mild",
+      "relation": "antonym",
+      "note": "Not strong in taste."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "bitterly",
+    "definition": "in a very angry or sad way, or extremely (cold)",
+    "example": "She cried bitterly. It was bitterly cold.",
+    "note": "Belongs to bitter = angry or very cold, not taste."
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "bitterness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Black coffee is too bitter for my little sister. She adds sugar to hide the bitterness.",
+   "uses": [
+    "bitter",
+    "bitterness"
+   ]
+  },
+  "reviewer_note": "bitterly is a different sense."
+ },
+ {
+  "headword": "blacksmith",
+  "word_id": "6a6ef9b2a60155614809279e",
+  "word_ids": [
+   "6a6ef9b2a60155614809279e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Job",
+  "sense_pos": "noun",
+  "corpus_definition": "a person whose job is making and repairing metal objects",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blacksmith",
+    "relation": "base",
+    "definition": "a person who makes and repairs things from iron by heating it",
+    "example": "The blacksmith made a new knife for my father.",
+    "syn": [
+     {
+      "to": "smith",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Short form; also in goldsmith, silversmith."
+     },
+     {
+      "to": "metalworker",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person who works with metal."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In the old town of Bukhara there is still a blacksmith. Tourists watch the blacksmith make knives by hand.",
+   "uses": [
+    "blacksmith"
+   ]
+  },
+  "reviewer_note": "Headword is a compound person noun; stays in its noun slot (rule 6)."
+ },
+ {
+  "headword": "blame",
+  "word_id": "6a42821646ba24054c1dcc92",
+  "word_ids": [
+   "6a42821646ba24054c1dcc92"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Fault",
+  "sense_pos": "verb",
+  "corpus_definition": "to say that someone is responsible for a bad event or mistake",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blame",
+    "relation": "conversion",
+    "definition": "the responsibility for something bad",
+    "example": "Nobody wanted to take the blame.",
+    "syn": [
+     {
+      "to": "fault",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Responsibility for a mistake."
+     },
+     {
+      "to": "responsibility",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Being the one who must deal with it."
+     }
+    ],
+    "ant": [
+     {
+      "to": "credit",
+      "relation": "antonym",
+      "note": "Praise for something good."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "blame",
+    "relation": "base",
+    "definition": "to say that someone did something bad or caused a problem",
+    "example": "Don't blame me, I wasn't here!",
+    "syn": [
+     {
+      "to": "accuse",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Say someone did something wrong, often a crime."
+     },
+     {
+      "to": "criticize",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Say what is bad about someone."
+     }
+    ],
+    "ant": [
+     {
+      "to": "praise",
+      "relation": "antonym",
+      "note": "Say good things about someone."
+     },
+     {
+      "to": "forgive",
+      "relation": "antonym",
+      "note": "Stop being angry with someone."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "blameless",
+    "relation": "derivational",
+    "definition": "not responsible for anything bad",
+    "example": "The driver was blameless.",
+    "syn": [
+     {
+      "to": "innocent",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not guilty."
+     }
+    ],
+    "ant": [
+     {
+      "to": "guilty",
+      "relation": "antonym",
+      "note": "Having done something wrong."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-less",
+    "in_form": "blameless",
+    "meaning_key": "-less",
+    "also": [
+     "careless",
+     "homeless",
+     "useless"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My brother broke the window, but he blamed the cat. In the end he took the blame and said sorry.",
+   "uses": [
+    "blamed",
+    "blame"
+   ]
+  },
+  "reviewer_note": "Noun and verb share spelling."
+ },
+ {
+  "headword": "blend",
+  "word_id": "6a6ef9b2a60155614809273b",
+  "word_ids": [
+   "6a6ef9b2a60155614809273b"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Mixing",
+  "sense_pos": "verb",
+  "corpus_definition": "To mix two or more things together.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blend",
+    "relation": "conversion",
+    "definition": "a mix of different things",
+    "example": "This tea is a blend of green and black leaves.",
+    "syn": [
+     {
+      "to": "mixture",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Things mixed together."
+     },
+     {
+      "to": "combination",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Two or more things joined."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "blend",
+    "relation": "base",
+    "definition": "to mix two or more things together well",
+    "example": "Blend the fruit with milk.",
+    "syn": [
+     {
+      "to": "mix",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; most common."
+     },
+     {
+      "to": "combine",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Put together; more formal."
+     },
+     {
+      "to": "stir",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Mix with a spoon."
+     }
+    ],
+    "ant": [
+     {
+      "to": "separate",
+      "relation": "antonym",
+      "note": "Divide into parts."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "blended",
+    "relation": "participial",
+    "definition": "mixed together",
+    "example": "Add the blended tomatoes to the soup.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "blender",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "an electric machine for mixing food or making it liquid",
+    "example": "I make juice in the blender."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "blender",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Mum puts bananas and milk in the blender. She blends them for one minute to make a smoothie.",
+   "uses": [
+    "blender",
+    "blends"
+   ]
+  },
+  "reviewer_note": "blender in People & things as a device."
+ },
+ {
+  "headword": "bless",
+  "word_id": "6a6ef9b2a6015561480928b6",
+  "word_ids": [
+   "6a6ef9b2a6015561480928b6"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Good wishes",
+  "sense_pos": "verb",
+  "corpus_definition": "To ask for good things to happen to someone.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blessing",
+    "relation": "derivational",
+    "definition": "asking for God's help or good luck, or something lucky",
+    "example": "The children asked for their grandfather's blessing.",
+    "syn": [
+     {
+      "to": "good wishes",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Hopes that good things happen."
+     },
+     {
+      "to": "approval",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Agreement that something is good."
+     }
+    ],
+    "ant": [
+     {
+      "to": "curse",
+      "relation": "antonym",
+      "note": "A wish for something bad to happen."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "bless",
+    "relation": "base",
+    "definition": "to ask God to protect someone or make good things happen",
+    "example": "The old man blessed the young couple.",
+    "note": "\"Bless you!\" is said after someone sneezes.",
+    "syn": [
+     {
+      "to": "protect",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Keep safe."
+     }
+    ],
+    "ant": [
+     {
+      "to": "curse",
+      "relation": "antonym",
+      "note": "Wish bad things on someone."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "blessed",
+    "relation": "participial",
+    "definition": "holy, or lucky to have something good",
+    "example": "We are blessed with good health.",
+    "syn": [
+     {
+      "to": "lucky",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Having good things by chance."
+     },
+     {
+      "to": "fortunate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Lucky; more formal."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "blessing",
+    "meaning_key": "-ing",
+    "also": [
+     "shopping",
+     "swimming",
+     "building"
+    ]
+   }
+  ],
+  "context": {
+   "text": "At the wedding, the grandmother blessed the bride and groom. Her blessing made everyone cry.",
+   "uses": [
+    "blessed",
+    "blessing"
+   ]
+  },
+  "reviewer_note": "Bless you after a sneeze noted."
+ },
+ {
+  "headword": "blink",
+  "word_id": "6a6ef83f0f1e82a5a073666d",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073666d"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Eyes",
+  "sense_pos": "verb",
+  "corpus_definition": "To open and close the eyes very quickly.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blink",
+    "relation": "conversion",
+    "definition": "a quick closing and opening of the eyes",
+    "example": "In a blink, the bird was gone.",
+    "note": "\"in the blink of an eye\" = very quickly.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "blink",
+    "relation": "base",
+    "definition": "to close and open your eyes very quickly",
+    "example": "The bright light made me blink.",
+    "syn": [
+     {
+      "to": "wink",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Close one eye on purpose, often as a sign."
+     },
+     {
+      "to": "flicker",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A light goes on and off quickly."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The sun was so bright that Zarina blinked many times. In one blink, she missed the falling star.",
+   "uses": [
+    "blinked",
+    "blink"
+   ]
+  },
+  "reviewer_note": "Noun and verb share spelling."
+ },
+ {
+  "headword": "bloom",
+  "word_id": "6a6ef9b2a6015561480927d8",
+  "word_ids": [
+   "6a6ef9b2a6015561480927d8"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Flowers",
+  "sense_pos": "verb",
+  "corpus_definition": "When a plant produces flowers.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "bloom",
+    "relation": "conversion",
+    "definition": "a flower, or the time when a plant has flowers",
+    "example": "The roses are in full bloom.",
+    "syn": [
+     {
+      "to": "flower",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Common word."
+     },
+     {
+      "to": "blossom",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Flowers on a fruit tree."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "bloom",
+    "relation": "base",
+    "definition": "to produce flowers",
+    "example": "Tulips bloom in April.",
+    "syn": [
+     {
+      "to": "flower",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Produce flowers."
+     },
+     {
+      "to": "blossom",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used for trees."
+     },
+     {
+      "to": "open",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A flower opens."
+     }
+    ],
+    "ant": [
+     {
+      "to": "wither",
+      "relation": "antonym",
+      "note": "Become dry and die."
+     },
+     {
+      "to": "fade",
+      "relation": "antonym",
+      "note": "Lose colour and die slowly."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "blooming",
+    "definition": "used to make a word stronger, often when annoyed",
+    "example": "Where is that blooming key?",
+    "note": "British informal; belongs to bloom = a polite swear word, not flowers."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In spring the tulips bloom in the hills near Tashkent. Families drive out to see the fields in full bloom.",
+   "uses": [
+    "bloom",
+    "bloom"
+   ]
+  },
+  "reviewer_note": "blooming (British intensifier) is another sense."
+ },
+ {
+  "headword": "blossom",
+  "word_id": "6a6ef9b2a601556148092866",
+  "word_ids": [
+   "6a6ef9b2a601556148092866"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Flowers",
+  "sense_pos": "noun",
+  "corpus_definition": "when flowers open on a plant, or to develop and grow well",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "blossom",
+    "relation": "base",
+    "definition": "flowers on a fruit tree or bush",
+    "example": "The apricot trees are covered in blossom.",
+    "syn": [
+     {
+      "to": "bloom",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A flower; more general."
+     },
+     {
+      "to": "flower",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Common word."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "blossom",
+    "relation": "conversion",
+    "definition": "to produce flowers, or to grow and develop well",
+    "example": "The trees blossom in March. She blossomed into a great singer.",
+    "syn": [
+     {
+      "to": "bloom",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Produce flowers."
+     },
+     {
+      "to": "flourish",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Grow and do well."
+     },
+     {
+      "to": "develop",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Grow into something more."
+     }
+    ],
+    "ant": [
+     {
+      "to": "wither",
+      "relation": "antonym",
+      "note": "Dry up and die."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In March the apricot trees in Fergana are white with blossom. Each year the trees blossom a little earlier.",
+   "uses": [
+    "blossom",
+    "blossom"
+   ]
+  },
+  "reviewer_note": "Corpus definition joins the flower and develop senses; both under one map."
+ },
+ {
+  "headword": "boast",
+  "word_id": "6a6ef9b2a60155614809283e",
+  "word_ids": [
+   "6a6ef9b2a60155614809283e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Pride",
+  "sense_pos": "verb",
+  "corpus_definition": "to talk too proudly about what you have or can do",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "boast",
+    "relation": "conversion",
+    "definition": "something you say too proudly about yourself",
+    "example": "His boast was that he never lost a game.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "boast",
+    "relation": "base",
+    "definition": "to talk too proudly about yourself or what you own",
+    "example": "He always boasts about his new car.",
+    "syn": [
+     {
+      "to": "brag",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; informal."
+     },
+     {
+      "to": "show off",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Try to make people notice you; informal."
+     }
+    ],
+    "ant": [
+     {
+      "to": "be modest",
+      "relation": "antonym",
+      "note": "Not talk about your own successes."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "boastful",
+    "relation": "derivational",
+    "definition": "talking too proudly about yourself",
+    "example": "Nobody likes boastful people.",
+    "syn": [
+     {
+      "to": "proud",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Pleased about yourself; not always bad."
+     },
+     {
+      "to": "arrogant",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Thinking you are better than others."
+     }
+    ],
+    "ant": [
+     {
+      "to": "modest",
+      "relation": "antonym",
+      "note": "Not talking about your own successes."
+     },
+     {
+      "to": "humble",
+      "relation": "antonym",
+      "note": "Not thinking you are better than others."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "boastfully",
+    "relation": "derivational",
+    "definition": "in a way that is too proud",
+    "example": "He spoke boastfully about his grades.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ful",
+    "in_form": "boastful",
+    "meaning_key": "-ful",
+    "also": [
+     "careful",
+     "helpful",
+     "beautiful"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "boastfully",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Timur always boasts about his high marks. His classmates think he is too boastful.",
+   "uses": [
+    "boasts",
+    "boastful"
+   ]
+  },
+  "reviewer_note": "boast = have something good (\"the city boasts a new park\") not covered."
+ }
+]

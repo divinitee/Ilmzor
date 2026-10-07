@@ -1,0 +1,798 @@
+[
+ {
+  "headword": "apologise",
+  "word_id": "6a42662edeeb39f881130110",
+  "word_ids": [
+   "6a42662edeeb39f881130110"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Sorry",
+  "sense_pos": "verb",
+  "corpus_definition": "To say sorry for something wrong that you did.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "apology",
+    "relation": "derivational",
+    "definition": "words that say you are sorry",
+    "example": "Please accept my apology.",
+    "syn": [
+     {
+      "to": "excuse",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A reason you give for doing something wrong."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "apologise",
+    "relation": "base",
+    "definition": "to say that you are sorry for something",
+    "example": "I apologised for being late.",
+    "note": "American English: apologize.",
+    "syn": [
+     {
+      "to": "say sorry",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; everyday phrase."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "apologetic",
+    "relation": "derivational",
+    "definition": "showing or saying that you are sorry",
+    "example": "He gave me an apologetic smile.",
+    "syn": [
+     {
+      "to": "sorry",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Feeling bad about what you did."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unapologetic",
+      "relation": "antonym",
+      "note": "Not sorry at all."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "apologetically",
+    "relation": "derivational",
+    "definition": "in a way that shows you are sorry",
+    "example": "She smiled apologetically.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ise",
+    "in_form": "apologise",
+    "meaning_key": "-ise",
+    "also": [
+     "realise",
+     "organise",
+     "criticise"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "apologetically",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Rustam forgot his friend's birthday, so he apologised the next day. His friend accepted the apology with a smile.",
+   "uses": [
+    "apologised",
+    "apology"
+   ]
+  },
+  "reviewer_note": "British -ise spelling; -ize noted."
+ },
+ {
+  "headword": "apologise to sb for",
+  "word_id": "6a42662edeeb39f88113015b",
+  "word_ids": [
+   "6a42662edeeb39f88113015b"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Sorry",
+  "sense_pos": "verb",
+  "corpus_definition": "To tell someone you are sorry for a mistake.",
+  "usage_note": "Pattern: apologise to + person + for + noun or -ing: \"I apologised to my mum for breaking the cup.\" American English: apologize.",
+  "relations": [
+   {
+    "to": "say sorry to sb for",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Everyday phrase, same pattern."
+   },
+   {
+    "to": "make an apology to",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "More formal."
+   }
+  ],
+  "context": {
+   "text": "Aziz apologised to his teacher for coming late. Then he apologised to the class for the noise.",
+   "uses": [
+    "apologised to his teacher for",
+    "apologised to the class for"
+   ]
+  },
+  "reviewer_note": "Preposition pattern (to person, for thing) shown."
+ },
+ {
+  "headword": "application",
+  "word_id": "6a42821646ba24054c1dcc96",
+  "word_ids": [
+   "6a42821646ba24054c1dcc96"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Request",
+  "sense_pos": "noun",
+  "corpus_definition": "a formal request to join a school or get a new job",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "application",
+    "relation": "base",
+    "definition": "a written request for a job, place at school or similar",
+    "example": "I sent my application to the university.",
+    "syn": [
+     {
+      "to": "request",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Asking for something, often formally."
+     },
+     {
+      "to": "form",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The paper you fill in to ask for something."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "app",
+    "definition": "a computer program, especially on a phone",
+    "example": "I downloaded a new app.",
+    "note": "Short for application = computer program, not a formal request."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "apply",
+    "relation": "derivational",
+    "definition": "to ask formally for something, usually in writing",
+    "example": "She applied for a job at the bank.",
+    "syn": [
+     {
+      "to": "request",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Ask for something formally."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "applicable",
+    "definition": "affecting or right for a situation",
+    "example": "The rule is not applicable to children.",
+    "note": "Belongs to apply = be relevant, not asking for a job. Formal."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "applicant",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who asks formally for a job or a place",
+    "example": "There were fifty applicants for the job."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ation",
+    "in_form": "application",
+    "meaning_key": "-ation",
+    "also": [
+     "education",
+     "decision",
+     "invitation"
+    ]
+   },
+   {
+    "affix": "-ant",
+    "in_form": "applicant",
+    "meaning_key": "-ant",
+    "also": [
+     "assistant",
+     "servant",
+     "participant"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Dilfuza wants to apply to Westminster University in Tashkent. She is writing her application this week.",
+   "uses": [
+    "apply",
+    "application"
+   ]
+  },
+  "reviewer_note": "app and applicable belong to other senses of apply."
+ },
+ {
+  "headword": "apply for",
+  "word_id": "6a42821646ba24054c1dccc2",
+  "word_ids": [
+   "6a42821646ba24054c1dccc2"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Request",
+  "sense_pos": "verb",
+  "corpus_definition": "To ask for something in writing, like a job or course.",
+  "particle_note": "Not separable: apply for + thing (\"apply for a visa\"); apply to + organisation (\"apply to the bank for a loan\").",
+  "relations": [
+   {
+    "to": "put in for",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Informal British English: ask for something officially."
+   },
+   {
+    "to": "request",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Ask for something formally."
+   }
+  ],
+  "context": {
+   "text": "My brother wants to apply for a job in Seoul. First he has to apply for a work visa.",
+   "uses": [
+    "apply for"
+   ]
+  },
+  "reviewer_note": "apply for vs apply to noted."
+ },
+ {
+  "headword": "architect",
+  "word_id": "6a6ef83f0f1e82a5a07367e6",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367e6",
+   "6a4288ad6941e70ad6a00eb0"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Buildings",
+  "sense_pos": "noun",
+  "corpus_definition": "a person who plans and designs how buildings should be built",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "architect",
+    "relation": "base",
+    "definition": "a person whose job is to design buildings",
+    "example": "The architect showed us the plans for the new school.",
+    "syn": [
+     {
+      "to": "designer",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person who plans how things look; more general."
+     },
+     {
+      "to": "planner",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A person who plans towns or projects."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "architecture",
+    "relation": "derivational",
+    "definition": "the design of buildings, or the study of how to design them",
+    "example": "Bukhara is famous for its old architecture.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "architectural",
+    "relation": "derivational",
+    "definition": "connected with the design of buildings",
+    "example": "The city has many architectural treasures.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "architecturally",
+    "relation": "derivational",
+    "definition": "in a way connected with building design",
+    "example": "The old town is architecturally important.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-al",
+    "in_form": "architectural",
+    "meaning_key": "-al",
+    "also": [
+     "national",
+     "natural",
+     "musical"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "architecturally",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "An architect from Tashkent designed the new museum. She loves old Uzbek architecture and used blue tiles everywhere.",
+   "uses": [
+    "architect",
+    "architecture"
+   ]
+  },
+  "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. Headword is a person noun, so it stays the main noun entry (rule 6)."
+ },
+ {
+  "headword": "arctic",
+  "word_id": "6a6ef9b2a601556148092761",
+  "word_ids": [
+   "6a6ef9b2a601556148092761"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Cold",
+  "sense_pos": "adjective",
+  "corpus_definition": "relating to the very cold region around the North Pole",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "Arctic",
+    "relation": "conversion",
+    "definition": "the very cold area around the North Pole",
+    "example": "Polar bears live in the Arctic.",
+    "note": "Capital A for the place.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "arctic",
+    "relation": "base",
+    "definition": "from or like the cold area around the North Pole",
+    "example": "We had arctic weather last winter.",
+    "syn": [
+     {
+      "to": "polar",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "From the areas around the North or South Pole."
+     },
+     {
+      "to": "freezing",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Very cold."
+     },
+     {
+      "to": "icy",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Very cold, with ice."
+     }
+    ],
+    "ant": [
+     {
+      "to": "tropical",
+      "relation": "antonym",
+      "note": "Very hot and wet."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Scientists study the ice in the Arctic every year. Last January Tashkent had almost arctic temperatures.",
+   "uses": [
+    "Arctic",
+    "arctic"
+   ]
+  },
+  "reviewer_note": "Antarctic is the South Pole, related but not family."
+ },
+ {
+  "headword": "armed",
+  "word_id": "6a6ef83f0f1e82a5a0736837",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a0736837"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Weapons",
+  "sense_pos": "adjective",
+  "corpus_definition": "Carrying or holding a weapon.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "arms",
+    "relation": "derivational",
+    "definition": "guns and other weapons",
+    "example": "The country sells arms to its neighbours.",
+    "note": "Always plural in this sense; \"arm\" = part of the body is a different word.",
+    "syn": [
+     {
+      "to": "weapons",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; more common."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "army",
+    "relation": "derivational",
+    "definition": "a large group of soldiers who fight on land",
+    "example": "My uncle served in the army.",
+    "syn": [
+     {
+      "to": "military",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The armed forces of a country."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "arm",
+    "relation": "derivational",
+    "definition": "to give weapons to someone",
+    "example": "They armed the guards with sticks.",
+    "syn": [
+     {
+      "to": "equip",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Give someone the things they need."
+     }
+    ],
+    "ant": [
+     {
+      "to": "disarm",
+      "relation": "antonym",
+      "note": "Take weapons away."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "armed",
+    "relation": "base",
+    "definition": "carrying a weapon, especially a gun",
+    "example": "Two armed police officers stood at the door.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "unarmed",
+      "relation": "antonym",
+      "note": "Without weapons."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Armed guards stand outside the bank every day. They check that nobody brings arms inside.",
+   "uses": [
+    "Armed",
+    "arms"
+   ]
+  },
+  "reviewer_note": "arm (body) is a different word; arms = weapons is family."
+ },
+ {
+  "headword": "armor",
+  "word_id": "6a6ef9b2a601556148092697",
+  "word_ids": [
+   "6a6ef9b2a601556148092697"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Protection",
+  "sense_pos": "noun",
+  "corpus_definition": "protective metal clothing worn by soldiers in past times",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "armor",
+    "relation": "base",
+    "definition": "metal clothes that soldiers wore long ago to protect their bodies",
+    "example": "The knight wore heavy armor.",
+    "note": "British English: armour.",
+    "syn": [
+     {
+      "to": "protection",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Something that keeps you safe."
+     },
+     {
+      "to": "shield",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A flat object held to protect the body."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "armored",
+    "relation": "derivational",
+    "definition": "covered with strong metal for protection",
+    "example": "An armored car carries the money.",
+    "note": "British English: armoured.",
+    "syn": [
+     {
+      "to": "bulletproof",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Bullets cannot go through it."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In the Samarkand museum you can see the armor of Timur's soldiers. Today banks use armored vans to carry money.",
+   "uses": [
+    "armor",
+    "armored"
+   ]
+  },
+  "reviewer_note": "American spelling headword; British armour noted."
+ },
+ {
+  "headword": "arrest",
+  "word_id": "6a42821646ba24054c1dcc64",
+  "word_ids": [
+   "6a42821646ba24054c1dcc64"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Police",
+  "sense_pos": "verb",
+  "corpus_definition": "to take someone to the police station because they broke the law.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "arrest",
+    "relation": "conversion",
+    "definition": "the act of the police taking someone away for a crime",
+    "example": "The police made three arrests.",
+    "note": "\"under arrest\" = held by the police.",
+    "syn": [
+     {
+      "to": "capture",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Catching a person, often after a chase."
+     },
+     {
+      "to": "detention",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Keeping someone in a police station; formal."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "arrest",
+    "relation": "base",
+    "definition": "to take a person to the police station because of a crime",
+    "example": "The police arrested the thief.",
+    "syn": [
+     {
+      "to": "catch",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Find and stop someone."
+     },
+     {
+      "to": "detain",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: keep someone at the police station."
+     },
+     {
+      "to": "pick up",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: take someone to the police station."
+     }
+    ],
+    "ant": [
+     {
+      "to": "release",
+      "relation": "antonym",
+      "note": "Let someone go free."
+     },
+     {
+      "to": "free",
+      "relation": "antonym",
+      "note": "Let someone go."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The police arrested two men at the airport. After the arrest, they found stolen phones in their bags.",
+   "uses": [
+    "arrested",
+    "arrest"
+   ]
+  },
+  "reviewer_note": "Noun and verb share spelling."
+ },
+ {
+  "headword": "aside",
+  "word_id": "6a6ef9b2a601556148092739",
+  "word_ids": [
+   "6a6ef9b2a601556148092739"
+  ],
+  "cefr": "B1",
+  "kind": "function",
+  "sense_label": "Position",
+  "sense_pos": "adverb",
+  "corpus_definition": "To one side or out of the way.",
+  "usage_note": "Adverb after verbs: \"step aside, put money aside\". \"aside from\" = except: \"Aside from rice, we need bread.\"",
+  "relations": [
+   {
+    "to": "to one side",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning."
+   },
+   {
+    "to": "away",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "At a distance; out of the way."
+   },
+   {
+    "to": "apart",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Separated from others."
+   }
+  ],
+  "context": {
+   "text": "Please step aside and let the old man pass. My sister also puts some money aside every month.",
+   "uses": [
+    "aside",
+    "aside"
+   ]
+  },
+  "reviewer_note": "Function word; aside from noted."
+ }
+]
