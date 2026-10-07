@@ -1,0 +1,268 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "link",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'liner' (zipf 3.8) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "links"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "linked"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Corpus example uses the website sense; map keeps the general 'connection' meaning and mentions the website use in a note. Hyperlink is a compound and is left out."
+  },
+  {
+   "headword": "lively",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'liver' (zipf 4.2) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "liveliness"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "livened"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "livelier"
+      ],
+      "JJS": [
+       "liveliest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Lively is an adjective even though it ends in -ly; no adverb form is shown."
+  },
+  {
+   "headword": "loan",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "loans"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "loaned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Lender and borrower name the people but come from lend and borrow, not from loan."
+  },
+  {
+   "headword": "log off",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Phrasal verb; antonyms log on / log in kept in relations."
+  },
+  {
+   "headword": "log on",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Phrasal verb; 'log on to' vs 'log onto' spelling noted."
+  },
+  {
+   "headword": "loop",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "loops"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "looped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Loopy (informal 'crazy') shown as other_meaning; loophole is a compound and is left out."
+  },
+  {
+   "headword": "loving",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "lovingly: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'devoted' is a synonym/related target for loving, loyal"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "loves",
+       "love"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "loved"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing adjective; love (noun/verb) is its root. Lovely is a false friend (nice), shown as other_meaning."
+  },
+  {
+   "headword": "loyal",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "loyalty: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "loyally: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'devoted' is a synonym/related target for loving, loyal"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "loyalties",
+       "loyalty"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "loyaller"
+      ],
+      "JJS": [
+       "loyallest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (B1). Disloyal/disloyalty are opposites, so they sit in ant lists."
+  },
+  {
+   "headword": "lungs",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Headword is plural in the corpus; singular lung mentioned in the note. Only one form exists, so context uses one form."
+  },
+  {
+   "headword": "luxury",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "luxuriously: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "luxuries",
+       "luxury"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "luxuriated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "False-friend trap: luxuriant (growing thickly) vs luxurious; luxuriant shown as other_meaning."
+  }
+ ]
+}
