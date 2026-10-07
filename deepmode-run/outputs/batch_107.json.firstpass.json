@@ -1,0 +1,365 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "signature",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: significance"
+    },
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: signify"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: signal, significant"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: signally. Check."
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'signatory': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "signed: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "signatures"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "signed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged into one map. Family is built from the verb sign; no affix from the table applies (-ure, -ed, -ory are not in the list)."
+  },
+  {
+   "headword": "silence",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: silly"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quiet' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'stillness' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'hush' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quieten' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'soundless' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'noiseless' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quietly' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'noiselessly' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'soundlessly' is a synonym/related target for silence, silently"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "silences",
+       "silence"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "silenced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "silence is both noun and verb (conversion); silencer is a thing noun, so it goes in People & things."
+  },
+  {
+   "headword": "silently",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: silly"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "silence: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quiet' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'stillness' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'hush' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quieten' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'soundless' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'noiseless' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'quietly' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'noiselessly' is a synonym/related target for silence, silently"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'soundlessly' is a synonym/related target for silence, silently"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "silences",
+       "silence"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "silenced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the adverb; same family as the silence map, anchored on the adverb."
+  },
+  {
+   "headword": "sin",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'sinfully' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "sinfully: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sins",
+       "sin"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sinned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Kept the religious/moral sense only; sin as the maths abbreviation (sine) is unrelated and left out."
+  },
+  {
+   "headword": "skull",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "skulls"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Single-form family. Compounds (skullcap, which is the doppi) are left for the Compounds branch."
+  },
+  {
+   "headword": "social media",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed noun phrase; no true antonym listed."
+  },
+  {
+   "headword": "solar energy",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed noun phrase; no true antonym (fossil fuels contrast, but are not an opposite)."
+  },
+  {
+   "headword": "solution",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: solvent"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: solvent"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "adjective 'soluble' (other meaning): family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'solvent' (zipf 3.4) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "solvable: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'fix' is a synonym/related target for solution, sort out"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "solutions",
+       "solution"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "solved"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Sense trap: solution = answer vs solution = liquid mixture; soluble belongs to the liquid sense and is marked other_meaning."
+  },
+  {
+   "headword": "sort out",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "clue collision",
+     "msg": "'fix' is a synonym/related target for solution, sort out"
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "Corpus definition covers both 'fix a problem' and 'organize'; one map, both shown in the context."
+  },
+  {
+   "headword": "source",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: sourly. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "sources"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "sourced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb are the same spelling (conversion); the verb is business English. Resource listed as not_family."
+  }
+ ]
+}
