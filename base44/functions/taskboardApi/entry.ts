@@ -445,8 +445,8 @@ async function importNative(db: any, actor: string, data: any) {
   const codeToId = new Map<string, string>(tasks.map((t: any) => [t.task_code, t.id]));
   const fileTasks: any[] = (data.tasks || []).filter((t: any) => t && t.task_code && t.title);
   const oldTaskCode = new Map<string, string>(fileTasks.map((t: any) => [t.id, t.task_code]));
-  const created = { tasks: 0, steps: 0, evidence: 0, events: 0 };
-  const skipped = { tasks: 0, steps: 0, evidence: 0, events: 0 };
+  const created = { tasks: 0, steps: 0, evidence: 0, events: 0, workLogs: 0 };
+  const skipped = { tasks: 0, steps: 0, evidence: 0, events: 0, workLogs: 0 };
   const createdRoots: any[] = [];
 
   const levels = new Map<number, any[]>();
@@ -557,8 +557,8 @@ async function importLegacy(db: any, actor: string, items: any[], format: string
   const events = await listAll(db.TaskEvent);
   const existingTitles = new Set(tasks.filter((t: any) => !t.parent_id).map((t: any) => String(t.title).trim().toLowerCase()));
   let next = Math.max(0, ...[...tasks.map((t: any) => t.task_code), ...events.map((e: any) => e.task_code)].map(rootNumber)) + 1;
-  const created = { tasks: 0, steps: 0, evidence: 0, events: 0 };
-  const skipped = { tasks: 0, steps: 0, evidence: 0, events: 0 };
+  const created = { tasks: 0, steps: 0, evidence: 0, events: 0, workLogs: 0 };
+  const skipped = { tasks: 0, steps: 0, evidence: 0, events: 0, workLogs: 0 };
   for (const it of items) {
     const title = str(it.title, 300).trim();
     if (!title) continue;
