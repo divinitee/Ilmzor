@@ -1,0 +1,333 @@
+[
+{
+"headword": "jealous",
+"word_id": "6a6ef9b2a601556148092747",
+"word_ids": ["6a6ef9b2a601556148092747"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Envy",
+"sense_pos": "adjective",
+"corpus_definition": "Feeling unhappy because you want what someone else has.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "jealousy", "relation": "derivational", "definition": "an unhappy feeling because you want what another person has", "example": "Her jealousy started when her sister got a better job.",
+ "syn": [
+  {"to": "envy", "relation": "synonym", "strength": 0.8, "note": "Very close. Envy is only about wanting what others have; jealousy can also be fear of losing someone you love."},
+  {"to": "resentment", "relation": "related", "strength": 0.6, "note": "Related: an angry feeling because you think something is unfair."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "No verb in this family. To say it as a verb, use 'envy' (a different word) or 'be jealous of'."},
+{"slot": "adjective", "status": "existing", "form": "jealous", "relation": "base", "definition": "unhappy because you want what someone else has", "example": "He felt jealous of his brother's success.",
+ "syn": [
+  {"to": "envious", "relation": "synonym", "strength": 0.95, "note": "Same meaning; a little more formal. 'envious of his success'."},
+  {"to": "resentful", "relation": "related", "strength": 0.6, "note": "Related: angry because you think something is unfair, not only because you want it."}
+ ],
+ "ant": []},
+{"slot": "adverb", "status": "existing", "form": "jealously", "relation": "derivational", "definition": "in a way that shows you want what another person has", "example": "She looked jealously at her friend's new phone.",
+ "note": "Also used for protecting something carefully: 'a jealously guarded secret'.",
+ "syn": [
+  {"to": "enviously", "relation": "synonym", "strength": 0.95, "note": "Same meaning; a little more formal."}
+ ],
+ "ant": []}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ly", "in_form": "jealously", "meaning_key": "-ly", "also": ["quickly", "happily", "slowly"]}
+],
+"context": {"text": "When Aziz bought a new car, his cousin felt a little jealous. He tried to hide his jealousy, but he kept looking at the car jealously all evening.", "uses": ["jealous", "jealousy", "jealously"]},
+"reviewer_note": "No verb in this family; envy is a separate word and is mentioned only as a synonym/note. Jealousy also covers the 'afraid of losing a partner' meaning, noted in its syn note."
+},
+{
+"headword": "jealous of",
+"word_id": "6a42662edeeb39f881130156",
+"word_ids": ["6a42662edeeb39f881130156"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Envy",
+"sense_pos": "adjective",
+"corpus_definition": "Feeling sad or angry because you want what someone else has.",
+"usage_note": "be/feel/get jealous of + person or thing: 'She is jealous of her sister.' 'He is jealous of my new car.' Use 'of', not 'from' or 'on'.",
+"relations": [
+ {"to": "envious of", "relation": "synonym", "strength": 0.95, "note": "Same meaning and same pattern; a little more formal."},
+ {"to": "resentful of", "relation": "related", "strength": 0.6, "note": "Related: angry because you think something is unfair."}
+],
+"context": {"text": "My little brother is jealous of my new bike. I told him not to be jealous of me, because he can ride it on Sundays.", "uses": ["jealous of"]},
+"reviewer_note": "Fixed adjective + preposition pattern; learner trap 'jealous from' mentioned in usage note."
+},
+{
+"headword": "job advertisement",
+"word_id": "6a42883f6941e70ad6a00dcb",
+"word_ids": ["6a42883f6941e70ad6a00dcb"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Work",
+"sense_pos": "noun",
+"corpus_definition": "A public notice about a position that is open.",
+"usage_note": "a job advertisement for + job: 'a job advertisement for a teacher'. You see, read or answer a job advertisement; companies place or post one. Short form: job ad (informal).",
+"relations": [
+ {"to": "job ad", "relation": "synonym", "strength": 0.95, "note": "Same meaning; short and informal.", "register": "informal"},
+ {"to": "job posting", "relation": "synonym", "strength": 0.8, "note": "Common in American English, especially for online notices."},
+ {"to": "vacancy", "relation": "related", "strength": 0.6, "note": "Related: the open job itself, not the notice about it."}
+],
+"context": {"text": "I saw a job advertisement for an English teacher in Tashkent yesterday. I answered the job advertisement and sent my CV this morning.", "uses": ["job advertisement"]},
+"reviewer_note": "Noun phrase; no forms. British 'advert' / American 'ad' noted via job ad."
+},
+{
+"headword": "join in",
+"word_id": "6a42659782466c80f8ae0cb2",
+"word_ids": ["6a42659782466c80f8ae0cb2"],
+"cefr": "B1",
+"kind": "phrasal",
+"sense_label": "Activity",
+"sense_pos": "verb",
+"corpus_definition": "Take part in an activity with other people.",
+"particle_note": "Not separable: 'join in the game' (not 'join the game in'). Often with no object: 'Everyone joined in.' Also 'join in with + noun': 'join in with the singing'.",
+"relations": [
+ {"to": "take part", "relation": "synonym", "strength": 0.95, "note": "Same meaning; 'take part in' needs 'in' before the activity."},
+ {"to": "participate", "relation": "synonym", "strength": 0.8, "note": "More formal, common in writing.", "register": "formal"},
+ {"to": "get involved", "relation": "synonym", "strength": 0.8, "note": "Similar, but often for longer activities or projects."},
+ {"to": "sit out", "relation": "antonym", "note": "To not take part in a game or dance: 'I'll sit this one out.'"}
+],
+"context": {"text": "The children were singing in the yard, and Grandma joined in. Soon all the neighbours were joining in too.", "uses": ["joined in", "joining in"]},
+"reviewer_note": "Inseparable phrasal verb; 'join in' vs plain 'join' (become a member) kept apart in particle note examples."
+},
+{
+"headword": "kidnap",
+"word_id": "6a6ef9b2a601556148092858",
+"word_ids": ["6a6ef9b2a601556148092858"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Crime",
+"sense_pos": "verb",
+"corpus_definition": "to take someone away illegally by force and demand money",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "kidnapping", "relation": "derivational", "definition": "the crime of taking a person away by force, usually for money", "example": "The police are investigating a kidnapping in the city.",
+ "syn": [
+  {"to": "abduction", "relation": "synonym", "strength": 0.95, "note": "Same meaning; more formal, used in news and law.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "rescue", "relation": "antonym", "note": "Saving a person who has been taken away."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "kidnap", "relation": "conversion", "definition": "the crime of taking a person away by force", "example": "The kidnap of the businessman shocked the whole town.", "note": "Mainly British; 'kidnapping' is more common everywhere.",
+ "syn": [], "ant": []},
+{"slot": "verb", "status": "existing", "form": "kidnap", "relation": "base", "definition": "to take someone away by force and ask for money to free them", "example": "The businessman's son was kidnapped and held for ransom.",
+ "note": "British spelling doubles the p: kidnapped, kidnapping. American English also allows kidnaped, kidnaping.",
+ "syn": [
+  {"to": "abduct", "relation": "synonym", "strength": 0.95, "note": "Same meaning; formal, used in news and law.", "register": "formal"},
+  {"to": "snatch", "relation": "related", "strength": 0.6, "note": "Related: take someone or something quickly by force.", "register": "informal"},
+  {"to": "seize", "relation": "related", "strength": 0.4, "note": "Related: take something or someone suddenly by force; more general."}
+ ],
+ "ant": [
+  {"to": "release", "relation": "antonym", "note": "To let a person go free."},
+  {"to": "free", "relation": "antonym", "note": "To let a person who was kept as a prisoner leave."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "kidnapped", "relation": "participial", "definition": "taken away by force and kept by criminals", "example": "The kidnapped girl was found safe after two days.",
+ "syn": [
+  {"to": "captive", "relation": "related", "strength": 0.6, "note": "Related: kept as a prisoner, for any reason."}
+ ],
+ "ant": [
+  {"to": "free", "relation": "antonym", "note": "Not kept as a prisoner."}
+ ]},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [
+ {"form": "kidnapper", "kind": "person", "status": "existing", "definition": "a criminal who takes a person away by force for money", "example": "The kidnappers asked for a large amount of money."}
+],
+"affixes": [
+ {"affix": "-er", "in_form": "kidnapper", "meaning_key": "-er", "also": ["teacher", "driver", "worker"]}
+],
+"context": {"text": "In the film, a rich man's son is kidnapped on his way to school. The police find the kidnapper quickly, and the kidnapping ends safely.", "uses": ["kidnapped", "kidnapper", "kidnapping"]},
+"reviewer_note": "Spelling trap: double p in kidnapped/kidnapping/kidnapper (single p also allowed in American English). Noun kidnap kept as a British extra."
+},
+{
+"headword": "kneel",
+"word_id": "6a6ef9b2a6015561480928ad",
+"word_ids": ["6a6ef9b2a6015561480928ad"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Body",
+"sense_pos": "verb",
+"corpus_definition": "to go down onto one or both knees on the ground",
+"forms": [
+{"slot": "noun", "status": "no_form", "note": "No noun for the action. Kneel comes from 'knee' (the body part), but knee is a separate everyday noun, not a form of kneel."},
+{"slot": "verb", "status": "existing", "form": "kneel", "relation": "base", "definition": "to go down so that your legs are bent and resting on the ground", "example": "She had to kneel to pick up the fallen coins.",
+ "note": "Past tense: knelt (British) or kneeled (American). Often 'kneel down'.",
+ "syn": [
+  {"to": "genuflect", "relation": "synonym", "strength": 0.8, "note": "Formal; kneeling for a short time to show respect, mostly in church.", "register": "formal"},
+  {"to": "crouch", "relation": "related", "strength": 0.6, "note": "Related: bend your legs low, but your feet stay on the ground."},
+  {"to": "bow", "relation": "related", "strength": 0.4, "note": "Related: bend your head or body forward to show respect."}
+ ],
+ "ant": [
+  {"to": "stand", "relation": "antonym", "note": "To be up on your feet."},
+  {"to": "rise", "relation": "antonym", "note": "To get up from kneeling or sitting; a little formal."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "kneeling", "relation": "participial", "definition": "with your legs bent and resting on the ground", "example": "There is a statue of a kneeling woman in the park.",
+ "syn": [], "ant": [
+  {"to": "standing", "relation": "antonym", "note": "Up on your feet."}
+ ]},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ing", "in_form": "kneeling", "meaning_key": "-ing", "also": ["running", "sleeping", "smiling"]}
+],
+"context": {"text": "My little sister dropped her beads under the table. I knelt down to help her, and we stayed kneeling on the carpet until we found them all.", "uses": ["knelt", "kneeling"]},
+"reviewer_note": "Irregular past knelt/kneeled noted. Knee kept out of the forms (body-part noun, not a form of kneel)."
+},
+{
+"headword": "lack",
+"word_id": "6a42800cb9d8fc24968a4b3b",
+"word_ids": ["6a42800cb9d8fc24968a4b3b"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "General",
+"sense_pos": "verb",
+"corpus_definition": "To not have enough of something.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "lack", "relation": "conversion", "definition": "a situation when there is not enough of something", "example": "There is a lack of clean water in some villages.",
+ "note": "Pattern: a lack of + noun.",
+ "syn": [
+  {"to": "shortage", "relation": "synonym", "strength": 0.8, "note": "Not enough of something that people need, like water or doctors."},
+  {"to": "absence", "relation": "synonym", "strength": 0.8, "note": "When something is not there at all."},
+  {"to": "need", "relation": "related", "strength": 0.4, "note": "Related: something you must have."}
+ ],
+ "ant": [
+  {"to": "plenty", "relation": "antonym", "note": "A large amount, more than enough."},
+  {"to": "abundance", "relation": "antonym", "note": "Formal: a very large amount of something."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "lack", "relation": "base", "definition": "to not have something, or not have enough of it", "example": "They lack the money to buy a house.",
+ "note": "No preposition after the verb: 'lack money', not 'lack of money'. 'Lack of' is the noun.",
+ "syn": [
+  {"to": "need", "relation": "related", "strength": 0.6, "note": "Related: you must have something; lack says you do not have it."},
+  {"to": "miss", "relation": "related", "strength": 0.4, "note": "Related: feel sad because something is not there."}
+ ],
+ "ant": [
+  {"to": "have", "relation": "antonym", "note": "To own or hold something."},
+  {"to": "possess", "relation": "antonym", "note": "Formal: to have or own something."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "lacking", "relation": "participial", "definition": "not there, or not enough", "example": "Money was lacking, so the project stopped.",
+ "note": "Not used before a noun. Patterns: 'be lacking', 'lacking in + noun'.",
+ "syn": [
+  {"to": "missing", "relation": "synonym", "strength": 0.8, "note": "Not there; missing is more common in everyday speech."},
+  {"to": "short", "relation": "related", "strength": 0.6, "note": "Related: 'be short of money' = not have enough."}
+ ],
+ "ant": []},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ing", "in_form": "lacking", "meaning_key": "-ing", "also": ["missing", "interesting", "boring"]}
+],
+"context": {"text": "Our village school lacks computers. The teachers say the lack of equipment makes lessons hard, and good books are lacking too.", "uses": ["lacks", "lack", "lacking"]},
+"reviewer_note": "Learner trap 'lack of money' as a verb phrase handled in the verb note (verb takes a direct object)."
+},
+{
+"headword": "landmark",
+"word_id": "6a6ef83f0f1e82a5a07367ed",
+"word_ids": ["6a6ef83f0f1e82a5a07367ed"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Place",
+"sense_pos": "noun",
+"corpus_definition": "a famous building or object that helps you find your way",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "landmark", "relation": "base", "definition": "a famous building or place that is easy to see and recognize", "example": "The Eiffel Tower is a famous landmark.",
+ "note": "Also means a very important event: 'a landmark in history'. Often used before a noun: 'a landmark decision'.",
+ "syn": [
+  {"to": "monument", "relation": "related", "strength": 0.6, "note": "Related: a building or statue built to remember a person or event."},
+  {"to": "sight", "relation": "related", "strength": 0.6, "note": "Related: 'the sights' are famous places tourists visit."},
+  {"to": "attraction", "relation": "related", "strength": 0.4, "note": "Related: any place people like to visit, not always a building."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form"},
+{"slot": "adjective", "status": "no_form"},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "The Registan in Samarkand is the city's most famous landmark. If you get lost, ask for the Registan and people will show you the way.", "uses": ["landmark"]},
+"reviewer_note": "Single-form family; land + mark is a compound, so no affix is claimed."
+},
+{
+"headword": "lane",
+"word_id": "6a6ef9b2a601556148092718",
+"word_ids": ["6a6ef9b2a601556148092718"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Road",
+"sense_pos": "noun",
+"corpus_definition": "a narrow road or a marked strip on a wide road",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "lane", "relation": "base", "definition": "a narrow road, or one part of a big road marked with lines", "example": "The driver stayed in the right lane on the highway.",
+ "note": "Also a marked strip for one runner or swimmer in a race.",
+ "syn": [
+  {"to": "road", "relation": "related", "strength": 0.6, "note": "Related: road is the general word; a lane is narrow or is one part of a road."},
+  {"to": "alley", "relation": "related", "strength": 0.6, "note": "Related: a very narrow street between buildings in a town."},
+  {"to": "path", "relation": "related", "strength": 0.4, "note": "Related: a narrow way for walking, not for cars."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form"},
+{"slot": "adjective", "status": "no_form"},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "My grandparents live at the end of a quiet lane outside Fergana. To get there, we drive in the left lane of the big road and then turn off.", "uses": ["lane"]},
+"reviewer_note": "Both corpus senses (narrow road / marked strip) are covered by one map, as in the corpus definition."
+},
+{
+"headword": "leader",
+"word_id": "6a42821646ba24054c1dcca6",
+"word_ids": ["6a42821646ba24054c1dcca6"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Person",
+"sense_pos": "noun",
+"corpus_definition": "A person who is in charge of a group or organization.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "leader", "relation": "base", "definition": "a person who is in charge of a group, team or country", "example": "She is a natural leader.",
+ "syn": [
+  {"to": "head", "relation": "synonym", "strength": 0.8, "note": "The person in charge of a department, school or family."},
+  {"to": "chief", "relation": "synonym", "strength": 0.8, "note": "The person with the highest rank; used in job titles."},
+  {"to": "boss", "relation": "related", "strength": 0.6, "note": "Related: the person in charge of you at work.", "register": "informal"},
+  {"to": "captain", "relation": "related", "strength": 0.6, "note": "Related: the person in charge of a sports team or a ship."}
+ ],
+ "ant": [
+  {"to": "follower", "relation": "antonym", "note": "A person who supports a leader or does what they say."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "leadership", "relation": "derivational", "definition": "the position or skill of being in charge of a group", "example": "Under her leadership, the team won three games.",
+ "syn": [
+  {"to": "management", "relation": "related", "strength": 0.6, "note": "Related: controlling and organizing a business or group."},
+  {"to": "guidance", "relation": "related", "strength": 0.4, "note": "Related: help and advice about what to do."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "lead", "relation": "derivational", "definition": "to be in charge of a group and show people what to do", "example": "He leads a team of ten engineers.",
+ "note": "Irregular: lead, led, led. Leader is made from this verb.",
+ "syn": [
+  {"to": "guide", "relation": "synonym", "strength": 0.8, "note": "Show people the way or help them decide."},
+  {"to": "direct", "relation": "synonym", "strength": 0.8, "note": "Control and organize what people do."},
+  {"to": "manage", "relation": "related", "strength": 0.6, "note": "Related: control a business or a group of workers."}
+ ],
+ "ant": [
+  {"to": "follow", "relation": "antonym", "note": "To do what a leader says or go after them."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "leading", "relation": "participial", "definition": "most important or most successful", "example": "She works for a leading bank in Tashkent.",
+ "syn": [
+  {"to": "main", "relation": "synonym", "strength": 0.8, "note": "Most important; very common and easy."},
+  {"to": "top", "relation": "synonym", "strength": 0.8, "note": "Best or most successful; a little informal."},
+  {"to": "foremost", "relation": "synonym", "strength": 0.8, "note": "Formal: the most important or famous.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "minor", "relation": "antonym", "note": "Not very important."}
+ ]},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [
+ {"affix": "-er", "in_form": "leader", "meaning_key": "-er", "also": ["teacher", "driver", "player"]},
+ {"affix": "-ship", "in_form": "leadership", "meaning_key": "-ship", "also": ["friendship", "membership", "ownership"]},
+ {"affix": "-ing", "in_form": "leading", "meaning_key": "-ing", "also": ["interesting", "exciting", "amazing"]}
+],
+"context": {"text": "Our class leader, Malika, leads every school project. Everyone likes her leadership, and she wants to work for a leading company one day.", "uses": ["leader", "leads", "leadership", "leading"]},
+"reviewer_note": "Person-noun headword stays the main noun entry; leadership as noun extra, lead as the source verb. Lead (metal, /led/) is a different word and left out."
+}
+]
