@@ -1,0 +1,254 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "apologise",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "adverb example is 3 words (4–25)"
+    },
+    {
+     "cat": "false affix",
+     "msg": "'-ise' is not in the affix table"
+    },
+    {
+     "cat": "false affix",
+     "msg": "'apologetically' minus '-ly' leaves no real word (apologetical, apologeticale, apologeticaly)"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "apologies"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "apologised"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "British -ise spelling; -ize noted."
+  },
+  {
+   "headword": "apologise to sb for",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Preposition pattern (to person, for thing) shown."
+  },
+  {
+   "headword": "application",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'also in' word 'decision' doesn't carry '-ation'"
+    },
+    {
+     "cat": "false affix",
+     "msg": "'applicant' minus '-ant' leaves no real word (applic, applicate, applice, applicy)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: appliance"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "noun 'app' (other meaning): family link not confirmed by the dictionary or a suffix rule"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "applications",
+       "application"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "applied"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "app and applicable belong to other senses of apply."
+  },
+  {
+   "headword": "apply for",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "apply for vs apply to noted."
+  },
+  {
+   "headword": "architect",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "architects"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. Headword is a person noun, so it stays the main noun entry (rule 6)."
+  },
+  {
+   "headword": "arctic",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Antarctic is the South Pole, related but not family."
+  },
+  {
+   "headword": "armed",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "People & things: common family noun 'armor' (zipf 4.0) isn't shown. Add it, or list it in people_not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: armament, armor"
+    },
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: armor"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'armament' (zipf 3.0) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "arm: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "armies"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "armed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "arm (body) is a different word; arms = weapons is family."
+  },
+  {
+   "headword": "armor",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: marked 'no such form', but the dictionary links arm. Show it (existing or other_meaning), or list it in not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: arm, armament"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: army"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "armored: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "armor"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "American spelling headword; British armour noted."
+  },
+  {
+   "headword": "arrest",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "arrests",
+       "arrest"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "arrested"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb share spelling."
+  },
+  {
+   "headword": "aside",
+   "kind": "function",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Function word; aside from noted."
+  }
+ ]
+}

@@ -1,0 +1,279 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "abnormal",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "abnormally: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "abnormalities",
+       "abnormality"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "normal is the opposite, so it sits in ant."
+  },
+  {
+   "headword": "absence",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'absently' (other meaning) is rare (zipf 1.9)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "absences",
+       "absence"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "absently is a different sense. verb \"absent yourself\" is formal and rare, so no_form."
+  },
+  {
+   "headword": "accent",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: accent (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "accent: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "accents"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. Accent on a letter or word is a different sense, not covered."
+  },
+  {
+   "headword": "access",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'-ible' is not in the affix table"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: accession"
+    },
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: accession"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: accessibly. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "accesses",
+       "access"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "accessed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "inaccessible placed in ant."
+  },
+  {
+   "headword": "accommodation",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'also in' word 'decision' doesn't carry '-ation'"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "accommodations",
+       "accommodation"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "accommodated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "accommodating = helpful is a different sense."
+  },
+  {
+   "headword": "accurate",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "accuracies",
+       "accuracy"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "inaccurate placed in ant."
+  },
+  {
+   "headword": "ache",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "aching: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "aches"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "ached"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "headache, toothache are compounds, left out (rule 7)."
+  },
+  {
+   "headword": "add up",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "\"It doesn't add up\" (makes no sense) not covered."
+  },
+  {
+   "headword": "affair",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: affable. Check."
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: affably. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "affairs"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Love-relationship sense noted, not covered."
+  },
+  {
+   "headword": "affect",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "schema",
+     "msg": "'affection' is a compound (affect + ion): compounds are left out for now (rule 7), remove it"
+    },
+    {
+     "cat": "bad synonym",
+     "msg": "affected → 'hit' is not a adjective (form is a adjective)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: affective"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: affably. Check."
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "affected"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. effect is a different word, listed as not_family."
+  }
+ ]
+}

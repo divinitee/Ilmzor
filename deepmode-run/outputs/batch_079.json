@@ -1,0 +1,604 @@
+[
+{
+"headword": "earthquake",
+"word_id": "6a42883f6941e70ad6a00e0c",
+"word_ids": ["6a42883f6941e70ad6a00e0c"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Ground",
+"sense_pos": "noun",
+"corpus_definition": "A sudden shaking of the ground that causes damage.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "earthquake", "relation": "base",
+ "definition": "a sudden, strong shaking of the ground that can break buildings",
+ "example": "The 1966 earthquake in Tashkent destroyed many old houses.",
+ "syn": [
+  {"to": "quake", "relation": "synonym", "strength": 0.95, "note": "Short, informal word for the same thing, common in news headlines.", "register": "informal"},
+  {"to": "tremor", "relation": "synonym", "strength": 0.8, "note": "A small shaking of the ground, often weaker than a full one."},
+  {"to": "aftershock", "relation": "related", "strength": 0.4, "note": "Related: a smaller shaking that comes after the big one."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "There is no verb from this word. To talk about the action, say 'the ground shook'."},
+{"slot": "adjective", "status": "no_form", "note": "There is no adjective from this word. Use the noun before another noun: 'earthquake damage', 'an earthquake zone'."},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "Last night a small earthquake woke us up in Namangan. The windows shook, but nobody was hurt. My grandmother still remembers the big earthquake of 1966.", "uses": ["earthquake"]},
+"reviewer_note": "Compound noun (earth + quake) with no derived forms; only one form exists, so the context uses it alone."
+},
+{
+"headword": "eat out",
+"word_id": "6a42659782466c80f8ae0cb0",
+"word_ids": ["6a42659782466c80f8ae0cb0"],
+"cefr": "B1",
+"kind": "phrasal",
+"sense_label": "Restaurant",
+"sense_pos": "verb",
+"corpus_definition": "Have a meal at a restaurant instead of your house.",
+"particle_note": "Not separable and has no object: 'We eat out on Fridays.' Add a place with at or in: 'eat out at a cafe'.",
+"relations": [
+ {"to": "dine out", "relation": "synonym", "strength": 0.95, "note": "Same meaning but more formal, often used for a nice dinner.", "register": "formal"},
+ {"to": "go out", "relation": "related", "strength": 0.6, "note": "Related: leave home to have fun, which may or may not include a meal."},
+ {"to": "eat in", "relation": "antonym", "note": "To have a meal at home instead of going to a restaurant."}
+],
+"context": {"text": "We usually eat out on Friday evenings. Last week we ate out at a new plov centre near the bazaar, and it was cheaper than cooking at home.", "uses": ["eat out", "ate out"]},
+"reviewer_note": "Intransitive phrasal verb; eat in given as the natural opposite."
+},
+{
+"headword": "edit",
+"word_id": "6a6ef83f0f1e82a5a07367bf",
+"word_ids": ["6a6ef83f0f1e82a5a07367bf"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Changing",
+"sense_pos": "verb",
+"corpus_definition": "To make changes to a text or video to improve it.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "editing", "relation": "derivational",
+ "definition": "the work of correcting and improving a text, film or video",
+ "example": "Video editing takes much longer than filming.",
+ "syn": [
+  {"to": "revision", "relation": "synonym", "strength": 0.8, "note": "Changing a text to make it better; used mostly for writing, not video."},
+  {"to": "correction", "relation": "related", "strength": 0.6, "note": "Related: only fixing mistakes, not other improvements."}
+ ],
+ "ant": []},
+{"slot": "noun", "status": "existing", "form": "edit", "relation": "conversion",
+ "definition": "one change or a round of changes made to improve something",
+ "example": "I made a few quick edits before I sent the essay.",
+ "register": "informal",
+ "syn": [
+  {"to": "change", "relation": "related", "strength": 0.6, "note": "Related: easy, general word; any change, not always an improvement."}
+ ],
+ "ant": []},
+{"slot": "noun", "status": "other_meaning", "form": "edition",
+ "definition": "one version of a book or newspaper printed at one time",
+ "example": "The new edition of the dictionary has many more words.",
+ "note": "Belongs to edit = prepare a book or newspaper for printing, not making small changes to a text or video."},
+{"slot": "verb", "status": "existing", "form": "edit", "relation": "base",
+ "definition": "to change a text or video to make it better or correct",
+ "example": "She edited the wedding video and added music.",
+ "syn": [
+  {"to": "revise", "relation": "synonym", "strength": 0.8, "note": "Change a text to improve it; not used for video."},
+  {"to": "correct", "relation": "related", "strength": 0.6, "note": "Related: easy word; only fixing mistakes."},
+  {"to": "proofread", "relation": "related", "strength": 0.6, "note": "Related: read a text only to find small mistakes like spelling."},
+  {"to": "check", "relation": "related", "strength": 0.4, "note": "Related: easy word; look for problems, but maybe not change anything."}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "editorial", "relation": "derivational",
+ "definition": "connected with preparing books, newspapers or programmes for people to read or watch",
+ "example": "She got an editorial job at a publishing house in Tashkent.",
+ "register": "formal",
+ "syn": [],
+ "ant": []},
+{"slot": "adverb", "status": "existing", "form": "editorially", "relation": "derivational",
+ "definition": "in a way connected with preparing books or newspapers for readers",
+ "example": "The magazine is editorially independent from its owners.",
+ "register": "formal",
+ "syn": [],
+ "ant": []}
+],
+"people": [
+ {"form": "editor", "kind": "job", "status": "existing", "definition": "a person whose job is to check and improve texts or films", "example": "The editor asked me to make the article shorter."},
+ {"form": "editorial", "kind": "thing", "status": "other_meaning", "definition": "a newspaper article giving the newspaper's own opinion", "example": "Today's editorial is about rising food prices.", "note": "Belongs to edit = run a newspaper; this noun is an opinion article, not the work of changing a text."}
+],
+"affixes": [
+ {"affix": "-ing", "in_form": "editing", "meaning_key": "-ing", "also": ["reading", "shopping", "cooking"]},
+ {"affix": "-or", "in_form": "editor", "meaning_key": "-or", "also": ["actor", "visitor", "inventor"]}
+],
+"context": {"text": "My brother films short videos about Samarkand. He edits them at night, and the editing often takes longer than the filming. Before he posts a video, he always makes a few last edits.", "uses": ["edits", "editing", "edits"]},
+"reviewer_note": "Noun slot: editing (the activity) as main, edit (noun) as extra; edition and the noun editorial marked other_meaning; editor in people."
+},
+{
+"headword": "effect",
+"word_id": "6a42800cb9d8fc24968a4b31",
+"word_ids": ["6a42800cb9d8fc24968a4b31"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Result",
+"sense_pos": "noun",
+"corpus_definition": "A result or change caused by something.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "effect", "relation": "base",
+ "definition": "a change or result that happens because of something",
+ "example": "The hot weather had a bad effect on the cotton harvest.",
+ "note": "Don't confuse with the verb affect: 'Rain affects the crops' but 'Rain has an effect on the crops'.",
+ "syn": [
+  {"to": "result", "relation": "synonym", "strength": 0.95, "note": "Easy, very close word for what happens because of something."},
+  {"to": "consequence", "relation": "synonym", "strength": 0.8, "note": "A result, often a bad one; a little more formal."},
+  {"to": "impact", "relation": "synonym", "strength": 0.8, "note": "A strong or important effect."},
+  {"to": "outcome", "relation": "synonym", "strength": 0.8, "note": "The final result of a plan, game or situation."},
+  {"to": "influence", "relation": "related", "strength": 0.6, "note": "Related: the power to change something, often slowly."}
+ ],
+ "ant": [
+  {"to": "cause", "relation": "antonym", "note": "The cause makes something happen; the effect is what happens."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "effectiveness", "relation": "derivational",
+ "definition": "how well something works and gives the result you want",
+ "example": "Doctors are testing the effectiveness of the new medicine.",
+ "syn": [
+  {"to": "success", "relation": "related", "strength": 0.6, "note": "Related: easy word for getting the result you wanted."},
+  {"to": "efficiency", "relation": "related", "strength": 0.4, "note": "Related: working well without wasting time or money."}
+ ],
+ "ant": [
+  {"to": "ineffectiveness", "relation": "antonym", "note": "Not working well or not giving the result you want."}
+ ]},
+{"slot": "verb", "status": "other_meaning", "form": "effect",
+ "definition": "to make a change or plan happen",
+ "example": "The new manager effected many changes in the company.",
+ "note": "Belongs to effect = make something happen (formal). Learners usually need the verb affect instead, which is a different word."},
+{"slot": "adjective", "status": "existing", "form": "effective", "relation": "derivational",
+ "definition": "working well and giving the result that you want",
+ "example": "Drinking a lot of water is an effective way to feel better.",
+ "syn": [
+  {"to": "successful", "relation": "synonym", "strength": 0.8, "note": "Easy word: getting the result you wanted."},
+  {"to": "useful", "relation": "related", "strength": 0.6, "note": "Related: easy word; helping you do something."},
+  {"to": "efficient", "relation": "related", "strength": 0.4, "note": "Related: working well without wasting time or money. Not the same word."}
+ ],
+ "ant": [
+  {"to": "ineffective", "relation": "antonym", "note": "Not working well or not giving the result you want."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "effectively", "relation": "derivational",
+ "definition": "in a way that works well and gives the result you want",
+ "example": "Our teacher explains grammar very effectively.",
+ "note": "It also means 'in fact' or 'almost': 'The game was effectively over.'",
+ "syn": [
+  {"to": "successfully", "relation": "synonym", "strength": 0.8, "note": "Easy word: in a way that gets the result you wanted."},
+  {"to": "well", "relation": "related", "strength": 0.6, "note": "Related: easy, very general word."}
+ ],
+ "ant": [
+  {"to": "ineffectively", "relation": "antonym", "note": "In a way that does not work or give the result you want."}
+ ]}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ive", "in_form": "effective", "meaning_key": "-ive", "also": ["active", "creative", "attractive"]},
+ {"affix": "-ly", "in_form": "effectively", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]},
+ {"affix": "-ness", "in_form": "effectiveness", "meaning_key": "-ness", "also": ["happiness", "kindness", "darkness"]}
+],
+"context": {"text": "The new medicine had a strong effect on my cough. It was so effective that I was back at school in two days. The doctor said it works most effectively if you take it after food.", "uses": ["effect", "effective", "effectively"]},
+"reviewer_note": "Effect/affect trap noted on the noun and the verb; verb effect (formal 'make happen') is other_meaning."
+},
+{
+"headword": "employee",
+"word_id": "6a42821646ba24054c1dccbb",
+"word_ids": ["6a42821646ba24054c1dccbb", "6a42883f6941e70ad6a00dba"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Work",
+"sense_pos": "noun",
+"corpus_definition": "A person who is paid to do a job for someone else.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "employee", "relation": "base",
+ "definition": "a person who works for a company or another person for money",
+ "example": "The bank has more than two hundred employees in Tashkent.",
+ "syn": [
+  {"to": "worker", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday word; often used for people who work with their hands."},
+  {"to": "staff member", "relation": "synonym", "strength": 0.8, "note": "One person who works in an office, shop, school or hotel."},
+  {"to": "personnel", "relation": "related", "strength": 0.4, "note": "Related: formal word for all the people who work in a company, not one person.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "employer", "relation": "antonym", "note": "The employer gives the job and pays; the employee does the job."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "employment", "relation": "derivational",
+ "definition": "the state of having a paid job",
+ "example": "It is hard to find employment in small villages.",
+ "register": "formal",
+ "syn": [
+  {"to": "work", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word."},
+  {"to": "job", "relation": "related", "strength": 0.6, "note": "Related: easy word; a job is one position, employment is the general state."},
+  {"to": "occupation", "relation": "related", "strength": 0.6, "note": "Related: formal word for the kind of job you do.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "unemployment", "relation": "antonym", "note": "The state of not having a paid job."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "employ", "relation": "derivational",
+ "definition": "to give someone a job and pay them for it",
+ "example": "The new factory will employ about five hundred people.",
+ "note": "In formal English it can also mean 'to use': 'employ a new method'.",
+ "syn": [
+  {"to": "hire", "relation": "synonym", "strength": 0.8, "note": "Very close; hire is more common in American English and in speaking."},
+  {"to": "take on", "relation": "synonym", "strength": 0.8, "note": "British English, a little informal: 'The shop is taking on new staff.'"},
+  {"to": "recruit", "relation": "related", "strength": 0.6, "note": "Related: look for and choose new people to join a company."}
+ ],
+ "ant": [
+  {"to": "dismiss", "relation": "antonym", "note": "Formal: tell someone they no longer have their job."},
+  {"to": "fire", "relation": "antonym", "note": "Informal: make someone leave their job.", "register": "informal"}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "employed", "relation": "participial",
+ "definition": "having a job that you are paid for",
+ "example": "My sister is employed as a nurse at the city hospital.",
+ "syn": [
+  {"to": "working", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word: 'a working mother'."}
+ ],
+ "ant": [
+  {"to": "unemployed", "relation": "antonym", "note": "Without a paid job."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "employable", "relation": "derivational",
+ "definition": "having the skills that companies want when they choose workers",
+ "example": "Learning English makes young people more employable.",
+ "syn": [],
+ "ant": [
+  {"to": "unemployable", "relation": "antonym", "note": "Not able to get a job, for example because of no skills."}
+ ]},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [
+ {"form": "employer", "kind": "person", "status": "existing", "definition": "a person or company that pays people to work for them", "example": "My employer gives me two weeks of holiday every year."}
+],
+"affixes": [
+ {"affix": "-ee", "in_form": "employee", "meaning_key": "-ee", "also": ["trainee", "refugee", "interviewee"]},
+ {"affix": "-ment", "in_form": "employment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
+ {"affix": "-able", "in_form": "employable", "meaning_key": "-able", "also": ["readable", "washable", "comfortable"]},
+ {"affix": "-er", "in_form": "employer", "meaning_key": "-er", "also": ["teacher", "worker", "driver"]}
+],
+"context": {"text": "Aziz is an employee at a bank in Tashkent. The bank employs over two hundred people, and many students hope to find employment there after university.", "uses": ["employee", "employs", "employment"]},
+"reviewer_note": "Two rows, same meaning, merged (B1). Headword is a person noun, so it stays the main noun; employer goes in people and as the antonym."
+},
+{
+"headword": "employer",
+"word_id": "6a42821646ba24054c1dccba",
+"word_ids": ["6a42821646ba24054c1dccba", "6a42883f6941e70ad6a00db9"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Work",
+"sense_pos": "noun",
+"corpus_definition": "A person or company that gives people jobs to do for money.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "employer", "relation": "base",
+ "definition": "a person or company that gives people jobs and pays them",
+ "example": "The biggest employer in our town is the textile factory.",
+ "syn": [
+  {"to": "boss", "relation": "related", "strength": 0.6, "note": "Related: easy, informal word for the person in charge of you; an employer can also be a company.", "register": "informal"},
+  {"to": "company", "relation": "related", "strength": 0.4, "note": "Related: easy word; many employers are companies."},
+  {"to": "manager", "relation": "related", "strength": 0.4, "note": "Related: the person who controls your work, who is often an employee too."}
+ ],
+ "ant": [
+  {"to": "employee", "relation": "antonym", "note": "The employee does the job; the employer gives the job and pays."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "employment", "relation": "derivational",
+ "definition": "the state of having a paid job",
+ "example": "The new airport will bring employment to the region.",
+ "register": "formal",
+ "syn": [
+  {"to": "work", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word."},
+  {"to": "job", "relation": "related", "strength": 0.6, "note": "Related: easy word; a job is one position, employment is the general state."}
+ ],
+ "ant": [
+  {"to": "unemployment", "relation": "antonym", "note": "The state of not having a paid job."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "employ", "relation": "derivational",
+ "definition": "to give someone a job and pay them for it",
+ "example": "The hotel employs ten cooks in the summer.",
+ "note": "In formal English it can also mean 'to use': 'employ a new method'.",
+ "syn": [
+  {"to": "hire", "relation": "synonym", "strength": 0.8, "note": "Very close; hire is more common in American English and in speaking."},
+  {"to": "take on", "relation": "synonym", "strength": 0.8, "note": "British English, a little informal: 'The shop is taking on new staff.'"}
+ ],
+ "ant": [
+  {"to": "dismiss", "relation": "antonym", "note": "Formal: tell someone they no longer have their job."},
+  {"to": "fire", "relation": "antonym", "note": "Informal: make someone leave their job.", "register": "informal"}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "employed", "relation": "participial",
+ "definition": "having a job that you are paid for",
+ "example": "Only half of the people in the village are employed.",
+ "syn": [
+  {"to": "working", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word: 'a working mother'."}
+ ],
+ "ant": [
+  {"to": "unemployed", "relation": "antonym", "note": "Without a paid job."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "employable", "relation": "derivational",
+ "definition": "having the skills that companies want when they choose workers",
+ "example": "Good computer skills make you more employable.",
+ "syn": [],
+ "ant": []},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [
+ {"form": "employee", "kind": "person", "status": "existing", "definition": "a person who is paid to work for a company or person", "example": "Every employee gets a free lunch at the factory."}
+],
+"affixes": [
+ {"affix": "-er", "in_form": "employer", "meaning_key": "-er", "also": ["teacher", "owner", "driver"]},
+ {"affix": "-ment", "in_form": "employment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
+ {"affix": "-able", "in_form": "employable", "meaning_key": "-able", "also": ["readable", "washable", "comfortable"]},
+ {"affix": "-ee", "in_form": "employee", "meaning_key": "-ee", "also": ["trainee", "refugee", "interviewee"]}
+],
+"context": {"text": "My employer is a small IT company in Samarkand. It employs twenty young people, and everyone employed there gets free English lessons.", "uses": ["employer", "employs", "employed"]},
+"reviewer_note": "Two rows, same meaning, merged (lowest CEFR B1). Headword is a person noun, so it stays the main noun; employee goes in people and as the antonym. Boss kept as related, not synonym, because an employer can be a company."
+},
+{
+"headword": "entertain",
+"word_id": "6a42659782466c80f8ae0ccb",
+"word_ids": ["6a42659782466c80f8ae0ccb"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Fun",
+"sense_pos": "verb",
+"corpus_definition": "To keep people interested and happy.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "entertainment", "relation": "derivational",
+ "definition": "shows, films, music or games that people enjoy",
+ "example": "There was music and dancing for entertainment at the wedding.",
+ "syn": [
+  {"to": "amusement", "relation": "synonym", "strength": 0.8, "note": "The feeling or activity of having fun; a little old-fashioned."},
+  {"to": "fun", "relation": "related", "strength": 0.6, "note": "Related: easy word for enjoyment, not the shows themselves."},
+  {"to": "recreation", "relation": "related", "strength": 0.6, "note": "Related: things you do in free time to relax, like sport.", "register": "formal"}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "entertain", "relation": "base",
+ "definition": "to keep people interested and happy, for example with a show",
+ "example": "A magician entertained the children at the birthday party.",
+ "note": "It can also mean to invite guests and give them food and drink: 'We often entertain on Sundays.'",
+ "syn": [
+  {"to": "amuse", "relation": "synonym", "strength": 0.95, "note": "Very close; amuse often means making people laugh."},
+  {"to": "delight", "relation": "related", "strength": 0.6, "note": "Related: make someone very pleased."},
+  {"to": "interest", "relation": "related", "strength": 0.4, "note": "Related: easy word; make people want to know more, not always fun."}
+ ],
+ "ant": [
+  {"to": "bore", "relation": "antonym", "note": "Make people tired because something is not interesting."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertaining", "relation": "participial",
+ "definition": "fun and interesting to watch, read or listen to",
+ "example": "The comedy show was really entertaining.",
+ "syn": [
+  {"to": "amusing", "relation": "synonym", "strength": 0.95, "note": "Very close; amusing often means funny."},
+  {"to": "enjoyable", "relation": "synonym", "strength": 0.8, "note": "Easy word: something you enjoy."},
+  {"to": "interesting", "relation": "related", "strength": 0.6, "note": "Related: easy word; it keeps your attention but may not be fun."}
+ ],
+ "ant": [
+  {"to": "boring", "relation": "antonym", "note": "Not interesting at all."},
+  {"to": "dull", "relation": "antonym", "note": "Not exciting or interesting."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertained", "relation": "participial",
+ "definition": "feeling interested and happy because something is fun",
+ "example": "The cartoons kept the kids entertained for an hour.",
+ "syn": [
+  {"to": "amused", "relation": "synonym", "strength": 0.8, "note": "Close; amused often means you find something funny."}
+ ],
+ "ant": [
+  {"to": "bored", "relation": "antonym", "note": "Tired and unhappy because nothing is interesting."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "entertainingly", "relation": "derivational",
+ "definition": "in a fun and interesting way",
+ "example": "He writes entertainingly about his travels in Central Asia.",
+ "syn": [
+  {"to": "amusingly", "relation": "synonym", "strength": 0.8, "note": "Close; amusingly usually means in a funny way."}
+ ],
+ "ant": []}
+],
+"people": [
+ {"form": "entertainer", "kind": "job", "status": "existing", "definition": "a person whose job is to sing, dance or tell jokes for people", "example": "The entertainer sang songs and told jokes at the party."}
+],
+"affixes": [
+ {"affix": "-ment", "in_form": "entertainment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
+ {"affix": "-ing", "in_form": "entertaining", "meaning_key": "-ing", "also": ["interesting", "exciting", "boring"]},
+ {"affix": "-ly", "in_form": "entertainingly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]},
+ {"affix": "-er", "in_form": "entertainer", "meaning_key": "-er", "also": ["singer", "dancer", "teacher"]}
+],
+"context": {"text": "At my cousin's wedding, a famous singer entertained the guests all evening. Everyone said the show was very entertaining, and the children stayed entertained until midnight.", "uses": ["entertained", "entertaining", "entertained"]},
+"reviewer_note": "Anchored to 'keep people interested and happy'; the 'have guests' use is mentioned in the verb note only."
+},
+{
+"headword": "entertaining",
+"word_id": "6a42659782466c80f8ae0c9d",
+"word_ids": ["6a42659782466c80f8ae0c9d"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Fun",
+"sense_pos": "adjective",
+"corpus_definition": "Something that is interesting and gives you enjoyment.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "entertainment", "relation": "derivational",
+ "definition": "shows, films, music or games that people enjoy",
+ "example": "Television is the main entertainment for many old people.",
+ "syn": [
+  {"to": "amusement", "relation": "synonym", "strength": 0.8, "note": "The feeling or activity of having fun; a little old-fashioned."},
+  {"to": "fun", "relation": "related", "strength": 0.6, "note": "Related: easy word for enjoyment, not the shows themselves."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "entertain", "relation": "derivational",
+ "definition": "to keep people interested and happy, for example with a show",
+ "example": "The street musicians entertained the tourists in Registan Square.",
+ "syn": [
+  {"to": "amuse", "relation": "synonym", "strength": 0.95, "note": "Very close; amuse often means making people laugh."},
+  {"to": "delight", "relation": "related", "strength": 0.6, "note": "Related: make someone very pleased."}
+ ],
+ "ant": [
+  {"to": "bore", "relation": "antonym", "note": "Make people tired because something is not interesting."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertaining", "relation": "base",
+ "definition": "fun and interesting, so you enjoy it",
+ "example": "Our history teacher tells very entertaining stories.",
+ "syn": [
+  {"to": "amusing", "relation": "synonym", "strength": 0.95, "note": "Very close; amusing often means funny."},
+  {"to": "enjoyable", "relation": "synonym", "strength": 0.8, "note": "Easy word: something you enjoy."},
+  {"to": "fun", "relation": "synonym", "strength": 0.8, "note": "Easy, informal word: 'The game was fun.'", "register": "informal"},
+  {"to": "interesting", "relation": "related", "strength": 0.6, "note": "Related: easy word; it keeps your attention but may not be fun."}
+ ],
+ "ant": [
+  {"to": "boring", "relation": "antonym", "note": "Not interesting at all."},
+  {"to": "dull", "relation": "antonym", "note": "Not exciting or interesting."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertained", "relation": "participial",
+ "definition": "feeling interested and happy because something is fun",
+ "example": "The puzzle kept me entertained on the long train ride.",
+ "syn": [
+  {"to": "amused", "relation": "synonym", "strength": 0.8, "note": "Close; amused often means you find something funny."}
+ ],
+ "ant": [
+  {"to": "bored", "relation": "antonym", "note": "Tired and unhappy because nothing is interesting."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "entertainingly", "relation": "derivational",
+ "definition": "in a fun and interesting way",
+ "example": "The guide talked entertainingly about the old city.",
+ "syn": [
+  {"to": "amusingly", "relation": "synonym", "strength": 0.8, "note": "Close; amusingly usually means in a funny way."}
+ ],
+ "ant": []}
+],
+"people": [
+ {"form": "entertainer", "kind": "job", "status": "existing", "definition": "a person whose job is to sing, dance or tell jokes for people", "example": "He works as an entertainer on cruise ships."}
+],
+"affixes": [
+ {"affix": "-ing", "in_form": "entertaining", "meaning_key": "-ing", "also": ["interesting", "exciting", "boring"]},
+ {"affix": "-ly", "in_form": "entertainingly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]},
+ {"affix": "-ment", "in_form": "entertainment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
+ {"affix": "-er", "in_form": "entertainer", "meaning_key": "-er", "also": ["singer", "dancer", "teacher"]}
+],
+"context": {"text": "The new Uzbek comedy film is really entertaining. The actors entertain you from the first minute, so it is perfect entertainment for a family evening.", "uses": ["entertaining", "entertain", "entertainment"]},
+"reviewer_note": "Headword is the -ing adjective, so it is the base of the adjective slot; entertain is listed as the verb it comes from."
+},
+{
+"headword": "entertainment",
+"word_id": "6a42659782466c80f8ae0ccc",
+"word_ids": ["6a42659782466c80f8ae0ccc"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Shows",
+"sense_pos": "noun",
+"corpus_definition": "Shows, films, or games that people enjoy.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "entertainment", "relation": "base",
+ "definition": "shows, films, music or games that people watch or play for fun",
+ "example": "The hotel offers live music and other entertainment every night.",
+ "syn": [
+  {"to": "amusement", "relation": "synonym", "strength": 0.8, "note": "The feeling or activity of having fun; a little old-fashioned."},
+  {"to": "fun", "relation": "related", "strength": 0.6, "note": "Related: easy word for enjoyment, not the shows themselves."},
+  {"to": "recreation", "relation": "related", "strength": 0.6, "note": "Related: things you do in free time to relax, like sport.", "register": "formal"},
+  {"to": "leisure", "relation": "related", "strength": 0.4, "note": "Related: free time when you are not working."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "entertain", "relation": "derivational",
+ "definition": "to keep people interested and happy, for example with a show",
+ "example": "Clowns entertained the crowd before the concert started.",
+ "syn": [
+  {"to": "amuse", "relation": "synonym", "strength": 0.95, "note": "Very close; amuse often means making people laugh."}
+ ],
+ "ant": [
+  {"to": "bore", "relation": "antonym", "note": "Make people tired because something is not interesting."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertaining", "relation": "participial",
+ "definition": "fun and interesting to watch, read or listen to",
+ "example": "The football match was more entertaining than I expected.",
+ "syn": [
+  {"to": "amusing", "relation": "synonym", "strength": 0.95, "note": "Very close; amusing often means funny."},
+  {"to": "enjoyable", "relation": "synonym", "strength": 0.8, "note": "Easy word: something you enjoy."}
+ ],
+ "ant": [
+  {"to": "boring", "relation": "antonym", "note": "Not interesting at all."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "entertained", "relation": "participial",
+ "definition": "feeling interested and happy because something is fun",
+ "example": "The games kept the guests entertained all afternoon.",
+ "syn": [],
+ "ant": [
+  {"to": "bored", "relation": "antonym", "note": "Tired and unhappy because nothing is interesting."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "entertainingly", "relation": "derivational",
+ "definition": "in a fun and interesting way",
+ "example": "The book is entertainingly written and easy to read.",
+ "syn": [
+  {"to": "amusingly", "relation": "synonym", "strength": 0.8, "note": "Close; amusingly usually means in a funny way."}
+ ],
+ "ant": []}
+],
+"people": [
+ {"form": "entertainer", "kind": "job", "status": "existing", "definition": "a person whose job is to sing, dance or tell jokes for people", "example": "The entertainer made everyone laugh at the New Year party."}
+],
+"affixes": [
+ {"affix": "-ment", "in_form": "entertainment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
+ {"affix": "-ing", "in_form": "entertaining", "meaning_key": "-ing", "also": ["interesting", "exciting", "boring"]},
+ {"affix": "-ly", "in_form": "entertainingly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]},
+ {"affix": "-er", "in_form": "entertainer", "meaning_key": "-er", "also": ["singer", "dancer", "teacher"]}
+],
+"context": {"text": "Tashkent has a lot of entertainment for young people, from cinemas to concerts. Street musicians entertain people in the parks, and the shows are free and entertaining.", "uses": ["entertainment", "entertain", "entertaining"]},
+"reviewer_note": "Uncountable noun in this meaning; the 'industry' use (the entertainment business) is the same meaning and needs no separate map."
+},
+{
+"headword": "enthusiastic",
+"word_id": "6a4282fd46ba24054c1dcde0",
+"word_ids": ["6a4282fd46ba24054c1dcde0", "6a6ef9b2a60155614809281c"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Excited",
+"sense_pos": "adjective",
+"corpus_definition": "Feeling very interested and excited about something.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "enthusiasm", "relation": "derivational",
+ "definition": "a strong feeling of excitement and interest in something",
+ "example": "The children showed great enthusiasm for the football lessons.",
+ "syn": [
+  {"to": "excitement", "relation": "synonym", "strength": 0.8, "note": "Easy word; excitement is often short, enthusiasm can last a long time."},
+  {"to": "eagerness", "relation": "synonym", "strength": 0.8, "note": "Strong wish to do something soon."},
+  {"to": "passion", "relation": "synonym", "strength": 0.8, "note": "A very strong love for something, like music or sport."},
+  {"to": "interest", "relation": "related", "strength": 0.6, "note": "Related: easy word, but much weaker."}
+ ],
+ "ant": [
+  {"to": "indifference", "relation": "antonym", "note": "Not caring or not being interested at all."},
+  {"to": "apathy", "relation": "antonym", "note": "Formal: no interest and no energy to do anything."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "enthuse", "relation": "derivational",
+ "definition": "to talk about something in a very excited way",
+ "example": "She enthused about her trip to Khiva for an hour.",
+ "note": "Usually 'enthuse about/over something'.",
+ "syn": [
+  {"to": "rave", "relation": "related", "strength": 0.6, "note": "Related, informal: praise something very strongly.", "register": "informal"}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "enthusiastic", "relation": "base",
+ "definition": "feeling or showing a lot of excitement and interest",
+ "example": "The students were very enthusiastic about the school trip.",
+ "syn": [
+  {"to": "excited", "relation": "synonym", "strength": 0.8, "note": "Easy word; excited is often about something that will happen soon."},
+  {"to": "eager", "relation": "synonym", "strength": 0.8, "note": "Wanting very much to do something."},
+  {"to": "keen", "relation": "synonym", "strength": 0.8, "note": "British English: 'keen on football'."},
+  {"to": "passionate", "relation": "synonym", "strength": 0.8, "note": "Stronger: having very strong feelings about something."},
+  {"to": "interested", "relation": "related", "strength": 0.6, "note": "Related: easy word, but much weaker."}
+ ],
+ "ant": [
+  {"to": "unenthusiastic", "relation": "antonym", "note": "Not interested or excited."},
+  {"to": "uninterested", "relation": "antonym", "note": "Easy: not wanting to know or do more."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "enthusiastically", "relation": "derivational",
+ "definition": "in a very excited and interested way",
+ "example": "The fans cheered enthusiastically when the team scored.",
+ "syn": [
+  {"to": "eagerly", "relation": "synonym", "strength": 0.8, "note": "With a strong wish to do something."},
+  {"to": "excitedly", "relation": "synonym", "strength": 0.8, "note": "Easy word, in an excited way."},
+  {"to": "keenly", "relation": "related", "strength": 0.6, "note": "Related: with strong interest."}
+ ],
+ "ant": [
+  {"to": "reluctantly", "relation": "antonym", "note": "Without wanting to do it."}
+ ]}
+],
+"people": [
+ {"form": "enthusiast", "kind": "person", "status": "existing", "definition": "a person who is very interested in a hobby or activity", "example": "He is a car enthusiast and reads every car magazine."}
+],
+"affixes": [
+ {"affix": "-ic", "in_form": "enthusiastic", "meaning_key": "-ic", "also": ["artistic", "historic", "scientific"]}
+],
+"context": {"text": "Our new English teacher is very enthusiastic. Her enthusiasm is so strong that even the quiet students now answer questions enthusiastically.", "uses": ["enthusiastic", "enthusiasm", "enthusiastically"]},
+"reviewer_note": "Two rows, same meaning, merged (lowest CEFR B1). Affix -ic only (enthusiast + -ic); no -ly split claimed because 'enthusiastical' is not a word."
+}
+]
