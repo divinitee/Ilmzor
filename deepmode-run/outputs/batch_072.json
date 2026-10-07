@@ -1,0 +1,953 @@
+[
+ {
+  "headword": "compare with",
+  "word_id": "6a42800cb9d8fc24968a4b92",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b92"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Difference",
+  "sense_pos": "verb",
+  "corpus_definition": "To look at two things to see how they differ.",
+  "particle_note": "Not separable around 'with': compare + thing + with + thing: 'compare this photo with the old one'. 'compare to' is also common, especially for saying two things are similar.",
+  "relations": [
+   {
+    "to": "contrast with",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Look at the differences between two things."
+   },
+   {
+    "to": "weigh against",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Compare to decide which is better."
+   },
+   {
+    "to": "confuse with",
+    "relation": "antonym",
+    "note": "Think two things are the same by mistake."
+   }
+  ],
+  "context": {
+   "text": "Our teacher compared my essay with last year's essay. When she compared the two, she saw a big improvement.",
+   "uses": [
+    "compared my essay with",
+    "compared"
+   ]
+  },
+  "reviewer_note": "compare with / compare to difference noted."
+ },
+ {
+  "headword": "competition",
+  "word_id": "6a42659782466c80f8ae0c9a",
+  "word_ids": [
+   "6a42659782466c80f8ae0c9a"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Contest",
+  "sense_pos": "noun",
+  "corpus_definition": "An event where people try to be better than others.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "competition",
+    "relation": "derivational",
+    "definition": "an event where people try to win against others",
+    "example": "She entered a dance competition last week.",
+    "syn": [
+     {
+      "to": "contest",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "An event to find the best."
+     },
+     {
+      "to": "tournament",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A sports event with many games."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "compete",
+    "relation": "base",
+    "definition": "to try to win against other people",
+    "example": "Ten teams will compete in the final.",
+    "syn": [
+     {
+      "to": "take part",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Join an activity."
+     },
+     {
+      "to": "contend",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: compete for something.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "competitive",
+    "relation": "derivational",
+    "definition": "wanting very much to win, or connected with trying to win",
+    "example": "My brother is very competitive at games.",
+    "syn": [
+     {
+      "to": "ambitious",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Wanting to be successful."
+     }
+    ],
+    "ant": [
+     {
+      "to": "cooperative",
+      "relation": "antonym",
+      "note": "Working together with others."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "competitively",
+    "relation": "derivational",
+    "definition": "in a way that tries to win",
+    "example": "She plays tennis competitively.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [
+   {
+    "form": "competitor",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who takes part in a contest",
+    "example": "There were fifty competitors in the race."
+   }
+  ],
+  "people_not_family": [
+   "rival"
+  ],
+  "affixes": [],
+  "context": {
+   "text": "Laylo wants to compete in the national chess competition. She is very competitive and practises every day.",
+   "uses": [
+    "compete",
+    "competition",
+    "competitive"
+   ]
+  },
+  "reviewer_note": "compete is the base verb; competition derived from it."
+ },
+ {
+  "headword": "complicated",
+  "word_id": "6a42800cb9d8fc24968a4b2e",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b2e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Difficulty",
+  "sense_pos": "adjective",
+  "corpus_definition": "Very difficult to understand because it has many parts.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "complication",
+    "relation": "derivational",
+    "definition": "something that makes a situation harder",
+    "example": "There was a complication with our visas.",
+    "syn": [
+     {
+      "to": "problem",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Something difficult to deal with."
+     },
+     {
+      "to": "difficulty",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Something hard."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "complicate",
+    "relation": "base",
+    "definition": "to make something more difficult",
+    "example": "Please do not complicate the plan.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "simplify",
+      "relation": "antonym",
+      "note": "Make something easier."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "complicated",
+    "relation": "participial",
+    "definition": "difficult to understand because it has many parts",
+    "example": "This maths problem is too complicated for me.",
+    "syn": [
+     {
+      "to": "complex",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Having many connected parts."
+     },
+     {
+      "to": "difficult",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not easy."
+     },
+     {
+      "to": "tricky",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Difficult and needing care.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "simple",
+      "relation": "antonym",
+      "note": "Easy to understand."
+     },
+     {
+      "to": "straightforward",
+      "relation": "antonym",
+      "note": "Clear and easy."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The instructions for the new phone were very complicated. Missing pages complicated things even more.",
+   "uses": [
+    "complicated"
+   ]
+  },
+  "reviewer_note": "complicated is the participle of complicate."
+ },
+ {
+  "headword": "concentrate",
+  "word_id": "6a4265cce20c7210db6908ac",
+  "word_ids": [
+   "6a4265cce20c7210db6908ac"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Attention",
+  "sense_pos": "verb",
+  "corpus_definition": "To direct all your mental effort on one thing.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "concentration",
+    "relation": "derivational",
+    "definition": "the ability to think carefully about one thing",
+    "example": "This work needs a lot of concentration.",
+    "syn": [
+     {
+      "to": "focus",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Giving attention to one thing."
+     },
+     {
+      "to": "attention",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Careful thinking about something."
+     }
+    ],
+    "ant": [
+     {
+      "to": "distraction",
+      "relation": "antonym",
+      "note": "Something that takes your attention away."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "concentrate",
+    "relation": "base",
+    "definition": "to give all your attention to one thing",
+    "example": "It is hard to concentrate with this noise.",
+    "syn": [
+     {
+      "to": "focus",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Give attention to one thing."
+     },
+     {
+      "to": "pay attention",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Watch or listen carefully."
+     }
+    ],
+    "ant": [
+     {
+      "to": "get distracted",
+      "relation": "antonym",
+      "note": "Stop paying attention."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "concentrated",
+    "relation": "participial",
+    "definition": "(of a liquid) strong because water has been removed",
+    "example": "This is concentrated orange juice.",
+    "syn": [
+     {
+      "to": "strong",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Having a lot of flavour."
+     }
+    ],
+    "ant": [
+     {
+      "to": "diluted",
+      "relation": "antonym",
+      "note": "Made weaker with water."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-tion",
+    "in_form": "concentration",
+    "meaning_key": "-tion",
+    "also": [
+     "education",
+     "information",
+     "population"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Sardor cannot concentrate when his phone is on. His concentration is much better in the library.",
+   "uses": [
+    "concentrate",
+    "concentration"
+   ]
+  },
+  "reviewer_note": "concentrated is mainly the liquid sense."
+ },
+ {
+  "headword": "confess",
+  "word_id": "6a6ef9b2a6015561480926fe",
+  "word_ids": [
+   "6a6ef9b2a6015561480926fe"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Admit",
+  "sense_pos": "verb",
+  "corpus_definition": "to admit that you did something wrong or bad",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "confession",
+    "relation": "derivational",
+    "definition": "a statement where you admit you did something wrong",
+    "example": "The thief made a full confession.",
+    "syn": [
+     {
+      "to": "admission",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Saying that something is true.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "denial",
+      "relation": "antonym",
+      "note": "Saying something is not true."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "confess",
+    "relation": "base",
+    "definition": "to say that you did something wrong",
+    "example": "She confessed that she had broken the vase.",
+    "syn": [
+     {
+      "to": "admit",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Agree that something bad is true."
+     },
+     {
+      "to": "own up",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal: admit a mistake.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "deny",
+      "relation": "antonym",
+      "note": "Say that something is not true."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "confession",
+    "meaning_key": "-ion",
+    "also": [
+     "decision",
+     "discussion",
+     "television"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Jasur confessed to his mother that he broke the window. After his confession, he felt much better.",
+   "uses": [
+    "confessed",
+    "confession"
+   ]
+  },
+  "reviewer_note": "confessor not shown (religious, rare)."
+ },
+ {
+  "headword": "confidence",
+  "word_id": "6a42662edeeb39f881130145",
+  "word_ids": [
+   "6a42662edeeb39f881130145"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Self-belief",
+  "sense_pos": "noun",
+  "corpus_definition": "Feeling sure about your own skills or success.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "confidence",
+    "relation": "derivational",
+    "definition": "a feeling of being sure about your own abilities",
+    "example": "She has the confidence to speak in public.",
+    "syn": [
+     {
+      "to": "self-belief",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Trust in your own abilities."
+     },
+     {
+      "to": "assurance",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A calm, sure feeling.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "insecurity",
+      "relation": "antonym",
+      "note": "A feeling of not being sure of yourself."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "confident",
+    "relation": "base",
+    "definition": "sure about your own abilities",
+    "example": "He feels confident about the test.",
+    "syn": [
+     {
+      "to": "sure",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Certain about something."
+     },
+     {
+      "to": "self-assured",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Confident and calm."
+     }
+    ],
+    "ant": [
+     {
+      "to": "nervous",
+      "relation": "antonym",
+      "note": "Worried and a little afraid."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "confidently",
+    "relation": "derivational",
+    "definition": "in a sure way",
+    "example": "She answered the question confidently.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "nervously",
+      "relation": "antonym",
+      "note": "In a worried way."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "confidential",
+    "definition": "secret and not to be told to others",
+    "example": "This information is confidential.",
+    "note": "Belongs to confide = tell a secret, not self-belief."
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "in_form": "confidently",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Malika has a lot of confidence on stage. She sings confidently in front of the whole school.",
+   "uses": [
+    "confidence",
+    "confidently"
+   ]
+  },
+  "reviewer_note": "confidential belongs to the trust/secret sense."
+ },
+ {
+  "headword": "confident",
+  "word_id": "6a42662edeeb39f881130113",
+  "word_ids": [
+   "6a42662edeeb39f881130113"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Self-belief",
+  "sense_pos": "adjective",
+  "corpus_definition": "Feeling sure about your own skills or success.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "confidence",
+    "relation": "derivational",
+    "definition": "a feeling of being sure about your own abilities",
+    "example": "Practice gave him confidence.",
+    "syn": [
+     {
+      "to": "self-belief",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Trust in your own abilities."
+     }
+    ],
+    "ant": [
+     {
+      "to": "insecurity",
+      "relation": "antonym",
+      "note": "A feeling of not being sure of yourself."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "confident",
+    "relation": "base",
+    "definition": "sure about your own abilities",
+    "example": "He feels confident about passing the test.",
+    "syn": [
+     {
+      "to": "sure",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Certain about something."
+     },
+     {
+      "to": "self-assured",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Confident and calm."
+     }
+    ],
+    "ant": [
+     {
+      "to": "nervous",
+      "relation": "antonym",
+      "note": "Worried and a little afraid."
+     },
+     {
+      "to": "insecure",
+      "relation": "antonym",
+      "note": "Not sure about yourself."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "confidently",
+    "relation": "derivational",
+    "definition": "in a sure way",
+    "example": "He walked confidently into the room.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "nervously",
+      "relation": "antonym",
+      "note": "In a worried way."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "in_form": "confidently",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Aziz is confident that he will pass his driving test. He answers every question confidently.",
+   "uses": [
+    "confident",
+    "confidently"
+   ]
+  },
+  "reviewer_note": "Same family as confidence; separate corpus row."
+ },
+ {
+  "headword": "confuse with",
+  "word_id": "6a4265cce20c7210db6908f1",
+  "word_ids": [
+   "6a4265cce20c7210db6908f1"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Mistake",
+  "sense_pos": "verb",
+  "corpus_definition": "To think two things are the same by mistake.",
+  "particle_note": "Not separable around 'with': confuse + A + with + B: 'confuse the twins with each other', 'people confuse me with my brother'.",
+  "relations": [
+   {
+    "to": "mix up with",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Informal: think one thing is another.",
+    "register": "informal"
+   },
+   {
+    "to": "mistake for",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "'mistake A for B' = think A is B."
+   },
+   {
+    "to": "tell apart",
+    "relation": "antonym",
+    "note": "See the difference between two things."
+   }
+  ],
+  "context": {
+   "text": "People often confuse Kamola with her sister. Even our teacher confused her with Madina last week.",
+   "uses": [
+    "confuse Kamola with",
+    "confused her with"
+   ]
+  },
+  "reviewer_note": "tell apart is the clear opposite."
+ },
+ {
+  "headword": "conquer",
+  "word_id": "6a6ef9b2a60155614809274f",
+  "word_ids": [
+   "6a6ef9b2a60155614809274f"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Force",
+  "sense_pos": "verb",
+  "corpus_definition": "to take control of a place or people by using force",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "conquest",
+    "relation": "derivational",
+    "definition": "the act of taking control of a place by force",
+    "example": "The conquest of the city took three years.",
+    "syn": [
+     {
+      "to": "invasion",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Entering a country with an army."
+     },
+     {
+      "to": "takeover",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Taking control of something."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "conquer",
+    "relation": "base",
+    "definition": "to take control of a country or city by force",
+    "example": "Alexander the Great conquered many lands.",
+    "syn": [
+     {
+      "to": "defeat",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Win against an enemy."
+     },
+     {
+      "to": "invade",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Enter a country with an army."
+     }
+    ],
+    "ant": [
+     {
+      "to": "surrender",
+      "relation": "antonym",
+      "note": "Stop fighting and accept defeat."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "conqueror",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who takes control of a place by force",
+    "example": "Amir Temur was a great conqueror."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Amir Temur conquered many lands in the fourteenth century. His conquests made Samarkand a rich city.",
+   "uses": [
+    "conquered",
+    "conquests"
+   ]
+  },
+  "reviewer_note": "'conquer your fear' is a figurative extension."
+ },
+ {
+  "headword": "console",
+  "word_id": "6a6ef9b2a601556148092806",
+  "word_ids": [
+   "6a6ef9b2a601556148092806"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Comfort",
+  "sense_pos": "verb",
+  "corpus_definition": "to make someone feel better when they are sad or upset",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "consolation",
+    "relation": "derivational",
+    "definition": "something that makes you feel better when sad",
+    "example": "His only consolation was a letter from home.",
+    "syn": [
+     {
+      "to": "comfort",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Something that helps a sad person."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "console",
+    "definition": "a flat panel with controls, or a machine for video games",
+    "example": "He plays games on his console.",
+    "note": "Belongs to console = control panel, not comforting someone."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "console",
+    "relation": "base",
+    "definition": "to make a sad person feel better",
+    "example": "She tried to console her friend after the bad news.",
+    "syn": [
+     {
+      "to": "comfort",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Help someone feel less sad."
+     },
+     {
+      "to": "cheer up",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Make someone happier."
+     }
+    ],
+    "ant": [
+     {
+      "to": "upset",
+      "relation": "antonym",
+      "note": "Make someone sad or worried."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-tion",
+    "in_form": "consolation",
+    "meaning_key": "-tion",
+    "also": [
+     "education",
+     "information",
+     "population"
+    ]
+   }
+  ],
+  "context": {
+   "text": "When Dildora lost the match, her coach consoled her. The silver medal was a small consolation.",
+   "uses": [
+    "consoled",
+    "consolation"
+   ]
+  },
+  "reviewer_note": "Stress: verb conSOLE, noun CONsole."
+ }
+]
