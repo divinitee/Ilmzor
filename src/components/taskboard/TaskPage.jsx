@@ -2,8 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, ArrowUp, ChevronRight, Plus, Pencil, Archive, RotateCcw, Trash2, Download, ShieldCheck, ShieldOff,
-  FolderTree, ListChecks, Paperclip, History, AlertTriangle, Crosshair, ListPlus, X, Clock3, Bot, Ban, MapPin,
-
+  FolderTree, ListChecks, Paperclip, History, AlertTriangle, Crosshair, ListPlus, X, Clock3, Bot, Ban,
 } from "lucide-react";
 import { Button, StatusBadge, PriorityBadge, Tag, ProgressBar, Panel, ActorBadge } from "./ui";
 import StepList, { StepCreateForm, EvidenceForm, EvidenceItem } from "./StepList";
