@@ -3,7 +3,7 @@ import {
   ArrowDown, ArrowUp, Check, ChevronRight, Crosshair, Flag, LayoutGrid, Plus, Search, Sparkles, Trophy, X, Zap,
 } from "lucide-react";
 import { Button, PriorityBadge, ProgressBar, Modal, inputCls } from "./ui";
-import { PRIORITY_RANK, STATUS_LABEL, relative } from "./model";
+import { PRIORITY_RANK, STATUS_LABEL, relative, dependencyState, WORK_MODE_LABEL, calibratedEstimate } from "./model";
 
 // Focus: the Taskboard's front page (Tee, 2026-10-03 — "I'm getting
 // overwhelmed by tasks"). Shows ONE task being worked on now, its own
@@ -18,6 +18,7 @@ export function roadmapOf(data, idx) {
   return data.tasks
     .filter((t) => (Number(t.focus_rank) || 0) > 0 && !t.archived && t.status !== "complete")
     .filter((t) => !idx.path(t).slice(0, -1).some((a) => a.archived))
+    .filter((t) => !dependencyState(t, idx.byCode).blocked)
     .sort((a, b) => a.focus_rank - b.focus_rank);
 }
 
@@ -106,6 +107,8 @@ export default function Focus({ data, idx, busy, onOpen, onBacklog, onNew, handl
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <span className="font-mono text-sm text-slate-400">{now.task_code}</span>
                 <PriorityBadge priority={now.priority} />
+                <span className="rounded border border-slate-700 bg-slate-900/60 px-2 py-0.5 text-[11px] text-slate-300">{WORK_MODE_LABEL[now.work_mode || "hands_on"]} · {calibratedEstimate(now, data.workLogs || []).minutes}m</span>
+                {now.ai_minutes > 0 && <span className="rounded border border-orange-500/20 bg-orange-500/5 px-2 py-0.5 text-[11px] text-orange-300">AI {now.ai_minutes}m</span>}
                 {now.launch_blocker && <span className="rounded border border-rose-500/50 bg-rose-500/10 px-2 py-0.5 text-[11px] font-bold uppercase text-rose-300">Launch blocker</span>}
               </div>
               <button type="button" onClick={() => onOpen(now)} className="mt-1.5 text-left text-2xl font-semibold tracking-tight hover:text-blue-200 sm:text-[28px]">
