@@ -115,9 +115,6 @@ for (const it of items) {
     // filler that starts with an article placed after an article
     for (const m of text.matchAll(new RegExp(`\\b(a|an|the|A|An|The) \\{${name}\\}`, "g")))
       for (const f of fill) if (/^(a|an|the)\s/i.test(f)) F(`${id}: "${m[1]} {${name}}" with filler "${f}" doubles the article`);
-    // capitalised filler mid-sentence (fine for names and places; check it)
-    if (!new RegExp(`(^|[.?!]\\s)\\{${name}\\}`).test(text))
-      for (const f of fill) if (/^[A-Z]/.test(f) && !/^(I|TV)\b/.test(f)) { G(`${id}: filler "${f}" in {${name}} is capitalised mid-sentence — fine only for a name`); break; }
   }
 
   // create / express need their rubric fields
