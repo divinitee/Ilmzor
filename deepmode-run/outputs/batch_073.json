@@ -1,1 +1,1369 @@
-[{"headword": "construction", "word_id": "6a4288ad6941e70ad6a00eae", "word_ids": ["6a4288ad6941e70ad6a00eae"], "cefr": "B1", "kind": "word", "sense_label": "Building", "sense_pos": "noun", "corpus_definition": "The work of putting together the parts to make something large.", "forms": [{"slot": "noun", "status": "existing", "form": "construction", "relation": "base", "definition": "the work of building things like houses, roads and bridges", "example": "The construction of the new metro station in Tashkent took three years.", "syn": [{"to": "building", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word with the same meaning: 'building work'."}, {"to": "building work", "relation": "synonym", "strength": 0.95, "note": "Common British phrase for this kind of work."}, {"to": "development", "relation": "related", "strength": 0.4, "note": "Related: new houses or offices being planned and built in an area."}], "ant": [{"to": "demolition", "relation": "antonym", "note": "Demolition is the work of knocking a building down."}]}, {"slot": "verb", "status": "existing", "form": "construct", "relation": "derivational", "definition": "to build something such as a house, road or bridge", "example": "The company plans to construct a new bridge over the river.", "register": "formal", "syn": [{"to": "build", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word; construct is more formal."}, {"to": "put up", "relation": "synonym", "strength": 0.8, "note": "Informal: used for buildings, walls and tents."}, {"to": "erect", "relation": "synonym", "strength": 0.8, "note": "Very formal, used for buildings and statues.", "register": "formal"}, {"to": "make", "relation": "related", "strength": 0.4, "note": "General easy word; construct is for large things with many parts."}], "ant": [{"to": "demolish", "relation": "antonym", "note": "To knock a building down completely."}, {"to": "knock down", "relation": "antonym", "note": "Informal: to destroy a building or wall."}]}, {"slot": "adjective", "status": "other_meaning", "form": "constructive", "definition": "helpful and meant to make something better", "example": "My teacher gave me some constructive advice about my essay.", "note": "Belongs to construct = build something good (ideas, criticism), not building houses."}, {"slot": "adverb", "status": "other_meaning", "form": "constructively", "definition": "in a helpful way that improves something", "example": "Let's talk constructively about how to fix the problem.", "note": "Goes with constructive = helpful, not building houses."}], "people": [{"form": "constructor", "kind": "job", "status": "existing", "definition": "a person or company that builds things such as roads or houses", "example": "The constructor finished the school before September.", "note": "Less common than builder; also used for a company that builds racing cars."}], "affixes": [{"affix": "-ion", "in_form": "construction", "meaning_key": "-ion", "also": ["education", "decision", "action"]}], "context": {"text": "There is a lot of construction in our city this year. Workers are constructing new apartment blocks near the park, so the streets are noisy.", "uses": ["construction", "constructing"]}, "reviewer_note": "Trap: constructive/constructively mean 'helpful', so they are other_meaning, not 'about building'."}, {"headword": "contact", "word_id": "6a42816a2098612b1526f8fd", "word_ids": ["6a42816a2098612b1526f8fd"], "cefr": "B1", "kind": "word", "sense_label": "Communication", "sense_pos": "verb", "corpus_definition": "To talk or write to someone to share news.", "forms": [{"slot": "noun", "status": "existing", "form": "contact", "relation": "conversion", "definition": "communication with someone by phone, letter, email or meeting", "example": "We have stayed in contact since we left school.", "note": "Common phrases: 'in contact with', 'make contact', 'lose contact'. A contact can also be a person you know who can help you.", "syn": [{"to": "touch", "relation": "synonym", "strength": 0.8, "note": "Used in fixed phrases: 'stay in touch', 'get in touch'; more informal."}, {"to": "communication", "relation": "synonym", "strength": 0.8, "note": "More formal and general."}, {"to": "connection", "relation": "related", "strength": 0.4, "note": "Related: a link between people or things."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "contact", "relation": "base", "definition": "to call, write to or email someone to give or get news", "example": "Please contact me if you need help.", "note": "No preposition after the verb: say 'contact me', not 'contact to me' or 'contact with me'.", "syn": [{"to": "get in touch with", "relation": "synonym", "strength": 0.95, "note": "Very close and a little less formal."}, {"to": "reach", "relation": "synonym", "strength": 0.8, "note": "Often about managing to talk to someone: 'I couldn't reach him.'"}, {"to": "call", "relation": "related", "strength": 0.6, "note": "Only by phone."}, {"to": "write to", "relation": "related", "strength": 0.6, "note": "Only by letter, email or message."}, {"to": "email", "relation": "related", "strength": 0.6, "note": "Only by email."}], "ant": []}, {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this family. Contactable (easy to reach by phone or email) is rare."}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [], "affixes": [], "context": {"text": "If you have any questions, contact our office in Samarkand. We try to stay in contact with every student after the course.", "uses": ["contact", "contact"]}, "reviewer_note": "Uzbek/Russian speakers often add 'with' or 'to' after the verb; noted. Contactable left as rare."}, {"headword": "contain", "word_id": "6a42821646ba24054c1dcccd", "word_ids": ["6a42821646ba24054c1dcccd"], "cefr": "B1", "kind": "word", "sense_label": "Inside", "sense_pos": "verb", "corpus_definition": "To have something inside as part of it.", "forms": [{"slot": "noun", "status": "other_meaning", "form": "containment", "definition": "the act of keeping something harmful under control", "example": "The containment of the fire took the whole night.", "note": "Belongs to contain = keep something under control (a fire, a disease), not having something inside."}, {"slot": "verb", "status": "existing", "form": "contain", "relation": "base", "definition": "to have something inside or as a part", "example": "This box does not contain any plastic.", "note": "Not used in continuous tenses: say 'it contains', not 'it is containing'.", "syn": [{"to": "hold", "relation": "synonym", "strength": 0.8, "note": "Easy word, often about how much something can have inside: 'The bottle holds one litre.'"}, {"to": "include", "relation": "synonym", "strength": 0.8, "note": "Used when something is one part of a group or list."}, {"to": "have", "relation": "related", "strength": 0.6, "note": "Very general easy word."}, {"to": "consist of", "relation": "related", "strength": 0.4, "note": "Related: tells you ALL the parts, not just some."}], "ant": [{"to": "exclude", "relation": "antonym", "note": "To leave something out so it is not a part."}]}, {"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this meaning."}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [{"form": "container", "kind": "thing", "status": "existing", "definition": "a box, bottle or similar thing that you keep things in", "example": "Put the leftover plov in a plastic container."}], "affixes": [{"affix": "-er", "in_form": "container", "meaning_key": "-er", "also": ["printer", "heater", "cooker"]}], "context": {"text": "This juice contains a lot of sugar. Keep it in a glass container in the fridge.", "uses": ["contains", "container"]}, "reviewer_note": "Noun slot: containment is the 'control' meaning (other_meaning); contents shares the old root but is not shown as a form."}, {"headword": "contract", "word_id": "6a42883f6941e70ad6a00dc6", "word_ids": ["6a42883f6941e70ad6a00dc6", "6a42821646ba24054c1dcc9c"], "cefr": "B1", "kind": "word", "sense_label": "Agreement", "sense_pos": "noun", "corpus_definition": "A formal written agreement between two or more people or groups.", "forms": [{"slot": "noun", "status": "existing", "form": "contract", "relation": "base", "definition": "a formal written agreement that people or companies sign", "example": "They signed a new contract yesterday.", "note": "Phrases: sign a contract, break a contract, a one-year contract.", "syn": [{"to": "agreement", "relation": "synonym", "strength": 0.95, "note": "Easy and general; a contract is a legal, written agreement."}, {"to": "deal", "relation": "related", "strength": 0.6, "note": "Informal: an arrangement, often about business or money."}, {"to": "document", "relation": "related", "strength": 0.4, "note": "Related: any official paper, not only an agreement."}], "ant": []}, {"slot": "noun", "status": "other_meaning", "form": "contraction", "definition": "the process of becoming smaller or shorter", "example": "The contraction of the metal happens when it gets cold.", "note": "Belongs to contract = become smaller (a verb meaning), not a legal agreement. In grammar, a contraction is a short form like 'don't'."}, {"slot": "verb", "status": "existing", "form": "contract", "relation": "conversion", "definition": "to make a formal agreement for someone to do work", "example": "The city contracted a local company to repair the roads.", "register": "formal", "note": "The verb also means 'become smaller' and 'catch an illness'; those are other meanings. Stress: noun CONtract, verb conTRACT.", "syn": [{"to": "hire", "relation": "synonym", "strength": 0.8, "note": "Easier and more general: to pay someone to do work."}, {"to": "employ", "relation": "related", "strength": 0.6, "note": "Usually about a long-term job, not one piece of work."}], "ant": []}, {"slot": "adjective", "status": "existing", "form": "contractual", "relation": "derivational", "definition": "agreed in or connected with a formal written agreement", "example": "The company has a contractual duty to finish the work on time.", "register": "formal", "syn": [{"to": "legal", "relation": "related", "strength": 0.6, "note": "Related: connected with the law."}, {"to": "binding", "relation": "related", "strength": 0.6, "note": "Related: something you must legally do."}], "ant": []}, {"slot": "adverb", "status": "existing", "form": "contractually", "relation": "derivational", "definition": "in a way that is agreed in a formal written agreement", "example": "The builders are contractually required to finish by May.", "register": "formal", "syn": [{"to": "legally", "relation": "related", "strength": 0.6, "note": "Related: in a way connected with the law."}], "ant": []}], "people": [{"form": "contractor", "kind": "job", "status": "existing", "definition": "a person or company that is paid to do work, often building", "example": "We hired a contractor to build the new kitchen."}], "affixes": [{"affix": "-or", "in_form": "contractor", "meaning_key": "-or", "also": ["actor", "visitor", "director"]}, {"affix": "-ly", "in_form": "contractually", "meaning_key": "-ly", "also": ["usually", "quickly", "finally"]}], "context": {"text": "My brother got a two-year contract with a building contractor in Tashkent. He is contractually allowed four weeks of holiday each year.", "uses": ["contract", "contractor", "contractually"]}, "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). contraction (become smaller) kept as other_meaning; no -al affix claimed on contractual (contractu- is not a word)."}, {"headword": "cope", "word_id": "6a6ef9b2a601556148092778", "word_ids": ["6a6ef9b2a601556148092778"], "cefr": "B1", "kind": "word", "sense_label": "Difficulty", "sense_pos": "verb", "corpus_definition": "To deal successfully with a difficult situation.", "forms": [{"slot": "noun", "status": "no_form", "note": "There is no common noun in this family. Coping is used in phrases like 'coping skills'."}, {"slot": "verb", "status": "existing", "form": "cope", "relation": "base", "definition": "to manage a difficult situation or problem successfully", "example": "It is hard to cope with so much work.", "note": "Usually 'cope with + noun'. Also used alone: 'I can't cope!'", "syn": [{"to": "manage", "relation": "synonym", "strength": 0.95, "note": "Easy and very close: 'I can manage.'"}, {"to": "deal with", "relation": "synonym", "strength": 0.8, "note": "Common phrase; often about taking action to solve a problem."}, {"to": "handle", "relation": "synonym", "strength": 0.8, "note": "Close; often about a person, task or situation."}, {"to": "get by", "relation": "related", "strength": 0.6, "note": "Informal: to have just enough money or help to live."}, {"to": "survive", "relation": "related", "strength": 0.4, "note": "Related: stronger, about staying alive or getting through something very hard."}], "ant": [{"to": "struggle", "relation": "antonym", "note": "To have great difficulty with something instead of managing it well."}]}, {"slot": "adjective", "status": "no_form", "note": "There is no adjective in this family."}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [], "affixes": [], "context": {"text": "In her first year at university in Tashkent, Malika found it hard to cope with all the homework. Now she copes much better because she plans her week.", "uses": ["cope", "copes"]}, "reviewer_note": "Only the verb exists in this family; 'coping' (noun, part of a wall) is a different word."}, {"headword": "copper", "word_id": "6a6ef83f0f1e82a5a07366a8", "word_ids": ["6a6ef83f0f1e82a5a07366a8"], "cefr": "B1", "kind": "word", "sense_label": "Metal", "sense_pos": "noun", "corpus_definition": "A soft reddish metal used for electricity wires.", "forms": [{"slot": "noun", "status": "existing", "form": "copper", "relation": "base", "definition": "a soft reddish-brown metal used for wires and pipes", "example": "The coins were made of copper and silver.", "syn": [{"to": "bronze", "relation": "related", "strength": 0.4, "note": "Related: a brown metal made from this metal and tin."}, {"to": "brass", "relation": "related", "strength": 0.4, "note": "Related: a yellow metal made from this metal and zinc."}, {"to": "metal", "relation": "related", "strength": 0.4, "note": "General easy word for iron, gold, silver and similar materials."}], "ant": []}, {"slot": "verb", "status": "no_form", "note": "There is no verb in this family."}, {"slot": "adjective", "status": "existing", "form": "copper", "relation": "conversion", "definition": "made of the soft reddish-brown metal, or having its colour", "example": "My grandmother cooks plov in a big copper pot.", "note": "Used before a noun: copper wire, copper pot, copper hair.", "syn": [{"to": "reddish-brown", "relation": "related", "strength": 0.6, "note": "Only about the colour."}, {"to": "coppery", "relation": "synonym", "strength": 0.8, "note": "Means 'like this metal', usually about colour; less common."}], "ant": []}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [], "affixes": [], "context": {"text": "In the old bazaar in Bukhara, men still make copper plates by hand. The copper bowls shine red in the sun.", "uses": ["copper", "copper"]}, "reviewer_note": "Copper (informal British = police officer) comes from 'cop', a different word, so it is not shown."}, {"headword": "correction", "word_id": "6a4265cce20c7210db6908db", "word_ids": ["6a4265cce20c7210db6908db"], "cefr": "B1", "kind": "word", "sense_label": "Fixing", "sense_pos": "noun", "corpus_definition": "A change that makes something right.", "forms": [{"slot": "noun", "status": "existing", "form": "correction", "relation": "base", "definition": "a change that makes something right or fixes a mistake", "example": "I need to make a small correction here.", "syn": [{"to": "fix", "relation": "related", "strength": 0.6, "note": "Informal: a way of solving a problem."}, {"to": "change", "relation": "related", "strength": 0.6, "note": "General easy word; a correction is a change that removes a mistake."}, {"to": "amendment", "relation": "synonym", "strength": 0.8, "note": "Formal: a small change to a law, document or text.", "register": "formal"}, {"to": "revision", "relation": "related", "strength": 0.6, "note": "A change after you check something again, often to a text."}], "ant": [{"to": "mistake", "relation": "antonym", "note": "A correction removes a mistake."}, {"to": "error", "relation": "antonym", "note": "More formal word for a mistake."}]}, {"slot": "noun", "status": "existing", "form": "correctness", "relation": "derivational", "definition": "the quality of being right or accurate", "example": "The teacher checks the correctness of every answer.", "register": "formal", "syn": [{"to": "accuracy", "relation": "synonym", "strength": 0.95, "note": "Very close; often about numbers and facts."}, {"to": "precision", "relation": "related", "strength": 0.6, "note": "Related: being exact in every detail."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "correct", "relation": "derivational", "definition": "to make something right by finding and fixing mistakes", "example": "Our teacher corrects our homework every evening.", "syn": [{"to": "fix", "relation": "synonym", "strength": 0.8, "note": "Easy, informal word."}, {"to": "put right", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."}, {"to": "mark", "relation": "related", "strength": 0.6, "note": "British: what teachers do to students' work."}, {"to": "amend", "relation": "synonym", "strength": 0.8, "note": "Formal: to change a text or law.", "register": "formal"}, {"to": "edit", "relation": "related", "strength": 0.6, "note": "To change a text to make it better."}], "ant": []}, {"slot": "adjective", "status": "existing", "form": "correct", "relation": "derivational", "definition": "right, true, or with no mistakes", "example": "All your answers are correct.", "syn": [{"to": "right", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word."}, {"to": "accurate", "relation": "synonym", "strength": 0.8, "note": "Exact and true, often about numbers or facts."}, {"to": "true", "relation": "related", "strength": 0.6, "note": "About facts and statements."}], "ant": [{"to": "wrong", "relation": "antonym", "note": "Easy everyday opposite."}, {"to": "incorrect", "relation": "antonym", "note": "More formal opposite."}]}, {"slot": "adjective", "status": "existing", "form": "corrective", "relation": "derivational", "definition": "meant to make something better or right", "example": "He wears corrective glasses for reading.", "register": "formal", "syn": [], "ant": []}, {"slot": "adverb", "status": "existing", "form": "correctly", "relation": "derivational", "definition": "in a right way, without any mistakes", "example": "Make sure you spell your name correctly on the form.", "syn": [{"to": "right", "relation": "related", "strength": 0.6, "note": "Informal: 'Did I do it right?'"}, {"to": "properly", "relation": "synonym", "strength": 0.8, "note": "In the way it should be done."}, {"to": "accurately", "relation": "synonym", "strength": 0.8, "note": "Exactly and with no mistakes."}], "ant": [{"to": "wrongly", "relation": "antonym", "note": "In a way that is not right."}, {"to": "incorrectly", "relation": "antonym", "note": "Formal opposite."}]}], "people": [], "affixes": [{"affix": "-ion", "in_form": "correction", "meaning_key": "-ion", "also": ["education", "decision", "action"]}, {"affix": "-ness", "in_form": "correctness", "meaning_key": "-ness", "also": ["kindness", "happiness", "darkness"]}, {"affix": "-ive", "in_form": "corrective", "meaning_key": "-ive", "also": ["creative", "active", "expensive"]}, {"affix": "-ly", "in_form": "correctly", "meaning_key": "-ly", "also": ["quickly", "slowly", "clearly"]}], "context": {"text": "Please check that all the dates are correct. If you find a mistake, write the correction in red and send it back to me so I can correct the list.", "uses": ["correct", "correction", "correct"]}, "reviewer_note": "Headword is the noun; the verb and adjective 'correct' are the base of the family."}, {"headword": "cozy", "word_id": "6a6ef83f0f1e82a5a07366bc", "word_ids": ["6a6ef83f0f1e82a5a07366bc"], "cefr": "B1", "kind": "word", "sense_label": "Comfort", "sense_pos": "adjective", "corpus_definition": "Feeling warm, comfortable, and pleasant.", "forms": [{"slot": "noun", "status": "existing", "form": "coziness", "relation": "derivational", "definition": "the feeling of being warm, comfortable and relaxed", "example": "I love the coziness of my grandmother's kitchen in winter.", "note": "British spelling: cosiness.", "syn": [{"to": "comfort", "relation": "synonym", "strength": 0.8, "note": "A more general easy word."}, {"to": "warmth", "relation": "related", "strength": 0.6, "note": "Related: about heat or friendly feelings."}], "ant": [{"to": "discomfort", "relation": "antonym", "note": "A feeling of not being comfortable."}]}, {"slot": "verb", "status": "no_form", "note": "There is no single-word verb in this meaning. The phrasal verb 'cozy up (to)' means to move close to someone or to be friendly to get something."}, {"slot": "adjective", "status": "existing", "form": "cozy", "relation": "base", "definition": "warm, comfortable and pleasant, making you feel relaxed", "example": "We sat by the fire in the cozy room.", "note": "American spelling: cozy. British spelling: cosy.", "syn": [{"to": "snug", "relation": "synonym", "strength": 0.95, "note": "Very close; often about a small warm place."}, {"to": "comfortable", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; cozy also means warm and friendly."}, {"to": "warm", "relation": "related", "strength": 0.6, "note": "Only about temperature or friendly feelings."}, {"to": "homey", "relation": "synonym", "strength": 0.8, "note": "American English; British English says 'homely'."}], "ant": [{"to": "uncomfortable", "relation": "antonym", "note": "Not pleasant to be in or sit in."}, {"to": "cold", "relation": "antonym", "note": "Not warm or friendly."}]}, {"slot": "adverb", "status": "no_form", "note": "There is no common adverb in this family. Cozily (BrE cosily) is rare."}], "people": [], "affixes": [{"affix": "-ness", "in_form": "coziness", "meaning_key": "-ness", "also": ["kindness", "happiness", "darkness"]}], "context": {"text": "Our little flat in Fergana is cozy in winter. In the evening we drink tea under a warm blanket and enjoy the coziness.", "uses": ["cozy", "coziness"]}, "reviewer_note": "US/UK spelling noted (cozy/cosy). Cozily treated as rare."}, {"headword": "crack", "word_id": "6a6ef83f0f1e82a5a07367fc", "word_ids": ["6a6ef83f0f1e82a5a07367fc"], "cefr": "B1", "kind": "word", "sense_label": "Break", "sense_pos": "noun", "corpus_definition": "a thin line that appears when something is damaged or broken", "forms": [{"slot": "noun", "status": "existing", "form": "crack", "relation": "base", "definition": "a thin line on a surface where it has started to break", "example": "There is a small crack in the glass.", "syn": [{"to": "split", "relation": "synonym", "strength": 0.8, "note": "A long line where something has broken open, often wood or cloth."}, {"to": "fracture", "relation": "related", "strength": 0.6, "note": "Formal or medical: a crack in a bone or hard material.", "register": "formal"}, {"to": "gap", "relation": "related", "strength": 0.4, "note": "Related: an empty space between two things."}, {"to": "chip", "relation": "related", "strength": 0.4, "note": "Related: a small piece broken off the edge."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "crack", "relation": "conversion", "definition": "to break so that thin lines appear on the surface", "example": "The old plate cracked when I washed it in hot water.", "syn": [{"to": "break", "relation": "related", "strength": 0.6, "note": "General easy word; crack means it doesn't break into pieces."}, {"to": "split", "relation": "synonym", "strength": 0.8, "note": "To break along a line."}, {"to": "fracture", "relation": "related", "strength": 0.6, "note": "Formal or medical: used for bones.", "register": "formal"}], "ant": []}, {"slot": "verb", "status": "other_meaning", "form": "crackle", "definition": "to make many short sharp sounds", "example": "The wood crackled in the fire.", "note": "Belongs to crack = a sharp noise, not a thin line."}, {"slot": "adjective", "status": "existing", "form": "cracked", "relation": "participial", "definition": "having thin lines on it because it is damaged", "example": "Don't drink from that cracked cup.", "syn": [{"to": "broken", "relation": "related", "strength": 0.6, "note": "General easy word; broken can mean in pieces."}, {"to": "damaged", "relation": "related", "strength": 0.6, "note": "General word for any kind of harm."}, {"to": "chipped", "relation": "related", "strength": 0.4, "note": "With a small piece broken off."}], "ant": [{"to": "unbroken", "relation": "antonym", "note": "Whole, with no damage."}]}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [{"form": "cracker", "kind": "thing", "status": "other_meaning", "definition": "a thin, dry, hard biscuit, often eaten with cheese", "example": "We had crackers and cheese for a snack.", "note": "Belongs to crack = break with a sharp sound, not a thin line."}], "affixes": [], "context": {"text": "After the earthquake there was a long crack in the wall of our school. The walls had cracked in many places, so builders came to repair them.", "uses": ["crack", "cracked"]}, "reviewer_note": "crack also has meanings like 'a sharp noise' and 'solve a problem'; crackle and cracker kept as other_meaning."}, {"headword": "crash", "word_id": "6a4265fb84a10cdfe9e55d72", "word_ids": ["6a4265fb84a10cdfe9e55d72"], "cefr": "B1", "kind": "word", "sense_label": "Accident", "sense_pos": "noun", "corpus_definition": "A bad accident involving a moving vehicle.", "forms": [{"slot": "noun", "status": "existing", "form": "crash", "relation": "base", "definition": "an accident in which a car, bus or plane hits something", "example": "The car was damaged in the crash.", "syn": [{"to": "accident", "relation": "synonym", "strength": 0.8, "note": "Easy and more general; a crash is a violent one."}, {"to": "collision", "relation": "synonym", "strength": 0.95, "note": "Formal: when two things hit each other.", "register": "formal"}, {"to": "smash", "relation": "synonym", "strength": 0.8, "note": "Informal British English for a bad car accident.", "register": "informal"}, {"to": "pile-up", "relation": "related", "strength": 0.6, "note": "A crash with many cars."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "crash", "relation": "conversion", "definition": "to have an accident by hitting something hard while moving", "example": "The bus crashed into a tree on the way to Namangan.", "syn": [{"to": "collide", "relation": "synonym", "strength": 0.95, "note": "Formal: two things hit each other.", "register": "formal"}, {"to": "hit", "relation": "related", "strength": 0.6, "note": "General easy word."}, {"to": "smash into", "relation": "synonym", "strength": 0.8, "note": "Informal and strong: hit very hard."}, {"to": "run into", "relation": "related", "strength": 0.6, "note": "Hit something with your car, often not very hard."}], "ant": []}, {"slot": "adjective", "status": "other_meaning", "form": "crash", "definition": "done very quickly and with a lot of effort", "example": "I did a crash course in English before my trip.", "note": "Belongs to crash = sudden and fast, not an accident. Used only before a noun: a crash course, a crash diet."}, {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}], "people": [], "affixes": [], "context": {"text": "There was a bad crash on the road to Samarkand last night. A truck crashed into two cars, but luckily nobody died.", "uses": ["crash", "crashed"]}, "reviewer_note": "Adjective 'crash' (crash course) kept as other_meaning; computer 'crash' and money 'crash' are other meanings not shown."}]
+[
+ {
+  "headword": "construction",
+  "word_id": "6a4288ad6941e70ad6a00eae",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00eae"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Building",
+  "sense_pos": "noun",
+  "corpus_definition": "The work of putting together the parts to make something large.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "construction",
+    "relation": "base",
+    "definition": "the work of building things like houses, roads and bridges",
+    "example": "The construction of the new metro station in Tashkent took three years.",
+    "syn": [
+     {
+      "to": "building",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy everyday word with the same meaning: 'building work'."
+     },
+     {
+      "to": "building work",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Common British phrase for this kind of work."
+     },
+     {
+      "to": "development",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: new houses or offices being planned and built in an area."
+     }
+    ],
+    "ant": [
+     {
+      "to": "demolition",
+      "relation": "antonym",
+      "note": "Demolition is the work of knocking a building down."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "construct",
+    "relation": "derivational",
+    "definition": "to build something such as a house, road or bridge",
+    "example": "The company plans to construct a new bridge over the river.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "build",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy everyday word; construct is more formal."
+     },
+     {
+      "to": "put up",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal: used for buildings, walls and tents."
+     },
+     {
+      "to": "erect",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very formal, used for buildings and statues.",
+      "register": "formal"
+     },
+     {
+      "to": "make",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "General easy word; construct is for large things with many parts."
+     }
+    ],
+    "ant": [
+     {
+      "to": "demolish",
+      "relation": "antonym",
+      "note": "To knock a building down completely."
+     },
+     {
+      "to": "knock down",
+      "relation": "antonym",
+      "note": "Informal: to destroy a building or wall."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "constructive",
+    "definition": "helpful and meant to make something better",
+    "example": "My teacher gave me some constructive advice about my essay.",
+    "note": "Belongs to construct = build something good (ideas, criticism), not building houses."
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "constructively",
+    "definition": "in a helpful way that improves something",
+    "example": "Let's talk constructively about how to fix the problem.",
+    "note": "Goes with constructive = helpful, not building houses."
+   }
+  ],
+  "people": [
+   {
+    "form": "constructor",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person or company that builds things such as roads or houses",
+    "example": "The constructor finished the school before September.",
+    "note": "Less common than builder; also used for a company that builds racing cars."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "construction",
+    "meaning_key": "-ion",
+    "also": [
+     "education",
+     "decision",
+     "action"
+    ]
+   }
+  ],
+  "context": {
+   "text": "There is a lot of construction in our city this year. Workers are constructing new apartment blocks near the park, so the streets are noisy.",
+   "uses": [
+    "construction",
+    "constructing"
+   ]
+  },
+  "reviewer_note": "Trap: constructive/constructively mean 'helpful', so they are other_meaning, not 'about building'."
+ },
+ {
+  "headword": "contact",
+  "word_id": "6a42816a2098612b1526f8fd",
+  "word_ids": [
+   "6a42816a2098612b1526f8fd"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Communication",
+  "sense_pos": "verb",
+  "corpus_definition": "To talk or write to someone to share news.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "contact",
+    "relation": "conversion",
+    "definition": "communication with someone by phone, letter, email or meeting",
+    "example": "We have stayed in contact since we left school.",
+    "note": "Common phrases: 'in contact with', 'make contact', 'lose contact'. A contact can also be a person you know who can help you.",
+    "syn": [
+     {
+      "to": "touch",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used in fixed phrases: 'stay in touch', 'get in touch'; more informal."
+     },
+     {
+      "to": "communication",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal and general."
+     },
+     {
+      "to": "connection",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a link between people or things."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "contact",
+    "relation": "base",
+    "definition": "to call, write to or email someone to give or get news",
+    "example": "Please contact me if you need help.",
+    "note": "No preposition after the verb: say 'contact me', not 'contact to me' or 'contact with me'.",
+    "syn": [
+     {
+      "to": "get in touch with",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close and a little less formal."
+     },
+     {
+      "to": "reach",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Often about managing to talk to someone: 'I couldn't reach him.'"
+     },
+     {
+      "to": "call",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Only by phone."
+     },
+     {
+      "to": "write to",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Only by letter, email or message."
+     },
+     {
+      "to": "email",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Only by email."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no common adjective in this family. Contactable (easy to reach by phone or email) is rare."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "If you have any questions, contact our office in Samarkand. We try to stay in contact with every student after the course.",
+   "uses": [
+    "contact",
+    "contact"
+   ]
+  },
+  "reviewer_note": "Uzbek/Russian speakers often add 'with' or 'to' after the verb; noted. Contactable left as rare."
+ },
+ {
+  "headword": "contain",
+  "word_id": "6a42821646ba24054c1dcccd",
+  "word_ids": [
+   "6a42821646ba24054c1dcccd"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Inside",
+  "sense_pos": "verb",
+  "corpus_definition": "To have something inside as part of it.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "content",
+    "relation": "derivational",
+    "definition": "the things that are inside a box, bag, room or other thing",
+    "example": "The contents of my bag fell out onto the floor.",
+    "note": "Usually plural in this meaning: the contents of a box, bag or bottle. Stress: CONtent. (conTENT = happy is a different word.)",
+    "syn": [
+     {
+      "to": "ingredients",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: only about the things in food or a recipe."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "containment",
+    "definition": "the act of keeping something harmful under control",
+    "example": "The containment of the fire took the whole night.",
+    "note": "Belongs to contain = keep something under control (a fire, a disease), not having something inside."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "contain",
+    "relation": "base",
+    "definition": "to have something inside or as a part",
+    "example": "This box does not contain any plastic.",
+    "note": "Not used in continuous tenses: say 'it contains', not 'it is containing'.",
+    "syn": [
+     {
+      "to": "hold",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word, often about how much something can have inside: 'The bottle holds one litre.'"
+     },
+     {
+      "to": "include",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used when something is one part of a group or list."
+     },
+     {
+      "to": "have",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Very general easy word."
+     },
+     {
+      "to": "consist of",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: tells you ALL the parts, not just some."
+     }
+    ],
+    "ant": [
+     {
+      "to": "exclude",
+      "relation": "antonym",
+      "note": "To leave something out so it is not a part."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no adjective in this meaning. Content (= happy, satisfied), continent and continental share an old Latin root with contain but are not made from it.",
+    "not_family": [
+     "content",
+     "continent",
+     "continental"
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [
+   {
+    "form": "container",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "a box, bottle or similar thing that you keep things in",
+    "example": "Put the leftover plov in a plastic container."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "container",
+    "meaning_key": "-er",
+    "also": [
+     "printer",
+     "heater",
+     "cooker"
+    ]
+   }
+  ],
+  "context": {
+   "text": "This juice contains a lot of sugar. Keep it in a glass container in the fridge.",
+   "uses": [
+    "contains",
+    "container"
+   ]
+  },
+  "reviewer_note": "Noun content(s) = the things inside is this meaning; containment is the 'control' meaning (other_meaning). Content (= satisfied) and continent share the old root but are not made from contain (not_family).",
+  "people_not_family": [
+   "continent"
+  ]
+ },
+ {
+  "headword": "contract",
+  "word_id": "6a42883f6941e70ad6a00dc6",
+  "word_ids": [
+   "6a42883f6941e70ad6a00dc6",
+   "6a42821646ba24054c1dcc9c"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Agreement",
+  "sense_pos": "noun",
+  "corpus_definition": "A formal written agreement between two or more people or groups.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "contract",
+    "relation": "base",
+    "definition": "a formal written agreement that people or companies sign",
+    "example": "They signed a new contract yesterday.",
+    "note": "Phrases: sign a contract, break a contract, a one-year contract.",
+    "syn": [
+     {
+      "to": "agreement",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and general; a contract is a legal, written agreement."
+     },
+     {
+      "to": "deal",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: an arrangement, often about business or money."
+     },
+     {
+      "to": "document",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: any official paper, not only an agreement."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "contraction",
+    "definition": "the process of becoming smaller or shorter",
+    "example": "The contraction of the metal happens when it gets cold.",
+    "note": "Belongs to contract = become smaller (a verb meaning), not a legal agreement. In grammar, a contraction is a short form like 'don't'."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "contract",
+    "relation": "conversion",
+    "definition": "to make a formal agreement for someone to do work",
+    "example": "The city contracted a local company to repair the roads.",
+    "register": "formal",
+    "note": "The verb also means 'become smaller' and 'catch an illness'; those are other meanings. Stress: noun CONtract, verb conTRACT.",
+    "syn": [
+     {
+      "to": "hire",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easier and more general: to pay someone to do work."
+     },
+     {
+      "to": "employ",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Usually about a long-term job, not one piece of work."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "contractual",
+    "relation": "derivational",
+    "definition": "agreed in or connected with a formal written agreement",
+    "example": "The company has a contractual duty to finish the work on time.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "legal",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: connected with the law."
+     },
+     {
+      "to": "binding",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: something you must legally do."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "contractually",
+    "relation": "derivational",
+    "definition": "in a way that is agreed in a formal written agreement",
+    "example": "The builders are contractually required to finish by May.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "legally",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: in a way connected with the law."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [
+   {
+    "form": "contractor",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person or company that is paid to do work, often building",
+    "example": "We hired a contractor to build the new kitchen."
+   }
+  ],
+  "affixes": [
+   {
+    "affix": "-or",
+    "in_form": "contractor",
+    "meaning_key": "-or",
+    "also": [
+     "actor",
+     "visitor",
+     "director"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "contractually",
+    "meaning_key": "-ly",
+    "also": [
+     "usually",
+     "quickly",
+     "finally"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My brother got a two-year contract with a building contractor in Tashkent. He is contractually allowed four weeks of holiday each year.",
+   "uses": [
+    "contract",
+    "contractor",
+    "contractually"
+   ]
+  },
+  "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). contraction (become smaller) kept as other_meaning; no -al affix claimed on contractual (contractu- is not a word).",
+  "gate_overrides": [
+   {
+    "msg_contains": "'contraction' is a compound",
+    "reason": "contraction is contract + the suffix -ion (a derivation, like construction), not a compound of two words; it is the 'become smaller' meaning, kept as other_meaning."
+   }
+  ]
+ },
+ {
+  "headword": "cope",
+  "word_id": "6a6ef9b2a601556148092778",
+  "word_ids": [
+   "6a6ef9b2a601556148092778"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Difficulty",
+  "sense_pos": "verb",
+  "corpus_definition": "To deal successfully with a difficult situation.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "no_form",
+    "note": "There is no common noun in this family. Coping is used in phrases like 'coping skills'."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "cope",
+    "relation": "base",
+    "definition": "to manage a difficult situation or problem successfully",
+    "example": "It is hard to cope with so much work.",
+    "note": "Usually 'cope with + noun'. Also used alone: 'I can't cope!'",
+    "syn": [
+     {
+      "to": "manage",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and very close: 'I can manage.'"
+     },
+     {
+      "to": "deal with",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Common phrase; often about taking action to solve a problem."
+     },
+     {
+      "to": "handle",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; often about a person, task or situation."
+     },
+     {
+      "to": "get by",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: to have just enough money or help to live."
+     },
+     {
+      "to": "survive",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: stronger, about staying alive or getting through something very hard."
+     }
+    ],
+    "ant": [
+     {
+      "to": "struggle",
+      "relation": "antonym",
+      "note": "To have great difficulty with something instead of managing it well."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "There is no adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "In her first year at university in Tashkent, Malika found it hard to cope with all the homework. Now she copes much better because she plans her week.",
+   "uses": [
+    "cope",
+    "copes"
+   ]
+  },
+  "reviewer_note": "Only the verb exists in this family; 'coping' (noun, part of a wall) is a different word."
+ },
+ {
+  "headword": "copper",
+  "word_id": "6a6ef83f0f1e82a5a07366a8",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07366a8"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Metal",
+  "sense_pos": "noun",
+  "corpus_definition": "A soft reddish metal used for electricity wires.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "copper",
+    "relation": "base",
+    "definition": "a soft reddish-brown metal used for wires and pipes",
+    "example": "The coins were made of copper and silver.",
+    "syn": [
+     {
+      "to": "bronze",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a brown metal made from this metal and tin."
+     },
+     {
+      "to": "brass",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a yellow metal made from this metal and zinc."
+     },
+     {
+      "to": "metal",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "General easy word for iron, gold, silver and similar materials."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "copper",
+    "relation": "conversion",
+    "definition": "made of the soft reddish-brown metal, or having its colour",
+    "example": "My grandmother cooks plov in a big copper pot.",
+    "note": "Used before a noun: copper wire, copper pot, copper hair.",
+    "syn": [
+     {
+      "to": "reddish-brown",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Only about the colour."
+     },
+     {
+      "to": "coppery",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Means 'like this metal', usually about colour; less common."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "In the old bazaar in Bukhara, men still make copper plates by hand. The copper bowls shine red in the sun.",
+   "uses": [
+    "copper",
+    "copper"
+   ]
+  },
+  "reviewer_note": "Copper (informal British = police officer) comes from 'cop', a different word, so it is not shown."
+ },
+ {
+  "headword": "correction",
+  "word_id": "6a4265cce20c7210db6908db",
+  "word_ids": [
+   "6a4265cce20c7210db6908db"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Fixing",
+  "sense_pos": "noun",
+  "corpus_definition": "A change that makes something right.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "correction",
+    "relation": "base",
+    "definition": "a change that makes something right or fixes a mistake",
+    "example": "I need to make a small correction here.",
+    "syn": [
+     {
+      "to": "fix",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: a way of solving a problem."
+     },
+     {
+      "to": "change",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General easy word; a correction is a change that removes a mistake."
+     },
+     {
+      "to": "amendment",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: a small change to a law, document or text.",
+      "register": "formal"
+     },
+     {
+      "to": "revision",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A change after you check something again, often to a text."
+     }
+    ],
+    "ant": [
+     {
+      "to": "mistake",
+      "relation": "antonym",
+      "note": "A correction removes a mistake."
+     },
+     {
+      "to": "error",
+      "relation": "antonym",
+      "note": "More formal word for a mistake."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "correctness",
+    "relation": "derivational",
+    "definition": "the quality of being right or accurate",
+    "example": "The teacher checks the correctness of every answer.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "accuracy",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; often about numbers and facts."
+     },
+     {
+      "to": "precision",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: being exact in every detail."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "correct",
+    "relation": "derivational",
+    "definition": "to make something right by finding and fixing mistakes",
+    "example": "Our teacher corrects our homework every evening.",
+    "syn": [
+     {
+      "to": "fix",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, informal word."
+     },
+     {
+      "to": "put right",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy phrase with the same meaning."
+     },
+     {
+      "to": "mark",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "British: what teachers do to students' work."
+     },
+     {
+      "to": "amend",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: to change a text or law.",
+      "register": "formal"
+     },
+     {
+      "to": "edit",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "To change a text to make it better."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "correct",
+    "relation": "derivational",
+    "definition": "right, true, or with no mistakes",
+    "example": "All your answers are correct.",
+    "syn": [
+     {
+      "to": "right",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy everyday word."
+     },
+     {
+      "to": "accurate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Exact and true, often about numbers or facts."
+     },
+     {
+      "to": "true",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "About facts and statements."
+     }
+    ],
+    "ant": [
+     {
+      "to": "wrong",
+      "relation": "antonym",
+      "note": "Easy everyday opposite."
+     },
+     {
+      "to": "incorrect",
+      "relation": "antonym",
+      "note": "More formal opposite."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "corrective",
+    "relation": "derivational",
+    "definition": "meant to make something better or right",
+    "example": "He wears corrective glasses for reading.",
+    "register": "formal",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "correctly",
+    "relation": "derivational",
+    "definition": "in a right way, without any mistakes",
+    "example": "Make sure you spell your name correctly on the form.",
+    "syn": [
+     {
+      "to": "right",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: 'Did I do it right?'"
+     },
+     {
+      "to": "properly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "In the way it should be done."
+     },
+     {
+      "to": "accurately",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Exactly and with no mistakes."
+     }
+    ],
+    "ant": [
+     {
+      "to": "wrongly",
+      "relation": "antonym",
+      "note": "In a way that is not right."
+     },
+     {
+      "to": "incorrectly",
+      "relation": "antonym",
+      "note": "Formal opposite."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {
+    "affix": "-ion",
+    "in_form": "correction",
+    "meaning_key": "-ion",
+    "also": [
+     "education",
+     "decision",
+     "action"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "correctness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "happiness",
+     "darkness"
+    ]
+   },
+   {
+    "affix": "-ive",
+    "in_form": "corrective",
+    "meaning_key": "-ive",
+    "also": [
+     "creative",
+     "active",
+     "expensive"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "correctly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "clearly"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Please check that all the dates are correct. If you find a mistake, write the correction in red and send it back to me so I can correct the list.",
+   "uses": [
+    "correct",
+    "correction",
+    "correct"
+   ]
+  },
+  "reviewer_note": "Headword is the noun; the verb and adjective 'correct' are the base of the family."
+ },
+ {
+  "headword": "cozy",
+  "word_id": "6a6ef83f0f1e82a5a07366bc",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07366bc"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Comfort",
+  "sense_pos": "adjective",
+  "corpus_definition": "Feeling warm, comfortable, and pleasant.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "coziness",
+    "relation": "derivational",
+    "definition": "the feeling of being warm, comfortable and relaxed",
+    "example": "I love the coziness of my grandmother's kitchen in winter.",
+    "note": "British spelling: cosiness.",
+    "syn": [
+     {
+      "to": "comfort",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A more general easy word."
+     },
+     {
+      "to": "warmth",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: about heat or friendly feelings."
+     }
+    ],
+    "ant": [
+     {
+      "to": "discomfort",
+      "relation": "antonym",
+      "note": "A feeling of not being comfortable."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no single-word verb in this meaning. The phrasal verb 'cozy up (to)' means to move close to someone or to be friendly to get something."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "cozy",
+    "relation": "base",
+    "definition": "warm, comfortable and pleasant, making you feel relaxed",
+    "example": "We sat by the fire in the cozy room.",
+    "note": "American spelling: cozy. British spelling: cosy.",
+    "syn": [
+     {
+      "to": "snug",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; often about a small warm place."
+     },
+     {
+      "to": "comfortable",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, general word; cozy also means warm and friendly."
+     },
+     {
+      "to": "warm",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Only about temperature or friendly feelings."
+     },
+     {
+      "to": "homey",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "American English; British English says 'homely'."
+     }
+    ],
+    "ant": [
+     {
+      "to": "uncomfortable",
+      "relation": "antonym",
+      "note": "Not pleasant to be in or sit in."
+     },
+     {
+      "to": "cold",
+      "relation": "antonym",
+      "note": "Not warm or friendly."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no common adverb in this family. Cozily (BrE cosily) is rare."
+   }
+  ],
+  "people": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "coziness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "happiness",
+     "darkness"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Our little flat in Fergana is cozy in winter. In the evening we drink tea under a warm blanket and enjoy the coziness.",
+   "uses": [
+    "cozy",
+    "coziness"
+   ]
+  },
+  "reviewer_note": "US/UK spelling noted (cozy/cosy). Cozily treated as rare."
+ },
+ {
+  "headword": "crack",
+  "word_id": "6a6ef83f0f1e82a5a07367fc",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367fc"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Break",
+  "sense_pos": "noun",
+  "corpus_definition": "a thin line that appears when something is damaged or broken",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "crack",
+    "relation": "base",
+    "definition": "a thin line on a surface where it has started to break",
+    "example": "There is a small crack in the glass.",
+    "syn": [
+     {
+      "to": "split",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A long line where something has broken open, often wood or cloth."
+     },
+     {
+      "to": "fracture",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Formal or medical: a crack in a bone or hard material.",
+      "register": "formal"
+     },
+     {
+      "to": "gap",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: an empty space between two things."
+     },
+     {
+      "to": "chip",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a small piece broken off the edge."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "crack",
+    "relation": "conversion",
+    "definition": "to break so that thin lines appear on the surface",
+    "example": "The old plate cracked when I washed it in hot water.",
+    "syn": [
+     {
+      "to": "break",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General easy word; crack means it doesn't break into pieces."
+     },
+     {
+      "to": "split",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To break along a line."
+     },
+     {
+      "to": "fracture",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Formal or medical: used for bones.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "crackle",
+    "definition": "to make many short sharp sounds",
+    "example": "The wood crackled in the fire.",
+    "note": "Belongs to crack = a sharp noise, not a thin line."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "cracked",
+    "relation": "participial",
+    "definition": "having thin lines on it because it is damaged",
+    "example": "Don't drink from that cracked cup.",
+    "syn": [
+     {
+      "to": "broken",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General easy word; broken can mean in pieces."
+     },
+     {
+      "to": "damaged",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word for any kind of harm."
+     },
+     {
+      "to": "chipped",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "With a small piece broken off."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unbroken",
+      "relation": "antonym",
+      "note": "Whole, with no damage."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [
+   {
+    "form": "cracker",
+    "kind": "thing",
+    "status": "other_meaning",
+    "definition": "a thin, dry, hard biscuit, often eaten with cheese",
+    "example": "We had crackers and cheese for a snack.",
+    "note": "Belongs to crack = break with a sharp sound, not a thin line."
+   }
+  ],
+  "affixes": [],
+  "context": {
+   "text": "After the earthquake there was a long crack in the wall of our school. The walls had cracked in many places, so builders came to repair them.",
+   "uses": [
+    "crack",
+    "cracked"
+   ]
+  },
+  "reviewer_note": "crack also has meanings like 'a sharp noise' and 'solve a problem'; crackle and cracker kept as other_meaning."
+ },
+ {
+  "headword": "crash",
+  "word_id": "6a4265fb84a10cdfe9e55d72",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d72"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Accident",
+  "sense_pos": "noun",
+  "corpus_definition": "A bad accident involving a moving vehicle.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "crash",
+    "relation": "base",
+    "definition": "an accident in which a car, bus or plane hits something",
+    "example": "The car was damaged in the crash.",
+    "syn": [
+     {
+      "to": "accident",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy and more general; a crash is a violent one."
+     },
+     {
+      "to": "collision",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Formal: when two things hit each other.",
+      "register": "formal"
+     },
+     {
+      "to": "smash",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal British English for a bad car accident.",
+      "register": "informal"
+     },
+     {
+      "to": "wreck",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "American English: a crash, or the broken car or plane after it."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "crash",
+    "relation": "conversion",
+    "definition": "to have an accident by hitting something hard while moving",
+    "example": "The bus crashed into a tree on the way to Namangan.",
+    "syn": [
+     {
+      "to": "collide",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Formal: two things hit each other.",
+      "register": "formal"
+     },
+     {
+      "to": "hit",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General easy word."
+     },
+     {
+      "to": "smash into",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal and strong: hit very hard."
+     },
+     {
+      "to": "run into",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Hit something with your car, often not very hard."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "crash",
+    "definition": "done very quickly and with a lot of effort",
+    "example": "I did a crash course in English before my trip.",
+    "note": "Belongs to crash = sudden and fast, not an accident. Used only before a noun: a crash course, a crash diet."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
+  ],
+  "people": [],
+  "affixes": [],
+  "context": {
+   "text": "There was a bad crash on the road to Samarkand last night. A truck crashed into two cars, but luckily nobody died.",
+   "uses": [
+    "crash",
+    "crashed"
+   ]
+  },
+  "reviewer_note": "Adjective 'crash' (crash course) kept as other_meaning; computer 'crash' and money 'crash' are other meanings not shown."
+ }
+]
