@@ -1,0 +1,336 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "custom",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "wrong morphology",
+     "msg": "noun 'customs' (other meaning): family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "accustom: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "customs",
+       "custom"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "accustomed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Sense trap: customs (border), customize and customer belong to other meanings of custom and are marked other_meaning."
+  },
+  {
+   "headword": "damp",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "dampness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "dampness"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "dampened"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "damper"
+      ],
+      "JJS": [
+       "dampest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "damp vs wet vs moist: damp marked as unpleasant; damp noun (British) kept as extra conversion."
+  },
+  {
+   "headword": "deal with",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Kept only the 'fix a problem' sense; 'deal with = be about (a book deals with war)' is a different meaning, not shown."
+  },
+  {
+   "headword": "decade",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "decades"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Single-form family; decadent flagged as not_family (false friend from decay)."
+  },
+  {
+   "headword": "decay",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: decadent"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: decadent"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'decadent' (zipf 3.0) may belong here"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'decor' (zipf 3.6) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "decayed: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "decay"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "decayed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun decay is a conversion; the 'get worse' sense (decline of buildings, cities) only mentioned in a note."
+  },
+  {
+   "headword": "deceive",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adjective definition has rare words: tricking"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "deceit: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "deceitful: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "deceptively: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "deceptions",
+       "deception"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "deceived"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No affix claimed on deception/deceptive (decept- is not a word); deceptively = 'misleadingly', not 'dishonestly'."
+  },
+  {
+   "headword": "decent",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "decency: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "decency"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Opposites indecent/indecency/indecently go in ant lists, not forms; 'decent = kind' (a decent person) is close and covered by decency."
+  },
+  {
+   "headword": "decorate",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "decoratively → 'ornamentally' is not a real word/phrase"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: decor"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'decoratively' is rare (zipf 1.8)"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'decor' (zipf 3.6) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "decoration: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "decoratively: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "decorations",
+       "decoration"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "decorated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Medal sense of decorate/decoration only in a note; decor kept as a related synonym, not a form."
+  },
+  {
+   "headword": "decrease",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "decreases",
+       "decrease"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "decreased"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No de- affix claimed (de- is not in the affix table, and 'crease' is unrelated); stress shift noted."
+  },
+  {
+   "headword": "defeat",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: defence"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "defeats",
+       "defeat"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "defeated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1); undefeated goes in ant, not forms."
+  }
+ ]
+}
