@@ -3,7 +3,7 @@ import { Plus, Search, Upload, Download, Pencil, Archive, RotateCcw, Trash2, Arr
 import { Button, PriorityBadge, StatusBadge, Tag, ProgressBar, inputCls } from "./ui";
 import {
   STATUSES, STATUS_LABEL, STATUS_STYLE, PRIORITIES, PRIORITY_LABEL, PRIORITY_RANK, PRIORITY_EDGE, CATEGORIES,
-  fmtDate, isOverdue, relative,
+  fmtDate, isOverdue, relative, dependencyState, WORK_MODE_LABEL, calibratedEstimate,
 } from "./model";
 
 export default function Board({ onFocus, data, idx, busy, onOpen, onNew, onEdit, onMove, onArchive, onRestore, onDelete, onExport, onImport }) {
@@ -193,6 +193,7 @@ function TaskCard({ task, idx, onOpen, onEdit, onMove, onArchive, busy }) {
   const path = idx.path(task);
   const parentPath = path.slice(0, -1);
   const overdue = isOverdue(task);
+  const deps = dependencyState(task, idx.byCode);
   return (
     <article
       draggable
@@ -215,6 +216,9 @@ function TaskCard({ task, idx, onOpen, onEdit, onMove, onArchive, busy }) {
       <div className="mt-2.5 flex flex-wrap gap-1.5">
         {task.category && <Tag>{task.category}</Tag>}
         {task.project && <Tag className="text-slate-400">{task.project}</Tag>}
+        <Tag className="text-slate-400">{WORK_MODE_LABEL[task.work_mode || "hands_on"]} · {calibratedEstimate(task, idx.workLogsByTask ? Object.values(idx.workLogsByTask).flat() : []).minutes}m</Tag>
+        {task.ai_minutes > 0 && <Tag className="text-orange-300">AI {task.ai_minutes}m</Tag>}
+        {deps.blocked && <Tag className="text-amber-300">Blocked</Tag>}
       </div>
       <div className="mt-3">
         <div className="mb-1 flex items-center justify-between text-[11px] text-slate-400">
