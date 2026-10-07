@@ -55,7 +55,7 @@
     "slot": "noun",
     "status": "existing",
     "form": "competition",
-    "relation": "derivational",
+    "relation": "base",
     "definition": "an event where people try to win against others",
     "example": "She entered a dance competition last week.",
     "syn": [
@@ -78,7 +78,7 @@
     "slot": "verb",
     "status": "existing",
     "form": "compete",
-    "relation": "base",
+    "relation": "derivational",
     "definition": "to try to win against other people",
     "example": "Ten teams will compete in the final.",
     "syn": [
@@ -194,7 +194,7 @@
     "slot": "verb",
     "status": "existing",
     "form": "complicate",
-    "relation": "base",
+    "relation": "derivational",
     "definition": "to make something more difficult",
     "example": "Please do not complicate the plan.",
     "syn": [],
@@ -210,7 +210,7 @@
     "slot": "adjective",
     "status": "existing",
     "form": "complicated",
-    "relation": "participial",
+    "relation": "base",
     "definition": "difficult to understand because it has many parts",
     "example": "This maths problem is too complicated for me.",
     "syn": [
@@ -363,18 +363,7 @@
   ],
   "people": [],
   "people_not_family": [],
-  "affixes": [
-   {
-    "affix": "-tion",
-    "in_form": "concentration",
-    "meaning_key": "-tion",
-    "also": [
-     "education",
-     "information",
-     "population"
-    ]
-   }
-  ],
+  "affixes": [],
   "context": {
    "text": "Sardor cannot concentrate when his phone is on. His concentration is much better in the library.",
    "uses": [
@@ -498,15 +487,15 @@
     "slot": "noun",
     "status": "existing",
     "form": "confidence",
-    "relation": "derivational",
+    "relation": "base",
     "definition": "a feeling of being sure about your own abilities",
     "example": "She has the confidence to speak in public.",
     "syn": [
      {
-      "to": "self-belief",
+      "to": "certainty",
       "relation": "synonym",
       "strength": 0.8,
-      "note": "Trust in your own abilities."
+      "note": "A feeling of being sure."
      },
      {
       "to": "assurance",
@@ -526,13 +515,17 @@
    },
    {
     "slot": "verb",
-    "status": "no_form"
+    "status": "other_meaning",
+    "form": "confide",
+    "definition": "to tell someone a secret because you trust them",
+    "example": "She confided in her best friend.",
+    "note": "Belongs to confide = trust someone with a secret, not self-belief."
    },
    {
     "slot": "adjective",
     "status": "existing",
     "form": "confident",
-    "relation": "base",
+    "relation": "derivational",
     "definition": "sure about your own abilities",
     "example": "He feels confident about the test.",
     "syn": [
@@ -626,10 +619,17 @@
     "example": "Practice gave him confidence.",
     "syn": [
      {
-      "to": "self-belief",
+      "to": "certainty",
       "relation": "synonym",
       "strength": 0.8,
-      "note": "Trust in your own abilities."
+      "note": "A feeling of being sure."
+     },
+     {
+      "to": "assurance",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A calm, sure feeling.",
+      "register": "formal"
      }
     ],
     "ant": [
@@ -642,7 +642,11 @@
    },
    {
     "slot": "verb",
-    "status": "no_form"
+    "status": "other_meaning",
+    "form": "confide",
+    "definition": "to tell someone a secret because you trust them",
+    "example": "She confided in her best friend.",
+    "note": "Belongs to confide = trust someone with a secret, not self-belief."
    },
    {
     "slot": "adjective",
@@ -693,6 +697,14 @@
       "note": "In a worried way."
      }
     ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "confidential",
+    "definition": "secret and not to be told to others",
+    "example": "This information is confidential.",
+    "note": "Belongs to confide = tell a secret, not self-belief."
    }
   ],
   "people": [],
@@ -929,18 +941,7 @@
   ],
   "people": [],
   "people_not_family": [],
-  "affixes": [
-   {
-    "affix": "-tion",
-    "in_form": "consolation",
-    "meaning_key": "-tion",
-    "also": [
-     "education",
-     "information",
-     "population"
-    ]
-   }
-  ],
+  "affixes": [],
   "context": {
    "text": "When Dildora lost the match, her coach consoled her. The silver medal was a small consolation.",
    "uses": [
