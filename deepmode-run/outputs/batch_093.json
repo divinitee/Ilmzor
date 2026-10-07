@@ -1,0 +1,458 @@
+[
+{
+ "headword": "meanwhile",
+ "word_id": "6a6ef9b2a601556148092754",
+ "word_ids": ["6a6ef9b2a601556148092754"],
+ "cefr": "B1",
+ "kind": "function",
+ "sense_label": "Same time",
+ "sense_pos": "adverb",
+ "corpus_definition": "During the same time that something else is happening.",
+ "usage_note": "Linking adverb, usually at the start of a sentence or clause with a comma: \"I cooked dinner; meanwhile, he set the table.\" Also \"in the meanwhile\" (less common than \"in the meantime\"). It can also mean \"until something happens\": \"The bus is late. Meanwhile, we can have tea.\"",
+ "relations": [
+  {"to": "at the same time", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."},
+  {"to": "in the meantime", "relation": "synonym", "strength": 0.95, "note": "Very close; often used for the time until something happens."},
+  {"to": "while", "relation": "related", "strength": 0.6, "note": "While is a conjunction that joins two clauses: \"While I cooked, he set the table.\""},
+  {"to": "simultaneously", "relation": "synonym", "strength": 0.8, "note": "Formal word for at exactly the same moment.", "register": "formal"}
+ ],
+ "context": {
+  "text": "My mother was making plov in the kitchen. Meanwhile, my brother and I cleaned the living room for the guests.",
+  "uses": ["Meanwhile"]
+ },
+ "reviewer_note": "Linking adverb handled as function word, like aside; no forms."
+},
+{
+ "headword": "messaging",
+ "word_id": "6a4288ad6941e70ad6a00e52",
+ "word_ids": ["6a4288ad6941e70ad6a00e52"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Texting",
+ "sense_pos": "noun",
+ "corpus_definition": "The act of writing quick notes to other people.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "messaging", "relation": "base", "definition": "sending short written notes to people by phone or computer", "example": "Messaging is the easiest way to talk to my friends abroad.",
+   "syn": [
+    {"to": "texting", "relation": "synonym", "strength": 0.8, "note": "Texting is messaging by phone; messaging also covers apps and computers.", "register": "informal"},
+    {"to": "chatting", "relation": "related", "strength": 0.6, "note": "Related: chatting can be by voice or in writing."}
+   ],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "message", "relation": "derivational", "definition": "a short piece of writing you send to someone", "example": "I sent her a message but she hasn't replied yet.", "syn": [
+    {"to": "text", "relation": "synonym", "strength": 0.8, "note": "A text is a message sent by phone."},
+    {"to": "note", "relation": "related", "strength": 0.6, "note": "A short piece of writing, often on paper."}
+   ], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "message", "relation": "derivational", "definition": "to send someone a short written note by phone or computer", "example": "My cousin messaged me from Bukhara last night.",
+   "syn": [
+    {"to": "text", "relation": "synonym", "strength": 0.8, "note": "Text is used when you send it by phone.", "register": "informal"},
+    {"to": "write to", "relation": "related", "strength": 0.6, "note": "More general; also used for letters and emails."},
+    {"to": "contact", "relation": "related", "strength": 0.4, "note": "Any way of reaching someone: call, message or visit."}
+   ],
+   "ant": []},
+  {"slot": "adjective", "status": "no_form", "note": "No adjective in this family. Use a noun before a noun: a messaging app."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "messenger", "kind": "person", "status": "existing", "definition": "a person who carries news or letters to someone", "example": "The king sent a messenger to the city."}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ing", "in_form": "messaging", "meaning_key": "-ing", "also": ["swimming", "shopping", "cooking"]}
+ ],
+ "context": {
+  "text": "Messaging is very popular with young people in Tashkent. My sister messages her friends all day, and she gets a new message every few minutes.",
+  "uses": ["Messaging", "messages", "message"]
+ },
+ "reviewer_note": "Headword is the -ing noun; message (noun and verb) shown as its family. Messenger is also an app name; definition keeps the general person meaning."
+},
+{
+ "headword": "mild",
+ "word_id": "6a4282fd46ba24054c1dcd81",
+ "word_ids": ["6a4282fd46ba24054c1dcd81"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Weather",
+ "sense_pos": "adjective",
+ "corpus_definition": "Not very cold and not very hot weather.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "mildness", "relation": "derivational", "definition": "the quality of being pleasantly warm, not cold or hot", "example": "We were surprised by the mildness of the winter.",
+   "syn": [
+    {"to": "warmth", "relation": "related", "strength": 0.6, "note": "Related: warmth is about heat; mildness means neither too hot nor too cold."}
+   ],
+   "ant": [
+    {"to": "harshness", "relation": "antonym", "note": "Weather that is very cold, windy or difficult."},
+    {"to": "severity", "relation": "antonym", "note": "Formal: how bad or extreme the weather is."}
+   ]},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "mild", "relation": "base", "definition": "not too cold and not too hot, so it feels pleasant", "example": "Spring in Tashkent is usually mild and sunny.",
+   "syn": [
+    {"to": "warm", "relation": "related", "strength": 0.6, "note": "Easy word; warm is about heat, mild means not extreme."},
+    {"to": "pleasant", "relation": "related", "strength": 0.6, "note": "Pleasant is about how nice the weather feels."},
+    {"to": "temperate", "relation": "synonym", "strength": 0.8, "note": "Formal or scientific word for a climate without extremes.", "register": "formal"},
+    {"to": "gentle", "relation": "related", "strength": 0.4, "note": "Used for soft wind or rain more than temperature."}
+   ],
+   "ant": [
+    {"to": "harsh", "relation": "antonym", "note": "Very cold or difficult weather: a harsh winter."},
+    {"to": "severe", "relation": "antonym", "note": "Extreme weather: a severe storm."},
+    {"to": "extreme", "relation": "antonym", "note": "Very hot or very cold."}
+   ]},
+  {"slot": "adverb", "status": "other_meaning", "form": "mildly", "definition": "slightly or a little", "example": "She was mildly surprised by the news.", "note": "Belongs to mild = not strong or slight (mildly surprised), not mild weather."}
+ ],
+ "people": [],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ness", "in_form": "mildness", "meaning_key": "-ness", "also": ["kindness", "sadness", "darkness"]}
+ ],
+ "context": {
+  "text": "This year the winter in Samarkand was mild, so we didn't need heavy coats. Everyone enjoyed the mildness of the weather.",
+  "uses": ["mild", "mildness"]
+ },
+ "reviewer_note": "Weather sense only; mildly is other_meaning (slightly), since adverb is not used for weather."
+},
+{
+ "headword": "minimum",
+ "word_id": "6a42800cb9d8fc24968a4b3e",
+ "word_ids": ["6a42800cb9d8fc24968a4b3e"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Smallest",
+ "sense_pos": "noun",
+ "corpus_definition": "The smallest amount that is allowed or possible.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "minimum", "relation": "base", "definition": "the smallest amount that is allowed or possible", "example": "You need a minimum of three people to play this game.",
+   "syn": [
+    {"to": "lowest amount", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."},
+    {"to": "least", "relation": "related", "strength": 0.6, "note": "Used in phrases like \"at least\" and \"the least\"."},
+    {"to": "lower limit", "relation": "synonym", "strength": 0.8, "note": "A limit you cannot go under."}
+   ],
+   "ant": [
+    {"to": "maximum", "relation": "antonym", "note": "The largest amount that is allowed or possible."}
+   ]},
+  {"slot": "verb", "status": "existing", "form": "minimize", "relation": "derivational", "definition": "to make something as small or as little as possible", "example": "Wash your hands often to minimize the risk of illness.", "note": "British spelling: minimise.",
+   "syn": [
+    {"to": "reduce", "relation": "synonym", "strength": 0.8, "note": "Make smaller, but not always as small as possible."},
+    {"to": "cut", "relation": "related", "strength": 0.6, "note": "Easy, informal word for reducing costs or time."},
+    {"to": "lessen", "relation": "synonym", "strength": 0.8, "note": "A little formal; make something less."}
+   ],
+   "ant": [
+    {"to": "maximize", "relation": "antonym", "note": "To make something as big as possible."},
+    {"to": "increase", "relation": "antonym", "note": "To make bigger."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "minimum", "relation": "conversion", "definition": "the smallest that is allowed or possible", "example": "The minimum age for this job is eighteen.",
+   "syn": [
+    {"to": "lowest", "relation": "synonym", "strength": 0.8, "note": "Easy word; lowest is about numbers or levels."},
+    {"to": "smallest", "relation": "synonym", "strength": 0.8, "note": "Easy word for size or amount."}
+   ],
+   "ant": [
+    {"to": "maximum", "relation": "antonym", "note": "The largest allowed: the maximum speed."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "minimal", "relation": "derivational", "definition": "very small in amount, so that it hardly matters", "example": "The storm caused only minimal damage to the house.", "syn": [
+    {"to": "slight", "relation": "synonym", "strength": 0.8, "note": "Small and not important."},
+    {"to": "small", "relation": "related", "strength": 0.6, "note": "Easy general word."}
+   ], "ant": []},
+  {"slot": "adverb", "status": "existing", "form": "minimally", "relation": "derivational", "definition": "only a very small amount, as little as possible", "example": "The old bridge was minimally repaired last year.", "syn": [
+    {"to": "slightly", "relation": "synonym", "strength": 0.8, "note": "A little; slightly is much more common."}
+   ], "ant": []}
+ ],
+ "people": [],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ly", "in_form": "minimally", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]}
+ ],
+ "context": {
+  "text": "The minimum age to drive a car in Uzbekistan is eighteen. Driving schools teach new drivers to minimize risks on the road.",
+  "uses": ["minimum", "minimize"]
+ },
+ "reviewer_note": "Noun is base; adjective use (minimum age) shown as conversion, minimal as extra. No -ize/-al affix claimed because removing them does not leave a real word."
+},
+{
+ "headword": "miserable",
+ "word_id": "6a6ef9b2a60155614809268b",
+ "word_ids": ["6a6ef9b2a60155614809268b", "6a4282fd46ba24054c1dcde4"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Unhappy",
+ "sense_pos": "adjective",
+ "corpus_definition": "Feeling very unhappy and sad for a long time.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "misery", "relation": "derivational", "definition": "great unhappiness or suffering", "example": "The long war brought misery to thousands of families.",
+   "syn": [
+    {"to": "unhappiness", "relation": "synonym", "strength": 0.8, "note": "Easier and a little weaker."},
+    {"to": "sadness", "relation": "synonym", "strength": 0.8, "note": "Easy word; misery is stronger."},
+    {"to": "suffering", "relation": "related", "strength": 0.6, "note": "Pain of the body or mind."}
+   ],
+   "ant": [
+    {"to": "happiness", "relation": "antonym", "note": "The feeling of being happy."},
+    {"to": "joy", "relation": "antonym", "note": "A strong feeling of great happiness."}
+   ]},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "miserable", "relation": "base", "definition": "very unhappy, sad or uncomfortable", "example": "I felt miserable when I had the flu last winter.",
+   "syn": [
+    {"to": "unhappy", "relation": "synonym", "strength": 0.8, "note": "Easy word; miserable is stronger."},
+    {"to": "sad", "relation": "synonym", "strength": 0.8, "note": "Easy word; miserable is stronger and often lasts longer."},
+    {"to": "depressed", "relation": "related", "strength": 0.6, "note": "Very sad for a long time; can be a medical problem."},
+    {"to": "wretched", "relation": "synonym", "strength": 0.8, "note": "Literary word for very unhappy or ill.", "register": "literary"}
+   ],
+   "ant": [
+    {"to": "happy", "relation": "antonym", "note": "Feeling good and pleased."},
+    {"to": "cheerful", "relation": "antonym", "note": "Happy and showing it."}
+   ]},
+  {"slot": "adverb", "status": "existing", "form": "miserably", "relation": "derivational", "definition": "in a very unhappy or uncomfortable way", "example": "The little boy sat miserably in the rain.", "note": "Also means very badly: \"The plan failed miserably.\"",
+   "syn": [
+    {"to": "unhappily", "relation": "synonym", "strength": 0.8, "note": "Easier and a little weaker."},
+    {"to": "sadly", "relation": "synonym", "strength": 0.8, "note": "Easy word with a similar meaning."}
+   ],
+   "ant": [
+    {"to": "happily", "relation": "antonym", "note": "In a happy way."},
+    {"to": "cheerfully", "relation": "antonym", "note": "In a happy, bright way."}
+   ]}
+ ],
+ "people": [],
+ "people_not_family": ["miser"],
+ "affixes": [],
+ "context": {
+  "text": "The rainy weather made everyone feel miserable at the picnic. We sat miserably under one small tree, and the children's misery ended only when the sun came out.",
+  "uses": ["miserable", "miserably", "misery"]
+ },
+ "reviewer_note": "Two corpus rows with the same meaning merged (B1 kept). Miser (a person who hates spending money) shares an old root but is not part of this family. No affix claimed: misery to miserable is not a clean -able split."
+},
+{
+ "headword": "mixture",
+ "word_id": "6a6ef83f0f1e82a5a073687a",
+ "word_ids": ["6a6ef83f0f1e82a5a073687a"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Combination",
+ "sense_pos": "noun",
+ "corpus_definition": "A combination of different things put together.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "mixture", "relation": "base", "definition": "different things put together so they become one thing", "example": "Pour the mixture into the pan and bake it for thirty minutes.",
+   "syn": [
+    {"to": "combination", "relation": "synonym", "strength": 0.95, "note": "Very close; a little more formal."},
+    {"to": "blend", "relation": "synonym", "strength": 0.8, "note": "Often for tea, coffee, colours or flavours that go well together."},
+    {"to": "variety", "relation": "related", "strength": 0.4, "note": "Many different kinds, not always put together."}
+   ],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "mix", "relation": "conversion", "definition": "a group of different things or people together", "example": "Our class has a good mix of boys and girls.", "syn": [], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "mix", "relation": "derivational", "definition": "to put different things together so they become one", "example": "Mix the flour and the eggs in a big bowl.",
+   "syn": [
+    {"to": "combine", "relation": "synonym", "strength": 0.95, "note": "Very close; a little more formal."},
+    {"to": "blend", "relation": "synonym", "strength": 0.8, "note": "Mix until smooth, often in cooking."},
+    {"to": "stir", "relation": "related", "strength": 0.4, "note": "Move a spoon round in a liquid; often how you do it."}
+   ],
+   "ant": [
+    {"to": "separate", "relation": "antonym", "note": "To take things apart or keep them apart."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "mixed", "relation": "participial", "definition": "made of different kinds of things or people", "example": "She ordered a mixed salad with bread.",
+   "syn": [
+    {"to": "assorted", "relation": "synonym", "strength": 0.8, "note": "Of different kinds, often for sweets or food."},
+    {"to": "varied", "relation": "related", "strength": 0.6, "note": "Having many different types."}
+   ],
+   "ant": [
+    {"to": "pure", "relation": "antonym", "note": "Of only one kind, with nothing else added."}
+   ]},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "mixer", "kind": "thing", "status": "existing", "definition": "a kitchen machine that stirs and blends food", "example": "My mother uses an electric mixer to make cakes."}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-er", "in_form": "mixer", "meaning_key": "-er", "also": ["cooker", "heater", "printer"]}
+ ],
+ "context": {
+  "text": "To make the cake, mix flour, sugar and eggs in a bowl. Then pour the mixture into a tin. My grandmother adds a mixed handful of nuts and raisins.",
+  "uses": ["mix", "mixture", "mixed"]
+ },
+ "reviewer_note": "Mixture is made from mix; mix noun (a mix of) is a same-meaning extra. No -ture affix claimed (not in table)."
+},
+{
+ "headword": "mobile",
+ "word_id": "6a6ef83f0f1e82a5a073674f",
+ "word_ids": ["6a6ef83f0f1e82a5a073674f"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Moving",
+ "sense_pos": "adjective",
+ "corpus_definition": "Something that is able to move or be moved easily.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "mobility", "relation": "derivational", "definition": "the ability to move or travel easily", "example": "After the operation, my grandfather's mobility improved a lot.",
+   "syn": [
+    {"to": "movement", "relation": "related", "strength": 0.6, "note": "The act of moving, not the ability."}
+   ],
+   "ant": [
+    {"to": "immobility", "relation": "antonym", "note": "Not being able to move."}
+   ]},
+  {"slot": "noun", "status": "other_meaning", "form": "mobile", "definition": "a phone you can carry with you", "example": "Call me on my mobile when you arrive.", "note": "Belongs to mobile = mobile phone (British English; American: cell phone), not the general meaning of able to move."},
+  {"slot": "verb", "status": "other_meaning", "form": "mobilize", "definition": "to bring people or things together for a purpose", "example": "The village mobilized volunteers to help after the flood.", "note": "Belongs to mobile = organizing people for action, not something being easy to move. British spelling: mobilise."},
+  {"slot": "adjective", "status": "existing", "form": "mobile", "relation": "base", "definition": "able to move or be moved easily from place to place", "example": "The town has a mobile library that visits villages every week.",
+   "syn": [
+    {"to": "movable", "relation": "synonym", "strength": 0.8, "note": "Can be moved; used for objects."},
+    {"to": "portable", "relation": "synonym", "strength": 0.8, "note": "Small and light enough to carry."},
+    {"to": "moving", "relation": "related", "strength": 0.4, "note": "Actually moving now, not just able to move."}
+   ],
+   "ant": [
+    {"to": "immobile", "relation": "antonym", "note": "Not able to move."},
+    {"to": "fixed", "relation": "antonym", "note": "Fastened in one place."},
+    {"to": "stationary", "relation": "antonym", "note": "Not moving; staying in one place.", "register": "formal"}
+   ]},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ity", "in_form": "mobility", "meaning_key": "-ity", "also": ["ability", "activity", "reality"]}
+ ],
+ "context": {
+  "text": "My aunt runs a mobile cafe from a small van, so she can sell tea at different markets. This mobility helps her find more customers.",
+  "uses": ["mobile", "mobility"]
+ },
+ "reviewer_note": "Trap: mobile noun (phone) and mobilize are other_meaning; immobile is an antonym, not a form."
+},
+{
+ "headword": "modest",
+ "word_id": "6a6ef9b2a6015561480927a8",
+ "word_ids": ["6a6ef9b2a6015561480927a8"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Simple",
+ "sense_pos": "adjective",
+ "corpus_definition": "not showing off; simple and not too large or expensive",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "modesty", "relation": "derivational", "definition": "the quality of not talking proudly about yourself", "example": "Despite her success, she is known for her modesty.",
+   "syn": [
+    {"to": "humility", "relation": "synonym", "strength": 0.8, "note": "Close; humility is a little stronger and more formal."},
+    {"to": "simplicity", "relation": "related", "strength": 0.4, "note": "Being plain and simple, not fancy."}
+   ],
+   "ant": [
+    {"to": "pride", "relation": "antonym", "note": "Thinking you are better than others."},
+    {"to": "arrogance", "relation": "antonym", "note": "Behaving as if you are more important than others."}
+   ]},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "modest", "relation": "base", "definition": "not showing off; simple and not large or expensive", "example": "They live in a modest house near the bazaar.",
+   "syn": [
+    {"to": "humble", "relation": "synonym", "strength": 0.8, "note": "Used for people who don't think they are important."},
+    {"to": "simple", "relation": "related", "strength": 0.6, "note": "Easy word for things that are plain and not fancy."},
+    {"to": "plain", "relation": "related", "strength": 0.6, "note": "Without decoration."},
+    {"to": "small", "relation": "related", "strength": 0.4, "note": "For size or amount: a modest salary is a small one."}
+   ],
+   "ant": [
+    {"to": "immodest", "relation": "antonym", "note": "Talking too proudly about yourself; also for clothes that show too much."},
+    {"to": "boastful", "relation": "antonym", "note": "Talking too much about how good you are."},
+    {"to": "luxurious", "relation": "antonym", "note": "Very expensive and comfortable."}
+   ]},
+  {"slot": "adverb", "status": "existing", "form": "modestly", "relation": "derivational", "definition": "in a simple way, without showing off", "example": "The famous singer spoke modestly about his success.",
+   "syn": [
+    {"to": "humbly", "relation": "synonym", "strength": 0.8, "note": "Without thinking you are important."},
+    {"to": "simply", "relation": "related", "strength": 0.6, "note": "In a plain way: dressed simply."}
+   ],
+   "ant": [
+    {"to": "proudly", "relation": "antonym", "note": "In a way that shows you feel important."}
+   ]}
+ ],
+ "people": [],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-y", "in_form": "modesty", "meaning_key": "-y", "also": ["honesty", "jealousy", "difficulty"]},
+  {"affix": "-ly", "in_form": "modestly", "meaning_key": "-ly", "also": ["quickly", "slowly", "quietly"]}
+ ],
+ "context": {
+  "text": "Our new neighbours live in a modest flat and dress modestly. Everyone in the mahalla likes their modesty.",
+  "uses": ["modest", "modestly", "modesty"]
+ },
+ "reviewer_note": "Corpus definition joins two close uses (not showing off; not large or expensive); one map. Immodest is an antonym, not a form."
+},
+{
+ "headword": "mood",
+ "word_id": "6a42662edeeb39f881130122",
+ "word_ids": ["6a42662edeeb39f881130122"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Feeling",
+ "sense_pos": "noun",
+ "corpus_definition": "The way you feel at a certain time.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "mood", "relation": "base", "definition": "the way you feel at a particular time", "example": "She is in a very good mood today.",
+   "syn": [
+    {"to": "feeling", "relation": "synonym", "strength": 0.8, "note": "Easy, more general word."},
+    {"to": "state of mind", "relation": "synonym", "strength": 0.95, "note": "Phrase with the same meaning; a little formal."},
+    {"to": "temper", "relation": "related", "strength": 0.6, "note": "Usually about anger: in a bad temper."},
+    {"to": "spirits", "relation": "related", "strength": 0.6, "note": "Used in phrases: in high spirits = happy."}
+   ],
+   "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "moody", "relation": "derivational", "definition": "often changing feelings quickly, or often unhappy and angry", "example": "My little brother gets moody when he is hungry.",
+   "syn": [
+    {"to": "bad-tempered", "relation": "related", "strength": 0.6, "note": "Often angry; moody also means feelings change a lot."},
+    {"to": "grumpy", "relation": "related", "strength": 0.6, "note": "Informal: unhappy and a little angry.", "register": "informal"},
+    {"to": "temperamental", "relation": "synonym", "strength": 0.8, "note": "Formal: feelings change suddenly.", "register": "formal"}
+   ],
+   "ant": [
+    {"to": "cheerful", "relation": "antonym", "note": "Happy and friendly most of the time."},
+    {"to": "easy-going", "relation": "antonym", "note": "Calm and relaxed, not easily upset."}
+   ]},
+  {"slot": "adverb", "status": "existing", "form": "moodily", "relation": "derivational", "definition": "in an unhappy or angry way, without talking much", "example": "He stared moodily out of the window.",
+   "syn": [
+    {"to": "gloomily", "relation": "synonym", "strength": 0.8, "note": "In a sad way, without hope."},
+    {"to": "sulkily", "relation": "related", "strength": 0.6, "note": "In a quiet, angry way, often like a child."}
+   ],
+   "ant": [
+    {"to": "cheerfully", "relation": "antonym", "note": "In a happy, bright way."}
+   ]}
+ ],
+ "people": [],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-y", "in_form": "moody", "meaning_key": "-y", "also": ["sunny", "rainy", "cloudy"]},
+  {"affix": "-ly", "in_form": "moodily", "meaning_key": "-ly", "also": ["happily", "easily", "angrily"]}
+ ],
+ "context": {
+  "text": "My friend Aziz was in a bad mood this morning. He is often moody before exams, but after lunch he felt much better.",
+  "uses": ["mood", "moody"]
+ },
+ "reviewer_note": "Grammar meaning of mood (verb mood) not used. Moody keeps the feeling sense."
+},
+{
+ "headword": "mow",
+ "word_id": "6a6ef9b2a601556148092706",
+ "word_ids": ["6a6ef9b2a601556148092706"],
+ "cefr": "B1",
+ "kind": "word",
+ "sense_label": "Grass",
+ "sense_pos": "verb",
+ "corpus_definition": "to cut grass or crops using a machine or blade",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "mowing", "relation": "derivational", "definition": "the work of cutting grass or crops", "example": "The mowing takes my father about an hour every week.",
+   "syn": [
+    {"to": "cutting", "relation": "related", "strength": 0.6, "note": "More general: cutting any material."}
+   ],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "mow", "relation": "base", "definition": "to cut grass or crops with a machine or a long blade", "example": "He mows the lawn every Saturday morning.", "note": "Past: mowed; past participle: mowed or mown.",
+   "syn": [
+    {"to": "cut", "relation": "synonym", "strength": 0.8, "note": "Easy word: cut the grass."},
+    {"to": "trim", "relation": "related", "strength": 0.6, "note": "Cut a little to make it neat."}
+   ],
+   "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "mown", "relation": "participial", "definition": "recently cut, used about grass or a field", "example": "I love the smell of freshly mown grass.",
+   "syn": [
+    {"to": "cut", "relation": "synonym", "strength": 0.8, "note": "Easy word: cut grass."}
+   ],
+   "ant": [
+    {"to": "uncut", "relation": "antonym", "note": "Not cut; long and growing."}
+   ]},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "mower", "kind": "thing", "status": "existing", "definition": "a machine for cutting grass", "example": "Our old mower is too noisy, so we bought a new one."}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ing", "in_form": "mowing", "meaning_key": "-ing", "also": ["swimming", "building", "meeting"]},
+  {"affix": "-er", "in_form": "mower", "meaning_key": "-er", "also": ["cooker", "heater", "printer"]}
+ ],
+ "context": {
+  "text": "In summer my uncle mows the grass in his garden in Fergana. The freshly mown grass smells wonderful, and the children help him push the mower.",
+  "uses": ["mows", "mown", "mower"]
+ },
+ "reviewer_note": "Lawnmower is a compound and left out. Mown is the participle adjective."
+}
+]
