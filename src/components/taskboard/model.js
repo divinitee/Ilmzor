@@ -22,6 +22,12 @@ export const PRIORITY_EDGE = { critical: "border-l-rose-400", high: "border-l-am
 export const PRIORITY_RANK = { critical: 0, high: 1, medium: 2, low: 3 };
 
 export const CATEGORIES = ["Product / Architecture", "Engineering", "Design / UX", "Planning / Strategy", "Marketing", "Pricing / Business", "Research", "General"];
+export const WORK_MODES = ["hands_on", "claude", "hybrid"];
+export const WORK_MODE_LABEL = { hands_on: "You", claude: "Claude", hybrid: "You + Claude" };
+export const ENERGY_LEVELS = ["low", "med", "high"];
+export const ENERGY_LABEL = { low: "Low", med: "Medium", high: "High" };
+export const PLACES = ["laptop", "home", "phone", "anywhere", "out"];
+export const PLACE_LABEL = { laptop: "Laptop", home: "Home", phone: "Phone", anywhere: "Anywhere", out: "Out" };
 
 export const STEP_STATUSES = ["todo", "in_progress", "done", "failed", "skipped"];
 export const STEP_LABEL = { todo: "To do", in_progress: "In progress", done: "Done", failed: "Failed", skipped: "Skipped" };
@@ -55,6 +61,7 @@ export function buildIndex(data) {
   const stepsByTask = {};
   const evidenceByTask = {};
   const evidenceByStep = {};
+  const workLogsByTask = {};
   for (const t of data.tasks) {
     byId[t.id] = t;
     byCode[t.task_code] = t;
@@ -67,6 +74,9 @@ export function buildIndex(data) {
     if (e.step_id) (evidenceByStep[e.step_id] ||= []).push(e);
     else (evidenceByTask[e.task_id] ||= []).push(e);
   }
+  for (const w of (data.workLogs || [])) (workLogsByTask[w.task_id] ||= []).push(w);
+  Object.values(workLogsByTask).forEach((a) => a.sort((x, y) => String(y.ended_at || y.created_date).localeCompare(String(x.ended_at || x.created_date))));
+
   const sortEv = (a, b) => String(b.captured_at).localeCompare(String(a.captured_at));
   Object.values(evidenceByStep).forEach((a) => a.sort(sortEv));
   Object.values(evidenceByTask).forEach((a) => a.sort(sortEv));
@@ -122,7 +132,39 @@ export function buildIndex(data) {
     return out;
   };
 
-  return { byId, byCode, children, stepsByTask, evidenceByTask, evidenceByStep, progress, path, descendants };
+  return { byId, byCode, children, stepsByTask, evidenceByTask, evidenceByStep, workLogsByTask, progress, path, descendants };
+}
+
+export function dependencyState(task, byCode) {
+  const deps = Array.isArray(task?.depends_on) ? task.depends_on : [];
+  const blockedBy = deps.filter((code) => !byCode[code] || byCode[code].status !== "complete");
+  const missing = deps.filter((code) => !byCode[code]);
+  return { blocked: blockedBy.length > 0, blockedBy, missing };
+}
+
+export function workSummary(task, workLogs = []) {
+  const logs = workLogs.filter((w) => w.task_id === task.id);
+  const human = logs.reduce((s, w) => s + (Number(w.human_minutes) || 0), 0);
+  const ai = logs.reduce((s, w) => s + (Number(w.ai_minutes) || 0), 0);
+  return { logs, human, ai, total: human + ai };
+}
+
+export function calibratedEstimate(task, workLogs = []) {
+  const base = Math.max(1, Number(task?.estimate_minutes) || 15);
+  const usable = workLogs.filter((w) => w.outcome !== "abandoned" && Number(w.human_minutes) > 0);
+  if (!usable.length) return { minutes: base, multiplier: 1, samples: 0 };
+  const ratio = (rows) => rows.length ? rows.reduce((s, w) => s + Number(w.human_minutes || 0), 0) / rows.reduce((s, w) => s + baseFor(w, base), 0) : 1;
+  const sameMode = usable.filter((w) => w.mode === (task.work_mode || "hands_on"));
+  const sameProject = sameMode.filter((w) => w.project === task.project);
+  const candidates = sameProject.length >= 3 ? sameProject : sameMode.length >= 3 ? sameMode : usable;
+  const raw = ratio(candidates);
+  const weight = Math.min(0.75, candidates.length / 10);
+  const multiplier = 1 + (raw - 1) * weight;
+  return { minutes: Math.max(5, Math.round((base * multiplier) / 5) * 5), multiplier, samples: candidates.length };
+}
+
+function baseFor(w, fallback) {
+  return Math.max(1, Number(w.estimate_minutes) || fallback);
 }
 
 export function inSubtree(code, rootCode) {
@@ -182,10 +224,11 @@ export function buildExport(data, rootTask = null) {
     version: 1,
     exported_at: new Date().toISOString(),
     scope: rootTask ? rootTask.task_code : "all",
-    counts: { tasks: tasks.length, steps: steps.length, evidence: evidence.length, events: events.length },
+    counts: { tasks: tasks.length, steps: steps.length, evidence: evidence.length, events: events.length, workLogs: (data.workLogs || []).filter((w) => ids.has(w.task_id)).length },
     tasks,
     steps,
     evidence,
     events,
+    workLogs: (data.workLogs || []).filter((w) => ids.has(w.task_id)),
   };
 }
