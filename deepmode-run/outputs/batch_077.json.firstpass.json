@@ -1,0 +1,357 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "detail",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "details",
+       "detail"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "detailed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "'Detailed' is a participle adjective; -ed is not in the affix table, so no affix is claimed. No real adverb (use 'in detail')."
+  },
+  {
+   "headword": "devil",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: devise"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: devious"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'deviant' (zipf 3.0) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "devils"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb 'devil' (spicy cooking) and adverb 'devilishly' (= very) shown as other_meaning so no real word is hidden."
+  },
+  {
+   "headword": "diagram",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adjective 'diagrammatic' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'diagrammatically' is rare (zipf 1.4)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "diagrammatically: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "diagrams"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "diagramed",
+       "diagrammed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No affix claimed: diagrammatic = diagram + -atic, and removing -ic leaves no real word."
+  },
+  {
+   "headword": "dial",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "dials"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "dialed",
+       "dialled"
+      ],
+      "VBN": [
+       "dialled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "One row joins the verb and the noun of the same meaning (conversion), so one map. Only one spelling exists, so context uses noun and verb of 'dial'."
+  },
+  {
+   "headword": "digital",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "digitize → 'computerize' is not a real word/phrase"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "digitization: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "digitally: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "digitization",
+       "digitizations"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "digitized"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Root 'digit' (a single number) shown as noun other_meaning; digitization is the noun for this meaning."
+  },
+  {
+   "headword": "dim",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun 'dimness' is rare (zipf 1.6)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "dimly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "dimness"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "dimmed"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "dimmer"
+      ],
+      "JJS": [
+       "dimmest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Informal 'dim = not clever' only mentioned in a note. 'Dimmer' is the device (-er thing), not the comparative."
+  },
+  {
+   "headword": "dip",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "dip: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "dips",
+       "dip"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "dipped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only one spelling in the family; the noun 'dip' (sauce) is shown as the same-meaning conversion. 'Dipper' (ladle) left out as rare."
+  },
+  {
+   "headword": "disabled",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'dis-' + 'ability': 'disability' is not the opposite of 'ability', so this is not the prefix dis-"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "disable: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "disabled: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "disabilities",
+       "disability"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "disabled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the participle adjective (relation participial). dis- claimed only on disability (= lack of ability); disable is not a clean opposite of able. Polite-language notes added."
+  },
+  {
+   "headword": "discussion",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "discussions",
+       "discussion"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "discussed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Trap for Uzbek/Russian speakers: 'discuss about' is wrong; noted on the verb."
+  },
+  {
+   "headword": "display",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: displayable. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "displays",
+       "display"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "displayed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "dis- is not a real prefix here (play is not the opposite); no affix claimed. Screen meaning only in a note (same spelling)."
+  }
+ ]
+}
