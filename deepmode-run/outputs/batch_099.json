@@ -2,119 +2,363 @@
  {
   "headword": "pronounce",
   "word_id": "6a42818546ba24054c1dcb4a",
-  "word_ids": ["6a42818546ba24054c1dcb4a"],
+  "word_ids": [
+   "6a42818546ba24054c1dcb4a"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Speaking",
   "sense_pos": "verb",
   "corpus_definition": "to make the sounds of a word using your mouth and voice.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "pronunciation", "relation": "derivational", "definition": "the way in which a word or a language is said", "example": "Her English pronunciation is very clear.", "note": "Spelling trap: pronounce, but pronunciation (no 'o' after 'n').",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "pronunciation",
+    "relation": "derivational",
+    "definition": "the way in which a word or a language is said",
+    "example": "Her English pronunciation is very clear.",
+    "note": "Spelling trap: pronounce, but pronunciation (no 'o' after 'n').",
     "syn": [
-     {"to": "accent", "relation": "related", "strength": 0.6, "note": "Related: an accent is the way a group of people speak, for example a Scottish accent."},
-     {"to": "articulation", "relation": "related", "strength": 0.6, "note": "Related and formal: how clearly you make each sound.", "register": "formal"},
-     {"to": "intonation", "relation": "related", "strength": 0.4, "note": "Related: how your voice goes up and down when you speak."}
+     {
+      "to": "accent",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: an accent is the way a group of people speak, for example a Scottish accent."
+     },
+     {
+      "to": "articulation",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related and formal: how clearly you make each sound.",
+      "register": "formal"
+     },
+     {
+      "to": "intonation",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: how your voice goes up and down when you speak."
+     }
     ],
     "ant": [
-     {"to": "mispronunciation", "relation": "antonym", "note": "A wrong way of saying a word."}
-    ]},
-   {"slot": "noun", "status": "other_meaning", "form": "pronouncement", "definition": "an official public statement about something important", "example": "The president made a pronouncement about the new law.", "note": "Belongs to pronounce = say something officially (\"I now pronounce you husband and wife\"), not saying the sounds of a word."},
-   {"slot": "verb", "status": "existing", "form": "pronounce", "relation": "base", "definition": "to make the sounds of a word with your mouth", "example": "How do you pronounce your surname?",
+     {
+      "to": "mispronunciation",
+      "relation": "antonym",
+      "note": "A wrong way of saying a word."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "pronouncement",
+    "definition": "an official public statement about something important",
+    "example": "The president made a pronouncement about the new law.",
+    "note": "Belongs to pronounce = say something officially (\"I now pronounce you husband and wife\"), not saying the sounds of a word."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "pronounce",
+    "relation": "base",
+    "definition": "to make the sounds of a word with your mouth",
+    "example": "How do you pronounce your surname?",
     "syn": [
-     {"to": "say", "relation": "synonym", "strength": 0.8, "note": "Easy everyday word: \"How do you say this word?\""},
-     {"to": "articulate", "relation": "synonym", "strength": 0.8, "note": "Formal: to say sounds or words clearly.", "register": "formal"},
-     {"to": "enunciate", "relation": "synonym", "strength": 0.8, "note": "Formal: to say each sound very clearly and carefully.", "register": "formal"},
-     {"to": "speak", "relation": "related", "strength": 0.4, "note": "Related: speak is general; pronounce is about the sounds of one word."}
+     {
+      "to": "say",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy everyday word: \"How do you say this word?\""
+     },
+     {
+      "to": "articulate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: to say sounds or words clearly.",
+      "register": "formal"
+     },
+     {
+      "to": "enunciate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: to say each sound very clearly and carefully.",
+      "register": "formal"
+     },
+     {
+      "to": "speak",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: speak is general; pronounce is about the sounds of one word."
+     }
     ],
     "ant": [
-     {"to": "mispronounce", "relation": "antonym", "note": "To say a word in the wrong way."}
-    ]},
-   {"slot": "adjective", "status": "other_meaning", "form": "pronounced", "definition": "very easy to notice", "example": "He walks with a pronounced limp.", "note": "Belongs to a different meaning (strong and noticeable), not saying the sounds of a word."},
-   {"slot": "adverb", "status": "no_form", "note": "No common adverb in this family."}
+     {
+      "to": "mispronounce",
+      "relation": "antonym",
+      "note": "To say a word in the wrong way."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "pronounced",
+    "definition": "very easy to notice",
+    "example": "He walks with a pronounced limp.",
+    "note": "Belongs to a different meaning (strong and noticeable), not saying the sounds of a word."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No common adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Our English teacher in Tashkent helps us pronounce difficult words. She says clear pronunciation is more important than a perfect accent.", "uses": ["pronounce", "pronunciation"]},
+  "context": {
+   "text": "Our English teacher in Tashkent helps us pronounce difficult words. She says clear pronunciation is more important than a perfect accent.",
+   "uses": [
+    "pronounce",
+    "pronunciation"
+   ]
+  },
   "reviewer_note": "Spelling trap pronounce/pronunciation handled; pronounced (noticeable) and pronouncement (official statement) are other_meaning; mis- forms kept as antonyms."
  },
  {
   "headword": "proverb",
   "word_id": "6a6ef9b2a601556148092874",
-  "word_ids": ["6a6ef9b2a601556148092874"],
+  "word_ids": [
+   "6a6ef9b2a601556148092874"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Saying",
   "sense_pos": "noun",
   "corpus_definition": "a short, well-known saying that gives wise advice",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "proverb", "relation": "base", "definition": "a short, well-known sentence that gives wise advice", "example": "There is an Uzbek proverb about patience.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "proverb",
+    "relation": "base",
+    "definition": "a short, well-known sentence that gives wise advice",
+    "example": "There is an Uzbek proverb about patience.",
     "syn": [
-     {"to": "saying", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word with the same meaning."},
-     {"to": "adage", "relation": "synonym", "strength": 0.8, "note": "Formal: an old saying that many people believe is true.", "register": "formal"},
-     {"to": "maxim", "relation": "synonym", "strength": 0.8, "note": "Formal: a short rule about how to behave.", "register": "formal"},
-     {"to": "expression", "relation": "related", "strength": 0.6, "note": "Related: any group of words with a special meaning; it does not always give advice."},
-     {"to": "motto", "relation": "related", "strength": 0.4, "note": "Related: a short sentence that a person, school or company chooses to live by."}
+     {
+      "to": "saying",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy everyday word with the same meaning."
+     },
+     {
+      "to": "adage",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: an old saying that many people believe is true.",
+      "register": "formal"
+     },
+     {
+      "to": "maxim",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: a short rule about how to behave.",
+      "register": "formal"
+     },
+     {
+      "to": "expression",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: any group of words with a special meaning; it does not always give advice."
+     },
+     {
+      "to": "motto",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a short sentence that a person, school or company chooses to live by."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "No verb in this family."},
-   {"slot": "adjective", "status": "existing", "form": "proverbial", "relation": "derivational", "definition": "well known, like the words of a famous old saying", "example": "Finding him in the crowd was like looking for the proverbial needle in a haystack.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "proverbial",
+    "relation": "derivational",
+    "definition": "well known, like the words of a famous old saying",
+    "example": "Finding him in the crowd was like looking for the proverbial needle in a haystack.",
     "syn": [
-     {"to": "well-known", "relation": "related", "strength": 0.6, "note": "Related: known by many people."},
-     {"to": "legendary", "relation": "related", "strength": 0.4, "note": "Related: very famous and talked about a lot."}
+     {
+      "to": "well-known",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: known by many people."
+     },
+     {
+      "to": "legendary",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: very famous and talked about a lot."
+     }
     ],
-    "ant": []},
-   {"slot": "adverb", "status": "existing", "form": "proverbially", "relation": "derivational", "definition": "as people say in a well-known old saying", "example": "Time, proverbially, is money.",
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "proverbially",
+    "relation": "derivational",
+    "definition": "as people say in a well-known old saying",
+    "example": "Time, proverbially, is money.",
     "syn": [
-     {"to": "famously", "relation": "related", "strength": 0.6, "note": "Related: in a way that many people know about."}
+     {
+      "to": "famously",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: in a way that many people know about."
+     }
     ],
-    "ant": []}
+    "ant": []
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ly", "in_form": "proverbially", "meaning_key": "-ly", "also": ["quickly", "really", "usually"]}
+   {
+    "affix": "-ly",
+    "in_form": "proverbially",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "really",
+     "usually"
+    ]
+   }
   ],
-  "context": {"text": "My grandmother knows a proverb for every situation. When I complain, she gives me her proverbial advice: patience turns into gold.", "uses": ["proverb", "proverbial"]},
+  "context": {
+   "text": "My grandmother knows a proverb for every situation. When I complain, she gives me her proverbial advice: patience turns into gold.",
+   "uses": [
+    "proverb",
+    "proverbial"
+   ]
+  },
   "reviewer_note": "proverbial often means 'the famous phrase' (the proverbial needle); kept as existing in this meaning."
  },
  {
   "headword": "province",
   "word_id": "6a6ef9b2a6015561480927ad",
-  "word_ids": ["6a6ef9b2a6015561480927ad"],
+  "word_ids": [
+   "6a6ef9b2a6015561480927ad"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Region",
   "sense_pos": "noun",
   "corpus_definition": "a large region or area that is part of a country",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "province", "relation": "base", "definition": "one of the large areas that some countries are divided into", "example": "Canada has ten provinces.", "note": "'The provinces' means all the parts of a country outside the capital.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "province",
+    "relation": "base",
+    "definition": "one of the large areas that some countries are divided into",
+    "example": "Canada has ten provinces.",
+    "note": "'The provinces' means all the parts of a country outside the capital.",
     "syn": [
-     {"to": "region", "relation": "synonym", "strength": 0.8, "note": "Very close; in Uzbekistan a viloyat is usually called a region in English."},
-     {"to": "state", "relation": "related", "strength": 0.6, "note": "Related: the name for a big part of countries like the USA or India."},
-     {"to": "district", "relation": "related", "strength": 0.6, "note": "Related: a smaller area, often part of a province or city."},
-     {"to": "territory", "relation": "related", "strength": 0.4, "note": "Related: land that belongs to a country or ruler."}
+     {
+      "to": "region",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very close; in Uzbekistan a viloyat is usually called a region in English."
+     },
+     {
+      "to": "state",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: the name for a big part of countries like the USA or India."
+     },
+     {
+      "to": "district",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: a smaller area, often part of a province or city."
+     },
+     {
+      "to": "territory",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: land that belongs to a country or ruler."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "No verb in this family."},
-   {"slot": "adjective", "status": "existing", "form": "provincial", "relation": "derivational", "definition": "connected with one of the large areas of a country", "example": "The provincial government built a new hospital.", "note": "It can also mean 'from outside the capital', and sometimes 'old-fashioned', which is not polite.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "provincial",
+    "relation": "derivational",
+    "definition": "connected with one of the large areas of a country",
+    "example": "The provincial government built a new hospital.",
+    "note": "It can also mean 'from outside the capital', and sometimes 'old-fashioned', which is not polite.",
     "syn": [
-     {"to": "regional", "relation": "synonym", "strength": 0.8, "note": "Very close: connected with a region."},
-     {"to": "local", "relation": "related", "strength": 0.6, "note": "Related: connected with the place where you live, often smaller."},
-     {"to": "rural", "relation": "related", "strength": 0.4, "note": "Related: connected with the countryside, not towns."}
+     {
+      "to": "regional",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very close: connected with a region."
+     },
+     {
+      "to": "local",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: connected with the place where you live, often smaller."
+     },
+     {
+      "to": "rural",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: connected with the countryside, not towns."
+     }
     ],
     "ant": [
-     {"to": "metropolitan", "relation": "antonym", "note": "Connected with a very big city or the capital."}
-    ]},
-   {"slot": "adverb", "status": "no_form", "note": "No common adverb in this family."}
+     {
+      "to": "metropolitan",
+      "relation": "antonym",
+      "note": "Connected with a very big city or the capital."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No common adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "Samarkand is a city and also the name of a province in Uzbekistan. Every year many students from provincial towns move to Tashkent to study.", "uses": ["province", "provincial"]},
+  "context": {
+   "text": "Samarkand is a city and also the name of a province in Uzbekistan. Every year many students from provincial towns move to Tashkent to study.",
+   "uses": [
+    "province",
+    "provincial"
+   ]
+  },
   "reviewer_note": "Uzbekistan's viloyat is usually 'region' in English; noted on the synonym."
  },
  {
   "headword": "public transport",
   "word_id": "6a4265fb84a10cdfe9e55d81",
-  "word_ids": ["6a4265fb84a10cdfe9e55d81"],
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d81"
+  ],
   "cefr": "B1",
   "kind": "phrase",
   "sense_label": "Travel",
@@ -122,253 +366,854 @@
   "corpus_definition": "Buses and trains that anyone can use.",
   "usage_note": "Uncountable: 'use / take public transport', 'go by public transport' (no 'a'). American English usually says public transportation.",
   "relations": [
-   {"to": "public transportation", "relation": "synonym", "strength": 0.95, "note": "The same thing in American English."},
-   {"to": "mass transit", "relation": "synonym", "strength": 0.8, "note": "Mainly American and more formal, used in news and planning.", "register": "formal"},
-   {"to": "transport", "relation": "related", "strength": 0.6, "note": "Related: any way of moving people or things, including cars."},
-   {"to": "private transport", "relation": "antonym", "note": "Your own car or bike, not shared buses and trains."}
+   {
+    "to": "public transportation",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "The same thing in American English."
+   },
+   {
+    "to": "mass transit",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Mainly American and more formal, used in news and planning.",
+    "register": "formal"
+   },
+   {
+    "to": "transport",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Related: any way of moving people or things, including cars."
+   },
+   {
+    "to": "private transport",
+    "relation": "antonym",
+    "note": "Your own car or bike, not shared buses and trains."
+   }
   ],
-  "context": {"text": "In Tashkent, public transport is cheap and the metro is very fast. I go to university by public transport every day.", "uses": ["public transport"]},
+  "context": {
+   "text": "In Tashkent, public transport is cheap and the metro is very fast. I go to university by public transport every day.",
+   "uses": [
+    "public transport"
+   ]
+  },
   "reviewer_note": "Fixed noun phrase; British/American difference noted."
  },
  {
   "headword": "publish",
   "word_id": "6a42818546ba24054c1dcb4b",
-  "word_ids": ["6a42818546ba24054c1dcb4b"],
+  "word_ids": [
+   "6a42818546ba24054c1dcb4b"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Books",
   "sense_pos": "verb",
   "corpus_definition": "to prepare and produce a book or magazine for people to buy.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "publication", "relation": "derivational", "definition": "the act of printing a book or magazine and offering it for sale", "example": "The publication of her first novel made her famous.", "note": "It can also mean the book or magazine itself: 'a weekly publication'.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "publication",
+    "relation": "derivational",
+    "definition": "the act of printing a book or magazine and offering it for sale",
+    "example": "The publication of her first novel made her famous.",
+    "note": "It can also mean the book or magazine itself: 'a weekly publication'.",
     "syn": [
-     {"to": "release", "relation": "related", "strength": 0.6, "note": "Related: making a book, film or song available to people."},
-     {"to": "printing", "relation": "related", "strength": 0.6, "note": "Related: making copies on paper; it is only one part of the work."},
-     {"to": "issue", "relation": "related", "strength": 0.4, "note": "Related: one copy of a magazine or newspaper that comes out on a date."}
+     {
+      "to": "release",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: making a book, film or song available to people."
+     },
+     {
+      "to": "printing",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: making copies on paper; it is only one part of the work."
+     },
+     {
+      "to": "issue",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: one copy of a magazine or newspaper that comes out on a date."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "publish", "relation": "base", "definition": "to print a book or magazine and offer it for sale", "example": "She wants to publish her new book next year.", "note": "Also used for putting a text online: 'publish a blog post'.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "publish",
+    "relation": "base",
+    "definition": "to print a book or magazine and offer it for sale",
+    "example": "She wants to publish her new book next year.",
+    "note": "Also used for putting a text online: 'publish a blog post'.",
     "syn": [
-     {"to": "bring out", "relation": "synonym", "strength": 0.8, "note": "Phrasal verb, a little informal: \"They brought out a new edition.\""},
-     {"to": "print", "relation": "synonym", "strength": 0.8, "note": "Easy word; print is about making copies on paper."},
-     {"to": "release", "relation": "related", "strength": 0.6, "note": "Related: used more for films, songs and products."},
-     {"to": "post", "relation": "related", "strength": 0.4, "note": "Related: to put a message or photo on the internet."}
+     {
+      "to": "bring out",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Phrasal verb, a little informal: \"They brought out a new edition.\""
+     },
+     {
+      "to": "print",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word; print is about making copies on paper."
+     },
+     {
+      "to": "release",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: used more for films, songs and products."
+     },
+     {
+      "to": "post",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: to put a message or photo on the internet."
+     }
     ],
-    "ant": []},
-   {"slot": "adjective", "status": "existing", "form": "published", "relation": "participial", "definition": "printed and available for people to buy and read", "example": "This is his first published article.",
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "published",
+    "relation": "participial",
+    "definition": "printed and available for people to buy and read",
+    "example": "This is his first published article.",
     "syn": [
-     {"to": "printed", "relation": "synonym", "strength": 0.8, "note": "Close; printed is only about paper copies."}
+     {
+      "to": "printed",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; printed is only about paper copies."
+     }
     ],
     "ant": [
-     {"to": "unpublished", "relation": "antonym", "note": "Written but not yet printed or offered to the public."}
-    ]},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+     {
+      "to": "unpublished",
+      "relation": "antonym",
+      "note": "Written but not yet printed or offered to the public."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [
-   {"form": "publisher", "kind": "job", "status": "existing", "definition": "a person or company that prepares and sells books or magazines", "example": "The publisher sent her a contract for two books."},
-   {"form": "publishing", "kind": "field", "status": "existing", "definition": "the business of preparing and selling books and magazines", "example": "My aunt has worked in publishing for twenty years."}
+   {
+    "form": "publisher",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person or company that prepares and sells books or magazines",
+    "example": "The publisher sent her a contract for two books."
+   },
+   {
+    "form": "publishing",
+    "kind": "field",
+    "status": "existing",
+    "definition": "the business of preparing and selling books and magazines",
+    "example": "My aunt has worked in publishing for twenty years."
+   }
   ],
   "affixes": [
-   {"affix": "-er", "in_form": "publisher", "meaning_key": "-er", "also": ["teacher", "driver", "player"]},
-   {"affix": "-ing", "in_form": "publishing", "meaning_key": "-ing", "also": ["swimming", "shopping", "building"]}
+   {
+    "affix": "-er",
+    "in_form": "publisher",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   },
+   {
+    "affix": "-ing",
+    "in_form": "publishing",
+    "meaning_key": "-ing",
+    "also": [
+     "swimming",
+     "shopping",
+     "building"
+    ]
+   }
   ],
-  "context": {"text": "My cousin wrote a book of Uzbek stories, and a company in Tashkent agreed to publish it. Since its publication last year, the published book has sold well.", "uses": ["publish", "publication", "published"]},
+  "context": {
+   "text": "My cousin wrote a book of Uzbek stories, and a company in Tashkent agreed to publish it. Since its publication last year, the published book has sold well.",
+   "uses": [
+    "publish",
+    "publication",
+    "published"
+   ]
+  },
   "reviewer_note": "publication/public: no -ation affix claimed because removing it leaves 'public', not the base verb."
  },
  {
   "headword": "pudding",
   "word_id": "6a6ef83f0f1e82a5a07367dc",
-  "word_ids": ["6a6ef83f0f1e82a5a07367dc"],
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367dc"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Food",
   "sense_pos": "noun",
   "corpus_definition": "A soft, sweet dessert served after a meal.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "pudding", "relation": "base", "definition": "a soft sweet food eaten at the end of a meal", "example": "We ate chocolate pudding for dessert.", "note": "In British English it can mean any dessert ('What's for pudding?'). Some British puddings are not sweet, like Yorkshire pudding.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "pudding",
+    "relation": "base",
+    "definition": "a soft sweet food eaten at the end of a meal",
+    "example": "We ate chocolate pudding for dessert.",
+    "note": "In British English it can mean any dessert ('What's for pudding?'). Some British puddings are not sweet, like Yorkshire pudding.",
     "syn": [
-     {"to": "dessert", "relation": "synonym", "strength": 0.8, "note": "Any sweet food at the end of a meal; pudding is often soft."},
-     {"to": "sweet", "relation": "synonym", "strength": 0.8, "note": "British English noun for dessert: \"What's for sweet?\"", "register": "informal"},
-     {"to": "custard", "relation": "related", "strength": 0.4, "note": "Related: a sweet yellow sauce or soft food made with milk and eggs."}
+     {
+      "to": "dessert",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Any sweet food at the end of a meal; pudding is often soft."
+     },
+     {
+      "to": "sweet",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "British English noun for dessert: \"What's for sweet?\"",
+      "register": "informal"
+     },
+     {
+      "to": "custard",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a sweet yellow sauce or soft food made with milk and eggs."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "No verb in this family."},
-   {"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No adjective in this family."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "After plov, my host family in London served rice pudding. I liked the pudding so much that I asked for the recipe.", "uses": ["pudding"]},
+  "context": {
+   "text": "After plov, my host family in London served rice pudding. I liked the pudding so much that I asked for the recipe.",
+   "uses": [
+    "pudding"
+   ]
+  },
   "reviewer_note": "British sense 'any dessert' and savoury puddings mentioned in a note only."
  },
  {
   "headword": "pulse",
   "word_id": "6a6ef9b2a6015561480927e6",
-  "word_ids": ["6a6ef9b2a6015561480927e6"],
+  "word_ids": [
+   "6a6ef9b2a6015561480927e6"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Body",
   "sense_pos": "noun",
   "corpus_definition": "the regular beat of the heart felt in the body",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "pulse", "relation": "base", "definition": "the regular beat of blood that you can feel at your wrist or neck", "example": "The doctor checked the patient's pulse carefully.", "note": "Different word: pulses (plural) are also beans and lentils as food.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "pulse",
+    "relation": "base",
+    "definition": "the regular beat of blood that you can feel at your wrist or neck",
+    "example": "The doctor checked the patient's pulse carefully.",
+    "note": "Different word: pulses (plural) are also beans and lentils as food.",
     "syn": [
-     {"to": "heartbeat", "relation": "synonym", "strength": 0.8, "note": "Very close; heartbeat is the movement of the heart itself."},
-     {"to": "heart rate", "relation": "synonym", "strength": 0.8, "note": "The number of beats in one minute; used by doctors and sports watches."},
-     {"to": "beat", "relation": "related", "strength": 0.6, "note": "Related: one regular sound or movement, of a heart or of music."},
-     {"to": "rhythm", "relation": "related", "strength": 0.4, "note": "Related: a regular repeated pattern of sounds or movements."}
+     {
+      "to": "heartbeat",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very close; heartbeat is the movement of the heart itself."
+     },
+     {
+      "to": "heart rate",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The number of beats in one minute; used by doctors and sports watches."
+     },
+     {
+      "to": "beat",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: one regular sound or movement, of a heart or of music."
+     },
+     {
+      "to": "rhythm",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: a regular repeated pattern of sounds or movements."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "pulse", "relation": "conversion", "definition": "to move or flow with strong regular beats", "example": "She could feel the blood pulsing through her body.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "pulse",
+    "relation": "conversion",
+    "definition": "to move or flow with strong regular beats",
+    "example": "She could feel the blood pulsing through her body.",
     "syn": [
-     {"to": "beat", "relation": "synonym", "strength": 0.8, "note": "Easy word: \"My heart was beating fast.\""},
-     {"to": "throb", "relation": "synonym", "strength": 0.8, "note": "To beat strongly, often with pain: \"My head was throbbing.\""},
-     {"to": "pound", "relation": "related", "strength": 0.6, "note": "Related: to beat very hard and loud, often from fear or exercise."}
+     {
+      "to": "beat",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word: \"My heart was beating fast.\""
+     },
+     {
+      "to": "throb",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "To beat strongly, often with pain: \"My head was throbbing.\""
+     },
+     {
+      "to": "pound",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: to beat very hard and loud, often from fear or exercise."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "pulsate", "relation": "derivational", "definition": "to move in and out with strong regular beats", "example": "The music pulsated through the whole building.", "register": "formal", "syn": [], "ant": []},
-   {"slot": "adjective", "status": "other_meaning", "form": "pulsating", "definition": "very exciting and full of energy", "example": "It was a pulsating match from start to finish.", "note": "Belongs to the meaning 'exciting', used about games and music, not the beat you feel in your wrist."},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "pulsate",
+    "relation": "derivational",
+    "definition": "to move in and out with strong regular beats",
+    "example": "The music pulsated through the whole building.",
+    "register": "formal",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "pulsating",
+    "definition": "very exciting and full of energy",
+    "example": "It was a pulsating match from start to finish.",
+    "note": "Belongs to the meaning 'exciting', used about games and music, not the beat you feel in your wrist."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "After running in the park, Aziz checked his pulse. He could still feel the blood pulsing in his neck five minutes later.", "uses": ["pulse", "pulsing"]},
+  "context": {
+   "text": "After running in the park, Aziz checked his pulse. His heart was pulsating so hard that he had to sit down for a while.",
+   "uses": [
+    "pulse",
+    "pulsating"
+   ]
+  },
   "reviewer_note": "pulses (beans and lentils) is a different word, only mentioned in a note; pulsating 'exciting' is other_meaning."
  },
  {
   "headword": "punish",
   "word_id": "6a42821646ba24054c1dcc93",
-  "word_ids": ["6a42821646ba24054c1dcc93"],
+  "word_ids": [
+   "6a42821646ba24054c1dcc93"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Wrongdoing",
   "sense_pos": "verb",
   "corpus_definition": "to make someone suffer because they did something bad or wrong",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "punishment", "relation": "derivational", "definition": "something bad that is done to a person who broke a rule", "example": "His punishment was to stay after school.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "punishment",
+    "relation": "derivational",
+    "definition": "something bad that is done to a person who broke a rule",
+    "example": "His punishment was to stay after school.",
     "syn": [
-     {"to": "penalty", "relation": "synonym", "strength": 0.8, "note": "Often an official punishment, like a fine or a penalty in football."},
-     {"to": "discipline", "relation": "related", "strength": 0.6, "note": "Related: training people to follow rules, sometimes with punishment."},
-     {"to": "sentence", "relation": "related", "strength": 0.4, "note": "Related: the punishment a judge gives in a court."}
+     {
+      "to": "penalty",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Often an official punishment, like a fine or a penalty in football."
+     },
+     {
+      "to": "discipline",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: training people to follow rules, sometimes with punishment."
+     },
+     {
+      "to": "sentence",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: the punishment a judge gives in a court."
+     }
     ],
     "ant": [
-     {"to": "reward", "relation": "antonym", "note": "Something good you get because you did something well."}
-    ]},
-   {"slot": "verb", "status": "existing", "form": "punish", "relation": "base", "definition": "to make someone suffer because they did something wrong", "example": "The teacher had to punish the noisy student.",
+     {
+      "to": "reward",
+      "relation": "antonym",
+      "note": "Something good you get because you did something well."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "punish",
+    "relation": "base",
+    "definition": "to make someone suffer because they did something wrong",
+    "example": "The teacher had to punish the noisy student.",
     "syn": [
-     {"to": "discipline", "relation": "synonym", "strength": 0.8, "note": "Used about parents, schools and companies correcting bad behaviour."},
-     {"to": "penalize", "relation": "synonym", "strength": 0.8, "note": "More formal, often for breaking official rules. British spelling: penalise.", "register": "formal"},
-     {"to": "fine", "relation": "related", "strength": 0.4, "note": "Related: to punish someone by making them pay money."}
+     {
+      "to": "discipline",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used about parents, schools and companies correcting bad behaviour."
+     },
+     {
+      "to": "penalize",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal, often for breaking official rules. British spelling: penalise.",
+      "register": "formal"
+     },
+     {
+      "to": "fine",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: to punish someone by making them pay money."
+     }
     ],
     "ant": [
-     {"to": "reward", "relation": "antonym", "note": "To give someone something good for doing well."},
-     {"to": "forgive", "relation": "antonym", "note": "To stop being angry and not punish someone."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "punishable", "relation": "derivational", "definition": "that can be dealt with by a court or by law", "example": "Stealing is a crime punishable by prison.",
+     {
+      "to": "reward",
+      "relation": "antonym",
+      "note": "To give someone something good for doing well."
+     },
+     {
+      "to": "forgive",
+      "relation": "antonym",
+      "note": "To stop being angry and not punish someone."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "punishable",
+    "relation": "derivational",
+    "definition": "that can be dealt with by a court or by law",
+    "example": "Stealing is a crime punishable by prison.",
     "syn": [
-     {"to": "illegal", "relation": "related", "strength": 0.4, "note": "Related: against the law; punishable says there is a legal penalty."}
+     {
+      "to": "illegal",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: against the law; punishable says there is a legal penalty."
+     }
     ],
-    "ant": []},
-   {"slot": "adjective", "status": "other_meaning", "form": "punishing", "definition": "very hard and making you very tired", "example": "The team trains on a punishing schedule.", "note": "Belongs to the meaning 'very difficult and tiring', not making someone suffer for doing wrong."},
-   {"slot": "adverb", "status": "other_meaning", "form": "punishingly", "definition": "in a way that is extremely hard or tiring", "example": "The climb up the mountain was punishingly steep.", "note": "Goes with punishing = very hard and tiring, not making someone suffer for doing wrong."}
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "punishing",
+    "definition": "very hard and making you very tired",
+    "example": "The team trains on a punishing schedule.",
+    "note": "Belongs to the meaning 'very difficult and tiring', not making someone suffer for doing wrong."
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "punishingly",
+    "definition": "in a way that is extremely hard or tiring",
+    "example": "The climb up the mountain was punishingly steep.",
+    "note": "Goes with punishing = very hard and tiring, not making someone suffer for doing wrong."
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ment", "in_form": "punishment", "meaning_key": "-ment", "also": ["payment", "movement", "agreement"]},
-   {"affix": "-able", "in_form": "punishable", "meaning_key": "-able", "also": ["washable", "readable", "enjoyable"]}
+   {
+    "affix": "-ment",
+    "in_form": "punishment",
+    "meaning_key": "-ment",
+    "also": [
+     "payment",
+     "movement",
+     "agreement"
+    ]
+   },
+   {
+    "affix": "-able",
+    "in_form": "punishable",
+    "meaning_key": "-able",
+    "also": [
+     "washable",
+     "readable",
+     "enjoyable"
+    ]
+   }
   ],
-  "context": {"text": "My little brother broke a window, but my parents didn't punish him. His only punishment was to help clean the yard.", "uses": ["punish", "punishment"]},
+  "context": {
+   "text": "My little brother broke a window, but my parents didn't punish him. His only punishment was to help clean the yard.",
+   "uses": [
+    "punish",
+    "punishment"
+   ]
+  },
   "reviewer_note": "punishing/punishingly (very hard) kept as other_meaning; punitive left out as a formal C1+ word."
  },
  {
   "headword": "purpose",
   "word_id": "6a4282fd46ba24054c1dcdb6",
-  "word_ids": ["6a4282fd46ba24054c1dcdb6"],
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdb6"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Goal",
   "sense_pos": "noun",
   "corpus_definition": "The main goal or reason for doing something.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "purpose", "relation": "base", "definition": "the reason why you do something or why something exists", "example": "What is the purpose of this meeting?", "note": "Phrase: on purpose = not by accident.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "purpose",
+    "relation": "base",
+    "definition": "the reason why you do something or why something exists",
+    "example": "What is the purpose of this meeting?",
+    "note": "Phrase: on purpose = not by accident.",
     "syn": [
-     {"to": "aim", "relation": "synonym", "strength": 0.95, "note": "Easy word with almost the same meaning."},
-     {"to": "goal", "relation": "synonym", "strength": 0.95, "note": "Easy word; a goal is often something you work towards for a long time."},
-     {"to": "reason", "relation": "synonym", "strength": 0.8, "note": "Reason answers 'why?'; purpose answers 'what for?'."},
-     {"to": "intention", "relation": "synonym", "strength": 0.8, "note": "What you plan to do; a little more formal."},
-     {"to": "objective", "relation": "synonym", "strength": 0.8, "note": "Formal, used in business and education.", "register": "formal"},
-     {"to": "point", "relation": "related", "strength": 0.6, "note": "Informal: \"What's the point of doing this?\""}
+     {
+      "to": "aim",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy word with almost the same meaning."
+     },
+     {
+      "to": "goal",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy word; a goal is often something you work towards for a long time."
+     },
+     {
+      "to": "reason",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Reason answers 'why?'; purpose answers 'what for?'."
+     },
+     {
+      "to": "intention",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "What you plan to do; a little more formal."
+     },
+     {
+      "to": "objective",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal, used in business and education.",
+      "register": "formal"
+     },
+     {
+      "to": "point",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Informal: \"What's the point of doing this?\""
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "The verb is old-fashioned and not used by learners."},
-   {"slot": "adjective", "status": "existing", "form": "purposeful", "relation": "derivational", "definition": "having a clear aim and showing that you know what you want", "example": "She walked to the front with purposeful steps.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "The verb is old-fashioned and not used by learners."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "purposeful",
+    "relation": "derivational",
+    "definition": "having a clear aim and showing that you know what you want",
+    "example": "She walked to the front with purposeful steps.",
     "syn": [
-     {"to": "determined", "relation": "synonym", "strength": 0.8, "note": "Close: you will not let anything stop you."},
-     {"to": "focused", "relation": "related", "strength": 0.6, "note": "Related: giving all your attention to one aim."},
-     {"to": "meaningful", "relation": "related", "strength": 0.4, "note": "Related: important and useful."}
+     {
+      "to": "determined",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close: you will not let anything stop you."
+     },
+     {
+      "to": "focused",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: giving all your attention to one aim."
+     },
+     {
+      "to": "meaningful",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Related: important and useful."
+     }
     ],
     "ant": [
-     {"to": "aimless", "relation": "antonym", "note": "Without a clear aim or plan."},
-     {"to": "purposeless", "relation": "antonym", "note": "Without any reason or aim."}
-    ]},
-   {"slot": "adverb", "status": "existing", "form": "purposely", "relation": "derivational", "definition": "in a way that is planned and not by accident", "example": "I purposely left my phone at home.",
+     {
+      "to": "aimless",
+      "relation": "antonym",
+      "note": "Without a clear aim or plan."
+     },
+     {
+      "to": "purposeless",
+      "relation": "antonym",
+      "note": "Without any reason or aim."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "purposely",
+    "relation": "derivational",
+    "definition": "in a way that is planned and not by accident",
+    "example": "I purposely left my phone at home.",
     "syn": [
-     {"to": "on purpose", "relation": "synonym", "strength": 0.95, "note": "Easy and common in speaking."},
-     {"to": "deliberately", "relation": "synonym", "strength": 0.95, "note": "Same meaning, very common."},
-     {"to": "intentionally", "relation": "synonym", "strength": 0.95, "note": "Same meaning, a little more formal."}
+     {
+      "to": "on purpose",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Easy and common in speaking."
+     },
+     {
+      "to": "deliberately",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning, very common."
+     },
+     {
+      "to": "intentionally",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning, a little more formal."
+     }
     ],
     "ant": [
-     {"to": "accidentally", "relation": "antonym", "note": "By chance, without planning it."},
-     {"to": "by accident", "relation": "antonym", "note": "Easy phrase: without planning it."}
-    ]},
-   {"slot": "adverb", "status": "existing", "form": "purposefully", "relation": "derivational", "definition": "in a determined way, with a clear aim", "example": "He walked purposefully towards the door.", "syn": [], "ant": []}
+     {
+      "to": "accidentally",
+      "relation": "antonym",
+      "note": "By chance, without planning it."
+     },
+     {
+      "to": "by accident",
+      "relation": "antonym",
+      "note": "Easy phrase: without planning it."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "purposefully",
+    "relation": "derivational",
+    "definition": "in a determined way, with a clear aim",
+    "example": "He walked purposefully towards the door.",
+    "syn": [],
+    "ant": []
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ful", "in_form": "purposeful", "meaning_key": "-ful", "also": ["helpful", "careful", "useful"]},
-   {"affix": "-ly", "in_form": "purposely", "meaning_key": "-ly", "also": ["quickly", "slowly", "really"]}
+   {
+    "affix": "-ful",
+    "in_form": "purposeful",
+    "meaning_key": "-ful",
+    "also": [
+     "helpful",
+     "careful",
+     "useful"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "purposely",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "slowly",
+     "really"
+    ]
+   }
   ],
-  "context": {"text": "The purpose of my trip to Bukhara was to visit my grandparents. I purposely left my laptop at home, and I spent each day in a calm, purposeful way.", "uses": ["purpose", "purposely", "purposeful"]},
+  "context": {
+   "text": "The purpose of my trip to Bukhara was to visit my grandparents. I purposely left my laptop at home, and I spent each day in a calm, purposeful way.",
+   "uses": [
+    "purpose",
+    "purposely",
+    "purposeful"
+   ]
+  },
   "reviewer_note": "purposely (deliberately) vs purposefully (in a determined way) shown as separate adverbs; archaic verb set to no_form."
  },
  {
   "headword": "pursue",
   "word_id": "6a6ef9b2a601556148092793",
-  "word_ids": ["6a6ef9b2a601556148092793"],
+  "word_ids": [
+   "6a6ef9b2a601556148092793"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Goal",
   "sense_pos": "verb",
   "corpus_definition": "to follow or try hard to achieve something",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "pursuit", "relation": "derivational", "definition": "the act of trying hard to get or achieve something", "example": "Many young people move to the city in pursuit of a better job.", "note": "Plural pursuits also means hobbies: 'outdoor pursuits'.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "pursuit",
+    "relation": "derivational",
+    "definition": "the act of trying hard to get or achieve something",
+    "example": "Many young people move to the city in pursuit of a better job.",
+    "note": "Plural pursuits also means hobbies: 'outdoor pursuits'.",
     "syn": [
-     {"to": "search", "relation": "related", "strength": 0.6, "note": "Related: trying to find something."},
-     {"to": "chase", "relation": "related", "strength": 0.6, "note": "Related: running after someone or something."},
-     {"to": "quest", "relation": "related", "strength": 0.6, "note": "Related and literary: a long, hard search for something.", "register": "literary"}
+     {
+      "to": "search",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: trying to find something."
+     },
+     {
+      "to": "chase",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: running after someone or something."
+     },
+     {
+      "to": "quest",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related and literary: a long, hard search for something.",
+      "register": "literary"
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "existing", "form": "pursue", "relation": "base", "definition": "to try hard to achieve something over a long time", "example": "She decided to pursue a career in medicine.", "note": "Also means to chase someone: 'The police pursued the car.'", "register": "formal",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "pursue",
+    "relation": "base",
+    "definition": "to try hard to achieve something over a long time",
+    "example": "She decided to pursue a career in medicine.",
+    "note": "Also means to chase someone: 'The police pursued the car.'",
+    "register": "formal",
     "syn": [
-     {"to": "follow", "relation": "synonym", "strength": 0.8, "note": "Easy word: \"follow your dreams\", \"follow a career\"."},
-     {"to": "seek", "relation": "synonym", "strength": 0.8, "note": "Formal: to try to find or get something.", "register": "formal"},
-     {"to": "chase", "relation": "related", "strength": 0.6, "note": "Related: to run after someone; informal for goals: \"chase your dreams\"."},
-     {"to": "aim for", "relation": "related", "strength": 0.6, "note": "Related: to try to reach a goal."}
+     {
+      "to": "follow",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy word: \"follow your dreams\", \"follow a career\"."
+     },
+     {
+      "to": "seek",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: to try to find or get something.",
+      "register": "formal"
+     },
+     {
+      "to": "chase",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: to run after someone; informal for goals: \"chase your dreams\"."
+     },
+     {
+      "to": "aim for",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: to try to reach a goal."
+     }
     ],
     "ant": [
-     {"to": "give up", "relation": "antonym", "note": "To stop trying to do something."},
-     {"to": "abandon", "relation": "antonym", "note": "To stop doing a plan completely, often because it is too hard."}
-    ]},
-   {"slot": "adjective", "status": "no_form", "note": "No common adjective in this family."},
-   {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+     {
+      "to": "give up",
+      "relation": "antonym",
+      "note": "To stop trying to do something."
+     },
+     {
+      "to": "abandon",
+      "relation": "antonym",
+      "note": "To stop doing a plan completely, often because it is too hard."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No common adjective in this family. Pursuant (to) is a legal phrase meaning 'according to'; it shares the old root but has nothing to do with following a goal.",
+    "not_family": [
+     "pursuant"
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
   ],
   "people": [
-   {"form": "pursuer", "kind": "person", "status": "existing", "definition": "a person who is following or chasing someone", "example": "The thief ran faster and escaped from his pursuers."}
+   {
+    "form": "pursuer",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who is following or chasing someone",
+    "example": "The thief ran faster and escaped from his pursuers."
+   }
   ],
   "affixes": [
-   {"affix": "-er", "in_form": "pursuer", "meaning_key": "-er", "also": ["teacher", "runner", "worker"]}
+   {
+    "affix": "-er",
+    "in_form": "pursuer",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "runner",
+     "worker"
+    ]
+   }
   ],
-  "context": {"text": "After school, Dilnoza wants to pursue a career in medicine. Her pursuit of this dream means long evenings of study, but she never complains.", "uses": ["pursue", "pursuit"]},
+  "context": {
+   "text": "After school, Dilnoza wants to pursue a career in medicine. Her pursuit of this dream means long evenings of study, but she never complains.",
+   "uses": [
+    "pursue",
+    "pursuit"
+   ]
+  },
   "reviewer_note": "Corpus sense covers both 'follow' and 'try to achieve'; pursuer kept as existing person."
  }
 ]
