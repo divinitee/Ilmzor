@@ -1,0 +1,488 @@
+[
+{
+"headword": "assistant",
+"word_id": "6a42821646ba24054c1dccb9",
+"word_ids": ["6a42821646ba24054c1dccb9"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Helper",
+"sense_pos": "noun",
+"corpus_definition": "A person who helps someone else in their work.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "assistant", "relation": "base",
+ "definition": "a person whose job is to help another person with their work",
+ "example": "The doctor's assistant called me to change the time of my visit.",
+ "syn": [
+  {"to": "helper", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; a helper is not always paid, an assistant usually has a job."},
+  {"to": "aide", "relation": "synonym", "strength": 0.8, "note": "Used mostly for people who help politicians or important officials.", "register": "formal"},
+  {"to": "deputy", "relation": "related", "strength": 0.6, "note": "A deputy is second in charge and can take the boss's place; an assistant just helps."},
+  {"to": "secretary", "relation": "related", "strength": 0.4, "note": "A secretary does office work like letters and phone calls; an assistant can help with many kinds of work."}
+ ],
+ "ant": [
+  {"to": "boss", "relation": "antonym", "note": "The boss gives the orders; the assistant helps the boss."}
+ ]},
+{"slot": "noun", "status": "existing", "form": "assistance", "relation": "derivational",
+ "definition": "help or support that you give to someone",
+ "example": "If you need any assistance, please ask at the front desk.",
+ "register": "formal",
+ "syn": [
+  {"to": "help", "relation": "synonym", "strength": 0.95, "note": "Everyday word with the same meaning; assistance is more formal."},
+  {"to": "support", "relation": "synonym", "strength": 0.8, "note": "Support can also mean help with money or feelings."},
+  {"to": "aid", "relation": "synonym", "strength": 0.8, "note": "Often used for help given to countries or people in trouble.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "hindrance", "relation": "antonym", "note": "Something that makes a job harder instead of easier."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "assist", "relation": "derivational",
+ "definition": "to help someone do their work or a job",
+ "example": "Two nurses assisted the surgeon during the operation.",
+ "register": "formal",
+ "syn": [
+  {"to": "help", "relation": "synonym", "strength": 0.95, "note": "Everyday word; assist is more formal."},
+  {"to": "support", "relation": "synonym", "strength": 0.8, "note": "Support can also mean helping with money or feelings."},
+  {"to": "aid", "relation": "synonym", "strength": 0.8, "note": "Formal, often used in news and official writing.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "hinder", "relation": "antonym", "note": "To make it harder for someone to do something."}
+ ]},
+{"slot": "adjective", "status": "no_form",
+ "note": "Assistant is used before other nouns (assistant manager, assistant teacher), but learner dictionaries list it as a noun, not a separate adjective."},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ant", "in_form": "assistant", "meaning_key": "-ant", "also": ["servant", "applicant", "participant"]},
+ {"affix": "-ance", "in_form": "assistance", "meaning_key": "-ance", "also": ["performance", "appearance", "acceptance"]}
+],
+"context": {
+ "text": "My aunt works as an assistant at a bank in Tashkent. She assists the manager with letters and meetings. When customers need assistance, they often come to her first.",
+ "uses": ["assistant", "assists", "assistance"]
+},
+"reviewer_note": "Headword is a person noun, so it stays the noun-slot main entry; assistance is an extra noun. Assistant before a noun (assistant manager) is treated as noun use, not an adjective."
+},
+{
+"headword": "athlete",
+"word_id": "6a42659782466c80f8ae0cc2",
+"word_ids": ["6a42659782466c80f8ae0cc2"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Sport",
+"sense_pos": "noun",
+"corpus_definition": "A person who is very good at sports.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "athlete", "relation": "base",
+ "definition": "a person who is good at sports and often takes part in competitions",
+ "example": "Many young athletes from Uzbekistan train hard for the Olympic Games.",
+ "note": "In British English it often means a runner, jumper or thrower; in American English it can be any sports player.",
+ "syn": [
+  {"to": "sportsman", "relation": "synonym", "strength": 0.8, "note": "A man who plays sports; for a woman, sportswoman. Athlete is used for both."},
+  {"to": "player", "relation": "related", "strength": 0.6, "note": "Easy word: a person who plays a game or team sport, like football."},
+  {"to": "runner", "relation": "related", "strength": 0.4, "note": "One kind of athlete: a person who runs in races."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
+{"slot": "adjective", "status": "existing", "form": "athletic", "relation": "derivational",
+ "definition": "physically strong, fit and good at sports",
+ "example": "My brother is very athletic; he plays football and swims every day.",
+ "note": "Also means 'connected with sports': an athletic club.",
+ "syn": [
+  {"to": "sporty", "relation": "synonym", "strength": 0.8, "note": "Easy and a little informal: someone who likes and is good at sports.", "register": "informal"},
+  {"to": "fit", "relation": "related", "strength": 0.6, "note": "Fit means healthy and strong from exercise, not always good at sports."},
+  {"to": "strong", "relation": "related", "strength": 0.4, "note": "Easy word: having a powerful body."}
+ ],
+ "ant": [
+  {"to": "unfit", "relation": "antonym", "note": "Not healthy or strong because you don't exercise."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "athletically", "relation": "derivational",
+ "definition": "in a way that shows a strong, fit body and sports skill",
+ "example": "She is athletically gifted and won three races this year.",
+ "syn": [
+  {"to": "physically", "relation": "related", "strength": 0.6, "note": "In a way connected with the body, not only sports."}
+ ],
+ "ant": []}
+],
+"people": [
+ {"form": "athletics", "kind": "field", "status": "existing",
+  "definition": "sports such as running, jumping and throwing",
+  "example": "Our school has a big athletics competition every spring.",
+  "note": "American English often says track and field."}
+],
+"affixes": [
+ {"affix": "-ic", "in_form": "athletic", "meaning_key": "-ic", "also": ["artistic", "historic", "scientific"]},
+ {"affix": "-ics", "in_form": "athletics", "meaning_key": "-ics", "also": ["economics", "physics", "politics"]}
+],
+"context": {
+ "text": "Dilnoza is a young athlete from Fergana. She is very athletic and trains every morning before school. Next month she will run in the national athletics championship.",
+ "uses": ["athlete", "athletic", "athletics"]
+},
+"reviewer_note": "Headword is a person noun, kept as noun main entry; athletics goes to People & things as the field."
+},
+{
+"headword": "athletics",
+"word_id": "6a42659782466c80f8ae0cc4",
+"word_ids": ["6a42659782466c80f8ae0cc4"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Sport",
+"sense_pos": "noun",
+"corpus_definition": "Sports such as running, jumping, and throwing.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "athletics", "relation": "base",
+ "definition": "sports such as running, jumping and throwing, often in competitions",
+ "example": "She competes in athletics for her school in Samarkand.",
+ "note": "Uncountable and used with a singular verb: athletics is popular. British English; American English usually says track and field.",
+ "syn": [
+  {"to": "track and field", "relation": "synonym", "strength": 0.95, "note": "The American name for the same sports."},
+  {"to": "sport", "relation": "related", "strength": 0.4, "note": "Easy, general word for all games and physical activities."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
+{"slot": "adjective", "status": "existing", "form": "athletic", "relation": "derivational",
+ "definition": "connected with running, jumping and other sports, or good at them",
+ "example": "The city opened a new athletic stadium last year.",
+ "syn": [
+  {"to": "sporting", "relation": "synonym", "strength": 0.8, "note": "Connected with sport: a sporting event."},
+  {"to": "sporty", "relation": "related", "strength": 0.6, "note": "Easy and informal: describes a person who likes sports.", "register": "informal"}
+ ],
+ "ant": []},
+{"slot": "adverb", "status": "existing", "form": "athletically", "relation": "derivational",
+ "definition": "in a way that is connected with sports or a fit body",
+ "example": "He is not very tall, but he is athletically strong.",
+ "syn": [
+  {"to": "physically", "relation": "related", "strength": 0.6, "note": "In a way connected with the body, not only sports."}
+ ],
+ "ant": []}
+],
+"people": [
+ {"form": "athlete", "kind": "person", "status": "existing",
+  "definition": "a person who is good at sports and takes part in races",
+  "example": "Every athlete in the team must train six days a week."}
+],
+"affixes": [
+ {"affix": "-ics", "in_form": "athletics", "meaning_key": "-ics", "also": ["economics", "physics", "politics"]},
+ {"affix": "-ic", "in_form": "athletic", "meaning_key": "-ic", "also": ["artistic", "historic", "scientific"]}
+],
+"context": {
+ "text": "Athletics is my favourite school sport. Our athletic coach says every athlete must warm up before a race.",
+ "uses": ["athletics", "athletic", "athlete"]
+},
+"reviewer_note": "British/American trap: athletics (UK) = track and field (US); in American English athletics can mean all sports."
+},
+{
+"headword": "attraction",
+"word_id": "6a4265fb84a10cdfe9e55d9b",
+"word_ids": ["6a4265fb84a10cdfe9e55d9b"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Place",
+"sense_pos": "noun",
+"corpus_definition": "A place or thing that people like to visit for fun.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "attraction", "relation": "base",
+ "definition": "an interesting place or thing that many people go to see",
+ "example": "The Registan is the most famous tourist attraction in Samarkand.",
+ "note": "Also means a feeling of liking someone romantically; that is a different meaning.",
+ "syn": [
+  {"to": "sight", "relation": "synonym", "strength": 0.8, "note": "Usually plural: the sights of a city are its famous places."},
+  {"to": "landmark", "relation": "related", "strength": 0.6, "note": "A famous building or place that is easy to see and recognize."},
+  {"to": "place of interest", "relation": "synonym", "strength": 0.8, "note": "A phrase used in guidebooks; a little formal."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "attract", "relation": "derivational",
+ "definition": "to make people want to come to a place or see something",
+ "example": "The old city of Khiva attracts thousands of visitors every year.",
+ "syn": [
+  {"to": "draw", "relation": "synonym", "strength": 0.8, "note": "Draw people or crowds means the same; a little informal."},
+  {"to": "bring in", "relation": "synonym", "strength": 0.8, "note": "Easy phrasal verb: the festival brings in many tourists."},
+  {"to": "pull in", "relation": "related", "strength": 0.6, "note": "Informal: to get a lot of people to come.", "register": "informal"}
+ ],
+ "ant": [
+  {"to": "repel", "relation": "antonym", "note": "To make people or things go away or stay away."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "attractive", "relation": "derivational",
+ "definition": "pleasant or interesting, so that people want it or like it",
+ "example": "Low hotel prices make Bukhara attractive to young travellers.",
+ "note": "Also means good-looking when it describes a person.",
+ "syn": [
+  {"to": "appealing", "relation": "synonym", "strength": 0.8, "note": "Pleasant and interesting; very close in meaning."},
+  {"to": "interesting", "relation": "related", "strength": 0.6, "note": "Easy word: makes you want to know or see more."},
+  {"to": "tempting", "relation": "related", "strength": 0.6, "note": "So attractive that you want to have or do it, even if you shouldn't."}
+ ],
+ "ant": [
+  {"to": "unattractive", "relation": "antonym", "note": "Not pleasant or interesting, so people don't want it."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "attractively", "relation": "derivational",
+ "definition": "in a pleasant way that makes people interested",
+ "example": "The rooms were attractively decorated with Uzbek carpets.",
+ "syn": [
+  {"to": "nicely", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word."},
+  {"to": "beautifully", "relation": "related", "strength": 0.6, "note": "Stronger: very pleasant to look at."}
+ ],
+ "ant": []}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ion", "in_form": "attraction", "meaning_key": "-ion", "also": ["action", "protection", "connection"]},
+ {"affix": "-ive", "in_form": "attractive", "meaning_key": "-ive", "also": ["active", "creative", "expensive"]},
+ {"affix": "-ly", "in_form": "attractively", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]}
+],
+"context": {
+ "text": "The new water park is the biggest attraction in our town. It attracts families from all over the region, and the cheap tickets make it even more attractive.",
+ "uses": ["attraction", "attracts", "attractive"]
+},
+"reviewer_note": "Sense trap: attraction = a place to visit, not romantic attraction; forms are anchored to drawing visitors."
+},
+{
+"headword": "awkward",
+"word_id": "6a6ef9b2a6015561480927b1",
+"word_ids": ["6a6ef9b2a6015561480927b1"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Uncomfortable",
+"sense_pos": "adjective",
+"corpus_definition": "uncomfortable or embarrassing; not smooth or easy",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "awkwardness", "relation": "derivational",
+ "definition": "the feeling of being uncomfortable or embarrassed in a situation",
+ "example": "There was some awkwardness when we met my ex-boss at the wedding.",
+ "syn": [
+  {"to": "embarrassment", "relation": "synonym", "strength": 0.8, "note": "The feeling when you are shy or ashamed in front of others."},
+  {"to": "discomfort", "relation": "synonym", "strength": 0.8, "note": "Not feeling relaxed; can also mean a small pain."},
+  {"to": "clumsiness", "relation": "related", "strength": 0.6, "note": "Moving in a way that is not smooth, so you drop or hit things."}
+ ],
+ "ant": [
+  {"to": "ease", "relation": "antonym", "note": "Feeling relaxed and comfortable with people."}
+ ]},
+{"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
+{"slot": "adjective", "status": "existing", "form": "awkward", "relation": "base",
+ "definition": "making you feel uncomfortable or embarrassed; also not smooth or easy",
+ "example": "There was an awkward silence after his strange comment.",
+ "syn": [
+  {"to": "uncomfortable", "relation": "synonym", "strength": 0.8, "note": "Easy word: not feeling relaxed."},
+  {"to": "embarrassing", "relation": "synonym", "strength": 0.8, "note": "Making you feel shy or ashamed; a little stronger."},
+  {"to": "clumsy", "relation": "related", "strength": 0.6, "note": "About movement: not smooth, so you drop or hit things."},
+  {"to": "difficult", "relation": "related", "strength": 0.6, "note": "Easy word: not easy to do or deal with."}
+ ],
+ "ant": [
+  {"to": "comfortable", "relation": "antonym", "note": "Relaxed and at ease with people."},
+  {"to": "graceful", "relation": "antonym", "note": "Moving in a smooth, beautiful way."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "awkwardly", "relation": "derivational",
+ "definition": "in an uncomfortable or embarrassed way, or in a way that is not smooth",
+ "example": "He smiled awkwardly when the teacher read his poem to the class.",
+ "syn": [
+  {"to": "uncomfortably", "relation": "synonym", "strength": 0.8, "note": "In a way that shows you don't feel relaxed."},
+  {"to": "clumsily", "relation": "related", "strength": 0.6, "note": "About movement: not smoothly, often dropping or hitting things."}
+ ],
+ "ant": [
+  {"to": "gracefully", "relation": "antonym", "note": "In a smooth and beautiful way."}
+ ]}
+],
+"people": [],
+"affixes": [
+ {"affix": "-ness", "in_form": "awkwardness", "meaning_key": "-ness", "also": ["kindness", "happiness", "sadness"]},
+ {"affix": "-ly", "in_form": "awkwardly", "meaning_key": "-ly", "also": ["quickly", "slowly", "carefully"]}
+],
+"context": {
+ "text": "At the party I didn't know anyone, so I felt a bit awkward. I stood awkwardly in the corner until my friend Aziz arrived.",
+ "uses": ["awkward", "awkwardly"]
+},
+"reviewer_note": "The corpus definition joins two ideas (embarrassing and not smooth); synonyms and antonyms cover both. -ward is not in the affix table, so no affix is claimed on the base."
+},
+{
+"headword": "baggage",
+"word_id": "6a6ef9b2a60155614809270f",
+"word_ids": ["6a6ef9b2a60155614809270f"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Travel",
+"sense_pos": "noun",
+"corpus_definition": "The bags and suitcases you carry when traveling.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "baggage", "relation": "base",
+ "definition": "all the bags and suitcases that you take on a trip",
+ "example": "Please collect your baggage in the arrival hall at Tashkent airport.",
+ "note": "Uncountable: say 'a piece of baggage', not 'a baggage'.",
+ "syn": [
+  {"to": "luggage", "relation": "synonym", "strength": 0.95, "note": "Same meaning; luggage is more common in British English, baggage at airports and in American English."},
+  {"to": "bags", "relation": "synonym", "strength": 0.8, "note": "Easy everyday word: 'Where are your bags?'"},
+  {"to": "suitcase", "relation": "related", "strength": 0.6, "note": "One large case with a handle; baggage means all your bags together."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "There is no verb in this family."},
+{"slot": "adjective", "status": "no_form", "note": "There is no adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {
+ "text": "We had too much baggage for the train to Bukhara. Each passenger can take only two pieces of baggage, so my mother left one box at home.",
+ "uses": ["baggage"]
+},
+"reviewer_note": "Countability trap: baggage is uncountable. -age is not in the affix table, and the link to bag is not a clear derivation, so no affix is claimed."
+},
+{
+"headword": "balance",
+"word_id": "6a42821646ba24054c1dccc8",
+"word_ids": ["6a42821646ba24054c1dccc8", "6a4288ad6941e70ad6a00e81", "6a4288ad6941e70ad6a00ecd"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Steady",
+"sense_pos": "noun",
+"corpus_definition": "A state where things are equal and not falling over.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "balance", "relation": "base",
+ "definition": "the ability to stay steady and not fall over",
+ "example": "She lost her balance on the ice and fell down.",
+ "note": "Common phrases: keep your balance, lose your balance. It also means the money in a bank account; that is a different meaning.",
+ "syn": [
+  {"to": "stability", "relation": "synonym", "strength": 0.8, "note": "Being steady and not likely to move or fall; a little formal."},
+  {"to": "steadiness", "relation": "synonym", "strength": 0.8, "note": "Being firm and not shaking."},
+  {"to": "equilibrium", "relation": "synonym", "strength": 0.8, "note": "Scientific or very formal word for the same idea.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "imbalance", "relation": "antonym", "note": "A state where things are not equal or not steady."},
+  {"to": "instability", "relation": "antonym", "note": "Not being steady; likely to fall or change."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "balance", "relation": "conversion",
+ "definition": "to stay steady or keep something steady without falling",
+ "example": "The waiter balanced three plates on one arm.",
+ "syn": [
+  {"to": "steady", "relation": "synonym", "strength": 0.8, "note": "To stop something from shaking or falling."},
+  {"to": "stabilize", "relation": "synonym", "strength": 0.8, "note": "More formal; British spelling: stabilise.", "register": "formal"},
+  {"to": "hold", "relation": "related", "strength": 0.4, "note": "Easy word: to keep something in your hands or in one place."}
+ ],
+ "ant": [
+  {"to": "topple", "relation": "antonym", "note": "To fall over, or make something fall over."}
+ ]},
+{"slot": "adjective", "status": "existing", "form": "balanced", "relation": "participial",
+ "definition": "with all parts equal or in the right amounts",
+ "example": "A balanced diet has fruit, vegetables, bread and some meat.",
+ "syn": [
+  {"to": "even", "relation": "synonym", "strength": 0.8, "note": "Easy word: equal on both sides."},
+  {"to": "steady", "relation": "related", "strength": 0.6, "note": "Firm and not moving or shaking."},
+  {"to": "fair", "relation": "related", "strength": 0.4, "note": "About opinions or news: showing all sides equally."}
+ ],
+ "ant": [
+  {"to": "unbalanced", "relation": "antonym", "note": "With some parts too big or too small, or not steady."}
+ ]},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {
+ "text": "My little sister is learning to ride a bike, but she keeps losing her balance. Dad says she must balance with her body, not with her hands.",
+ "uses": ["balance", "balance"]
+},
+"reviewer_note": "Three corpus rows have the same meaning and share one map (all B1). Bank-account balance is a different meaning and is not used. -ed is not in the affix table, so balanced gets no affix."
+},
+{
+"headword": "barber",
+"word_id": "6a6ef83f0f1e82a5a073666a",
+"word_ids": ["6a6ef83f0f1e82a5a073666a"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Job",
+"sense_pos": "noun",
+"corpus_definition": "A person who cuts hair for men.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "barber", "relation": "base",
+ "definition": "a person whose job is to cut men's hair and shave beards",
+ "example": "I go to the barber near the bazaar once a month for a haircut.",
+ "note": "'At the barber's' means at the barber's shop (British English).",
+ "syn": [
+  {"to": "hairdresser", "relation": "synonym", "strength": 0.8, "note": "Cuts hair for women and men; a barber usually works only with men."},
+  {"to": "stylist", "relation": "related", "strength": 0.6, "note": "A modern word for someone who cuts and styles hair."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "There is no common verb in this family; people say 'cut hair'."},
+{"slot": "adjective", "status": "no_form", "note": "There is no adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {
+ "text": "My grandfather has visited the same barber for twenty years. The barber knows exactly how he likes his beard.",
+ "uses": ["barber"]
+},
+"reviewer_note": "False-suffix trap: barber is not barb + -er, so no affix is claimed. Headword is a person noun and stays the noun main entry; barbershop is a compound and is left out."
+},
+{
+"headword": "beam",
+"word_id": "6a6ef9b2a60155614809287a",
+"word_ids": ["6a6ef9b2a60155614809287a"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Light",
+"sense_pos": "noun",
+"corpus_definition": "a line of light, or a long strong piece of wood or metal",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "beam", "relation": "base",
+ "definition": "a line of light, or a long heavy piece of wood or metal in a building",
+ "example": "A beam of sunlight came through the window.",
+ "note": "In buildings, beams hold up the roof or floor.",
+ "syn": [
+  {"to": "ray", "relation": "synonym", "strength": 0.95, "note": "A thin line of light: a ray of sunshine."},
+  {"to": "shaft", "relation": "synonym", "strength": 0.8, "note": "A shaft of light is a long, narrow line of it; a little literary.", "register": "literary"},
+  {"to": "light", "relation": "related", "strength": 0.4, "note": "Easy, general word."},
+  {"to": "bar", "relation": "related", "strength": 0.4, "note": "For the wood or metal meaning: a long, straight piece of something hard."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "beam", "relation": "conversion",
+ "definition": "to send out light or radio signals",
+ "example": "The sun beamed down on the cotton fields all afternoon.",
+ "note": "Beam also means 'to smile widely and happily'.",
+ "syn": [
+  {"to": "shine", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word for giving out light."},
+  {"to": "broadcast", "relation": "related", "strength": 0.6, "note": "For signals: to send out on radio or TV."}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "other_meaning", "form": "beaming",
+ "definition": "smiling widely because you are very happy",
+ "example": "The beaming parents took photos of their son at graduation.",
+ "note": "Belongs to beam = smile widely, not a line of light or a piece of wood."},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {
+ "text": "Our old house in Margilan has wooden beams across the ceiling. In the morning the sun beams through the small window, and a bright beam of light falls on the floor.",
+ "uses": ["beams", "beams", "beam"]
+},
+"reviewer_note": "The corpus definition joins two meanings (light, and wood or metal); one row, so one map labelled Light that mentions both. Beaming (smiling) is other_meaning."
+},
+{
+"headword": "belly",
+"word_id": "6a6ef83f0f1e82a5a073684b",
+"word_ids": ["6a6ef83f0f1e82a5a073684b"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Body",
+"sense_pos": "noun",
+"corpus_definition": "the front part of the human body below the chest",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "belly", "relation": "base",
+ "definition": "the front part of your body between your chest and your legs",
+ "example": "The boy has a pain in his belly after eating too much plov.",
+ "register": "informal",
+ "syn": [
+  {"to": "stomach", "relation": "synonym", "strength": 0.95, "note": "The most common, neutral word."},
+  {"to": "tummy", "relation": "synonym", "strength": 0.8, "note": "Informal, often used by or with children.", "register": "informal"},
+  {"to": "abdomen", "relation": "synonym", "strength": 0.8, "note": "Medical or very formal word.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "back", "relation": "antonym", "note": "The back is the part of the body on the other side, behind you."}
+ ]},
+{"slot": "verb", "status": "no_form", "note": "There is no common verb in this family."},
+{"slot": "adjective", "status": "no_form", "note": "There is no common adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {
+ "text": "After the big wedding dinner, my uncle said his belly was full. He lay on the sofa and patted his round belly.",
+ "uses": ["belly"]
+},
+"reviewer_note": "Register trap: belly is informal; stomach is the neutral word. Belly button is a compound and is left out."
+}
+]
