@@ -2,17 +2,19 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft, ArrowUp, ChevronRight, Plus, Pencil, Archive, RotateCcw, Trash2, Download, ShieldCheck, ShieldOff,
-  FolderTree, ListChecks, Paperclip, History, AlertTriangle, Crosshair, ListPlus, X,
+  FolderTree, ListChecks, Paperclip, History, AlertTriangle, Crosshair, ListPlus, X, Clock3, Bot, Ban, MapPin,
+
 } from "lucide-react";
 import { Button, StatusBadge, PriorityBadge, Tag, ProgressBar, Panel, ActorBadge } from "./ui";
 import StepList, { StepCreateForm, EvidenceForm, EvidenceItem } from "./StepList";
-import { STATUSES, STATUS_LABEL, STATUS_STYLE, fmtDate, fmtTime, isOverdue, taskUrl, inSubtree } from "./model";
+import { STATUSES, STATUS_LABEL, STATUS_STYLE, fmtDate, fmtTime, isOverdue, taskUrl, inSubtree, dependencyState, workSummary, calibratedEstimate, WORK_MODE_LABEL, ENERGY_LABEL, PLACE_LABEL } from "./model";
 
 export default function TaskPage({ task, data, idx, busy, navigate, handlers }) {
   const [addingStep, setAddingStep] = useState(false);
   const [addingEv, setAddingEv] = useState(false);
   const [showArchivedKids, setShowArchivedKids] = useState(false);
   const [historyScope, setHistoryScope] = useState("subtree");
+  const [loggingWork, setLoggingWork] = useState(false);
 
   const path = idx.path(task);
   const parent = path.length > 1 ? path[path.length - 2] : null;
@@ -30,6 +32,9 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
     [data.events, task.task_code, historyScope],
   );
   const stepsDone = steps.filter((s) => s.status === "done").length;
+  const deps = dependencyState(task, idx.byCode);
+  const work = workSummary(task, data.workLogs || []);
+  const calibrated = calibratedEstimate(task, data.workLogs || []);
 
   return (
     <div className="min-h-screen bg-[#070b12] text-slate-100">
@@ -153,6 +158,38 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
               <ProgressBar percent={p.percent} className="mt-3 h-2" />
               {task.status === "complete" && p.hasBreakdown && p.percent < 100 && (
                 <div className="mt-3 flex items-center gap-2 text-xs text-amber-300"><AlertTriangle className="h-3.5 w-3.5" />Marked Complete while {100 - p.percent}% of its breakdown is still open.</div>
+              )}
+            </Panel>
+
+            {/* Execution */}
+            <Panel
+              title="Execution"
+              action={<Button size="sm" icon={Clock3} onClick={() => setLoggingWork(true)} disabled={busy}>Log work</Button>}
+            >
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <ExecMetric label="Mode" value={WORK_MODE_LABEL[task.work_mode || "hands_on"]} icon={task.work_mode === "claude" ? Bot : Crosshair} />
+                <ExecMetric label="Your estimate" value={`${Number(task.estimate_minutes) || 15}m`} icon={Clock3} />
+                <ExecMetric label="AI runtime" value={`${Number(task.ai_minutes) || 0}m`} icon={Bot} />
+                <ExecMetric label="Calibrated" value={`${calibrated.minutes}m`} icon={Clock3} />
+              </div>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-400">
+                <span>Energy: <b className="text-slate-200">{ENERGY_LABEL[task.energy || "med"]}</b></span>
+                <span>Place: <b className="text-slate-200">{PLACE_LABEL[task.place || "anywhere"]}</b></span>
+                <span>Actual: <b className="text-slate-200">{work.human}m human</b>{work.ai ? <b className="text-slate-200"> · {work.ai}m AI</b> : null}</span>
+                {calibrated.samples > 0 && <span>{calibrated.samples} calibration sample{calibrated.samples === 1 ? "" : "s"}</span>}
+              </div>
+              {deps.blocked && (
+                <div className="mt-3 flex items-start gap-2 rounded-[8px] border border-amber-500/30 bg-amber-500/[0.07] px-3 py-2 text-sm text-amber-200">
+                  <Ban className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span><b>Blocked.</b> Waiting on {deps.blockedBy.join(", ")}. This task cannot become Focus → Now until those dependencies are complete.</span>
+                </div>
+              )}
+              {loggingWork && (
+                <WorkLogForm task={task} busy={busy} onCancel={() => setLoggingWork(false)} onSubmit={async (payload) => {
+                  const ok = await handlers.recordWork(payload);
+                  if (ok !== false) setLoggingWork(false);
+                  return ok;
+                }} />
               )}
             </Panel>
 
@@ -293,6 +330,36 @@ export default function TaskPage({ task, data, idx, busy, navigate, handlers }) 
           </Panel>
         </div>
       </main>
+    </div>
+  );
+}
+
+function ExecMetric({ label, value, icon: Icon }) {
+  return (
+    <div className="rounded-[8px] border border-slate-800 bg-slate-950/40 px-3 py-2.5">
+      <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-slate-500"><Icon className="h-3.5 w-3.5" />{label}</div>
+      <div className="mt-1 text-sm font-semibold text-slate-100">{value}</div>
+    </div>
+  );
+}
+
+function WorkLogForm({ task, busy, onCancel, onSubmit }) {
+  const [mode, setMode] = useState(task.work_mode || "hands_on");
+  const [human, setHuman] = useState(String(task.estimate_minutes || 15));
+  const [ai, setAi] = useState(String(task.ai_minutes || 0));
+  const [outcome, setOutcome] = useState("completed");
+  const [notes, setNotes] = useState("");
+  return (
+    <div className="mt-4 rounded-[10px] border border-blue-500/20 bg-blue-500/[0.04] p-3">
+      <div className="mb-3 text-[11px] font-bold uppercase tracking-[.18em] text-blue-300">Record actual work</div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <label className="text-xs text-slate-400">Mode<select value={mode} onChange={(e) => setMode(e.target.value)} className="mt-1 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-2.5 py-2 text-sm text-slate-200"><option value="hands_on">You</option><option value="claude">Claude</option><option value="hybrid">You + Claude</option></select></label>
+        <label className="text-xs text-slate-400">Your minutes<input type="number" min="0" value={human} onChange={(e) => setHuman(e.target.value)} className="mt-1 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-2.5 py-2 text-sm text-slate-200" /></label>
+        <label className="text-xs text-slate-400">AI minutes<input type="number" min="0" value={ai} onChange={(e) => setAi(e.target.value)} className="mt-1 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-2.5 py-2 text-sm text-slate-200" /></label>
+        <label className="text-xs text-slate-400">Outcome<select value={outcome} onChange={(e) => setOutcome(e.target.value)} className="mt-1 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-2.5 py-2 text-sm text-slate-200"><option value="completed">Completed</option><option value="partial">Partial</option><option value="blocked">Blocked</option><option value="abandoned">Abandoned</option></select></label>
+      </div>
+      <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={2} placeholder="Optional: what happened / why the estimate was off" className="mt-3 w-full rounded-[8px] border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600" />
+      <div className="mt-3 flex justify-end gap-2"><Button size="sm" variant="ghost" onClick={onCancel}>Cancel</Button><Button size="sm" variant="primary" icon={Clock3} disabled={busy} onClick={() => onSubmit({ task_id: task.id, mode, human_minutes: Number(human) || 0, ai_minutes: Number(ai) || 0, outcome, notes })}>Save work log</Button></div>
     </div>
   );
 }
