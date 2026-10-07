@@ -1,0 +1,373 @@
+[
+{
+"headword": "in my opinion",
+"word_id": "6a42800cb9d8fc24968a4b58",
+"word_ids": ["6a42800cb9d8fc24968a4b58"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Opinion",
+"sense_pos": "adverb",
+"corpus_definition": "How I personally feel about a topic.",
+"usage_note": "In my opinion, + clause. Usually at the start of the sentence, with a comma. You can change the person: in her opinion, in our opinion. Don't say 'according to me'.",
+"relations": [
+{"to": "I think", "relation": "synonym", "strength": 0.95, "note": "Easy and very common in speaking; in my opinion sounds a little more careful."},
+{"to": "in my view", "relation": "synonym", "strength": 0.95, "note": "Same meaning; a little more formal, common in essays."},
+{"to": "personally", "relation": "synonym", "strength": 0.8, "note": "Shows it is only your own idea: 'Personally, I prefer tea.'"}
+],
+"context": {
+"text": "In my opinion, Samarkand is the most beautiful city in Uzbekistan. My friend Dilnoza does not agree; she thinks Bukhara is better.",
+"uses": ["In my opinion"]
+},
+"reviewer_note": "Fixed phrase; no forms. Learner trap 'according to me' mentioned in usage note."
+},
+{
+"headword": "in time (for)",
+"word_id": "6a42659782466c80f8ae0cba",
+"word_ids": ["6a42659782466c80f8ae0cba"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Early enough",
+"sense_pos": "adverb",
+"corpus_definition": "Early enough for a planned event or task.",
+"usage_note": "in time + for + noun ('in time for dinner'); in time + to + verb ('in time to catch the bus'). Don't confuse with 'on time' = at the exact planned time.",
+"relations": [
+{"to": "early", "relation": "related", "strength": 0.6, "note": "Early means before the usual time; in time means not too late for something."},
+{"to": "on time", "relation": "related", "strength": 0.6, "note": "On time means exactly at the planned time, not late and not early."},
+{"to": "punctually", "relation": "related", "strength": 0.4, "note": "Formal: arriving at the exact planned time.", "register": "formal"},
+{"to": "late", "relation": "antonym", "note": "Late means after the planned time, so you miss the start."}
+],
+"context": {
+"text": "We left home early and got to the station in time for the eight o'clock train. If we hurry, we will be home in time to watch the match.",
+"uses": ["in time for", "in time"]
+},
+"reviewer_note": "Fixed phrase; the 'on time' vs 'in time' trap is explained in the usage note."
+},
+{
+"headword": "income",
+"word_id": "6a42821646ba24054c1dcca3",
+"word_ids": ["6a42821646ba24054c1dcca3", "6a42883f6941e70ad6a00ddc"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Money",
+"sense_pos": "noun",
+"corpus_definition": "Money that a person receives from work or business.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "income", "relation": "base", "definition": "money that you get from work, business or other places", "example": "Her main income comes from her salary at the bank.", "note": "Common phrases: a high/low income, monthly income, income tax.",
+"syn": [
+{"to": "earnings", "relation": "synonym", "strength": 0.95, "note": "Very close: money you get from working."},
+{"to": "pay", "relation": "related", "strength": 0.6, "note": "Easy word: money you get from your job only."},
+{"to": "salary", "relation": "related", "strength": 0.6, "note": "Money from a job, usually paid every month; income can also come from business or rent."},
+{"to": "wage", "relation": "related", "strength": 0.6, "note": "Money from a job, often paid every week or hour."},
+{"to": "revenue", "relation": "synonym", "strength": 0.8, "note": "Formal: income of a company or a government.", "register": "formal"}
+],
+"ant": [
+{"to": "expenditure", "relation": "antonym", "note": "Expenditure is money that goes out; income is money that comes in.", "register": "formal"},
+{"to": "spending", "relation": "antonym", "note": "Easier word for the money you use to buy things."}
+]},
+{"slot": "verb", "status": "no_form", "note": "There is no verb from this word. Use earn: 'She earns a good income.'"},
+{"slot": "adjective", "status": "no_form", "not_family": ["incoming"], "note": "Incoming (arriving, for example incoming calls) is made from come in, not from income."},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [],
+"context": {
+"text": "My uncle has a small shop in Namangan, and it gives him a good income. His wife also has an income from teaching, so together they save money every month.",
+"uses": ["income", "income"]
+},
+"reviewer_note": "Two corpus rows with the same meaning merged (B1). in- is not a prefix here (in + come), so no affix is claimed; incoming is not_family."
+},
+{
+"headword": "independence",
+"word_id": "6a6ef9b2a60155614809269c",
+"word_ids": ["6a6ef9b2a60155614809269c"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Country",
+"sense_pos": "noun",
+"corpus_definition": "The state of being free and not ruled by others.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "independence", "relation": "base", "definition": "freedom from being ruled or controlled by another country", "example": "Uzbekistan declared its independence on 31 August 1991.", "note": "Also used for people: not needing help from others ('Young people want independence').",
+"syn": [
+{"to": "freedom", "relation": "synonym", "strength": 0.8, "note": "Easy word; freedom is wider and can mean many kinds of being free."},
+{"to": "sovereignty", "relation": "synonym", "strength": 0.8, "note": "Formal: a country's full power to rule itself.", "register": "formal"},
+{"to": "autonomy", "relation": "synonym", "strength": 0.8, "note": "Formal: the right of a region or group to control its own matters.", "register": "formal"},
+{"to": "self-government", "relation": "related", "strength": 0.6, "note": "Related: when people of a place make their own laws."}
+],
+"ant": [
+{"to": "dependence", "relation": "antonym", "note": "Dependence means needing another country or person to help or control you."}
+]},
+{"slot": "verb", "status": "no_form", "note": "There is no verb. Use gain or win: 'The country gained independence.'"},
+{"slot": "adjective", "status": "existing", "form": "independent", "relation": "derivational", "definition": "free and not ruled or controlled by another country", "example": "Uzbekistan has been an independent country since 1991.", "note": "Also used for people who do things without help.",
+"syn": [
+{"to": "free", "relation": "synonym", "strength": 0.8, "note": "Easy word with a wider meaning."},
+{"to": "sovereign", "relation": "synonym", "strength": 0.8, "note": "Formal: having full power to rule itself.", "register": "formal"},
+{"to": "autonomous", "relation": "synonym", "strength": 0.8, "note": "Formal: often used for a region inside a country, like Karakalpakstan.", "register": "formal"},
+{"to": "self-governing", "relation": "synonym", "strength": 0.8, "note": "Making its own laws and decisions."}
+],
+"ant": [
+{"to": "dependent", "relation": "antonym", "note": "Needing help or control from someone else."}
+]},
+{"slot": "adverb", "status": "existing", "form": "independently", "relation": "derivational", "definition": "without being controlled or helped by others", "example": "After 1991 the country began to make its own laws independently.",
+"syn": [
+{"to": "autonomously", "relation": "synonym", "strength": 0.8, "note": "Formal and close in meaning.", "register": "formal"},
+{"to": "separately", "relation": "related", "strength": 0.6, "note": "Related: apart from others, not together."},
+{"to": "alone", "relation": "related", "strength": 0.4, "note": "Easy word: without other people."}
+],
+"ant": []}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [
+{"affix": "in-", "in_form": "independence", "meaning_key": "in-", "also": ["incorrect", "informal", "inactive"]},
+{"affix": "-ly", "in_form": "independently", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]}
+],
+"context": {
+"text": "Uzbekistan became an independent country in 1991. Every year on the first of September, people celebrate Independence Day with concerts and fireworks.",
+"uses": ["independent", "Independence"]
+},
+"reviewer_note": "in- + dependence is a real opposite split; dependence/dependent are antonyms, not forms. No -ent/-ence claimed because 'independ' is not a word."
+},
+{
+"headword": "infant",
+"word_id": "6a6ef9b2a601556148092857",
+"word_ids": ["6a6ef9b2a601556148092857"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Baby",
+"sense_pos": "noun",
+"corpus_definition": "a very young baby or child in the first year of life",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "infant", "relation": "base", "definition": "a very young baby, especially in its first year", "example": "The infant slept quietly in her mother's arms.", "note": "More formal than baby; common in hospitals and on food labels (infant milk).", "register": "formal",
+"syn": [
+{"to": "baby", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word with the same meaning."},
+{"to": "newborn", "relation": "synonym", "strength": 0.8, "note": "A baby that was born only a few days or weeks ago."},
+{"to": "child", "relation": "related", "strength": 0.6, "note": "A child can be any age up to about 12 or more."},
+{"to": "toddler", "relation": "related", "strength": 0.4, "note": "An older baby who is learning to walk, about 1 to 3 years old."}
+],
+"ant": [
+{"to": "adult", "relation": "antonym", "note": "A fully grown person."}
+]},
+{"slot": "noun", "status": "existing", "form": "infancy", "relation": "derivational", "definition": "the time in your life when you are a very young baby", "example": "Many children in the past died in infancy.", "note": "Also means the early stage of something: 'The internet was still in its infancy.'",
+"syn": [
+{"to": "babyhood", "relation": "synonym", "strength": 0.95, "note": "Same meaning; less common."},
+{"to": "childhood", "relation": "related", "strength": 0.6, "note": "The whole time when you are a child, not only the first year."}
+],
+"ant": [
+{"to": "adulthood", "relation": "antonym", "note": "The time of life when you are a grown person."}
+]},
+{"slot": "verb", "status": "no_form"},
+{"slot": "adjective", "status": "other_meaning", "form": "infantile", "definition": "silly and behaving like a small child", "example": "Stop that infantile behaviour; you are twenty years old!", "note": "Mostly used to criticize adults who act like small children, not about real babies."},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [],
+"context": {
+"text": "My sister had a baby in March. Doctors at the clinic in Bukhara check every infant each month, because infancy is a very important time for growth.",
+"uses": ["infant", "infancy"]
+},
+"reviewer_note": "Person noun headword stays in its own noun slot (rule 6); infancy as extra noun. No affix claimed (-cy not in table)."
+},
+{
+"headword": "informal",
+"word_id": "6a42816a2098612b1526f901",
+"word_ids": ["6a42816a2098612b1526f901", "6a6ef9b2a6015561480926f0"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Relaxed",
+"sense_pos": "adjective",
+"corpus_definition": "Suitable for relaxed or friendly social situations.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "informality", "relation": "derivational", "definition": "a relaxed and friendly style or way of behaving", "example": "I like the informality of small family cafés.",
+"syn": [
+{"to": "casualness", "relation": "synonym", "strength": 0.8, "note": "A relaxed style, often about clothes or manners."},
+{"to": "ease", "relation": "related", "strength": 0.4, "note": "Related: feeling relaxed and comfortable."}
+],
+"ant": [
+{"to": "formality", "relation": "antonym", "note": "Following strict, official rules of behaviour."}
+]},
+{"slot": "verb", "status": "no_form", "note": "There is no verb from this word."},
+{"slot": "adjective", "status": "existing", "form": "informal", "relation": "base", "definition": "relaxed and friendly, not official or serious", "example": "The party will be quite informal, so you can wear jeans.", "note": "Also used for language: informal English is what you use with friends.",
+"syn": [
+{"to": "casual", "relation": "synonym", "strength": 0.95, "note": "Very close; often about clothes: casual clothes."},
+{"to": "relaxed", "relation": "synonym", "strength": 0.8, "note": "Easy word: calm and not strict."},
+{"to": "friendly", "relation": "related", "strength": 0.6, "note": "Related: kind and nice to people."},
+{"to": "unofficial", "relation": "related", "strength": 0.6, "note": "Not done by people in authority or by the rules."}
+],
+"ant": [
+{"to": "formal", "relation": "antonym", "note": "Serious and following official rules, like a wedding or a business meeting."},
+{"to": "official", "relation": "antonym", "note": "Done by people in authority, following the rules."}
+]},
+{"slot": "adverb", "status": "existing", "form": "informally", "relation": "derivational", "definition": "in a relaxed and friendly way, not officially", "example": "We chatted informally with the teacher after the lesson.",
+"syn": [
+{"to": "casually", "relation": "synonym", "strength": 0.95, "note": "Very close: in a relaxed way."},
+{"to": "unofficially", "relation": "synonym", "strength": 0.8, "note": "Not in an official way."}
+],
+"ant": [
+{"to": "formally", "relation": "antonym", "note": "In a serious, official way."},
+{"to": "officially", "relation": "antonym", "note": "In a way that follows the rules of people in authority."}
+]}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [
+{"affix": "in-", "in_form": "informal", "meaning_key": "in-", "also": ["incorrect", "inactive", "invisible"]},
+{"affix": "-ity", "in_form": "informality", "meaning_key": "-ity", "also": ["reality", "ability", "activity"]},
+{"affix": "-ly", "in_form": "informally", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]}
+],
+"context": {
+"text": "The meeting at the café was informal, so nobody wore a suit. We talked informally about our plans, and everyone enjoyed the informality.",
+"uses": ["informal", "informally", "informality"]
+},
+"reviewer_note": "Two corpus rows with the same meaning merged (B1). The headword is itself the opposite of formal, so formal/formally/formality appear only as antonyms."
+},
+{
+"headword": "ingredient",
+"word_id": "6a42821646ba24054c1dccd6",
+"word_ids": ["6a42821646ba24054c1dccd6"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Food",
+"sense_pos": "noun",
+"corpus_definition": "One of the food items needed to make a dish.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "ingredient", "relation": "base", "definition": "one of the foods you mix together to make a dish", "example": "Rice, carrots and meat are the main ingredients of plov.", "note": "Also used for ideas: 'Hard work is a key ingredient of success.'",
+"syn": [
+{"to": "component", "relation": "synonym", "strength": 0.8, "note": "More formal; also used for parts of machines.", "register": "formal"},
+{"to": "element", "relation": "related", "strength": 0.6, "note": "Related: one part of something bigger."},
+{"to": "part", "relation": "related", "strength": 0.6, "note": "Easy general word for a piece of a whole."}
+],
+"ant": []},
+{"slot": "verb", "status": "no_form"},
+{"slot": "adjective", "status": "no_form"},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [],
+"context": {
+"text": "Plov needs only a few ingredients: rice, carrots, onions and meat. My grandmother buys every ingredient fresh at the bazaar in the morning.",
+"uses": ["ingredients", "ingredient"]
+},
+"reviewer_note": "No family forms in any slot; -ent is not claimed because 'ingredi' is not a word."
+},
+{
+"headword": "injure",
+"word_id": "6a6ef83f0f1e82a5a0736878",
+"word_ids": ["6a6ef83f0f1e82a5a0736878"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Body",
+"sense_pos": "verb",
+"corpus_definition": "To cause physical harm to a person or animal.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "injury", "relation": "derivational", "definition": "physical harm done to the body of a person or animal", "example": "He had a bad knee injury after the accident.",
+"syn": [
+{"to": "wound", "relation": "synonym", "strength": 0.8, "note": "Usually a cut or hole in the skin, for example from a knife."},
+{"to": "harm", "relation": "related", "strength": 0.6, "note": "Related: damage of any kind, not only to the body."},
+{"to": "damage", "relation": "related", "strength": 0.4, "note": "Used for things more than for people."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "injure", "relation": "base", "definition": "to hurt the body of a person or animal", "example": "Did you injure your leg during the game?", "note": "Often passive: 'Two people were injured in the accident.' For things, use damage.",
+"syn": [
+{"to": "hurt", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word with the same meaning."},
+{"to": "wound", "relation": "synonym", "strength": 0.8, "note": "Usually with a weapon, like a knife or gun."},
+{"to": "harm", "relation": "synonym", "strength": 0.8, "note": "A wider word: can also be about health or feelings."},
+{"to": "damage", "relation": "related", "strength": 0.4, "note": "Used for things, not usually for people."}
+],
+"ant": [
+{"to": "heal", "relation": "antonym", "note": "To make a hurt part of the body healthy again."}
+]},
+{"slot": "adjective", "status": "existing", "form": "injured", "relation": "participial", "definition": "physically hurt, for example in an accident or a fight", "example": "The injured woman was taken to hospital.",
+"syn": [
+{"to": "hurt", "relation": "synonym", "strength": 0.95, "note": "Easy everyday word."},
+{"to": "wounded", "relation": "synonym", "strength": 0.8, "note": "Usually hurt by a weapon, often in a war."}
+],
+"ant": [
+{"to": "uninjured", "relation": "antonym", "note": "Not hurt at all."},
+{"to": "unhurt", "relation": "antonym", "note": "Not hurt at all; a little more common in news stories."}
+]},
+{"slot": "adverb", "status": "no_form"}
+],
+"people": [],
+"people_not_family": [],
+"affixes": [],
+"context": {
+"text": "Aziz injured his knee while playing football in Samarkand. The injury was not serious, but the injured player had to rest for two weeks.",
+"uses": ["injured", "injury", "injured"]
+},
+"reviewer_note": "uninjured goes in ant (rule 3), not as a form. No affix claimed: 'injur' is not a word."
+},
+{
+"headword": "instant message",
+"word_id": "6a4288ad6941e70ad6a00e48",
+"word_ids": ["6a4288ad6941e70ad6a00e48"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Internet",
+"sense_pos": "noun",
+"corpus_definition": "A quick note sent to someone on the web right now.",
+"usage_note": "send someone an instant message; often shortened to IM. Also used as a verb in informal English: 'She instant messaged me.'",
+"relations": [
+{"to": "text message", "relation": "related", "strength": 0.6, "note": "Sent by phone network (SMS); an instant message is sent through an app or website."},
+{"to": "message", "relation": "related", "strength": 0.6, "note": "Easy general word for any written or spoken note."},
+{"to": "chat", "relation": "related", "strength": 0.4, "note": "A conversation made of many quick messages."},
+{"to": "email", "relation": "related", "strength": 0.4, "note": "Also sent online, but usually longer and slower to get an answer."}
+],
+"context": {
+"text": "My cousin in Moscow sends me an instant message every evening. Instant messages are faster than emails, so we use them for quick questions.",
+"uses": ["instant message", "Instant messages"]
+},
+"reviewer_note": "Noun phrase; no forms."
+},
+{
+"headword": "instruction",
+"word_id": "6a4265cce20c7210db6908b5",
+"word_ids": ["6a4265cce20c7210db6908b5"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "How to",
+"sense_pos": "noun",
+"corpus_definition": "Information about how to do or use something.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "instruction", "relation": "base", "definition": "information that tells you how to do or use something", "example": "Read the instructions before you use the new washing machine.", "note": "Usually plural: instructions. In formal English it can also mean teaching: 'instruction in English'.",
+"syn": [
+{"to": "direction", "relation": "synonym", "strength": 0.8, "note": "Usually plural too: 'Follow the directions on the box.'"},
+{"to": "guideline", "relation": "related", "strength": 0.6, "note": "Related: advice about how to do something, often official."},
+{"to": "guidance", "relation": "related", "strength": 0.6, "note": "Related: help and advice, not always step by step."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "instruct", "relation": "derivational", "definition": "to tell someone what to do, often in an official way", "example": "The teacher instructed us to write our names at the top.", "note": "Also means to teach a skill: 'He instructs new drivers.'", "register": "formal",
+"syn": [
+{"to": "tell", "relation": "synonym", "strength": 0.8, "note": "Easy everyday word: 'She told us to wait.'"},
+{"to": "direct", "relation": "synonym", "strength": 0.8, "note": "Formal: to give an official order.", "register": "formal"},
+{"to": "order", "relation": "related", "strength": 0.6, "note": "Stronger: you must do it."},
+{"to": "teach", "relation": "related", "strength": 0.6, "note": "Related: help someone learn a skill."}
+],
+"ant": []},
+{"slot": "adjective", "status": "existing", "form": "instructional", "relation": "derivational", "definition": "giving information about how to do something", "example": "We watched an instructional video about first aid.",
+"syn": [
+{"to": "educational", "relation": "related", "strength": 0.6, "note": "Related: helping people learn."},
+{"to": "informative", "relation": "related", "strength": 0.6, "note": "Related: giving useful facts."}
+],
+"ant": []},
+{"slot": "adjective", "status": "other_meaning", "form": "instructive", "definition": "giving useful knowledge or teaching you something", "example": "The trip to the history museum was very instructive.", "note": "Belongs to instruct = teach, not to step-by-step information."},
+{"slot": "adverb", "status": "no_form", "note": "Instructively exists but is very rare."}
+],
+"people": [
+{"form": "instructor", "kind": "job", "status": "existing", "definition": "a person whose job is to teach a practical skill", "example": "My driving instructor in Tashkent was very patient."}
+],
+"people_not_family": [],
+"affixes": [
+{"affix": "-ion", "in_form": "instruction", "meaning_key": "-ion", "also": ["action", "discussion", "protection"]},
+{"affix": "-al", "in_form": "instructional", "meaning_key": "-al", "also": ["national", "personal", "traditional"]},
+{"affix": "-or", "in_form": "instructor", "meaning_key": "-or", "also": ["actor", "visitor", "director"]}
+],
+"context": {
+"text": "The instructions for my new phone were only in Russian, so my brother instructed me step by step. Later we found an instructional video online.",
+"uses": ["instructions", "instructed", "instructional"]
+},
+"reviewer_note": "instructive is other_meaning (teach sense); instructively is rare, so adverb is no_form with a note."
+}
+]
