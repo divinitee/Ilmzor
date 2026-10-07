@@ -1,0 +1,333 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "cliff",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'client' (zipf 4.5) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "cliffs"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). Compounds such as clifftop are left out."
+  },
+  {
+   "headword": "coast",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: coaster"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'coaster' (zipf 3.7) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "coastal: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "coasts"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb coast (move without power) is a different meaning, shown as other_meaning. Compounds coastline and coastguard are left out."
+  },
+  {
+   "headword": "coffin",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'coffee' (zipf 4.9) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "coffins"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only one form exists; sensitive topic kept short and neutral."
+  },
+  {
+   "headword": "collapse",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "collapses",
+       "collapse"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "collapsed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb and noun are the same spelling (conversion). Collapsible belongs to the folding meaning, so it is other_meaning; no affix is claimed on it."
+  },
+  {
+   "headword": "colleague",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: college"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: collegial"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "colleagues"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is itself a person noun, so it stays the main noun entry; no other family forms."
+  },
+  {
+   "headword": "collection",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: collectible"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: collectible"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "collections",
+       "collection"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "collected"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ion noun; collect is its base verb. Collective/collectively are the group meaning, so other_meaning. Collect in the sense 'pick someone up' is not shown."
+  },
+  {
+   "headword": "comedian",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: comment"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: comedic"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'comedienne': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "comedian: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "comically: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "comedians"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the main noun entry; comedy goes in People & things as the field. Comic is not listed as a synonym because it is a family member."
+  },
+  {
+   "headword": "commission",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: common family word 'commit' (zipf 4.3) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: commitment, committee"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "commissions",
+       "commission"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee); its example is the fee meaning. Split into Money and Group maps on the same word_id."
+  },
+  {
+   "headword": "commission",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: common family word 'commit' (zipf 4.3) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: commitment, committee"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "commissions",
+       "commission"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: the one row's definition joins two meanings (official group / fee). This is the Group map; the fee meaning has its own Money map."
+  },
+  {
+   "headword": "community",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: marked 'no such form', but the dictionary links commune. Show it (existing or other_meaning), or list it in not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: commune, communion"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "verb: marked 'no such form'; rare or doubtful family words exist: communalize"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: communally. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "communities",
+       "community"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (B1). Communal shares an old root but is not made from community, so it is listed as not_family."
+  },
+  {
+   "headword": "compact",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "compactness: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "compactly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "compactness"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun compact (make-up case) and verb compact (press together) are other meanings. Compound compact disc is left out."
+  }
+ ]
+}
