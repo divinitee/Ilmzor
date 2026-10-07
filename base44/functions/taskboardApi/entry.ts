@@ -18,7 +18,7 @@ const PRIORITIES = ['critical', 'high', 'medium', 'low'];
 const STEP_STATUSES = ['todo', 'in_progress', 'done', 'failed', 'skipped'];
 const STEP_LABEL: Record<string, string> = { todo: 'To do', in_progress: 'In progress', done: 'Done', failed: 'Failed', skipped: 'Skipped' };
 const EVIDENCE_TYPES = ['note', 'screenshot', 'log', 'api_response', 'test_output', 'file', 'link', 'checkpoint'];
-const TASK_FIELDS = ['title', 'description', 'status', 'priority', 'category', 'project', 'tags', 'due_date', 'depends_on', 'notes', 'launch_blocker', 'order', 'focus_rank'];
+const TASK_FIELDS = ['title', 'description', 'status', 'priority', 'category', 'project', 'tags', 'due_date', 'depends_on', 'notes', 'launch_blocker', 'order', 'focus_rank', 'work_mode', 'estimate_minutes', 'ai_minutes', 'energy', 'place'];
 // The Focus roadmap: 1 = now, 2.. = up next. Kept short on purpose (Tee,
 // 2026-10-03: "every new task we complete, 5 new tasks get added").
 const ROADMAP_MAX = 6;
@@ -170,6 +170,11 @@ function cleanTaskPatch(patch: any) {
     else if (k === 'launch_blocker') out.launch_blocker = !!v;
     else if (k === 'order') out.order = Number(v) || 0;
     else if (k === 'focus_rank') out.focus_rank = Math.max(0, Math.min(99, Math.floor(Number(v) || 0)));
+    else if (k === 'work_mode') out.work_mode = ['hands_on', 'claude', 'hybrid'].includes(String(v)) ? String(v) : 'hands_on';
+    else if (k === 'estimate_minutes') out.estimate_minutes = Math.max(1, Math.min(1440, Math.round(Number(v) || 15)));
+    else if (k === 'ai_minutes') out.ai_minutes = Math.max(0, Math.min(1440, Math.round(Number(v) || 0)));
+    else if (k === 'energy') out.energy = ['low', 'med', 'high'].includes(String(v)) ? String(v) : 'med';
+    else if (k === 'place') out.place = ['laptop', 'home', 'phone', 'anywhere', 'out'].includes(String(v)) ? String(v) : 'anywhere';
     else out[k] = str(v);
   }
   return out;
@@ -185,11 +190,12 @@ const same = (a: unknown, b: unknown) => JSON.stringify(a ?? '') === JSON.string
 
 // ---------- actions ----------
 async function bundle(db: any) {
-  const [tasks, steps, evidence, events] = await Promise.all([
-    listAll(db.Task), listAll(db.TaskStep), listAll(db.TaskEvidence), listAll(db.TaskEvent),
+  const [tasks, steps, evidence, events, workLogs] = await Promise.all([
+    listAll(db.Task), listAll(db.TaskStep), listAll(db.TaskEvidence), listAll(db.TaskEvent), listAll(db.TaskWorkLog),
   ]);
   events.sort((a: any, b: any) => String(b.ts).localeCompare(String(a.ts)));
-  return { tasks, steps, evidence, events };
+  workLogs.sort((a: any, b: any) => String(b.ended_at || b.created_date).localeCompare(String(a.ended_at || a.created_date)));
+  return { tasks, steps, evidence, events, workLogs };
 }
 
 async function createTask(db: any, actor: string, input: any) {
@@ -202,6 +208,7 @@ async function createTask(db: any, actor: string, input: any) {
   const status = fields.status || 'raw_idea';
   const record = await db.Task.create({
     category: parent?.category || 'General', priority: 'medium', tags: [], depends_on: [], description: '', project: parent?.project || '', notes: '', launch_blocker: false,
+    work_mode: 'hands_on', estimate_minutes: 15, ai_minutes: 0, energy: 'med', place: 'anywhere',
     ...fields,
     status,
     ...statusStamps(null, status),
@@ -222,6 +229,12 @@ async function createTask(db: any, actor: string, input: any) {
 async function updateTask(db: any, actor: string, input: any) {
   const before = await getTask(db, input.id);
   const patch = cleanTaskPatch(input.patch || {});
+  if (patch.focus_rank === 1) {
+    const tasks = await listAll(db.Task);
+    const byCode = new Map(tasks.map((t: any) => [t.task_code, t]));
+    const blocked = list(before.depends_on).filter((code) => !byCode.get(code) || byCode.get(code).status !== 'complete');
+    if (blocked.length) throw bad(`${before.task_code} is blocked by: ${blocked.join(', ')}`);
+  }
   const changed = Object.keys(patch).filter((k) => !same(before[k], patch[k]));
   if (!changed.length) return before;
   const write: any = {};
@@ -244,6 +257,8 @@ async function updateTask(db: any, actor: string, input: any) {
   return updated || task;
 }
 
+function byIdForCode(tasks: any[]) { return new Map(tasks.map((t: any) => [t.task_code, t])); }
+
 function roadmapLabel(before: unknown, after: unknown) {
   const b = Number(before) || 0;
   const a = Number(after) || 0;
@@ -264,6 +279,11 @@ async function setRoadmap(db: any, actor: string, input: any) {
     const t = byId.get(id);
     if (!t) throw new ApiError(404, 'Task not found');
     if (t.archived) throw bad(`${t.task_code} is archived.`);
+    if ((ids.indexOf(id) === 0) && list(t.depends_on).some((code) => !byIdForCode(tasks).get(code) || byIdForCode(tasks).get(code).status !== 'complete')) {
+      const byCode = byIdForCode(tasks);
+      const blocked = list(t.depends_on).filter((code) => !byCode.get(code) || byCode.get(code).status !== 'complete');
+      throw bad(`${t.task_code} is blocked by: ${blocked.join(', ')}`);
+    }
   }
   const want = new Map<string, number>(ids.map((id, i) => [id, i + 1]));
   const events: any[] = [];
@@ -303,10 +323,25 @@ async function setArchived(db: any, actor: string, input: any) {
   return updated;
 }
 
+async function recordWork(db: any, actor: string, input: any) {
+  const task = await getTask(db, input.task_id);
+  const mode = ['hands_on', 'claude', 'hybrid'].includes(String(input.mode)) ? String(input.mode) : String(task.work_mode || 'hands_on');
+  const human = Math.max(0, Math.round(Number(input.human_minutes) || 0));
+  const ai = Math.max(0, Math.round(Number(input.ai_minutes) || 0));
+  if (human + ai <= 0) throw bad('Record at least 1 minute of work.');
+  const outcome = ['completed', 'partial', 'blocked', 'abandoned'].includes(String(input.outcome)) ? String(input.outcome) : 'partial';
+  const row = await db.TaskWorkLog.create({
+    task_id: task.id, task_code: task.task_code, mode, human_minutes: human, ai_minutes: ai,
+    started_at: iso(input.started_at), ended_at: iso(input.ended_at) || now(), outcome, actor: actorOf(input.actor || actor), notes: str(input.notes, 4000),
+  });
+  await log(db, actor, task, { action: 'work_logged', details: `Work logged: ${human}m human${ai ? ` + ${ai}m AI` : ''} · ${outcome}`, field: 'work_log' });
+  return row;
+}
+
 async function deleteTask(db: any, actor: string, input: any) {
   const task = await getTask(db, input.id);
   if (str(input.confirm).trim() !== task.task_code) throw bad(`Type ${task.task_code} to confirm deletion.`);
-  const [tasks, steps, evidence] = await Promise.all([listAll(db.Task), listAll(db.TaskStep), listAll(db.TaskEvidence)]);
+  const [tasks, steps, evidence, workLogs] = await Promise.all([listAll(db.Task), listAll(db.TaskStep), listAll(db.TaskEvidence), listAll(db.TaskWorkLog)]);
   const kids = new Map<string, any[]>();
   for (const t of tasks) { const k = t.parent_id || ''; if (!kids.has(k)) kids.set(k, []); kids.get(k)!.push(t); }
   const subtree: any[] = [task];
@@ -316,10 +351,12 @@ async function deleteTask(db: any, actor: string, input: any) {
   const stepRows = steps.filter((s: any) => taskIds.has(s.task_id));
   const stepIds = new Set(stepRows.map((s: any) => s.id));
   const evRows = evidence.filter((e: any) => taskIds.has(e.task_id) || stepIds.has(e.step_id));
+  const workRows = workLogs.filter((w: any) => taskIds.has(w.task_id));
   for (const e of evRows) await db.TaskEvidence.delete(e.id);
+  for (const w of workRows) await db.TaskWorkLog.delete(w.id);
   for (const s of stepRows) await db.TaskStep.delete(s.id);
   for (const t of subtree.reverse()) await db.Task.delete(t.id);
-  const details = `Deleted ${task.task_code} “${task.title}” with ${subtree.length - 1} subtask(s), ${stepRows.length} step(s), ${evRows.length} evidence record(s). History kept.`;
+  const details = `Deleted ${task.task_code} “${task.title}” with ${subtree.length - 1} subtask(s), ${stepRows.length} step(s), ${evRows.length} evidence record(s), ${workRows.length} work log(s). History kept.`;
   await log(db, actor, task, { action: 'deleted', details });
   if (task.parent_id) {
     const parent = await db.Task.get(task.parent_id).catch(() => null);
@@ -427,6 +464,9 @@ async function importNative(db: any, actor: string, data: any) {
         depends_on: list(t.depends_on), notes: str(t.notes), launch_blocker: !!t.launch_blocker,
         archived: !!t.archived, archived_at: iso(t.archived_at), started_at: iso(t.started_at), completed_at: iso(t.completed_at),
         verified_at: iso(t.verified_at), verified_by: t.verified_by || null, source: t.source || 'imported', last_actor: actor,
+        work_mode: ['hands_on', 'claude', 'hybrid'].includes(t.work_mode) ? t.work_mode : 'hands_on',
+        estimate_minutes: Math.max(1, Math.round(Number(t.estimate_minutes) || 15)), ai_minutes: Math.max(0, Math.round(Number(t.ai_minutes) || 0)),
+        energy: ['low', 'med', 'high'].includes(t.energy) ? t.energy : 'med', place: ['laptop', 'home', 'phone', 'anywhere', 'out'].includes(t.place) ? t.place : 'anywhere',
       });
     }
     const made = await bulk(db.Task, rows);
@@ -487,6 +527,24 @@ async function importNative(db: any, actor: string, data: any) {
     eSeen.add(eKey(e));
   }
   created.events = (await bulk(db.TaskEvent, eRows)).length;
+
+  const existingWork = await listAll(db.TaskWorkLog);
+  const workRows: any[] = [];
+  for (const w of data.workLogs || []) {
+    const taskId = codeToId.get(w.task_code) || '';
+    if (!taskId || !w.mode) continue;
+    workRows.push({
+      task_id: taskId, task_code: w.task_code, mode: ['hands_on', 'claude', 'hybrid'].includes(w.mode) ? w.mode : 'hands_on',
+      human_minutes: Math.max(0, Math.round(Number(w.human_minutes) || 0)), ai_minutes: Math.max(0, Math.round(Number(w.ai_minutes) || 0)),
+      started_at: iso(w.started_at), ended_at: iso(w.ended_at), outcome: ['completed','partial','blocked','abandoned'].includes(w.outcome) ? w.outcome : 'partial',
+      actor: actorOf(w.actor), notes: str(w.notes, 4000),
+    });
+  }
+  const workKey = (w: any) => `${w.task_code}|${w.ended_at || ''}|${w.human_minutes}|${w.ai_minutes}`;
+  const seenWork = new Set(existingWork.map(workKey));
+  const freshWork = workRows.filter((w) => !seenWork.has(workKey(w)));
+  const madeWork = await bulk(db.TaskWorkLog, freshWork);
+  created.workLogs = madeWork.length;
 
   for (const r of createdRoots) await log(db, actor, r, { action: 'imported', details: `${r.task_code} restored from JSON import` });
   return { format: 'virora-taskboard', created, skipped };
@@ -558,6 +616,7 @@ const ACTIONS: Record<string, (db: any, actor: string, input: any) => Promise<an
   create_step: createStep,
   update_step: updateStep,
   add_evidence: addEvidence,
+  record_work: recordWork,
   set_roadmap: setRoadmap,
   import: importData,
 };

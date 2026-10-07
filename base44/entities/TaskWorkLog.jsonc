@@ -1,0 +1,91 @@
+{
+  "name": "TaskWorkLog",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "task_code": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "hands_on",
+        "claude",
+        "hybrid"
+      ]
+    },
+    "human_minutes": {
+      "type": "integer",
+      "description": "Actual Tee hands-on minutes."
+    },
+    "ai_minutes": {
+      "type": "integer",
+      "description": "Actual unattended AI execution minutes."
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "partial",
+        "blocked",
+        "abandoned"
+      ]
+    },
+    "actor": {
+      "type": "string",
+      "enum": [
+        "tee",
+        "claude",
+        "gpt",
+        "fable",
+        "base44",
+        "system",
+        "imported"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_id",
+    "task_code",
+    "mode",
+    "human_minutes",
+    "ai_minutes",
+    "outcome",
+    "actor"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
