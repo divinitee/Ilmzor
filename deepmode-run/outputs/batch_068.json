@@ -316,10 +316,11 @@
   ],
   "affixes": [],
   "context": {
-   "text": "Aziz is the captain of our volleyball team. He has captained the team for two years.",
+   "text": "Aziz is the captain of our volleyball team. He has captained the team for two years, and his captaincy has brought us three cups.",
    "uses": [
     "captain",
-    "captained"
+    "captained",
+    "captaincy"
    ]
   },
   "reviewer_note": "Ship/plane captain is a different meaning."
