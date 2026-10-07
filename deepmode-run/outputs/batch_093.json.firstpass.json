@@ -1,0 +1,314 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "meanwhile",
+   "kind": "function",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Linking adverb handled as function word, like aside; no forms."
+  },
+  {
+   "headword": "messaging",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "messaging → 'chatting' is not a noun (form is a noun)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: messy. Check."
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: messily. Check."
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'messenger': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "messaging: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "messages",
+       "message"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "messaged"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing noun; message (noun and verb) shown as its family. Messenger is also an app name; definition keeps the general person meaning."
+  },
+  {
+   "headword": "mild",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun 'mildness' is rare (zipf 1.8)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "mildness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "mildness"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "milder"
+      ],
+      "JJS": [
+       "mildest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Weather sense only; mildly is other_meaning (slightly), since adverb is not used for weather."
+  },
+  {
+   "headword": "minimum",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'minimalist' (zipf 3.3) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "minimums",
+       "minima"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "minimized"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun is base; adjective use (minimum age) shown as conversion, minimal as extra. No -ize/-al affix claimed because removing them does not leave a real word."
+  },
+  {
+   "headword": "miserable",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: unhappiness"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "miseries",
+       "misery"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (B1 kept). Miser (a person who hates spending money) shares an old root but is not part of this family. No affix claimed: misery to miserable is not a clean -able split."
+  },
+  {
+   "headword": "mixture",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "noun 'mix' is marked conversion but differs from the headword"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "mixtures",
+       "mixture"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "mixed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Mixture is made from mix; mix noun (a mix of) is a same-meaning extra. No -ture affix claimed (not in table)."
+  },
+  {
+   "headword": "mobile",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "mobilities",
+       "mobility"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Trap: mobile noun (phone) and mobilize are other_meaning; immobile is an antonym, not a form."
+  },
+  {
+   "headword": "modest",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: modal"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "verb: marked 'no such form'; real words that look related: modify. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "modesty: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "modesty"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Corpus definition joins two close uses (not showing off; not large or expensive); one map. Immodest is an antonym, not a form."
+  },
+  {
+   "headword": "mood",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "moodily → 'sulkily' is not a real word/phrase"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'moodily' is rare (zipf 1.5)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "moody: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "moodily: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "moods",
+       "mood"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "moodier"
+      ],
+      "JJS": [
+       "moodiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Grammar meaning of mood (verb mood) not used. Moody keeps the feeling sense."
+  },
+  {
+   "headword": "mow",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "noun 'mowing': not in WordNet, but common in real text (zipf 3.1) and built by a suffix rule"
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "mowed",
+       "mown"
+      ],
+      "VBN": [
+       "mown"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Lawnmower is a compound and left out. Mown is the participle adjective."
+  }
+ ]
+}
