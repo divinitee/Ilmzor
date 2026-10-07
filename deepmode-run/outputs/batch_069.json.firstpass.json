@@ -1,0 +1,243 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "catalogue",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "catalogues"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only one form exists in the shopping meaning; the verb (to record items in a list) is other_meaning."
+  },
+  {
+   "headword": "catch up with",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Movement meaning only; 'catch up with' = learn news from a friend or do missed work is a different meaning and is not used here."
+  },
+  {
+   "headword": "cattle",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: catty. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "cattle: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "cattle"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Plural-only noun; no family forms. Compounds (cattleman, cattle market) left out by rule 7."
+  },
+  {
+   "headword": "cause",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "causes",
+       "cause"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "caused"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Verb corpus meaning; noun cause (reason) is a conversion. The 'good cause / charity' noun meaning is mentioned in a note only (same spelling)."
+  },
+  {
+   "headword": "caution",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'cautious' minus '-ous' leaves no real word (cauti, cautie, cautiy, cauty)"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "cautions",
+       "caution"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "cautioned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "cautious = caution + -ous (n dropped). incautious and cautiousness are rare and left out."
+  },
+  {
+   "headword": "celebrity",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "invented form",
+     "msg": "noun 'celeb': not in the dictionary as a noun"
+    },
+    {
+     "cat": "bad example",
+     "msg": "noun example doesn't contain 'celeb'"
+    },
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "celebrities",
+       "celebrity"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Person noun stays main noun entry. celebrate/celebrated share an old Latin root but are not made from celebrity, so they are not_family. Note: celebrated (= famous) is close in meaning."
+  },
+  {
+   "headword": "ceremony",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ceremonies",
+       "ceremony"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "ceremonial = ceremony + -al (y to i). ceremonious (very polite and formal) is rare and left out."
+  },
+  {
+   "headword": "challenge",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "challenges",
+       "challenge"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "challenged"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Map keeps the 'hard task' meaning; challenge = question (verb) and challenger (competition) are other_meaning."
+  },
+  {
+   "headword": "champion",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "champions"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Person noun stays main noun entry; championship is the event noun. Verb champion (support a cause) is other_meaning."
+  },
+  {
+   "headword": "charity",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "charitable → 'non-profit' is not a adjective (form is a adjective)"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "charities",
+       "charity"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows (same organization meaning) merged. charitably belongs to the 'kindness' meaning."
+  }
+ ]
+}
