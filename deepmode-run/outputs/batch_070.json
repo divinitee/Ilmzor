@@ -1,0 +1,857 @@
+[
+ {
+  "headword": "cheat",
+  "word_id": "6a42659782466c80f8ae0c96",
+  "word_ids": [
+   "6a42659782466c80f8ae0c96"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Dishonest",
+  "sense_pos": "verb",
+  "corpus_definition": "To behave in a dishonest way to win or get an advantage.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "cheating",
+    "relation": "derivational",
+    "definition": "dishonest behaviour to win or get an advantage",
+    "example": "Cheating in exams is taken very seriously.",
+    "syn": [
+     {
+      "to": "dishonesty",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The quality of not telling the truth."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "cheat",
+    "relation": "base",
+    "definition": "to act dishonestly to win or to get something",
+    "example": "He cheated in the card game.",
+    "syn": [
+     {
+      "to": "deceive",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Make someone believe something false.",
+      "register": "formal"
+     },
+     {
+      "to": "trick",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Make someone believe something to get an advantage."
+     }
+    ],
+    "ant": [
+     {
+      "to": "play fair",
+      "relation": "antonym",
+      "note": "Follow the rules honestly."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "cheat",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who acts dishonestly to win",
+    "example": "Nobody wants to play with a cheat."
+   },
+   {
+    "form": "cheater",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who cheats, especially in American English",
+    "example": "The cheater was sent out of the game."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "cheating",
+    "meaning_key": "-ing",
+    "also": [
+     "shopping",
+     "swimming",
+     "building"
+    ]
+   },
+   {
+    "affix": "-er",
+    "in_form": "cheater",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Bobur cheated in the chess game by moving a piece secretly. His friends said cheating spoils the fun.",
+   "uses": [
+    "cheated",
+    "cheating"
+   ]
+  },
+  "reviewer_note": "cheat (person) is a conversion noun, so it sits in People & things."
+ },
+ {
+  "headword": "cheat at/in",
+  "word_id": "6a4265cce20c7210db6908f0",
+  "word_ids": [
+   "6a4265cce20c7210db6908f0"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Dishonest",
+  "sense_pos": "verb",
+  "corpus_definition": "To act dishonestly to get a better result.",
+  "usage_note": "Use 'cheat at' for games and sports ('cheat at cards') and 'cheat in' for tests ('cheat in an exam'). 'cheat on' means to be unfaithful to a partner, a different meaning.",
+  "relations": [
+   {
+    "to": "break the rules",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Not follow the rules of a game or test."
+   },
+   {
+    "to": "copy",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Related: take someone else's answers in a test."
+   },
+   {
+    "to": "play fair",
+    "relation": "antonym",
+    "note": "Follow the rules honestly."
+   }
+  ],
+  "context": {
+   "text": "My little brother always cheats at cards. At school, though, he would never cheat in an exam.",
+   "uses": [
+    "cheats at",
+    "cheat in"
+   ]
+  },
+  "reviewer_note": "Two prepositions shown with their typical objects."
+ },
+ {
+  "headword": "cheer up",
+  "word_id": "6a4282fd46ba24054c1dcdf3",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdf3"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Feelings",
+  "sense_pos": "verb",
+  "corpus_definition": "to make someone feel happier when they are sad",
+  "particle_note": "Separable: 'cheer my friend up' or 'cheer up my friend'; with a pronoun only 'cheer her up'. Also used alone: 'Cheer up!' = become happier.",
+  "relations": [
+   {
+    "to": "brighten up",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Become or make someone more cheerful."
+   },
+   {
+    "to": "lift your spirits",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Make you feel happier."
+   },
+   {
+    "to": "get down",
+    "relation": "antonym",
+    "note": "Informal: make someone feel sad."
+   }
+  ],
+  "context": {
+   "text": "Nodira was sad after her exam, so we took her for ice cream to cheer her up. She cheered up very quickly.",
+   "uses": [
+    "cheer her up",
+    "cheered up"
+   ]
+  },
+  "reviewer_note": "Both transitive and intransitive uses shown."
+ },
+ {
+  "headword": "chemist",
+  "word_id": "6a42800cb9d8fc24968a4b4f",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b4f",
+   "6a6ef9b2a601556148092763"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Science",
+  "sense_pos": "noun",
+  "corpus_definition": "A person who studies how substances react and change.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "chemistry",
+    "relation": "derivational",
+    "definition": "the science of what substances are made of and how they change",
+    "example": "Chemistry is my favourite subject.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "chemical",
+    "relation": "derivational",
+    "definition": "a substance made or used in chemistry",
+    "example": "Do not touch these chemicals.",
+    "syn": [
+     {
+      "to": "substance",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Any type of matter."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "chemical",
+    "relation": "derivational",
+    "definition": "connected with chemistry or chemicals",
+    "example": "There was a chemical reaction in the glass.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "chemically",
+    "relation": "derivational",
+    "definition": "in a way connected with chemistry",
+    "example": "The water was chemically cleaned.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [
+   {
+    "form": "chemist",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a scientist who studies substances and how they change",
+    "example": "The chemist works in a large laboratory."
+   },
+   {
+    "form": "chemist",
+    "kind": "thing",
+    "status": "other_meaning",
+    "definition": "British English: a shop that sells medicine",
+    "example": "I bought aspirin at the chemist.",
+    "note": "Belongs to chemist = pharmacy, not a scientist."
+   }
+  ],
+  "people_not_family": [
+   "pharmacist"
+  ],
+  "affixes": [
+   {
+    "affix": "-al",
+    "in_form": "chemical",
+    "meaning_key": "-al",
+    "also": [
+     "national",
+     "musical",
+     "personal"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "chemically",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My aunt is a chemist at a factory in Navoi. She studied chemistry and now tests chemicals every day.",
+   "uses": [
+    "chemistry",
+    "chemicals"
+   ]
+  },
+  "reviewer_note": "Two corpus rows merged. Headword is a person noun, so it sits in People & things."
+ },
+ {
+  "headword": "chew",
+  "word_id": "6a42821646ba24054c1dcccb",
+  "word_ids": [
+   "6a42821646ba24054c1dcccb"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Eating",
+  "sense_pos": "verb",
+  "corpus_definition": "To use your teeth to break food into small pieces.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "chew",
+    "relation": "conversion",
+    "definition": "the act of chewing something",
+    "example": "The dog had a good chew on the bone.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "chew",
+    "relation": "base",
+    "definition": "to break food into small pieces with your teeth",
+    "example": "Chew your food well before you swallow.",
+    "syn": [
+     {
+      "to": "bite",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Use your teeth to cut into something."
+     },
+     {
+      "to": "munch",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Chew noisily, often with enjoyment.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "swallow",
+      "relation": "antonym",
+      "note": "Let food go down your throat without chewing."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "chewy",
+    "relation": "derivational",
+    "definition": "needing a lot of chewing",
+    "example": "These sweets are very chewy.",
+    "syn": [
+     {
+      "to": "tough",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Hard to cut or chew."
+     }
+    ],
+    "ant": [
+     {
+      "to": "soft",
+      "relation": "antonym",
+      "note": "Easy to bite and chew."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "chewy",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Little Ali chews his bread slowly. He loves chewy dried apricots from the market.",
+   "uses": [
+    "chews",
+    "chewy"
+   ]
+  },
+  "reviewer_note": "chewing gum is a compound, not included."
+ },
+ {
+  "headword": "childhood",
+  "word_id": "6a42659782466c80f8ae0cc7",
+  "word_ids": [
+   "6a42659782466c80f8ae0cc7"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Life stage",
+  "sense_pos": "noun",
+  "corpus_definition": "The period of time when you are small.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "childhood",
+    "relation": "derivational",
+    "definition": "the time when you are a child",
+    "example": "I had a happy childhood in Khiva.",
+    "syn": [
+     {
+      "to": "youth",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The time when you are young."
+     },
+     {
+      "to": "early years",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The first years of life."
+     }
+    ],
+    "ant": [
+     {
+      "to": "adulthood",
+      "relation": "antonym",
+      "note": "The time when you are an adult."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "child",
+    "relation": "base",
+    "definition": "a young boy or girl",
+    "example": "The child is playing in the garden.",
+    "syn": [
+     {
+      "to": "kid",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal word for a child.",
+      "register": "informal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "adult",
+      "relation": "antonym",
+      "note": "A grown-up person."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "childish",
+    "relation": "derivational",
+    "definition": "behaving like a child, in a silly way",
+    "example": "Stop being so childish!",
+    "syn": [
+     {
+      "to": "immature",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not acting like an adult."
+     }
+    ],
+    "ant": [
+     {
+      "to": "mature",
+      "relation": "antonym",
+      "note": "Acting like a sensible adult."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "childless",
+    "relation": "derivational",
+    "definition": "having no children",
+    "example": "They were childless for many years.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-hood",
+    "in_form": "childhood",
+    "meaning_key": "-hood",
+    "also": [
+     "neighbourhood",
+     "adulthood",
+     "motherhood"
+    ]
+   },
+   {
+    "affix": "-ish",
+    "in_form": "childish",
+    "meaning_key": "-ish",
+    "also": [
+     "foolish",
+     "selfish",
+     "reddish"
+    ]
+   },
+   {
+    "affix": "-less",
+    "in_form": "childless",
+    "meaning_key": "-less",
+    "also": [
+     "careless",
+     "homeless",
+     "useless"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My grandmother spent her childhood in a small village. As a child, she walked to school every day.",
+   "uses": [
+    "childhood",
+    "child"
+   ]
+  },
+  "reviewer_note": "child is the base noun; childhood derived with -hood."
+ },
+ {
+  "headword": "chill",
+  "word_id": "6a6ef9b2a601556148092764",
+  "word_ids": [
+   "6a6ef9b2a601556148092764"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Cold",
+  "sense_pos": "noun",
+  "corpus_definition": "A feeling of being a little bit cold.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "chill",
+    "relation": "base",
+    "definition": "a feeling of cold",
+    "example": "There is a chill in the air tonight.",
+    "syn": [
+     {
+      "to": "coldness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The state of being cold."
+     },
+     {
+      "to": "nip",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A sharp cold feeling in the air."
+     }
+    ],
+    "ant": [
+     {
+      "to": "warmth",
+      "relation": "antonym",
+      "note": "A pleasant feeling of heat."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "chill",
+    "relation": "conversion",
+    "definition": "to make something cold",
+    "example": "Chill the juice before you serve it.",
+    "syn": [
+     {
+      "to": "cool",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Make something less warm."
+     }
+    ],
+    "ant": [
+     {
+      "to": "heat",
+      "relation": "antonym",
+      "note": "Make something hot."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "chilly",
+    "relation": "derivational",
+    "definition": "cold enough to be unpleasant",
+    "example": "It is chilly this morning, take a jacket.",
+    "syn": [
+     {
+      "to": "cold",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Low in temperature."
+     },
+     {
+      "to": "cool",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A little cold."
+     }
+    ],
+    "ant": [
+     {
+      "to": "warm",
+      "relation": "antonym",
+      "note": "Pleasantly hot."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-y",
+    "in_form": "chilly",
+    "meaning_key": "-y",
+    "also": [
+     "salty",
+     "sunny",
+     "rainy"
+    ]
+   }
+  ],
+  "context": {
+   "text": "In October the evenings in Tashkent become chilly. You can feel a chill in the air after sunset.",
+   "uses": [
+    "chilly",
+    "chill"
+   ]
+  },
+  "reviewer_note": "'chill out' (relax) is an informal phrasal meaning, not shown."
+ },
+ {
+  "headword": "chin",
+  "word_id": "6a6ef9b2a601556148092819",
+  "word_ids": [
+   "6a6ef9b2a601556148092819"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Body",
+  "sense_pos": "noun",
+  "corpus_definition": "The bottom part of a person's face below their mouth.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "chin",
+    "relation": "base",
+    "definition": "the part of your face below your mouth",
+    "example": "He rested his chin on his hands.",
+    "syn": [
+     {
+      "to": "jaw",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "The bone that holds your teeth."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My little sister fell and hurt her chin. Now there is a small plaster on her chin.",
+   "uses": [
+    "chin"
+   ]
+  },
+  "reviewer_note": "Idiom: keep your chin up = stay positive."
+ },
+ {
+  "headword": "choir",
+  "word_id": "6a6ef83f0f1e82a5a073666e",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073666e"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Music",
+  "sense_pos": "noun",
+  "corpus_definition": "A group of people who sing together.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "choir",
+    "relation": "base",
+    "definition": "a group of people who sing together",
+    "example": "She sings in the school choir.",
+    "syn": [
+     {
+      "to": "chorus",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A large group of singers."
+     },
+     {
+      "to": "ensemble",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A small group of musicians or singers.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "choral",
+    "relation": "derivational",
+    "definition": "written for or sung by a choir",
+    "example": "We went to a concert of choral music.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-al",
+    "in_form": "choral",
+    "meaning_key": "-al",
+    "also": [
+     "national",
+     "musical",
+     "personal"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Our school choir sings at every holiday concert. This year the choir learned a new Uzbek song.",
+   "uses": [
+    "choir"
+   ]
+  },
+  "reviewer_note": "choral is from the same root (chorus)."
+ },
+ {
+  "headword": "classical music",
+  "word_id": "6a42659782466c80f8ae0c97",
+  "word_ids": [
+   "6a42659782466c80f8ae0c97"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Music",
+  "sense_pos": "noun",
+  "corpus_definition": "Serious, traditional art music written by famous composers long ago.",
+  "usage_note": "Uncountable: 'I like classical music', not 'a classical music'. Compare 'classic' = very good and typical.",
+  "relations": [
+   {
+    "to": "orchestral music",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Music played by an orchestra."
+   },
+   {
+    "to": "opera",
+    "relation": "related",
+    "strength": 0.4,
+    "note": "Related: a play where the words are sung."
+   },
+   {
+    "to": "pop music",
+    "relation": "antonym",
+    "note": "Modern popular music."
+   }
+  ],
+  "context": {
+   "text": "My father listens to classical music when he works. He says classical music helps him think.",
+   "uses": [
+    "classical music"
+   ]
+  },
+  "reviewer_note": "classic vs classical is a common learner mistake."
+ }
+]
