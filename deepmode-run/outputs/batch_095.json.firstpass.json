@@ -1,0 +1,219 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "on CD/DVD/video",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Headword covers three formats; the usage note explains there is no article before the format name."
+  },
+  {
+   "headword": "on purpose",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed phrase; no forms. Purpose itself is a separate noun entry."
+  },
+  {
+   "headword": "on schedule",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed phrase; ahead of / behind schedule mentioned in the usage note as related patterns."
+  },
+  {
+   "headword": "on stage",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "CORPUS: the definition describes the noun stage, not the phrase on stage (= performing on the stage); map follows the phrase use shown in the example."
+  },
+  {
+   "headword": "opponent",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "wrong morphology",
+     "msg": "adjective 'opposite' (other meaning): family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "adverb 'opposite' (other meaning): family link not confirmed by the dictionary or a suffix rule"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "opponents"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "opposed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two rows merged (game/fight and game/argument are one meaning); lowest CEFR B1. Opponent is a person noun headword, so it stays the main noun entry; opposite shown as other_meaning (facing / completely different)."
+  },
+  {
+   "headword": "option",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: optic, optical"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'optics' (zipf 3.6) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "optionally: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "options",
+       "option"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "opted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Opt is a separate entry but shares the root with option/optional; optimal and optimist are a different root (best) and are left out."
+  },
+  {
+   "headword": "ordinary",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: ordinance"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "noun 'ordinariness' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "ordinariness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ordinariness"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Extraordinary is an opposite (in the ant list), not a family form."
+  },
+  {
+   "headword": "out of order",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Map keeps the machine meaning; the British 'behaving badly' meaning is only mentioned in the usage note."
+  },
+  {
+   "headword": "overnight",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong POS",
+     "msg": "verb 'overnight': not in the dictionary as a verb"
+    },
+    {
+     "cat": "bad example",
+     "msg": "verb example doesn't contain 'overnight'"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "overnight → 'all night': phrase, part of speech not confirmed"
+    },
+    {
+     "cat": "unchecked POS",
+     "msg": "overnight → 'through the night': phrase, part of speech not confirmed"
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "One corpus row with two meanings, split into two maps (Night, Suddenly), as with boom and commission. Over- + night is a compound, so no affix is claimed."
+  },
+  {
+   "headword": "overnight",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong POS",
+     "msg": "verb 'overnight' (other meaning): not in the dictionary as a verb"
+    },
+    {
+     "cat": "bad example",
+     "msg": "verb example doesn't contain 'overnight'"
+    }
+   ],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Second map for the 'suddenly' meaning; the corpus example uses this one."
+  },
+  {
+   "headword": "owe",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "owed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Owner looks similar but comes from own, not owe (people_not_family). Owing to = because of is a false friend, noted on owing."
+  }
+ ]
+}
