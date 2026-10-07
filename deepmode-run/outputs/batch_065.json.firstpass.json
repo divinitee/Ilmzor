@@ -1,0 +1,273 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "assistant",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: assistive"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: assistive. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "assistants"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "assisted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the noun-slot main entry; assistance is an extra noun. Assistant before a noun (assistant manager) is treated as noun use, not an adjective."
+  },
+  {
+   "headword": "athlete",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "athletes"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, kept as noun main entry; athletics goes to People & things as the field."
+  },
+  {
+   "headword": "athletics",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "athletics"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "British/American trap: athletics (UK) = track and field (US); in American English athletics can mean all sports."
+  },
+  {
+   "headword": "attraction",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: attractiveness"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'attractiveness' (zipf 3.2) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "attractions",
+       "attraction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "attracted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Sense trap: attraction = a place to visit, not romantic attraction; forms are anchored to drawing visitors."
+  },
+  {
+   "headword": "awkward",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "awkwardness: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "awkwardly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "awkwardness"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "The corpus definition joins two ideas (embarrassing and not smooth); synonyms and antonyms cover both. -ward is not in the affix table, so no affix is claimed on the base."
+  },
+  {
+   "headword": "baggage",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: suitcases"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: baggy. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "baggage"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Countability trap: baggage is uncountable. -age is not in the affix table, and the link to bag is not a clear derivation, so no affix is claimed."
+  },
+  {
+   "headword": "balance",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "balances",
+       "balance"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "balanced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Three corpus rows have the same meaning and share one map (all B1). Bank-account balance is a different meaning and is not used. -ed is not in the affix table, so balanced gets no affix."
+  },
+  {
+   "headword": "barber",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: beards"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: baric. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "barber: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "barbers"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "False-suffix trap: barber is not barb + -er, so no affix is claimed. Headword is a person noun and stays the noun main entry; barbershop is a compound and is left out."
+  },
+  {
+   "headword": "beam",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "beams"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "beamed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "The corpus definition joins two meanings (light, and wood or metal); one row, so one map labelled Light that mentions both. Beaming (smiling) is other_meaning."
+  },
+  {
+   "headword": "belly",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "bellies"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Register trap: belly is informal; stomach is the neutral word. Belly button is a compound and is left out."
+  }
+ ]
+}
