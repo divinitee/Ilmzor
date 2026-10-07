@@ -366,9 +366,10 @@
    }
   ],
   "context": {
-   "text": "This juice contains a lot of sugar. Keep it in a glass container in the fridge.",
+   "text": "This juice contains a lot of sugar. Always read the label to check the contents before you buy it, then keep it in a glass container in the fridge.",
    "uses": [
     "contains",
+    "contents",
     "container"
    ]
   },
