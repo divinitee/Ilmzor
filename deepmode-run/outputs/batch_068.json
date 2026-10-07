@@ -1,93 +1,744 @@
 [
-{"headword":"by sea","word_id":"6a4265fb84a10cdfe9e55d91","word_ids":["6a4265fb84a10cdfe9e55d91"],"cefr":"B1","kind":"phrase","sense_label":"Travel","sense_pos":"adverb","corpus_definition":"Traveling using a boat or ship.",
-"usage_note":"Fixed phrase with no article: 'by sea', not 'by the sea' (that means 'near the sea'). Same pattern: by air, by land, by car.",
-"relations":[{"to":"by ship","relation":"synonym","strength":0.95,"note":"Same meaning, more specific."},{"to":"by boat","relation":"synonym","strength":0.8,"note":"Usually for shorter trips."},{"to":"by air","relation":"antonym","note":"Travelling or sending things by plane."}],
-"context":{"text":"My uncle sends carpets to Turkey by sea because it is cheaper. Sending them by sea takes about a month.","uses":["by sea"]},
-"reviewer_note":"'by the sea' is a different meaning (location)."},
-
-{"headword":"call back","word_id":"6a42816a2098612b1526f915","word_ids":["6a42816a2098612b1526f915"],"cefr":"B1","kind":"phrasal","sense_label":"Phone","sense_pos":"verb","corpus_definition":"To phone someone again later.",
-"particle_note":"Separable: 'call me back' or 'call back later'. With a pronoun the object goes in the middle: 'call her back', not 'call back her'.",
-"relations":[{"to":"ring back","relation":"synonym","strength":0.95,"note":"British English, same meaning."},{"to":"phone back","relation":"synonym","strength":0.95,"note":"Same meaning."},{"to":"return a call","relation":"synonym","strength":0.8,"note":"More formal.","register":"formal"}],
-"context":{"text":"Dilnoza was in a meeting, so she said, 'I will call you back.' She called back an hour later.","uses":["call you back","called back"]},
-"reviewer_note":"Noun 'callback' not included (compound, rule 7)."},
-
-{"headword":"calm down","word_id":"6a4282fd46ba24054c1dcdf2","word_ids":["6a4282fd46ba24054c1dcdf2"],"cefr":"B1","kind":"phrasal","sense_label":"Feelings","sense_pos":"verb","corpus_definition":"to become quiet and less angry or upset",
-"particle_note":"Can be used without an object ('Calm down!') or separable with one: 'calm the baby down', 'calm him down'.",
-"relations":[{"to":"relax","relation":"synonym","strength":0.8,"note":"Become less worried or tense."},{"to":"settle down","relation":"synonym","strength":0.8,"note":"Become quiet after being excited."},{"to":"chill out","relation":"synonym","strength":0.8,"note":"Informal.","register":"informal"},{"to":"get angry","relation":"antonym","note":"Start to feel very annoyed."}],
-"context":{"text":"The little boy was crying in the shop. His mother held him and calmed him down, and soon he calmed down completely.","uses":["calmed him down","calmed down"]},
-"reviewer_note":"'Calm down!' can sound rude to an adult; worth a learner tip."},
-
-{"headword":"canal","word_id":"6a6ef9b2a601556148092762","word_ids":["6a6ef9b2a601556148092762"],"cefr":"B1","kind":"word","sense_label":"Water","sense_pos":"noun","corpus_definition":"A long, narrow passage of water made for boats or irrigation.",
-"forms":[
-{"slot":"noun","status":"existing","form":"canal","relation":"base","definition":"a long, narrow waterway made by people for boats or for watering fields","example":"The farmers use a canal to water their cotton.","syn":[{"to":"waterway","relation":"synonym","strength":0.8,"note":"Any river or canal that boats use."},{"to":"channel","relation":"related","strength":0.6,"note":"A narrow passage of water, natural or made."}],"ant":[]},
-{"slot":"verb","status":"no_form"},
-{"slot":"adjective","status":"no_form"},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":["channel"],"affixes":[],
-"context":{"text":"Uzbekistan has many old canals for watering fields. The Great Fergana Canal was built in 1939.","uses":["canals","Canal"]},
-"reviewer_note":"'canal' in body sense (ear canal) is a different meaning, not shown."},
-
-{"headword":"capable of","word_id":"6a4265cce20c7210db6908ee","word_ids":["6a4265cce20c7210db6908ee"],"cefr":"B1","kind":"phrase","sense_label":"Ability","sense_pos":"adjective","corpus_definition":"Having the skill or power to do something.",
-"usage_note":"Followed by a noun or -ing form: 'capable of winning', not 'capable to win'.",
-"relations":[{"to":"able to","relation":"synonym","strength":0.95,"note":"Same meaning, but followed by the base verb: 'able to win'."},{"to":"good at","relation":"related","strength":0.6,"note":"Skilled at something you do often."},{"to":"incapable of","relation":"antonym","note":"Not able to do something."}],
-"context":{"text":"Sardor is capable of running ten kilometres. His coach thinks he is capable of winning the race.","uses":["capable of"]},
-"reviewer_note":"Main contrast for learners: capable OF + -ing vs able TO + verb."},
-
-{"headword":"captain","word_id":"6a42659782466c80f8ae0c93","word_ids":["6a42659782466c80f8ae0c93"],"cefr":"B1","kind":"word","sense_label":"Sport","sense_pos":"noun","corpus_definition":"The person who is the leader of a sports group.",
-"forms":[
-{"slot":"noun","status":"existing","form":"captaincy","relation":"derivational","definition":"the job of being the leader of a sports team, or the time someone does it","example":"Under her captaincy, the team won every game.","register":"formal","syn":[{"to":"leadership","relation":"synonym","strength":0.8,"note":"The act of leading a group."}],"ant":[]},
-{"slot":"verb","status":"existing","form":"captain","relation":"conversion","definition":"to be the leader of a sports team","example":"He captained the school football team.","syn":[{"to":"lead","relation":"synonym","strength":0.8,"note":"Be in charge of a group."}],"ant":[]},
-{"slot":"adjective","status":"no_form"},
-{"slot":"adverb","status":"no_form"}],
-"people":[{"form":"captain","kind":"person","status":"existing","definition":"the leader of a sports team","example":"The captain lifted the cup."},{"form":"captain","kind":"job","status":"other_meaning","definition":"the person in charge of a ship or plane","example":"The captain spoke to the passengers.","note":"Belongs to captain = person in charge of a ship or plane, not a sports leader."}],
-"people_not_family":["skipper"],
-"affixes":[{"affix":"-cy","in_form":"captaincy","meaning_key":"-cy","also":["privacy","accuracy","democracy"]}],
-"context":{"text":"Aziz is the captain of our volleyball team. He has captained the team for two years.","uses":["captain","captained"]},
-"reviewer_note":"Ship/plane captain is a different meaning."},
-
-{"headword":"career","word_id":"6a42821646ba24054c1dcc99","word_ids":["6a42821646ba24054c1dcc99"],"cefr":"B1","kind":"word","sense_label":"Work","sense_pos":"noun","corpus_definition":"the job or series of jobs you do during your working life",
-"forms":[
-{"slot":"noun","status":"existing","form":"career","relation":"base","definition":"the jobs you do during your working life, usually in one area","example":"She wants a career in medicine.","syn":[{"to":"profession","relation":"synonym","strength":0.8,"note":"A job that needs special training."},{"to":"occupation","relation":"synonym","strength":0.8,"note":"Formal word for a job.","register":"formal"},{"to":"job","relation":"related","strength":0.6,"note":"One piece of work; a career is many jobs over time."}],"ant":[]},
-{"slot":"verb","status":"other_meaning","form":"career","definition":"to move very fast and out of control","example":"The car careered off the road.","note":"Belongs to career = move fast without control, not working life."},
-{"slot":"adjective","status":"no_form","note":"'career' is used before nouns (a career woman), but that is a noun used as a modifier."},
-{"slot":"adverb","status":"no_form"}],
-"people":[],"people_not_family":[],"affixes":[],
-"context":{"text":"My sister started her career as a teacher in Bukhara. Now her career is in school management.","uses":["career"]},
-"reviewer_note":"Verb career (move fast) is a separate meaning; 'careerist' not shown (rare)."},
-
-{"headword":"careless","word_id":"6a42662edeeb39f881130144","word_ids":["6a42662edeeb39f881130144"],"cefr":"B1","kind":"word","sense_label":"Attention","sense_pos":"adjective","corpus_definition":"Not paying enough attention to what you are doing.",
-"forms":[
-{"slot":"noun","status":"existing","form":"care","relation":"base","definition":"attention you give to doing something well and safely","example":"Carry the glasses with care.","syn":[{"to":"attention","relation":"synonym","strength":0.8,"note":"Thinking carefully about what you do."}],"ant":[]},
-{"slot":"noun","status":"existing","form":"carelessness","relation":"derivational","definition":"the fact of not paying enough attention","example":"The accident happened because of carelessness.","syn":[{"to":"negligence","relation":"synonym","strength":0.8,"note":"Formal; often used in law.","register":"formal"}],"ant":[]},
-{"slot":"verb","status":"existing","form":"care","relation":"base","definition":"to think something is important","example":"He doesn't care about his marks.","syn":[],"ant":[]},
-{"slot":"adjective","status":"existing","form":"careless","relation":"derivational","definition":"not thinking enough about what you are doing, so you make mistakes","example":"I made a careless mistake in my test.","syn":[{"to":"sloppy","relation":"synonym","strength":0.8,"note":"Informal: done without care.","register":"informal"},{"to":"thoughtless","relation":"related","strength":0.6,"note":"Not thinking about other people."}],"ant":[{"to":"careful","relation":"antonym","note":"Paying attention to avoid mistakes."}]},
-{"slot":"adjective","status":"existing","form":"careful","relation":"derivational","definition":"paying attention so that you do not make mistakes","example":"Be careful with that knife.","syn":[{"to":"cautious","relation":"synonym","strength":0.8,"note":"Avoiding danger or risk."}],"ant":[]},
-{"slot":"adverb","status":"existing","form":"carelessly","relation":"derivational","definition":"without enough attention","example":"He drove carelessly and hit a wall.","syn":[],"ant":[{"to":"carefully","relation":"antonym","note":"With attention."}]}],
-"people":[],"people_not_family":[],
-"affixes":[{"affix":"-less","in_form":"careless","meaning_key":"-less","also":["homeless","useless","helpless"]},{"affix":"-ness","in_form":"carelessness","meaning_key":"-ness","also":["kindness","sadness","darkness"]},{"affix":"-ly","in_form":"carelessly","meaning_key":"-ly","also":["quickly","happily","really"]},{"affix":"-ful","in_form":"careful","meaning_key":"-ful","also":["useful","helpful","beautiful"]}],
-"context":{"text":"Malika was careless and left her phone on the bus. Next time she will be more careful.","uses":["careless","careful"]},
-"reviewer_note":"careful kept as family entry, not antonym-only."},
-
-{"headword":"caretaker","word_id":"6a6ef9b2a6015561480927b2","word_ids":["6a6ef9b2a6015561480927b2"],"cefr":"B1","kind":"word","sense_label":"Job","sense_pos":"noun","corpus_definition":"a person who looks after a building or place",
-"forms":[
-{"slot":"noun","status":"no_form","note":"Headword is a person noun; it sits in People & things."},
-{"slot":"verb","status":"no_form"},
-{"slot":"adjective","status":"other_meaning","form":"caretaker","definition":"in charge for a short time until a new leader is chosen","example":"A caretaker government ran the country.","note":"Belongs to caretaker = temporary leader, not a building worker."},
-{"slot":"adverb","status":"no_form"}],
-"people":[{"form":"caretaker","kind":"job","status":"existing","definition":"a person whose job is to look after a building","example":"The school caretaker fixed the broken door."}],
-"people_not_family":["janitor"],"affixes":[],
-"context":{"text":"Our school caretaker opens the gates every morning. Everyone likes the caretaker because he is kind.","uses":["caretaker"]},
-"reviewer_note":"Compound headword from the corpus; no family forms added (rule 7). janitor is American English synonym."},
-
-{"headword":"casual","word_id":"6a6ef9b2a60155614809287b","word_ids":["6a6ef9b2a60155614809287b"],"cefr":"B1","kind":"word","sense_label":"Clothes","sense_pos":"adjective","corpus_definition":"Not formal or fancy, suitable for everyday wear.",
-"forms":[
-{"slot":"noun","status":"existing","form":"casualness","relation":"derivational","definition":"a relaxed, informal way of acting or dressing","example":"I like the casualness of the office.","syn":[],"ant":[]},
-{"slot":"noun","status":"other_meaning","form":"casualty","definition":"a person hurt or killed in an accident or war","example":"There were no casualties in the crash.","note":"Belongs to an old sense of casual = by chance, not informal clothes."},
-{"slot":"verb","status":"no_form"},
-{"slot":"adjective","status":"existing","form":"casual","relation":"base","definition":"relaxed and not formal, for everyday use","example":"He wears casual clothes at the weekend.","syn":[{"to":"informal","relation":"synonym","strength":0.95,"note":"Not formal."},{"to":"relaxed","relation":"synonym","strength":0.8,"note":"Comfortable and calm."}],"ant":[{"to":"formal","relation":"antonym","note":"Right for official or serious events."},{"to":"smart","relation":"antonym","note":"British English: neat and well dressed."}]},
-{"slot":"adverb","status":"existing","form":"casually","relation":"derivational","definition":"in a relaxed, informal way","example":"She was dressed casually in jeans.","syn":[{"to":"informally","relation":"synonym","strength":0.95,"note":"Not in an official way."}],"ant":[{"to":"formally","relation":"antonym","note":"In an official way."}]}],
-"people":[],"people_not_family":[],
-"affixes":[{"affix":"-ly","in_form":"casually","meaning_key":"-ly","also":["quickly","happily","really"]},{"affix":"-ness","in_form":"casualness","meaning_key":"-ness","also":["kindness","sadness","darkness"]}],
-"context":{"text":"On Fridays our office is casual. Most people dress casually in jeans and T-shirts.","uses":["casual","casually"]},
-"reviewer_note":"casualty is historically related but a different meaning."}
+ {
+  "headword": "by sea",
+  "word_id": "6a4265fb84a10cdfe9e55d91",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d91"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Travel",
+  "sense_pos": "adverb",
+  "corpus_definition": "Traveling using a boat or ship.",
+  "usage_note": "Fixed phrase with no article: 'by sea', not 'by the sea' (that means 'near the sea'). Same pattern: by air, by land, by car.",
+  "relations": [
+   {
+    "to": "by ship",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, more specific."
+   },
+   {
+    "to": "by boat",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Usually for shorter trips."
+   },
+   {
+    "to": "by air",
+    "relation": "antonym",
+    "note": "Travelling or sending things by plane."
+   }
+  ],
+  "context": {
+   "text": "My uncle sends carpets to Turkey by sea because it is cheaper. Sending them by sea takes about a month.",
+   "uses": [
+    "by sea"
+   ]
+  },
+  "reviewer_note": "'by the sea' is a different meaning (location)."
+ },
+ {
+  "headword": "call back",
+  "word_id": "6a42816a2098612b1526f915",
+  "word_ids": [
+   "6a42816a2098612b1526f915"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Phone",
+  "sense_pos": "verb",
+  "corpus_definition": "To phone someone again later.",
+  "particle_note": "Separable: 'call me back' or 'call back later'. With a pronoun the object goes in the middle: 'call her back', not 'call back her'.",
+  "relations": [
+   {
+    "to": "ring back",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "British English, same meaning."
+   },
+   {
+    "to": "phone back",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning."
+   },
+   {
+    "to": "return a call",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "More formal.",
+    "register": "formal"
+   }
+  ],
+  "context": {
+   "text": "Dilnoza was busy in a meeting, so she asked me to call her back. I called back an hour later and we talked.",
+   "uses": [
+    "call her back",
+    "called back"
+   ]
+  },
+  "reviewer_note": "Noun 'callback' not included (compound, rule 7)."
+ },
+ {
+  "headword": "calm down",
+  "word_id": "6a4282fd46ba24054c1dcdf2",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdf2"
+  ],
+  "cefr": "B1",
+  "kind": "phrasal",
+  "sense_label": "Feelings",
+  "sense_pos": "verb",
+  "corpus_definition": "to become quiet and less angry or upset",
+  "particle_note": "Can be used without an object ('Calm down!') or separable with one: 'calm the baby down', 'calm him down'.",
+  "relations": [
+   {
+    "to": "relax",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Become less worried or tense."
+   },
+   {
+    "to": "settle down",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Become quiet after being excited."
+   },
+   {
+    "to": "chill out",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Informal.",
+    "register": "informal"
+   },
+   {
+    "to": "get angry",
+    "relation": "antonym",
+    "note": "Start to feel very annoyed."
+   }
+  ],
+  "context": {
+   "text": "The little boy was crying in the shop. His mother held him and calmed him down, and soon he calmed down completely.",
+   "uses": [
+    "calmed him down",
+    "calmed down"
+   ]
+  },
+  "reviewer_note": "'Calm down!' can sound rude to an adult; worth a learner tip."
+ },
+ {
+  "headword": "canal",
+  "word_id": "6a6ef9b2a601556148092762",
+  "word_ids": [
+   "6a6ef9b2a601556148092762"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Water",
+  "sense_pos": "noun",
+  "corpus_definition": "A long, narrow passage of water made for boats or irrigation.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "canal",
+    "relation": "base",
+    "definition": "a long, narrow waterway made by people for boats or for watering fields",
+    "example": "The farmers use a canal to water their cotton.",
+    "syn": [
+     {
+      "to": "waterway",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Any river or canal that boats use."
+     },
+     {
+      "to": "channel",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A narrow passage of water, natural or made."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [
+   "channel"
+  ],
+  "affixes": [],
+  "context": {
+   "text": "Uzbekistan has many old canals for watering fields. The Great Fergana Canal was built in 1939.",
+   "uses": [
+    "canals",
+    "Canal"
+   ]
+  },
+  "reviewer_note": "'canal' in body sense (ear canal) is a different meaning, not shown."
+ },
+ {
+  "headword": "capable of",
+  "word_id": "6a4265cce20c7210db6908ee",
+  "word_ids": [
+   "6a4265cce20c7210db6908ee"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Ability",
+  "sense_pos": "adjective",
+  "corpus_definition": "Having the skill or power to do something.",
+  "usage_note": "Followed by a noun or -ing form: 'capable of winning', not 'capable to win'.",
+  "relations": [
+   {
+    "to": "able to",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, but followed by the base verb: 'able to win'."
+   },
+   {
+    "to": "good at",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Skilled at something you do often."
+   },
+   {
+    "to": "incapable of",
+    "relation": "antonym",
+    "note": "Not able to do something."
+   }
+  ],
+  "context": {
+   "text": "Sardor is capable of running ten kilometres. His coach thinks he is capable of winning the race.",
+   "uses": [
+    "capable of"
+   ]
+  },
+  "reviewer_note": "Main contrast for learners: capable OF + -ing vs able TO + verb."
+ },
+ {
+  "headword": "captain",
+  "word_id": "6a42659782466c80f8ae0c93",
+  "word_ids": [
+   "6a42659782466c80f8ae0c93"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Sport",
+  "sense_pos": "noun",
+  "corpus_definition": "The person who is the leader of a sports group.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "captain",
+    "relation": "base",
+    "definition": "the leader of a sports team",
+    "example": "The captain lifted the cup.",
+    "syn": [
+     {
+      "to": "leader",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A person who leads a group."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "captaincy",
+    "relation": "derivational",
+    "definition": "the job of being the leader of a sports team, or the time someone does it",
+    "example": "Under her captaincy, the team won every game.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "leadership",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The act of leading a group."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "captain",
+    "relation": "conversion",
+    "definition": "to be the leader of a sports team",
+    "example": "He captained the school football team.",
+    "syn": [
+     {
+      "to": "lead",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Be in charge of a group."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "captain",
+    "kind": "job",
+    "status": "other_meaning",
+    "definition": "the person in charge of a ship or plane",
+    "example": "The captain spoke to the passengers.",
+    "note": "Belongs to captain = person in charge of a ship or plane, not a sports leader."
+   }
+  ],
+  "people_not_family": [
+   "skipper"
+  ],
+  "affixes": [],
+  "context": {
+   "text": "Aziz is the captain of our volleyball team. He has captained the team for two years.",
+   "uses": [
+    "captain",
+    "captained"
+   ]
+  },
+  "reviewer_note": "Ship/plane captain is a different meaning."
+ },
+ {
+  "headword": "career",
+  "word_id": "6a42821646ba24054c1dcc99",
+  "word_ids": [
+   "6a42821646ba24054c1dcc99"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Work",
+  "sense_pos": "noun",
+  "corpus_definition": "the job or series of jobs you do during your working life",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "career",
+    "relation": "base",
+    "definition": "the jobs you do during your working life, usually in one area",
+    "example": "She wants a career in medicine.",
+    "syn": [
+     {
+      "to": "profession",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A job that needs special training."
+     },
+     {
+      "to": "occupation",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal word for a job.",
+      "register": "formal"
+     },
+     {
+      "to": "job",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "One piece of work; a career is many jobs over time."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "career",
+    "definition": "to move very fast and out of control",
+    "example": "The car careered off the road.",
+    "note": "Belongs to career = move fast without control, not working life."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "'career' is used before nouns (a career woman), but that is a noun used as a modifier."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My sister started her career as a teacher in Bukhara. Now her career is in school management.",
+   "uses": [
+    "career"
+   ]
+  },
+  "reviewer_note": "Verb career (move fast) is a separate meaning; 'careerist' not shown (rare)."
+ },
+ {
+  "headword": "careless",
+  "word_id": "6a42662edeeb39f881130144",
+  "word_ids": [
+   "6a42662edeeb39f881130144"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Attention",
+  "sense_pos": "adjective",
+  "corpus_definition": "Not paying enough attention to what you are doing.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "care",
+    "relation": "derivational",
+    "definition": "attention you give to doing something well and safely",
+    "example": "Carry the glasses with care.",
+    "syn": [
+     {
+      "to": "attention",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Thinking carefully about what you do."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "carelessness",
+    "relation": "derivational",
+    "definition": "the fact of not paying enough attention",
+    "example": "The accident happened because of carelessness.",
+    "syn": [
+     {
+      "to": "negligence",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal; often used in law.",
+      "register": "formal"
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "care",
+    "relation": "derivational",
+    "definition": "to think something is important",
+    "example": "He doesn't care about his marks.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "careless",
+    "relation": "derivational",
+    "definition": "not thinking enough about what you are doing, so you make mistakes",
+    "example": "I made a careless mistake in my test.",
+    "syn": [
+     {
+      "to": "sloppy",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal: done without care.",
+      "register": "informal"
+     },
+     {
+      "to": "thoughtless",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not thinking about other people."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "careful",
+    "relation": "derivational",
+    "definition": "paying attention so that you do not make mistakes",
+    "example": "Be careful with that knife.",
+    "syn": [
+     {
+      "to": "cautious",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Avoiding danger or risk."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "carelessly",
+    "relation": "derivational",
+    "definition": "without enough attention",
+    "example": "He drove carelessly and hit a wall.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "carefully",
+      "relation": "antonym",
+      "note": "With attention."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-less",
+    "in_form": "careless",
+    "meaning_key": "-less",
+    "also": [
+     "homeless",
+     "useless",
+     "helpless"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "carelessness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "carelessly",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   },
+   {
+    "affix": "-ful",
+    "in_form": "careful",
+    "meaning_key": "-ful",
+    "also": [
+     "useful",
+     "helpful",
+     "beautiful"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Malika was careless and left her phone on the bus. Next time she will be more careful.",
+   "uses": [
+    "careless",
+    "careful"
+   ]
+  },
+  "reviewer_note": "careful is family (care + -ful), so not listed as antonym."
+ },
+ {
+  "headword": "caretaker",
+  "word_id": "6a6ef9b2a6015561480927b2",
+  "word_ids": [
+   "6a6ef9b2a6015561480927b2"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Job",
+  "sense_pos": "noun",
+  "corpus_definition": "a person who looks after a building or place",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "caretaker",
+    "relation": "base",
+    "definition": "a person whose job is to look after a building",
+    "example": "The school caretaker fixed the broken door.",
+    "syn": [
+     {
+      "to": "janitor",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "American English."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Our school caretaker opens the gates every morning. Everyone likes the caretaker because he is kind.",
+   "uses": [
+    "caretaker"
+   ]
+  },
+  "reviewer_note": "Compound headword from the corpus; no family forms added (rule 7). janitor is American English synonym."
+ },
+ {
+  "headword": "casual",
+  "word_id": "6a6ef9b2a60155614809287b",
+  "word_ids": [
+   "6a6ef9b2a60155614809287b"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Clothes",
+  "sense_pos": "adjective",
+  "corpus_definition": "Not formal or fancy, suitable for everyday wear.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "casualness",
+    "relation": "derivational",
+    "definition": "a relaxed, informal way of acting or dressing",
+    "example": "I like the casualness of the office.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "casualty",
+    "definition": "a person hurt or killed in an accident or war",
+    "example": "There were no casualties in the crash.",
+    "note": "Belongs to an old sense of casual = by chance, not informal clothes."
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "casual",
+    "relation": "base",
+    "definition": "relaxed and not formal, for everyday use",
+    "example": "He wears casual clothes at the weekend.",
+    "syn": [
+     {
+      "to": "informal",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Not formal."
+     },
+     {
+      "to": "relaxed",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Comfortable and calm."
+     }
+    ],
+    "ant": [
+     {
+      "to": "formal",
+      "relation": "antonym",
+      "note": "Right for official or serious events."
+     },
+     {
+      "to": "smart",
+      "relation": "antonym",
+      "note": "British English: neat and well dressed."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "casually",
+    "relation": "derivational",
+    "definition": "in a relaxed, informal way",
+    "example": "She was dressed casually in jeans.",
+    "syn": [
+     {
+      "to": "informally",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Not in an official way."
+     }
+    ],
+    "ant": [
+     {
+      "to": "formally",
+      "relation": "antonym",
+      "note": "In an official way."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ly",
+    "in_form": "casually",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "casualness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   }
+  ],
+  "context": {
+   "text": "On Fridays our office is casual. Most people dress casually in jeans and T-shirts.",
+   "uses": [
+    "casual",
+    "casually"
+   ]
+  },
+  "reviewer_note": "casualty is historically related but a different meaning."
+ }
 ]
