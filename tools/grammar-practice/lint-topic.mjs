@@ -107,7 +107,7 @@ for (const it of items) {
     // a / an agreement in front of the slot
     for (const m of text.matchAll(new RegExp(`\\b(a|an|A|An) \\{${name}\\}`, "g"))) {
       const art = m[1].toLowerCase();
-      for (const f of fill) {
+      for (const f of fill.filter((x) => !/^(a|an|the)\s/i.test(x))) {
         if (art === "a" && VOWEL_SOUND(f)) F(`${id}: "a {${name}}" with filler "${f}" → "a ${f}"`);
         if (art === "an" && !VOWEL_SOUND(f)) F(`${id}: "an {${name}}" with filler "${f}" → "an ${f}"`);
       }
