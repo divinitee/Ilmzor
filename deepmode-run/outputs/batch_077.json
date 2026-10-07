@@ -1,0 +1,503 @@
+[
+{
+"headword": "detail",
+"word_id": "6a6ef83f0f1e82a5a073683c",
+"word_ids": ["6a6ef83f0f1e82a5a073683c"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Part",
+"sense_pos": "noun",
+"corpus_definition": "a small specific part or feature of something larger",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "detail", "relation": "base",
+"definition": "one small fact or part of something bigger",
+"example": "He told me every tiny detail of the story.",
+"syn": [
+{"to": "particular", "relation": "synonym", "strength": 0.8, "note": "Formal; often plural: 'Please send me the particulars of the job.'", "register": "formal"},
+{"to": "point", "relation": "related", "strength": 0.6, "note": "Related: one idea or fact in a talk or text; not always small."},
+{"to": "feature", "relation": "related", "strength": 0.6, "note": "Related: an important or typical part of something, like a feature of a building."},
+{"to": "fact", "relation": "related", "strength": 0.4, "note": "Related: something true; a detail is a small fact inside a bigger story."},
+{"to": "element", "relation": "related", "strength": 0.4, "note": "Related: one basic part of something; more formal."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "detail", "relation": "conversion",
+"definition": "to give all the small facts about something, one by one",
+"example": "The report details the cost of every new school.",
+"register": "formal",
+"syn": [
+{"to": "describe", "relation": "related", "strength": 0.6, "note": "Related: to say what something is like; you may not give every small fact."},
+{"to": "list", "relation": "related", "strength": 0.6, "note": "Related: to write things one after another, often without explaining them."},
+{"to": "specify", "relation": "synonym", "strength": 0.8, "note": "Formal: to say exactly what is needed or planned.", "register": "formal"},
+{"to": "itemize", "relation": "synonym", "strength": 0.8, "note": "To write each thing on a list separately, like on a bill. British spelling: itemise."}
+],
+"ant": []},
+{"slot": "adjective", "status": "existing", "form": "detailed", "relation": "participial",
+"definition": "having many small facts or parts, with nothing left out",
+"example": "She gave us a detailed map of the old city of Bukhara.",
+"syn": [
+{"to": "thorough", "relation": "synonym", "strength": 0.8, "note": "Careful and complete; often about work or a check."},
+{"to": "comprehensive", "relation": "synonym", "strength": 0.8, "note": "Formal: covering everything about a subject.", "register": "formal"},
+{"to": "full", "relation": "related", "strength": 0.6, "note": "Related, easy word: 'a full report' has all the information."},
+{"to": "careful", "relation": "related", "strength": 0.4, "note": "Related: about the person doing the work, not the result."}
+],
+"ant": [
+{"to": "rough", "relation": "antonym", "note": "Only the main ideas, not exact: 'a rough plan'."},
+{"to": "general", "relation": "antonym", "note": "About the whole thing, without small facts: 'a general idea'."}
+]},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family. Learners say 'in detail': 'She explained it in detail.'"}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "My grandmother remembers every detail of her wedding in Samarkand. She gave me a detailed description of the food, the music and the guests.", "uses": ["detail", "detailed"]},
+"reviewer_note": "'Detailed' is a participle adjective; -ed is not in the affix table, so no affix is claimed. No real adverb (use 'in detail')."
+},
+{
+"headword": "devil",
+"word_id": "6a6ef9b2a60155614809288f",
+"word_ids": ["6a6ef9b2a60155614809288f"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Spirit",
+"sense_pos": "noun",
+"corpus_definition": "A very bad spirit that causes evil in many stories.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "devil", "relation": "base",
+"definition": "an evil spirit in stories and religions that makes people do bad things",
+"example": "He told a story about a trickster devil.",
+"note": "With 'the' and often a capital letter, it means the most powerful evil spirit in Christianity and Islam.",
+"syn": [
+{"to": "demon", "relation": "synonym", "strength": 0.95, "note": "Very close; an evil spirit, often in films and stories."},
+{"to": "fiend", "relation": "synonym", "strength": 0.8, "note": "Old-fashioned or literary word for an evil spirit.", "register": "literary"},
+{"to": "monster", "relation": "related", "strength": 0.4, "note": "Related: a frightening creature, but not always a spirit."}
+],
+"ant": [
+{"to": "angel", "relation": "antonym", "note": "A good spirit that helps people; the opposite of a devil."}
+]},
+{"slot": "verb", "status": "other_meaning", "form": "devil",
+"definition": "to cook food with hot spices such as mustard or pepper",
+"example": "The cook devilled the chicken legs with mustard and chilli.",
+"note": "Belongs to devil = hot, spicy cooking (deviled eggs), not the evil spirit. Rare; American spelling deviled."},
+{"slot": "adjective", "status": "existing", "form": "devilish", "relation": "derivational",
+"definition": "very bad or wicked, like an evil spirit",
+"example": "The villain in the film had a devilish laugh.",
+"note": "It can also mean playful in a slightly naughty way: 'a devilish smile'.",
+"syn": [
+{"to": "wicked", "relation": "synonym", "strength": 0.8, "note": "Very bad and cruel; common in fairy tales."},
+{"to": "evil", "relation": "synonym", "strength": 0.8, "note": "Easy word; very bad and harmful."},
+{"to": "fiendish", "relation": "synonym", "strength": 0.8, "note": "Cruel and clever in a bad way; also 'very difficult': a fiendish puzzle."},
+{"to": "naughty", "relation": "related", "strength": 0.4, "note": "Related: only a little bad, like a child who does not obey."}
+],
+"ant": [
+{"to": "angelic", "relation": "antonym", "note": "Very good, kind or beautiful, like an angel."}
+]},
+{"slot": "adverb", "status": "other_meaning", "form": "devilishly",
+"definition": "extremely; very much",
+"example": "The last question in the test was devilishly hard.",
+"note": "Belongs to devil used as a strong word meaning 'very', not evil spirits. A little old-fashioned and informal."}
+],
+"people": [],
+"affixes": [
+{"affix": "-ish", "in_form": "devilish", "meaning_key": "-ish", "also": ["childish", "foolish", "selfish"]}
+],
+"context": {"text": "In old Uzbek stories, a devil sometimes tricks travellers on the road at night. My grandfather told these tales with a devilish smile, and we were always scared.", "uses": ["devil", "devilish"]},
+"reviewer_note": "Verb 'devil' (spicy cooking) and adverb 'devilishly' (= very) shown as other_meaning so no real word is hidden."
+},
+{
+"headword": "diagram",
+"word_id": "6a6ef83f0f1e82a5a0736827",
+"word_ids": ["6a6ef83f0f1e82a5a0736827"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Drawing",
+"sense_pos": "noun",
+"corpus_definition": "A drawing that explains how something works.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "diagram", "relation": "base",
+"definition": "a simple drawing that shows how something works or is built",
+"example": "Look at the diagram to fix the machine.",
+"syn": [
+{"to": "chart", "relation": "synonym", "strength": 0.8, "note": "A drawing or table that shows information, often numbers."},
+{"to": "drawing", "relation": "related", "strength": 0.6, "note": "Related, easy word: any picture made with a pen or pencil."},
+{"to": "plan", "relation": "related", "strength": 0.6, "note": "Related: a drawing of a building or machine from above."},
+{"to": "sketch", "relation": "related", "strength": 0.4, "note": "Related: a quick drawing without many details."},
+{"to": "graph", "relation": "related", "strength": 0.4, "note": "Related: a drawing with lines that shows numbers changing."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "diagram", "relation": "conversion",
+"definition": "to show or explain something with a simple drawing",
+"example": "The teacher diagrammed the parts of a flower on the board.",
+"note": "British spelling: diagrammed, diagramming (double m in both British and American English).",
+"syn": [
+{"to": "chart", "relation": "synonym", "strength": 0.8, "note": "To show information in a drawing or table."},
+{"to": "draw", "relation": "related", "strength": 0.6, "note": "Related, easy word: to make any picture."},
+{"to": "sketch", "relation": "related", "strength": 0.6, "note": "Related: to draw quickly and simply."}
+],
+"ant": []},
+{"slot": "adjective", "status": "existing", "form": "diagrammatic", "relation": "derivational",
+"definition": "shown as a simple drawing that explains something",
+"example": "The book gives a diagrammatic view of the human heart.",
+"register": "formal",
+"syn": [
+{"to": "schematic", "relation": "synonym", "strength": 0.8, "note": "Formal and technical; showing only the main parts.", "register": "formal"},
+{"to": "graphic", "relation": "related", "strength": 0.6, "note": "Related: connected with pictures and drawings."}
+],
+"ant": []},
+{"slot": "adverb", "status": "existing", "form": "diagrammatically", "relation": "derivational",
+"definition": "by using a simple drawing that explains something",
+"example": "The water cycle is shown diagrammatically on page 12.",
+"register": "formal",
+"syn": [
+{"to": "schematically", "relation": "synonym", "strength": 0.8, "note": "Technical; showing only the main parts.", "register": "formal"},
+{"to": "graphically", "relation": "related", "strength": 0.6, "note": "Related: using pictures, charts or drawings."}
+],
+"ant": []}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "Our science teacher drew a diagram of the heart on the board. The textbook shows the same idea in a diagrammatic way, with red and blue arrows for the blood.", "uses": ["diagram", "diagrammatic"]},
+"reviewer_note": "No affix claimed: diagrammatic = diagram + -atic, and removing -ic leaves no real word."
+},
+{
+"headword": "dial",
+"word_id": "6a6ef9b2a601556148092844",
+"word_ids": ["6a6ef9b2a601556148092844"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Control",
+"sense_pos": "verb",
+"corpus_definition": "to turn a control to select a number or setting; a round control panel",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "dial", "relation": "conversion",
+"definition": "a round part with numbers that you turn or read, on a phone, clock or machine",
+"example": "Turn the dial on the oven to 180 degrees.",
+"syn": [
+{"to": "knob", "relation": "related", "strength": 0.6, "note": "Related: a small round handle you turn; it may have no numbers."},
+{"to": "control", "relation": "related", "strength": 0.6, "note": "Related: any button or switch that makes a machine work."},
+{"to": "switch", "relation": "related", "strength": 0.4, "note": "Related: you press or flip a switch to turn something on or off."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "dial", "relation": "base",
+"definition": "to press or turn the numbers on a phone, or turn a control to a setting",
+"example": "She dialed the number and waited for an answer.",
+"note": "British spelling: dialled, dialling. American: dialed, dialing.",
+"syn": [
+{"to": "call", "relation": "related", "strength": 0.6, "note": "Related, easy word: you dial a number to call someone."},
+{"to": "phone", "relation": "related", "strength": 0.6, "note": "Related: to speak to someone by phone."},
+{"to": "ring", "relation": "related", "strength": 0.6, "note": "Related: British English for 'phone someone'."},
+{"to": "tune", "relation": "related", "strength": 0.4, "note": "Related: to turn a radio to a station."}
+],
+"ant": []},
+{"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "My grandmother still has an old phone with a round dial. She dials her sister's number slowly, one number at a time, and waits for her to answer.", "uses": ["dial", "dials"]},
+"reviewer_note": "One row joins the verb and the noun of the same meaning (conversion), so one map. Only one spelling exists, so context uses noun and verb of 'dial'."
+},
+{
+"headword": "digital",
+"word_id": "6a42800cb9d8fc24968a4b30",
+"word_ids": ["6a42800cb9d8fc24968a4b30"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Computer",
+"sense_pos": "adjective",
+"corpus_definition": "Using computer technology to store or show information as numbers.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "digitization", "relation": "derivational",
+"definition": "the process of changing books, pictures or sound into a form a computer can use",
+"example": "The digitization of old library books takes many years.",
+"register": "formal",
+"note": "British spelling: digitisation.",
+"syn": [
+{"to": "computerization", "relation": "related", "strength": 0.6, "note": "Related: starting to use computers for a job. British spelling: computerisation."},
+{"to": "scanning", "relation": "related", "strength": 0.4, "note": "Related: copying paper pages into a computer with a machine."}
+],
+"ant": []},
+{"slot": "noun", "status": "other_meaning", "form": "digit",
+"definition": "any one of the numbers from 0 to 9",
+"example": "My phone number has nine digits.",
+"note": "Belongs to the old root meaning 'a single number' (also 'a finger'), not computer technology. 'Digital' first meant 'using numbers'."},
+{"slot": "verb", "status": "existing", "form": "digitize", "relation": "derivational",
+"definition": "to change pictures, text or sound into a form a computer can use",
+"example": "The museum is digitizing its old photos.",
+"note": "British spelling: digitise.",
+"syn": [
+{"to": "scan", "relation": "related", "strength": 0.6, "note": "Related: to copy a paper page into a computer with a machine."},
+{"to": "computerize", "relation": "related", "strength": 0.6, "note": "Related: to start using computers for a job. British spelling: computerise."}
+],
+"ant": []},
+{"slot": "adjective", "status": "existing", "form": "digital", "relation": "base",
+"definition": "using computers to keep or show information as numbers",
+"example": "I prefer reading digital books instead of paper ones.",
+"syn": [
+{"to": "electronic", "relation": "synonym", "strength": 0.8, "note": "Using electricity and computer chips; very close in everyday use."},
+{"to": "online", "relation": "related", "strength": 0.6, "note": "Related: connected to the internet; digital things are not always online."},
+{"to": "virtual", "relation": "related", "strength": 0.4, "note": "Related: made by a computer and not real, like a virtual tour."}
+],
+"ant": [
+{"to": "analog", "relation": "antonym", "note": "Using moving parts or waves, not numbers: an analog watch has hands. British spelling: analogue."}
+]},
+{"slot": "adverb", "status": "existing", "form": "digitally", "relation": "derivational",
+"definition": "by using computer technology",
+"example": "All the photos are stored digitally on my phone.",
+"syn": [
+{"to": "electronically", "relation": "synonym", "strength": 0.8, "note": "Using computers or electronic machines: 'pay electronically'."}
+],
+"ant": []}
+],
+"people": [],
+"affixes": [
+{"affix": "-al", "in_form": "digital", "meaning_key": "-al", "also": ["musical", "national", "personal"]},
+{"affix": "-ize", "in_form": "digitize", "meaning_key": "-ize", "also": ["modernize", "organize", "realize"]},
+{"affix": "-ly", "in_form": "digitally", "meaning_key": "-ly", "also": ["quickly", "usually", "really"]},
+{"affix": "-ation", "in_form": "digitization", "meaning_key": "-ation", "also": ["organization", "information", "invitation"]}
+],
+"context": {"text": "My father digitized all our old family photos last year. Now we keep them in a digital album and share them digitally with our relatives in Tashkent.", "uses": ["digitized", "digital", "digitally"]},
+"reviewer_note": "Root 'digit' (a single number) shown as noun other_meaning; digitization is the noun for this meaning."
+},
+{
+"headword": "dim",
+"word_id": "6a6ef9b2a6015561480926d8",
+"word_ids": ["6a6ef9b2a6015561480926d8"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Light",
+"sense_pos": "adjective",
+"corpus_definition": "Not bright or clear.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "dimness", "relation": "derivational",
+"definition": "the state of having very little light",
+"example": "In the dimness of the room, I could not see her face.",
+"syn": [
+{"to": "darkness", "relation": "synonym", "strength": 0.8, "note": "Easy word; darkness can mean no light at all."},
+{"to": "gloom", "relation": "synonym", "strength": 0.8, "note": "Low light that often feels sad; a little literary.", "register": "literary"},
+{"to": "shadow", "relation": "related", "strength": 0.4, "note": "Related: a dark area where light is blocked."}
+],
+"ant": [
+{"to": "brightness", "relation": "antonym", "note": "A lot of strong light."}
+]},
+{"slot": "verb", "status": "existing", "form": "dim", "relation": "conversion",
+"definition": "to make a light less bright, or to become less bright",
+"example": "Please dim the lights before the film starts.",
+"syn": [
+{"to": "darken", "relation": "synonym", "strength": 0.8, "note": "To make or become darker; not only about lamps."},
+{"to": "lower", "relation": "related", "strength": 0.6, "note": "Related: 'lower the lights' is a common, easy way to say it."},
+{"to": "fade", "relation": "related", "strength": 0.6, "note": "Related: to become weaker slowly, like a colour or a sound."}
+],
+"ant": [
+{"to": "brighten", "relation": "antonym", "note": "To make or become brighter."}
+]},
+{"slot": "adjective", "status": "existing", "form": "dim", "relation": "base",
+"definition": "not giving or having much light, so things are hard to see",
+"example": "The light in the room was very dim.",
+"note": "In informal English it can also mean 'not clever': 'He's a bit dim.'",
+"syn": [
+{"to": "faint", "relation": "synonym", "strength": 0.8, "note": "Weak and hard to see or hear: 'a faint light'."},
+{"to": "dull", "relation": "synonym", "strength": 0.8, "note": "Not bright or shiny: 'a dull grey sky'."},
+{"to": "dark", "relation": "related", "strength": 0.6, "note": "Related, easy word: dark can mean no light at all; dim means a little light."},
+{"to": "weak", "relation": "related", "strength": 0.6, "note": "Related: 'a weak light' is not strong."},
+{"to": "gloomy", "relation": "related", "strength": 0.4, "note": "Related: dark in a way that feels sad."}
+],
+"ant": [
+{"to": "bright", "relation": "antonym", "note": "Full of strong light."},
+{"to": "clear", "relation": "antonym", "note": "Easy to see."}
+]},
+{"slot": "adverb", "status": "existing", "form": "dimly", "relation": "derivational",
+"definition": "with only a little light, or not clearly",
+"example": "The old teahouse was dimly lit by candles.",
+"note": "Also used about memory: 'I dimly remember my first school.'",
+"syn": [
+{"to": "faintly", "relation": "synonym", "strength": 0.8, "note": "In a weak way that is hard to see or hear."},
+{"to": "vaguely", "relation": "related", "strength": 0.6, "note": "Related: not clearly, often about memory."}
+],
+"ant": [
+{"to": "brightly", "relation": "antonym", "note": "With a lot of strong light."}
+]}
+],
+"people": [
+{"form": "dimmer", "kind": "thing", "status": "existing",
+"definition": "a switch that makes a lamp brighter or less bright",
+"example": "We put a dimmer in the bedroom so the light can be soft at night.",
+"note": "Also called a dimmer switch."}
+],
+"affixes": [
+{"affix": "-ness", "in_form": "dimness", "meaning_key": "-ness", "also": ["darkness", "kindness", "sadness"]},
+{"affix": "-ly", "in_form": "dimly", "meaning_key": "-ly", "also": ["quickly", "slowly", "softly"]},
+{"affix": "-er", "in_form": "dimmer", "meaning_key": "-er", "also": ["heater", "cooker", "printer"]}
+],
+"context": {"text": "The lights in the theatre dimmed slowly before the concert. In the dim hall, I could only see the stage, which was brightly lit.", "uses": ["dimmed", "dim"]},
+"reviewer_note": "Informal 'dim = not clever' only mentioned in a note. 'Dimmer' is the device (-er thing), not the comparative."
+},
+{
+"headword": "dip",
+"word_id": "6a6ef9b2a6015561480927dd",
+"word_ids": ["6a6ef9b2a6015561480927dd"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Liquid",
+"sense_pos": "verb",
+"corpus_definition": "To put something into a liquid for a short time.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "dip", "relation": "conversion",
+"definition": "a thick cold sauce that you put bread or vegetables into",
+"example": "We had fresh carrots with a garlic yogurt dip.",
+"note": "Other meanings of the noun: a quick swim ('a dip in the lake') and a small fall ('a dip in prices').",
+"syn": [
+{"to": "sauce", "relation": "synonym", "strength": 0.8, "note": "Easy word; a sauce is often hot and poured on food, a dip is thick and cold."},
+{"to": "spread", "relation": "related", "strength": 0.4, "note": "Related: soft food you put on bread with a knife."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "dip", "relation": "base",
+"definition": "to put something into a liquid quickly and then take it out",
+"example": "She likes to dip bread into olive oil.",
+"syn": [
+{"to": "dunk", "relation": "synonym", "strength": 0.95, "note": "Informal; very common with biscuits or bread in tea.", "register": "informal"},
+{"to": "immerse", "relation": "synonym", "strength": 0.8, "note": "Formal: to put something completely under a liquid.", "register": "formal"},
+{"to": "soak", "relation": "related", "strength": 0.6, "note": "Related: you leave something in liquid for a long time."},
+{"to": "plunge", "relation": "related", "strength": 0.4, "note": "Related: to push something into liquid suddenly and with force."}
+],
+"ant": []},
+{"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "My little brother likes to dip his bread into hot tea. At the party, we also had fresh vegetables with a garlic yogurt dip.", "uses": ["dip", "dip"]},
+"reviewer_note": "Only one spelling in the family; the noun 'dip' (sauce) is shown as the same-meaning conversion. 'Dipper' (ladle) left out as rare."
+},
+{
+"headword": "disabled",
+"word_id": "6a42662edeeb39f88113013e",
+"word_ids": ["6a42662edeeb39f88113013e"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Body",
+"sense_pos": "adjective",
+"corpus_definition": "Having a physical or mental condition that limits movement or learning.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "disability", "relation": "derivational",
+"definition": "a condition of the body or mind that makes some everyday activities hard",
+"example": "The school helps students with a disability to take part in every lesson.",
+"syn": [
+{"to": "impairment", "relation": "synonym", "strength": 0.8, "note": "Formal or medical; often about one sense: 'hearing impairment'.", "register": "formal"},
+{"to": "handicap", "relation": "synonym", "strength": 0.8, "note": "Old-fashioned and now often thought rude; use disability."},
+{"to": "condition", "relation": "related", "strength": 0.4, "note": "Related: a health problem that lasts a long time."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "disable", "relation": "derivational",
+"definition": "to hurt someone so their body or mind cannot work in the usual way",
+"example": "The car accident disabled him for life.",
+"note": "It also means 'to stop a machine or system working': 'disable the alarm'.",
+"syn": [
+{"to": "injure", "relation": "related", "strength": 0.6, "note": "Related: to hurt someone; the harm may not last."},
+{"to": "cripple", "relation": "synonym", "strength": 0.8, "note": "Very strong; about people it can sound rude today."},
+{"to": "paralyze", "relation": "related", "strength": 0.4, "note": "Related: to make someone unable to move part of the body. British spelling: paralyse."}
+],
+"ant": []},
+{"slot": "adjective", "status": "existing", "form": "disabled", "relation": "participial",
+"definition": "having a condition of the body or mind that limits movement or learning",
+"example": "The building has easy access for disabled people.",
+"note": "Say 'disabled people' or 'people with disabilities'. 'Handicapped' is old-fashioned.",
+"syn": [
+{"to": "handicapped", "relation": "synonym", "strength": 0.8, "note": "Old-fashioned and now often thought rude; use disabled."},
+{"to": "impaired", "relation": "related", "strength": 0.6, "note": "Related, formal: about one part, e.g. 'visually impaired' = cannot see well.", "register": "formal"}
+],
+"ant": [
+{"to": "able-bodied", "relation": "antonym", "note": "Having no physical condition that limits movement."}
+]},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [
+{"affix": "dis-", "in_form": "disability", "meaning_key": "dis-", "also": ["dishonest", "disagree", "dislike"]}
+],
+"context": {"text": "My cousin has been disabled since a car accident, but he still works as a teacher. His school has ramps, so his disability does not stop him from getting to class.", "uses": ["disabled", "disability"]},
+"reviewer_note": "Headword is the participle adjective (relation participial). dis- claimed only on disability (= lack of ability); disable is not a clean opposite of able. Polite-language notes added."
+},
+{
+"headword": "discussion",
+"word_id": "6a4282fd46ba24054c1dcdaa",
+"word_ids": ["6a4282fd46ba24054c1dcdaa"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Talk",
+"sense_pos": "noun",
+"corpus_definition": "A conversation where people share their opinions on a topic.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "discussion", "relation": "base",
+"definition": "a talk where people share their ideas and opinions about something",
+"example": "We had a long discussion about the future plan.",
+"syn": [
+{"to": "talk", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word: 'We had a talk about it.'"},
+{"to": "conversation", "relation": "synonym", "strength": 0.8, "note": "Any talk between people; a discussion usually has a topic."},
+{"to": "debate", "relation": "synonym", "strength": 0.8, "note": "More formal; people often have opposite opinions."},
+{"to": "dialogue", "relation": "related", "strength": 0.6, "note": "Related: formal talk between groups to solve a problem. American spelling also dialog."},
+{"to": "chat", "relation": "related", "strength": 0.4, "note": "Related: a friendly, informal talk, often not serious.", "register": "informal"}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "discuss", "relation": "derivational",
+"definition": "to talk about something with other people and share ideas",
+"example": "We discussed the plan over dinner.",
+"note": "No 'about' after it: say 'discuss the plan', not 'discuss about the plan'.",
+"syn": [
+{"to": "talk about", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday phrase with the same meaning."},
+{"to": "talk over", "relation": "synonym", "strength": 0.95, "note": "Informal phrasal verb, often before a decision: 'Let's talk it over.'"},
+{"to": "debate", "relation": "synonym", "strength": 0.8, "note": "More formal; people often disagree."},
+{"to": "consider", "relation": "related", "strength": 0.4, "note": "Related: to think carefully; you can do it alone."}
+],
+"ant": []},
+{"slot": "adjective", "status": "no_form", "note": "No common adjective. 'Discussable' exists but is very rare."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [
+{"affix": "-ion", "in_form": "discussion", "meaning_key": "-ion", "also": ["action", "decision", "connection"]}
+],
+"context": {"text": "Our class had a long discussion about the new bus route. We discussed the problem for an hour and then wrote a letter to the city council.", "uses": ["discussion", "discussed"]},
+"reviewer_note": "Trap for Uzbek/Russian speakers: 'discuss about' is wrong; noted on the verb."
+},
+{
+"headword": "display",
+"word_id": "6a6ef83f0f1e82a5a0736812",
+"word_ids": ["6a6ef83f0f1e82a5a0736812"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Show",
+"sense_pos": "verb",
+"corpus_definition": "To put something where people can see it.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "display", "relation": "conversion",
+"definition": "a group of things arranged for people to look at",
+"example": "The shop has a beautiful window display of silk scarves.",
+"note": "It also means the screen of a phone or computer: 'a bright display'.",
+"syn": [
+{"to": "exhibition", "relation": "synonym", "strength": 0.8, "note": "A bigger public show, often in a museum or gallery."},
+{"to": "show", "relation": "synonym", "strength": 0.8, "note": "Easy word: 'a flower show'."},
+{"to": "exhibit", "relation": "synonym", "strength": 0.8, "note": "One object or a small group of objects in a museum."},
+{"to": "presentation", "relation": "related", "strength": 0.6, "note": "Related: the way something is shown, or a talk with pictures."}
+],
+"ant": []},
+{"slot": "verb", "status": "existing", "form": "display", "relation": "base",
+"definition": "to put something in a place where people can see it",
+"example": "The museum will display rare paintings.",
+"syn": [
+{"to": "show", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday word with the same meaning."},
+{"to": "exhibit", "relation": "synonym", "strength": 0.95, "note": "More formal; used for museums and galleries.", "register": "formal"},
+{"to": "showcase", "relation": "synonym", "strength": 0.8, "note": "To show the best qualities of something."},
+{"to": "present", "relation": "related", "strength": 0.6, "note": "Related: to show or give something formally."}
+],
+"ant": [
+{"to": "hide", "relation": "antonym", "note": "To put something where people cannot see it."},
+{"to": "conceal", "relation": "antonym", "note": "Formal word for hide."}
+]},
+{"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "The museum in Samarkand will display old coins next month. The display will also include pottery and silk from the Silk Road.", "uses": ["display", "display"]},
+"reviewer_note": "dis- is not a real prefix here (play is not the opposite); no affix claimed. Screen meaning only in a note (same spelling)."
+}
+]

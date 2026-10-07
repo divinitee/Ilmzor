@@ -1,0 +1,416 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "earthquake",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "earthquake: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "earthquakes"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Compound noun (earth + quake) with no derived forms; only one form exists, so the context uses it alone."
+  },
+  {
+   "headword": "eat out",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Intransitive phrasal verb; eat in given as the natural opposite."
+  },
+  {
+   "headword": "edit",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong POS",
+     "msg": "noun 'edit': not in the dictionary as a noun"
+    },
+    {
+     "cat": "schema",
+     "msg": "'edition' is a compound (edit + ion): compounds are left out for now (rule 7), remove it"
+    },
+    {
+     "cat": "schema",
+     "msg": "people 'editorial' is already shown elsewhere in the map"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "editing: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "edited"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun slot: editing (the activity) as main, edit (noun) as extra; edition and the noun editorial marked other_meaning; editor in people."
+  },
+  {
+   "headword": "effect",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "effects",
+       "effect"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Effect/affect trap noted on the noun and the verb; verb effect (formal 'make happen') is other_meaning."
+  },
+  {
+   "headword": "employee",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad antonym",
+     "msg": "employee → 'employer' is a family member"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "clue collision",
+     "msg": "'work' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'hire' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'take on' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'working' is a synonym/related target for employee, employer"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "employees"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "employed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two rows, same meaning, merged (B1). Headword is a person noun, so it stays the main noun; employer goes in people and as the antonym."
+  },
+  {
+   "headword": "employer",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad antonym",
+     "msg": "employer → 'employee' is a family member"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "clue collision",
+     "msg": "'work' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'hire' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'take on' is a synonym/related target for employee, employer"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'working' is a synonym/related target for employee, employer"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "employers"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "employed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two rows, same meaning, merged (lowest CEFR B1). Headword is a person noun, so it stays the main noun; employee goes in people and as the antonym. Boss kept as related, not synonym, because an employer can be a company."
+  },
+  {
+   "headword": "entertain",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "entertained: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "entertainingly: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusement' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amuse' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusing' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'enjoyable' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amused' is a synonym/related target for entertain, entertaining"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusingly' is a synonym/related target for entertain, entertaining, entertainment"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "entertainments",
+       "entertainment"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "entertained"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Anchored to 'keep people interested and happy'; the 'have guests' use is mentioned in the verb note only."
+  },
+  {
+   "headword": "entertaining",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "entertain: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "entertained: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "entertainingly: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusement' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amuse' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusing' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'enjoyable' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amused' is a synonym/related target for entertain, entertaining"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusingly' is a synonym/related target for entertain, entertaining, entertainment"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "entertainments",
+       "entertainment"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "entertained"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing adjective, so it is the base of the adjective slot; entertain is listed as the verb it comes from."
+  },
+  {
+   "headword": "entertainment",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "entertain: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "entertaining: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "entertainingly: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusement' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amuse' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusing' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'enjoyable' is a synonym/related target for entertain, entertaining, entertainment"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'amusingly' is a synonym/related target for entertain, entertaining, entertainment"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "entertainments",
+       "entertainment"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "entertained"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Uncountable noun in this meaning; the 'industry' use (the entertainment business) is the same meaning and needs no separate map."
+  },
+  {
+   "headword": "enthusiastic",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "verb 'enthuse' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "wrong morphology",
+     "msg": "people 'enthusiast': family link not confirmed by the dictionary or a suffix rule"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "enthuse: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "enthusiastically: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "enthusiasms",
+       "enthusiasm"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "enthused"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two rows, same meaning, merged (lowest CEFR B1). Affix -ic only (enthusiast + -ic); no -ly split claimed because 'enthusiastical' is not a word."
+  }
+ ]
+}

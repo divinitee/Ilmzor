@@ -402,16 +402,6 @@
   "people_not_family": [],
   "affixes": [
    {
-    "affix": "-ible",
-    "in_form": "accessible",
-    "meaning_key": "-ible",
-    "also": [
-     "possible",
-     "visible",
-     "terrible"
-    ]
-   },
-   {
     "affix": "-ity",
     "in_form": "accessibility",
     "meaning_key": "-ity",
@@ -512,7 +502,7 @@
     "meaning_key": "-ation",
     "also": [
      "education",
-     "decision",
+     "information",
      "invitation"
     ]
    }
@@ -929,14 +919,7 @@
     "relation": "participial",
     "definition": "changed or harmed by something",
     "example": "People in affected areas need help.",
-    "syn": [
-     {
-      "to": "hit",
-      "relation": "related",
-      "strength": 0.6,
-      "note": "Badly affected: \"the hardest-hit areas\"."
-     }
-    ],
+    "syn": [],
     "ant": [
      {
       "to": "unaffected",
@@ -960,6 +943,12 @@
     "affected villages"
    ]
   },
-  "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. effect is a different word, listed as not_family."
+  "reviewer_note": "Two corpus rows (B2, B1) merged; B1 used. effect is a different word, listed as not_family.",
+  "gate_overrides": [
+   {
+    "msg_contains": "'affection' is a compound",
+    "reason": "affection is a suffix derivation (affect + -ion), not a compound; it is shown as other_meaning (Oxford/Cambridge learner noun)."
+   }
+  ]
  }
 ]

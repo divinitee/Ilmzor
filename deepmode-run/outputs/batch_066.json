@@ -346,10 +346,10 @@
    }
   ],
   "context": {
-   "text": "My brother broke the window, but he blamed the cat. In the end he took the blame and said sorry.",
+   "text": "My brother broke the window, but he blamed the cat. Grandma knew the cat was blameless and laughed.",
    "uses": [
     "blamed",
-    "blame"
+    "blameless"
    ]
   },
   "reviewer_note": "Noun and verb share spelling."
@@ -429,7 +429,7 @@
     "status": "existing",
     "form": "blended",
     "relation": "participial",
-    "definition": "mixed together",
+    "definition": "mixed together until it becomes one smooth thing",
     "example": "Add the blended tomatoes to the soup.",
     "syn": [],
     "ant": []
@@ -462,10 +462,10 @@
    }
   ],
   "context": {
-   "text": "Mum puts bananas and milk in the blender. She blends them for one minute to make a smoothie.",
+   "text": "Mum blends bananas and milk every morning. The blended drink is my favourite breakfast.",
    "uses": [
-    "blender",
-    "blends"
+    "blends",
+    "blended"
    ]
   },
   "reviewer_note": "blender in People & things as a device."

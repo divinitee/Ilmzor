@@ -75,35 +75,14 @@
     "form": "apologetically",
     "relation": "derivational",
     "definition": "in a way that shows you are sorry",
-    "example": "She smiled apologetically.",
+    "example": "\"Sorry I am late,\" she said apologetically.",
     "syn": [],
     "ant": []
    }
   ],
   "people": [],
   "people_not_family": [],
-  "affixes": [
-   {
-    "affix": "-ise",
-    "in_form": "apologise",
-    "meaning_key": "-ise",
-    "also": [
-     "realise",
-     "organise",
-     "criticise"
-    ]
-   },
-   {
-    "affix": "-ly",
-    "in_form": "apologetically",
-    "meaning_key": "-ly",
-    "also": [
-     "quickly",
-     "happily",
-     "really"
-    ]
-   }
-  ],
+  "affixes": [],
   "context": {
    "text": "Rustam forgot his friend's birthday, so he apologised the next day. His friend accepted the apology with a smile.",
    "uses": [
@@ -238,18 +217,8 @@
     "meaning_key": "-ation",
     "also": [
      "education",
-     "decision",
+     "information",
      "invitation"
-    ]
-   },
-   {
-    "affix": "-ant",
-    "in_form": "applicant",
-    "meaning_key": "-ant",
-    "also": [
-     "assistant",
-     "servant",
-     "participant"
     ]
    }
   ],
@@ -571,7 +540,9 @@
    }
   ],
   "people": [],
-  "people_not_family": [],
+  "people_not_family": [
+   "armor"
+  ],
   "affixes": [],
   "context": {
    "text": "Armed guards stand outside the bank every day. They check that nobody brings arms inside.",
@@ -620,7 +591,26 @@
    },
    {
     "slot": "verb",
-    "status": "no_form"
+    "status": "existing",
+    "form": "arm",
+    "relation": "derivational",
+    "definition": "to give weapons or protection to someone",
+    "example": "The king armed his soldiers before the battle.",
+    "syn": [
+     {
+      "to": "equip",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Give someone the things they need."
+     }
+    ],
+    "ant": [
+     {
+      "to": "disarm",
+      "relation": "antonym",
+      "note": "Take weapons away."
+     }
+    ]
    },
    {
     "slot": "adjective",
