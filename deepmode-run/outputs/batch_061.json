@@ -2,40 +2,108 @@
  {
   "headword": "wool",
   "word_id": "6a6ef9b2a6015561480927eb",
-  "word_ids": ["6a6ef9b2a6015561480927eb"],
+  "word_ids": [
+   "6a6ef9b2a6015561480927eb"
+  ],
   "cefr": "A2",
   "kind": "word",
   "sense_label": "Material",
   "sense_pos": "noun",
   "corpus_definition": "Soft, thick hair taken from sheep to make clothes.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "wool", "relation": "base", "definition": "the soft, thick hair of sheep, used to make clothes and blankets", "example": "This warm sweater is made of wool from Karakalpak sheep.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wool",
+    "relation": "base",
+    "definition": "the soft, thick hair of sheep, used to make clothes and blankets",
+    "example": "This warm sweater is made of wool from Karakalpak sheep.",
     "syn": [
-     {"to": "fleece", "relation": "related", "strength": 0.6, "note": "Fleece is the whole coat of hair on a sheep before it is cut; also a soft modern fabric."},
-     {"to": "yarn", "relation": "related", "strength": 0.6, "note": "Yarn is long thread for knitting; it can be made of sheep hair, cotton or plastic."},
-     {"to": "cotton", "relation": "related", "strength": 0.4, "note": "Another natural material for clothes, but it comes from a plant, not an animal."}
+     {
+      "to": "fleece",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Fleece is the whole coat of hair on a sheep before it is cut; also a soft modern fabric."
+     },
+     {
+      "to": "yarn",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Yarn is long thread for knitting; it can be made of sheep hair, cotton or plastic."
+     },
+     {
+      "to": "cotton",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Another natural material for clothes, but it comes from a plant, not an animal."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "no_form", "note": "There is no common verb made from this word."},
-   {"slot": "adjective", "status": "existing", "form": "woollen", "relation": "derivational", "definition": "made of the soft hair of sheep", "example": "My grandmother knitted me woollen socks for the winter.", "note": "British spelling: woollen; American spelling: woolen.",
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "There is no common verb made from this word."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "woollen",
+    "relation": "derivational",
+    "definition": "made of the soft hair of sheep",
+    "example": "My grandmother knitted me woollen socks for the winter.",
+    "note": "British spelling: woollen; American spelling: woolen.",
     "syn": [
-     {"to": "knitted", "relation": "related", "strength": 0.4, "note": "Knitted clothes are made with long needles; they are often, but not always, made of sheep hair."}
+     {
+      "to": "knitted",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Knitted clothes are made with long needles; they are often, but not always, made of sheep hair."
+     }
     ],
     "ant": [
-     {"to": "synthetic", "relation": "antonym", "note": "Synthetic cloth is made from man-made materials, not from an animal."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "woolly", "relation": "derivational", "definition": "covered with soft, thick hair, or made of it", "example": "He wore a woolly hat when we went to Chimgan in January.", "note": "American spelling: also wooly. In informal English it can also mean 'not clear' about ideas.", "syn": [], "ant": []},
-   {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+     {
+      "to": "synthetic",
+      "relation": "antonym",
+      "note": "Synthetic cloth is made from man-made materials, not from an animal."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "woolly",
+    "relation": "derivational",
+    "definition": "covered with soft, thick hair, or made of it",
+    "example": "He wore a woolly hat when we went to Chimgan in January.",
+    "note": "American spelling: also wooly. In informal English it can also mean 'not clear' about ideas.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "My aunt in Nukus buys wool at the bazaar every autumn. She makes woollen scarves for the whole family, and the children love their woolly hats.", "uses": ["wool", "woollen", "woolly"]},
+  "context": {
+   "text": "My aunt in Nukus buys wool at the bazaar every autumn. She makes woollen scarves for the whole family, and the children love their woolly hats.",
+   "uses": [
+    "wool",
+    "woollen",
+    "woolly"
+   ]
+  },
   "reviewer_note": "Spelling trap: British woollen/woolly vs American woolen/wooly; no affix claimed because -en is not in the affix table and the -y split doubles the l."
  },
  {
   "headword": "work as",
   "word_id": "6a42821646ba24054c1dccc4",
-  "word_ids": ["6a42821646ba24054c1dccc4"],
+  "word_ids": [
+   "6a42821646ba24054c1dccc4"
+  ],
   "cefr": "A2",
   "kind": "phrase",
   "sense_label": "Job",
@@ -43,17 +111,42 @@
   "corpus_definition": "To have a specific job or role.",
   "usage_note": "work as + a/an + job noun: 'She works as a nurse.' Don't forget the article: 'work as a teacher', not 'work as teacher'.",
   "relations": [
-   {"to": "be employed as", "relation": "synonym", "strength": 0.8, "note": "Same meaning but more formal, used in letters and CVs.", "register": "formal"},
-   {"to": "be a", "relation": "synonym", "strength": 0.8, "note": "Very easy: 'She is a nurse' means almost the same as 'She works as a nurse'."},
-   {"to": "serve as", "relation": "related", "strength": 0.6, "note": "Formal; used for an official role, often for a short time: 'He served as mayor.'", "register": "formal"}
+   {
+    "to": "be employed as",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Same meaning but more formal, used in letters and CVs.",
+    "register": "formal"
+   },
+   {
+    "to": "be a",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Very easy: 'She is a nurse' means almost the same as 'She works as a nurse'."
+   },
+   {
+    "to": "serve as",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Formal; used for an official role, often for a short time: 'He served as mayor.'",
+    "register": "formal"
+   }
   ],
-  "context": {"text": "My cousin works as a doctor in a hospital in Tashkent. Before that, she worked as a teacher for two years.", "uses": ["works as", "worked as"]},
+  "context": {
+   "text": "My cousin works as a doctor in a hospital in Tashkent. Before that, she worked as a teacher for two years.",
+   "uses": [
+    "works as",
+    "worked as"
+   ]
+  },
   "reviewer_note": "Article trap for Uzbek/Russian speakers: work as + a/an + job."
  },
  {
   "headword": "work for",
   "word_id": "6a42821646ba24054c1dccc5",
-  "word_ids": ["6a42821646ba24054c1dccc5"],
+  "word_ids": [
+   "6a42821646ba24054c1dccc5"
+  ],
   "cefr": "A2",
   "kind": "phrasal",
   "sense_label": "Employer",
@@ -61,17 +154,40 @@
   "corpus_definition": "To have a person or company as your boss.",
   "particle_note": "Not separable: 'work for a bank', 'work for my uncle'. Compare: work at + place ('work at a bank'), work for + company or person.",
   "relations": [
-   {"to": "be employed by", "relation": "synonym", "strength": 0.95, "note": "Same meaning, more formal.", "register": "formal"},
-   {"to": "work at", "relation": "related", "strength": 0.6, "note": "Work at names the place where you work; work for names who pays you."},
-   {"to": "employ", "relation": "antonym", "note": "The other side: a company employs you, and you work for the company."}
+   {
+    "to": "be employed by",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, more formal.",
+    "register": "formal"
+   },
+   {
+    "to": "work at",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Work at names the place where you work; work for names who pays you."
+   },
+   {
+    "to": "employ",
+    "relation": "antonym",
+    "note": "The other side: a company employs you, and you work for the company."
+   }
   ],
-  "context": {"text": "Aziz works for a big phone company in Tashkent. His sister worked for the same company before she started her own business.", "uses": ["works for", "worked for"]},
+  "context": {
+   "text": "Aziz works for a big phone company in Tashkent. His sister worked for the same company before she started her own business.",
+   "uses": [
+    "works for",
+    "worked for"
+   ]
+  },
   "reviewer_note": "Verb + preposition kept as phrasal per kind_hint; work for vs work at explained."
  },
  {
   "headword": "work out",
   "word_id": "6a4282fd46ba24054c1dcdc5",
-  "word_ids": ["6a4282fd46ba24054c1dcdc5"],
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdc5"
+  ],
   "cefr": "A2",
   "kind": "phrasal",
   "sense_label": "Problem",
@@ -79,18 +195,46 @@
   "corpus_definition": "To find the answer to a problem.",
   "particle_note": "Separable: 'work out the answer' or 'work the answer out'; with a pronoun always 'work it out'. Often + wh-clause: 'work out how to do it'.",
   "relations": [
-   {"to": "figure out", "relation": "synonym", "strength": 0.95, "note": "Same meaning, common in American English."},
-   {"to": "solve", "relation": "synonym", "strength": 0.8, "note": "Used with problems and puzzles; a little more formal."},
-   {"to": "calculate", "relation": "related", "strength": 0.6, "note": "Only for numbers: find an answer using maths."},
-   {"to": "understand", "relation": "related", "strength": 0.4, "note": "Easy word; work out means you reach understanding after thinking."}
+   {
+    "to": "figure out",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, common in American English."
+   },
+   {
+    "to": "solve",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Used with problems and puzzles; a little more formal."
+   },
+   {
+    "to": "calculate",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Only for numbers: find an answer using maths."
+   },
+   {
+    "to": "understand",
+    "relation": "related",
+    "strength": 0.4,
+    "note": "Easy word; work out means you reach understanding after thinking."
+   }
   ],
-  "context": {"text": "Dilnoza could not work out the last maths problem. Her brother helped her, and together they worked it out in five minutes.", "uses": ["work out", "worked it out"]},
+  "context": {
+   "text": "Dilnoza could not work out the last maths problem. Her brother helped her, and together they worked it out in five minutes.",
+   "uses": [
+    "work out",
+    "worked it out"
+   ]
+  },
   "reviewer_note": "Map keeps only the 'find the answer' sense; the exercise sense (work out at the gym) is a different meaning and is not mixed in."
  },
  {
   "headword": "working hours",
   "word_id": "6a42883f6941e70ad6a00dd4",
-  "word_ids": ["6a42883f6941e70ad6a00dd4"],
+  "word_ids": [
+   "6a42883f6941e70ad6a00dd4"
+  ],
   "cefr": "A2",
   "kind": "phrase",
   "sense_label": "Job",
@@ -98,43 +242,109 @@
   "corpus_definition": "The time of day you spend doing your job.",
   "usage_note": "Plural noun: 'My working hours are nine to five.' Common with during / outside / long / flexible: 'outside working hours'.",
   "relations": [
-   {"to": "work hours", "relation": "synonym", "strength": 0.95, "note": "Same meaning, more common in American English."},
-   {"to": "office hours", "relation": "synonym", "strength": 0.8, "note": "The hours when an office is open; used for office jobs."},
-   {"to": "shift", "relation": "related", "strength": 0.6, "note": "A shift is one fixed period of work, often in a hospital or factory, sometimes at night."},
-   {"to": "free time", "relation": "antonym", "note": "The time when you are not working and can do what you like."}
+   {
+    "to": "work hours",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, more common in American English."
+   },
+   {
+    "to": "office hours",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "The hours when an office is open; used for office jobs."
+   },
+   {
+    "to": "shift",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "A shift is one fixed period of work, often in a hospital or factory, sometimes at night."
+   },
+   {
+    "to": "free time",
+    "relation": "antonym",
+    "note": "The time when you are not working and can do what you like."
+   }
   ],
-  "context": {"text": "My working hours are from nine to six, Monday to Friday. My boss never calls me outside working hours.", "uses": ["working hours"]},
+  "context": {
+   "text": "My working hours are from nine to six, Monday to Friday. My boss never calls me outside working hours.",
+   "uses": [
+    "working hours"
+   ]
+  },
   "reviewer_note": "Fixed noun phrase; plural verb agreement noted."
  },
  {
   "headword": "worm",
   "word_id": "6a6ef9b2a601556148092813",
-  "word_ids": ["6a6ef9b2a601556148092813"],
+  "word_ids": [
+   "6a6ef9b2a601556148092813"
+  ],
   "cefr": "A2",
   "kind": "word",
   "sense_label": "Animal",
   "sense_pos": "noun",
   "corpus_definition": "A small animal with a long, thin, soft body.",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "worm", "relation": "base", "definition": "a small animal with a long, thin, soft body and no legs", "example": "The bird pulled a worm out of the wet grass.",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "worm",
+    "relation": "base",
+    "definition": "a small animal with a long, thin, soft body and no legs",
+    "example": "The bird pulled a worm out of the wet grass.",
     "syn": [
-     {"to": "caterpillar", "relation": "related", "strength": 0.4, "note": "A caterpillar looks a little similar but has legs and later becomes a butterfly."},
-     {"to": "maggot", "relation": "related", "strength": 0.4, "note": "A maggot is a very small young fly that looks like a tiny white worm."}
+     {
+      "to": "caterpillar",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A caterpillar looks a little similar but has legs and later becomes a butterfly."
+     },
+     {
+      "to": "maggot",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A maggot is a very small young fly that looks like a tiny white worm."
+     }
     ],
-    "ant": []},
-   {"slot": "verb", "status": "other_meaning", "form": "worm", "definition": "to move slowly by twisting and pushing through a small space", "example": "The boy wormed his way through the crowd to the front.", "note": "Belongs to worm = moving slowly and carefully like this animal, not the animal itself. Usually 'worm your way'."},
-   {"slot": "adjective", "status": "no_form", "note": "No common adjective; 'wormy' exists but is rare for learners."},
-   {"slot": "adverb", "status": "no_form", "note": "There is no adverb in this family."}
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "worm",
+    "definition": "to move slowly by twisting and pushing through a small space",
+    "example": "The boy wormed his way through the crowd to the front.",
+    "note": "Belongs to worm = moving slowly and carefully like this animal, not the animal itself. Usually 'worm your way'."
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form",
+    "note": "No common adjective; 'wormy' exists but is rare for learners."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [],
-  "context": {"text": "After the rain, many worms came out of the ground in our garden in Fergana. My little brother picked up a worm and gave it to the chickens.", "uses": ["worms", "worm"]},
+  "context": {
+   "text": "After the rain, many worms came out of the ground in our garden in Fergana. My little brother picked up a worm and gave it to the chickens.",
+   "uses": [
+    "worms",
+    "worm"
+   ]
+  },
   "reviewer_note": "Compounds (earthworm, silkworm) left out per rule 7; same-spelling verb is other_meaning."
  },
  {
   "headword": "worry about",
   "word_id": "6a4282fd46ba24054c1dcd9d",
-  "word_ids": ["6a4282fd46ba24054c1dcd9d"],
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd9d"
+  ],
   "cefr": "A2",
   "kind": "phrasal",
   "sense_label": "Feeling",
@@ -142,19 +352,52 @@
   "corpus_definition": "To feel unhappy because you feel something bad might happen.",
   "particle_note": "Not separable: worry about + noun / -ing / wh-clause: 'worry about money', 'worry about failing', 'worry about what people think'. Also: be worried about.",
   "relations": [
-   {"to": "be worried about", "relation": "synonym", "strength": 0.95, "note": "Same meaning; describes the state rather than the action."},
-   {"to": "be anxious about", "relation": "synonym", "strength": 0.8, "note": "A bit stronger and more formal; you feel nervous too."},
-   {"to": "stress about", "relation": "related", "strength": 0.6, "note": "Informal, common with young people: 'Don't stress about it.'", "register": "informal"},
-   {"to": "care about", "relation": "related", "strength": 0.4, "note": "Care about means something is important to you; it doesn't mean you are afraid."},
-   {"to": "relax", "relation": "antonym", "note": "To feel calm and stop thinking about problems."}
+   {
+    "to": "be worried about",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; describes the state rather than the action."
+   },
+   {
+    "to": "be anxious about",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "A bit stronger and more formal; you feel nervous too."
+   },
+   {
+    "to": "stress about",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Informal, common with young people: 'Don't stress about it.'",
+    "register": "informal"
+   },
+   {
+    "to": "care about",
+    "relation": "related",
+    "strength": 0.4,
+    "note": "Care about means something is important to you; it doesn't mean you are afraid."
+   },
+   {
+    "to": "relax",
+    "relation": "antonym",
+    "note": "To feel calm and stop thinking about problems."
+   }
   ],
-  "context": {"text": "My mother always worries about me when I travel to Samarkand alone. I tell her not to worry about anything, because I call her every evening.", "uses": ["worries about", "worry about"]},
+  "context": {
+   "text": "My mother always worries about me when I travel to Samarkand alone. I tell her not to worry about anything, because I call her every evening.",
+   "uses": [
+    "worries about",
+    "worry about"
+   ]
+  },
   "reviewer_note": "Verb + preposition kept as phrasal per kind_hint; worry about vs care about contrasted."
  },
  {
   "headword": "write down",
   "word_id": "6a4265cce20c7210db6908ce",
-  "word_ids": ["6a4265cce20c7210db6908ce"],
+  "word_ids": [
+   "6a4265cce20c7210db6908ce"
+  ],
   "cefr": "A2",
   "kind": "phrasal",
   "sense_label": "Writing",
@@ -162,18 +405,48 @@
   "corpus_definition": "To put words on paper so that you do not forget them.",
   "particle_note": "Separable: 'write down the number' or 'write the number down'; with a pronoun always 'write it down'.",
   "relations": [
-   {"to": "note down", "relation": "synonym", "strength": 0.95, "note": "Same meaning; often for short information."},
-   {"to": "jot down", "relation": "synonym", "strength": 0.8, "note": "Write something quickly and in a short form.", "register": "informal"},
-   {"to": "take down", "relation": "synonym", "strength": 0.8, "note": "Write what someone is saying while they speak."},
-   {"to": "record", "relation": "related", "strength": 0.6, "note": "More formal; keep information on paper or a computer.", "register": "formal"}
+   {
+    "to": "note down",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; often for short information."
+   },
+   {
+    "to": "jot down",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Write something quickly and in a short form.",
+    "register": "informal"
+   },
+   {
+    "to": "take down",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Write what someone is saying while they speak."
+   },
+   {
+    "to": "record",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "More formal; keep information on paper or a computer.",
+    "register": "formal"
+   }
   ],
-  "context": {"text": "The teacher said, 'Write down your homework before you leave.' I wrote it down in my notebook so I would not forget.", "uses": ["write down", "wrote it down"]},
+  "context": {
+   "text": "Our teacher always asks us to write down the homework before we leave. Yesterday I wrote it down in my notebook so I would not forget.",
+   "uses": [
+    "write down",
+    "wrote it down"
+   ]
+  },
   "reviewer_note": "No true antonym, so the list has none."
  },
  {
   "headword": "a relationship with",
   "word_id": "6a42662edeeb39f88113015f",
-  "word_ids": ["6a42662edeeb39f88113015f"],
+  "word_ids": [
+   "6a42662edeeb39f88113015f"
+  ],
   "cefr": "B1",
   "kind": "phrase",
   "sense_label": "People",
@@ -181,56 +454,183 @@
   "corpus_definition": "A connection between two people.",
   "usage_note": "have / build / keep + a (good, close) relationship with + person: 'She has a close relationship with her grandmother.' For two sides together: a relationship between A and B.",
   "relations": [
-   {"to": "a connection with", "relation": "synonym", "strength": 0.8, "note": "More general; can be between people, places or ideas."},
-   {"to": "relations with", "relation": "synonym", "strength": 0.8, "note": "Plural and more formal; often between groups or countries.", "register": "formal"},
-   {"to": "a bond with", "relation": "related", "strength": 0.6, "note": "A strong feeling of love or friendship that joins people."},
-   {"to": "friendship", "relation": "related", "strength": 0.4, "note": "One kind of relationship, between friends."}
+   {
+    "to": "a connection with",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "More general; can be between people, places or ideas."
+   },
+   {
+    "to": "relations with",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Plural and more formal; often between groups or countries.",
+    "register": "formal"
+   },
+   {
+    "to": "a bond with",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "A strong feeling of love or friendship that joins people."
+   },
+   {
+    "to": "friendship",
+    "relation": "related",
+    "strength": 0.4,
+    "note": "One kind of relationship, between friends."
+   }
   ],
-  "context": {"text": "Jasur has a very good relationship with his boss. He also wants to build a better relationship with his younger brother.", "uses": ["a very good relationship with", "a better relationship with"]},
+  "context": {
+   "text": "Jasur has a very good relationship with his boss. He also wants to build a better relationship with his younger brother.",
+   "uses": [
+    "a very good relationship with",
+    "a better relationship with"
+   ]
+  },
   "reviewer_note": "Preposition trap: relationship with a person, relationship between two people."
  },
  {
   "headword": "abandon",
   "word_id": "6a6ef9b2a601556148092814",
-  "word_ids": ["6a6ef9b2a601556148092814"],
+  "word_ids": [
+   "6a6ef9b2a601556148092814"
+  ],
   "cefr": "B1",
   "kind": "word",
   "sense_label": "Leaving",
   "sense_pos": "verb",
   "corpus_definition": "to leave a person or place forever without intending to return",
   "forms": [
-   {"slot": "noun", "status": "existing", "form": "abandonment", "relation": "derivational", "definition": "the act of leaving a person or place forever", "example": "The abandonment of the old factory left the town very quiet.", "register": "formal",
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "abandonment",
+    "relation": "derivational",
+    "definition": "the act of leaving a person or place forever",
+    "example": "The abandonment of the old factory left the town very quiet.",
+    "register": "formal",
     "syn": [
-     {"to": "desertion", "relation": "synonym", "strength": 0.8, "note": "Very close; often used for leaving a husband, wife, family or the army."}
+     {
+      "to": "desertion",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Very close; often used for leaving a husband, wife, family or the army."
+     }
     ],
-    "ant": []},
-   {"slot": "noun", "status": "other_meaning", "form": "abandon", "definition": "a feeling of being free, with no worry about rules", "example": "The children danced with wild abandon at the wedding.", "note": "Belongs to abandon = stop controlling yourself, not leaving a place. Usually in 'with (wild) abandon'."},
-   {"slot": "verb", "status": "existing", "form": "abandon", "relation": "base", "definition": "to go away from a person or place and never come back", "example": "The family had to abandon their house when the river flooded.",
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "abandon",
+    "definition": "a feeling of being free, with no worry about rules",
+    "example": "The children danced with wild abandon at the wedding.",
+    "note": "Belongs to abandon = stop controlling yourself, not leaving a place. Usually in 'with (wild) abandon'."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "abandon",
+    "relation": "base",
+    "definition": "to go away from a person or place and never come back",
+    "example": "The family had to abandon their house when the river flooded.",
     "syn": [
-     {"to": "leave", "relation": "synonym", "strength": 0.8, "note": "Easy, general word; abandon means you leave forever and don't care what happens next."},
-     {"to": "desert", "relation": "synonym", "strength": 0.95, "note": "Very close; often about leaving people who need you."},
-     {"to": "leave behind", "relation": "synonym", "strength": 0.8, "note": "Easy phrase; you go and the person or thing stays."},
-     {"to": "walk out on", "relation": "synonym", "strength": 0.8, "note": "Informal; used for leaving a partner or family suddenly.", "register": "informal"}
+     {
+      "to": "leave",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, general word; abandon means you leave forever and don't care what happens next."
+     },
+     {
+      "to": "desert",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; often about leaving people who need you."
+     },
+     {
+      "to": "leave behind",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy phrase; you go and the person or thing stays."
+     },
+     {
+      "to": "walk out on",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal; used for leaving a partner or family suddenly.",
+      "register": "informal"
+     }
     ],
     "ant": [
-     {"to": "stay", "relation": "antonym", "note": "To remain in a place or with a person."}
-    ]},
-   {"slot": "adjective", "status": "existing", "form": "abandoned", "relation": "participial", "definition": "left empty or alone by the people who owned or cared for it", "example": "We found an abandoned puppy near the bus stop.",
+     {
+      "to": "stay",
+      "relation": "antonym",
+      "note": "To remain in a place or with a person."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "abandoned",
+    "relation": "participial",
+    "definition": "left empty or alone by the people who owned or cared for it",
+    "example": "We found an abandoned puppy near the bus stop.",
     "syn": [
-     {"to": "deserted", "relation": "synonym", "strength": 0.95, "note": "Very close; used most for places with no people."},
-     {"to": "empty", "relation": "related", "strength": 0.6, "note": "Easy word; empty means no one is there now, maybe only for a short time."},
-     {"to": "derelict", "relation": "synonym", "strength": 0.8, "note": "Used for buildings that are empty and in bad condition.", "register": "formal"}
+     {
+      "to": "deserted",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Very close; used most for places with no people."
+     },
+     {
+      "to": "empty",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Easy word; empty means no one is there now, maybe only for a short time."
+     },
+     {
+      "to": "derelict",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Used for buildings that are empty and in bad condition.",
+      "register": "formal"
+     }
     ],
     "ant": [
-     {"to": "occupied", "relation": "antonym", "note": "Used about a house or building where people are living or working."}
-    ]},
-   {"slot": "adverb", "status": "no_form", "note": "There is no common adverb in this family."}
+     {
+      "to": "occupied",
+      "relation": "antonym",
+      "note": "Used about a house or building where people are living or working."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "There is no common adverb in this family."
+   }
   ],
   "people": [],
   "affixes": [
-   {"affix": "-ment", "in_form": "abandonment", "meaning_key": "-ment", "also": ["movement", "payment", "agreement"]}
+   {
+    "affix": "-ment",
+    "in_form": "abandonment",
+    "meaning_key": "-ment",
+    "also": [
+     "movement",
+     "payment",
+     "agreement"
+    ]
+   }
   ],
-  "context": {"text": "Many families abandoned their village in the mountains when the road closed. Today you can still see the abandoned houses. The abandonment of small villages worries local officials.", "uses": ["abandoned", "abandonment"]},
+  "context": {
+   "text": "Many families abandoned their village in the mountains when the road closed. Today you can still see the abandoned houses. The abandonment of small villages worries local officials.",
+   "uses": [
+    "abandoned",
+    "abandonment"
+   ]
+  },
   "reviewer_note": "Noun 'abandon' (with wild abandon) is a different meaning, shown as other_meaning extra; map keeps the 'leave forever' sense."
  }
 ]

@@ -1,0 +1,223 @@
+[
+{"headword": "variety", "word_id": "6a42800cb9d8fc24968a4b7d", "word_ids": ["6a42800cb9d8fc24968a4b7d", "6a6ef83f0f1e82a5a0736898"], "cefr": "A2", "kind": "word", "sense_label": "Range", "sense_pos": "noun", "corpus_definition": "a range of different types of things",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "variety", "relation": "base", "definition": "a number of different types of things in one group", "example": "The market in Chorsu has a wide variety of spices.",
+   "syn": [{"to": "range", "relation": "synonym", "strength": 0.95, "note": "Very close: 'a wide range of fruit'. Common in shops and adverts."},
+           {"to": "selection", "relation": "synonym", "strength": 0.8, "note": "A group of things you can choose from, often in a shop."},
+           {"to": "choice", "relation": "synonym", "strength": 0.8, "note": "Easy word: 'a big choice of drinks' means many different drinks."},
+           {"to": "diversity", "relation": "synonym", "strength": 0.8, "note": "More formal; often about people, cultures or nature.", "register": "formal"},
+           {"to": "mix", "relation": "related", "strength": 0.6, "note": "Different things together, but not always many types."}],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "variation", "relation": "derivational", "definition": "a change or difference in amount or level", "example": "There is a big variation in prices between the two shops.", "syn": [], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "vary", "relation": "derivational", "definition": "to be different from each other in size, amount or type", "example": "Prices vary from shop to shop.",
+   "note": "Variety is made from this verb.",
+   "syn": [{"to": "differ", "relation": "synonym", "strength": 0.95, "note": "Very close, a little more formal."},
+           {"to": "change", "relation": "related", "strength": 0.6, "note": "Vary often means 'be different in different places or times', not just 'become different'."}],
+   "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "various", "relation": "derivational", "definition": "several different", "example": "We visited various cities in Uzbekistan last summer.",
+   "syn": [{"to": "different", "relation": "synonym", "strength": 0.8, "note": "Easy word; 'different' can also mean 'not the same', but various only means 'several types'."},
+           {"to": "several", "relation": "related", "strength": 0.6, "note": "Several is about number; various is about different types."},
+           {"to": "diverse", "relation": "synonym", "strength": 0.8, "note": "More formal: very different from each other.", "register": "formal"}],
+   "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "varied", "relation": "participial", "definition": "including many different types of things", "example": "She has a very varied diet with lots of vegetables.", "syn": [], "ant": []},
+  {"slot": "adjective", "status": "other_meaning", "form": "variable", "definition": "often changing and not staying the same", "example": "The weather in spring is very variable.", "note": "Belongs to vary = change often, not a range of different types."},
+  {"slot": "adverb", "status": "existing", "form": "variously", "relation": "derivational", "definition": "in several different ways", "example": "The tower has been variously described as beautiful and ugly.", "register": "formal",
+   "syn": [{"to": "differently", "relation": "related", "strength": 0.6, "note": "In a way that is not the same."}],
+   "ant": []}
+ ],
+ "people": [
+  {"form": "variant", "kind": "thing", "status": "existing", "definition": "a form of something that is a little different from others", "example": "This is a new variant of the virus."}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ly", "in_form": "variously", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]}
+ ],
+ "context": {"text": "Our school canteen now offers a wide variety of dishes. The menu varies every day, and you can choose from various salads and soups.", "uses": ["variety", "varies", "various"]},
+ "reviewer_note": "Two corpus rows share one meaning (range of types), merged at A2. variable kept as other_meaning (vary = change)."},
+
+{"headword": "vase", "word_id": "6a6ef9b2a60155614809275f", "word_ids": ["6a6ef9b2a60155614809275f"], "cefr": "A2", "kind": "word", "sense_label": "Flowers", "sense_pos": "noun", "corpus_definition": "a decorative container used for holding flowers or water",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "vase", "relation": "base", "definition": "a pretty container that you put flowers in", "example": "She put the roses in a tall glass vase.",
+   "note": "British /vɑːz/, American /veɪs/.",
+   "syn": [{"to": "pot", "relation": "related", "strength": 0.4, "note": "A pot is usually for plants with soil; a vase holds cut flowers in water."},
+           {"to": "jar", "relation": "related", "strength": 0.4, "note": "A jar is for food like jam or honey, but people sometimes put flowers in one."},
+           {"to": "container", "relation": "related", "strength": 0.4, "note": "General word for anything that holds something."}],
+   "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [], "people_not_family": [], "affixes": [],
+ "context": {"text": "For Women's Day, Aziz bought his mother some tulips. She put them in her blue vase on the kitchen table.", "uses": ["vase"]},
+ "reviewer_note": "No other family forms exist; pronunciation difference noted."},
+
+{"headword": "video call", "word_id": "6a4288ad6941e70ad6a00e5e", "word_ids": ["6a4288ad6941e70ad6a00e5e"], "cefr": "A2", "kind": "phrase", "sense_label": "Phone", "sense_pos": "noun", "corpus_definition": "A long-distance chat where you can see the other person.",
+ "usage_note": "have / make a video call (with someone): 'We had a video call with Grandma.' Also used as a verb in informal English: 'I'll video call you tonight.'",
+ "relations": [
+  {"to": "video chat", "relation": "synonym", "strength": 0.95, "note": "Same meaning, a little more informal.", "register": "informal"},
+  {"to": "phone call", "relation": "related", "strength": 0.6, "note": "You talk, but usually you cannot see the other person."},
+  {"to": "voice call", "relation": "related", "strength": 0.6, "note": "A call on an app with sound only, no video."}
+ ],
+ "context": {"text": "My brother works in Seoul, so we have a video call every Sunday. My little sister loves the video call because she can show him her drawings.", "uses": ["video call"]},
+ "reviewer_note": "Compound noun, kind phrase; informal verb use noted."},
+
+{"headword": "video game", "word_id": "6a42659782466c80f8ae0cae", "word_ids": ["6a42659782466c80f8ae0cae"], "cefr": "A2", "kind": "phrase", "sense_label": "Game", "sense_pos": "noun", "corpus_definition": "A digital game played on a computer or television screen.",
+ "usage_note": "play a video game / play video games: 'He plays video games after school.' Often plural when talking about the hobby.",
+ "relations": [
+  {"to": "computer game", "relation": "synonym", "strength": 0.95, "note": "Almost the same; computer game is more common in British English."},
+  {"to": "game", "relation": "related", "strength": 0.6, "note": "General word: games can also be board games or sports."},
+  {"to": "board game", "relation": "related", "strength": 0.4, "note": "A game played on a table with a board, not on a screen."}
+ ],
+ "context": {"text": "Timur plays video games for an hour after his homework. His favourite video game is about football.", "uses": ["video games", "video game"]},
+ "reviewer_note": "Compound noun, kind phrase."},
+
+{"headword": "visitor", "word_id": "6a4265fb84a10cdfe9e55dac", "word_ids": ["6a4265fb84a10cdfe9e55dac"], "cefr": "A2", "kind": "word", "sense_label": "Guest", "sense_pos": "noun", "corpus_definition": "Someone who goes to see a person or a place.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "visitor", "relation": "base", "definition": "a person who goes to see a person or a place", "example": "Samarkand gets thousands of visitors every summer.",
+   "syn": [{"to": "guest", "relation": "synonym", "strength": 0.8, "note": "A person you invite to your home or a hotel customer."},
+           {"to": "tourist", "relation": "related", "strength": 0.6, "note": "A person who travels for fun to see places."},
+           {"to": "caller", "relation": "synonym", "strength": 0.8, "note": "A person who comes to your house for a short time; a bit old-fashioned."}],
+   "ant": [{"to": "host", "relation": "antonym", "note": "The person who welcomes guests at home."}]},
+  {"slot": "noun", "status": "existing", "form": "visit", "relation": "derivational", "definition": "an occasion when you go to see a person or place", "example": "Our visit to Bukhara was short but fun.",
+   "syn": [{"to": "trip", "relation": "related", "strength": 0.6, "note": "A trip is the journey; a visit is the time you spend there."}], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "visit", "relation": "derivational", "definition": "to go to see a person or a place", "example": "We visit my grandparents every weekend.",
+   "syn": [{"to": "go to see", "relation": "synonym", "strength": 0.95, "note": "Easy phrase with the same meaning."},
+           {"to": "call on", "relation": "synonym", "strength": 0.8, "note": "Visit a person for a short time; a bit formal.", "register": "formal"},
+           {"to": "drop in", "relation": "related", "strength": 0.6, "note": "Visit for a short time without planning.", "register": "informal"},
+           {"to": "see", "relation": "synonym", "strength": 0.8, "note": "Easy word: 'I saw my aunt yesterday.'"}],
+   "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "visiting", "relation": "participial", "definition": "coming to a place for a short time, often to work or play", "example": "The visiting team won the match 2-1.",
+   "syn": [{"to": "away", "relation": "synonym", "strength": 0.8, "note": "In sport, the visiting team is the away team."}],
+   "ant": [{"to": "home", "relation": "antonym", "note": "In sport, the home team plays in its own city."}]},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [], "people_not_family": [],
+ "affixes": [
+  {"affix": "-or", "in_form": "visitor", "meaning_key": "-or", "also": ["actor", "inventor", "director"]}
+ ],
+ "context": {"text": "Many visitors come to Khiva in spring. When you visit the old city, you can climb the tall minaret and see the walls.", "uses": ["visitors", "visit"]},
+ "reviewer_note": "Headword is a person noun, so it stays main in the noun slot (rule 6); visit noun added as extra."},
+
+{"headword": "vote", "word_id": "6a42821646ba24054c1dcc7d", "word_ids": ["6a42821646ba24054c1dcc7d"], "cefr": "A2", "kind": "word", "sense_label": "Election", "sense_pos": "verb", "corpus_definition": "to choose your leader or preference in an election.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "vote", "relation": "conversion", "definition": "a choice that a person makes in an election", "example": "Every vote is important in this election.",
+   "syn": [{"to": "ballot", "relation": "synonym", "strength": 0.8, "note": "Formal: the paper or system used to choose.", "register": "formal"},
+           {"to": "choice", "relation": "related", "strength": 0.4, "note": "General word for what you choose."}],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "voting", "relation": "derivational", "definition": "the act of choosing someone or something in an election", "example": "Voting starts at eight in the morning.", "syn": [], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "vote", "relation": "base", "definition": "to show your choice in an election", "example": "My parents vote in every election.",
+   "syn": [{"to": "elect", "relation": "related", "strength": 0.6, "note": "Elect = choose a person for a job by voting; you elect a person, but you vote for a person."},
+           {"to": "choose", "relation": "related", "strength": 0.6, "note": "Easy general word; vote is choosing in an official way."},
+           {"to": "cast a ballot", "relation": "synonym", "strength": 0.8, "note": "Formal phrase used in news.", "register": "formal"}],
+   "ant": [{"to": "abstain", "relation": "antonym", "note": "Formal: to choose not to vote."}]},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "voter", "kind": "person", "status": "existing", "definition": "a person who chooses someone in an election", "example": "Young voters want better jobs."}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-er", "in_form": "voter", "meaning_key": "-er", "also": ["teacher", "player", "driver"]},
+  {"affix": "-ing", "in_form": "voting", "meaning_key": "-ing", "also": ["building", "meeting", "painting"]}
+ ],
+ "context": {"text": "Next week our class will vote for a new class leader. Each student has one vote, and the teacher will count them after school.", "uses": ["vote"]},
+ "reviewer_note": "vote verb and noun share spelling (conversion); voter is a person, so it is in People."},
+
+{"headword": "wagon", "word_id": "6a6ef9b2a601556148092862", "word_ids": ["6a6ef9b2a601556148092862"], "cefr": "A2", "kind": "word", "sense_label": "Horse", "sense_pos": "noun", "corpus_definition": "a vehicle with four wheels pulled by a horse",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "wagon", "relation": "base", "definition": "a vehicle with four wheels that a horse pulls, used for carrying things", "example": "The farmer loaded hay onto the wooden wagon.",
+   "note": "Old British spelling: waggon. In British English it can also mean a train car for goods.",
+   "syn": [{"to": "cart", "relation": "synonym", "strength": 0.8, "note": "Often smaller, sometimes with two wheels."},
+           {"to": "carriage", "relation": "related", "strength": 0.6, "note": "A carriage pulled by horses carries people, not goods."}],
+   "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [], "people_not_family": [], "affixes": [],
+ "context": {"text": "In the village, my grandfather still has an old wagon. Every autumn he puts melons in it and his horse pulls it to the market.", "uses": ["wagon"]},
+ "reviewer_note": "No other family forms; spelling and train-car meaning noted."},
+
+{"headword": "wardrobe", "word_id": "6a6ef83f0f1e82a5a073676c", "word_ids": ["6a6ef83f0f1e82a5a073676c"], "cefr": "A2", "kind": "word", "sense_label": "Furniture", "sense_pos": "noun", "corpus_definition": "A large piece of furniture used for hanging up clothes.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "wardrobe", "relation": "base", "definition": "a tall cupboard where you hang your clothes", "example": "She hung her new dress in the wardrobe.",
+   "note": "It can also mean all the clothes a person has: 'a new summer wardrobe'.",
+   "syn": [{"to": "closet", "relation": "synonym", "strength": 0.95, "note": "American English; often built into the wall."},
+           {"to": "cupboard", "relation": "related", "strength": 0.6, "note": "General word for furniture with doors and shelves, often in the kitchen."}],
+   "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [], "people_not_family": [], "affixes": [],
+ "context": {"text": "My room is small, but it has a big wardrobe. All my shirts and my winter coat are in the wardrobe.", "uses": ["wardrobe"]},
+ "reviewer_note": "No other family forms; second meaning (all your clothes) noted."},
+
+{"headword": "wash up", "word_id": "6a42821646ba24054c1dcc86", "word_ids": ["6a42821646ba24054c1dcc86"], "cefr": "A2", "kind": "phrasal", "sense_label": "Dishes", "sense_pos": "verb", "corpus_definition": "to clean the plates, cups, and cutlery used for eating",
+ "particle_note": "Usually without an object: 'I'll wash up.' With an object it is separable: 'wash up the cups / wash the cups up'. British English; in American English wash up means 'wash your hands and face'. Noun: the washing-up.",
+ "relations": [
+  {"to": "do the dishes", "relation": "synonym", "strength": 0.95, "note": "Same meaning, common in American and British English."},
+  {"to": "wash the dishes", "relation": "synonym", "strength": 0.95, "note": "Same meaning, very easy."},
+  {"to": "do the washing-up", "relation": "synonym", "strength": 0.95, "note": "British English, very common at home."},
+  {"to": "clean", "relation": "related", "strength": 0.4, "note": "General word; you can clean anything, not just plates."}
+ ],
+ "context": {"text": "After dinner, my mother cooks tea and I wash up. Tonight my brother washed the plates up because it was my birthday.", "uses": ["wash up", "washed the plates up"]},
+ "reviewer_note": "British vs American meaning difference noted."},
+
+{"headword": "waste", "word_id": "6a42800cb9d8fc24968a4b7e", "word_ids": ["6a42800cb9d8fc24968a4b7e"], "cefr": "B1", "kind": "word", "sense_label": "Using badly", "sense_pos": "verb", "corpus_definition": "to use something in a bad way so it is gone",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "waste", "relation": "conversion", "definition": "using money, time or things in a bad or careless way", "example": "Buying that phone was a waste of money.",
+   "syn": [{"to": "misuse", "relation": "related", "strength": 0.6, "note": "Using something in the wrong way, not only too much."},
+           {"to": "loss", "relation": "related", "strength": 0.4, "note": "Something you no longer have; not always your fault."}],
+   "ant": [{"to": "saving", "relation": "antonym", "note": "Keeping money, time or things instead of using them."}]},
+  {"slot": "verb", "status": "existing", "form": "waste", "relation": "base", "definition": "to use money, time or things badly so that they are gone", "example": "Don't waste your time playing games all day.",
+   "syn": [{"to": "squander", "relation": "synonym", "strength": 0.95, "note": "Formal: waste something valuable, like money or a chance.", "register": "formal"},
+           {"to": "throw away", "relation": "synonym", "strength": 0.8, "note": "Informal: 'He threw away his chance.'"},
+           {"to": "use up", "relation": "related", "strength": 0.4, "note": "Use all of something; not always in a bad way."}],
+   "ant": [{"to": "save", "relation": "antonym", "note": "Keep money, time or things for later."},
+           {"to": "conserve", "relation": "antonym", "note": "Formal: use water or energy carefully."}]},
+  {"slot": "adjective", "status": "existing", "form": "wasteful", "relation": "derivational", "definition": "using more money, time or things than you need", "example": "Leaving the lights on all night is wasteful.",
+   "syn": [{"to": "extravagant", "relation": "related", "strength": 0.6, "note": "Spending a lot of money, often on things you do not need."},
+           {"to": "careless", "relation": "related", "strength": 0.4, "note": "Not thinking about what you do."}],
+   "ant": [{"to": "economical", "relation": "antonym", "note": "Not using much money, fuel or time."},
+           {"to": "thrifty", "relation": "antonym", "note": "Careful with money."}]},
+  {"slot": "adjective", "status": "existing", "form": "wasted", "relation": "participial", "definition": "not useful because it gave no result", "example": "It was a wasted trip; the shop was closed.", "syn": [], "ant": []},
+  {"slot": "adverb", "status": "existing", "form": "wastefully", "relation": "derivational", "definition": "in a way that uses more than you need", "example": "Some hotels use water very wastefully.",
+   "syn": [{"to": "extravagantly", "relation": "related", "strength": 0.6, "note": "Spending a lot of money."}],
+   "ant": [{"to": "economically", "relation": "antonym", "note": "In a way that does not use much money or fuel."}]}
+ ],
+ "people": [
+  {"form": "waster", "kind": "person", "status": "existing", "definition": "a lazy person who does nothing useful", "example": "His father called him a waster because he never studied.", "register": "informal"}
+ ],
+ "people_not_family": [],
+ "affixes": [
+  {"affix": "-ful", "in_form": "wasteful", "meaning_key": "-ful", "also": ["careful", "helpful", "useful"]},
+  {"affix": "-ly", "in_form": "wastefully", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]},
+  {"affix": "-er", "in_form": "waster", "meaning_key": "-er", "also": ["teacher", "player", "driver"]}
+ ],
+ "context": {"text": "My grandmother hates it when we waste bread. She says throwing food away is wasteful, so she makes soup from old bread.", "uses": ["waste", "wasteful"]},
+ "reviewer_note": "Split from the 'rubbish' row (separate map). wasted (adj) kept to the 'not useful' sense; informal slang 'drunk' omitted."},
+
+{"headword": "waste", "word_id": "6a42883f6941e70ad6a00e04", "word_ids": ["6a42883f6941e70ad6a00e04"], "cefr": "A2", "kind": "word", "sense_label": "Rubbish", "sense_pos": "noun", "corpus_definition": "Things that are not needed and are thrown away.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "waste", "relation": "base", "definition": "things that people throw away because they are not needed", "example": "We should put our waste in the bin.",
+   "syn": [{"to": "rubbish", "relation": "synonym", "strength": 0.95, "note": "British English, very common."},
+           {"to": "garbage", "relation": "synonym", "strength": 0.95, "note": "American English."},
+           {"to": "trash", "relation": "synonym", "strength": 0.95, "note": "American English."},
+           {"to": "refuse", "relation": "synonym", "strength": 0.8, "note": "Formal, used by city services. Stress on the first part: REF-use.", "register": "formal"},
+           {"to": "litter", "relation": "related", "strength": 0.6, "note": "Rubbish that people drop in the street or park."}],
+   "ant": []},
+  {"slot": "verb", "status": "other_meaning", "form": "waste", "definition": "to use money, time or things badly", "example": "Don't waste water when you brush your teeth.", "note": "Belongs to waste = use badly, not rubbish."},
+  {"slot": "adjective", "status": "existing", "form": "waste", "relation": "conversion", "definition": "no longer needed and ready to be thrown away", "example": "Put the waste paper in the blue box.",
+   "note": "Used only before a noun: waste paper, waste water.",
+   "syn": [{"to": "unwanted", "relation": "synonym", "strength": 0.8, "note": "Not wanted any more."},
+           {"to": "used", "relation": "related", "strength": 0.4, "note": "Already used; not always thrown away."}],
+   "ant": []},
+  {"slot": "adjective", "status": "other_meaning", "form": "wasteful", "definition": "using more money, time or things than you need", "example": "Buying new clothes every week is wasteful.", "note": "Belongs to waste = use badly, not rubbish."},
+  {"slot": "adverb", "status": "other_meaning", "form": "wastefully", "definition": "in a way that uses more than you need", "example": "They spend their money wastefully.", "note": "Belongs to waste = use badly, not rubbish."}
+ ],
+ "people": [], "people_not_family": [], "affixes": [],
+ "context": {"text": "Our street in Chilonzor has new bins for plastic waste. Waste paper goes in the blue bin, and food goes in the green one.", "uses": ["waste"]},
+ "reviewer_note": "Split from the 'use badly' row; compounds like wastebasket and wasteland left for the Compounds branch."}
+]
