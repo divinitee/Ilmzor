@@ -645,7 +645,7 @@
     "status": "existing",
     "form": "wire",
     "relation": "conversion",
-    "definition": "to connect a building or machine to electricity with wires",
+    "definition": "to connect a building or machine to the electricity supply",
     "example": "They wired the new kitchen last week.",
     "syn": [
      {

@@ -20,7 +20,7 @@
    }
   ],
   "context": {
-   "text": "The teacher said, \"Do not turn over the test paper yet.\" When she said \"Go,\" we all turned the papers over.",
+   "text": "Our teacher told us not to turn over the test paper yet. After one minute we all turned the papers over and started.",
    "uses": [
     "turn over",
     "turned the papers over"
@@ -514,7 +514,7 @@
     "status": "existing",
     "form": "use",
     "relation": "derivational",
-    "definition": "the act of using something, or the purpose it has",
+    "definition": "the act of doing something with a thing, or its purpose",
     "example": "This tool has many uses in the kitchen.",
     "syn": [],
     "ant": []
@@ -588,6 +588,30 @@
     ]
    },
    {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "usable",
+    "relation": "derivational",
+    "definition": "in a good enough state to work or be put to work",
+    "example": "This old phone is still usable.",
+    "note": "British English also: useable.",
+    "syn": [
+     {
+      "to": "working",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not broken."
+     }
+    ],
+    "ant": [
+     {
+      "to": "unusable",
+      "relation": "antonym",
+      "note": "Too broken or bad to work."
+     }
+    ]
+   },
+   {
     "slot": "adverb",
     "status": "existing",
     "form": "usefully",
@@ -647,6 +671,16 @@
      "teacher",
      "driver",
      "player"
+    ]
+   },
+   {
+    "affix": "-able",
+    "in_form": "usable",
+    "meaning_key": "-able",
+    "also": [
+     "washable",
+     "readable",
+     "comfortable"
     ]
    }
   ],
