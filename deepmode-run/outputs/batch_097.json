@@ -1,0 +1,205 @@
+[
+{"headword": "pill", "word_id": "6a42821646ba24054c1dccda", "word_ids": ["6a42821646ba24054c1dccda", "6a6ef9b2a601556148092679"], "cefr": "B1", "kind": "word", "sense_label": "Medicine", "sense_pos": "noun", "corpus_definition": "A small round piece of medicine you swallow.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "pill", "relation": "base", "definition": "a small solid piece of medicine that you swallow whole", "example": "She took a pill for her headache.",
+   "syn": [{"to": "tablet", "relation": "synonym", "strength": 0.95, "note": "Almost the same; tablet is common in British English and on medicine boxes."}, {"to": "capsule", "relation": "synonym", "strength": 0.8, "note": "A capsule is a pill with a soft or plastic outside that holds the medicine."}, {"to": "medicine", "relation": "related", "strength": 0.6, "note": "Medicine is the general word; it can also be a liquid or a cream."}],
+   "ant": []},
+  {"slot": "verb", "status": "other_meaning", "form": "pill", "definition": "(of wool or cloth) to become covered in very small balls", "example": "My old sweater started to pill after a few washes.", "note": "Belongs to pill = small balls on old clothes, not medicine. Mainly British; also called bobbling."},
+  {"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+ ],
+ "people": [], "affixes": [],
+ "context": {"text": "Dilnoza had a bad cold, so the doctor gave her some pills. She has to take one pill every morning after breakfast.", "uses": ["pills", "pill"]},
+ "reviewer_note": "Two corpus rows with the same meaning merged. Compounds (pillbox) left out."},
+
+{"headword": "pirate", "word_id": "6a6ef9b2a6015561480927f5", "word_ids": ["6a6ef9b2a6015561480927f5"], "cefr": "B1", "kind": "word", "sense_label": "Sea", "sense_pos": "noun", "corpus_definition": "A criminal who steals things from ships at sea.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "pirate", "relation": "base", "definition": "a person who attacks ships at sea and steals from them", "example": "The pirate looked for hidden gold on the island.",
+   "syn": [{"to": "buccaneer", "relation": "synonym", "strength": 0.8, "note": "An old word for a sea robber, used mostly in stories.", "register": "literary"}, {"to": "robber", "relation": "related", "strength": 0.6, "note": "Any person who steals from people or places, not only at sea."}, {"to": "thief", "relation": "related", "strength": 0.6, "note": "A general word for someone who steals, usually secretly."}],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "piracy", "relation": "derivational", "definition": "the crime of attacking ships at sea and stealing from them", "example": "Piracy is still a problem near some coasts.", "note": "It also means illegally copying films, music or software.",
+   "syn": [{"to": "robbery", "relation": "related", "strength": 0.6, "note": "The crime of stealing, anywhere; piracy happens at sea."}],
+   "ant": []},
+  {"slot": "verb", "status": "other_meaning", "form": "pirate", "definition": "to copy and sell films, music or software illegally", "example": "Someone pirated the new film and put it online.", "note": "Belongs to pirate = illegal copying, not robbers at sea."},
+  {"slot": "adjective", "status": "other_meaning", "form": "pirated", "definition": "copied and sold illegally, without paying the owner", "example": "He bought a pirated DVD at the market.", "note": "Belongs to pirate = illegal copying, not robbers at sea."},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+ ],
+ "people": [], "affixes": [],
+ "context": {"text": "In old stories, pirates sailed the seas and stole gold from other ships. Piracy still happens today, so some ships carry guards.", "uses": ["pirates", "Piracy"]},
+ "reviewer_note": "Headword is itself a person noun, so it stays the main noun entry; the verb and pirated belong to the copying meaning."},
+
+{"headword": "planning", "word_id": "6a4288ad6941e70ad6a00e7f", "word_ids": ["6a4288ad6941e70ad6a00e7f"], "cefr": "B1", "kind": "word", "sense_label": "General", "sense_pos": "noun", "corpus_definition": "Deciding how to do something before you start.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "planning", "relation": "base", "definition": "the work of deciding how to do something before you start", "example": "Careful planning made the event successful.",
+   "syn": [{"to": "preparation", "relation": "synonym", "strength": 0.8, "note": "Preparation also includes getting things ready, not only deciding."}, {"to": "organization", "relation": "related", "strength": 0.6, "note": "Organization is about arranging people and things so they work well. British spelling: organisation."}],
+   "ant": [{"to": "improvisation", "relation": "antonym", "note": "Doing something without preparing, deciding as you go."}]},
+  {"slot": "noun", "status": "existing", "form": "plan", "relation": "derivational", "definition": "an idea or arrangement for doing something in the future", "example": "Our plan is to visit Bukhara in the summer.",
+   "syn": [{"to": "idea", "relation": "related", "strength": 0.6, "note": "An idea is a thought; a plan has steps for doing it."}, {"to": "scheme", "relation": "synonym", "strength": 0.8, "note": "A big or official plan; in American English it can sound dishonest."}, {"to": "strategy", "relation": "synonym", "strength": 0.8, "note": "A plan for reaching a big goal over a long time."}],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "plan", "relation": "derivational", "definition": "to decide how you will do something before you do it", "example": "We planned our trip to Samarkand very carefully.",
+   "syn": [{"to": "organize", "relation": "synonym", "strength": 0.8, "note": "Organize also means arranging people and things. British spelling: organise."}, {"to": "prepare", "relation": "synonym", "strength": 0.8, "note": "Prepare means getting ready, often by doing things before an event."}, {"to": "arrange", "relation": "synonym", "strength": 0.8, "note": "Arrange is about fixing times and details with other people."}],
+   "ant": [{"to": "improvise", "relation": "antonym", "note": "To do something without preparing before."}]},
+  {"slot": "adjective", "status": "existing", "form": "planned", "relation": "participial", "definition": "decided or arranged before it happens", "example": "The planned trip to the mountains was cancelled because of rain.",
+   "syn": [{"to": "intended", "relation": "synonym", "strength": 0.8, "note": "A little more formal; what someone wants to happen."}, {"to": "scheduled", "relation": "related", "strength": 0.6, "note": "Fixed for a certain time, like a train or a meeting."}],
+   "ant": [{"to": "unplanned", "relation": "antonym", "note": "Not decided before; it just happened."}, {"to": "spontaneous", "relation": "antonym", "note": "Done because you suddenly want to, without planning."}]},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family. Say 'as planned' or 'according to plan'."}
+ ],
+ "people": [
+  {"form": "planner", "kind": "job", "status": "existing", "definition": "a person whose job is deciding how towns or events will be organized", "example": "The city planner wants more parks in Tashkent.", "note": "Also a book or app where you write your plans."}
+ ],
+ "affixes": [
+  {"affix": "-ing", "in_form": "planning", "meaning_key": "-ing", "also": ["building", "meeting", "cooking"]},
+  {"affix": "-er", "in_form": "planner", "meaning_key": "-er", "also": ["teacher", "driver", "player"]}
+ ],
+ "context": {"text": "Aziz and his friends planned a surprise party for their teacher. The planning took two weeks, but the party went exactly as planned.", "uses": ["planned", "planning", "planned"]},
+ "reviewer_note": "Headword is the -ing noun; plan (noun and verb) is the root, so both are shown as forms. Unplanned kept as an opposite, not a form."},
+
+{"headword": "poison", "word_id": "6a6ef83f0f1e82a5a0736662", "word_ids": ["6a6ef83f0f1e82a5a0736662"], "cefr": "B1", "kind": "word", "sense_label": "Substance", "sense_pos": "noun", "corpus_definition": "A substance that causes illness or death if eaten.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "poison", "relation": "base", "definition": "a substance that can make you very ill or kill you", "example": "Keep the poison away from children.",
+   "syn": [{"to": "toxin", "relation": "synonym", "strength": 0.8, "note": "A more scientific word, often for natural substances made by plants or animals.", "register": "formal"}, {"to": "venom", "relation": "related", "strength": 0.6, "note": "The dangerous liquid from a snake or spider bite."}],
+   "ant": [{"to": "antidote", "relation": "antonym", "note": "A substance that stops a poison from hurting you."}]},
+  {"slot": "verb", "status": "existing", "form": "poison", "relation": "conversion", "definition": "to harm or kill someone by giving them a dangerous substance", "example": "In the story, the evil queen tries to poison the princess.",
+   "syn": [{"to": "contaminate", "relation": "related", "strength": 0.6, "note": "To make something dirty or dangerous, like water or food."}, {"to": "pollute", "relation": "related", "strength": 0.4, "note": "Used for air, water and land, not for people."}],
+   "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "poisonous", "relation": "derivational", "definition": "able to make you very ill or kill you if you eat or touch it", "example": "Some mushrooms in the forest are poisonous.",
+   "syn": [{"to": "toxic", "relation": "synonym", "strength": 0.95, "note": "Very close; toxic is common for chemicals and gases."}, {"to": "deadly", "relation": "related", "strength": 0.6, "note": "Able to kill; stronger."}, {"to": "harmful", "relation": "related", "strength": 0.6, "note": "Causing damage, but not always serious."}],
+   "ant": [{"to": "harmless", "relation": "antonym", "note": "Not dangerous at all."}]},
+  {"slot": "adjective", "status": "existing", "form": "poisoned", "relation": "participial", "definition": "with a dangerous substance put in it on purpose", "example": "The detective found the poisoned cup of tea.",
+   "syn": [], "ant": []},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in learner use."}
+ ],
+ "people": [
+  {"form": "poisoner", "kind": "person", "status": "existing", "definition": "a person who harms or kills someone with a dangerous substance", "example": "The police finally caught the poisoner."}
+ ],
+ "affixes": [
+  {"affix": "-ous", "in_form": "poisonous", "meaning_key": "-ous", "also": ["dangerous", "famous", "nervous"]},
+  {"affix": "-er", "in_form": "poisoner", "meaning_key": "-er", "also": ["teacher", "driver", "singer"]}
+ ],
+ "context": {"text": "My grandmother keeps rat poison on a high shelf. She always tells us that some berries in the garden are poisonous, so we never eat them.", "uses": ["poison", "poisonous"]},
+ "reviewer_note": "Poisonous (naturally dangerous) vs poisoned (a dangerous substance was added); both kept."},
+
+{"headword": "polish", "word_id": "6a6ef9b2a601556148092836", "word_ids": ["6a6ef9b2a601556148092836"], "cefr": "B1", "kind": "word", "sense_label": "Shine", "sense_pos": "verb", "corpus_definition": "to rub a surface until it becomes smooth and shiny",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "polish", "relation": "conversion", "definition": "a cream or liquid you rub on something to make it shine", "example": "He put some black polish on his school shoes.",
+   "syn": [{"to": "wax", "relation": "related", "strength": 0.6, "note": "A type of polish made from wax, used on floors, cars and furniture."}, {"to": "shine", "relation": "related", "strength": 0.4, "note": "The bright look that comes after polishing: 'give your shoes a shine'."}],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "polish", "relation": "base", "definition": "to rub a surface until it becomes smooth and bright", "example": "She spent the morning polishing the old wooden floor.",
+   "syn": [{"to": "shine", "relation": "synonym", "strength": 0.8, "note": "Informal and easy: 'shine your shoes'."}, {"to": "buff", "relation": "synonym", "strength": 0.8, "note": "To rub with a soft cloth to make it shine."}, {"to": "rub", "relation": "related", "strength": 0.6, "note": "Rub is the general movement; you polish to make something shiny."}],
+   "ant": [{"to": "tarnish", "relation": "antonym", "note": "When metal becomes dark and loses its shine."}]},
+  {"slot": "adjective", "status": "existing", "form": "polished", "relation": "participial", "definition": "smooth and shiny because someone has rubbed it", "example": "The polished table looked like new.", "note": "It can also mean done with great skill: a polished performance.",
+   "syn": [{"to": "shiny", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday word."}, {"to": "glossy", "relation": "synonym", "strength": 0.8, "note": "Smooth and shiny, often used for paper, hair and paint."}],
+   "ant": [{"to": "unpolished", "relation": "antonym", "note": "Not rubbed to make it shine."}, {"to": "dull", "relation": "antonym", "note": "Not bright or shiny."}]},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+ ],
+ "people": [
+  {"form": "polisher", "kind": "thing", "status": "existing", "definition": "a machine or tool used to make floors or cars shine", "example": "The cleaner used an electric polisher on the hall floor."}
+ ],
+ "affixes": [
+  {"affix": "-er", "in_form": "polisher", "meaning_key": "-er", "also": ["cooker", "heater", "printer"]}
+ ],
+ "context": {"text": "Before the wedding, Bobur polished his shoes with black polish. Now they are so polished that he can see his face in them.", "uses": ["polished", "polish", "polished"]},
+ "reviewer_note": "Trap: Polish with a capital P (from Poland) is a different word with a different sound; not part of this family."},
+
+{"headword": "politics", "word_id": "6a42821646ba24054c1dcc6f", "word_ids": ["6a42821646ba24054c1dcc6f"], "cefr": "B1", "kind": "word", "sense_label": "Government", "sense_pos": "noun", "corpus_definition": "the activities related to how a country is governed.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "politics", "relation": "base", "definition": "the activities and ideas connected with how a country is governed", "example": "She enjoys reading about modern politics.", "note": "Takes a singular verb: 'Politics is interesting.'",
+   "syn": [{"to": "government", "relation": "related", "strength": 0.6, "note": "The group of people who run a country, or the act of running it."}, {"to": "public affairs", "relation": "related", "strength": 0.4, "note": "A formal phrase for the questions and events that matter to a whole country.", "register": "formal"}],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "politicize", "relation": "derivational", "definition": "to make a question or event a matter of party arguments", "example": "Some people politicize every discussion about the city's water.", "register": "formal", "note": "British spelling: politicise.",
+   "syn": [], "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "political", "relation": "derivational", "definition": "connected with government and the way a country is run", "example": "There are three political parties in the election.",
+   "syn": [{"to": "governmental", "relation": "related", "strength": 0.6, "note": "Connected with the government itself, not with parties or ideas."}, {"to": "civic", "relation": "related", "strength": 0.4, "note": "Connected with a city or with the duties of citizens."}],
+   "ant": [{"to": "apolitical", "relation": "antonym", "note": "Not interested in or not connected with party ideas."}]},
+  {"slot": "adverb", "status": "existing", "form": "politically", "relation": "derivational", "definition": "in a way that is connected with government and parties", "example": "The country is politically stable.",
+   "syn": [], "ant": []}
+ ],
+ "people": [
+  {"form": "politician", "kind": "job", "status": "existing", "definition": "a person who works in government or wants to be elected", "example": "The politician promised to build new schools."}
+ ],
+ "affixes": [
+  {"affix": "-ian", "in_form": "politician", "meaning_key": "-ian", "also": ["musician", "magician", "electrician"]},
+  {"affix": "-ly", "in_form": "politically", "meaning_key": "-ly", "also": ["quickly", "really", "usually"]}
+ ],
+ "context": {"text": "My father watches the news every evening because he is interested in politics. He likes to talk about political ideas with his friends at the choyxona.", "uses": ["politics", "political"]},
+ "reviewer_note": "Politics takes a singular verb; politic (wise) and policy left out as different words for learners."},
+
+{"headword": "pollution", "word_id": "6a4282fd46ba24054c1dcd96", "word_ids": ["6a4282fd46ba24054c1dcd96", "6a42883f6941e70ad6a00dfe"], "cefr": "B1", "kind": "word", "sense_label": "Environment", "sense_pos": "noun", "corpus_definition": "Dirty or harmful substances in the air or water.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "pollution", "relation": "base", "definition": "dirty or harmful substances in the air, water or land", "example": "Factory smoke causes a lot of pollution.",
+   "syn": [{"to": "contamination", "relation": "synonym", "strength": 0.8, "note": "More formal and often about one place or thing, like water or food.", "register": "formal"}, {"to": "dirt", "relation": "related", "strength": 0.4, "note": "Dirt is any dust or mud; pollution is harmful and often made by people."}],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "pollute", "relation": "derivational", "definition": "to make air, water or land dirty and harmful", "example": "Old cars pollute the air in big cities.",
+   "syn": [{"to": "contaminate", "relation": "synonym", "strength": 0.95, "note": "Very close; a little more formal."}, {"to": "poison", "relation": "related", "strength": 0.6, "note": "Stronger: to make something deadly."}, {"to": "dirty", "relation": "related", "strength": 0.6, "note": "Easy word; to make something not clean."}],
+   "ant": [{"to": "clean", "relation": "antonym", "note": "To remove dirt from something."}, {"to": "purify", "relation": "antonym", "note": "To make water or air completely clean."}]},
+  {"slot": "adjective", "status": "existing", "form": "polluted", "relation": "participial", "definition": "made dirty and harmful by chemicals, smoke or rubbish", "example": "Nobody swims in the polluted river anymore.",
+   "syn": [{"to": "contaminated", "relation": "synonym", "strength": 0.95, "note": "Very close; often used for water, food or ground."}, {"to": "dirty", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday word."}],
+   "ant": [{"to": "unpolluted", "relation": "antonym", "note": "Not made dirty; still natural and clean."}, {"to": "clean", "relation": "antonym", "note": "Without dirt or harmful substances."}]},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+ ],
+ "people": [
+  {"form": "pollutant", "kind": "thing", "status": "existing", "definition": "a substance that makes air, water or land dirty", "example": "Plastic is one of the worst pollutants in the sea."},
+  {"form": "polluter", "kind": "person", "status": "existing", "definition": "a person, company or country that makes the environment dirty", "example": "The government wants big polluters to pay more."}
+ ],
+ "affixes": [
+  {"affix": "-ion", "in_form": "pollution", "meaning_key": "-ion", "also": ["education", "decision", "action"]},
+  {"affix": "-ant", "in_form": "pollutant", "meaning_key": "-ant", "also": ["assistant", "servant", "participant"]},
+  {"affix": "-er", "in_form": "polluter", "meaning_key": "-er", "also": ["teacher", "driver", "player"]}
+ ],
+ "context": {"text": "Many cars and factories pollute the air in Tashkent in winter. Some days the pollution is so bad that people wear masks in the polluted streets.", "uses": ["pollute", "pollution", "polluted"]},
+ "reviewer_note": "Two corpus rows with the same meaning merged. Pollutant (the substance) and polluter (who does it) kept in People & things, not the noun slot."},
+
+{"headword": "pop", "word_id": "6a6ef83f0f1e82a5a07367db", "word_ids": ["6a6ef83f0f1e82a5a07367db"], "cefr": "B1", "kind": "word", "sense_label": "Sound", "sense_pos": "verb", "corpus_definition": "To make a short, sharp sound like a small explosion.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "pop", "relation": "conversion", "definition": "a short, sharp sound like a small explosion", "example": "We heard a loud pop when the balloon burst.",
+   "syn": [{"to": "bang", "relation": "synonym", "strength": 0.8, "note": "A bang is usually louder."}, {"to": "crack", "relation": "related", "strength": 0.6, "note": "A sharp sound like wood or a whip breaking."}],
+   "ant": []},
+  {"slot": "verb", "status": "existing", "form": "pop", "relation": "base", "definition": "to burst or open with a short, sharp sound", "example": "The balloon will pop if you touch it.", "note": "Informally it also means to go somewhere quickly: 'I'll pop into the shop.'",
+   "syn": [{"to": "burst", "relation": "synonym", "strength": 0.8, "note": "Burst is about breaking open; it does not always make a sound."}, {"to": "bang", "relation": "related", "strength": 0.6, "note": "To make a loud, sudden noise."}, {"to": "crack", "relation": "related", "strength": 0.4, "note": "To make a sharp sound, often when something breaks."}],
+   "ant": []},
+  {"slot": "adjective", "status": "no_form", "note": "No adjective in this family. Pop in 'pop music' or 'a pop star' comes from popular, a different word."},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in learner use. People say 'go pop': 'The balloon went pop.'"}
+ ],
+ "people": [], "affixes": [],
+ "context": {"text": "Laylo was making popcorn in the kitchen. The corn started to pop, and every few seconds we heard another loud pop.", "uses": ["pop", "pop"]},
+ "reviewer_note": "Trap: pop music and pop (fizzy drink) are different words, not this sound family; compound popcorn left out of forms."},
+
+{"headword": "position", "word_id": "6a42883f6941e70ad6a00dcc", "word_ids": ["6a42883f6941e70ad6a00dcc"], "cefr": "B1", "kind": "word", "sense_label": "Job", "sense_pos": "noun", "corpus_definition": "The specific role or job that you hold.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "position", "relation": "base", "definition": "a job in a company or organization", "example": "He applied for a position as manager.", "register": "formal",
+   "syn": [{"to": "job", "relation": "synonym", "strength": 0.95, "note": "Everyday word; position is more formal and used in job adverts."}, {"to": "post", "relation": "synonym", "strength": 0.95, "note": "Formal, mainly British: 'She was offered the post of director.'"}, {"to": "role", "relation": "synonym", "strength": 0.8, "note": "What you do in a team or company, not only the job title."}, {"to": "vacancy", "relation": "related", "strength": 0.6, "note": "A job that is empty and waiting for someone."}],
+   "ant": []},
+  {"slot": "verb", "status": "other_meaning", "form": "position", "definition": "to put someone or something in a particular place", "example": "She positioned the chairs around the table.", "note": "Belongs to position = a place, not a job."},
+  {"slot": "adjective", "status": "no_form", "note": "No adjective in learner use for the job meaning. Positive is a different word."},
+  {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+ ],
+ "people": [], "affixes": [],
+ "context": {"text": "My sister has a new position at a bank in Tashkent. It is a good position, and she hopes to become a manager next year.", "uses": ["position", "position"]},
+ "reviewer_note": "Kept to the job meaning; the verb belongs to the place meaning. Positive is not family. No affix claimed (posit + -ion is not a learner split)."},
+
+{"headword": "practical", "word_id": "6a4282fd46ba24054c1dcd52", "word_ids": ["6a4282fd46ba24054c1dcd52"], "cefr": "B1", "kind": "word", "sense_label": "Useful", "sense_pos": "adjective", "corpus_definition": "useful and effective in a real situation",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "practicality", "relation": "derivational", "definition": "how useful and sensible something is in real life", "example": "When buying a car, my father thinks first about practicality.",
+   "syn": [{"to": "usefulness", "relation": "synonym", "strength": 0.8, "note": "Easy word; about being helpful."}, {"to": "convenience", "relation": "related", "strength": 0.6, "note": "Being easy to use and saving time."}],
+   "ant": []},
+  {"slot": "noun", "status": "existing", "form": "practice", "relation": "derivational", "definition": "real action and doing, not just ideas", "example": "The idea sounds good, but will it work in practice?", "note": "Also means doing something again and again to improve: piano practice.",
+   "syn": [{"to": "action", "relation": "related", "strength": 0.6, "note": "Doing things, not only thinking."}, {"to": "reality", "relation": "related", "strength": 0.4, "note": "What is true in real life."}],
+   "ant": [{"to": "theory", "relation": "antonym", "note": "Ideas about how something should work, not real action."}]},
+  {"slot": "verb", "status": "other_meaning", "form": "practise", "definition": "to do something again and again to get better at it", "example": "I practise my English every day with an app.", "note": "Belongs to practice = training, not being useful. British spelling; American English uses practice for the verb too."},
+  {"slot": "adjective", "status": "existing", "form": "practical", "relation": "base", "definition": "useful and sensible in a real situation", "example": "A warm coat is a practical choice for cold weather.",
+   "syn": [{"to": "useful", "relation": "synonym", "strength": 0.8, "note": "Easy word; helps you do something."}, {"to": "sensible", "relation": "synonym", "strength": 0.8, "note": "Showing good judgement, not silly."}, {"to": "functional", "relation": "synonym", "strength": 0.8, "note": "Made to be used, not just to look nice."}, {"to": "handy", "relation": "related", "strength": 0.6, "note": "Informal: useful and easy to use.", "register": "informal"}],
+   "ant": [{"to": "impractical", "relation": "antonym", "note": "Not useful or sensible in real life."}, {"to": "theoretical", "relation": "antonym", "note": "About ideas, not real situations."}]},
+  {"slot": "adverb", "status": "existing", "form": "practically", "relation": "derivational", "definition": "in a useful and sensible way in real life", "example": "She dresses practically for her long walk to work.", "note": "Careful: practically most often means 'almost': 'The bus was practically empty.'",
+   "syn": [{"to": "sensibly", "relation": "synonym", "strength": 0.8, "note": "In a way that shows good judgement."}],
+   "ant": [{"to": "theoretically", "relation": "antonym", "note": "In ideas, not in real life."}]}
+ ],
+ "people": [
+  {"form": "practitioner", "kind": "job", "status": "other_meaning", "definition": "a person who works in a skilled job, such as a doctor", "example": "She went to see a medical practitioner about her back.", "note": "Belongs to practice = the work of a doctor or lawyer, not being useful.", "register": "formal"}
+ ],
+ "affixes": [
+  {"affix": "-ity", "in_form": "practicality", "meaning_key": "-ity", "also": ["reality", "ability", "activity"]},
+  {"affix": "-ly", "in_form": "practically", "meaning_key": "-ly", "also": ["quickly", "really", "usually"]}
+ ],
+ "context": {"text": "My mother always gives practical advice. Her ideas sound simple, but they work well in practice, so the whole family listens to her.", "uses": ["practical", "practice"]},
+ "reviewer_note": "False-friend trap: practically usually means 'almost'; kept as existing with a clear note. Impractical is an opposite, not a form."}
+]
