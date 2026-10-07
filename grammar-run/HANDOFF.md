@@ -176,4 +176,6 @@ Short, plain English:
 - what's next.
 
 **After wave A, stop** and ask Tee to play all 7 topics in the preview
-(Grammar → Foundational → Verb Core → Tenses & Time → Present).
+(Grammar → any tier → Verb Core → Tenses & Time → Present; a branch shows all
+its topics whatever the tier). Present will then hold 11 topic nodes, the most
+any branch gets, so also ask him whether the topic ring still reads well.
