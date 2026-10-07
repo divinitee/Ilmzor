@@ -1,0 +1,271 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "forecast",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "forecasts"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "forecasted"
+      ],
+      "VBN": [
+       "forecast"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "fore- is not in the affix table, so no prefix is claimed; noun and verb are the same spelling."
+  },
+  {
+   "headword": "foreign",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "noun: marked 'no such form'; rare or doubtful family words exist: foreignness"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "noun: marked 'no such form'; real words that look related: foreignness. Check."
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "foreigner is a person noun, so it goes in People & things; no noun for the quality is common enough for learners."
+  },
+  {
+   "headword": "formal",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'former' (zipf 5.3) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "formalities",
+       "formality"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "formalize kept as other_meaning (official agreements). Don't confuse formally with formerly (= before)."
+  },
+  {
+   "headword": "freedom",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: freelance"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "freedoms",
+       "freedom"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "freed"
+      ],
+      "VBN": [
+       "freed"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "freeer"
+      ],
+      "JJS": [
+       "freeest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "freedom is made from free (free + -dom); -dom is not in the affix table so no affix is claimed for it. The 'costs nothing' meaning of free is only mentioned in a note."
+  },
+  {
+   "headword": "frown",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "frown: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "frown: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "frowns"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "frowned"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only the verb and its noun conversion are learner words; frown on (= disapprove) is a separate meaning."
+  },
+  {
+   "headword": "gallery",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: gallic. Check."
+    }
+   ],
+   "inflections": {},
+   "reviewer_note": "Single noun with no learner-level derived forms; context uses only the one form."
+  },
+  {
+   "headword": "gamble",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "gambling → 'betting' is not a noun (form is a noun)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: gamy. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "gambles"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "gambled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun slot leads with gambling (the activity) because the verb meaning is about money; gamble as a noun (a risky action) is an extra."
+  },
+  {
+   "headword": "generous",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: general, generic"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adverb: real words that may be in the family but aren't shown: generally"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "generosities",
+       "generosity"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "-ity in generosity and -ous in generous are not claimed because removing them does not leave a clean English word."
+  },
+  {
+   "headword": "germ",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: germinal, germy"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: germy. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "germs"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "germinate is kept as other_meaning (seed sense); compounds like germ-free are left out."
+  },
+  {
+   "headword": "get on with",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "get on with also means 'continue doing something' (get on with your work); this map keeps only the friendship meaning."
+  }
+ ]
+}

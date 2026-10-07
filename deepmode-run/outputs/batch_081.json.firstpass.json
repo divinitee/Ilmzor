@@ -1,0 +1,243 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "fabric",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "fabrics",
+       "fabric"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Single-form family; fabricate listed as not_family (same Latin root, not derived from fabric)."
+  },
+  {
+   "headword": "factor",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: faction"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "factors"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "factored"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "factory looks related but is not a modern family member of factor; listed in people_not_family. Maths sense mentioned only in a note."
+  },
+  {
+   "headword": "fade",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "faded"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No real noun in learner dictionaries (film 'fade-in/out' are compounds); both participle adjectives shown."
+  },
+  {
+   "headword": "faint",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "faints"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "fainted"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "fainter"
+      ],
+      "JJS": [
+       "faintest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: definition is the verb but the example uses the adjective (felt faint); map follows the verb definition and shows the adjective as a conversion."
+  },
+  {
+   "headword": "familiar",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: familial"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "familiarities",
+       "familiarity"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "familiarized"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "familiarly is a false friend (informal manner), shown as other_meaning. 'familiar with' has its own phrase map."
+  },
+  {
+   "headword": "familiar with",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Phrase map; the person is the subject (familiar with), unlike 'familiar to'."
+  },
+  {
+   "headword": "fasten",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "noun: marked 'no such form'; rare or doubtful family words exist: fastness"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "noun: marked 'no such form'; real words that look related: fastness. Check."
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "fastened"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "fasten = fast (firmly) + -en; adverb fast shown in its 'firmly' meaning with a note on fast = quickly. Silent t noted."
+  },
+  {
+   "headword": "feel like",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Different from 'feel like' = seem/resemble ('It feels like rain'); map keeps only the 'want' meaning."
+  },
+  {
+   "headword": "ferry",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: feral, ferric, ferrous. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ferries",
+       "ferry"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "ferried"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows, same meaning: merged (B1). ferryman/ferryboat are compounds and left out."
+  },
+  {
+   "headword": "fiber",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "fibrous: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "fibers",
+       "fiber"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: example ('Whole grains contain more fiber') uses the food sense, not the thread sense in the definition; food sense mentioned in the note. No -ous affix claimed (fibr- is not a word)."
+  }
+ ]
+}
