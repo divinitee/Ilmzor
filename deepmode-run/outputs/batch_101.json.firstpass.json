@@ -1,0 +1,312 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "recommend",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "recommendations",
+       "recommendation"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "recommended"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No false re- split: commend is not taught as the base for learners, so no prefix is claimed."
+  },
+  {
+   "headword": "recover from",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed verb + preposition; recover itself (with recovery) is a separate headword."
+  },
+  {
+   "headword": "recycling",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "recycling → 'reprocessing' is not a noun (form is a noun)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "recycling: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "recycle: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "recyclable: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "recycling",
+       "recyclings"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "recycled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing noun; recycle is the verb it comes from. Compounds like recycling bin left out."
+  },
+  {
+   "headword": "refresh",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "refreshed: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "refreshments",
+       "refreshment"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "refreshed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "refreshingly kept as other_meaning (new and different), not hidden. No re- split claimed (refresh is not 'fresh again' for learners)."
+  },
+  {
+   "headword": "relation",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "adjective 'related' is marked participial but is not a participle of relation"
+    },
+    {
+     "cat": "schema",
+     "msg": "'relationship' is a compound (relations + hip): compounds are left out for now (rule 7), remove it"
+    },
+    {
+     "cat": "schema",
+     "msg": "people 'relative' is already shown elsewhere in the map"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: relational"
+    },
+    {
+     "cat": "false affix",
+     "msg": "'relative' = 'relate' + '-ive', but 'relate' isn't confirmed as related. Real split?"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "relations",
+       "relation"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the noun main entry and relative goes in People & things (not a synonym). relatively is a false friend."
+  },
+  {
+   "headword": "relationship",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "schema",
+     "msg": "people 'relative' is already shown elsewhere in the map"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: relational"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "relationships",
+       "relationship"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "related"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "relation (plural relations = how groups behave) kept as existing extra noun; relatively flagged as a false friend."
+  },
+  {
+   "headword": "relief",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: reliance, reliever"
+    },
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: reliable"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: reliably. Check."
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'reliever' (zipf 3.1) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "reliefs",
+       "relief"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "relieved"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Spelling trap: relief (noun) vs relieve (verb). No affix claimed (relieve is not re- + lieve)."
+  },
+  {
+   "headword": "rely on",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed verb + preposition; reliable/reliance belong to the separate headword rely."
+  },
+  {
+   "headword": "remind",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "person noun in noun slot?",
+     "msg": "noun 'reminder' looks like a person/thing noun; rule 8 puts those in People & things"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "reminders"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "reminded"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "reminder is the core noun (the message itself), so it sits in the noun slot. No re- split claimed (remind is not mind again for learners)."
+  },
+  {
+   "headword": "rent",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: renal"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "rents",
+       "rent"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "rented"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: definition is the verb but the example uses the noun rent; map follows the verb and shows the noun as a conversion. Tenant and landlord are not made from rent."
+  }
+ ]
+}
