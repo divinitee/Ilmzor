@@ -1,0 +1,319 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "construction",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "constructions",
+       "construction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "constructed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Trap: constructive/constructively mean 'helpful', so they are other_meaning, not 'about building'."
+  },
+  {
+   "headword": "contact",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: contactable. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "contacts",
+       "contact"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "contacted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Uzbek/Russian speakers often add 'with' or 'to' after the verb; noted. Contactable left as rare."
+  },
+  {
+   "headword": "contain",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "verb: common family word 'content' (zipf 5.0) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    },
+    {
+     "cat": "missing form",
+     "msg": "adjective: marked 'no such form', but the dictionary links content, continent, continental. Show it (existing or other_meaning), or list it in not_family if it isn't made from this word."
+    },
+    {
+     "cat": "missing form",
+     "msg": "People & things: common family noun 'content' (zipf 5.0) isn't shown. Add it, or list it in people_not_family if it isn't made from this word."
+    },
+    {
+     "cat": "missing form",
+     "msg": "People & things: common family noun 'continent' (zipf 4.1) isn't shown. Add it, or list it in people_not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: content, contentment, continent"
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "contained"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun slot: containment is the 'control' meaning (other_meaning); contents shares the old root but is not shown as a form."
+  },
+  {
+   "headword": "contract",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "schema",
+     "msg": "'contraction' is a compound (contract + ion): compounds are left out for now (rule 7), remove it"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "contracts"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "contracted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). contraction (become smaller) kept as other_meaning; no -al affix claimed on contractual (contractu- is not a word)."
+  },
+  {
+   "headword": "cope",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: copious. Check."
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: copiously. Check."
+    }
+   ],
+   "inflections": {
+    "verb": {
+     "forms": {
+      "VBD": [
+       "coped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only the verb exists in this family; 'coping' (noun, part of a wall) is a different word."
+  },
+  {
+   "headword": "copper",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "copper: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "coppers",
+       "copper"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Copper (informal British = police officer) comes from 'cop', a different word, so it is not shown."
+  },
+  {
+   "headword": "correction",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: correctional"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "corrections",
+       "correction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "corrected"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the noun; the verb and adjective 'correct' are the base of the family."
+  },
+  {
+   "headword": "cozy",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun 'coziness' is rare (zipf 1.9)"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "verb: marked 'no such form'; real words that look related: cozen. Check."
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: cozily. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "coziness"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "cozier"
+      ],
+      "JJS": [
+       "coziest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "US/UK spelling noted (cozy/cosy). Cozily treated as rare."
+  },
+  {
+   "headword": "crack",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "cracks",
+       "crack"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "cracked"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "crack also has meanings like 'a sharp noise' and 'solve a problem'; crackle and cracker kept as other_meaning."
+  },
+  {
+   "headword": "crash",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "crash → 'pile-up' is not a noun (form is a noun)"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "crashes",
+       "crash"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "crashed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Adjective 'crash' (crash course) kept as other_meaning; computer 'crash' and money 'crash' are other meanings not shown."
+  }
+ ]
+}
