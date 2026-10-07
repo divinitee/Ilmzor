@@ -17,7 +17,7 @@
       "type": "string"
     },
     "depends_on": {
-      "description": "Task codes this task depends on.",
+      "description": "Task codes this task depends on. A task is execution-blocked until all dependencies are complete.",
       "items": {
         "type": "string"
       },
@@ -32,7 +32,7 @@
     },
     "focus_rank": {
       "default": 0,
-      "description": "Position on the Focus roadmap: 1 = the task being worked on now, 2+ = up next in order, 0 = not on the roadmap (backlog).",
+      "description": "Position on the Focus roadmap: 1 = now, 2+ = up next, 0 = backlog.",
       "type": "integer"
     },
     "last_actor": {
@@ -42,15 +42,12 @@
       "default": false,
       "type": "boolean"
     },
-    "notes": {
-      "type": "string"
-    },
     "order": {
       "default": 0,
       "type": "integer"
     },
     "parent_id": {
-      "description": "Parent Task.id. Empty for root (big) tasks.",
+      "description": "Parent Task.id. Empty for root.",
       "type": "string"
     },
     "priority": {
@@ -90,7 +87,7 @@
       "type": "array"
     },
     "task_code": {
-      "description": "Human-readable hierarchical ID: VT-14, VT-14.2, VT-14.2.1. A child's code is its parent's code plus a dot and a number.",
+      "description": "Human-readable hierarchical ID.",
       "type": "string"
     },
     "title": {
@@ -101,6 +98,48 @@
       "type": "string"
     },
     "verified_by": {
+      "type": "string"
+    },
+    "work_mode": {
+      "default": "hands_on",
+      "enum": [
+        "hands_on",
+        "claude",
+        "hybrid"
+      ],
+      "description": "Who does the substantive work: Tee, Claude, or both.",
+      "type": "string"
+    },
+    "estimate_minutes": {
+      "default": 15,
+      "description": "Estimated total human hands-on minutes. For Claude work this means kickoff + review, not unattended runtime.",
+      "type": "integer"
+    },
+    "ai_minutes": {
+      "default": 0,
+      "description": "Estimated unattended AI execution minutes. Usually non-zero for Claude tasks.",
+      "type": "integer"
+    },
+    "energy": {
+      "default": "med",
+      "enum": [
+        "low",
+        "med",
+        "high"
+      ],
+      "description": "Minimum human energy required for the hands-on portion.",
+      "type": "string"
+    },
+    "place": {
+      "default": "anywhere",
+      "enum": [
+        "laptop",
+        "home",
+        "phone",
+        "anywhere",
+        "out"
+      ],
+      "description": "Execution context required for the hands-on portion.",
       "type": "string"
     }
   },
