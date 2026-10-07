@@ -8,6 +8,12 @@
     "task_code": {
       "type": "string"
     },
+    "project": {
+      "type": "string"
+    },
+    "estimate_minutes": {
+      "type": "integer"
+    },
     "mode": {
       "type": "string",
       "enum": [
@@ -17,12 +23,10 @@
       ]
     },
     "human_minutes": {
-      "type": "integer",
-      "description": "Actual Tee hands-on minutes."
+      "type": "integer"
     },
     "ai_minutes": {
-      "type": "integer",
-      "description": "Actual unattended AI execution minutes."
+      "type": "integer"
     },
     "started_at": {
       "type": "string",
