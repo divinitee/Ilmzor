@@ -1,0 +1,212 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "in my opinion",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed phrase; no forms. Learner trap 'according to me' mentioned in usage note."
+  },
+  {
+   "headword": "in time (for)",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed phrase; the 'on time' vs 'in time' trap is explained in the usage note."
+  },
+  {
+   "headword": "income",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "verb: marked 'no such form'; real words that look related: incise. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "incomes",
+       "income"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (B1). in- is not a prefix here (in + come), so no affix is claimed; incoming is not_family."
+  },
+  {
+   "headword": "independence",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'in-' + 'dependence': 'independence' is not the opposite of 'dependence', so this is not the prefix in-"
+    }
+   ],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "independences",
+       "independence"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "in- + dependence is a real opposite split; dependence/dependent are antonyms, not forms. No -ent/-ence claimed because 'independ' is not a word."
+  },
+  {
+   "headword": "infant",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "infants"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Person noun headword stays in its own noun slot (rule 6); infancy as extra noun. No affix claimed (-cy not in table)."
+  },
+  {
+   "headword": "informal",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'informant' (zipf 3.3) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "informally: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "informalities",
+       "informality"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (B1). The headword is itself the opposite of formal, so formal/formally/formality appear only as antonyms."
+  },
+  {
+   "headword": "ingredient",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ingredients"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No family forms in any slot; -ent is not claimed because 'ingredi' is not a word."
+  },
+  {
+   "headword": "injure",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: injuriously. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "injuries",
+       "injury"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "injured"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "uninjured goes in ant (rule 3), not as a form. No affix claimed: 'injur' is not a word."
+  },
+  {
+   "headword": "instant message",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Noun phrase; no forms."
+  },
+  {
+   "headword": "instruction",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: instrument"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: instructively. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "instructions",
+       "instruction"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "instructed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "instructive is other_meaning (teach sense); instructively is rare, so adverb is no_form with a note."
+  }
+ ]
+}

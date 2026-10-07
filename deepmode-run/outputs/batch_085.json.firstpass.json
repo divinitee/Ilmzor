@@ -1,0 +1,277 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "hang up",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Only the phone meaning; 'hang up clothes' (put on a hook) is a different meaning and is not used here."
+  },
+  {
+   "headword": "hatred",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "people 'hater': example doesn't contain it"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "adjective definition has rare words: unkind"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: hatefully. Check."
+    },
+    {
+     "cat": "unchecked POS",
+     "msg": "hate → 'can't stand': phrase, part of speech not confirmed"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "hatreds",
+       "hatred"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "hated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -red in hatred is not a transparent learner affix, so no affix is claimed for it."
+  },
+  {
+   "headword": "have on",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Stative phrasal verb: warned against continuous use. Not the 'trick someone' meaning (have someone on)."
+  },
+  {
+   "headword": "headline",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "headlines"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "headlined"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headline is itself a compound (head + line), so no affix is claimed; headliner is the concert meaning."
+  },
+  {
+   "headword": "heel",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "heels"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Body meaning only; shoe heel mentioned in a note. Compounds (high-heeled) left out."
+  },
+  {
+   "headword": "hesitate",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "hesitant: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "hesitations",
+       "hesitation"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "hesitated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two corpus rows with the same meaning merged (lowest CEFR B1). -ant in hesitant not claimed as an affix (no clean English base)."
+  },
+  {
+   "headword": "hint",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "hints"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "hinted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun meaning 'clue'; the 'small amount' and 'tip' uses are in a note only."
+  },
+  {
+   "headword": "honesty",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: honey"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "honesty"
+      ]
+     },
+     "irregular": true
+    }
+   },
+   "reviewer_note": "Headword is the noun; honest is its base. Negative forms (dishonest, dishonesty) kept in ant lists only."
+  },
+  {
+   "headword": "humble",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "false affix",
+     "msg": "'humbly' minus '-ly' leaves no real word (humb, humbe, humby)"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "humility: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "humbly: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "humility"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "humbled"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "humbler"
+      ],
+      "JJS": [
+       "humblest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Humility is the learner-dictionary noun of humble (Latin humilis), not humbleness; 'humble = low in rank' mentioned in a note only."
+  },
+  {
+   "headword": "illegal",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad synonym",
+     "msg": "illegality → 'unlawfulness' is not a real word/phrase"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "illegal → 'against the law': phrase, part of speech not confirmed"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "illegally: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "illegalities",
+       "illegality"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Negative-prefix headword: il- is not in the affix table, so it isn't claimed; legal/legality/legally kept as antonyms, not forms."
+  }
+ ]
+}
