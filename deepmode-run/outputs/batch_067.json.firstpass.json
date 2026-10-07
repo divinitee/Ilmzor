@@ -1,0 +1,257 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "boom",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'boomer' (zipf 3.3) may belong here"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'bang' is a synonym/related target for boom, bump"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "booms"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "boomed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: the definition joins two meanings (sound + fast growth); the example uses growth. Split into two maps, Growth and Sound, sharing the same word_id."
+  },
+  {
+   "headword": "boom",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'boomer' (zipf 3.3) may belong here"
+    },
+    {
+     "cat": "clue collision",
+     "msg": "'bang' is a synonym/related target for boom, bump"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "booms"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "boomed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "CORPUS: the definition joins two meanings; this is the Sound map (the Growth map shares the word_id)."
+  },
+  {
+   "headword": "brand",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "branded: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "brands"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "branded"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "brand-new comes from an older meaning (fire) and is a compound, so it is left out; brand someone as is noted as a different meaning."
+  },
+  {
+   "headword": "break down",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Kept only the machine meaning; noted the separable 'divide into parts' meaning and the noun breakdown in the particle note."
+  },
+  {
+   "headword": "break into",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Kept the crime meaning only; break into song/laughter is a different meaning."
+  },
+  {
+   "headword": "breathing",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: breather"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'breather' (zipf 3.0) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "breathing: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "breathe: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "breathings",
+       "breathing"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "breathed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is the -ing noun; breath and breathe both shown. breathtaking left out (compound); breathable is other_meaning (cloth)."
+  },
+  {
+   "headword": "bring up",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Kept the children meaning; bring up a topic (mention) is a different meaning."
+  },
+  {
+   "headword": "browser",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "browsing: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "browsers"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "browsed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is itself a thing noun, so it stays main entry of the noun slot (rule 6); 'web browser' not listed as a synonym because it contains the headword."
+  },
+  {
+   "headword": "build up",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Kept the intransitive 'increase' meaning; build up strength/a business (transitive) is noted in the particle note."
+  },
+  {
+   "headword": "bump",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "clue collision",
+     "msg": "'bang' is a synonym/related target for boom, bump"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "bumps"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "bumped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a verb; noun bump is a conversion. bumpy is other_meaning (raised areas). bump into = meet by chance noted on the verb."
+  },
+  {
+   "headword": "by air",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "CORPUS: 'Traveling' is American spelling (British: travelling). Antonyms are other ways to travel, by land and by sea."
+  }
+ ]
+}
