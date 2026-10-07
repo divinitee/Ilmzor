@@ -1,0 +1,291 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "pronounce",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pronunciations",
+       "pronunciation"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "pronounced"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Spelling trap pronounce/pronunciation handled; pronounced (noticeable) and pronouncement (official statement) are other_meaning; mis- forms kept as antonyms."
+  },
+  {
+   "headword": "proverb",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: provence"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "verb: marked 'no such form'; real words that look related: proven. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'proverbially' is rare (zipf 1.8)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "proverbially: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "proverbs"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "proverbial often means 'the famous phrase' (the proverbial needle); kept as existing in this meaning."
+  },
+  {
+   "headword": "province",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: provincially. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "provinces"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Uzbekistan's viloyat is usually 'region' in English; noted on the synonym."
+  },
+  {
+   "headword": "public transport",
+   "kind": "phrase",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Fixed noun phrase; British/American difference noted."
+  },
+  {
+   "headword": "publish",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: public"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: publically. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "publications",
+       "publication"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "published"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "publication/public: no -ation affix claimed because removing it leaves 'public', not the base verb."
+  },
+  {
+   "headword": "pudding",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "puddings",
+       "pudding"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "British sense 'any dessert' and savoury puddings mentioned in a note only."
+  },
+  {
+   "headword": "pulse",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text uses 1 family form(s), needs 2"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "verb 'pulsate' is rare (zipf 1.8)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pulses"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "pulsed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "pulses (beans and lentils) is a different word, only mentioned in a note; pulsating 'exciting' is other_meaning."
+  },
+  {
+   "headword": "punish",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: punitive"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "adverb 'punishingly' (other meaning) is rare (zipf 1.4)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "punishments",
+       "punishment"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "punished"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "punishing/punishingly (very hard) kept as other_meaning; punitive left out as a formal C1+ word."
+  },
+  {
+   "headword": "purpose",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "purposely → 'by accident': phrase, part of speech not confirmed"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "purposes",
+       "purpose"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "purposely (deliberately) vs purposefully (in a determined way) shown as separate adverbs; archaic verb set to no_form."
+  },
+  {
+   "headword": "pursue",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "adjective: marked 'no such form', but the dictionary links pursuant. Show it (existing or other_meaning), or list it in not_family if it isn't made from this word."
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: purity"
+    },
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: purify"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "pursuits",
+       "pursuit"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "pursued"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Corpus sense covers both 'follow' and 'try to achieve'; pursuer kept as existing person."
+  }
+ ]
+}
