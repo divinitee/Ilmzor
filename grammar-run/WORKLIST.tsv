@@ -1,0 +1,386 @@
+#	wave	topic	level	placement_items	status	focus (from the placement bank)
+1	A	tenses.present.continuous-negative	A1	1	live	Negative of the progressive auxiliary: aren't (not don't) before -ing
+2	A	tenses.present.continuous-now	A1	2	live	Present continuous for an action visible right now | am + -ing with 'right now'
+3	A	tenses.present.simple-negative	A1	1	live	doesn't + base form (no double -s) in the present simple negative
+4	A	tenses.present.simple-routine	A1	2	live	Present simple base form for a routine with a first-person subject | Subject + verb + object + frequency phrase order in a present simple statement
+5	A	tenses.present.third-person-s	A1	3	rebuild	Third-person -s in present simple | Present simple for a scheduled routine, third person | Producing the third-person -s form
+6	A	tenses.present.general-truth	A2	1	todo	Present simple for a scientific/general truth
+7	A	tenses.present.simple-vs-continuous	A2	1	todo	Routine (present simple) vs temporary change (present continuous) in one context
+8	A	tenses.present.stative-verbs	A2	1	todo	Stative verb (like) takes present simple even for a present situation
+9	A	tenses.present.temporary-situation	A2	1	todo	Present continuous for a temporary situation around now (not at this second)
+10	A	tenses.present.changing-trend	B2	1	todo	Present continuous for a developing trend ('these days')
+11	A	tenses.present.will-characteristic	C2	1	todo	'will' expressing characteristic/habitual behaviour rather than future time
+12	B	tenses.past.continuous-at-time	A2	1	todo	Past continuous for an action in progress at a specific past time
+13	B	tenses.past.interrupted-action	A2	2	todo	Past continuous (background) interrupted by past simple | Productive contrast of past continuous (background) and past simple (interruption)
+14	B	tenses.past.irregular-past	A2	1	todo	Producing an irregular past simple form
+15	B	tenses.past.simple-finished-time	A2	1	todo	Past simple with a finished-time marker
+16	B	tenses.past.simple-negative	A2	1	todo	did + not + base form for the past simple negative
+17	B	tenses.perfect.experience-ever	A2	1	todo	Present perfect question form for life experience (Have ... ever been)
+18	B	tenses.perfect.for-since	A2	2	todo	since (start point) vs for (length) | for with a length of time
+19	B	tenses.perfect.never-experience	A2	1	todo	Past participle after has never
+20	B	tenses.perfect.present-result	A2	1	todo	Present perfect for a completed action with a present result
+21	B	tenses.perfect.since-duration	A2	3	todo	Present perfect with 'since' for an unfinished period | Turning a past start point into a present perfect duration | Present perfect (continuous) from a past start point, formal register
+22	B	tenses.future.going-to-evidence	A2	1	todo	be going to for a prediction based on present evidence
+23	B	tenses.future.going-to-plan	A2	1	todo	be going to for a pre-made plan
+24	B	tenses.future.will-spontaneous	A2	1	todo	will for a spontaneous decision at the moment of speaking
+25	B	nouns-articles.articles.a-an	A1	3	todo	a before a consonant sound | an before a vowel sound | an before a vowel sound (umbrella)
+26	B	nouns-articles.articles.the-shared-context	A1	1	todo	the for something both speakers can identify
+27	B	nouns-articles.articles.the-unique	A1	1	todo	the for a unique referent
+28	B	nouns-articles.plurals-agreement.es-plural	A1	1	todo	-es plural after -x
+29	B	nouns-articles.plurals-agreement.irregular-plural	A1	2	todo	Irregular plural (children) | Producing an irregular plural
+30	B	nouns-articles.plurals-agreement.y-ies-plural	A1	1	todo	consonant + y → -ies
+31	B	nouns-articles.countability.partitive	A1	2	todo	Counting an uncountable noun with a partitive (loaves of) | Counting an uncountable noun with 'piece of'
+32	B	nouns-articles.countability.uncountable-no-plural	A1	2	todo	Uncountable noun takes no plural or 'a' | 'advice' has no plural form
+33	B	nouns-articles.quantifiers.some-any	A1	3	todo	any in a question | any in a negative | any (negative) then some (affirmative) in one sentence
+34	B	nouns-articles.quantifiers.some-offer	A1	1	todo	some in an offer/request question
+35	B	nouns-articles.articles.a-jobs	A2	1	todo	a/an with jobs
+36	B	nouns-articles.countability.uncountable-abstract	A2	1	todo	'information' is uncountable — takes some, not an/many
+37	B	nouns-articles.quantifiers.few-little	A2	2	todo	a few with countable plural | a little with uncountable
+38	B	nouns-articles.quantifiers.much-many	A2	2	todo	many with plural countable nouns | much with uncountable nouns
+39	B	nouns-articles.quantifiers.no-vs-any	A2	1	todo	no with an affirmative verb vs any with a negative
+40	B	nouns-articles.possession.plural-possessive	A2	1	todo	Plural possessive: apostrophe after the -s
+41	B	nouns-articles.possession.possessive-s	A2	1	todo	Possessive 's on a singular name
+42	B	questions-negation.yes-no.be-vs-do	A1	2	todo	be-questions invert directly; no 'do' | Does + have (have is a main verb here)
+43	B	questions-negation.yes-no.do-does	A1	3	todo	Do with you in present simple questions | Does with third person singular | Auxiliary + subject + base verb order
+44	B	questions-negation.yes-no.progressive-question	A1	1	todo	Are + subject + -ing
+45	B	questions-negation.wh-questions.progressive-wh	A1	1	todo	What + are + you + doing
+46	B	questions-negation.wh-questions.wh-word-choice	A1	4	todo	Where for place | When for time | Who for a person | Why for reason
+47	B	questions-negation.negation.dont-doesnt	A1	2	todo	don't with I | doesn't + base form (no -s on main verb)
+48	B	questions-negation.yes-no.past-did	A2	1	todo	Did for past simple questions
+49	B	questions-negation.wh-questions.how-long-perfect	A2	1	todo	have in a How long ... present perfect question
+50	B	questions-negation.wh-questions.how-often	A2	1	todo	does after 'How often' with a singular subject
+51	B	questions-negation.wh-questions.past-wh	A2	2	todo	did in a past wh-question | Wh + did + subject + base verb + time
+52	B	questions-negation.negation.wasnt-werent	A2	1	todo	Negative of past 'be' — no 'didn't'
+53	B	questions-negation.subject-questions.who-subject	A2	1	todo	Subject question: no 'did', verb in past form
+54	B	sentence-structure.predication.be-am-is-are	A1	4	todo	am with I in an identity statement | is with a singular third-person subject | are with plural subject (location predicate) | are with a compound subject (my brother and I)
+55	B	sentence-structure.predication.be-question	A1	1	todo	Are + you inverted question with be
+56	B	sentence-structure.existential.there-is-are	A1	2	todo	There is + singular | There are + plural
+57	B	sentence-structure.existential.there-question	A1	1	todo	Is there ...? with an uncountable noun
+58	B	sentence-structure.imperatives.affirmative-imperative	A1	1	todo	Base form for an imperative
+59	B	sentence-structure.imperatives.negative-imperative	A1	1	todo	Don't + base form for a negative imperative
+60	B	sentence-structure.conjunctions.and-but-or	A1	2	todo	and for addition | but for contrast
+61	B	sentence-structure.conjunctions.so-result	A1	1	todo	so for a result
+62	B	sentence-structure.word-order.place-time-order	A1	1	todo	Place before time at the end of a sentence
+63	B	sentence-structure.word-order.svo-basic	A1	1	todo	Subject + verb + object
+64	B	sentence-structure.existential.there-was-were	A2	1	todo	there was/were agreement in the past
+65	B	sentence-structure.imperatives.lets	A2	1	todo	Let's + base form
+66	B	sentence-structure.conjunctions.because	A2	1	todo	because for a reason
+67	B	sentence-structure.conjunctions.when-time-clause	A2	1	todo	Present simple (not will) in a future time clause after when
+68	B	sentence-structure.word-order.double-object	A2	1	todo	S + V + indirect object + direct object
+69	B	sentence-structure.relative-clauses.that-which-things	A2	1	todo	that/which for a thing
+70	B	sentence-structure.relative-clauses.where-place	A2	1	todo	where for a place (no object gap)
+71	B	sentence-structure.relative-clauses.who-people	A2	2	todo	who for a person in a defining relative clause | Productive defining relative clause
+72	B	pronouns.personal.object-pronouns	A1	4	todo	Object pronoun her after a verb | Object pronoun me | Object pronoun us (vs we/our) | Producing the object pronoun for a plural referent
+73	B	pronouns.personal.subject-pronouns	A1	2	todo	Subject pronoun I (not me/my) as sentence subject | Subject pronoun he referring back to a named male
+74	B	pronouns.possessive.possessive-determiners	A1	3	todo	Possessive determiner my before a noun | his (not he/him) before a noun | their (determiner) vs theirs
+75	B	pronouns.possessive.possessive-pronouns	A1	2	todo	Possessive pronoun theirs standing alone | mine (pronoun) vs my (determiner)
+76	B	pronouns.demonstrative.that-those-far	A1	2	todo	those for plural far objects | those as a pronoun for plural far items
+77	B	pronouns.demonstrative.this-these-near	A1	2	todo	this for a single near object | these for plural near objects
+78	B	pronouns.personal.subject-object-contrast	A2	1	todo	Object pronoun after a preposition in a coordinated phrase
+79	B	pronouns.substitution.one-ones	A2	3	todo	one replacing a singular countable noun | ones replacing a plural noun | 'those' as a formal substitute for 'the ones' before a post-modifier
+80	B	pronouns.indefinite.indefinite-agreement	A2	2	todo	everyone takes a singular verb | Singular verb after 'nobody' despite plural meaning
+81	B	pronouns.indefinite.nothing-anything	A2	1	todo	nothing with an affirmative verb (no double negative)
+82	B	pronouns.indefinite.someone-anyone	A2	2	todo	someone in an affirmative statement | anyone in a negative statement
+83	B	pronouns.indefinite.something-offer	A2	1	todo	something in an offer question
+84	B	verb-patterns.have-got.have-got-negative	A1	1	todo	haven't got (not haven't have)
+85	B	verb-patterns.have-got.have-got-question	A1	1	todo	Has ... got question form
+86	B	verb-patterns.have-got.have-has	A1	3	todo	have (not has) with I | has with third person singular | Producing has got for third person
+87	B	verb-patterns.gerund-infinitive.decide-infinitive	A2	1	todo	decide + to-infinitive
+88	B	verb-patterns.gerund-infinitive.enjoy-gerund	A2	2	todo	enjoy + -ing | like/love + -ing (or to) but never bare infinitive
+89	B	verb-patterns.gerund-infinitive.preposition-gerund	A2	1	todo	-ing form after a preposition
+90	B	verb-patterns.gerund-infinitive.want-infinitive	A2	1	todo	want + to-infinitive
+91	B	verb-patterns.gerund-infinitive.would-like-infinitive	A2	1	todo	would like + to-infinitive
+92	B	verb-patterns.object-infinitive.let-bare	A2	1	todo	let + object + bare infinitive
+93	B	adj-adv.frequency.adverb-position	A1	2	todo	Frequency adverb before the main verb | Frequency adverb AFTER be
+94	B	adj-adv.frequency.always	A1	1	todo	always for a fixed routine
+95	B	adj-adv.frequency.never	A1	2	todo	never for zero frequency | never with a positive verb (no double negative)
+96	B	adj-adv.frequency.rarely	A1	1	todo	rarely ≈ once a week
+97	B	adj-adv.adjective-form.adjective-before-noun	A1	1	todo	Adjective + noun order (adjective does not take plural -s)
+98	B	adj-adv.adjective-form.adjective-after-be	A2	1	todo	Adjective (not adverb) after be/feel/look
+99	B	adj-adv.adverb-form.irregular-adverb	A2	2	todo	well is the adverb of good | hard is both adjective and adverb; 'hardly' means 'almost not'
+100	B	adj-adv.adverb-form.ly-adverb	A2	2	todo	-ly adverb modifies a verb | Forming -ly adverb from an adjective ending in -y
+101	B	comparison.comparative.er-comparative	A1	3	todo	-er comparative of a short adjective with 'than' | Spelling of -er with a final consonant doubled | -er comparative (not 'more fast')
+102	B	comparison.comparative.double-comparative-error	A2	1	todo	Not combining more with -er
+103	B	comparison.comparative.less-comparative	A2	1	todo	less + adjective + than
+104	B	comparison.comparative.more-comparative	A2	1	todo	more + long adjective
+105	B	comparison.superlative.est-superlative	A2	1	todo	-iest spelling with 'the'
+106	B	comparison.superlative.irregular-superlative	A2	1	todo	best as superlative of good, with 'the'
+107	B	comparison.equality.as-as	A2	1	todo	as + adj + as
+108	B	modals.ability-permission.can-ability	A1	1	todo	can + base verb for ability
+109	B	modals.ability-permission.can-form	A1	2	todo	Modal takes no -s and no 'to' | Modal + bare infinitive (no 'to')
+110	B	modals.ability-permission.can-question	A1	1	todo	Modal question: can + subject + verb
+111	B	modals.ability-permission.can-request	A1	1	todo	Can for a request
+112	B	modals.ability-permission.cant-ability	A1	1	todo	can't for lack of ability; no 'doesn't'
+113	B	modals.ability-permission.could-past-ability	A2	1	todo	could for past ability
+114	B	modals.obligation.must	A2	1	todo	must for strong obligation
+115	B	modals.obligation.mustnt-vs-dont-have-to	A2	2	todo	mustn't (prohibition) vs don't have to (no obligation) | don't have to = not necessary
+116	B	modals.advice.should	A2	1	todo	should for advice
+117	B	modals.deduction.might-possibility	A2	1	todo	might for possibility
+118	B	modals.semi-modals.have-to	A2	1	todo	have to for external necessity
+119	B	prep-phrasal.place.between	A1	1	todo	between two named places
+120	B	prep-phrasal.place.in-container	A1	1	todo	in for a container
+121	B	prep-phrasal.place.on-surface	A1	2	todo	on for a surface | on the wall (vertical surface)
+122	B	prep-phrasal.time.at-clock	A1	1	todo	at with clock times
+123	B	prep-phrasal.time.at-night	A1	1	todo	at night (fixed expression vs in the morning)
+124	B	prep-phrasal.time.in-months	A1	1	todo	in with months
+125	B	prep-phrasal.time.in-on-at-contrast	A1	1	todo	in / on / at contrast across three time expressions
+126	B	prep-phrasal.time.on-days	A1	1	todo	on with days
+127	B	prep-phrasal.place.in-area	A2	1	todo	in for an enclosed area (garden)
+128	B	prep-phrasal.time.since-for	A2	1	todo	since with a start point
+129	B	prep-phrasal.movement.arrive-at-in	A2	1	todo	arrive at (a point) — never 'arrive to'
+130	B	prep-phrasal.movement.go-home	A2	1	todo	No preposition before 'home' after go/come
+131	B	prep-phrasal.movement.to-vs-in	A2	1	todo	to for movement towards, in for location
+132	B	prep-phrasal.dependent-prepositions.adjective-preposition	A2	1	todo	good at / afraid of
+133	B	prep-phrasal.dependent-prepositions.interested-in	A2	1	todo	interested in
+134	B	prep-phrasal.phrasal-verbs.common-phrasal	A2	1	todo	Particle choice in a common phrasal verb (get up)
+135	B	conditionals-wishes.zero-first.first-if-clause	A2	2	todo	Present simple (not will) in the if-clause | No 'will' in the if-clause
+136	B	conditionals-wishes.zero-first.first-will	A2	2	todo	First conditional: will in the result clause | First conditional with a negative if-clause
+137	B	conditionals-wishes.zero-first.zero-general-truth	A2	2	todo	Zero conditional: present simple in both clauses | Zero (not first) conditional for a general consequence
+138	B	passive-causative.simple-passive.active-to-passive	A2	1	todo	Simple active → passive with 'by'
+139	B	passive-causative.simple-passive.past-passive	A2	4	todo	Past simple passive: was + pp | Producing was/were + pp | Past passive in a longer stem | Productive past passive
+140	B	passive-causative.simple-passive.present-passive	A2	2	todo	Present simple passive: is + pp | Plural present passive: are + pp
+141	C	tenses.past.past-perfect-experience	B1	1	todo	Past participle after had never ... before
+142	C	tenses.past.past-perfect-sequence	B1	3	todo	Past perfect for the earlier of two past events | Producing past perfect with 'already' | 'By the time' requires past perfect for the completed earlier action
+143	C	tenses.perfect.continuous-present-result	B1	2	todo	Present perfect continuous for a recent activity explaining a present state | Productive present perfect continuous linking activity to present state
+144	C	tenses.perfect.perfect-vs-past	B1	1	todo	Present perfect cannot combine with a finished-time marker
+145	C	tenses.perfect.since-clause	B1	1	todo	Present perfect in the main clause with a since-clause in past simple
+146	C	tenses.perfect.unfinished-time	B1	1	todo	Present perfect with an unfinished time period ('this morning' while still morning)
+147	C	tenses.future.arrangement-continuous	B1	1	todo	Present continuous for a fixed future arrangement
+148	C	tenses.future.future-continuous	B1	1	todo	Future continuous for an action in progress at a future time
+149	C	tenses.future.timetable-simple	B1	1	todo	Present simple for a timetabled future event
+150	C	tenses.used-to.didnt-use-to	B1	1	todo	Negative: didn't use to (no -d after did)
+151	C	tenses.used-to.used-to-state	B1	2	todo	used to + base form for a discontinued past state | Productive used to for a discontinued habit or state
+152	C	nouns-articles.articles.the-second-mention	B1	1	todo	a on first mention, the on second mention
+153	C	nouns-articles.articles.zero-article-general	B1	2	todo	Zero article with plural nouns used generally | Zero article with uncountable abstract nouns used generally
+154	C	nouns-articles.plurals-agreement.each-every-singular	B1	2	todo	each/every + singular noun + singular verb | Productive each/every with singular agreement
+155	C	nouns-articles.plurals-agreement.there-agreement	B1	1	todo	Agreement with the first noun in a list after 'there'
+156	C	nouns-articles.quantifiers.both-either-neither	B1	2	todo	both (two, positive) vs neither/either/none | Productive use of both/either/neither/all/none with correct agreement
+157	C	questions-negation.wh-questions.question-preposition	B1	2	todo	Preposition stranded at the end of a wh-question | Stranded preposition in a wh-question
+158	C	questions-negation.negation.no-vs-not	B1	1	todo	no + noun vs not + any
+159	C	questions-negation.indirect-questions.embedded-if-whether	B1	1	todo	if/whether for embedded yes/no questions with statement order
+160	C	questions-negation.indirect-questions.embedded-order	B1	2	todo	Statement order and no 'does' inside an indirect question | Productive indirect question with statement order
+161	C	questions-negation.tag-questions.basic-tag	B1	2	todo	Negative tag after a positive statement, matching auxiliary | Positive tag after a negative statement with 'be'
+162	C	sentence-structure.conjunctions.although-despite	B1	2	todo	although + clause for concession | despite + noun/-ing, not + clause
+163	C	sentence-structure.word-order.indirect-object-to	B1	1	todo	Direct object + to + indirect object order
+164	C	sentence-structure.relative-clauses.object-relative-omission	B1	2	todo	Object relative pronoun optional; 'where' impossible for a thing | Productive omitted object relative
+165	C	sentence-structure.relative-clauses.which-vs-what	B1	1	todo	which (relative) vs what (not a relative pronoun) after a noun
+166	C	sentence-structure.relative-clauses.whose	B1	1	todo	whose for possession in a relative clause
+167	C	sentence-structure.clause-linkers.purpose-so-that	B1	1	todo	so that + clause for purpose (vs so + result)
+168	C	pronouns.personal.dummy-it	B1	1	todo	Dummy 'it' as subject for weather/time/distance
+169	C	pronouns.substitution.another-other	B1	1	todo	another (a different single one) vs other/others
+170	C	pronouns.substitution.so-neither	B1	2	todo	Neither + auxiliary + subject agreeing with a negative | 'Nor' with inversion continuing a negative in formal register
+171	C	pronouns.substitution.the-other-others	B1	1	todo	the other (the remaining one of two) vs another/others
+172	C	pronouns.reflexive.no-reflexive-after-feel	B1	1	todo	Some verbs (relax, feel, concentrate) take no reflexive in English
+173	C	pronouns.reflexive.reciprocal	B1	1	todo	each other (reciprocal) vs themselves (reflexive)
+174	C	pronouns.reflexive.reflexive-object	B1	1	todo	Reflexive pronoun when subject and object are the same
+175	C	verb-patterns.gerund-infinitive.avoid-gerund	B1	1	todo	avoid + -ing
+176	C	verb-patterns.gerund-infinitive.get-used-to	B1	2	todo	get used to + -ing/noun (distinct from used to + base) | Productive get used to + -ing/noun
+177	C	verb-patterns.gerund-infinitive.look-forward-to	B1	1	todo	look forward to + -ing ('to' is a preposition here)
+178	C	verb-patterns.object-infinitive.want-object-infinitive	B1	1	todo	want + object + to-infinitive
+179	C	verb-patterns.meaning-change-verbs.remember-gerund	B1	1	todo	remember + -ing for a past memory
+180	C	verb-patterns.meaning-change-verbs.remember-infinitive	B1	1	todo	remember + to-infinitive for a task to do
+181	C	verb-patterns.meaning-change-verbs.stop-contrast	B1	1	todo	Productive contrast of stop + -ing vs stop + to-infinitive
+182	C	verb-patterns.meaning-change-verbs.stop-gerund	B1	1	todo	stop + -ing = cease an activity
+183	C	verb-patterns.meaning-change-verbs.stop-infinitive	B1	1	todo	stop + to-infinitive = purpose
+184	C	adj-adv.adjective-form.ed-vs-ing	B1	3	todo	-ing adjective describes the cause, -ed the feeling | Both -ed and -ing forms of the same participle adjective in one context | People feel -ed; things are -ing
+185	C	adj-adv.adverb-form.adverb-vs-adjective-sense	B1	2	todo	late (adverb of time) vs lately (recently) | hard (with effort) vs hardly (almost not) in one context
+186	C	adj-adv.intensifiers.too-enough	B1	2	todo	too + adjective vs adjective + enough | enough follows an adjective but precedes a noun
+187	C	adj-adv.order-position.adverb-of-manner-position	B1	1	todo	Manner adverb after the object, not between verb and object
+188	C	comparison.comparative.fewer-less	B1	1	todo	fewer with countable plurals, less with uncountables
+189	C	comparison.equality.not-as-as	B1	2	todo	not as ... as = less than | Comparative → negative equality transformation
+190	C	comparison.modified-comparison.much-comparative	B1	2	todo	much + more + adjective (modifier position) | Productive intensified comparative
+191	C	comparison.modified-comparison.slightly-comparative	B1	1	todo	slightly + comparative
+192	C	comparison.parallel-comparison.progressive-comparative	B1	1	todo	comparative + and + comparative for gradual change
+193	C	comparison.parallel-comparison.the-more-the-more	B1	3	todo	the + comparative ..., the + comparative | Productive parallel comparative | Reduced parallel comparative with ellipsis ('the sooner, the better')
+194	C	modals.obligation.modal-passive	B1	1	todo	Modal + be + pp when the subject receives the action
+195	C	modals.deduction.cant-present	B1	3	todo	can't (not mustn't) for a negative deduction | can't for a negative deduction in an extended context | Productive can't be for negative deduction
+196	C	modals.deduction.might-present	B1	1	todo	might for an uncertain deduction
+197	C	modals.deduction.must-present	B1	2	todo	must for a confident present deduction | Productive must for present deduction
+198	C	modals.semi-modals.be-able-to	B1	1	todo	be able to where 'can' has no future/perfect form
+199	C	modals.semi-modals.have-to-past	B1	1	todo	Past obligation uses had to (must has no past form)
+200	C	modals.past-modals.might-have	B1	1	todo	might have + pp for an uncertain past possibility
+201	C	modals.past-modals.must-have	B1	3	todo	must have + past participle for a confident past deduction | must have + pp from indirect evidence | must have + pp for past deduction in formal register
+202	C	modals.past-modals.should-have	B1	3	todo	should have + pp for past criticism | Productive should have + pp for regret/criticism | should have + pp with a consequence clause
+203	C	prep-phrasal.time.by-until	B1	1	todo	by (deadline) vs until (continuing up to)
+204	C	prep-phrasal.time.during-while	B1	1	todo	during + noun vs while + clause
+205	C	prep-phrasal.movement.across-through-along	B1	1	todo	through (enclosed space) vs across (surface) vs along (line)
+206	C	prep-phrasal.dependent-prepositions.preposition-gerund	B1	1	todo	Preposition + -ing after an adjective (worried about doing)
+207	C	prep-phrasal.dependent-prepositions.verb-preposition	B1	3	todo	depend on (verb + dependent preposition) | No preposition after 'discuss' | 'consist of' (not 'from')
+208	C	prep-phrasal.phrasal-verbs.inseparable	B1	1	todo	Inseparable phrasal verb: object cannot split it (look after)
+209	C	prep-phrasal.phrasal-verbs.pronoun-separation	B1	2	todo	Object PRONOUN must split a separable phrasal verb | Producing the split order with a pronoun object
+210	C	conditionals-wishes.second.if-i-were-you	B1	2	todo	would + base in the second conditional result | Productive second conditional with 'If I were'
+211	C	conditionals-wishes.second.second-if-clause	B1	2	todo	Past simple in the second-conditional if-clause | Producing both halves of a second conditional
+212	C	conditionals-wishes.linkers.unless	B1	3	todo	unless = if not | if ... not → unless | Productive unless
+213	C	passive-causative.simple-passive.agent-by	B1	1	todo	by introduces the agent; with introduces an instrument
+214	C	passive-causative.simple-passive.no-passive-intransitive	B1	1	todo	Intransitive verbs (happen, arrive) have no passive
+215	C	passive-causative.perfect-progressive-passive.present-perfect-passive	B1	4	todo	Present perfect passive with 'already' | Active present perfect → passive, agent omitted | Present perfect passive for an ongoing process in academic register | Productive present perfect passive with present relevance
+216	C	passive-causative.modal-passive.modal-be-pp	B1	2	todo	Modal + be + pp | Productive modal passive
+217	C	reported-speech.statements.backshift-past	B1	1	todo	Past simple → past perfect backshift
+218	C	reported-speech.statements.backshift-present	B1	2	todo	Present → past backshift with pronoun shift | Productive reported statement with backshift
+219	C	reported-speech.statements.backshift-will	B1	2	todo	will → would; tomorrow → the next day; you → me | Productive reported promise/prediction
+220	C	reported-speech.statements.say-tell	B1	1	todo	tell requires an object; say does not
+221	C	reported-speech.questions.reported-wh-question	B1	2	todo	Statement order in a reported wh-question | Producing a reported wh-question
+222	C	reported-speech.questions.reported-yes-no	B1	1	todo	if/whether in a reported yes/no question
+223	C	reported-speech.commands-requests.tell-sb-to	B1	1	todo	Reported command: tell + object + to-infinitive
+224	D	tenses.past.past-perfect-continuous	B2	3	todo	Past perfect continuous for duration before a past point | Productive past perfect continuous before a past event | Past perfect continuous with 'before + -ing' clause
+225	D	tenses.past.past-simple-vs-continuous	B2	1	todo	Sequencing: past simple event against a past continuous background (not past perfect)
+226	D	tenses.future.about-to	B2	1	todo	be about to for an imminent action
+227	D	tenses.future.future-in-the-past	B2	2	todo	was going to for a future seen from a past viewpoint | Productive future-in-the-past
+228	D	tenses.future.future-perfect	B2	1	todo	Future perfect for completion before a future point
+229	D	tenses.future.future-perfect-continuous	B2	3	todo	Future perfect continuous for duration up to a future point | Future perfect continuous with a passive time clause as reference point | Productive future perfect continuous with explicit future reference
+230	D	tenses.past.perfect-vs-perfect-continuous	C1	1	todo	Productive contrast of past perfect and past perfect continuous
+231	D	tenses.perfect.nth-time-perfect	C1	1	todo	'It's the Nth time (that)' + present perfect
+232	D	tenses.future.unfulfilled-arrangement	C1	2	todo	be to + perfect infinitive for an arrangement that did not happen | Producing 'was to have + past participle' for an arrangement that did not happen
+233	D	tenses.used-to.would-habit	C1	1	todo	would for a repeated past action (narrative register)
+234	D	tenses.used-to.would-vs-used-to	C1	1	todo	would for past habits cannot describe a past state — used to can
+235	D	nouns-articles.articles.the-with-superlative-ordinal	B2	1	todo	the before superlatives and ordinals
+236	D	nouns-articles.plurals-agreement.collective-nouns	B2	2	todo	'police' is plural-only and takes a plural verb | Collective noun with plural verb when members act individually (British usage)
+237	D	nouns-articles.plurals-agreement.neither-nor-agreement	B2	1	todo	neither ... nor: verb agrees with the nearer subject
+238	D	nouns-articles.plurals-agreement.singular-plural-form	B2	1	todo	'news' is singular despite its -s
+239	D	nouns-articles.countability.uncountable-as-countable	B2	1	todo	Uncountable nouns that are countable in a specific sense (a coffee = a cup)
+240	D	nouns-articles.quantifiers.amount-agreement	B2	1	todo	An amount of money/time as a single unit takes a singular verb
+241	D	nouns-articles.articles.abstract-definite	C1	1	todo	Abstract noun takes 'the' when post-modified by a defining clause
+242	D	nouns-articles.articles.generic-singular	C1	1	todo	Generic 'the' + singular noun for a class (inventions, species)
+243	D	nouns-articles.plurals-agreement.a-number-of	C1	1	todo	'a number of' + plural verb vs 'the number of' + singular verb
+244	D	nouns-articles.countability.nominalisation	C1	1	todo	Choosing the noun form after an adjective in a nominalised phrase
+245	D	nouns-articles.articles.article-with-proper-noun	C2	1	todo	Indefinite article with a proper noun to mean 'a person like / a work by'
+246	D	nouns-articles.plurals-agreement.notional-agreement	C2	1	todo	Notional agreement with 'one of those who' (plural verb inside the relative clause)
+247	D	questions-negation.wh-questions.whom-formal	B2	1	todo	Formal 'whom' after a fronted preposition
+248	D	questions-negation.negation.double-negative	B2	1	todo	Avoiding a double negative with 'anything'
+249	D	questions-negation.negation.negative-question	B2	1	todo	Negative question expecting agreement / expressing surprise
+250	D	questions-negation.indirect-questions.embedded-past	B2	1	todo	Embedded past question: statement order, no 'did'
+251	D	questions-negation.tag-questions.imperative-tag	B2	1	todo	Tag after an imperative: will you / won't you
+252	D	questions-negation.tag-questions.lets-tag	B2	1	todo	Let's → shall we
+253	D	questions-negation.tag-questions.negative-subject-tag	B2	1	todo	Negative subject → positive tag with 'they'
+254	D	questions-negation.emphasis-inversion.never-inversion	B2	1	todo	Inversion after fronted 'Never'
+255	D	questions-negation.emphasis-inversion.not-only-inversion	B2	2	todo	Inversion after 'Not only' | Productive Not only inversion
+256	D	questions-negation.negation.negative-scope	C1	1	todo	Scope of negation with 'not' before a to-infinitive vs after the main verb
+257	D	questions-negation.negation.negative-transfer	C1	1	todo	Transferred negation with think/suppose/believe ('I don't think ... will')
+258	D	questions-negation.tag-questions.same-polarity-tag	C1	1	todo	Same-polarity (positive–positive) tag to express inference or sarcasm
+259	D	questions-negation.emphasis-inversion.only-after-inversion	C1	2	todo	Inversion in the main clause after fronted 'Only after ...' | Productive Only after inversion
+260	D	questions-negation.emphasis-inversion.so-adj-inversion	C1	1	todo	Fronted 'So + adjective' with inversion
+261	D	questions-negation.emphasis-inversion.under-no-circumstances	C1	1	todo	Inversion after 'Under no circumstances'
+262	D	questions-negation.negation.negative-raising-modal	C2	1	todo	Litotes / negative scope with 'not un-' and quantifier interaction ('not everyone', 'not any')
+263	D	questions-negation.emphasis-inversion.barely-when	C2	1	todo	Inversion with barely/hardly/scarcely ... when
+264	D	sentence-structure.relative-clauses.non-defining-whose	B2	2	todo	whose in a non-defining clause | Productive non-defining relative with commas
+265	D	sentence-structure.relative-clauses.preposition-which	B2	1	todo	Preposition + which (never 'that') in formal relatives
+266	D	sentence-structure.clause-linkers.despite-ing	B2	1	todo	Despite + -ing (no clause)
+267	D	sentence-structure.clause-linkers.result-so-that	B2	1	todo	such + a + adj + noun + that (result)
+268	D	sentence-structure.participle-clauses.having-done	B2	2	todo	Perfect participle clause for a completed prior action | Productive perfect participle clause
+269	D	sentence-structure.participle-clauses.passive-participle-clause	B2	1	todo	Past participle clause with passive meaning
+270	D	sentence-structure.participle-clauses.reduced-relative-active	B2	1	todo	Reducing an active relative clause to a present participle phrase
+271	D	sentence-structure.participle-clauses.reduced-relative-passive	B2	2	todo	Past participle reducing a passive relative clause | Reduced passive relative in academic prose
+272	D	sentence-structure.cleft.what-cleft	B2	2	todo	What-cleft subject | What-cleft to focus the object
+273	D	sentence-structure.participle-clauses.present-participle-cause	C1	1	todo	Present participle clause (simultaneous/causal) vs perfect participle
+274	D	sentence-structure.cleft.it-cleft	C1	1	todo	It-cleft focusing an adverbial
+275	D	sentence-structure.subjunctive.mandative-be	C1	2	todo	Mandative subjunctive base form after 'It is essential that' | Productive mandative subjunctive
+276	D	sentence-structure.subjunctive.mandative-verb	C1	1	todo	Mandative subjunctive after recommend/insist (no -s)
+277	D	sentence-structure.word-order.fronting-complement	C2	1	todo	Fronted complement with be-inversion for discourse linking ('Equally important is ...')
+278	D	sentence-structure.clause-linkers.ellipsis-reduced-adverbial	C2	1	todo	Reduced adverbial clause with 'if/when/though + past participle'
+279	D	pronouns.personal.generic-you-one	B2	1	todo	Generic 'one' as a formal impersonal pronoun
+280	D	pronouns.personal.whom-object	B2	1	todo	Object pronoun (not subject) after 'than' in comparative clauses in formal writing
+281	D	pronouns.possessive.possessive-before-gerund	B2	1	todo	Possessive determiner before a gerund (formal)
+282	D	pronouns.substitution.so-not-substitution	B2	1	todo	'so' substituting for a whole clause after think/hope/suppose
+283	D	pronouns.indefinite.singular-they	B2	1	todo	'they/their' referring back to an unspecified singular person
+284	D	pronouns.reflexive.emphatic-reflexive	B2	2	todo	Emphatic reflexive meaning 'personally / without help' | Reflexive used emphatically, not as an object
+285	D	pronouns.personal.it-anticipatory	C1	2	todo	Anticipatory 'it' with an extraposed that-clause | Extraposing a clausal subject with anticipatory 'it'
+286	D	pronouns.reflexive.reflexive-after-preposition	C2	1	todo	Object vs reflexive after a preposition of place with a co-referential subject
+287	D	verb-patterns.gerund-infinitive.gerund-subject	B2	1	todo	Gerund phrase as the subject of a sentence
+288	D	verb-patterns.gerund-infinitive.suggest-pattern	B2	2	todo	suggest + -ing / that-clause, never + object + to-infinitive | recommend/suggest + that-clause or -ing, not + object + to-infinitive
+289	D	verb-patterns.object-infinitive.help-pattern	B2	1	todo	help + object + (to) infinitive — both accepted
+290	D	verb-patterns.object-infinitive.make-bare	B2	1	todo	make + object + BARE infinitive
+291	D	verb-patterns.meaning-change-verbs.go-on	B2	2	todo	go on + -ing = continue the same activity | Productive contrast of go on + -ing vs go on + to-infinitive
+292	D	verb-patterns.meaning-change-verbs.regret-formal	B2	3	todo	regret + to-infinitive for announcing bad news | Productive regret + to-infinitive for bad news | Formal regret + to-infinitive transformation
+293	D	verb-patterns.meaning-change-verbs.regret-past	B2	1	todo	regret + -ing for a past action
+294	D	verb-patterns.perfect-forms.perfect-infinitive	B2	1	todo	seem + perfect infinitive for an earlier event
+295	D	verb-patterns.gerund-infinitive.need-doing	C1	1	todo	need + -ing with passive meaning
+296	D	verb-patterns.perfect-forms.passive-infinitive	C1	1	todo	Passive to-infinitive after an adjective
+297	D	verb-patterns.perfect-forms.perfect-gerund	C1	1	todo	Perfect gerund (having + pp) to mark an action earlier than the main verb
+298	D	verb-patterns.perfect-forms.perfect-infinitive-unreal	C2	1	todo	Perfect infinitive after 'was to / meant to / hoped to' for an unfulfilled intention
+299	D	adj-adv.adjective-form.compound-adjective	B2	1	todo	Compound adjective with singular noun (a five-year-old child, not years)
+300	D	adj-adv.intensifiers.so-such	B2	3	todo	so + adjective vs such + (adj) noun | Transforming so + adj into such + adj + noun | Productive so...that / such...that result clause
+301	D	adj-adv.order-position.adjective-order	B2	2	todo	Opinion → age → origin adjective order | Size → colour → material order
+302	D	adj-adv.gradability.absolutely-ungradable	B2	1	todo	Non-gradable (extreme) adjectives take absolutely/completely, not very
+303	D	adj-adv.adjective-form.postpositive-adjective	C1	1	todo	Adjectives that follow the noun (present, responsible, available) with meaning change
+304	D	adj-adv.adverb-form.sentence-adverb	C1	1	todo	'Hopefully' as a sentence adverb vs manner adverb — misplacement changes meaning
+305	D	adj-adv.order-position.adverb-scope	C1	1	todo	Position of 'only' changes meaning (focusing adverb scope)
+306	D	adj-adv.gradability.fairly-rather-quite	C1	1	todo	'quite' with a non-gradable adjective means 'completely'
+307	D	adj-adv.adjective-form.attributive-only	C2	1	todo	Attributive-only vs predicative-only adjectives (a mere / the child was afraid)
+308	D	comparison.superlative.negative-to-superlative	B2	1	todo	'No other ... as ... as' → superlative
+309	D	comparison.superlative.superlative-present-perfect	B2	1	todo	Superlative + present perfect (the best ... I have ever ...)
+310	D	comparison.equality.as-as-adverb	B2	1	todo	as + ADVERB + as when modifying a verb
+311	D	comparison.modified-comparison.by-far	B2	1	todo	by far intensifying a superlative
+312	D	comparison.modified-comparison.twice-as	B2	1	todo	Multipliers with as ... as (twice as much as)
+313	D	comparison.like-as.like-vs-as	B2	2	todo	like + noun (similarity) vs as + clause/role | as + clause ('as I said') vs like + noun
+314	D	comparison.comparative.comparative-of-adverbs	C1	1	todo	Irregular adverb comparatives (better/worse/further) after a verb
+315	D	comparison.superlative.superlative-of-two	C1	1	todo	Comparative (not superlative) when comparing exactly two, formal usage
+316	D	comparison.equality.as-as-clause-inversion	C1	1	todo	Formal inverted 'as' clause of comparison ('as did / as is')
+317	D	comparison.modified-comparison.the-comparative-for-it	C2	1	todo	'the + comparative' with a causal 'for it' / 'for that' ('none the wiser', 'all the better')
+318	D	modals.obligation.be-to-instruction	B2	1	todo	be to + infinitive for formal instructions
+319	D	modals.semi-modals.ought-to	B2	1	todo	ought to + have + pp for past advice
+320	D	modals.past-modals.could-have	B2	1	todo	could have + pp for an unrealised past possibility
+321	D	modals.past-modals.didnt-need-vs-neednt-have	B2	1	todo	didn't need to (not done) vs needn't have (done, unnecessary)
+322	D	modals.past-modals.neednt-have	B2	3	todo	needn't have + pp: done but unnecessary | Transforming 'it wasn't necessary but you did it' into needn't have | Productive needn't have + pp
+323	D	modals.semi-modals.dare-need-bare	C1	1	todo	'dare' as a modal takes bare infinitive in negatives/questions
+324	D	modals.hedging.might-academic	C1	2	todo	might as an epistemic hedge in academic prose | Productive academic hedging with a modal
+325	D	modals.hedging.might-have-tentative	C1	1	todo	might have + pp as a tentative claim about a past event
+326	D	modals.hedging.would-tentative	C1	1	todo	'would' softening an assertion (tentative would)
+327	D	modals.past-modals.modal-perfect-progressive	C2	1	todo	Modal + perfect progressive (must have been + -ing)
+328	D	modals.hedging.shall-formal	C2	1	todo	'shall' as a deontic marker in legal/regulatory text (obligation, not future)
+329	D	prep-phrasal.time.in-time-on-time	B2	1	todo	on time (punctual) vs in time (before it's too late)
+330	D	prep-phrasal.dependent-prepositions.accused-of	B2	1	todo	accuse (someone) of + -ing
+331	D	prep-phrasal.dependent-prepositions.noun-preposition	B2	2	todo	Noun + dependent preposition (reason for / solution to) | Academic noun + preposition collocation (insight into / emphasis on)
+332	D	prep-phrasal.phrasal-verbs.phrasal-noun-position	B2	1	todo	Long noun object goes after the particle, pronoun before it
+333	D	prep-phrasal.phrasal-verbs.three-part-phrasal	B2	2	todo	Three-part phrasal verb is inseparable (put up with) | Productive control of a three-part phrasal verb with its object
+334	D	prep-phrasal.stranding.fronted-preposition	B2	1	todo	Formal fronting: preposition + which/whom
+335	D	prep-phrasal.stranding.relative-preposition	B2	2	todo	Stranded preposition at the end of a relative clause (informal) | Formal 'to which' relative after an abstract noun (the extent to which)
+336	D	prep-phrasal.dependent-prepositions.preposition-meaning-shift	C1	1	todo	Dependent preposition changes meaning (agree with sb / agree to sth / agree on a plan)
+337	D	prep-phrasal.phrasal-verbs.phrasal-passive	C1	1	todo	Passive of a prepositional/phrasal verb keeps the particle
+338	D	prep-phrasal.stranding.pied-piping-whose	C1	1	todo	Fronted preposition with 'whose' phrase (pied-piping of a whole noun phrase)
+339	D	conditionals-wishes.second.second-result	B2	1	todo	Second conditional result for a present hypothetical
+340	D	conditionals-wishes.linkers.in-case	B2	1	todo	in case (precaution) vs if (condition)
+341	D	conditionals-wishes.linkers.provided-that	B2	1	todo	provided that = on condition that
+342	D	conditionals-wishes.third.third-result	B2	3	todo	would have + pp in the third conditional | Producing a third conditional from two past facts | Productive third conditional
+343	D	conditionals-wishes.mixed.past-condition-present-result	B2	3	todo	Mixed: past perfect condition + present (would + base) result | Producing a mixed conditional | Productive mixed conditional
+344	D	conditionals-wishes.wishes-preference.wish-past-perfect	B2	1	todo	wish + past perfect for past regret
+345	D	conditionals-wishes.wishes-preference.wish-present	B2	1	todo	wish + past simple for a present unreal situation
+346	D	conditionals-wishes.wishes-preference.wish-would	B2	1	todo	wish + would for an annoying habit of another person
+347	D	conditionals-wishes.wishes-preference.would-rather-past	B2	2	todo	would rather + subject + past simple for another person's action | Productive would rather + subject + past simple
+348	D	conditionals-wishes.linkers.implied-conditional	C1	1	todo	Implied condition with 'but for' / 'otherwise'
+349	D	conditionals-wishes.mixed.present-condition-past-result	C1	1	todo	Mixed: present/general condition (past simple) with a past result
+350	D	conditionals-wishes.wishes-preference.as-if-unreal	C1	1	todo	as if + past perfect for an unreal past comparison
+351	D	conditionals-wishes.wishes-preference.its-time	C1	1	todo	It's (high) time + past simple
+352	D	conditionals-wishes.inverted.had-inversion	C1	2	todo	Inverted third conditional: Had + subject + pp | Productive inverted third conditional
+353	D	conditionals-wishes.inverted.should-inversion	C1	1	todo	Should + subject for a formal open condition
+354	D	conditionals-wishes.inverted.were-inversion	C1	1	todo	Were + subject + to-infinitive for a formal hypothetical
+355	D	conditionals-wishes.wishes-preference.would-sooner-perfect	C2	1	todo	would rather/sooner + perfect infinitive for a past preference about one's own action
+356	D	conditionals-wishes.inverted.were-it-not-for	C2	1	todo	'Were it not for / Had it not been for' inverted implied conditional
+357	D	passive-causative.simple-passive.two-object-passive	B2	1	todo	Passive with the indirect object as subject (I was given ...)
+358	D	passive-causative.perfect-progressive-passive.past-perfect-passive	B2	1	todo	Past perfect passive: had been + pp
+359	D	passive-causative.perfect-progressive-passive.past-progressive-passive	B2	2	todo	Past progressive passive: was being + pp | Productive past progressive passive
+360	D	passive-causative.modal-passive.modal-perfect-passive	B2	1	todo	Modal + have been + pp
+361	D	passive-causative.causative.have-something-done	B2	3	todo	Causative have + object + pp | Producing have + object + pp | Productive causative
+362	D	passive-causative.reporting-passive.is-believed-to	B2	2	todo	Impersonal passive reporting: is believed to + infinitive | Productive passive reporting structure
+363	D	passive-causative.get-passive.get-passive-informal	B2	1	todo	get + pp as an informal passive for events
+364	D	passive-causative.causative.get-someone-to	C1	1	todo	get + person + to-infinitive vs have + person + bare infinitive
+365	D	passive-causative.reporting-passive.it-is-said-that	C1	1	todo	Transforming 'People say that X ...' into both passive reporting forms
+366	D	passive-causative.reporting-passive.perfect-infinitive-report	C1	1	todo	Passive report of an earlier event: is thought to have + pp
+367	D	passive-causative.passive-infinitive.need-doing	C1	1	todo	need + -ing / need to be + pp with passive meaning
+368	D	passive-causative.modal-passive.modal-perfect-progressive-passive	C2	1	todo	Modal + perfect + progressive + passive stacking
+369	D	passive-causative.get-passive.have-something-happen-to	C2	1	todo	have + object + pp for an experience suffered (not arranged) — the 'victim' causative
+370	D	reported-speech.statements.time-place-shift	B2	1	todo	Deictic shifts: here → there, now → then, this → that
+371	D	reported-speech.commands-requests.ask-request	B2	1	todo	Reported polite request: ask + object + to-infinitive (not 'ask that')
+372	D	reported-speech.commands-requests.negative-command	B2	1	todo	Reported negative command: tell + object + not to
+373	D	reported-speech.modals-reported.can-could	B2	2	todo	can → could with pronoun shift | Productive reporting of a modal statement
+374	D	reported-speech.modals-reported.must-had-to	B2	1	todo	must (obligation) → had to when reported
+375	D	reported-speech.reporting-verbs.advise-object-infinitive	B2	1	todo	advise + object + to-infinitive
+376	D	reported-speech.reporting-verbs.deny-gerund	B2	1	todo	deny + (perfect) gerund
+377	D	reported-speech.reporting-verbs.reporting-verb-choice	B2	1	todo	Productive reporting verb with correct complementation
+378	D	reported-speech.reporting-verbs.suggest-pattern	B2	1	todo	suggest + -ing / that-clause (no object + infinitive)
+379	D	reported-speech.questions.reported-embedded-past	C1	1	todo	Reporting a past-tense question: past → past perfect with statement order
+380	D	reported-speech.modals-reported.modals-no-backshift	C1	1	todo	would/could/might/should/ought do not backshift
+381	D	reported-speech.reporting-verbs.accuse-of	C1	1	todo	accuse + object + of + -ing
+382	D	reported-speech.backshift-exceptions.general-truth-no-backshift	C1	2	todo	No backshift for a general truth | Productive no-backshift for a general truth
+383	D	reported-speech.backshift-exceptions.still-true-no-backshift	C1	1	todo	Choice of no-backshift signals the statement is still true
+384	D	reported-speech.modals-reported.reported-inverted-conditional	C2	1	todo	Reporting a conditional with an inverted form in formal register
+385	D	reported-speech.backshift-exceptions.free-indirect-speech	C2	1	todo	Free indirect speech: backshift and pronoun shift without a reporting clause
