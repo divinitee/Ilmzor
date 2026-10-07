@@ -1,0 +1,236 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "turn over",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad example",
+     "msg": "in-context text has 1 sentence(s), needs 2–3"
+    }
+   ],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Exam instruction \"turn over\" (PTO) shown."
+  },
+  {
+   "headword": "turn up",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "\"turn up\" = arrive is a different meaning, not covered."
+  },
+  {
+   "headword": "type",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "adjective: real words that may be in the family but aren't shown: typical"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: typically. Check."
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "typing",
+       "typings"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "typed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "type (kind) is a different meaning. typewriter is a compound, left out."
+  },
+  {
+   "headword": "unable",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "inabilities",
+       "inability"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Used only as \"unable to + verb\", never before a noun."
+  },
+  {
+   "headword": "underneath",
+   "kind": "function",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Function word; covered vs under noted."
+  },
+  {
+   "headword": "update",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "unchecked POS",
+     "msg": "updated → 'out of date': phrase, part of speech not confirmed"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "updates"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "updated"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb share spelling; updated as participial adjective."
+  },
+  {
+   "headword": "upload",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "uploads"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "uploaded"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Only one spelling in the family; download in ant."
+  },
+  {
+   "headword": "useful",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "missing form",
+     "msg": "adjective: common family word 'usable' (zipf 3.5) isn't shown. Add it to this slot (existing or other_meaning), or list it in not_family."
+    },
+    {
+     "cat": "bad definition",
+     "msg": "noun definition uses its own word: using"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: usage"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adverb definition leans on the headword: useful (OK if the learner already knows it)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "uses",
+       "use"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "used"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "useless placed in ant; user in People & things."
+  },
+  {
+   "headword": "valentine",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "valentines"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Valentine's Day is the holiday name; only one family form."
+  },
+  {
+   "headword": "van",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: vanity"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "vans",
+       "van"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No other family forms."
+  }
+ ]
+}

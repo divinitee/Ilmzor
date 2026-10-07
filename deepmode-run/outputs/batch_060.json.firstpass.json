@@ -1,0 +1,257 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "watch out",
+   "kind": "phrasal",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Usually an imperative warning."
+  },
+  {
+   "headword": "website",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Headword is itself a compound; no family forms."
+  },
+  {
+   "headword": "weight",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: heaviness"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "weights",
+       "weight"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "weighed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "weighty = serious, so other_meaning. weigh is the verb by meaning."
+  },
+  {
+   "headword": "wheat",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wheats",
+       "wheat"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "No family forms; wholewheat is a compound."
+  },
+  {
+   "headword": "whistle",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "noun: real words that may be in the family but aren't shown: whistler"
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'whistler' (zipf 3.2) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "whistle: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "whistle: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "whistles"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "whistled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb share spelling."
+  },
+  {
+   "headword": "wifi",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Spelling Wi-Fi noted."
+  },
+  {
+   "headword": "wild",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wildness"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "wilder"
+      ],
+      "JJS": [
+       "wildest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "wildly is the out-of-control sense; wildlife is a compound, left out."
+  },
+  {
+   "headword": "wipe",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wipes"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "wiped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "\"wipe out\" (destroy) not covered."
+  },
+  {
+   "headword": "wire",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [
+    {
+     "cat": "bad definition",
+     "msg": "verb definition uses its own word: wires"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "bad definition",
+     "msg": "noun definition leans on the headword: wires (OK if the learner already knows it)"
+    },
+    {
+     "cat": "bad definition",
+     "msg": "adjective definition leans on the headword: wires (OK if the learner already knows it)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "wireless: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wires",
+       "wire"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "wired"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "wire = send money is old-fashioned, not covered."
+  },
+  {
+   "headword": "wizard",
+   "kind": "word",
+   "cefr": "A2",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: wizardly"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: wizardly. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "wizard: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "wizards"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Headword is a person noun, so it stays the main noun entry (rule 6)."
+  }
+ ]
+}
