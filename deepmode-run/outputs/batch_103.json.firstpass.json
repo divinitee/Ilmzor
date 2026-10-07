@@ -1,0 +1,334 @@
+{
+ "gate_version": "gate-4.4",
+ "results": [
+  {
+   "headword": "ridiculous",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [
+    {
+     "cat": "wrong morphology",
+     "msg": "verb 'ridicule' is marked conversion but differs from the headword"
+    }
+   ],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "noun definition has rare words: unkind"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "verb definition has rare words: unkind"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "ridiculousness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ridicule"
+      ]
+     },
+     "irregular": true
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "ridiculed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Two rows with the same meaning merged (B1). Ridicule is the source noun and verb (ridiculous is made from it), so both are existing forms."
+  },
+  {
+   "headword": "rip",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'ripper' (zipf 3.2) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "rips"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "ripped"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun rip is a same-spelling conversion; rip off / rip up are phrasal verbs and the informal 'ripped' (very muscular) is left out of the forms."
+  },
+  {
+   "headword": "rip up",
+   "kind": "phrasal",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {},
+   "reviewer_note": "Phrasal verb; no forms. No true antonym listed."
+  },
+  {
+   "headword": "ripe",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adverb: marked 'no such form'; real words that look related: ripely. Check."
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "ripeness: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "ripeness"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "ripened"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "riper"
+      ],
+      "JJS": [
+       "ripest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Unripe kept as an antonym, not a form. Ripen uses the -en verb ending (not in the affix table), so no affix is claimed for it."
+  },
+  {
+   "headword": "risk",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "verb: real words that may be in the family but aren't shown: risen"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "risks",
+       "risk"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "risked"
+      ]
+     },
+     "irregular": false
+    },
+    "adjective": {
+     "forms": {
+      "JJR": [
+       "riskier"
+      ],
+      "JJS": [
+       "riskiest"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Noun and verb are same-spelling conversions; risk-taker is a compound and left out."
+  },
+  {
+   "headword": "rival",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; rare or doubtful family words exist: rivalrous"
+    },
+    {
+     "cat": "no_form check",
+     "msg": "adjective: marked 'no such form'; real words that look related: rivalrous. Check."
+    },
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'river' (zipf 5.0) may belong here"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "rivals"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "rivaled",
+       "rivalled"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Person-noun headword stays the main noun entry; rivalry is an extra noun. Rival before nouns is attributive noun use, so the adjective slot is no_form."
+  },
+  {
+   "headword": "robe",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "level mismatch",
+     "msg": "robe: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "robes"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "robed"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Wardrobe looks related but is a compound and is left out; robe verb and robed are formal."
+  },
+  {
+   "headword": "role",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "roles"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Single-form family; role model and role-play are compounds and left out; roll is a different word."
+  },
+  {
+   "headword": "romantic",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'romanian' (zipf 3.6) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "romantically: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "romances"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Romanticism and romanticize belong to the art/idealizing sense, so they are other_meaning; no transparent affix split (romant- is not a word), so affixes are empty."
+  },
+  {
+   "headword": "rot",
+   "kind": "word",
+   "cefr": "B1",
+   "fails": [],
+   "flags": [
+    {
+     "cat": "not shown",
+     "msg": "People & things: 'rotor' (zipf 3.4) may belong here"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "rot: no easy synonym (all below the frequency bar)"
+    },
+    {
+     "cat": "level mismatch",
+     "msg": "rotting: no easy synonym (all below the frequency bar)"
+    }
+   ],
+   "inflections": {
+    "noun": {
+     "forms": {
+      "NNS": [
+       "rots",
+       "rot"
+      ]
+     },
+     "irregular": false
+    },
+    "verb": {
+     "forms": {
+      "VBD": [
+       "rotted"
+      ]
+     },
+     "irregular": false
+    }
+   },
+   "reviewer_note": "Rotten is the old participle used as the main adjective; rotting is an extra participial adjective."
+  }
+ ]
+}
