@@ -1,0 +1,781 @@
+[
+ {
+  "headword": "turn over",
+  "word_id": "6a4265cce20c7210db6908cd",
+  "word_ids": [
+   "6a4265cce20c7210db6908cd"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Paper",
+  "sense_pos": "verb",
+  "corpus_definition": "To move to the next side of a sheet of paper.",
+  "particle_note": "Here used without an object: \"Please turn over.\" With an object it is separable: \"turn the page over / turn over the page\"; with a pronoun only \"turn it over\".",
+  "relations": [
+   {
+    "to": "flip over",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Turn something so the other side is on top; informal."
+   }
+  ],
+  "context": {
+   "text": "The teacher said, \"Do not turn over the test paper yet.\" When she said \"Go,\" we all turned the papers over.",
+   "uses": [
+    "turn over",
+    "turned the papers over"
+   ]
+  },
+  "reviewer_note": "Exam instruction \"turn over\" (PTO) shown."
+ },
+ {
+  "headword": "turn up",
+  "word_id": "6a42659782466c80f8ae0cb6",
+  "word_ids": [
+   "6a42659782466c80f8ae0cb6"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Sound",
+  "sense_pos": "verb",
+  "corpus_definition": "Make the sound of a device louder.",
+  "particle_note": "Separable: \"turn up the music / turn the music up\"; with a pronoun only \"turn it up\".",
+  "relations": [
+   {
+    "to": "increase",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "More formal: make the level higher."
+   },
+   {
+    "to": "turn down",
+    "relation": "antonym",
+    "note": "Make the sound or heat lower."
+   }
+  ],
+  "context": {
+   "text": "My brother loves this song, so he turned up the radio. Mum was cooking and asked him to turn it up even more.",
+   "uses": [
+    "turned up",
+    "turn it up"
+   ]
+  },
+  "reviewer_note": "\"turn up\" = arrive is a different meaning, not covered."
+ },
+ {
+  "headword": "type",
+  "word_id": "6a42816a2098612b1526f911",
+  "word_ids": [
+   "6a42816a2098612b1526f911"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Keyboard",
+  "sense_pos": "verb",
+  "corpus_definition": "To write using a keyboard on a computer.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "typing",
+    "relation": "derivational",
+    "definition": "the work or skill of writing with a keyboard",
+    "example": "My typing is fast because I practise every day.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "other_meaning",
+    "form": "type",
+    "definition": "a kind or sort of person or thing",
+    "example": "What type of music do you like?",
+    "note": "Belongs to type = kind, not writing on a keyboard."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "type",
+    "relation": "base",
+    "definition": "to write words on a computer by pressing keys",
+    "example": "Please type your name at the top.",
+    "syn": [
+     {
+      "to": "key in",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Put words or numbers into a computer."
+     },
+     {
+      "to": "write",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word; type means using keys."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "typed",
+    "relation": "participial",
+    "definition": "written with a keyboard, not by hand",
+    "example": "Send a typed copy of your letter.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "handwritten",
+      "relation": "antonym",
+      "note": "Written by hand with a pen."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "typist",
+    "kind": "job",
+    "status": "existing",
+    "definition": "a person whose job is writing documents on a keyboard",
+    "example": "The office needs a new typist."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "typing",
+    "meaning_key": "-ing",
+    "also": [
+     "shopping",
+     "swimming",
+     "building"
+    ]
+   },
+   {
+    "affix": "-ist",
+    "in_form": "typist",
+    "meaning_key": "-ist",
+    "also": [
+     "artist",
+     "scientist",
+     "tourist"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Jasur types his homework on his laptop. His typing is very fast because he plays computer games.",
+   "uses": [
+    "types",
+    "typing"
+   ]
+  },
+  "reviewer_note": "type (kind) is a different meaning. typewriter is a compound, left out."
+ },
+ {
+  "headword": "unable",
+  "word_id": "6a42662edeeb39f88113013f",
+  "word_ids": [
+   "6a42662edeeb39f88113013f"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Ability",
+  "sense_pos": "adjective",
+  "corpus_definition": "Not having the skill or chance to do something.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "inability",
+    "relation": "derivational",
+    "definition": "the fact of not being able to do something",
+    "example": "His inability to swim worried his mother.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "other_meaning",
+    "form": "disable",
+    "definition": "to hurt someone so a part of their body does not work, or to stop a machine working",
+    "example": "You can disable the alarm with this button.",
+    "note": "Belongs to able = having a working body, not chance or skill here."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "unable",
+    "relation": "base",
+    "definition": "not having the skill, time or chance to do something",
+    "example": "I was unable to find my keys.",
+    "note": "Always followed by to + verb: \"unable to come\".",
+    "syn": [
+     {
+      "to": "not able",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; more common in speech."
+     },
+     {
+      "to": "incapable",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "More formal; not having the ability."
+     }
+    ],
+    "ant": [
+     {
+      "to": "able",
+      "relation": "antonym",
+      "note": "Having the skill or chance to do something."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "un-",
+    "in_form": "unable",
+    "meaning_key": "un-",
+    "also": [
+     "unhappy",
+     "unkind",
+     "unusual"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Malika was unable to come to the party because she was ill. Her inability to go out made her sad all weekend.",
+   "uses": [
+    "unable",
+    "inability"
+   ]
+  },
+  "reviewer_note": "Used only as \"unable to + verb\", never before a noun."
+ },
+ {
+  "headword": "underneath",
+  "word_id": "6a6ef9b2a601556148092812",
+  "word_ids": [
+   "6a6ef9b2a601556148092812"
+  ],
+  "cefr": "A2",
+  "kind": "function",
+  "sense_label": "Position",
+  "sense_pos": "preposition",
+  "corpus_definition": "below or beneath something else",
+  "usage_note": "Preposition (\"underneath the bed\") or adverb (\"a shirt with a T-shirt underneath\"). A little more informal and stronger than \"under\": often means hidden or covered.",
+  "relations": [
+   {
+    "to": "under",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Most common word; same meaning."
+   },
+   {
+    "to": "beneath",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "More formal or literary."
+   },
+   {
+    "to": "below",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Lower than something, not always touching or covered."
+   },
+   {
+    "to": "on top of",
+    "relation": "antonym",
+    "note": "Resting on the highest part of something."
+   },
+   {
+    "to": "above",
+    "relation": "antonym",
+    "note": "Higher than something."
+   }
+  ],
+  "context": {
+   "text": "Dilnoza hid the present underneath her bed. Underneath the bed there was also an old box of photos.",
+   "uses": [
+    "underneath",
+    "Underneath"
+   ]
+  },
+  "reviewer_note": "Function word; covered vs under noted."
+ },
+ {
+  "headword": "update",
+  "word_id": "6a6ef83f0f1e82a5a07366b6",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07366b6"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Newest",
+  "sense_pos": "verb",
+  "corpus_definition": "To give the latest information or change to a newer version.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "update",
+    "relation": "conversion",
+    "definition": "the newest information, or a newer version of software",
+    "example": "There is a new update for this app.",
+    "syn": [
+     {
+      "to": "upgrade",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A better version, often one you pay for."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "update",
+    "relation": "base",
+    "definition": "to make something newer or give someone the latest news",
+    "example": "Please update your phone software.",
+    "syn": [
+     {
+      "to": "upgrade",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Change to a better version."
+     },
+     {
+      "to": "modernize",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Make something more modern; British English also modernise."
+     },
+     {
+      "to": "refresh",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Load the newest version of a page."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "updated",
+    "relation": "participial",
+    "definition": "changed so that it is new and correct",
+    "example": "Here is the updated list of students.",
+    "syn": [
+     {
+      "to": "current",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Happening or true now."
+     }
+    ],
+    "ant": [
+     {
+      "to": "outdated",
+      "relation": "antonym",
+      "note": "Old and not used any more."
+     },
+     {
+      "to": "out of date",
+      "relation": "antonym",
+      "note": "No longer correct or modern."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My phone asked me to update the apps last night. The updated maps app now shows the new metro stations in Tashkent.",
+   "uses": [
+    "update",
+    "updated"
+   ]
+  },
+  "reviewer_note": "Noun and verb share spelling; updated as participial adjective."
+ },
+ {
+  "headword": "upload",
+  "word_id": "6a4288ad6941e70ad6a00e4e",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e4e"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Internet",
+  "sense_pos": "verb",
+  "corpus_definition": "To move digital content from your device to the web.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "upload",
+    "relation": "conversion",
+    "definition": "a file that you send from your device to the internet",
+    "example": "The upload took ten minutes.",
+    "syn": [],
+    "ant": [
+     {
+      "to": "download",
+      "relation": "antonym",
+      "note": "A file you get from the internet onto your device."
+     }
+    ]
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "upload",
+    "relation": "base",
+    "definition": "to send files from your computer or phone to the internet",
+    "example": "You can upload your photos to the website.",
+    "syn": [
+     {
+      "to": "post",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put a message or photo on social media."
+     },
+     {
+      "to": "share",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Put something online for other people to see."
+     }
+    ],
+    "ant": [
+     {
+      "to": "download",
+      "relation": "antonym",
+      "note": "Get a file from the internet onto your device."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Sevara uploads videos of her cooking every Friday. Each upload gets many likes from her friends.",
+   "uses": [
+    "uploads",
+    "upload"
+   ]
+  },
+  "reviewer_note": "Only one spelling in the family; download in ant."
+ },
+ {
+  "headword": "useful",
+  "word_id": "6a42800cb9d8fc24968a4b8a",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b8a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Helpful",
+  "sense_pos": "adjective",
+  "corpus_definition": "Something that helps you do a job or task effectively.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "use",
+    "relation": "derivational",
+    "definition": "the act of using something, or the purpose it has",
+    "example": "This tool has many uses in the kitchen.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "usefulness",
+    "relation": "derivational",
+    "definition": "the quality of helping you do something",
+    "example": "Nobody doubts the usefulness of a good dictionary.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "use",
+    "relation": "derivational",
+    "definition": "to do something with a thing for a purpose",
+    "example": "Can I use your pen?",
+    "syn": [
+     {
+      "to": "employ",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: use a method or skill."
+     },
+     {
+      "to": "apply",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Use a rule or method in a situation."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "useful",
+    "relation": "base",
+    "definition": "helping you to do or get what you want",
+    "example": "This map is very useful for tourists.",
+    "syn": [
+     {
+      "to": "helpful",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; also used about people."
+     },
+     {
+      "to": "handy",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Informal: useful and easy to use."
+     },
+     {
+      "to": "practical",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Good for real, everyday use."
+     }
+    ],
+    "ant": [
+     {
+      "to": "useless",
+      "relation": "antonym",
+      "note": "Not helping at all."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "usefully",
+    "relation": "derivational",
+    "definition": "in a way that helps or is useful",
+    "example": "You can spend your free time usefully.",
+    "syn": [],
+    "ant": []
+   }
+  ],
+  "people": [
+   {
+    "form": "user",
+    "kind": "person",
+    "status": "existing",
+    "definition": "a person who uses a machine, service or product",
+    "example": "The app has a million users."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ful",
+    "in_form": "useful",
+    "meaning_key": "-ful",
+    "also": [
+     "careful",
+     "helpful",
+     "beautiful"
+    ]
+   },
+   {
+    "affix": "-ness",
+    "in_form": "usefulness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "usefully",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "really"
+    ]
+   },
+   {
+    "affix": "-er",
+    "in_form": "user",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "This dictionary app is very useful for my English lessons. I use it every day on the bus to school.",
+   "uses": [
+    "useful",
+    "use"
+   ]
+  },
+  "reviewer_note": "useless placed in ant; user in People & things."
+ },
+ {
+  "headword": "valentine",
+  "word_id": "6a6ef9b2a6015561480927d7",
+  "word_ids": [
+   "6a6ef9b2a6015561480927d7"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Love",
+  "sense_pos": "noun",
+  "corpus_definition": "a card or gift given to someone you love on February 14th",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "valentine",
+    "relation": "base",
+    "definition": "a card or present you give to someone you love on 14 February",
+    "example": "He sent her a valentine with a short poem.",
+    "note": "Also the person you send it to: \"Will you be my valentine?\"",
+    "syn": [
+     {
+      "to": "love letter",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A letter that says you love someone."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "On 14 February Sardor gave Madina a valentine. Inside the valentine he wrote a short poem.",
+   "uses": [
+    "valentine"
+   ]
+  },
+  "reviewer_note": "Valentine's Day is the holiday name; only one family form."
+ },
+ {
+  "headword": "van",
+  "word_id": "6a6ef83f0f1e82a5a073686d",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a073686d"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Vehicle",
+  "sense_pos": "noun",
+  "corpus_definition": "A vehicle used for carrying goods or a large group.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "van",
+    "relation": "base",
+    "definition": "a vehicle bigger than a car, used for carrying things or people",
+    "example": "They put all the boxes into the van.",
+    "syn": [
+     {
+      "to": "lorry",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "British English: a much bigger vehicle for goods."
+     },
+     {
+      "to": "truck",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "American English for a big goods vehicle."
+     },
+     {
+      "to": "minibus",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A small bus for about ten to twenty people."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "When we moved house, my uncle came with his van. We put the sofa and all our boxes into it.",
+   "uses": [
+    "van"
+   ]
+  },
+  "reviewer_note": "No other family forms."
+ }
+]

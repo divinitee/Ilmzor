@@ -1,0 +1,785 @@
+[
+ {
+  "headword": "watch out",
+  "word_id": "6a4282fd46ba24054c1dcdc4",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcdc4"
+  ],
+  "cefr": "A2",
+  "kind": "phrasal",
+  "sense_label": "Danger",
+  "sense_pos": "verb",
+  "corpus_definition": "To be careful because something bad might happen.",
+  "particle_note": "Not separable, no object: \"Watch out!\"; with a thing: \"watch out for + noun\": \"watch out for cars\".",
+  "relations": [
+   {
+    "to": "look out",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, also used as a warning: \"Look out!\""
+   },
+   {
+    "to": "be careful",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Plain, everyday phrase."
+   },
+   {
+    "to": "mind",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "British English: \"Mind the step!\""
+   }
+  ],
+  "context": {
+   "text": "Watch out! The floor is wet. In winter you also have to watch out for ice on the roads in Tashkent.",
+   "uses": [
+    "Watch out",
+    "watch out for"
+   ]
+  },
+  "reviewer_note": "Usually an imperative warning."
+ },
+ {
+  "headword": "website",
+  "word_id": "6a42816a2098612b1526f913",
+  "word_ids": [
+   "6a42816a2098612b1526f913"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Internet",
+  "sense_pos": "noun",
+  "corpus_definition": "A place on the internet with pages about a topic.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "website",
+    "relation": "base",
+    "definition": "a group of pages on the internet about one topic or company",
+    "example": "Check our website for more information.",
+    "syn": [
+     {
+      "to": "site",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Short, very common form."
+     },
+     {
+      "to": "web page",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "One page of a website."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "You can buy train tickets on the railway website. The website also shows the times of all trains.",
+   "uses": [
+    "website"
+   ]
+  },
+  "reviewer_note": "Headword is itself a compound; no family forms."
+ },
+ {
+  "headword": "weight",
+  "word_id": "6a42821646ba24054c1dccf5",
+  "word_ids": [
+   "6a42821646ba24054c1dccf5"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Heaviness",
+  "sense_pos": "noun",
+  "corpus_definition": "How heavy something or someone is.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "weight",
+    "relation": "base",
+    "definition": "how heavy a person or thing is",
+    "example": "The weight of the bag is ten kilos.",
+    "syn": [
+     {
+      "to": "heaviness",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "The quality of being heavy."
+     },
+     {
+      "to": "mass",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Scientific word for the amount of matter."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "weigh",
+    "relation": "derivational",
+    "definition": "to measure how heavy something is, or to have a certain heaviness",
+    "example": "The baby weighs four kilos.",
+    "syn": [
+     {
+      "to": "measure",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Find the size or amount of something."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "overweight",
+    "relation": "derivational",
+    "definition": "heavier than is healthy or allowed",
+    "example": "The doctor said I was a little overweight.",
+    "syn": [
+     {
+      "to": "heavy",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Polite, general word."
+     },
+     {
+      "to": "fat",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Direct and can be rude."
+     }
+    ],
+    "ant": [
+     {
+      "to": "underweight",
+      "relation": "antonym",
+      "note": "Lighter than is healthy."
+     },
+     {
+      "to": "thin",
+      "relation": "antonym",
+      "note": "Having little fat on the body."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "weighty",
+    "definition": "serious and important",
+    "example": "They discussed weighty matters.",
+    "note": "Belongs to weight = importance, not heaviness. Formal."
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "At the market the seller weighs the melons. He tells you the weight and then the price.",
+   "uses": [
+    "weighs",
+    "weight"
+   ]
+  },
+  "reviewer_note": "weighty = serious, so other_meaning. weigh is the verb by meaning."
+ },
+ {
+  "headword": "wheat",
+  "word_id": "6a6ef9b2a6015561480927c3",
+  "word_ids": [
+   "6a6ef9b2a6015561480927c3"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Grain",
+  "sense_pos": "noun",
+  "corpus_definition": "a common grain used to make bread and pasta",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wheat",
+    "relation": "base",
+    "definition": "a plant whose grain is used to make flour for bread",
+    "example": "Farmers in Kashkadarya grow a lot of wheat.",
+    "syn": [
+     {
+      "to": "grain",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Seeds of plants like wheat and rice."
+     },
+     {
+      "to": "barley",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Another grain, used for food and drinks."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "In June the wheat fields near our village turn gold. Farmers cut the wheat and take it to the mill.",
+   "uses": [
+    "wheat"
+   ]
+  },
+  "reviewer_note": "No family forms; wholewheat is a compound."
+ },
+ {
+  "headword": "whistle",
+  "word_id": "6a6ef9b2a6015561480927ea",
+  "word_ids": [
+   "6a6ef9b2a6015561480927ea"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Sound",
+  "sense_pos": "noun",
+  "corpus_definition": "a high clear sound made by blowing air through lips or a tool",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "whistle",
+    "relation": "base",
+    "definition": "a high sound made by blowing, or a small thing you blow to make it",
+    "example": "The referee blew his whistle.",
+    "syn": [
+     {
+      "to": "toot",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "A short sound from a horn."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "whistle",
+    "relation": "conversion",
+    "definition": "to make a high sound by blowing through your lips",
+    "example": "My dad whistles when he is happy.",
+    "syn": [
+     {
+      "to": "hum",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Sing with your mouth closed."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The football coach blows a whistle to start practice. Then he whistles loudly when someone scores.",
+   "uses": [
+    "whistle",
+    "whistles"
+   ]
+  },
+  "reviewer_note": "Noun and verb share spelling."
+ },
+ {
+  "headword": "wifi",
+  "word_id": "6a4288ad6941e70ad6a00e5b",
+  "word_ids": [
+   "6a4288ad6941e70ad6a00e5b"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Internet",
+  "sense_pos": "noun",
+  "corpus_definition": "A technology that lets computers connect to the web without cables.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wifi",
+    "relation": "base",
+    "definition": "a way to connect to the internet without cables",
+    "example": "Is there free wifi in this cafe?",
+    "note": "Also spelled Wi-Fi.",
+    "syn": [
+     {
+      "to": "wireless internet",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Full, more formal name."
+     },
+     {
+      "to": "hotspot",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A place or phone that gives wifi."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "The wifi at our school is very slow. Students go to the cafe next door because its wifi is free.",
+   "uses": [
+    "wifi"
+   ]
+  },
+  "reviewer_note": "Spelling Wi-Fi noted."
+ },
+ {
+  "headword": "wild",
+  "word_id": "6a4282fd46ba24054c1dcd8d",
+  "word_ids": [
+   "6a4282fd46ba24054c1dcd8d"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Nature",
+  "sense_pos": "adjective",
+  "corpus_definition": "Living or growing in nature, not kept by humans.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wildness",
+    "relation": "derivational",
+    "definition": "the quality of being natural and not controlled",
+    "example": "I love the wildness of the mountains.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wilderness",
+    "relation": "derivational",
+    "definition": "a large natural area where no people live",
+    "example": "They got lost in the wilderness.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "wild",
+    "relation": "base",
+    "definition": "living or growing in nature, not looked after by people",
+    "example": "We saw wild horses in the mountains.",
+    "syn": [
+     {
+      "to": "natural",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Not made or changed by people."
+     },
+     {
+      "to": "untamed",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Not trained to live with people."
+     }
+    ],
+    "ant": [
+     {
+      "to": "tame",
+      "relation": "antonym",
+      "note": "Trained to live with people."
+     },
+     {
+      "to": "domestic",
+      "relation": "antonym",
+      "note": "Kept by people, like cats and cows."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "wildly",
+    "definition": "in a very excited or uncontrolled way",
+    "example": "The fans cheered wildly.",
+    "note": "Belongs to wild = out of control, not living in nature."
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "wildness",
+    "meaning_key": "-ness",
+    "also": [
+     "kindness",
+     "sadness",
+     "darkness"
+    ]
+   }
+  ],
+  "context": {
+   "text": "In the Chatkal mountains you can see wild goats. The wildness of this place attracts many tourists.",
+   "uses": [
+    "wild",
+    "wildness"
+   ]
+  },
+  "reviewer_note": "wildly is the out-of-control sense; wildlife is a compound, left out."
+ },
+ {
+  "headword": "wipe",
+  "word_id": "6a6ef9b2a60155614809274a",
+  "word_ids": [
+   "6a6ef9b2a60155614809274a"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Cleaning",
+  "sense_pos": "verb",
+  "corpus_definition": "To clean a surface by rubbing it with a cloth.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wipe",
+    "relation": "conversion",
+    "definition": "a quick clean with a cloth, or a small wet cloth",
+    "example": "Give the table a quick wipe.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "wipe",
+    "relation": "base",
+    "definition": "to clean something by moving a cloth over it",
+    "example": "Please wipe the table after dinner.",
+    "syn": [
+     {
+      "to": "clean",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "General word."
+     },
+     {
+      "to": "rub",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Move something backwards and forwards on a surface."
+     },
+     {
+      "to": "dry",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Remove water."
+     }
+    ],
+    "ant": [
+     {
+      "to": "dirty",
+      "relation": "antonym",
+      "note": "Make something not clean."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [
+   {
+    "form": "wiper",
+    "kind": "thing",
+    "status": "existing",
+    "definition": "a moving rubber arm that cleans rain from a car window",
+    "example": "Turn on the wipers, it is raining."
+   }
+  ],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-er",
+    "in_form": "wiper",
+    "meaning_key": "-er",
+    "also": [
+     "teacher",
+     "driver",
+     "player"
+    ]
+   }
+  ],
+  "context": {
+   "text": "After lunch Nilufar wipes the table with a cloth. Then she gives the kitchen counter a quick wipe too.",
+   "uses": [
+    "wipes",
+    "wipe"
+   ]
+  },
+  "reviewer_note": "\"wipe out\" (destroy) not covered."
+ },
+ {
+  "headword": "wire",
+  "word_id": "6a6ef9b2a60155614809274b",
+  "word_ids": [
+   "6a6ef9b2a60155614809274b"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Metal",
+  "sense_pos": "noun",
+  "corpus_definition": "a thin piece of metal used to carry electricity or hold things",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wire",
+    "relation": "base",
+    "definition": "a long thin piece of metal, used for electricity or tying",
+    "example": "The electrician cut the old wire.",
+    "syn": [
+     {
+      "to": "cable",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Thicker, often covered in plastic."
+     },
+     {
+      "to": "cord",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "A covered wire on an electric machine."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wiring",
+    "relation": "derivational",
+    "definition": "all the wires that carry electricity in a building",
+    "example": "The wiring in this old house is dangerous.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "wire",
+    "relation": "conversion",
+    "definition": "to connect a building or machine to electricity with wires",
+    "example": "They wired the new kitchen last week.",
+    "syn": [
+     {
+      "to": "connect",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Join something to electricity or a network."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "wireless",
+    "relation": "derivational",
+    "definition": "working without wires, using radio signals",
+    "example": "I bought wireless headphones.",
+    "syn": [
+     {
+      "to": "cordless",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "With no electric cord."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "wiring",
+    "meaning_key": "-ing",
+    "also": [
+     "shopping",
+     "swimming",
+     "building"
+    ]
+   },
+   {
+    "affix": "-less",
+    "in_form": "wireless",
+    "meaning_key": "-less",
+    "also": [
+     "careless",
+     "homeless",
+     "useless"
+    ]
+   }
+  ],
+  "context": {
+   "text": "My grandfather fixed the lamp with a new wire. Now he wants wireless lights in the garden.",
+   "uses": [
+    "wire",
+    "wireless"
+   ]
+  },
+  "reviewer_note": "wire = send money is old-fashioned, not covered."
+ },
+ {
+  "headword": "wizard",
+  "word_id": "6a6ef9b2a60155614809270e",
+  "word_ids": [
+   "6a6ef9b2a60155614809270e"
+  ],
+  "cefr": "A2",
+  "kind": "word",
+  "sense_label": "Magic",
+  "sense_pos": "noun",
+  "corpus_definition": "a person in stories who has magical powers",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wizard",
+    "relation": "base",
+    "definition": "a man in stories who can do magic",
+    "example": "The old wizard lived in a tower.",
+    "syn": [
+     {
+      "to": "magician",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "A person who does magic, also tricks on stage."
+     },
+     {
+      "to": "sorcerer",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Literary word for a powerful, often bad, wizard."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "wizardry",
+    "relation": "derivational",
+    "definition": "magic, or great skill at something",
+    "example": "The film is full of wizardry.",
+    "syn": [],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form"
+   },
+   {
+    "slot": "adjective",
+    "status": "no_form"
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form"
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "My little sister loves books about a young wizard. She says his wizardry is better than any film.",
+   "uses": [
+    "wizard",
+    "wizardry"
+   ]
+  },
+  "reviewer_note": "Headword is a person noun, so it stays the main noun entry (rule 6)."
+ }
+]
