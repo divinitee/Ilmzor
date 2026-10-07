@@ -1,0 +1,158 @@
+[
+{"headword": "forecast", "word_id": "6a4282fd46ba24054c1dcd77", "word_ids": ["6a4282fd46ba24054c1dcd77"], "cefr": "B1", "kind": "word", "sense_label": "Weather", "sense_pos": "noun", "corpus_definition": "a statement about what the weather will be like.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "forecast", "relation": "base", "definition": "a report that says what the weather will be like soon", "example": "The weather forecast says it will rain tomorrow.", "note": "Also used for money and business: 'a sales forecast'.",
+   "syn": [{"to": "prediction", "relation": "synonym", "strength": 0.8, "note": "A general word for saying what will happen; forecast is used most for weather."}, {"to": "outlook", "relation": "related", "strength": 0.6, "note": "Related: the general picture of the weather for the next few days."}, {"to": "report", "relation": "related", "strength": 0.4, "note": "Related: a weather report can talk about today, not only the future."}], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "forecast", "relation": "conversion", "definition": "to say what the weather will be like in the future", "example": "They have forecast snow for the mountains this weekend.", "note": "Past tense and past participle: forecast or forecasted.",
+   "syn": [{"to": "predict", "relation": "synonym", "strength": 0.95, "note": "Very close; predict is used for anything, not only weather."}, {"to": "foresee", "relation": "related", "strength": 0.6, "note": "Related: to know that something will happen, often a problem.", "register": "formal"}], "ant": []},
+  {"slot": "adjective", "status": "no_form", "note": "There is no adjective from this word. Use the noun before another noun: 'forecast rain', 'the forecast temperature'."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "forecaster", "kind": "job", "status": "existing", "definition": "a person whose job is to say what the weather will be", "example": "The forecaster on TV said it will be hot all week."}
+ ],
+ "affixes": [{"affix": "-er", "in_form": "forecaster", "meaning_key": "-er", "also": ["teacher", "driver", "singer"]}],
+ "context": {"text": "Every morning my father watches the weather forecast. Yesterday the forecaster forecast heavy rain in Tashkent, so we all took umbrellas.", "uses": ["forecast", "forecaster", "forecast"]},
+ "reviewer_note": "fore- is not in the affix table, so no prefix is claimed; noun and verb are the same spelling."},
+
+{"headword": "foreign", "word_id": "6a4265fb84a10cdfe9e55d79", "word_ids": ["6a4265fb84a10cdfe9e55d79"], "cefr": "B1", "kind": "word", "sense_label": "Country", "sense_pos": "adjective", "corpus_definition": "From another country.",
+ "forms": [
+  {"slot": "noun", "status": "no_form", "note": "There is no common noun for this quality. For the person, see People & things (foreigner)."},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "foreign", "relation": "base", "definition": "coming from or belonging to another country", "example": "She can speak many foreign languages.",
+   "syn": [{"to": "overseas", "relation": "synonym", "strength": 0.8, "note": "Used before a noun for things from far away across the sea: 'overseas students'."}, {"to": "international", "relation": "related", "strength": 0.6, "note": "Related: between or involving many countries, not just one other country."}, {"to": "alien", "relation": "related", "strength": 0.4, "note": "Related but formal and often negative: strange and not familiar.", "register": "formal"}],
+   "ant": [{"to": "domestic", "relation": "antonym", "note": "Inside your own country: 'domestic flights' vs 'foreign flights'."}, {"to": "native", "relation": "antonym", "note": "Belonging to the place where you were born: 'native language' vs 'foreign language'."}, {"to": "local", "relation": "antonym", "note": "From this area or town."}]},
+  {"slot": "adverb", "status": "no_form", "note": "There is no adverb. Say 'abroad' or 'in another country'."}
+ ],
+ "people": [
+  {"form": "foreigner", "kind": "person", "status": "existing", "definition": "a person who comes from another country", "example": "Many foreigners visit Bukhara in spring.", "note": "Can sound unfriendly; 'visitor' or 'tourist' is often more polite."}
+ ],
+ "affixes": [{"affix": "-er", "in_form": "foreigner", "meaning_key": "-er", "also": ["villager", "prisoner", "Londoner"]}],
+ "context": {"text": "At the market in Samarkand, a foreigner asked me for directions. I was happy to practise a foreign language, so I answered him in English.", "uses": ["foreigner", "foreign"]},
+ "reviewer_note": "foreigner is a person noun, so it goes in People & things; no noun for the quality is common enough for learners."},
+
+{"headword": "formal", "word_id": "6a42816a2098612b1526f8ff", "word_ids": ["6a42816a2098612b1526f8ff"], "cefr": "B1", "kind": "word", "sense_label": "Occasion", "sense_pos": "adjective", "corpus_definition": "Suitable for serious or official events and occasions.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "formality", "relation": "derivational", "definition": "serious and correct behaviour that follows official rules", "example": "The formality of the ceremony made the children nervous.", "note": "The plural 'formalities' means official things you must do: 'passport formalities'.",
+   "syn": [{"to": "ceremony", "relation": "related", "strength": 0.4, "note": "Related: special, serious actions at an official event."}, {"to": "etiquette", "relation": "related", "strength": 0.4, "note": "Related: the rules of polite behaviour."}],
+   "ant": [{"to": "informality", "relation": "antonym", "note": "A relaxed and friendly way of behaving."}]},
+  {"slot": "verb", "status": "other_meaning", "form": "formalize", "definition": "to make a plan or agreement official, often in writing", "example": "The two companies formalized their agreement last month.", "note": "Belongs to formal = official and following rules (a formal agreement), not formal clothes or events. British spelling: formalise."},
+  {"slot": "adjective", "status": "existing", "form": "formal", "relation": "base", "definition": "right for serious or official events, not relaxed", "example": "He wore a formal suit to the meeting.",
+   "syn": [{"to": "official", "relation": "synonym", "strength": 0.8, "note": "Close for events and letters: 'an official dinner'."}, {"to": "smart", "relation": "related", "strength": 0.6, "note": "Related, about clothes: neat and nice-looking (British English)."}, {"to": "ceremonial", "relation": "related", "strength": 0.6, "note": "Related: used at a ceremony, like a wedding."}, {"to": "polite", "relation": "related", "strength": 0.4, "note": "Related, about language: careful and respectful."}],
+   "ant": [{"to": "informal", "relation": "antonym", "note": "Relaxed and friendly: 'informal clothes'."}, {"to": "casual", "relation": "antonym", "note": "Easy and relaxed, especially clothes: 'casual jeans'."}]},
+  {"slot": "adverb", "status": "existing", "form": "formally", "relation": "derivational", "definition": "in a serious and correct way, right for official events", "example": "The guests were formally dressed for the wedding.",
+   "syn": [{"to": "officially", "relation": "synonym", "strength": 0.8, "note": "Close when talking about events or announcements."}, {"to": "properly", "relation": "related", "strength": 0.4, "note": "Related: in the correct way."}],
+   "ant": [{"to": "informally", "relation": "antonym", "note": "In a relaxed and friendly way."}, {"to": "casually", "relation": "antonym", "note": "In a relaxed way, especially about clothes."}]}
+ ],
+ "people": [],
+ "affixes": [{"affix": "-ity", "in_form": "formality", "meaning_key": "-ity", "also": ["reality", "ability", "activity"]}, {"affix": "-ly", "in_form": "formally", "meaning_key": "-ly", "also": ["quickly", "slowly", "really"]}],
+ "context": {"text": "My sister's wedding in Fergana was very formal. All the men were formally dressed in dark suits, and the formality of the evening made my little brother very quiet.", "uses": ["formal", "formally", "formality"]},
+ "reviewer_note": "formalize kept as other_meaning (official agreements). Don't confuse formally with formerly (= before)."},
+
+{"headword": "freedom", "word_id": "6a4282fd46ba24054c1dcd66", "word_ids": ["6a4282fd46ba24054c1dcd66"], "cefr": "B1", "kind": "word", "sense_label": "General", "sense_pos": "noun", "corpus_definition": "the state of being able to do what you want.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "freedom", "relation": "base", "definition": "the state of being able to do or say what you want", "example": "They enjoyed their new freedom after graduation.",
+   "syn": [{"to": "liberty", "relation": "synonym", "strength": 0.95, "note": "Very close but more formal, often about the law and politics.", "register": "formal"}, {"to": "independence", "relation": "synonym", "strength": 0.8, "note": "Not needing other people to help or control you."}, {"to": "choice", "relation": "related", "strength": 0.4, "note": "Related: the chance to decide for yourself."}],
+   "ant": [{"to": "captivity", "relation": "antonym", "note": "Being kept in a prison or cage."}, {"to": "slavery", "relation": "antonym", "note": "Being owned by another person and forced to work."}]},
+  {"slot": "verb", "status": "existing", "form": "free", "relation": "derivational", "definition": "to let a person or animal leave a prison or cage", "example": "The police freed the man after two days.",
+   "syn": [{"to": "release", "relation": "synonym", "strength": 0.95, "note": "Very close and common in news."}, {"to": "liberate", "relation": "synonym", "strength": 0.8, "note": "Formal, often about a country or group of people.", "register": "formal"}, {"to": "let go", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday phrase."}],
+   "ant": [{"to": "imprison", "relation": "antonym", "note": "To put someone in prison."}, {"to": "capture", "relation": "antonym", "note": "To catch a person or animal and keep them."}]},
+  {"slot": "adjective", "status": "existing", "form": "free", "relation": "derivational", "definition": "able to do what you want, not controlled by others", "example": "After the exams, the students were free to go home.", "note": "free also means 'costing no money' (a free ticket); that is a different meaning.",
+   "syn": [{"to": "independent", "relation": "synonym", "strength": 0.8, "note": "Not controlled by other people."}, {"to": "unrestricted", "relation": "related", "strength": 0.6, "note": "Related and formal: with no limits or rules.", "register": "formal"}],
+   "ant": [{"to": "captive", "relation": "antonym", "note": "Kept in a prison or cage."}, {"to": "restricted", "relation": "antonym", "note": "Limited by rules."}]},
+  {"slot": "adverb", "status": "existing", "form": "freely", "relation": "derivational", "definition": "without anyone stopping or controlling you", "example": "In this park, children can play freely.",
+   "syn": [{"to": "openly", "relation": "related", "strength": 0.6, "note": "Related: without hiding anything, especially when speaking."}], "ant": []}
+ ],
+ "people": [],
+ "affixes": [{"affix": "-ly", "in_form": "freely", "meaning_key": "-ly", "also": ["quickly", "slowly", "really"]}],
+ "context": {"text": "After school, I finally had the freedom to choose my own job. Now I am free to travel, and I can freely decide where to live.", "uses": ["freedom", "free", "freely"]},
+ "reviewer_note": "freedom is made from free (free + -dom); -dom is not in the affix table so no affix is claimed for it. The 'costs nothing' meaning of free is only mentioned in a note."},
+
+{"headword": "frown", "word_id": "6a6ef9b2a60155614809277b", "word_ids": ["6a6ef9b2a60155614809277b"], "cefr": "B1", "kind": "word", "sense_label": "Face", "sense_pos": "verb", "corpus_definition": "to bring your eyebrows together to show anger or worry",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "frown", "relation": "conversion", "definition": "an angry or worried look with the eyebrows pulled together", "example": "She looked at the bill with a frown.",
+   "syn": [{"to": "scowl", "relation": "synonym", "strength": 0.8, "note": "A stronger, angrier look."}, {"to": "grimace", "relation": "related", "strength": 0.6, "note": "Related: an ugly face you make because of pain or dislike."}],
+   "ant": [{"to": "smile", "relation": "antonym", "note": "A happy look with the mouth turned up."}]},
+  {"slot": "verb", "status": "existing", "form": "frown", "relation": "base", "definition": "to pull your eyebrows together because you are angry or worried", "example": "She frowned when she read the unexpected bad news.", "note": "frown on/upon something means 'disapprove of it', a different meaning.",
+   "syn": [{"to": "scowl", "relation": "synonym", "strength": 0.8, "note": "Stronger: to look very angry."}, {"to": "glare", "relation": "related", "strength": 0.6, "note": "Related: to look at someone angrily for a long time."}, {"to": "grimace", "relation": "related", "strength": 0.6, "note": "Related: to make an ugly face because of pain or dislike."}],
+   "ant": [{"to": "smile", "relation": "antonym", "note": "To look happy with the mouth turned up."}, {"to": "grin", "relation": "antonym", "note": "To smile widely."}]},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "My teacher frowned when I came late again. I saw the frown on her face and said sorry at once.", "uses": ["frowned", "frown"]},
+ "reviewer_note": "Only the verb and its noun conversion are learner words; frown on (= disapprove) is a separate meaning."},
+
+{"headword": "gallery", "word_id": "6a4282fd46ba24054c1dcd49", "word_ids": ["6a4282fd46ba24054c1dcd49"], "cefr": "B1", "kind": "word", "sense_label": "Art", "sense_pos": "noun", "corpus_definition": "a place where people go to see art",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "gallery", "relation": "base", "definition": "a building or room where people can look at paintings and other art", "example": "We spent all afternoon at the art gallery.", "note": "Plural: galleries. It can also mean the high seats in a theatre, or a set of photos on your phone.",
+   "syn": [{"to": "museum", "relation": "related", "strength": 0.6, "note": "Related: a museum shows old or important objects, not only art."}, {"to": "exhibition", "relation": "related", "strength": 0.4, "note": "Related: a show of art for a short time; it can be in a gallery."}, {"to": "showroom", "relation": "related", "strength": 0.4, "note": "Related: a room where things such as cars or furniture are shown for sale."}], "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "no_form", "note": "There is no adjective. Use the noun before another noun: 'gallery owner', 'gallery visitors'."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "There is a new gallery near our university in Tashkent. Last Saturday my friends and I went to see the paintings there, and the gallery was full of students.", "uses": ["gallery"]},
+ "reviewer_note": "Single noun with no learner-level derived forms; context uses only the one form."},
+
+{"headword": "gamble", "word_id": "6a6ef9b2a601556148092704", "word_ids": ["6a6ef9b2a601556148092704"], "cefr": "B1", "kind": "word", "sense_label": "Money", "sense_pos": "verb", "corpus_definition": "to risk money on a game or event hoping to win more",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "gambling", "relation": "derivational", "definition": "the activity of playing cards or betting money to try to win more", "example": "Gambling is a dangerous habit for many young people.",
+   "syn": [{"to": "betting", "relation": "synonym", "strength": 0.95, "note": "Very close; betting is often on sports or races."}], "ant": []},
+  {"slot": "noun", "status": "existing", "form": "gamble", "relation": "conversion", "definition": "a risky action that may bring a good result or a bad one", "example": "Moving to a new city was a big gamble for him.",
+   "syn": [{"to": "risk", "relation": "synonym", "strength": 0.8, "note": "Close: something that could go wrong."}, {"to": "bet", "relation": "related", "strength": 0.6, "note": "Related: money you risk on a result."}], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "gamble", "relation": "base", "definition": "to risk money on a game or a race to try to win more", "example": "He gambled away all his savings at the casino.", "note": "Don't confuse with 'gambol' (to jump about happily), which sounds the same.",
+   "syn": [{"to": "bet", "relation": "synonym", "strength": 0.95, "note": "Very close and common in everyday English."}, {"to": "wager", "relation": "synonym", "strength": 0.8, "note": "Formal or old-fashioned word for bet.", "register": "formal"}, {"to": "risk", "relation": "related", "strength": 0.6, "note": "Related: to do something that could lose you money or cause harm."}], "ant": []},
+  {"slot": "adjective", "status": "no_form", "note": "There is no adjective. Use the noun before another noun: 'a gambling problem'."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [
+  {"form": "gambler", "kind": "person", "status": "existing", "definition": "a person who often risks money on games or races", "example": "The old gambler lost his house playing cards."}
+ ],
+ "affixes": [{"affix": "-ing", "in_form": "gambling", "meaning_key": "-ing", "also": ["swimming", "shopping", "reading"]}, {"affix": "-er", "in_form": "gambler", "meaning_key": "-er", "also": ["teacher", "driver", "singer"]}],
+ "context": {"text": "My uncle never gambles because he says gambling only makes people poor. He knew a gambler who lost his car in one night.", "uses": ["gambles", "gambling", "gambler"]},
+ "reviewer_note": "Noun slot leads with gambling (the activity) because the verb meaning is about money; gamble as a noun (a risky action) is an extra."},
+
+{"headword": "generous", "word_id": "6a42662edeeb39f88113011a", "word_ids": ["6a42662edeeb39f88113011a"], "cefr": "B1", "kind": "word", "sense_label": "Sharing", "sense_pos": "adjective", "corpus_definition": "Happy to share your money or things with others.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "generosity", "relation": "derivational", "definition": "the quality of being happy to give money, time or help to others", "example": "Thank you for your generosity during the holiday.",
+   "syn": [{"to": "kindness", "relation": "related", "strength": 0.6, "note": "Related: being nice and helpful, not only about giving things."}, {"to": "unselfishness", "relation": "synonym", "strength": 0.8, "note": "Thinking about other people before yourself."}, {"to": "charity", "relation": "related", "strength": 0.4, "note": "Related: giving money or help to people who need it."}],
+   "ant": [{"to": "selfishness", "relation": "antonym", "note": "Thinking only about yourself."}, {"to": "meanness", "relation": "antonym", "note": "Not wanting to give or spend money (British English)."}]},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "generous", "relation": "base", "definition": "happy to give money, time or things to other people", "example": "He is very generous with his time.", "note": "It can also mean 'bigger than usual': 'a generous piece of cake'.",
+   "syn": [{"to": "kind", "relation": "related", "strength": 0.6, "note": "Related: nice and helpful to others."}, {"to": "unselfish", "relation": "synonym", "strength": 0.8, "note": "Thinking about other people's needs first."}, {"to": "charitable", "relation": "related", "strength": 0.6, "note": "Related: giving to people who are poor or in need."}],
+   "ant": [{"to": "mean", "relation": "antonym", "note": "Not wanting to spend or share money (British English)."}, {"to": "selfish", "relation": "antonym", "note": "Thinking only about yourself."}, {"to": "stingy", "relation": "antonym", "note": "Informal: not wanting to spend money.", "register": "informal"}]},
+  {"slot": "adverb", "status": "existing", "form": "generously", "relation": "derivational", "definition": "in a way that shows you are happy to give to others", "example": "Local families gave generously to help the school.",
+   "syn": [{"to": "kindly", "relation": "related", "strength": 0.6, "note": "Related: in a nice and helpful way."}, {"to": "freely", "relation": "related", "strength": 0.4, "note": "Related: giving without trying to keep things for yourself."}],
+   "ant": [{"to": "selfishly", "relation": "antonym", "note": "Thinking only about yourself."}]}
+ ],
+ "people": [],
+ "affixes": [{"affix": "-ly", "in_form": "generously", "meaning_key": "-ly", "also": ["quickly", "slowly", "really"]}],
+ "context": {"text": "My grandmother is the most generous person I know. She always shares her food with neighbours, and everyone in our mahalla talks about her generosity. She gives generously even when she has little.", "uses": ["generous", "generosity", "generously"]},
+ "reviewer_note": "-ity in generosity and -ous in generous are not claimed because removing them does not leave a clean English word."},
+
+{"headword": "germ", "word_id": "6a6ef9b2a601556148092882", "word_ids": ["6a6ef9b2a601556148092882"], "cefr": "B1", "kind": "word", "sense_label": "Illness", "sense_pos": "noun", "corpus_definition": "a very tiny living thing that can cause illness",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "germ", "relation": "base", "definition": "a very small living thing that can make people ill", "example": "Wash your hands to stop the spread of germs.",
+   "syn": [{"to": "bacteria", "relation": "related", "strength": 0.6, "note": "Related: a scientific word for some tiny living things; some are good for you."}, {"to": "virus", "relation": "related", "strength": 0.6, "note": "Related: a very small thing that causes illnesses like flu."}, {"to": "bug", "relation": "synonym", "strength": 0.8, "note": "Informal: 'There's a stomach bug going around.'", "register": "informal"}, {"to": "microbe", "relation": "synonym", "strength": 0.8, "note": "Scientific word for a tiny living thing.", "register": "formal"}], "ant": []},
+  {"slot": "verb", "status": "other_meaning", "form": "germinate", "definition": "to start to grow, as a seed does", "example": "The beans germinated after three days in wet soil.", "note": "Belongs to germ = the small part of a seed that grows, not the tiny thing that causes illness."},
+  {"slot": "adjective", "status": "no_form", "note": "There is no common adjective. Use the noun before another noun: 'germ protection'."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "Our teacher tells us that germs live on door handles and phones. Before lunch, everyone in our class washes their hands with soap to kill the germs.", "uses": ["germs"]},
+ "reviewer_note": "germinate is kept as other_meaning (seed sense); compounds like germ-free are left out."},
+
+{"headword": "get on with", "word_id": "6a42662edeeb39f881130130", "word_ids": ["6a42662edeeb39f881130130"], "cefr": "B1", "kind": "phrasal", "sense_label": "Friends", "sense_pos": "verb", "corpus_definition": "To have a good and friendly connection with someone.",
+ "particle_note": "Not separable: 'get on with someone', never 'get someone on with'. Often with 'well': 'I get on well with my brother.' Without an object: 'We get on well.' Mostly British; American English says 'get along with'.",
+ "relations": [
+  {"to": "get along with", "relation": "synonym", "strength": 0.95, "note": "Same meaning, more common in American English."},
+  {"to": "like", "relation": "related", "strength": 0.6, "note": "Related: you like someone; get on with is about how you behave together."},
+  {"to": "fall out with", "relation": "antonym", "note": "To argue with someone and stop being friends."}
+ ],
+ "context": {"text": "I get on well with my new coworkers in the office. My sister doesn't get on with her roommate, so she wants to move.", "uses": ["get on well with", "get on with"]},
+ "reviewer_note": "get on with also means 'continue doing something' (get on with your work); this map keeps only the friendship meaning."}
+]
