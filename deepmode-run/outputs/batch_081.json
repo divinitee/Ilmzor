@@ -1,0 +1,277 @@
+[
+{
+ "headword": "fabric", "word_id": "6a6ef9b2a601556148092831", "word_ids": ["6a6ef9b2a601556148092831"], "cefr": "B1", "kind": "word",
+ "sense_label": "Material", "sense_pos": "noun",
+ "corpus_definition": "Material that is used to make clothes or furniture covers.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "fabric", "relation": "base", "definition": "cloth or material used for making clothes, curtains and covers", "example": "This fabric feels very soft to the touch.", "note": "Don't confuse with factory: fabric is cloth, not a building where things are made.",
+   "syn": [
+    {"to": "material", "relation": "synonym", "strength": 0.95, "note": "Very close and very common: 'a dress made of soft material'."},
+    {"to": "cloth", "relation": "synonym", "strength": 0.95, "note": "Very close; cloth is a little more everyday."},
+    {"to": "textile", "relation": "synonym", "strength": 0.8, "note": "More technical, used in industry and trade: 'the textile industry'."}
+   ], "ant": []},
+  {"slot": "verb", "status": "no_form", "not_family": ["fabricate"], "note": "fabricate (to make, or to invent false information) shares an old Latin root but is not made from fabric."},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "My grandmother buys fabric at Chorsu Bazaar in Tashkent. She chooses a bright, soft fabric and makes new dresses for the whole family.", "uses": ["fabric"]},
+ "reviewer_note": "Single-form family; fabricate listed as not_family (same Latin root, not derived from fabric)."
+},
+{
+ "headword": "factor", "word_id": "6a6ef83f0f1e82a5a07366d2", "word_ids": ["6a6ef83f0f1e82a5a07366d2"], "cefr": "B1", "kind": "word",
+ "sense_label": "Influence", "sense_pos": "noun",
+ "corpus_definition": "A fact or situation that influences a result.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "factor", "relation": "base", "definition": "one of the things that has an effect on a result or decision", "example": "Price is a key factor in our choice.", "note": "In maths it also means a number that divides another number exactly.",
+   "syn": [
+    {"to": "element", "relation": "synonym", "strength": 0.8, "note": "Close: one part of a situation. A little more formal."},
+    {"to": "cause", "relation": "related", "strength": 0.6, "note": "Related: a cause makes something happen; a factor is only one of the things that has an effect."},
+    {"to": "reason", "relation": "related", "strength": 0.6, "note": "Related and easy: a reason explains why someone did something."},
+    {"to": "influence", "relation": "related", "strength": 0.6, "note": "Related: an influence is the power to change something."},
+    {"to": "aspect", "relation": "related", "strength": 0.4, "note": "Related: one side or part of a situation, not always something that changes the result."}
+   ], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "factor", "relation": "conversion", "definition": "to include something as one thing to think about when you plan or decide", "example": "We need to factor the cost of petrol into our travel plans.", "note": "Usually 'factor in' or 'factor something into something'.",
+   "syn": [
+    {"to": "include", "relation": "synonym", "strength": 0.8, "note": "Easy and general; factor in is about plans, costs and decisions."},
+    {"to": "consider", "relation": "related", "strength": 0.6, "note": "Related: to think about something carefully before you decide."}
+   ], "ant": [
+    {"to": "exclude", "relation": "antonym", "note": "To leave something out of a plan or calculation."}
+   ]},
+  {"slot": "adjective", "status": "no_form", "note": "factorial exists only in maths and is very rare for learners."},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "people_not_family": ["factory"],
+ "affixes": [],
+ "context": {"text": "Price was one factor, but the distance to school was another. When we chose a flat in Samarkand, we also factored in the noise from the busy road.", "uses": ["factor", "factored"]},
+ "reviewer_note": "factory looks related but is not a modern family member of factor; listed in people_not_family. Maths sense mentioned only in a note."
+},
+{
+ "headword": "fade", "word_id": "6a6ef9b2a601556148092702", "word_ids": ["6a6ef9b2a601556148092702"], "cefr": "B1", "kind": "word",
+ "sense_label": "Losing colour", "sense_pos": "verb",
+ "corpus_definition": "to slowly lose colour, brightness, or strength",
+ "forms": [
+  {"slot": "noun", "status": "no_form", "note": "There is no common noun; use the -ing form: 'the fading of the colours'."},
+  {"slot": "verb", "status": "existing", "form": "fade", "relation": "base", "definition": "to slowly become less bright, less strong or less clear", "example": "The old photograph had faded to almost nothing.",
+   "syn": [
+    {"to": "disappear", "relation": "related", "strength": 0.6, "note": "Related and easy: to go away completely. Fade is slower and may not be complete."},
+    {"to": "dim", "relation": "synonym", "strength": 0.8, "note": "Close, but only for light: 'The lights dimmed.'"},
+    {"to": "weaken", "relation": "related", "strength": 0.6, "note": "Related: to become less strong, for feelings, power or health."},
+    {"to": "die away", "relation": "synonym", "strength": 0.8, "note": "Close, used for sounds and feelings: 'The music died away.'"}
+   ], "ant": [
+    {"to": "brighten", "relation": "antonym", "note": "To become brighter or more colourful."},
+    {"to": "strengthen", "relation": "antonym", "note": "To become stronger."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "faded", "relation": "participial", "definition": "having lost its colour or brightness, often because it is old", "example": "He always wears the same faded blue jeans.",
+   "syn": [
+    {"to": "pale", "relation": "synonym", "strength": 0.8, "note": "Close: light in colour, not strong."},
+    {"to": "dull", "relation": "synonym", "strength": 0.8, "note": "Close: not bright or shiny."},
+    {"to": "washed-out", "relation": "synonym", "strength": 0.95, "note": "Very close and informal: colours that look weak after much washing.", "register": "informal"}
+   ], "ant": [
+    {"to": "bright", "relation": "antonym", "note": "Strong and full of light or colour."},
+    {"to": "vivid", "relation": "antonym", "note": "Very bright and strong colours."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "fading", "relation": "participial", "definition": "slowly becoming weaker, less bright or less clear", "example": "We walked home in the fading evening light.", "syn": [], "ant": []},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [
+  {"affix": "-ing", "in_form": "fading", "meaning_key": "-ing", "also": ["interesting", "boring", "exciting"]}
+ ],
+ "context": {"text": "My blue curtains slowly faded in the hot Tashkent sun. In the fading evening light they look even older, so my mother wants to buy new ones.", "uses": ["faded", "fading"]},
+ "reviewer_note": "No real noun in learner dictionaries (film 'fade-in/out' are compounds); both participle adjectives shown."
+},
+{
+ "headword": "faint", "word_id": "6a6ef83f0f1e82a5a07367c2", "word_ids": ["6a6ef83f0f1e82a5a07367c2"], "cefr": "B1", "kind": "word",
+ "sense_label": "Body", "sense_pos": "verb",
+ "corpus_definition": "To lose consciousness for a short time.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "faint", "relation": "conversion", "definition": "a short time when you lose consciousness and fall down", "example": "She fell to the floor in a faint.", "note": "Mostly in the phrase 'in a faint'.",
+   "syn": [
+    {"to": "blackout", "relation": "synonym", "strength": 0.8, "note": "Close: a short time when you lose consciousness or memory."},
+    {"to": "collapse", "relation": "related", "strength": 0.6, "note": "Related: a sudden fall because you are ill or weak."}
+   ], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "faint", "relation": "base", "definition": "to suddenly lose consciousness for a short time and fall down", "example": "An old man fainted in the heat at the bus stop.",
+   "syn": [
+    {"to": "pass out", "relation": "synonym", "strength": 0.95, "note": "Very close and very common in everyday English."},
+    {"to": "black out", "relation": "synonym", "strength": 0.95, "note": "Very close; also used when you can't remember what happened."},
+    {"to": "collapse", "relation": "related", "strength": 0.6, "note": "Related: to fall down suddenly; you may still be awake."},
+    {"to": "swoon", "relation": "synonym", "strength": 0.8, "note": "Old-fashioned or literary; often about strong feelings.", "register": "literary"}
+   ], "ant": [
+    {"to": "come to", "relation": "antonym", "note": "To become conscious again after fainting."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "faint", "relation": "conversion", "definition": "feeling weak and as if you may lose consciousness", "example": "She felt faint because of the extreme heat.", "note": "Same spelling, another meaning: 'not strong or clear', as in 'a faint sound'.",
+   "syn": [
+    {"to": "dizzy", "relation": "synonym", "strength": 0.8, "note": "Close and easy: feeling that everything is turning around you."},
+    {"to": "weak", "relation": "related", "strength": 0.6, "note": "Related and easy: without much strength."}
+   ], "ant": []},
+  {"slot": "adverb", "status": "other_meaning", "form": "faintly", "definition": "in a way that is not strong or clear", "example": "She smiled faintly and said nothing.", "note": "Belongs to faint = not strong or clear (a faint sound), not losing consciousness."}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "On the hottest day of summer, an old man fainted at the bus stop in Bukhara. He told the doctor he had felt faint all morning.", "uses": ["fainted", "faint"]},
+ "reviewer_note": "CORPUS: definition is the verb but the example uses the adjective (felt faint); map follows the verb definition and shows the adjective as a conversion."
+},
+{
+ "headword": "familiar", "word_id": "6a42821646ba24054c1dcc6a", "word_ids": ["6a42821646ba24054c1dcc6a"], "cefr": "B1", "kind": "word",
+ "sense_label": "Known", "sense_pos": "adjective",
+ "corpus_definition": "something or someone that you know well.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "familiarity", "relation": "derivational", "definition": "good knowledge of something because you have seen or used it often", "example": "Her familiarity with the city helped us find the hotel quickly.",
+   "syn": [
+    {"to": "knowledge", "relation": "related", "strength": 0.6, "note": "Related: what you know; familiarity comes from seeing or using something often."},
+    {"to": "acquaintance", "relation": "synonym", "strength": 0.8, "note": "Formal: 'some acquaintance with the subject'.", "register": "formal"},
+    {"to": "experience", "relation": "related", "strength": 0.6, "note": "Related and easy: knowledge you get by doing something."}
+   ], "ant": [
+    {"to": "unfamiliarity", "relation": "antonym", "note": "Not knowing something well."},
+    {"to": "ignorance", "relation": "antonym", "note": "Not knowing about something at all."}
+   ]},
+  {"slot": "verb", "status": "existing", "form": "familiarize", "relation": "derivational", "definition": "to help yourself or someone learn about something new", "example": "Take a few minutes to familiarize yourself with the new phone.", "note": "British spelling: familiarise. Usually 'familiarize yourself with something'.",
+   "syn": [
+    {"to": "acquaint", "relation": "synonym", "strength": 0.95, "note": "Very close and formal: 'acquaint yourself with the rules'.", "register": "formal"},
+    {"to": "learn", "relation": "related", "strength": 0.6, "note": "Related and easy: to get knowledge about something."}
+   ], "ant": []},
+  {"slot": "adjective", "status": "existing", "form": "familiar", "relation": "base", "definition": "known to you because you have seen or heard it before", "example": "That man looks familiar to me.",
+   "syn": [
+    {"to": "known", "relation": "synonym", "strength": 0.8, "note": "Close and easy, but less natural before a noun."},
+    {"to": "recognizable", "relation": "synonym", "strength": 0.8, "note": "Close: easy to know because you have seen it before. British: recognisable."},
+    {"to": "usual", "relation": "related", "strength": 0.6, "note": "Related and easy: what happens or is seen most of the time."},
+    {"to": "common", "relation": "related", "strength": 0.4, "note": "Related: happening or seen often, but not always known to you."}
+   ], "ant": [
+    {"to": "unfamiliar", "relation": "antonym", "note": "Not known to you."},
+    {"to": "strange", "relation": "antonym", "note": "Easy: new and not known, sometimes a little worrying."},
+    {"to": "unknown", "relation": "antonym", "note": "Not known by you or by most people."}
+   ]},
+  {"slot": "adverb", "status": "other_meaning", "form": "familiarly", "definition": "in a friendly and informal way, as with friends", "example": "He spoke familiarly to the teacher, which surprised everyone.", "note": "Belongs to familiar = too friendly or informal, not 'known well'."}
+ ],
+ "people": [],
+ "affixes": [
+  {"affix": "-ity", "in_form": "familiarity", "meaning_key": "-ity", "also": ["activity", "reality", "ability"]},
+  {"affix": "-ize", "in_form": "familiarize", "meaning_key": "-ize", "also": ["realize", "organize", "modernize"]}
+ ],
+ "context": {"text": "At first the streets of Tashkent were not familiar to me. I walked around every evening to familiarize myself with the city, and my familiarity with it grew fast.", "uses": ["familiar", "familiarize", "familiarity"]},
+ "reviewer_note": "familiarly is a false friend (informal manner), shown as other_meaning. 'familiar with' has its own phrase map."
+},
+{
+ "headword": "familiar with", "word_id": "6a4282fd46ba24054c1dcd71", "word_ids": ["6a4282fd46ba24054c1dcd71"], "cefr": "B1", "kind": "phrase",
+ "sense_label": "Knowing", "sense_pos": "adjective",
+ "corpus_definition": "to know something or someone quite well.",
+ "usage_note": "be familiar with + noun / -ing: 'Are you familiar with this program?' Compare: 'This song is familiar to me' (the thing is familiar TO a person).",
+ "relations": [
+  {"to": "acquainted with", "relation": "synonym", "strength": 0.95, "note": "Very close but more formal.", "register": "formal"},
+  {"to": "know", "relation": "synonym", "strength": 0.8, "note": "Easy everyday verb: 'Do you know this program?'"},
+  {"to": "used to", "relation": "related", "strength": 0.6, "note": "Related: something is no longer new or strange for you: 'I'm used to the heat.'"},
+  {"to": "unfamiliar with", "relation": "antonym", "note": "Not knowing something well."}
+ ],
+ "context": {"text": "Are you familiar with this computer program? My brother is, so he can help us. He became familiar with it at his job in Namangan.", "uses": ["familiar with"]},
+ "reviewer_note": "Phrase map; the person is the subject (familiar with), unlike 'familiar to'."
+},
+{
+ "headword": "fasten", "word_id": "6a6ef9b2a601556148092881", "word_ids": ["6a6ef9b2a601556148092881"], "cefr": "B1", "kind": "word",
+ "sense_label": "Closing", "sense_pos": "verb",
+ "corpus_definition": "To close or join two parts together tightly.",
+ "forms": [
+  {"slot": "noun", "status": "no_form", "note": "The nouns fastener and fastening name things, so they are in People & things."},
+  {"slot": "verb", "status": "existing", "form": "fasten", "relation": "base", "definition": "to close something or join two parts together so it stays closed", "example": "Please fasten your seatbelt before the flight takes off.", "note": "The t is silent: /ˈfɑːsn/.",
+   "syn": [
+    {"to": "do up", "relation": "synonym", "strength": 0.95, "note": "Very close and everyday, for buttons, coats and belts.", "register": "informal"},
+    {"to": "secure", "relation": "synonym", "strength": 0.8, "note": "Close but more formal: to fix something so it cannot move."},
+    {"to": "attach", "relation": "related", "strength": 0.6, "note": "Related: to join one thing to another."},
+    {"to": "tie", "relation": "related", "strength": 0.6, "note": "Related and easy: to close or join with string or rope."},
+    {"to": "close", "relation": "related", "strength": 0.6, "note": "Related and easy, but more general."}
+   ], "ant": [
+    {"to": "unfasten", "relation": "antonym", "note": "To open something that was closed with a button, belt or zip."},
+    {"to": "undo", "relation": "antonym", "note": "Everyday: 'undo your seatbelt'."},
+    {"to": "loosen", "relation": "antonym", "note": "To make something less tight."}
+   ]},
+  {"slot": "adjective", "status": "existing", "form": "fastened", "relation": "participial", "definition": "closed or joined so that it will not open", "example": "Keep your seatbelt fastened while the car is moving.",
+   "syn": [
+    {"to": "closed", "relation": "synonym", "strength": 0.8, "note": "Close and easy, but more general."},
+    {"to": "secure", "relation": "related", "strength": 0.6, "note": "Related: fixed and safe, so it cannot move."}
+   ], "ant": [
+    {"to": "unfastened", "relation": "antonym", "note": "Not closed or joined."},
+    {"to": "open", "relation": "antonym", "note": "Easy: not closed."}
+   ]},
+  {"slot": "adverb", "status": "existing", "form": "fast", "relation": "derivational", "definition": "firmly, so that it cannot move or come out", "example": "The car was stuck fast in the deep mud.", "note": "This is the old meaning that fasten comes from. Don't confuse with fast = quickly.",
+   "syn": [
+    {"to": "firmly", "relation": "synonym", "strength": 0.95, "note": "Very close and common."},
+    {"to": "tightly", "relation": "synonym", "strength": 0.8, "note": "Close and easy."}
+   ], "ant": [
+    {"to": "loosely", "relation": "antonym", "note": "Not tightly or firmly."}
+   ]}
+ ],
+ "people": [
+  {"form": "fastener", "kind": "thing", "status": "existing", "definition": "a small thing like a button, hook or zip that closes clothes or bags", "example": "The fastener on my bag is broken."},
+  {"form": "fastening", "kind": "thing", "status": "existing", "definition": "a device such as a button, hook or zip used to close something", "example": "The dress has a fastening at the back."}
+ ],
+ "affixes": [
+  {"affix": "-er", "in_form": "fastener", "meaning_key": "-er", "also": ["opener", "heater", "cooker"]},
+  {"affix": "-ing", "in_form": "fastening", "meaning_key": "-ing", "also": ["building", "painting", "clothing"]}
+ ],
+ "context": {"text": "Please fasten your seatbelt. The plane will not take off from Tashkent until every belt is fastened and every bag is in its place.", "uses": ["fasten", "fastened"]},
+ "reviewer_note": "fasten = fast (firmly) + -en; adverb fast shown in its 'firmly' meaning with a note on fast = quickly. Silent t noted."
+},
+{
+ "headword": "feel like", "word_id": "6a42659782466c80f8ae0ce3", "word_ids": ["6a42659782466c80f8ae0ce3"], "cefr": "B1", "kind": "phrase",
+ "sense_label": "Wanting", "sense_pos": "verb",
+ "corpus_definition": "To want to have or do something at this moment.",
+ "usage_note": "feel like + noun / -ing: 'I feel like pizza', 'I feel like going out.' Not followed by 'to do'. Often negative: 'I don't feel like cooking.'",
+ "relations": [
+  {"to": "want", "relation": "synonym", "strength": 0.8, "note": "Easy and general; feel like is about a wish at this moment."},
+  {"to": "fancy", "relation": "synonym", "strength": 0.95, "note": "Very close, informal British English: 'Do you fancy a coffee?'", "register": "informal"},
+  {"to": "would like", "relation": "related", "strength": 0.6, "note": "Related and polite: 'I would like a tea, please.'"},
+  {"to": "be in the mood for", "relation": "synonym", "strength": 0.95, "note": "Very close: 'I'm in the mood for a film.'"}
+ ],
+ "context": {"text": "I feel like eating plov for dinner today. My sister doesn't feel like cooking, so we will go to the cafe near our house.", "uses": ["feel like", "feel like"]},
+ "reviewer_note": "Different from 'feel like' = seem/resemble ('It feels like rain'); map keeps only the 'want' meaning."
+},
+{
+ "headword": "ferry", "word_id": "6a4265fb84a10cdfe9e55d77", "word_ids": ["6a4265fb84a10cdfe9e55d77", "6a6ef83f0f1e82a5a0736828"], "cefr": "B1", "kind": "word",
+ "sense_label": "Boat", "sense_pos": "noun",
+ "corpus_definition": "A large boat that carries people or cars across a river or sea.",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "ferry", "relation": "base", "definition": "a boat that carries people and cars across water, usually on a regular trip", "example": "We took the ferry across the river this morning.",
+   "syn": [
+    {"to": "boat", "relation": "related", "strength": 0.6, "note": "Related and easy: any vessel on water; a ferry is a boat with a regular route."},
+    {"to": "ship", "relation": "related", "strength": 0.6, "note": "Related: a large boat, usually for the sea."}
+   ], "ant": []},
+  {"slot": "verb", "status": "existing", "form": "ferry", "relation": "conversion", "definition": "to carry people or things from one place to another, often again and again", "example": "Small boats ferry tourists to the island every hour.", "note": "Also used for cars and buses: 'Dad ferries the kids to school.'",
+   "syn": [
+    {"to": "transport", "relation": "synonym", "strength": 0.8, "note": "Close but more formal and general."},
+    {"to": "carry", "relation": "synonym", "strength": 0.8, "note": "Close and easy."},
+    {"to": "take", "relation": "related", "strength": 0.6, "note": "Related and very easy: 'take the children to school'."}
+   ], "ant": []},
+  {"slot": "adjective", "status": "no_form"},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "We took the ferry across the river this morning. In summer, a small boat ferries tourists to the island every hour.", "uses": ["ferry", "ferries"]},
+ "reviewer_note": "Two corpus rows, same meaning: merged (B1). ferryman/ferryboat are compounds and left out."
+},
+{
+ "headword": "fiber", "word_id": "6a6ef9b2a6015561480928aa", "word_ids": ["6a6ef9b2a6015561480928aa"], "cefr": "B1", "kind": "word",
+ "sense_label": "Thread", "sense_pos": "noun",
+ "corpus_definition": "a thin thread-like part of a plant, fabric, or material",
+ "forms": [
+  {"slot": "noun", "status": "existing", "form": "fiber", "relation": "base", "definition": "a very thin thread that plants, cloth and other materials are made of", "example": "Cotton fibers are spun into thread at the factory.", "note": "British spelling: fibre. In food, it also means the parts of plants that help digestion: 'Whole grains contain more fiber.'",
+   "syn": [
+    {"to": "thread", "relation": "synonym", "strength": 0.8, "note": "Close and easy; a thread is usually longer and made by people."},
+    {"to": "strand", "relation": "synonym", "strength": 0.8, "note": "Close: one thin piece of hair, rope or thread."},
+    {"to": "filament", "relation": "synonym", "strength": 0.8, "note": "Close but technical: a very thin thread, also the wire in a light bulb."}
+   ], "ant": []},
+  {"slot": "verb", "status": "no_form"},
+  {"slot": "adjective", "status": "existing", "form": "fibrous", "relation": "derivational", "definition": "made of many thin threads, often tough to cut or chew", "example": "The stems of this plant are tough and fibrous.",
+   "syn": [
+    {"to": "stringy", "relation": "synonym", "strength": 0.8, "note": "Close and informal, often about food: 'stringy meat'."}
+   ], "ant": []},
+  {"slot": "adverb", "status": "no_form"}
+ ],
+ "people": [],
+ "affixes": [],
+ "context": {"text": "Uzbek cotton is famous for its long, strong fibers. The stems of the cotton plant are fibrous, so farmers use them for fuel, not for food.", "uses": ["fibers", "fibrous"]},
+ "reviewer_note": "CORPUS: example ('Whole grains contain more fiber') uses the food sense, not the thread sense in the definition; food sense mentioned in the note. No -ous affix claimed (fibr- is not a word)."
+}
+]
