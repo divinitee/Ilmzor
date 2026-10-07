@@ -1,13 +1,1040 @@
 [
-{"headword": "on CD/DVD/video", "word_id": "6a42659782466c80f8ae0cbb", "word_ids": ["6a42659782466c80f8ae0cbb"], "cefr": "B1", "kind": "phrase", "sense_label": "Recorded", "sense_pos": "adverb", "corpus_definition": "Recorded on a digital disc or video format.", "usage_note": "on + CD / DVD / video, after have, buy, watch, come out, be available: 'I have the film on DVD.' 'Her new album is out on CD.' No article: say 'on DVD', not 'on a DVD', when you mean the format.", "relations": [{"to": "recorded", "relation": "related", "strength": 0.6, "note": "Related: saved so you can watch or listen again later; it does not say which format."}, {"to": "on tape", "relation": "related", "strength": 0.6, "note": "Related: recorded on cassette tape, an older format."}, {"to": "live", "relation": "antonym", "note": "Happening now in front of people, not recorded."}], "context": {"text": "I don't have that film on DVD, but my uncle has all his old concerts on video. Today most people stream music instead of buying it on CD.", "uses": ["on DVD", "on video", "on CD"]}, "reviewer_note": "Headword covers three formats; the usage note explains there is no article before the format name."},
-{"headword": "on purpose", "word_id": "6a42662edeeb39f88113013a", "word_ids": ["6a42662edeeb39f88113013a"], "cefr": "B1", "kind": "phrase", "sense_label": "Intention", "sense_pos": "adverb", "corpus_definition": "Doing something because you wanted to, not by mistake.", "usage_note": "verb + (object) + on purpose, usually at the end of the clause: 'He broke it on purpose.' Very common in the negative: 'I didn't do it on purpose!'", "relations": [{"to": "deliberately", "relation": "synonym", "strength": 0.95, "note": "Same meaning; a little more formal."}, {"to": "intentionally", "relation": "synonym", "strength": 0.95, "note": "Same meaning; more formal, used in writing."}, {"to": "purposely", "relation": "synonym", "strength": 0.95, "note": "Same meaning, but less common than on purpose."}, {"to": "by accident", "relation": "antonym", "note": "It happened without anyone planning it."}, {"to": "by mistake", "relation": "antonym", "note": "You did it because you made an error."}, {"to": "accidentally", "relation": "antonym", "note": "Without wanting or planning to."}], "context": {"text": "My little sister dropped my phone, but she didn't do it on purpose. I think the cat pushed the cup off the table on purpose, though!", "uses": ["on purpose"]}, "reviewer_note": "Fixed phrase; no forms. Purpose itself is a separate noun entry."},
-{"headword": "on schedule", "word_id": "6a4265fb84a10cdfe9e55d97", "word_ids": ["6a4265fb84a10cdfe9e55d97"], "cefr": "B1", "kind": "phrase", "sense_label": "On time", "sense_pos": "adverb", "corpus_definition": "Happening exactly at the planned or expected time.", "usage_note": "be / arrive / finish + on schedule: 'The project is on schedule.' Compare 'ahead of schedule' (earlier than planned) and 'behind schedule' (later than planned).", "relations": [{"to": "on time", "relation": "synonym", "strength": 0.95, "note": "Same meaning and more common in everyday English."}, {"to": "as planned", "relation": "synonym", "strength": 0.8, "note": "Close: in the way that was planned, not only at the right time."}, {"to": "punctually", "relation": "synonym", "strength": 0.8, "note": "Formal; used about people and transport arriving at the exact time."}, {"to": "behind schedule", "relation": "antonym", "note": "Later than planned."}, {"to": "late", "relation": "antonym", "note": "After the expected time."}], "context": {"text": "The new metro line in Tashkent is on schedule and will open in spring. Our train to Samarkand also left exactly on schedule this morning.", "uses": ["on schedule"]}, "reviewer_note": "Fixed phrase; ahead of / behind schedule mentioned in the usage note as related patterns."},
-{"headword": "on stage", "word_id": "6a42659782466c80f8ae0cbc", "word_ids": ["6a42659782466c80f8ae0cbc"], "cefr": "B1", "kind": "phrase", "sense_label": "Theater", "sense_pos": "adverb", "corpus_definition": "The raised floor where people perform in a theater.", "usage_note": "be / go / walk / appear + on stage: 'She went on stage at eight.' Also written as one word, onstage. British spelling: theatre.", "relations": [{"to": "onstage", "relation": "synonym", "strength": 0.95, "note": "Same meaning, written as one word."}, {"to": "performing", "relation": "related", "strength": 0.6, "note": "Related: singing, acting or dancing for an audience, not only in a theater."}, {"to": "offstage", "relation": "antonym", "note": "Not on the stage, where the audience cannot see."}, {"to": "backstage", "relation": "antonym", "note": "In the area behind the stage, where performers get ready."}], "context": {"text": "When the singer walked on stage, everyone started to clap. She was nervous before the show, but on stage she looked calm and happy.", "uses": ["on stage"]}, "reviewer_note": "CORPUS: the definition describes the noun stage, not the phrase on stage (= performing on the stage); map follows the phrase use shown in the example."},
-{"headword": "opponent", "word_id": "6a42659782466c80f8ae0ca4", "word_ids": ["6a42659782466c80f8ae0ca4", "6a6ef9b2a601556148092848"], "cefr": "B1", "kind": "word", "sense_label": "Contest", "sense_pos": "noun", "corpus_definition": "The person you are playing or fighting against in a contest.", "forms": [{"slot": "noun", "status": "existing", "form": "opponent", "relation": "base", "definition": "a person you play, compete or argue against", "example": "My opponent played a very good game of chess.", "note": "Also a person who disagrees with an idea or plan: 'opponents of the new law'.", "syn": [{"to": "rival", "relation": "synonym", "strength": 0.8, "note": "Close; a rival competes with you often or for a long time."}, {"to": "competitor", "relation": "synonym", "strength": 0.8, "note": "Close; used for sport and business, a little more formal."}, {"to": "challenger", "relation": "related", "strength": 0.6, "note": "Related: a person who tries to win against the champion."}, {"to": "enemy", "relation": "related", "strength": 0.4, "note": "Much stronger: an enemy hates you or fights you in a war."}], "ant": [{"to": "teammate", "relation": "antonym", "note": "A person who plays on the same team as you."}, {"to": "ally", "relation": "antonym", "note": "A person or country that helps and supports you."}]}, {"slot": "noun", "status": "existing", "form": "opposition", "relation": "derivational", "definition": "the person or team you are competing against", "example": "Our team was strong, but the opposition was even stronger.", "note": "Usually 'the opposition'. Also means disagreeing with a plan: 'opposition to the new road'.", "syn": [{"to": "competition", "relation": "synonym", "strength": 0.8, "note": "'The competition' also means the people you are trying to win against."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "oppose", "relation": "derivational", "definition": "to compete or fight against someone; to disagree with a plan", "example": "Uzbekistan will oppose Japan in the final.", "note": "In everyday English this verb is most often about disagreeing: 'Many people opposed the plan.'", "syn": [{"to": "play against", "relation": "synonym", "strength": 0.8, "note": "Easy, everyday way to say it about sport and games."}, {"to": "compete with", "relation": "synonym", "strength": 0.8, "note": "Close; used for sport and business."}, {"to": "fight", "relation": "related", "strength": 0.6, "note": "Related: try to beat someone, often with force."}], "ant": [{"to": "support", "relation": "antonym", "note": "Help or agree with someone or something."}]}, {"slot": "adjective", "status": "existing", "form": "opposing", "relation": "participial", "definition": "playing, competing or fighting against you", "example": "The opposing team scored in the last minute.", "syn": [{"to": "rival", "relation": "synonym", "strength": 0.95, "note": "Same meaning before a noun: 'the rival team'."}, {"to": "competing", "relation": "synonym", "strength": 0.8, "note": "Close; often used for companies or ideas."}], "ant": []}, {"slot": "adjective", "status": "other_meaning", "form": "opposite", "definition": "completely different; or on the other side, facing something", "example": "They walked in opposite directions.", "note": "Belongs to the 'facing / completely different' meaning of the family, not a person you play against. A very common word."}, {"slot": "adverb", "status": "other_meaning", "form": "opposite", "definition": "on the other side of a street or room, facing you", "example": "The family who live opposite are very friendly.", "note": "Belongs to the 'facing' meaning of the family, not a person you play against."}], "people": [], "people_not_family": [], "affixes": [{"affix": "-ing", "in_form": "opposing", "meaning_key": "-ing", "also": ["interesting", "exciting", "amazing"]}], "context": {"text": "In the final, Dilnoza played against a strong opponent from Kazakhstan. The opposing team's fans were very loud, but she stayed calm and won the match.", "uses": ["opponent", "opposing"]}, "reviewer_note": "Two rows merged (game/fight and game/argument are one meaning); lowest CEFR B1. Opponent is a person noun headword, so it stays the main noun entry; opposite shown as other_meaning (facing / completely different)."},
-{"headword": "option", "word_id": "6a6ef83f0f1e82a5a07367a2", "word_ids": ["6a6ef83f0f1e82a5a07367a2"], "cefr": "B1", "kind": "word", "sense_label": "Choice", "sense_pos": "noun", "corpus_definition": "A choice that you can make.", "forms": [{"slot": "noun", "status": "existing", "form": "option", "relation": "base", "definition": "one of the things you can choose from", "example": "We have another option if this plan fails.", "syn": [{"to": "choice", "relation": "synonym", "strength": 0.95, "note": "Same meaning and very common."}, {"to": "alternative", "relation": "synonym", "strength": 0.8, "note": "Close; another thing you can choose instead of the first one."}, {"to": "possibility", "relation": "related", "strength": 0.6, "note": "Related: something that might happen or that you could do."}], "ant": []}, {"slot": "verb", "status": "existing", "form": "opt", "relation": "derivational", "definition": "to choose one thing instead of another", "example": "Most students opt for English as their second language.", "note": "Usually 'opt for something' or 'opt to do something'. Also 'opt out (of)' = choose not to take part.", "register": "formal", "syn": [{"to": "choose", "relation": "synonym", "strength": 0.95, "note": "Same meaning; choose is the everyday word."}, {"to": "select", "relation": "synonym", "strength": 0.8, "note": "Close; more formal, often about choosing carefully from many."}, {"to": "decide", "relation": "related", "strength": 0.6, "note": "Related: make up your mind; opt always means choosing between things."}], "ant": [{"to": "reject", "relation": "antonym", "note": "Say no to something you are offered."}]}, {"slot": "adjective", "status": "existing", "form": "optional", "relation": "derivational", "definition": "that you can choose to do or have, but do not have to", "example": "Art is an optional subject at our school.", "syn": [{"to": "voluntary", "relation": "synonym", "strength": 0.8, "note": "Close; done because you want to, not because you must."}, {"to": "elective", "relation": "related", "strength": 0.6, "note": "Related: used for school or university subjects, mainly American English.", "register": "formal"}], "ant": [{"to": "compulsory", "relation": "antonym", "note": "You must do it; it is a rule."}, {"to": "required", "relation": "antonym", "note": "Needed because of a rule."}, {"to": "obligatory", "relation": "antonym", "note": "Formal: you must do it."}]}, {"slot": "adverb", "status": "existing", "form": "optionally", "relation": "derivational", "definition": "if you choose to, but you do not have to", "example": "Serve the soup hot, optionally with fresh bread.", "note": "Not very common; often seen in recipes and instructions.", "syn": [{"to": "voluntarily", "relation": "related", "strength": 0.6, "note": "Related: because you want to, not because you must."}], "ant": []}], "people": [], "people_not_family": [], "affixes": [{"affix": "-al", "in_form": "optional", "meaning_key": "-al", "also": ["national", "personal", "traditional"]}, {"affix": "-ly", "in_form": "optionally", "meaning_key": "-ly", "also": ["quickly", "usually", "finally"]}], "context": {"text": "At our school in Namangan, music is optional. Most students opt for extra English or IT lessons, because they think those are the best options for the future.", "uses": ["optional", "opt", "options"]}, "reviewer_note": "Opt is a separate entry but shares the root with option/optional; optimal and optimist are a different root (best) and are left out."},
-{"headword": "ordinary", "word_id": "6a42662edeeb39f881130124", "word_ids": ["6a42662edeeb39f881130124"], "cefr": "B1", "kind": "word", "sense_label": "Normal", "sense_pos": "adjective", "corpus_definition": "Not special, different, or strange; quite normal.", "forms": [{"slot": "noun", "status": "existing", "form": "ordinariness", "relation": "derivational", "definition": "the quality of being normal and not special", "example": "I love the ordinariness of a quiet Sunday at home.", "note": "Not very common; usually in writing.", "syn": [{"to": "normality", "relation": "synonym", "strength": 0.8, "note": "Close; a normal situation. American English also says normalcy."}], "ant": []}, {"slot": "verb", "status": "no_form", "note": "No verb in this family."}, {"slot": "adjective", "status": "existing", "form": "ordinary", "relation": "base", "definition": "normal and usual, not special or different", "example": "It was just an ordinary day at work.", "syn": [{"to": "normal", "relation": "synonym", "strength": 0.95, "note": "Same meaning and very common."}, {"to": "usual", "relation": "synonym", "strength": 0.8, "note": "Close; what happens most of the time."}, {"to": "everyday", "relation": "synonym", "strength": 0.8, "note": "Close; used before a noun: 'everyday life'."}, {"to": "common", "relation": "synonym", "strength": 0.8, "note": "Close; something you see or find often."}, {"to": "average", "relation": "synonym", "strength": 0.8, "note": "Close; typical of most people or things."}, {"to": "typical", "relation": "related", "strength": 0.6, "note": "Related: showing what a group is usually like."}], "ant": [{"to": "special", "relation": "antonym", "note": "Better or more important than usual."}, {"to": "unusual", "relation": "antonym", "note": "Different from what normally happens."}, {"to": "extraordinary", "relation": "antonym", "note": "Very unusual and surprising, often in a good way."}]}, {"slot": "adverb", "status": "existing", "form": "ordinarily", "relation": "derivational", "definition": "usually; in the normal way", "example": "Ordinarily, I take the bus, but today I walked.", "syn": [{"to": "usually", "relation": "synonym", "strength": 0.95, "note": "Same meaning and more common."}, {"to": "normally", "relation": "synonym", "strength": 0.95, "note": "Same meaning and more common."}, {"to": "generally", "relation": "synonym", "strength": 0.8, "note": "Close; in most cases."}], "ant": []}], "people": [], "people_not_family": [], "affixes": [{"affix": "-ness", "in_form": "ordinariness", "meaning_key": "-ness", "also": ["happiness", "kindness", "sadness"]}, {"affix": "-ly", "in_form": "ordinarily", "meaning_key": "-ly", "also": ["quickly", "happily", "slowly"]}], "context": {"text": "It was an ordinary Monday in Andijan. Ordinarily, Bobur takes the bus to work, but today the sun was shining, so he walked.", "uses": ["ordinary", "Ordinarily"]}, "reviewer_note": "Extraordinary is an opposite (in the ant list), not a family form."},
-{"headword": "out of order", "word_id": "6a42800cb9d8fc24968a4b5b", "word_ids": ["6a42800cb9d8fc24968a4b5b"], "cefr": "B1", "kind": "phrase", "sense_label": "Broken", "sense_pos": "adjective", "corpus_definition": "When a machine is broken and not working.", "usage_note": "be + out of order, after the noun, often on signs for public machines: 'The lift is out of order.' (American English: elevator.) In informal British English it can also mean 'behaving badly': 'That comment was out of order.'", "relations": [{"to": "broken", "relation": "synonym", "strength": 0.95, "note": "Same meaning; broken can be used before a noun too: 'a broken phone'."}, {"to": "not working", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday way to say it."}, {"to": "faulty", "relation": "synonym", "strength": 0.8, "note": "Close; has a problem that stops it working well."}, {"to": "working", "relation": "antonym", "note": "Doing its job correctly."}], "context": {"text": "The ATM near our flat is out of order again, so I had to walk to the bank. The coffee machine at work was out of order too!", "uses": ["out of order"]}, "reviewer_note": "Map keeps the machine meaning; the British 'behaving badly' meaning is only mentioned in the usage note."},
-{"headword": "overnight", "word_id": "6a6ef9b2a6015561480927d0", "word_ids": ["6a6ef9b2a6015561480927d0"], "cefr": "B1", "kind": "word", "sense_label": "Night", "sense_pos": "adverb", "corpus_definition": "during or for the whole night; happening very quickly or suddenly", "forms": [{"slot": "noun", "status": "no_form", "note": "No common noun in this family."}, {"slot": "verb", "status": "existing", "form": "overnight", "relation": "conversion", "definition": "to stay somewhere for one night", "example": "We overnighted in Bukhara before driving on to Khiva.", "note": "Mainly American English; most people say 'stay the night'.", "syn": [{"to": "stay over", "relation": "synonym", "strength": 0.8, "note": "Informal and common: 'Can I stay over at your place?'"}, {"to": "stay", "relation": "related", "strength": 0.6, "note": "Related: live somewhere for a short time, not only one night."}], "ant": []}, {"slot": "adjective", "status": "existing", "form": "overnight", "relation": "conversion", "definition": "happening during the night, or for one night", "example": "We took the overnight train to Khiva.", "note": "Used before a noun: 'an overnight bus', 'an overnight stay'.", "syn": [{"to": "all-night", "relation": "synonym", "strength": 0.8, "note": "Close; lasting the whole night: 'an all-night party'."}], "ant": []}, {"slot": "adverb", "status": "existing", "form": "overnight", "relation": "base", "definition": "during the night, or for the whole night", "example": "Leave the beans in water overnight.", "syn": [{"to": "all night", "relation": "synonym", "strength": 0.8, "note": "Close; for the whole night."}, {"to": "through the night", "relation": "synonym", "strength": 0.8, "note": "Close; from evening until morning."}], "ant": []}], "people": [], "people_not_family": [], "affixes": [], "context": {"text": "We took the overnight bus from Tashkent to Termez. We slept on the bus, so we didn't need to stay overnight in a hotel.", "uses": ["overnight"]}, "reviewer_note": "One corpus row with two meanings, split into two maps (Night, Suddenly), as with boom and commission. Over- + night is a compound, so no affix is claimed."},
-{"headword": "overnight", "word_id": "6a6ef9b2a6015561480927d0", "word_ids": ["6a6ef9b2a6015561480927d0"], "cefr": "B1", "kind": "word", "sense_label": "Suddenly", "sense_pos": "adverb", "corpus_definition": "during or for the whole night; happening very quickly or suddenly", "forms": [{"slot": "noun", "status": "no_form", "note": "No common noun in this family."}, {"slot": "verb", "status": "other_meaning", "form": "overnight", "definition": "to stay somewhere for one night", "example": "We overnighted in Bukhara before driving on to Khiva.", "note": "Belongs to overnight = during the night, not happening suddenly. Mainly American English."}, {"slot": "adjective", "status": "existing", "form": "overnight", "relation": "conversion", "definition": "happening very quickly and without warning", "example": "The film was an overnight success.", "note": "Used before a noun: 'an overnight success', 'an overnight star'.", "syn": [{"to": "sudden", "relation": "synonym", "strength": 0.95, "note": "Same meaning and very common."}, {"to": "instant", "relation": "synonym", "strength": 0.8, "note": "Close; happening immediately."}, {"to": "rapid", "relation": "related", "strength": 0.6, "note": "Related: very fast, but not always unexpected."}], "ant": [{"to": "gradual", "relation": "antonym", "note": "Happening slowly, step by step."}]}, {"slot": "adverb", "status": "existing", "form": "overnight", "relation": "base", "definition": "very quickly and suddenly", "example": "The town became famous almost overnight after the news.", "syn": [{"to": "suddenly", "relation": "synonym", "strength": 0.95, "note": "Same meaning and very common."}, {"to": "instantly", "relation": "synonym", "strength": 0.8, "note": "Close; immediately, with no time at all."}, {"to": "quickly", "relation": "related", "strength": 0.6, "note": "Related: fast, but not always unexpected."}], "ant": [{"to": "gradually", "relation": "antonym", "note": "Slowly, step by step."}, {"to": "slowly", "relation": "antonym", "note": "Taking a long time."}]}], "people": [], "people_not_family": [], "affixes": [], "context": {"text": "Madina's cooking video got a million views overnight. She became an overnight star, and her life changed very quickly.", "uses": ["overnight"]}, "reviewer_note": "Second map for the 'suddenly' meaning; the corpus example uses this one."},
-{"headword": "owe", "word_id": "6a42800cb9d8fc24968a4b72", "word_ids": ["6a42800cb9d8fc24968a4b72"], "cefr": "B1", "kind": "word", "sense_label": "Money", "sense_pos": "verb", "corpus_definition": "To have an obligation to give money back to someone.", "forms": [{"slot": "noun", "status": "no_form", "note": "No noun in this family. For the money you have to pay back, use 'debt' (a different word)."}, {"slot": "verb", "status": "existing", "form": "owe", "relation": "base", "definition": "to have to pay back money that someone lent you", "example": "I owe my friend ten dollars.", "note": "Also 'owe someone a favour' and 'owe something to someone' (= have it because of them): other uses of the same verb.", "syn": [{"to": "be in debt", "relation": "synonym", "strength": 0.8, "note": "Close; 'be in debt to someone' is more formal and usually about larger amounts."}, {"to": "have to pay", "relation": "related", "strength": 0.6, "note": "Related: easy words for the same idea, but not only for borrowed money."}], "ant": []}, {"slot": "adjective", "status": "existing", "form": "owing", "relation": "participial", "definition": "still not paid back", "example": "There is still fifty dollars owing on the bill.", "note": "Used after the noun, mainly in British English. Don't confuse with 'owing to' (= because of).", "syn": [{"to": "unpaid", "relation": "synonym", "strength": 0.95, "note": "Same meaning and easier."}, {"to": "outstanding", "relation": "synonym", "strength": 0.8, "note": "Formal: not yet paid or done.", "register": "formal"}, {"to": "due", "relation": "related", "strength": 0.6, "note": "Related: must be paid now or by a certain date."}], "ant": [{"to": "paid", "relation": "antonym", "note": "The money has been given back."}]}, {"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}], "people": [], "people_not_family": ["owner"], "affixes": [{"affix": "-ing", "in_form": "owing", "meaning_key": "-ing", "also": ["missing", "remaining", "existing"]}], "context": {"text": "Jasur owes his brother 200,000 som. He paid half of it last week, so 100,000 som is still owing.", "uses": ["owes", "owing"]}, "reviewer_note": "Owner looks similar but comes from own, not owe (people_not_family). Owing to = because of is a false friend, noted on owing."}
+ {
+  "headword": "on CD/DVD/video",
+  "word_id": "6a42659782466c80f8ae0cbb",
+  "word_ids": [
+   "6a42659782466c80f8ae0cbb"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Recorded",
+  "sense_pos": "adverb",
+  "corpus_definition": "Recorded on a digital disc or video format.",
+  "usage_note": "on + CD / DVD / video, after have, buy, watch, come out, be available: 'I have the film on DVD.' 'Her new album is out on CD.' No article: say 'on DVD', not 'on a DVD', when you mean the format.",
+  "relations": [
+   {
+    "to": "recorded",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Related: saved so you can watch or listen again later; it does not say which format."
+   },
+   {
+    "to": "on tape",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Related: recorded on cassette tape, an older format."
+   },
+   {
+    "to": "live",
+    "relation": "antonym",
+    "note": "Happening now in front of people, not recorded."
+   }
+  ],
+  "context": {
+   "text": "I don't have that film on DVD, but my uncle has all his old concerts on video. Today most people stream music instead of buying it on CD.",
+   "uses": [
+    "on DVD",
+    "on video",
+    "on CD"
+   ]
+  },
+  "reviewer_note": "Headword covers three formats; the usage note explains there is no article before the format name."
+ },
+ {
+  "headword": "on purpose",
+  "word_id": "6a42662edeeb39f88113013a",
+  "word_ids": [
+   "6a42662edeeb39f88113013a"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Intention",
+  "sense_pos": "adverb",
+  "corpus_definition": "Doing something because you wanted to, not by mistake.",
+  "usage_note": "verb + (object) + on purpose, usually at the end of the clause: 'He broke it on purpose.' Very common in the negative: 'I didn't do it on purpose!'",
+  "relations": [
+   {
+    "to": "deliberately",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; a little more formal."
+   },
+   {
+    "to": "intentionally",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; more formal, used in writing."
+   },
+   {
+    "to": "purposely",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, but less common than on purpose."
+   },
+   {
+    "to": "by accident",
+    "relation": "antonym",
+    "note": "It happened without anyone planning it."
+   },
+   {
+    "to": "by mistake",
+    "relation": "antonym",
+    "note": "You did it because you made an error."
+   },
+   {
+    "to": "accidentally",
+    "relation": "antonym",
+    "note": "Without wanting or planning to."
+   }
+  ],
+  "context": {
+   "text": "My little sister dropped my phone, but she didn't do it on purpose. I think the cat pushed the cup off the table on purpose, though!",
+   "uses": [
+    "on purpose"
+   ]
+  },
+  "reviewer_note": "Fixed phrase; no forms. Purpose itself is a separate noun entry."
+ },
+ {
+  "headword": "on schedule",
+  "word_id": "6a4265fb84a10cdfe9e55d97",
+  "word_ids": [
+   "6a4265fb84a10cdfe9e55d97"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "On time",
+  "sense_pos": "adverb",
+  "corpus_definition": "Happening exactly at the planned or expected time.",
+  "usage_note": "be / arrive / finish + on schedule: 'The project is on schedule.' Compare 'ahead of schedule' (earlier than planned) and 'behind schedule' (later than planned).",
+  "relations": [
+   {
+    "to": "on time",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning and more common in everyday English."
+   },
+   {
+    "to": "as planned",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Close: in the way that was planned, not only at the right time."
+   },
+   {
+    "to": "punctually",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Formal; used about people and transport arriving at the exact time."
+   },
+   {
+    "to": "behind schedule",
+    "relation": "antonym",
+    "note": "Later than planned."
+   },
+   {
+    "to": "late",
+    "relation": "antonym",
+    "note": "After the expected time."
+   }
+  ],
+  "context": {
+   "text": "The new metro line in Tashkent is on schedule and will open in spring. Our train to Samarkand also left exactly on schedule this morning.",
+   "uses": [
+    "on schedule"
+   ]
+  },
+  "reviewer_note": "Fixed phrase; ahead of / behind schedule mentioned in the usage note as related patterns."
+ },
+ {
+  "headword": "on stage",
+  "word_id": "6a42659782466c80f8ae0cbc",
+  "word_ids": [
+   "6a42659782466c80f8ae0cbc"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Theater",
+  "sense_pos": "adverb",
+  "corpus_definition": "The raised floor where people perform in a theater.",
+  "usage_note": "be / go / walk / appear + on stage: 'She went on stage at eight.' Also written as one word, onstage. British spelling: theatre.",
+  "relations": [
+   {
+    "to": "onstage",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning, written as one word."
+   },
+   {
+    "to": "performing",
+    "relation": "related",
+    "strength": 0.6,
+    "note": "Related: singing, acting or dancing for an audience, not only in a theater."
+   },
+   {
+    "to": "offstage",
+    "relation": "antonym",
+    "note": "Not on the stage, where the audience cannot see."
+   },
+   {
+    "to": "backstage",
+    "relation": "antonym",
+    "note": "In the area behind the stage, where performers get ready."
+   }
+  ],
+  "context": {
+   "text": "When the singer walked on stage, everyone started to clap. She was nervous before the show, but on stage she looked calm and happy.",
+   "uses": [
+    "on stage"
+   ]
+  },
+  "reviewer_note": "CORPUS: the definition describes the noun stage, not the phrase on stage (= performing on the stage); map follows the phrase use shown in the example."
+ },
+ {
+  "headword": "opponent",
+  "word_id": "6a42659782466c80f8ae0ca4",
+  "word_ids": [
+   "6a42659782466c80f8ae0ca4",
+   "6a6ef9b2a601556148092848"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Contest",
+  "sense_pos": "noun",
+  "corpus_definition": "The person you are playing or fighting against in a contest.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "opponent",
+    "relation": "base",
+    "definition": "a person you play, compete or argue against",
+    "example": "My opponent played a very good game of chess.",
+    "note": "Also a person who disagrees with an idea or plan: 'opponents of the new law'.",
+    "syn": [
+     {
+      "to": "rival",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; a rival competes with you often or for a long time."
+     },
+     {
+      "to": "competitor",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; used for sport and business, a little more formal."
+     },
+     {
+      "to": "challenger",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: a person who tries to win against the champion."
+     },
+     {
+      "to": "enemy",
+      "relation": "related",
+      "strength": 0.4,
+      "note": "Much stronger: an enemy hates you or fights you in a war."
+     }
+    ],
+    "ant": [
+     {
+      "to": "teammate",
+      "relation": "antonym",
+      "note": "A person who plays on the same team as you."
+     },
+     {
+      "to": "ally",
+      "relation": "antonym",
+      "note": "A person or country that helps and supports you."
+     }
+    ]
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "opposition",
+    "relation": "derivational",
+    "definition": "the person or team you are competing against",
+    "example": "Our team was strong, but the opposition was even stronger.",
+    "note": "Usually 'the opposition'. Also means disagreeing with a plan: 'opposition to the new road'.",
+    "syn": [
+     {
+      "to": "competition",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "'The competition' also means the people you are trying to win against."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "oppose",
+    "relation": "derivational",
+    "definition": "to compete or fight against someone; to disagree with a plan",
+    "example": "Uzbekistan will oppose Japan in the final.",
+    "note": "In everyday English this verb is most often about disagreeing: 'Many people opposed the plan.'",
+    "syn": [
+     {
+      "to": "play against",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Easy, everyday way to say it about sport and games."
+     },
+     {
+      "to": "compete with",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; used for sport and business."
+     },
+     {
+      "to": "fight",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: try to beat someone, often with force."
+     }
+    ],
+    "ant": [
+     {
+      "to": "support",
+      "relation": "antonym",
+      "note": "Help or agree with someone or something."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "opposing",
+    "relation": "participial",
+    "definition": "playing, competing or fighting against you",
+    "example": "The opposing team scored in the last minute.",
+    "syn": [
+     {
+      "to": "rival",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning before a noun: 'the rival team'."
+     },
+     {
+      "to": "competing",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; often used for companies or ideas."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "other_meaning",
+    "form": "opposite",
+    "definition": "completely different; or on the other side, facing something",
+    "example": "They walked in opposite directions.",
+    "note": "Belongs to the 'facing / completely different' meaning of the family, not a person you play against. A very common word."
+   },
+   {
+    "slot": "adverb",
+    "status": "other_meaning",
+    "form": "opposite",
+    "definition": "on the other side of a street or room, facing you",
+    "example": "The family who live opposite are very friendly.",
+    "note": "Belongs to the 'facing' meaning of the family, not a person you play against."
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "opposing",
+    "meaning_key": "-ing",
+    "also": [
+     "interesting",
+     "exciting",
+     "amazing"
+    ]
+   }
+  ],
+  "context": {
+   "text": "In the final, Dilnoza played against a strong opponent from Kazakhstan. The opposing team's fans were very loud, but she stayed calm and won the match.",
+   "uses": [
+    "opponent",
+    "opposing"
+   ]
+  },
+  "reviewer_note": "Two rows merged (game/fight and game/argument are one meaning); lowest CEFR B1. Opponent is a person noun headword, so it stays the main noun entry; opposite shown as other_meaning (facing / completely different)."
+ },
+ {
+  "headword": "option",
+  "word_id": "6a6ef83f0f1e82a5a07367a2",
+  "word_ids": [
+   "6a6ef83f0f1e82a5a07367a2"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Choice",
+  "sense_pos": "noun",
+  "corpus_definition": "A choice that you can make.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "option",
+    "relation": "base",
+    "definition": "one of the things you can choose from",
+    "example": "We have another option if this plan fails.",
+    "syn": [
+     {
+      "to": "choice",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and very common."
+     },
+     {
+      "to": "alternative",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; another thing you can choose instead of the first one."
+     },
+     {
+      "to": "possibility",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: something that might happen or that you could do."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "opt",
+    "relation": "derivational",
+    "definition": "to choose one thing instead of another",
+    "example": "Most students opt for English as their second language.",
+    "note": "Usually 'opt for something' or 'opt to do something'. Also 'opt out (of)' = choose not to take part.",
+    "register": "formal",
+    "syn": [
+     {
+      "to": "choose",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning; choose is the everyday word."
+     },
+     {
+      "to": "select",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; more formal, often about choosing carefully from many."
+     },
+     {
+      "to": "decide",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: make up your mind; opt always means choosing between things."
+     }
+    ],
+    "ant": [
+     {
+      "to": "reject",
+      "relation": "antonym",
+      "note": "Say no to something you are offered."
+     }
+    ]
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "optional",
+    "relation": "derivational",
+    "definition": "that you can choose to do or have, but do not have to",
+    "example": "Art is an optional subject at our school.",
+    "syn": [
+     {
+      "to": "voluntary",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; done because you want to, not because you must."
+     },
+     {
+      "to": "elective",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: used for school or university subjects, mainly American English.",
+      "register": "formal"
+     }
+    ],
+    "ant": [
+     {
+      "to": "compulsory",
+      "relation": "antonym",
+      "note": "You must do it; it is a rule."
+     },
+     {
+      "to": "required",
+      "relation": "antonym",
+      "note": "Needed because of a rule."
+     },
+     {
+      "to": "obligatory",
+      "relation": "antonym",
+      "note": "Formal: you must do it."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "optionally",
+    "relation": "derivational",
+    "definition": "if you choose to, but you do not have to",
+    "example": "Serve the soup hot, optionally with fresh bread.",
+    "note": "Not very common; often seen in recipes and instructions.",
+    "syn": [
+     {
+      "to": "voluntarily",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: because you want to, not because you must."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-al",
+    "in_form": "optional",
+    "meaning_key": "-al",
+    "also": [
+     "national",
+     "personal",
+     "traditional"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "optionally",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "usually",
+     "finally"
+    ]
+   }
+  ],
+  "context": {
+   "text": "At our school in Namangan, music is optional. Most students opt for extra English or IT lessons, because they think those are the best options for the future.",
+   "uses": [
+    "optional",
+    "opt",
+    "options"
+   ]
+  },
+  "reviewer_note": "Opt is a separate entry but shares the root with option/optional; optimal and optimist are a different root (best) and are left out."
+ },
+ {
+  "headword": "ordinary",
+  "word_id": "6a42662edeeb39f881130124",
+  "word_ids": [
+   "6a42662edeeb39f881130124"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Normal",
+  "sense_pos": "adjective",
+  "corpus_definition": "Not special, different, or strange; quite normal.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "existing",
+    "form": "ordinariness",
+    "relation": "derivational",
+    "definition": "the quality of being normal and not special",
+    "example": "I love the ordinariness of a quiet Sunday at home.",
+    "note": "Not very common; usually in writing.",
+    "syn": [
+     {
+      "to": "normality",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; a normal situation. American English also says normalcy."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in this family."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "ordinary",
+    "relation": "base",
+    "definition": "normal and usual, not special or different",
+    "example": "It was just an ordinary day at work.",
+    "syn": [
+     {
+      "to": "normal",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and very common."
+     },
+     {
+      "to": "usual",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; what happens most of the time."
+     },
+     {
+      "to": "everyday",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; used before a noun: 'everyday life'."
+     },
+     {
+      "to": "common",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; something you see or find often."
+     },
+     {
+      "to": "average",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; typical of most people or things."
+     },
+     {
+      "to": "typical",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: showing what a group is usually like."
+     }
+    ],
+    "ant": [
+     {
+      "to": "special",
+      "relation": "antonym",
+      "note": "Better or more important than usual."
+     },
+     {
+      "to": "unusual",
+      "relation": "antonym",
+      "note": "Different from what normally happens."
+     },
+     {
+      "to": "extraordinary",
+      "relation": "antonym",
+      "note": "Very unusual and surprising, often in a good way."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "ordinarily",
+    "relation": "derivational",
+    "definition": "usually; in the normal way",
+    "example": "Ordinarily, I take the bus, but today I walked.",
+    "syn": [
+     {
+      "to": "usually",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and more common."
+     },
+     {
+      "to": "normally",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and more common."
+     },
+     {
+      "to": "generally",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; in most cases."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [
+   {
+    "affix": "-ness",
+    "in_form": "ordinariness",
+    "meaning_key": "-ness",
+    "also": [
+     "happiness",
+     "kindness",
+     "sadness"
+    ]
+   },
+   {
+    "affix": "-ly",
+    "in_form": "ordinarily",
+    "meaning_key": "-ly",
+    "also": [
+     "quickly",
+     "happily",
+     "slowly"
+    ]
+   }
+  ],
+  "context": {
+   "text": "It was an ordinary Monday in Andijan. Ordinarily, Bobur takes the bus to work, but today the sun was shining, so he walked.",
+   "uses": [
+    "ordinary",
+    "Ordinarily"
+   ]
+  },
+  "reviewer_note": "Extraordinary is an opposite (in the ant list), not a family form."
+ },
+ {
+  "headword": "out of order",
+  "word_id": "6a42800cb9d8fc24968a4b5b",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b5b"
+  ],
+  "cefr": "B1",
+  "kind": "phrase",
+  "sense_label": "Broken",
+  "sense_pos": "adjective",
+  "corpus_definition": "When a machine is broken and not working.",
+  "usage_note": "be + out of order, after the noun, often on signs for public machines: 'The lift is out of order.' (American English: elevator.) In informal British English it can also mean 'behaving badly': 'That comment was out of order.'",
+  "relations": [
+   {
+    "to": "broken",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Same meaning; broken can be used before a noun too: 'a broken phone'."
+   },
+   {
+    "to": "not working",
+    "relation": "synonym",
+    "strength": 0.95,
+    "note": "Easy, everyday way to say it."
+   },
+   {
+    "to": "faulty",
+    "relation": "synonym",
+    "strength": 0.8,
+    "note": "Close; has a problem that stops it working well."
+   },
+   {
+    "to": "working",
+    "relation": "antonym",
+    "note": "Doing its job correctly."
+   }
+  ],
+  "context": {
+   "text": "The ATM near our flat is out of order again, so I had to walk to the bank. The coffee machine at work was out of order too!",
+   "uses": [
+    "out of order"
+   ]
+  },
+  "reviewer_note": "Map keeps the machine meaning; the British 'behaving badly' meaning is only mentioned in the usage note."
+ },
+ {
+  "headword": "overnight",
+  "word_id": "6a6ef9b2a6015561480927d0",
+  "word_ids": [
+   "6a6ef9b2a6015561480927d0"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Night",
+  "sense_pos": "adverb",
+  "corpus_definition": "during or for the whole night; happening very quickly or suddenly",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "no_form",
+    "note": "No common noun in this family."
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in learner use. American English sometimes uses this word as a verb (= stay one night), but it is rare; say 'stay the night'."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "overnight",
+    "relation": "conversion",
+    "definition": "happening during the night, or for one night",
+    "example": "We took the overnight train to Khiva.",
+    "note": "Used before a noun: 'an overnight bus', 'an overnight stay'.",
+    "syn": [
+     {
+      "to": "all-night",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; lasting the whole night: 'an all-night party'."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "overnight",
+    "relation": "base",
+    "definition": "during the night, or for the whole night",
+    "example": "Leave the beans in water overnight.",
+    "syn": [
+     {
+      "to": "all night",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; for the whole night."
+     },
+     {
+      "to": "through the night",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; from evening until morning."
+     }
+    ],
+    "ant": []
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "We took the overnight bus from Tashkent to Termez. We slept on the bus, so we didn't need to stay overnight in a hotel.",
+   "uses": [
+    "overnight"
+   ]
+  },
+  "reviewer_note": "One corpus row with two meanings, split into two maps (Night, Suddenly), as with boom and commission. Over- + night is a compound, so no affix is claimed. Verb use (mainly US 'we overnighted in...') is rare and not in the gate dictionary, so the verb slot is no_form with a note."
+ },
+ {
+  "headword": "overnight",
+  "word_id": "6a6ef9b2a6015561480927d0",
+  "word_ids": [
+   "6a6ef9b2a6015561480927d0"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Suddenly",
+  "sense_pos": "adverb",
+  "corpus_definition": "during or for the whole night; happening very quickly or suddenly",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "no_form",
+    "note": "No common noun in this family."
+   },
+   {
+    "slot": "verb",
+    "status": "no_form",
+    "note": "No verb in learner use. American English sometimes uses this word as a verb (= stay one night), but it is rare; say 'stay the night'."
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "overnight",
+    "relation": "conversion",
+    "definition": "happening very quickly and without warning",
+    "example": "The film was an overnight success.",
+    "note": "Used before a noun: 'an overnight success', 'an overnight star'.",
+    "syn": [
+     {
+      "to": "sudden",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and very common."
+     },
+     {
+      "to": "instant",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; happening immediately."
+     },
+     {
+      "to": "rapid",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: very fast, but not always unexpected."
+     }
+    ],
+    "ant": [
+     {
+      "to": "gradual",
+      "relation": "antonym",
+      "note": "Happening slowly, step by step."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "existing",
+    "form": "overnight",
+    "relation": "base",
+    "definition": "very quickly and suddenly",
+    "example": "The town became famous almost overnight after the news.",
+    "syn": [
+     {
+      "to": "suddenly",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and very common."
+     },
+     {
+      "to": "instantly",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; immediately, with no time at all."
+     },
+     {
+      "to": "quickly",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: fast, but not always unexpected."
+     }
+    ],
+    "ant": [
+     {
+      "to": "gradually",
+      "relation": "antonym",
+      "note": "Slowly, step by step."
+     },
+     {
+      "to": "slowly",
+      "relation": "antonym",
+      "note": "Taking a long time."
+     }
+    ]
+   }
+  ],
+  "people": [],
+  "people_not_family": [],
+  "affixes": [],
+  "context": {
+   "text": "Madina's cooking video got a million views overnight. She became an overnight star, and her life changed very quickly.",
+   "uses": [
+    "overnight"
+   ]
+  },
+  "reviewer_note": "Second map for the 'suddenly' meaning; the corpus example uses this one."
+ },
+ {
+  "headword": "owe",
+  "word_id": "6a42800cb9d8fc24968a4b72",
+  "word_ids": [
+   "6a42800cb9d8fc24968a4b72"
+  ],
+  "cefr": "B1",
+  "kind": "word",
+  "sense_label": "Money",
+  "sense_pos": "verb",
+  "corpus_definition": "To have an obligation to give money back to someone.",
+  "forms": [
+   {
+    "slot": "noun",
+    "status": "no_form",
+    "note": "No noun in this family. For the money you have to pay back, use 'debt' (a different word)."
+   },
+   {
+    "slot": "verb",
+    "status": "existing",
+    "form": "owe",
+    "relation": "base",
+    "definition": "to have to pay back money that someone lent you",
+    "example": "I owe my friend ten dollars.",
+    "note": "Also 'owe someone a favour' and 'owe something to someone' (= have it because of them): other uses of the same verb.",
+    "syn": [
+     {
+      "to": "be in debt",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Close; 'be in debt to someone' is more formal and usually about larger amounts."
+     },
+     {
+      "to": "have to pay",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: easy words for the same idea, but not only for borrowed money."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "adjective",
+    "status": "existing",
+    "form": "owing",
+    "relation": "participial",
+    "definition": "still not paid back",
+    "example": "There is still fifty dollars owing on the bill.",
+    "note": "Used after the noun, mainly in British English. Don't confuse with 'owing to' (= because of).",
+    "syn": [
+     {
+      "to": "unpaid",
+      "relation": "synonym",
+      "strength": 0.95,
+      "note": "Same meaning and easier."
+     },
+     {
+      "to": "outstanding",
+      "relation": "synonym",
+      "strength": 0.8,
+      "note": "Formal: not yet paid or done.",
+      "register": "formal"
+     },
+     {
+      "to": "due",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Related: must be paid now or by a certain date."
+     }
+    ],
+    "ant": [
+     {
+      "to": "paid",
+      "relation": "antonym",
+      "note": "The money has been given back."
+     }
+    ]
+   },
+   {
+    "slot": "adverb",
+    "status": "no_form",
+    "note": "No adverb in this family."
+   }
+  ],
+  "people": [],
+  "people_not_family": [
+   "owner"
+  ],
+  "affixes": [
+   {
+    "affix": "-ing",
+    "in_form": "owing",
+    "meaning_key": "-ing",
+    "also": [
+     "missing",
+     "remaining",
+     "existing"
+    ]
+   }
+  ],
+  "context": {
+   "text": "Jasur owes his brother 200,000 som. He paid half of it last week, so 100,000 som is still owing.",
+   "uses": [
+    "owes",
+    "owing"
+   ]
+  },
+  "reviewer_note": "Owner looks similar but comes from own, not owe (people_not_family). Owing to = because of is a false friend, noted on owing."
+ }
 ]
