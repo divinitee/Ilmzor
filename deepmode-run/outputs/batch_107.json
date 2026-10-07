@@ -1,0 +1,446 @@
+[
+{
+"headword": "signature",
+"word_id": "6a4288ad6941e70ad6a00e45",
+"word_ids": ["6a4288ad6941e70ad6a00e45", "6a6ef83f0f1e82a5a073686a"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Name",
+"sense_pos": "noun",
+"corpus_definition": "A person's name written in their own way as proof.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "signature", "relation": "base",
+ "definition": "your name written in your own special way, for example on a document",
+ "example": "Please add your signature at the bottom of the form.",
+ "syn": [
+  {"to": "autograph", "relation": "related", "strength": 0.6, "note": "An autograph is a famous person's signature that they give to a fan."},
+  {"to": "name", "relation": "related", "strength": 0.4, "note": "General word; a signature is your name written by your own hand."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "sign", "relation": "derivational",
+ "definition": "to write your name on a paper to show you wrote it or agree with it",
+ "example": "You need to sign the contract before you start work.",
+ "note": "The g is silent in sign but you hear it in signature.",
+ "syn": [
+  {"to": "autograph", "relation": "related", "strength": 0.6, "note": "Used when a famous person writes their name for a fan: 'He autographed my ball.'"},
+  {"to": "initial", "relation": "related", "strength": 0.6, "note": "To write only the first letters of your name, often on each page."},
+  {"to": "endorse", "relation": "related", "strength": 0.4, "note": "Formal: to write your name on the back of a cheque.", "register": "formal"}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "signed", "relation": "participial",
+ "definition": "having someone's name written on it by that person",
+ "example": "I have a signed copy of her new book.",
+ "syn": [
+  {"to": "autographed", "relation": "synonym", "strength": 0.8, "note": "Used for books, photos or shirts with a famous person's name on them."}
+ ],
+ "ant": [
+  {"to": "unsigned", "relation": "antonym", "note": "Without a name written on it: an unsigned letter."}
+ ]},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [
+ {"form": "signatory", "kind": "person", "status": "existing", "register": "formal",
+  "definition": "a person or country that has put their name on an official agreement",
+  "example": "Uzbekistan is a signatory to the international agreement."}
+],
+"affixes": [],
+"context": {"text": "At the bank, I had to sign three papers before they gave me my new card. The worker checked that my signature looked the same as the one in my passport.",
+ "uses": ["sign", "signature"]},
+"reviewer_note": "Two corpus rows with the same meaning merged into one map. Family is built from the verb sign; no affix from the table applies (-ure, -ed, -ory are not in the list)."
+},
+{
+"headword": "silence",
+"word_id": "6a4265cce20c7210db6908ea",
+"word_ids": ["6a4265cce20c7210db6908ea"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Quiet",
+"sense_pos": "noun",
+"corpus_definition": "A state where there is no sound.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "silence", "relation": "base",
+ "definition": "a time or place when there is no sound at all",
+ "example": "There was complete silence in the room.",
+ "syn": [
+  {"to": "quiet", "relation": "synonym", "strength": 0.8, "note": "Easy word; quiet can mean only a little sound, not none."},
+  {"to": "stillness", "relation": "synonym", "strength": 0.8, "note": "No sound and no movement; often used about nature."},
+  {"to": "hush", "relation": "synonym", "strength": 0.8, "note": "A short, calm quiet, often after noise stops."}
+ ],
+ "ant": [
+  {"to": "noise", "relation": "antonym", "note": "Noise is sound, especially loud or unpleasant sound."},
+  {"to": "sound", "relation": "antonym", "note": "Sound is anything you can hear."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "silence", "relation": "conversion",
+ "definition": "to make someone or something stop making a sound or speaking",
+ "example": "The teacher silenced the class with one look.",
+ "syn": [
+  {"to": "quieten", "relation": "synonym", "strength": 0.8, "note": "British English; American English usually says 'quiet'."},
+  {"to": "hush", "relation": "synonym", "strength": 0.8, "note": "Often used about calming children or a crowd."},
+  {"to": "shut up", "relation": "related", "strength": 0.6, "note": "Informal and often rude: to make someone stop talking.", "register": "informal"}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "silent", "relation": "derivational",
+ "definition": "with no sound, or not speaking at all",
+ "example": "The streets of Khiva were silent at night.",
+ "syn": [
+  {"to": "quiet", "relation": "synonym", "strength": 0.8, "note": "Easy word; quiet means little sound, silent means none."},
+  {"to": "soundless", "relation": "synonym", "strength": 0.95, "note": "Very close, more literary."},
+  {"to": "noiseless", "relation": "synonym", "strength": 0.95, "note": "Very close; often about machines that make no noise."}
+ ],
+ "ant": [
+  {"to": "noisy", "relation": "antonym", "note": "Making a lot of sound."},
+  {"to": "loud", "relation": "antonym", "note": "Making a strong sound that is easy to hear."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "silently", "relation": "derivational",
+ "definition": "without making any sound at all",
+ "example": "The cat moved across the floor silently.",
+ "syn": [
+  {"to": "quietly", "relation": "synonym", "strength": 0.8, "note": "Easy word; quietly can mean with a little sound."},
+  {"to": "noiselessly", "relation": "synonym", "strength": 0.95, "note": "Very close, less common."},
+  {"to": "soundlessly", "relation": "synonym", "strength": 0.95, "note": "Very close, more literary."}
+ ],
+ "ant": [
+  {"to": "noisily", "relation": "antonym", "note": "In a way that makes a lot of sound."},
+  {"to": "loudly", "relation": "antonym", "note": "In a strong voice or with strong sound."}
+ ]}
+],
+"people": [
+ {"form": "silencer", "kind": "thing", "status": "existing",
+  "definition": "a device fixed to a gun or engine to make it much quieter",
+  "example": "The mechanic put a new silencer on my car.",
+  "note": "In American English the car part is called a muffler."}
+],
+"affixes": [
+ {"affix": "-ly", "in_form": "silently", "meaning_key": "-ly", "also": ["quickly", "slowly", "quietly"]},
+ {"affix": "-er", "in_form": "silencer", "meaning_key": "-er", "also": ["heater", "cooker", "printer"]}
+],
+"context": {"text": "When the teacher came in, there was silence in the classroom. Everyone sat silent at their desks and silently opened their books.",
+ "uses": ["silence", "silent", "silently"]},
+"reviewer_note": "silence is both noun and verb (conversion); silencer is a thing noun, so it goes in People & things."
+},
+{
+"headword": "silently",
+"word_id": "6a4265cce20c7210db6908e9",
+"word_ids": ["6a4265cce20c7210db6908e9"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "No sound",
+"sense_pos": "adverb",
+"corpus_definition": "Without making any noise at all.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "silence", "relation": "derivational",
+ "definition": "a time or place when there is no sound at all",
+ "example": "We walked through the forest in silence.",
+ "syn": [
+  {"to": "quiet", "relation": "synonym", "strength": 0.8, "note": "Easy word; quiet can mean only a little sound, not none."},
+  {"to": "stillness", "relation": "synonym", "strength": 0.8, "note": "No sound and no movement; often used about nature."}
+ ],
+ "ant": [
+  {"to": "noise", "relation": "antonym", "note": "Noise is sound, especially loud or unpleasant sound."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "silence", "relation": "derivational",
+ "definition": "to make someone or something stop making a sound or speaking",
+ "example": "She silenced her phone before the meeting.",
+ "syn": [
+  {"to": "quieten", "relation": "synonym", "strength": 0.8, "note": "British English; American English usually says 'quiet'."},
+  {"to": "hush", "relation": "synonym", "strength": 0.8, "note": "Often used about calming children or a crowd."}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "silent", "relation": "derivational",
+ "definition": "with no sound, or not speaking at all",
+ "example": "The baby was finally silent and asleep.",
+ "syn": [
+  {"to": "quiet", "relation": "synonym", "strength": 0.8, "note": "Easy word; quiet means little sound, silent means none."},
+  {"to": "soundless", "relation": "synonym", "strength": 0.95, "note": "Very close, more literary."},
+  {"to": "noiseless", "relation": "synonym", "strength": 0.95, "note": "Very close; often about machines that make no noise."}
+ ],
+ "ant": [
+  {"to": "noisy", "relation": "antonym", "note": "Making a lot of sound."},
+  {"to": "loud", "relation": "antonym", "note": "Making a strong sound that is easy to hear."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "silently", "relation": "base",
+ "definition": "without making any sound at all",
+ "example": "The cat moved across the floor silently.",
+ "syn": [
+  {"to": "quietly", "relation": "synonym", "strength": 0.8, "note": "Easy word; quietly can mean with a little sound."},
+  {"to": "noiselessly", "relation": "synonym", "strength": 0.95, "note": "Very close, less common."},
+  {"to": "soundlessly", "relation": "synonym", "strength": 0.95, "note": "Very close, more literary."}
+ ],
+ "ant": [
+  {"to": "noisily", "relation": "antonym", "note": "In a way that makes a lot of sound."},
+  {"to": "loudly", "relation": "antonym", "note": "In a strong voice or with strong sound."}
+ ]}
+],
+"people": [
+ {"form": "silencer", "kind": "thing", "status": "existing",
+  "definition": "a device fixed to a gun or engine to make it much quieter",
+  "example": "The old car needed a new silencer.",
+  "note": "In American English the car part is called a muffler."}
+],
+"affixes": [
+ {"affix": "-ly", "in_form": "silently", "meaning_key": "-ly", "also": ["quickly", "slowly", "quietly"]},
+ {"affix": "-er", "in_form": "silencer", "meaning_key": "-er", "also": ["heater", "cooker", "printer"]}
+],
+"context": {"text": "My grandmother prays silently every morning. The house is silent, and nobody breaks the silence until she finishes.",
+ "uses": ["silently", "silent", "silence"]},
+"reviewer_note": "Headword is the adverb; same family as the silence map, anchored on the adverb."
+},
+{
+"headword": "sin",
+"word_id": "6a6ef9b2a60155614809275a",
+"word_ids": ["6a6ef9b2a60155614809275a"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Religion",
+"sense_pos": "noun",
+"corpus_definition": "An action that breaks a religious or moral rule.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "sin", "relation": "base",
+ "definition": "a bad action that breaks a religious or moral rule",
+ "example": "Many people believe lying is a serious sin.",
+ "syn": [
+  {"to": "wrongdoing", "relation": "synonym", "strength": 0.8, "note": "Bad or illegal actions in general; not always religious.", "register": "formal"},
+  {"to": "evil", "relation": "related", "strength": 0.6, "note": "Evil is very bad or cruel behaviour; stronger and more general."},
+  {"to": "crime", "relation": "related", "strength": 0.4, "note": "A crime breaks the law of a country; a sin breaks a religious or moral rule."}
+ ],
+ "ant": [
+  {"to": "virtue", "relation": "antonym", "note": "A virtue is a good quality or good way of behaving."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "sin", "relation": "conversion",
+ "definition": "to break a religious or moral rule",
+ "example": "He believed he had sinned and asked God to forgive him.",
+ "syn": [
+  {"to": "do wrong", "relation": "synonym", "strength": 0.8, "note": "Easy phrase; not always about religion."},
+  {"to": "transgress", "relation": "synonym", "strength": 0.8, "note": "Very formal and rare in speech.", "register": "formal"}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "sinful", "relation": "derivational",
+ "definition": "morally wrong, or breaking a religious rule",
+ "example": "Some people think it is sinful to waste bread.",
+ "note": "Also used jokingly about food that is very nice but unhealthy: a sinful chocolate cake.",
+ "syn": [
+  {"to": "wicked", "relation": "synonym", "strength": 0.8, "note": "Very bad and wrong; a little old-fashioned."},
+  {"to": "immoral", "relation": "synonym", "strength": 0.8, "note": "Against what people think is right; not always religious."},
+  {"to": "wrong", "relation": "related", "strength": 0.6, "note": "Easy, general word for bad behaviour."}
+ ],
+ "ant": [
+  {"to": "virtuous", "relation": "antonym", "note": "Behaving in a very good and moral way."}
+ ]},
+{"slot": "adverb", "status": "existing", "form": "sinfully", "relation": "derivational",
+ "definition": "in a way that is morally wrong or breaks a religious rule",
+ "example": "He felt he had lived sinfully when he was young.",
+ "syn": [
+  {"to": "wickedly", "relation": "synonym", "strength": 0.8, "note": "In a very bad way; a little old-fashioned."},
+  {"to": "immorally", "relation": "synonym", "strength": 0.8, "note": "In a way that is against what is right."}
+ ],
+ "ant": [
+  {"to": "virtuously", "relation": "antonym", "note": "In a very good and moral way."}
+ ]}
+],
+"people": [
+ {"form": "sinner", "kind": "person", "status": "existing",
+  "definition": "a person who has broken a religious or moral rule",
+  "example": "The imam said that every sinner can ask for forgiveness."}
+],
+"affixes": [
+ {"affix": "-ful", "in_form": "sinful", "meaning_key": "-ful", "also": ["helpful", "careful", "beautiful"]},
+ {"affix": "-ly", "in_form": "sinfully", "meaning_key": "-ly", "also": ["quickly", "slowly", "happily"]},
+ {"affix": "-er", "in_form": "sinner", "meaning_key": "-er", "also": ["runner", "swimmer", "winner"]}
+],
+"context": {"text": "My grandmother says that wasting bread is a sin. She thinks it is sinful to throw food away when other people are hungry.",
+ "uses": ["sin", "sinful"]},
+"reviewer_note": "Kept the religious/moral sense only; sin as the maths abbreviation (sine) is unrelated and left out."
+},
+{
+"headword": "skull",
+"word_id": "6a6ef9b2a60155614809280e",
+"word_ids": ["6a6ef9b2a60155614809280e"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Body",
+"sense_pos": "noun",
+"corpus_definition": "the bone structure that forms and protects the head",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "skull", "relation": "base",
+ "definition": "the bones of the head that protect the brain",
+ "example": "The doctor looked at an X-ray of his skull after the accident.",
+ "syn": [
+  {"to": "cranium", "relation": "synonym", "strength": 0.95, "note": "The medical word; doctors and scientists use it.", "register": "formal"},
+  {"to": "head", "relation": "related", "strength": 0.4, "note": "The whole top part of the body; the skull is only the bone inside."},
+  {"to": "bone", "relation": "related", "strength": 0.4, "note": "General word; the skull is a group of bones."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "no_form", "note": "No verb in this family."},
+{"slot": "adjective", "status": "no_form", "note": "No adjective in this family."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "My little brother fell off his bike, so we took him to the hospital. Luckily, the X-ray showed that his skull was not broken.",
+ "uses": ["skull"]},
+"reviewer_note": "Single-form family. Compounds (skullcap, which is the doppi) are left for the Compounds branch."
+},
+{
+"headword": "social media",
+"word_id": "6a4288ad6941e70ad6a00e4f",
+"word_ids": ["6a4288ad6941e70ad6a00e4f"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Internet",
+"sense_pos": "noun",
+"corpus_definition": "Websites where people talk and share news with friends.",
+"usage_note": "Uncountable noun; can take a singular or plural verb: 'Social media is/are changing our lives.' Use 'on social media': 'I saw it on social media.' Also before nouns: a social media post, social media apps.",
+"relations": [
+ {"to": "social network", "relation": "synonym", "strength": 0.8, "note": "One website or app of this kind, like Instagram or Telegram; social media means all of them together."},
+ {"to": "internet", "relation": "related", "strength": 0.4, "note": "The whole computer network; social media is only one part of it."},
+ {"to": "mass media", "relation": "related", "strength": 0.4, "note": "TV, radio and newspapers that reach many people; ordinary people can post on social media."}
+],
+"context": {"text": "My sister spends hours on social media every evening. She says she gets most of her news from social media, not from TV.",
+ "uses": ["social media"]},
+"reviewer_note": "Fixed noun phrase; no true antonym listed."
+},
+{
+"headword": "solar energy",
+"word_id": "6a42883f6941e70ad6a00e03",
+"word_ids": ["6a42883f6941e70ad6a00e03"],
+"cefr": "B1",
+"kind": "phrase",
+"sense_label": "Sun",
+"sense_pos": "noun",
+"corpus_definition": "Power that we get directly from the light of the sun.",
+"usage_note": "Uncountable: say 'solar energy', not 'a solar energy'. Common verbs: use, produce, generate solar energy. Solar = of the sun: solar panels, the solar system.",
+"relations": [
+ {"to": "solar power", "relation": "synonym", "strength": 0.95, "note": "Almost the same; solar power is more common when we talk about electricity."},
+ {"to": "renewable energy", "relation": "related", "strength": 0.6, "note": "Energy that never runs out, like sun, wind and water; solar energy is one type."},
+ {"to": "electricity", "relation": "related", "strength": 0.4, "note": "Solar energy is often turned into electricity."}
+],
+"context": {"text": "Uzbekistan has more than 300 sunny days a year, so solar energy is a good choice. Many new houses near Tashkent now use solar energy for hot water.",
+ "uses": ["solar energy"]},
+"reviewer_note": "Fixed noun phrase; no true antonym (fossil fuels contrast, but are not an opposite)."
+},
+{
+"headword": "solution",
+"word_id": "6a4282fd46ba24054c1dcdcb",
+"word_ids": ["6a4282fd46ba24054c1dcdcb"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Problem",
+"sense_pos": "noun",
+"corpus_definition": "An answer to a problem.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "solution", "relation": "base",
+ "definition": "a way to end a problem or a difficult situation",
+ "example": "He found a solution to the error in the program.",
+ "note": "Usually 'a solution to/for a problem'.",
+ "syn": [
+  {"to": "answer", "relation": "synonym", "strength": 0.95, "note": "Easy, everyday word with the same meaning."},
+  {"to": "fix", "relation": "synonym", "strength": 0.8, "note": "Informal; often a quick answer to a technical problem.", "register": "informal"},
+  {"to": "remedy", "relation": "related", "strength": 0.6, "note": "Something that makes a bad situation better; also a medicine."},
+  {"to": "way out", "relation": "related", "strength": 0.6, "note": "A way to escape a difficult situation."}
+ ],
+ "ant": [
+  {"to": "problem", "relation": "antonym", "note": "The problem is the difficulty; the solution ends it."}
+ ]},
+{"slot": "verb", "status": "existing", "form": "solve", "relation": "derivational",
+ "definition": "to find the answer to a problem or question",
+ "example": "Dilnoza solved the maths problem in two minutes.",
+ "syn": [
+  {"to": "work out", "relation": "synonym", "strength": 0.8, "note": "Common phrasal verb, especially for sums and puzzles."},
+  {"to": "resolve", "relation": "synonym", "strength": 0.95, "note": "More formal; often about disagreements.", "register": "formal"},
+  {"to": "sort out", "relation": "synonym", "strength": 0.8, "note": "Informal: fix a problem or a mess.", "register": "informal"},
+  {"to": "fix", "relation": "related", "strength": 0.6, "note": "Easy word; usually about repairing something broken."}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "existing", "form": "solvable", "relation": "derivational",
+ "definition": "possible to find an answer to",
+ "example": "Don't worry, this problem is solvable.",
+ "syn": [
+  {"to": "resolvable", "relation": "synonym", "strength": 0.95, "note": "Very close and more formal.", "register": "formal"}
+ ],
+ "ant": [
+  {"to": "unsolvable", "relation": "antonym", "note": "Impossible to find an answer to."},
+  {"to": "insoluble", "relation": "antonym", "note": "Formal: an insoluble problem has no answer.", "register": "formal"}
+ ]},
+{"slot": "adjective", "status": "other_meaning", "form": "soluble",
+ "definition": "able to mix completely into a liquid",
+ "example": "Sugar is soluble in water.",
+ "note": "Belongs to solution = a liquid with something mixed into it, not the answer to a problem."},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [
+ {"form": "solver", "kind": "person", "status": "existing",
+  "definition": "a person who finds answers to problems or puzzles",
+  "example": "Aziz is a great problem solver at work.",
+  "note": "Usually in 'problem solver' or 'puzzle solver'."}
+],
+"affixes": [
+ {"affix": "-able", "in_form": "solvable", "meaning_key": "-able", "also": ["washable", "readable", "comfortable"]},
+ {"affix": "-er", "in_form": "solver", "meaning_key": "-er", "also": ["teacher", "player", "driver"]}
+],
+"context": {"text": "Our teacher gave us a very hard puzzle. Dilnoza was the first to solve it, and she explained her solution to the whole class.",
+ "uses": ["solve", "solution"]},
+"reviewer_note": "Sense trap: solution = answer vs solution = liquid mixture; soluble belongs to the liquid sense and is marked other_meaning."
+},
+{
+"headword": "sort out",
+"word_id": "6a4282fd46ba24054c1dcdc3",
+"word_ids": ["6a4282fd46ba24054c1dcdc3"],
+"cefr": "B1",
+"kind": "phrasal",
+"sense_label": "Fix",
+"sense_pos": "verb",
+"corpus_definition": "To fix a problem or organize things.",
+"particle_note": "Separable: 'sort out the problem' or 'sort the problem out'. With a pronoun the particle goes after it: 'sort it out'. Mostly British English and informal.",
+"relations": [
+ {"to": "solve", "relation": "synonym", "strength": 0.8, "note": "More neutral; sort out is more informal and can also mean organize."},
+ {"to": "fix", "relation": "synonym", "strength": 0.8, "note": "Easy word for making a problem go away."},
+ {"to": "deal with", "relation": "synonym", "strength": 0.8, "note": "To take action to solve a problem."},
+ {"to": "organize", "relation": "synonym", "strength": 0.8, "note": "Used for the 'put things in order' meaning. British spelling: organise."},
+ {"to": "tidy up", "relation": "related", "strength": 0.6, "note": "To make a room or place neat."},
+ {"to": "mess up", "relation": "antonym", "note": "Informal: to spoil something or make it untidy."}
+],
+"context": {"text": "My room was a mess, so I spent Saturday sorting out my clothes and books. Then I helped my dad sort out a problem with his phone.",
+ "uses": ["sorting out", "sort out"]},
+"reviewer_note": "Corpus definition covers both 'fix a problem' and 'organize'; one map, both shown in the context."
+},
+{
+"headword": "source",
+"word_id": "6a6ef83f0f1e82a5a0736650",
+"word_ids": ["6a6ef83f0f1e82a5a0736650"],
+"cefr": "B1",
+"kind": "word",
+"sense_label": "Origin",
+"sense_pos": "noun",
+"corpus_definition": "Where something comes from or starts.",
+"forms": [
+{"slot": "noun", "status": "existing", "form": "source", "relation": "base",
+ "definition": "the place, person or thing that something comes from",
+ "example": "This river is the main source of our water.",
+ "note": "Also used for a person or book that gives information: a news source.",
+ "syn": [
+  {"to": "origin", "relation": "synonym", "strength": 0.95, "note": "Very close; origin is more about where something began long ago."},
+  {"to": "beginning", "relation": "related", "strength": 0.6, "note": "The first part or start of something."},
+  {"to": "cause", "relation": "related", "strength": 0.6, "note": "The thing that makes something happen: the source of the problem."},
+  {"to": "root", "relation": "related", "strength": 0.6, "note": "The basic cause of a problem: the root of the trouble."}
+ ],
+ "ant": []},
+{"slot": "verb", "status": "existing", "form": "source", "relation": "conversion",
+ "definition": "to get something, such as food or materials, from a particular place",
+ "example": "The restaurant sources its vegetables from local farms.",
+ "note": "Mostly used in business English, often in the passive: 'locally sourced meat'.",
+ "syn": [
+  {"to": "obtain", "relation": "synonym", "strength": 0.8, "note": "Formal word for get.", "register": "formal"},
+  {"to": "get", "relation": "related", "strength": 0.6, "note": "Easy, general word; source says where it comes from."},
+  {"to": "buy", "relation": "related", "strength": 0.4, "note": "To pay for something; sourcing is about choosing where to get it."}
+ ],
+ "ant": []},
+{"slot": "adjective", "status": "no_form", "note": "No adjective in this family. Resource is a different word, not made from source.", "not_family": ["resource"]},
+{"slot": "adverb", "status": "no_form", "note": "No adverb in this family."}
+],
+"people": [],
+"affixes": [],
+"context": {"text": "The Amu Darya is an important source of water for farms in Karakalpakstan. Many shops in Nukus source their fruit from these farms.",
+ "uses": ["source"]},
+"reviewer_note": "Noun and verb are the same spelling (conversion); the verb is business English. Resource listed as not_family."
+}
+]
