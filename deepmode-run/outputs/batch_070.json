@@ -211,9 +211,26 @@
    {
     "slot": "noun",
     "status": "existing",
+    "form": "chemist",
+    "relation": "base",
+    "definition": "a scientist who studies substances and how they react",
+    "example": "The chemist works in a large laboratory.",
+    "syn": [
+     {
+      "to": "scientist",
+      "relation": "related",
+      "strength": 0.6,
+      "note": "Any person who works in science."
+     }
+    ],
+    "ant": []
+   },
+   {
+    "slot": "noun",
+    "status": "existing",
     "form": "chemistry",
     "relation": "derivational",
-    "definition": "the science of what substances are made of and how they change",
+    "definition": "the science that studies what things are made of and how they change",
     "example": "Chemistry is my favourite subject.",
     "syn": [],
     "ant": []
@@ -244,7 +261,7 @@
     "status": "existing",
     "form": "chemical",
     "relation": "derivational",
-    "definition": "connected with chemistry or chemicals",
+    "definition": "connected with the science of substances",
     "example": "There was a chemical reaction in the glass.",
     "syn": [],
     "ant": []
@@ -254,20 +271,13 @@
     "status": "existing",
     "form": "chemically",
     "relation": "derivational",
-    "definition": "in a way connected with chemistry",
+    "definition": "in a way connected with the science of substances",
     "example": "The water was chemically cleaned.",
     "syn": [],
     "ant": []
    }
   ],
   "people": [
-   {
-    "form": "chemist",
-    "kind": "job",
-    "status": "existing",
-    "definition": "a scientist who studies substances and how they change",
-    "example": "The chemist works in a large laboratory."
-   },
    {
     "form": "chemist",
     "kind": "thing",
@@ -328,7 +338,7 @@
     "status": "existing",
     "form": "chew",
     "relation": "conversion",
-    "definition": "the act of chewing something",
+    "definition": "the act of biting food many times",
     "example": "The dog had a good chew on the bone.",
     "syn": [],
     "ant": []
@@ -431,7 +441,7 @@
     "status": "existing",
     "form": "childhood",
     "relation": "derivational",
-    "definition": "the time when you are a child",
+    "definition": "the time in your life when you are young",
     "example": "I had a happy childhood in Khiva.",
     "syn": [
      {
@@ -459,7 +469,7 @@
     "slot": "noun",
     "status": "existing",
     "form": "child",
-    "relation": "base",
+    "relation": "derivational",
     "definition": "a young boy or girl",
     "example": "The child is playing in the garden.",
     "syn": [
@@ -488,7 +498,7 @@
     "status": "existing",
     "form": "childish",
     "relation": "derivational",
-    "definition": "behaving like a child, in a silly way",
+    "definition": "behaving in a silly way, like a small kid",
     "example": "Stop being so childish!",
     "syn": [
      {
@@ -511,7 +521,7 @@
     "status": "existing",
     "form": "childless",
     "relation": "derivational",
-    "definition": "having no children",
+    "definition": "having no sons or daughters",
     "example": "They were childless for many years.",
     "syn": [],
     "ant": []
@@ -759,12 +769,6 @@
     "example": "She sings in the school choir.",
     "syn": [
      {
-      "to": "chorus",
-      "relation": "synonym",
-      "strength": 0.8,
-      "note": "A large group of singers."
-     },
-     {
       "to": "ensemble",
       "relation": "related",
       "strength": 0.6,
@@ -772,7 +776,10 @@
       "register": "formal"
      }
     ],
-    "ant": []
+    "ant": [],
+    "not_family": [
+     "chorus"
+    ]
    },
    {
     "slot": "adjective",
@@ -786,7 +793,10 @@
    },
    {
     "slot": "verb",
-    "status": "no_form"
+    "status": "no_form",
+    "not_family": [
+     "chorus"
+    ]
    },
    {
     "slot": "adverb",
@@ -808,9 +818,10 @@
    }
   ],
   "context": {
-   "text": "Our school choir sings at every holiday concert. This year the choir learned a new Uzbek song.",
+   "text": "Our school choir sings at every holiday concert. They love choral music, and this year the choir learned a new Uzbek song.",
    "uses": [
-    "choir"
+    "choir",
+    "choral"
    ]
   },
   "reviewer_note": "choral is from the same root (chorus)."
