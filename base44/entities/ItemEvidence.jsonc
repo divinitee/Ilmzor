@@ -1,110 +1,109 @@
 {
-  "name": "ItemEvidence",
-  "type": "object",
   "description": "VT-40 Coach Engine. APPEND-ONLY coach ledger: one row per item per round. Backfilled from WordAttempt / GrammarAttempt (source game | grammar_practice) and, from Stage 2, written by coach sessions (source coach_session). `weight` is the 0-1 evidence quality (attestation x mode x hint x context); diminishing same-day returns and the client-attested daily cap are applied at derivation time, not stored. Never edited after creation.",
+  "name": "ItemEvidence",
   "properties": {
-    "user_email": {
+    "at": {
+      "format": "date-time",
       "type": "string"
-    },
-    "item_type": {
-      "type": "string",
-      "enum": [
-        "word",
-        "grammar",
-        "skill"
-      ]
-    },
-    "item_key": {
-      "type": "string"
-    },
-    "word_id": {
-      "type": "string"
-    },
-    "sense_index": {
-      "type": "number"
-    },
-    "round_id": {
-      "type": "string",
-      "description": "(round_id, item_key) is unique per learner; backfill skips pairs already present."
-    },
-    "source": {
-      "type": "string",
-      "enum": [
-        "coach_session",
-        "game",
-        "grammar_practice",
-        "placement"
-      ]
-    },
-    "context": {
-      "type": "string",
-      "enum": [
-        "target",
-        "incidental"
-      ]
-    },
-    "mode": {
-      "type": "string",
-      "enum": [
-        "recognise",
-        "construct",
-        "produce"
-      ]
     },
     "attestation": {
-      "type": "string",
       "enum": [
         "server_graded",
         "server_ai",
         "client_attested"
-      ]
+      ],
+      "type": "string"
     },
-    "items": {
-      "type": "number"
+    "context": {
+      "enum": [
+        "target",
+        "incidental"
+      ],
+      "type": "string"
     },
     "correct": {
+      "type": "number"
+    },
+    "due_before": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "duration_ms": {
+      "description": "Calibrates the session planner's minute estimates.",
       "type": "number"
     },
     "hints_used": {
       "type": "number"
     },
-    "weight": {
+    "item_key": {
+      "type": "string"
+    },
+    "item_type": {
+      "enum": [
+        "word",
+        "grammar",
+        "skill"
+      ],
+      "type": "string"
+    },
+    "items": {
       "type": "number"
     },
-    "duration_ms": {
-      "type": "number",
-      "description": "Calibrates the session planner's minute estimates."
+    "mode": {
+      "enum": [
+        "recognise",
+        "construct",
+        "produce"
+      ],
+      "type": "string"
     },
     "moved_fsrs": {
-      "type": "boolean",
-      "description": "True only for coach-session evidence that moved this item's FSRS card."
+      "description": "True only for coach-session evidence that moved this item's FSRS card.",
+      "type": "boolean"
     },
     "rating": {
-      "type": "string",
       "enum": [
         "again",
         "hard",
         "good",
         "easy"
-      ]
+      ],
+      "type": "string"
     },
-    "due_before": {
-      "type": "string",
-      "format": "date-time"
+    "round_id": {
+      "description": "(round_id, item_key) is unique per learner; backfill skips pairs already present.",
+      "type": "string"
     },
-    "stability_before": {
+    "sense_index": {
       "type": "number"
+    },
+    "session_key": {
+      "description": "Coach session this evidence belongs to (`<day>:<today|continuation>:<n>`). Set ONLY when the server's own PlanLog planned this item for that session; then source = coach_session.",
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "coach_session",
+        "game",
+        "grammar_practice",
+        "placement"
+      ],
+      "type": "string"
     },
     "stability_after": {
       "type": "number"
     },
-    "at": {
-      "type": "string",
-      "format": "date-time"
+    "stability_before": {
+      "type": "number"
     },
-    "session_key": {
-      "type": "string",
-      "description": "Coach session this evidence belongs to (`<day>:<today|continuation>:<n>`). Set ONLY when the server's own PlanLog planned this item for that session; then source = coach_session."
+    "user_email": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "word_id": {
+      "type": "string"
     }
   },
   "required": [
@@ -113,6 +112,7 @@
     "item_key",
     "round_id"
   ],
+  "type": "object",
   "rls": {
     "create": {
       "user_condition": {
