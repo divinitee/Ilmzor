@@ -13,11 +13,14 @@
 //     so a retried or concurrent request converges on the same row.
 import {
   evidenceFromLedgers, deriveLearnerItems, deriveItem, canonicalItem, normalizeLemma,
-  isResolved, dayOf, fnv1a, LABELS,
+  isResolved, dayOf, fnv1a, LABELS, ENGINE_VERSION,
 } from './coachCore.js';
-import { planToday } from './coachPlan.js';
+import { planToday, PLAN_VERSION } from './coachPlan.js';
 import { resolveCoach, needsHandoff, minutesFor, POLICIES } from './coachPolicies.js';
-import { GOALS, DEFAULT_GOAL, goalOf, LIVE_GRAMMAR_TOPICS, onPath } from './coachGraph.js';
+import { GOALS, DEFAULT_GOAL, goalOf, LIVE_GRAMMAR_TOPICS, onPath, GRAPH_VERSION } from './coachGraph.js';
+
+// Authoritative build stamp for PlanLog/explain: always generated from the modules' own version constants.
+export const ENGINE_STAMP = [PLAN_VERSION, ENGINE_VERSION, GRAPH_VERSION].join('+');
 import { pageAll } from './progressEngine.ts';
 
 type Deps = { fsrsLib: any };
@@ -274,7 +277,7 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
   const { snapshot: snap } = await snapshot(svc, me.email, {
     day: today, kind, session_no: sessionNo, session_key, goal_id: goal.id, plan_hash: plan.plan_hash,
     generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version,
-    engine: plan.explanation[0]?.engine || 'coach-plan@1', minutes, queue: plan.explanation,
+    engine: ENGINE_STAMP, minutes, queue: plan.explanation,
   });
   const continuationsUsed = await continuationsToday(svc, me.email, today);
   return {
@@ -320,7 +323,7 @@ async function getTodayPlanOnly(svc: any, me: any, resolved: any, sessionNo: num
   const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes, now, hasContent: hasContentFn, doneToday, kind: 'continuation' });
   return {
     day: today, kind: 'continuation', session_no: sessionNo, session_key: `${today}:continuation:${sessionNo}`, goal_id: goal.id, plan_hash: plan.plan_hash,
-    generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version, engine: 'coach-plan@1', minutes, queue: plan.explanation,
+    generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version, engine: ENGINE_STAMP, minutes, queue: plan.explanation,
   };
 }
 
