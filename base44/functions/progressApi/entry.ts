@@ -9,7 +9,6 @@ import { childrenOf, TAXONOMY_VERSION } from '../../shared/skillTaxonomy.js';
 import { freshnessFor } from '../../shared/progressCore.js';
 import { rebuildLeafStates, verifyLeafStates } from '../../shared/leafStateEngine.ts';
 import { applyRound as coachApplyRound } from '../../shared/coachEngine.ts';
-import * as tsfsrs from 'npm:ts-fsrs@5.4.2';
 
 // progressApi (VT-6, corrected 2026-09-29). Progress and rewards are separate:
 //   submitEvidence  a round's per-item evidence -> item ledger -> SkillState.
@@ -126,6 +125,9 @@ async function submitEvidence(svc: any, me: any, body: any) {
   // learner's own PlanLog; a failure here never changes this response.
   if (!g.ai && g.rows?.length) {
     try {
+      // Loaded lazily INSIDE the try: if the FSRS package ever fails to load, only the
+      // coach hook fails; game evidence, SkillState and LeafState are unaffected.
+      const tsfsrs = await import('npm:ts-fsrs@5.4.2');
       await coachApplyRound(svc, me.email, {
         rows: g.rows.map((row: any) => ({ ...row, ledger: g.ledger, user_email: me.email, game: r.game, level: r.level, round_id: r.round_id, round_at, verification: g.verification })),
         coach: body?.coach && typeof body.coach === 'object' ? { session_key: str(body.coach.session_key, 80) } : undefined,
