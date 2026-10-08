@@ -297,8 +297,13 @@ function makeStore() {
   ok("policy version change alone -> no handoff", tL2.handoff === null);
   const c1 = await startContinuation(svc, A, LEARNER, deps, NOW + 350000);
   ok("Keep going: fresh session from updated state (practised items excluded)", c1.session.kind === "continuation" && c1.session.session_no === 1 && !c1.plan.items.some((i) => i.item_key === target.item_key) && tables.PlanLog.some((p) => p.trigger === "continuation_initial"));
+  const cAgain = await startContinuation(svc, A, LEARNER, deps, NOW + 355000);
+  const contKeys = () => new Set(tables.PlanLog.filter((p) => p.user_email === "a@x" && p.kind === "continuation").map((p) => p.session_key)).size;
+  ok("retry/refresh before practising RESUMES the same continuation (counted once)", cAgain.session.session_no === 1 && contKeys() === 1);
+  const cItem = c1.plan.items[0];
+  if (cItem) await applyRound(svc, "a@x", { rows: rowsFor(cItem.item_key, "cc1", 4, 5, new Date(NOW + 357000).toISOString()), coach: { session_key: c1.session.session_key } }, deps);
   let threw2 = null; try { await startContinuation(svc, A, LEARNER, deps, NOW + 360000); } catch (e) { threw2 = e.code; }
-  ok("Velvet's one continuation is enforced", threw2 === "no_continuations_left");
+  ok("Velvet's one continuation is enforced (after it was practised)", threw2 === "no_continuations_left" && contKeys() === 1);
 
   // Profile + map.
   let pe = null; try { await saveProfile(svc, A, LEARNER, { daily_minutes: 25 }, NOW); } catch (e) { pe = e.code; }
@@ -316,6 +321,69 @@ function makeStore() {
   const bf = await backfillLearner(svc, "a@x", {}, deps);
   ok("backfill is idempotent", bf.evidenceAdded === 0 && tables.ItemEvidence.length === evCount);
   ok("game ledgers are never modified", JSON.stringify(tables.WordAttempt) + JSON.stringify(tables.GrammarAttempt) === ledgersBefore);
+
+  // ---------------------------------------------------------------------------
+  // STAGE 3 EVIDENCE-BOUNDARY LOOP (GPT Stage 3 audit, item 3), fresh learner on Velvet:
+  // Today's Practice -> Start -> word + grammar -> Done -> Keep going -> new queue.
+  {
+    const C = { email: "c@x", id: "uc" };
+    tables.WordAttempt.push(
+      W({ user_email: "c@x", word_id: "v1", word: "word1", correct: true, round_id: "c-r1", round_at: at(5) }),
+      W({ user_email: "c@x", word_id: "v2", word: "word2", correct: true, round_id: "c-r1", round_at: at(5) }),
+      W({ user_email: "c@x", word_id: "v3", word: "word3", correct: false, round_id: "c-r1", round_at: at(5) }),
+    );
+    const T0 = NOW + 1000;
+    const d1 = await getToday(svc, C, LEARNER, {}, deps, T0);
+    ok("loop: Today's Practice opens as the active session", d1.session.kind === "today" && d1.session.complete === false && d1.plan.items.length > 0);
+    const planned = d1.plan.items;
+    const hasWord = planned.some((i) => i.item_type === "word"), hasGrammar = planned.some((i) => i.item_type === "grammar");
+    ok("loop: the plan mixes words and grammar", hasWord && hasGrammar, planned.map((i) => i.item_key).join(","));
+    const sk0 = d1.session.session_key;
+    // Answer everything; the first word badly (0/5) so it turns weak.
+    const weakKey = planned.find((i) => i.item_type === "word")?.item_key;
+    let tick = T0 + 10000;
+    for (const it of planned) {
+      const bad = it.item_key === weakKey;
+      await applyRound(svc, "c@x", { rows: rowsFor(it.item_key, `c-s0-${it.item_key}`, bad ? 0 : 5, 5, new Date((tick += 5000)).toISOString()).map((r) => ({ ...r, user_email: "c@x" })), coach: { session_key: sk0 } }, deps);
+    }
+    const coachEv = tables.ItemEvidence.filter((e) => e.user_email === "c@x" && e.session_key === sk0 && e.source === "coach_session");
+    ok("loop: first-session evidence reached the Coach (every planned item, coach-credited)", new Set(coachEv.map((e) => e.item_key)).size === planned.length);
+    const d2 = await getToday(svc, C, LEARNER, {}, deps, tick + 1000);
+    ok("loop: Done is computed AFTER evidence: session complete, budget spent, nothing re-planned", d2.session.session_key === sk0 && d2.session.complete === true && d2.plan.items.length === 0 && d2.session.remaining_minutes <= d2.plan.minutes);
+    ok("loop: Keep going availability comes from the server (practised + 0/1 used)", d2.continuation.available === true && d2.continuation.used === 0 && d2.continuation.allowed === 1);
+    const d2b = await getToday(svc, C, LEARNER, {}, deps, tick + 2000);
+    ok("loop: refreshing Done does not mint a new plan or a continuation", d2b.session.complete === true && !tables.PlanLog.some((p) => p.user_email === "c@x" && p.kind === "continuation"));
+    const weakItem = tables.LearnerItem.find((r) => r.user_email === "c@x" && r.item_key === weakKey);
+    ok("loop: the badly answered word is now weak (Needs work)", weakItem?.learning_state === "weak");
+    const k1 = await startContinuation(svc, C, LEARNER, deps, tick + 3000);
+    const k1keys = new Set(k1.plan.items.map((i) => i.item_key));
+    ok("loop: Keep going = a fresh queue from updated state (no item practised today reappears)", k1.session.kind === "continuation" && k1.plan.items.length > 0 && planned.every((i) => !k1keys.has(i.item_key)));
+    const k1retry = await startContinuation(svc, C, LEARNER, deps, tick + 3500);
+    const k1refresh = await getToday(svc, C, LEARNER, {}, deps, tick + 3600);
+    const cCount = () => new Set(tables.PlanLog.filter((p) => p.user_email === "c@x" && p.kind === "continuation").map((p) => p.session_key)).size;
+    ok("loop: continuation counted exactly once across retry + refresh", k1retry.session.session_key === k1.session.session_key && k1refresh.session.session_key === k1.session.session_key && cCount() === 1);
+    // Duplicate submission of a continuation round is idempotent; FSRS moves at most once per item/day.
+    const kItem = k1.plan.items[0];
+    const kRows = rowsFor(kItem.item_key, "c-k1", 4, 5, new Date(tick + 4000).toISOString()).map((r) => ({ ...r, user_email: "c@x" }));
+    const a1 = await applyRound(svc, "c@x", { rows: kRows, coach: { session_key: k1.session.session_key } }, deps);
+    const a2 = await applyRound(svc, "c@x", { rows: kRows, coach: { session_key: k1.session.session_key } }, deps);
+    ok("loop: duplicate submission adds no evidence", a1.evidenceAdded >= 1 && a2.evidenceAdded === 0);
+    const repsAfterFirst = tables.LearnerItem.find((r) => r.user_email === "c@x" && r.item_key === planned[1]?.item_key)?.reps;
+    await applyRound(svc, "c@x", { rows: rowsFor(planned[1].item_key, "c-again", 5, 5, new Date(tick + 4500).toISOString()).map((r) => ({ ...r, user_email: "c@x" })), coach: { session_key: sk0 } }, deps);
+    ok("loop: FSRS moves at most once per item per day", tables.LearnerItem.find((r) => r.user_email === "c@x" && r.item_key === planned[1].item_key)?.reps === repsAfterFirst);
+    // Foreign and stale session keys give no Coach credit.
+    const foreign = await applyRound(svc, "b@x", { rows: rowsFor(kItem.item_key, "b-steal", 5, 5, new Date(tick + 5000).toISOString()).map((r) => ({ ...r, user_email: "b@x" })), coach: { session_key: k1.session.session_key } }, deps);
+    ok("loop: another learner's session_key grants no Coach credit", foreign.coachItems === 0);
+    const tomorrow = Date.parse("2026-10-09T07:00:00.000Z");
+    const stale = await applyRound(svc, "c@x", { rows: rowsFor(weakKey, "c-stale", 5, 5, new Date(tomorrow).toISOString()).map((r) => ({ ...r, user_email: "c@x" })), coach: { session_key: sk0 } }, deps);
+    ok("loop: yesterday's session_key grants no Coach credit today", stale.coachItems === 0);
+    let none = null; try { await startContinuation(svc, C, LEARNER, deps, tick + 6000); } catch (e) { none = e.code; }
+    ok("loop: no second continuation for Velvet once the first was practised", none === "no_continuations_left");
+    // Next day: a full new budget, and the weak word is back as remediation.
+    const n1 = await getToday(svc, C, LEARNER, {}, deps, tomorrow + 3600000);
+    const back = n1.plan.items.find((i) => i.item_key === weakKey);
+    ok("loop: next day = fresh Today's Practice, the weak word rises to the plan as Needs work", n1.session.kind === "today" && n1.session.spent_minutes === 0 && !!back && back.short_reason === "Needs work", JSON.stringify(n1.plan.items.map((i) => [i.item_key, i.short_reason])));
+  }
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);
