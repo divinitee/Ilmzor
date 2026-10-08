@@ -119,7 +119,7 @@ export default function Coach() {
   };
 
   // 3. Done (finished everything planned today, or just finished a session).
-  if (view === "done" || (!items.length && data.done_today > 0)) return (
+  if (view === "done" || data.session?.complete) return (
     <Shell onBack={() => navigate("/")} right={mapBtn}>
       <div className="premium-card rounded-[28px] p-8 text-center">
         <div className="flex justify-center mb-4"><Orb color={color} size={64} /></div>

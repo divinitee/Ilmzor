@@ -281,7 +281,13 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
     const exists = ((await svc.PlanLog.filter({ user_email: me.email, session_key }, 'created_date', 1)) || []).length > 0;
     if (!exists) throw Object.assign(new Error('no_such_session'), { code: 'no_such_session', status: 404 });
   }
-  const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes, now, hasContent: hasContentFn, doneToday, kind });
+  // The session's budget is a prescription that gets USED UP: minutes already
+  // practised in THIS session come off it (planner invariant per session), so
+  // re-opening Today's Practice never mints a fresh full plan.
+  const spent = await sessionSpentMinutes(svc, me.email, session_key);
+  const remaining = Math.max(0, minutes - spent);
+  const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes: remaining, now, hasContent: hasContentFn, doneToday, kind });
+  const complete = spent > 0 && plan.explanation.length === 0;
   const { snapshot: snap } = await snapshot(svc, me.email, {
     day: today, kind, session_no: sessionNo, session_key, goal_id: goal.id, plan_hash: plan.plan_hash,
     generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version,
@@ -293,7 +299,7 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
     handoff,
     settings: { goal_id: goal.id, minutes, minutesOptions: resolved.policy.limits.minutesOptions, goalSwitching: resolved.policy.limits.goalSwitching, onboarded: !!profile.onboarded_at,
       goals: Object.values(GOALS).map((g: any) => ({ id: g.id, objective: g.objective, placeholder: !!g.placeholder })) },
-    session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null },
+    session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null, spent_minutes: spent, remaining_minutes: remaining, complete },
     plan: { minutes, minutes_planned: plan.minutes_planned, fallback: plan.fallback, suggestion: plan.suggestion, items: plan.explanation.map(studentView) },
     done_today: doneToday.size,
     continuation: { allowed: resolved.policy.limits.continuationSessionsPerDay, used: continuationsUsed, available: doneToday.size > 0 && continuationsUsed < resolved.policy.limits.continuationSessionsPerDay },
@@ -301,6 +307,19 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
 }
 // What the student-facing UI gets (internal features/priorities stay server-side; admin `explain` sees them).
 const studentView = (e: any) => ({ item_key: e.item_key, item_type: e.item_type, word_id: e.word_id, label: e.label, short_reason: e.short_reason, depth: e.depth, questions: e.questions, est_minutes: e.est_minutes });
+
+/** Minutes of this session's planned items that already have Coach evidence (est_minutes from the session's own snapshots). */
+async function sessionSpentMinutes(svc: any, email: string, sessionKey: string) {
+  const ev = (await svc.ItemEvidence.filter({ user_email: email, session_key: sessionKey }, 'created_date', 300)) || [];
+  const done = new Set<string>(ev.filter((e: any) => e.source === 'coach_session').map((e: any) => e.item_key));
+  if (!done.size) return 0;
+  const snaps = (await pageAll(svc.PlanLog, { user_email: email, session_key: sessionKey })) || [];
+  const est = new Map<string, number>();
+  for (const sn of snaps) for (const q of sn.queue || []) if (q?.item_key && !est.has(q.item_key)) est.set(q.item_key, Number(q.est_minutes) || 0);
+  let total = 0;
+  for (const k of done) total += est.get(k) || 0;
+  return total;
+}
 
 async function latestContinuationNo(svc: any, email: string, today: string) {
   const rows = (await svc.PlanLog.filter({ user_email: email, day: today, kind: 'continuation' }, 'created_date', 50)) || [];
