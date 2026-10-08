@@ -31,7 +31,11 @@ export function depthFor(state) {
   return "practice";
 }
 
-const isDue = (it, now) => !!it.due && Date.parse(it.due) <= now;
+// FSRS answers WHEN. An item the learner already met in games but the coach has never
+// reviewed has no card yet: in FSRS terms it is a NEW card, which is due now. Without
+// this, game-learned items would never enter the review flow (found in shadow mode).
+const hasCard = (it) => !!it.due;
+const isDue = (it, now) => (hasCard(it) ? Date.parse(it.due) <= now : it.learning_state !== "unknown");
 
 /** The six 0..1 features (facts + graph only). */
 export function featuresFor(it, { goal, now, maxUnlock }) {
@@ -69,10 +73,11 @@ export function rankCandidates({ items = [], newCandidates = [], goal, policy, n
 
   // 1. Candidates.
   const raw = [];
+  const dueReason = (it) => (hasCard(it) ? "due" : "first_check");
   for (const it of items) {
     if (!onPath(goal, it.item_key)) continue;
-    if (isDue(it, now)) raw.push({ it, bucket: "review", reasons: ["due"] });
-    else if (it.learning_state === "weak") raw.push({ it, bucket: "remediate", reasons: ["weak"] });
+    if (it.learning_state === "weak") raw.push({ it, bucket: "remediate", reasons: isDue(it, now) ? ["weak", dueReason(it)] : ["weak"] });
+    else if (isDue(it, now)) raw.push({ it, bucket: "review", reasons: [dueReason(it)] });
     else if (it.learning_state === "learning") raw.push({ it, bucket: "practice", reasons: ["practising"] });
     else if (it.learning_state === "solid") raw.push({ it, bucket: "maintenance", reasons: ["maintenance"] });
   }
@@ -91,8 +96,8 @@ export function rankCandidates({ items = [], newCandidates = [], goal, policy, n
     const weakPre = prerequisitesOf(goal, it.item_key).find((p) => stateOf(p) === "weak" && byKey.has(p));
     if (weakPre) {
       it = byKey.get(weakPre);
-      bucket = isDue(it, now) ? "review" : "remediate";
-      reasons = [isDue(it, now) ? "due" : "weak", `prerequisite_for:${c.it.item_key}`];
+      bucket = "remediate";
+      reasons = ["weak", `prerequisite_for:${c.it.item_key}`];
     }
     if (!hasContent(it.item_key) || doneToday.has(it.item_key)) continue;
     const prev = out.get(it.item_key);
@@ -115,7 +120,7 @@ const explain = (c, policy) => ({
   item_key: c.it.item_key, item_type: c.it.item_type, word_id: c.it.word_id ?? undefined,
   bucket: c.bucket, priority: c.priority, features: c.features, reasons: c.reasons,
   label: LABELS[c.it.learning_state] || LABELS.unknown,
-  short_reason: c.bucket === "review" ? "Due" : c.bucket === "new" ? "New" : c.bucket === "remediate" ? "Needs work" : "Practice",
+  short_reason: c.bucket === "review" ? (c.reasons.includes("due") ? "Due" : "Review") : c.bucket === "new" ? "New" : c.bucket === "remediate" ? "Needs work" : "Practice",
   depth: c.depth, questions: DEPTHS[c.depth].questions, est_minutes: c.est_minutes,
   policy: policy.version, engine: PLAN_VERSION,
 });
@@ -132,7 +137,11 @@ const explain = (c, policy) => ({
 export function planSession(ranked, { policy, minutes }) {
   const B = Math.max(0, Number(minutes) || 0);
   const L = policy.limits;
-  const reviewCap = L.maxReviewRatio * B;
+  // Reviews go first but must not crowd out the day's most valuable non-review work:
+  // leave room for one remediation and one probe when such candidates exist (shadow-mode
+  // finding: a 10-minute plan could otherwise be all reviews and never fix a weak item).
+  const reserve = (ranked.some((c) => c.bucket === "remediate") ? DEPTHS.remediation.minutes : 0) + (ranked.some((c) => c.bucket === "new") ? DEPTHS.probe.minutes : 0);
+  const reviewCap = Math.min(L.maxReviewRatio * B, Math.max(0, B - reserve));
   const remCap = Math.max(1, Math.ceil(B / 10) * L.maxRemediationsPer10Min);
   const queue = [];
   let used = 0, revUsed = 0, rem = 0;
