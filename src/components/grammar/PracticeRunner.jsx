@@ -47,8 +47,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
   const [saving, setSaving] = useState(false);
   const next = async () => {
     if (saving) return;
-    setMarked(null);
-    if (i + 1 < round.items.length) { setI(i + 1); return; }
+    if (i + 1 < round.items.length) { setMarked(null); setI(i + 1); return; }
     saveHistory(topicKey, recordSeen(historyFor(topicKey), round.variantIds));
     // VT-6: grammar curriculum practice is grammar evidence. The server grades
     // gradable stages itself; rubric stages (create/express) are not sent.
@@ -124,7 +123,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
         )}
       </AnimatePresence>
 
-      <button type="button" disabled={!ready} onClick={marked ? next : submit}
+      <button type="button" disabled={!ready || saving} onClick={marked ? next : submit}
               className="mt-5 w-full inline-flex items-center justify-center gap-2 h-12 rounded-2xl font-semibold text-[#04201d] select-none transition-all active:scale-[0.99] disabled:opacity-40"
               style={{ background: `linear-gradient(180deg, #4fb9ab, ${ACCENT})` }}>
         {marked ? <>{i + 1 < round.items.length ? c("run_next") : c("fin_finish")} <ArrowRight className="w-4 h-4" /></> : c("fin_check")}
