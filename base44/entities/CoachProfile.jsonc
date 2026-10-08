@@ -33,7 +33,7 @@
     },
     "last_policy_version": {
       "type": "string",
-      "description": "Audit only, e.g. velvet@1. Never triggers a handoff."
+      "description": "Audit only, e.g. velvet@2. Never triggers a handoff."
     },
     "onboarded_at": {
       "type": "string",

@@ -7,7 +7,7 @@
       "type": "string"
     },
     "engine": {
-      "description": "e.g. coach-core@1",
+      "description": "Build stamp from the code constants, e.g. coach-plan@1+coach-core@2+coach-graph@1",
       "type": "string"
     },
     "entitlement": {
@@ -35,7 +35,7 @@
       "type": "string"
     },
     "policy": {
-      "description": "e.g. velvet@1",
+      "description": "Policy version from coachPolicies, e.g. velvet@2",
       "type": "string"
     },
     "queue": {
