@@ -78,7 +78,7 @@ async function preview(svc: any, me: any, body: any) {
   const email = str(body.email, 200).trim().toLowerCase();
   if (!email) throw new ApiError(400, 'missing_email');
   const { items, evidence, ledgerRows } = await deriveForLearner(svc, email);
-  return { email, ledgerRows, evidenceRows: evidence.length, items: items.map((i) => ({ ...i, label: LABELS[i.learning_state] })) };
+  return { email, ledgerRows, evidenceRows: evidence.length, items: items.map((i) => ({ ...i, label: (LABELS as Record<string, string>)[i.learning_state] })) };
 }
 
 const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = { whoami, backfill, verify, preview };
