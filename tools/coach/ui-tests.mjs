@@ -17,6 +17,9 @@ ok("multiple_choice answer = native (uz), translation answer = english", qs[0].c
 ok("ru learners get russian", buildWordQuestions(target, pool, { depth: "probe", lang: "ru", rnd })[0].correct === "яблоко");
 ok("no translation -> no questions (never fake evidence)", buildWordQuestions(W("x", "zzz", "", ""), pool, { depth: "probe", lang: "uz" }).length === 0);
 ok("too few distractors -> no questions", buildWordQuestions(target, [target, pool[1]], { depth: "probe", lang: "uz" }).length === 0);
+const dupPool = [target, pool[1], pool[1], { ...pool[2], id: "b2" }, pool[2], pool[3], pool[4]]; // same id twice + same text under two ids
+const dq = buildWordQuestions(target, dupPool, { depth: "remediation", lang: "uz", rnd });
+ok("distractors are distinct even when the pool repeats words (no duplicate options)", dq.length === 3 && dq.every((q) => new Set(q.options).size === 4));
 const ev = evidenceItem(target, qs[0], "olma");
 ok("evidence item matches the server's quiz grading contract", ev.word_id === "t" && ev.type === "multiple_choice" && ev.given === "olma" && ev.correct === true);
 ok("every live grammar topic maps to a bank path", LIVE_GRAMMAR_TOPICS.every((k) => { const p = grammarPath(`grammar:${k}`); return p && p.join(".") === k; }));
