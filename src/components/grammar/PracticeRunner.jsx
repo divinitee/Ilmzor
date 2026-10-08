@@ -20,14 +20,14 @@ const ROUND_SIZE = 10;
 
 // coachSessionKey (optional): set when the Coach launched this round, so the
 // server credits it to that Coach session (FSRS + coach evidence). Same pipeline.
-export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c, coachSessionKey }) {
+export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c, coachSessionKey, size = ROUND_SIZE }) {
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
   const [roundId] = useState(() => generateRoundId());
   const { user } = useAuth();
 
   const round = useMemo(
-    () => composeRound({ items, stage, size: ROUND_SIZE, seed, history: historyFor(topicKey) }),
-    [items, stage, seed, topicKey]
+    () => composeRound({ items, stage, size, seed, history: historyFor(topicKey) }),
+    [items, stage, seed, topicKey, size]
   );
 
   const [i, setI] = useState(0);

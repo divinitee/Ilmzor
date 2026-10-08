@@ -141,7 +141,7 @@ export function labelKey(label) {
 /** Server short_reason -> localized key. */
 export function reasonKey(r) {
   const s = String(r || "").toLowerCase();
-  if (s.includes("review")) return "reason_review";
+  if (s.includes("review") || s === "due") return s === "due" ? "review_due" : "reason_review";
   if (s.includes("need") || s.includes("weak")) return "reason_weak";
   if (s.includes("first") || s.includes("comes")) return "reason_prereq";
   if (s.includes("new")) return "reason_new";

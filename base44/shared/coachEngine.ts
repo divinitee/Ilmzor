@@ -287,6 +287,7 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
       goals: Object.values(GOALS).map((g: any) => ({ id: g.id, objective: g.objective, placeholder: !!g.placeholder })) },
     session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null },
     plan: { minutes, minutes_planned: plan.minutes_planned, fallback: plan.fallback, suggestion: plan.suggestion, items: plan.explanation.map(studentView) },
+    done_today: doneToday.size,
     continuation: { allowed: resolved.policy.limits.continuationSessionsPerDay, used: continuationsUsed, available: doneToday.size > 0 && continuationsUsed < resolved.policy.limits.continuationSessionsPerDay },
   };
 }
