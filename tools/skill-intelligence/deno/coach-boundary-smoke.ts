@@ -75,7 +75,8 @@ const quizItems = wordItems.map((i: any, k: number) => {
   return { word: w.english, word_id: w.id, type: 'multiple_choice', given: k === 0 ? 'WRONG' : w.uzbek, correct: true }; // client lies on the first
 });
 const rq = await P({ action: 'submitEvidence', game: 'quiz', round_id: 'coach-q1', items: quizItems, coach: { session_key: sk } });
-ok('quiz round is server-graded (client flag ignored)', rq.ok && rq.verification === 'server_graded' && tables.WordAttempt.find((r) => r.round_id === 'coach-q1' && r.given === undefined && r.correct === false) !== undefined || tables.WordAttempt.filter((r) => r.round_id === 'coach-q1').some((r) => r.correct === false));
+const qRows = tables.WordAttempt.filter((r) => r.round_id === 'coach-q1');
+ok('quiz round is server-graded (client "correct" ignored: wrong pick stored as wrong)', rq.ok && rq.verification === 'server_graded' && qRows.find((r) => r.word_id === wordItems[0].word_id)?.correct === false && qRows.filter((r) => r.word_id !== wordItems[0].word_id).every((r) => r.correct === true));
 ok('coach evidence exists the moment submitEvidence RETURNS (awaited, no race)', wordItems.every((i: any) => coachEv(sk).some((e) => e.item_key === i.item_key)));
 const firstWord = tables.LearnerItem.find((r) => r.user_email === 'tee.test@x' && r.item_key === wordItems[0].item_key);
 ok('a wrong word answer (server-judged) lowers that item', firstWord && (firstWord.weighted_accuracy ?? 1) < 0.6);
@@ -112,7 +113,9 @@ if (k1.plan.items[0]) {
   ok('another learner using this session_key gets NO coach credit', steal.ok && (tables.ItemEvidence || []).filter((e) => e.user_email === 'other@x' && e.source === 'coach_session').length === 0);
   me = { email: 'tee.test@x', role: 'user' };
 }
-ok('a logged-out request is refused', (await coachApi(new Request('http://x', { method: 'POST', body: '{}' })).then(() => true)) && true);
+me = null;
+ok('a logged-out request is refused', (await C({ action: 'getToday' })).code === 'unauthenticated');
+me = { email: 'tee.test@x', role: 'user' };
 
 console.log(`\n${pass} passed, ${fail} failed`);
 Deno.exit(fail ? 1 : 0);
