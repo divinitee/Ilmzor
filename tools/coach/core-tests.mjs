@@ -55,6 +55,8 @@ hdr("2. Evidence quality");
   ok("game rows are source game, context target, FSRS untouched", ev.every((e) => e.context === "target" && e.moved_fsrs === undefined) && cat.source === "game");
   ok("grammar practice source", ev.find((e) => e.item_type === "grammar").source === "grammar_practice");
   ok("evidence is order-independent", JSON.stringify(evidenceFromLedgers([...rows].reverse())) === JSON.stringify(ev));
+  const legacy = evidenceFromLedgers([{ ledger: "GrammarAttempt", game: "grammar_practice", grammar_topic: "tenses.present.continuous-negative", item_id: "gpr.tenses.present.continuous-negative.transform.013", correct: true, round_id: "old", round_at: at(1), verification: "server_graded" }]);
+  ok("pre-enrichment rows get their mode from the activity map (transform = construct)", legacy[0].mode === "construct" && legacy[0].weight === 0.8, JSON.stringify(legacy[0]));
 }
 
 /* ------------------------------------------------------------------ */
