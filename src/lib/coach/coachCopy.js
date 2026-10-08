@@ -107,9 +107,9 @@ const PERSONA = {
     ru: { hello: "Привет, я Вира. Дайте мне {n} минут, и я покажу, над чем лучше всего поработать сегодня.", done_title: "Отличная работа сегодня!", upsell: "Хотите продолжить? С Velvet — вторая сессия каждый день." },
   },
   velvet: {
-    en: { hello: "I'm Velvet. I've looked at where you are. Here's your plan for today.", done_title: "That's today done. I'll have something new for you tomorrow." },
-    uz: { hello: "Men Velvet. Qayerda ekaningizni ko'rib chiqdim. Mana bugungi rejangiz.", done_title: "Bugungisi tayyor. Ertaga yangi narsa tayyorlab qo'yaman." },
-    ru: { hello: "Я Velvet. Я посмотрела, где вы сейчас. Вот ваш план на сегодня.", done_title: "На сегодня всё. Завтра подготовлю новое." },
+    en: { hello: "I'm Velvet. I've looked at where you are. Here's your plan for today.", done_title: "That's today's plan done. Nice work." },
+    uz: { hello: "Men Velvet. Qayerda ekaningizni ko'rib chiqdim. Mana bugungi rejangiz.", done_title: "Bugungi reja bajarildi. Zo'r ishladingiz." },
+    ru: { hello: "Я Velvet. Я посмотрела, где вы сейчас. Вот ваш план на сегодня.", done_title: "План на сегодня выполнен. Отличная работа." },
   },
   vi: {
     en: { hello: "VI here. Highest-value work first: weak spots, then reviews, then new ground.", done_title: "Session complete. Your map is updated." },

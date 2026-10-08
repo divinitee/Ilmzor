@@ -24,7 +24,14 @@ export function buildWordQuestions(word, pool, { depth, lang, rnd = Math.random 
   const native = (w) => (w?.[nk] || w?.uzbek || "").trim();
   if (!word?.english || !native(word)) return [];
   const n = WORD_QUESTIONS[depth] || 1;
-  const others = pool.filter((w) => w && w.id !== word.id && w.english && native(w) && native(w) !== native(word) && w.english !== word.english);
+  // Distinct distractors only: one per id, and never two options with the same text.
+  const seenId = new Set(), seenText = new Set([native(word), word.english]);
+  const others = pool.filter((w) => {
+    if (!w || w.id === word.id || seenId.has(w.id) || !w.english || !native(w)) return false;
+    if (seenText.has(native(w)) || seenText.has(w.english)) return false;
+    seenId.add(w.id); seenText.add(native(w)); seenText.add(w.english);
+    return true;
+  });
   const qs = [];
   for (let k = 0; k < n; k++) {
     const type = k % 2 === 0 ? "multiple_choice" : "translation";

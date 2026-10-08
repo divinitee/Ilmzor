@@ -248,6 +248,7 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(null); // { kind, word?, questions?, grammarItems?, stage?, topicKey? }
   const pending = useRef([]);
+  const finishing = useRef(false);
   const pool = useRef(null);
 
   const flush = useCallback(async () => {
@@ -261,8 +262,16 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
     let alive = true;
     (async () => {
       const it = items[idx];
-      if (!it) { await flush(); onFinished(); return; }
+      // Unmount the finished item FIRST, so nothing can be answered (or
+      // submitted) twice while the next step loads or the last round saves.
       setReady(null);
+      if (!it) {
+        if (finishing.current) return;
+        finishing.current = true;
+        await flush(); // awaited: the server has every answer before Done is computed
+        onFinished();
+        return;
+      }
       if (it.item_type === "word") {
         if (!pool.current) {
           const ids = items.filter((x) => x.item_type === "word").map((x) => x.word_id);

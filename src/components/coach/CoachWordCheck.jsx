@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 
@@ -7,6 +7,7 @@ import { Check, X } from "lucide-react";
 export default function CoachWordCheck({ word, questions, color, t, onAnswer, onDone }) {
   const [k, setK] = useState(0);
   const [picked, setPicked] = useState(null);
+  const finished = useRef(false);
   const q = questions[k];
   if (!q) return null;
 
@@ -17,7 +18,8 @@ export default function CoachWordCheck({ word, questions, color, t, onAnswer, on
   };
   const next = () => {
     setPicked(null);
-    if (k + 1 < questions.length) setK(k + 1); else onDone();
+    if (k + 1 < questions.length) setK(k + 1);
+    else if (!finished.current) { finished.current = true; onDone(); } // a double tap never skips an item
   };
 
   return (
