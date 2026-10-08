@@ -14,6 +14,7 @@
       "type": "string",
       "enum": [
         "daily_initial",
+        "continuation_initial",
         "evidence_changed",
         "goal_changed",
         "time_changed",
@@ -46,12 +47,32 @@
       "items": {
         "type": "object"
       }
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "today",
+        "continuation"
+      ],
+      "description": "today = Today's Practice; continuation = a 'Keep going' session planned fresh from updated learner state."
+    },
+    "session_no": {
+      "type": "number",
+      "description": "0 for Today's Practice, 1..n for continuation sessions that day."
+    },
+    "session_key": {
+      "type": "string",
+      "description": "`<day>:<kind>:<session_no>`. Evidence submitted with this key moves FSRS only for items in this session's snapshots."
+    },
+    "goal_id": {
+      "type": "string"
     }
   },
   "required": [
     "user_email",
     "day",
-    "plan_hash"
+    "plan_hash",
+    "session_key"
   ],
   "rls": {
     "create": {

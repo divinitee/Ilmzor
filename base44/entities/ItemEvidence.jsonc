@@ -101,6 +101,10 @@
     "at": {
       "type": "string",
       "format": "date-time"
+    },
+    "session_key": {
+      "type": "string",
+      "description": "Coach session this evidence belongs to (`<day>:<today|continuation>:<n>`). Set ONLY when the server's own PlanLog planned this item for that session; then source = coach_session."
     }
   },
   "required": [
