@@ -112,7 +112,7 @@ export default function Coach() {
   const keepGoing = async () => {
     setBusy(true);
     try { const d = await coachApi("startContinuation", {}); setData(d); setView("run"); }
-    catch (e) { setErr(null); await load(0); }
+    catch { await load(0); }
     finally { setBusy(false); }
   };
 
@@ -283,7 +283,7 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
       }
     })();
     return () => { alive = false; };
-  }, [idx]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [idx]);
 
   return (
     <div>
