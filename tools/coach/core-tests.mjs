@@ -10,11 +10,11 @@ import {
   deriveItemState, deriveItem, deriveLearnerItems, canonicalItem, dayOf, isResolved, LABELS,
   replayFsrs, ratingFor,
 } from "../../base44/shared/coachCore.js";
-import { rankCandidates, planSession, planToday, DEPTHS } from "../../base44/shared/coachPlan.js";
+import { rankCandidates, planSession, planToday, DEPTHS, PLAN_VERSION } from "../../base44/shared/coachPlan.js";
 import { POLICIES, PERSONAS, resolveCoach, entitlementOf, needsHandoff, weightSum, minutesFor } from "../../base44/shared/coachPolicies.js";
-import { LIVE_GRAMMAR_TOPICS, PREREQUISITES, GOALS, goalOf, onPath, goalRelevance, unlockCount, prerequisitesOf } from "../../base44/shared/coachGraph.js";
+import { GRAPH_VERSION, LIVE_GRAMMAR_TOPICS, PREREQUISITES, GOALS, goalOf, onPath, goalRelevance, unlockCount, prerequisitesOf } from "../../base44/shared/coachGraph.js";
 import { PRACTICE_KEYS } from "../../base44/shared/grammarKeys.js";
-import { backfillLearner, verifyLearner, applyRound, getToday, startContinuation, ackHandoff, saveProfile, getMap, shadowLearner } from "../../base44/shared/coachEngine.ts";
+import { ENGINE_STAMP, backfillLearner, verifyLearner, applyRound, getToday, startContinuation, ackHandoff, saveProfile, getMap, shadowLearner } from "../../base44/shared/coachEngine.ts";
 
 let pass = 0, fail = 0;
 const ok = (n, c, x = "") => { c ? pass++ : fail++; console.log(`  ${c ? "PASS" : "FAIL"}  ${n}${!c && x ? " -> " + x : ""}`); };
@@ -245,6 +245,8 @@ function makeStore() {
   ok("first plan of the day -> one daily_initial snapshot", tables.PlanLog.length === 1 && tables.PlanLog[0].trigger === "daily_initial");
   await getToday(svc, A, null, {}, deps, NOW + 60000);
   ok("identical getToday writes no new snapshot", tables.PlanLog.length === 1);
+  ok("PlanLog version stamps come from the code constants (no stale literals)", tables.PlanLog[0].engine === ENGINE_STAMP && ENGINE_STAMP === [PLAN_VERSION, ENGINE_VERSION, GRAPH_VERSION].join("+") && tables.PlanLog[0].policy === POLICIES[tables.PlanLog[0].policy.split("@")[0]].version && t1.plan.items.every((i) => i.engine === undefined || i.engine === PLAN_VERSION), JSON.stringify({ e: tables.PlanLog[0].engine, p: tables.PlanLog[0].policy }));
+  ok("policies use continuationSessionsPerDay (no extraRounds leak)", Object.values(POLICIES).every((p) => Number.isInteger(p.limits.continuationSessionsPerDay) && !JSON.stringify(p).includes("extraRounds")));
   await Promise.all([getToday(svc, A, null, {}, deps, NOW + 61000), getToday(svc, A, null, {}, deps, NOW + 62000)]);
   ok("concurrent identical getToday calls write no duplicate snapshot", tables.PlanLog.length === 1);
 
