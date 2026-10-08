@@ -75,11 +75,13 @@ export default function PracticeResult({ summary, c, onAgain, onExit }) {
       )}
 
       <div className="flex gap-2 mt-5">
-        <button onClick={onAgain}
-          className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-2xl font-semibold text-[#04201d] select-none transition-transform active:scale-[0.99]"
-          style={{ background: `linear-gradient(180deg, #4fb9ab, ${ACCENT})` }}>
-          <RotateCcw className="w-4 h-4" aria-hidden="true" /> {c("fin_again")}
-        </button>
+        {onAgain && (
+          <button onClick={onAgain}
+            className="flex-1 inline-flex items-center justify-center gap-2 h-12 rounded-2xl font-semibold text-[#04201d] select-none transition-transform active:scale-[0.99]"
+            style={{ background: `linear-gradient(180deg, #4fb9ab, ${ACCENT})` }}>
+            <RotateCcw className="w-4 h-4" aria-hidden="true" /> {c("fin_again")}
+          </button>
+        )}
         <button onClick={onExit}
           className="neo-pill px-5 h-12 text-sm font-semibold text-foreground hover:bg-white/10 transition-colors select-none">
           {c("fin_done")}
