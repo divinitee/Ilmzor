@@ -1,51 +1,47 @@
-// VIRORA Coach Engine — PURE core (VT-40, Stage 1, 2026-10-08).
-// Spec: Claude Doc "Coach Engine v0 — Spec (Stage 0, rev 3)", project doc
-// claude/vira/VIRA-V0-SPEC.md. No SDK, no I/O, no clock reads: every function
-// takes `now` / data as arguments so the same inputs always give the same
-// outputs (testable in node: tools/coach/core-tests.mjs).
+// VIRORA Coach Engine — PURE facts layer (VT-40). Stage 1 + Stage 2 corrections, 2026-10-08.
+// Spec: Claude Doc "Coach Engine v0 — Spec (Stage 0, rev 3)" + GPT Stage-1 audit;
+// project docs claude/vira/VIRA-V0-SPEC.md, claude/vira/STAGE-1-HANDOFF.md.
+// No SDK, no I/O, no clock reads: the same inputs always give the same outputs.
 //
-// Layer rules (locked A1-A9):
-//   * This file holds FACTS (evidence -> learner state). It never reads a
-//     policy or a persona. The same evidence gives the same LearnerItem under
-//     every coach (Vira / Velvet / VI).
-//   * FSRS is NOT here: game/grammar-practice evidence never moves FSRS. Only
-//     coach sessions do (Stage 2, coachEngine.ts).
-//   * Ranking / session planning arrive in Stage 2 and will read a policy.
-//
-// All numbers marked PLACEHOLDER are starting values for testing, not tuning.
+// Layer rules (locked):
+//   * FACTS only (evidence -> learner state, FSRS memory). Never reads a policy or a
+//     persona: the same evidence gives the same LearnerItem under every coach.
+//   * Unresolved evidence (word:<id>:*, word:lemma:<l>:*) is EVIDENCE-ONLY: it is kept
+//     in ItemEvidence but never becomes a LearnerItem, a state, or an FSRS card.
+//   * FSRS answers WHEN only. Only coach-session evidence for an item the server
+//     planned (context "target") moves FSRS, at most once per item per Tashkent day.
+//     Normal games / grammar practice update state only.
+//   * Everything on a LearnerItem is DERIVED from that item's ItemEvidence (FSRS by
+//     deterministic replay), so retries, races and rebuilds converge on one answer.
+//   * The FSRS library is injected (`fsrsLib`), so this file runs unchanged in Node
+//     tests (npm "ts-fsrs") and in Deno functions ("npm:ts-fsrs@5.4.2").
+// Numbers marked PLACEHOLDER are starting values for testing, not tuning.
 
 import { enrichmentFor } from "./skillActivityMap.js";
 
-export const ENGINE_VERSION = "coach-core@1";
+export const ENGINE_VERSION = "coach-core@2";
 
 // ---------------------------------------------------------------------------
-// Days. A coach "day" is the calendar day in Asia/Tashkent (UTC+5, no DST),
-// the same convention subscriptionCore.js uses for expiry.
+// Days: a coach day is the calendar day in Asia/Tashkent (UTC+5, no DST).
 const TASHKENT_OFFSET_MS = 5 * 60 * 60 * 1000;
+export const DAY_MS = 24 * 60 * 60 * 1000;
 export const dayOf = (ms) => new Date(Number(ms) + TASHKENT_OFFSET_MS).toISOString().slice(0, 10);
-const ms = (iso) => { const t = Date.parse(iso || ""); return Number.isNaN(t) ? null : t; };
+const msOf = (iso) => { const t = Date.parse(iso || ""); return Number.isNaN(t) ? null : t; };
+const round4 = (x) => Number(Number(x).toFixed(4));
 
 // ---------------------------------------------------------------------------
-// Item keys (A3). One LearnerItem per item, any type, namespaced.
+// Item keys (sense-aware).
 //   word:<word_id>:<sense_index>   one meaning (resolved)
-//   word:<word_id>:*               meaning unknown for a multi-sense word
-//   word:lemma:<lemma>:*           no word_id could be resolved at all
-//   grammar:<topic-slug>           a grammar practice topic
-//   grammar:hub.<bank>             legacy Skill Hub grammar quiz bank (not on any goal path)
+//   word:<word_id>:*               meaning unknown for a multi-sense word   (evidence-only)
+//   word:lemma:<lemma>:*           no word_id resolvable                    (evidence-only)
+//   grammar:<topic-slug>           grammar practice topic
+//   grammar:hub.<bank>             legacy Skill Hub grammar quiz bank (never on a goal path)
 //   skill:<leaf>                   reserved
 export const ITEM_TYPES = ["word", "grammar", "skill"];
 export const isResolved = (key) => !String(key || "").endsWith(":*");
-
 export const normalizeLemma = (s) => String(s || "").toLowerCase().trim().replace(/\s+/g, " ");
 
-/**
- * Resolve a word evidence row to an item, following the identity contract:
- * sense_id first, then word_id, then normalized lemma. A sense is NEVER guessed
- * for a multi-sense word (Gate: "never infer a sense the caller did not specify").
- *
- *   senseIndexes: Map<word_id, number[]>   approved WordSense indexes per word
- *   wordIdsByLemma: Map<lemma, string[]>   VocabularyWord ids per lemma_key
- */
+/** Identity contract: sense_id -> word_id -> lemma. A sense is NEVER guessed. */
 export function resolveWordItem(row, { senseIndexes = new Map(), wordIdsByLemma = new Map() } = {}) {
   const sid = String(row?.sense_id || "");
   const m = sid.match(/^([^:]+):(\d+)$/);
@@ -78,18 +74,20 @@ export function grammarItemFor(row) {
 }
 
 // ---------------------------------------------------------------------------
-// Evidence quality (A4). PLACEHOLDER weights, accepted by GPT + Tee (P3).
+// Evidence quality. Order of application (locked):
+//   1. base weight = attestation x mode x hint x context      (all multipliers)
+//   2. same-day decay: the k-th round on an item that day x 0.5^(k-1)
+//   3. client-attested daily cap: client contribution per item per day <= 1.0
 export const EVIDENCE_WEIGHTS = {
   attestation: { server_graded: 1.0, server_ai: 1.0, client_attested: 0.6 },
   attestationDefault: 0.6,
   mode: { produce: 1.0, construct: 0.8, recognise: 0.6 },
   modeDefault: 0.6,
-  hint: 0.5,          // any hint used in the round
+  hint: 0.5,
   context: { target: 1.0, incidental: 0.3 },
 };
-// Diminishing returns + cap (A4, GPT re-audit correction #4).
-export const SAME_DAY_DECAY = 0.5;            // k-th same-day round counts x 0.5^(k-1)
-export const CLIENT_DAILY_CAP = 1.0;          // client-attested weight per item per day
+export const SAME_DAY_DECAY = 0.5;
+export const CLIENT_DAILY_CAP = 1.0;
 
 export function baseWeight({ attestation, mode, hints_used = 0, context = "target" }) {
   const W = EVIDENCE_WEIGHTS;
@@ -97,7 +95,7 @@ export function baseWeight({ attestation, mode, hints_used = 0, context = "targe
   const md = W.mode[mode] ?? W.modeDefault;
   const h = hints_used > 0 ? W.hint : 1;
   const c = W.context[context] ?? W.context.target;
-  return Number((a * md * h * c).toFixed(4));
+  return round4(a * md * h * c);
 }
 
 const worstAttestation = (list) => {
@@ -106,8 +104,7 @@ const worstAttestation = (list) => {
   for (const v of list) { const i = order.indexOf(v); best = Math.min(best, i < 0 ? 0 : i); }
   return order[best];
 };
-const modeOf = (list) => {
-  // One activity has one canonical mode; if rows disagree, take the weakest claim.
+const weakestMode = (list) => {
   const order = ["recognise", "construct", "produce"];
   let lo = 2;
   for (const v of list) { const i = order.indexOf(v); lo = Math.min(lo, i < 0 ? 0 : i); }
@@ -115,18 +112,18 @@ const modeOf = (list) => {
 };
 
 /**
- * Ledger rows (WordAttempt / GrammarAttempt, tagged with `ledger`) -> ItemEvidence
- * rows: ONE per item per round. `source` is game | grammar_practice here;
- * coach sessions are source "coach_session" and are produced by Stage 2.
- * Pure: resolver maps come in as arguments.
+ * Ledger rows (WordAttempt / GrammarAttempt, tagged `ledger`) -> ItemEvidence rows,
+ * ONE per item per round. `coach` (optional) = { session_key, plannedKeys: Set } —
+ * built by the SERVER from its own PlanLog, never from the client: only an item the
+ * server planned for that session becomes source "coach_session" / context "target".
  */
-export function evidenceFromLedgers(rows, maps = {}) {
+export function evidenceFromLedgers(rows, maps = {}, coach = null) {
   const groups = new Map();
   for (const r of rows || []) {
     if (r?.correct !== true && r?.correct !== false) continue;
+    if (r.ledger === "WordAttempt" && String(r.word || "") === "(quiz item)") continue; // count-only quiz: no item identity
     const item = r.ledger === "GrammarAttempt" ? grammarItemFor(r) : r.ledger === "WordAttempt" ? resolveWordItem(r, maps) : null;
     if (!item) continue;
-    if (r.ledger === "WordAttempt" && String(r.word || "") === "(quiz item)") continue; // count-only quiz rows carry no item
     const round_id = String(r.round_id || r.id);
     const key = `${round_id}|${item.item_key}`;
     const g = groups.get(key) || { item, round_id, rows: [] };
@@ -138,27 +135,28 @@ export function evidenceFromLedgers(rows, maps = {}) {
     const rs = g.rows;
     const at = rs.map((r) => r.round_at || r.created_date).filter(Boolean).sort()[0] || null;
     const attestation = worstAttestation(rs.map((r) => r.verification || "client_attested"));
-    // Rows written before 2026-09-30 carry no `mode`: re-derive it from the activity
-    // map (the same source progressApi uses at write time), never from the client.
-    const mode = modeOf(rs.map((r) => r.mode || enrichmentFor({ game: r.game, bank: r.bank, item_id: r.item_id }).mode).filter(Boolean));
+    // Rows written before 2026-09-30 carry no `mode`: re-derive it from the activity map.
+    const mode = weakestMode(rs.map((r) => r.mode || enrichmentFor({ game: r.game, bank: r.bank, item_id: r.item_id }).mode).filter(Boolean));
     const hints_used = rs.filter((r) => r.support === "hint").length;
-    const source = rs[0].ledger === "GrammarAttempt" ? (rs[0].game === "grammar_practice" ? "grammar_practice" : "game") : "game";
-    const correct = rs.filter((r) => r.correct === true).length;
+    const planned = !!coach && g.item.resolved && coach.plannedKeys?.has(g.item.item_key);
+    const source = planned ? "coach_session" : rs[0].ledger === "GrammarAttempt" && rs[0].game === "grammar_practice" ? "grammar_practice" : "game";
     const ev = {
       item_type: g.item.item_type, item_key: g.item.item_key,
       word_id: g.item.word_id ?? undefined, sense_index: g.item.sense_index ?? undefined,
-      round_id: g.round_id, source, context: "target", mode, attestation,
-      items: rs.length, correct, hints_used, at,
+      round_id: g.round_id, session_key: planned ? coach.session_key : undefined,
+      source, context: "target", mode, attestation,
+      items: rs.length, correct: rs.filter((r) => r.correct === true).length, hints_used, at,
     };
     ev.weight = baseWeight(ev);
     out.push(ev);
   }
-  return out.sort((a, b) => String(a.at).localeCompare(String(b.at)) || a.item_key.localeCompare(b.item_key) || a.round_id.localeCompare(b.round_id));
+  return out.sort(byTime);
 }
+const byTime = (a, b) => String(a.at).localeCompare(String(b.at)) || String(a.round_id).localeCompare(String(b.round_id)) || String(a.item_key).localeCompare(String(b.item_key));
 
 // ---------------------------------------------------------------------------
-// Learner state (facts). PLACEHOLDER thresholds (Tee P1/P2 labels locked:
-// unknown -> New, weak -> Needs work, learning -> Practising, solid -> Strong).
+// Learner state. PLACEHOLDER thresholds. Labels (P2, locked):
+export const LABELS = { unknown: "New", weak: "Needs work", learning: "Practising", solid: "Strong" };
 export const STATE_RULES = {
   window: 10,          // most recent evidence rows that set weighted accuracy
   weakBelow: 0.6,
@@ -167,27 +165,19 @@ export const STATE_RULES = {
   wrongStreakWeak: 2,  // consecutive rounds under 50%
   confidence: { medium: 1.5, high: 3.0 }, // cross-day weight thresholds
 };
-export const LABELS = { unknown: "New", weak: "Needs work", learning: "Practising", solid: "Strong" };
 
-const round4 = (x) => Number(Number(x).toFixed(4));
-
-/**
- * Apply diminishing returns + the client-attested daily cap, in time order.
- * Returns each evidence row with `w_eff` and `day`. Deterministic: input order
- * does not matter (sorted here by at, round_id).
- */
+/** Steps 2 + 3 of evidence weighting, in time order. Input order never matters. */
 export function effectiveWeights(evidence) {
-  const sorted = [...(evidence || [])].sort((a, b) => String(a.at).localeCompare(String(b.at)) || String(a.round_id).localeCompare(String(b.round_id)));
+  const sorted = [...(evidence || [])].sort(byTime);
   const perDay = new Map(); // day -> { rounds, client }
   return sorted.map((e) => {
-    const t = ms(e.at);
+    const t = msOf(e.at);
     const day = t == null ? "unknown" : dayOf(t);
     const d = perDay.get(day) || { rounds: 0, client: 0 };
     d.rounds += 1;
     let w = (Number(e.weight) || 0) * Math.pow(SAME_DAY_DECAY, d.rounds - 1);
     if (e.attestation === "client_attested") {
-      const room = Math.max(0, CLIENT_DAILY_CAP - d.client);
-      w = Math.min(w, room);
+      w = Math.min(w, Math.max(0, CLIENT_DAILY_CAP - d.client));
       d.client += w;
     }
     perDay.set(day, d);
@@ -195,25 +185,24 @@ export function effectiveWeights(evidence) {
   });
 }
 
-/** Derive one item's learner state from its evidence (any order). */
+const accOf = (e) => (e.items ? e.correct / e.items : 0);
+
 export function deriveItemState(evidence) {
   const R = STATE_RULES;
   const ev = effectiveWeights(evidence);
-  const base = { learning_state: "unknown", confidence: "low", weighted_accuracy: null, evidence_weight: 0, wrong_streak: 0, solid_days: 0, rounds: ev.length, last_evidence_at: null, engine_version: ENGINE_VERSION };
+  const base = { learning_state: "unknown", confidence: "low", weighted_accuracy: null, evidence_weight: 0, wrong_streak: 0, solid_days: 0, rounds: ev.length, last_evidence_at: null };
   if (!ev.length) return base;
-  const acc = (e) => (e.items ? e.correct / e.items : 0);
   const total = ev.reduce((s, e) => s + e.w_eff, 0);
   const win = ev.slice(-R.window);
   const wsum = win.reduce((s, e) => s + e.w_eff, 0);
-  const waccRaw = wsum > 0 ? win.reduce((s, e) => s + e.w_eff * acc(e), 0) / wsum : win.reduce((s, e) => s + acc(e), 0) / win.length;
+  const waccRaw = wsum > 0 ? win.reduce((s, e) => s + e.w_eff * accOf(e), 0) / wsum : win.reduce((s, e) => s + accOf(e), 0) / win.length;
   let wrong_streak = 0;
-  for (let i = ev.length - 1; i >= 0 && acc(ev[i]) < 0.5; i--) wrong_streak++;
+  for (let i = ev.length - 1; i >= 0 && accOf(ev[i]) < 0.5; i--) wrong_streak++;
   const byDay = new Map();
-  for (const e of ev) { const d = byDay.get(e.day) || { w: 0, wc: 0, n: 0, c: 0 }; d.w += e.w_eff; d.wc += e.w_eff * acc(e); d.n += e.items; d.c += e.correct; byDay.set(e.day, d); }
+  for (const e of ev) { const d = byDay.get(e.day) || { w: 0, wc: 0 }; d.w += e.w_eff; d.wc += e.w_eff * accOf(e); byDay.set(e.day, d); }
   let solid_days = 0, crossDay = 0;
   for (const d of byDay.values()) {
-    const a = d.w > 0 ? d.wc / d.w : (d.n ? d.c / d.n : 0);
-    if (a >= R.solidFrom && d.w > 0) solid_days++;
+    if (d.w > 0 && d.wc / d.w >= R.solidFrom) solid_days++;
     crossDay += Math.min(d.w, 1);
   }
   const wacc = round4(waccRaw);
@@ -221,33 +210,94 @@ export function deriveItemState(evidence) {
   if (wrong_streak >= R.wrongStreakWeak || wacc < R.weakBelow) learning_state = "weak";
   else if (wacc >= R.solidFrom && solid_days >= R.solidDays) learning_state = "solid";
   const confidence = crossDay >= R.confidence.high ? "high" : crossDay >= R.confidence.medium ? "medium" : "low";
+  return { ...base, learning_state, confidence, weighted_accuracy: wacc, evidence_weight: round4(total), wrong_streak, solid_days, last_evidence_at: ev[ev.length - 1].at };
+}
+
+// ---------------------------------------------------------------------------
+// FSRS (WHEN only). Rating from the session score (locked):
+//   < 50% Again · 50-79% Hard · 80-99%, or 100% with a hint, Good · 100% no hint Easy
+export function ratingFor(e) {
+  const s = accOf(e);
+  if (s < 0.5) return "again";
+  if (s < 0.8) return "hard";
+  if (s < 1 || e.hints_used > 0) return "good";
+  return "easy";
+}
+export const isFsrsEligible = (e) => e.source === "coach_session" && e.context === "target" && isResolved(e.item_key);
+const FSRS_STATE = ["new", "learning", "review", "relearning"];
+const RATING_NUM = { again: 1, hard: 2, good: 3, easy: 4 };
+export const FSRS_PARAMS = { enable_fuzz: false, enable_short_term: false }; // deterministic, day-level steps
+
+/**
+ * Replay one item's FSRS history from its evidence: the FIRST eligible coach-session
+ * evidence of each Tashkent day is a review; any later one that day is ignored. Pure
+ * and deterministic, so a retried or concurrent submission can never double-move it.
+ */
+export function replayFsrs(evidence, fsrsLib) {
+  const reviews = [];
+  const seenDays = new Set();
+  for (const e of [...(evidence || [])].filter(isFsrsEligible).sort(byTime)) {
+    const t = msOf(e.at);
+    if (t == null) continue;
+    const day = dayOf(t);
+    if (seenDays.has(day)) continue;
+    seenDays.add(day);
+    reviews.push({ e, t, day, rating: ratingFor(e) });
+  }
+  if (!reviews.length || !fsrsLib) return { card: null, transitions: [] };
+  const f = fsrsLib.fsrs(fsrsLib.generatorParameters(FSRS_PARAMS));
+  let card = fsrsLib.createEmptyCard(new Date(reviews[0].t));
+  const transitions = [];
+  for (const r of reviews) {
+    const before = card;
+    card = f.next(card, new Date(r.t), RATING_NUM[r.rating]).card;
+    transitions.push({ round_id: r.e.round_id, day: r.day, rating: r.rating, due_before: before.reps ? new Date(before.due).toISOString() : null, stability_before: round4(before.stability || 0), stability_after: round4(card.stability) });
+  }
   return {
-    ...base, learning_state, confidence, weighted_accuracy: wacc, evidence_weight: round4(total),
-    wrong_streak, solid_days, last_evidence_at: ev[ev.length - 1].at,
+    card: {
+      due: new Date(card.due).toISOString(), stability: round4(card.stability), difficulty: round4(card.difficulty),
+      elapsed_days: card.elapsed_days, scheduled_days: card.scheduled_days, reps: card.reps, lapses: card.lapses,
+      fsrs_state: FSRS_STATE[card.state] || "review", last_review: card.last_review ? new Date(card.last_review).toISOString() : null,
+      fsrs_last_day: reviews[reviews.length - 1].day,
+    },
+    transitions,
   };
 }
 
-/** All items for one learner: Map(item_key -> evidence[]) -> LearnerItem facts. */
-export function deriveLearnerItems(evidence) {
+// ---------------------------------------------------------------------------
+/** Derive one item's full LearnerItem facts (state + FSRS) from its evidence. */
+export function deriveItem(evidence, fsrsLib) {
+  const first = evidence[0];
+  const { card } = replayFsrs(evidence, fsrsLib);
+  return {
+    item_type: first.item_type, item_key: first.item_key,
+    word_id: first.word_id ?? undefined, sense_index: first.sense_index ?? undefined,
+    resolved: true,
+    ...deriveItemState(evidence),
+    ...(card || {}),
+    engine_version: ENGINE_VERSION,
+  };
+}
+
+/** All RESOLVED items for one learner. Unresolved evidence stays evidence-only. */
+export function deriveLearnerItems(evidence, fsrsLib = null) {
   const byKey = new Map();
   for (const e of evidence || []) {
+    if (!isResolved(e.item_key)) continue;
     const list = byKey.get(e.item_key) || [];
     list.push(e);
     byKey.set(e.item_key, list);
   }
-  const out = [];
-  for (const [item_key, list] of [...byKey.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
-    const first = list[0];
-    out.push({
-      item_type: first.item_type, item_key,
-      word_id: first.word_id ?? undefined, sense_index: first.sense_index ?? undefined,
-      resolved: isResolved(item_key),
-      ...deriveItemState(list),
-    });
-  }
-  return out;
+  return [...byKey.keys()].sort().map((k) => deriveItem(byKey.get(k), fsrsLib));
 }
 
-/** Stable string for comparing a stored LearnerItem with a fresh derivation. */
-export const LEARNER_ITEM_COMPARABLE = ["item_type", "item_key", "learning_state", "confidence", "weighted_accuracy", "evidence_weight", "wrong_streak", "solid_days", "rounds", "last_evidence_at", "engine_version"];
+/** Stable comparison between a stored LearnerItem and a fresh derivation. */
+export const LEARNER_ITEM_COMPARABLE = ["item_type", "item_key", "learning_state", "confidence", "weighted_accuracy", "evidence_weight", "wrong_streak", "solid_days", "rounds", "last_evidence_at", "due", "stability", "reps", "lapses", "fsrs_state", "fsrs_last_day", "engine_version"];
 export const canonicalItem = (r) => JSON.stringify(LEARNER_ITEM_COMPARABLE.map((k) => r?.[k] ?? null));
+
+/** FNV-1a 32-bit, hex. Plan hashes and stable per-learner orderings. */
+export function fnv1a(s) {
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h.toString(16).padStart(8, "0");
+}
