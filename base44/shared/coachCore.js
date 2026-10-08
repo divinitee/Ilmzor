@@ -14,6 +14,8 @@
 //
 // All numbers marked PLACEHOLDER are starting values for testing, not tuning.
 
+import { enrichmentFor } from "./skillActivityMap.js";
+
 export const ENGINE_VERSION = "coach-core@1";
 
 // ---------------------------------------------------------------------------
@@ -136,7 +138,9 @@ export function evidenceFromLedgers(rows, maps = {}) {
     const rs = g.rows;
     const at = rs.map((r) => r.round_at || r.created_date).filter(Boolean).sort()[0] || null;
     const attestation = worstAttestation(rs.map((r) => r.verification || "client_attested"));
-    const mode = modeOf(rs.map((r) => r.mode).filter(Boolean));
+    // Rows written before 2026-09-30 carry no `mode`: re-derive it from the activity
+    // map (the same source progressApi uses at write time), never from the client.
+    const mode = modeOf(rs.map((r) => r.mode || enrichmentFor({ game: r.game, bank: r.bank, item_id: r.item_id }).mode).filter(Boolean));
     const hints_used = rs.filter((r) => r.support === "hint").length;
     const source = rs[0].ledger === "GrammarAttempt" ? (rs[0].game === "grammar_practice" ? "grammar_practice" : "game") : "game";
     const correct = rs.filter((r) => r.correct === true).length;
