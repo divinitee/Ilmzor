@@ -1,0 +1,141 @@
+{
+  "name": "ItemEvidence",
+  "type": "object",
+  "description": "VT-40 Coach Engine. APPEND-ONLY coach ledger: one row per item per round. Backfilled from WordAttempt / GrammarAttempt (source game | grammar_practice) and, from Stage 2, written by coach sessions (source coach_session). `weight` is the 0-1 evidence quality (attestation x mode x hint x context); diminishing same-day returns and the client-attested daily cap are applied at derivation time, not stored. Never edited after creation.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "item_type": {
+      "type": "string",
+      "enum": [
+        "word",
+        "grammar",
+        "skill"
+      ]
+    },
+    "item_key": {
+      "type": "string"
+    },
+    "word_id": {
+      "type": "string"
+    },
+    "sense_index": {
+      "type": "number"
+    },
+    "round_id": {
+      "type": "string",
+      "description": "(round_id, item_key) is unique per learner; backfill skips pairs already present."
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "coach_session",
+        "game",
+        "grammar_practice",
+        "placement"
+      ]
+    },
+    "context": {
+      "type": "string",
+      "enum": [
+        "target",
+        "incidental"
+      ]
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "recognise",
+        "construct",
+        "produce"
+      ]
+    },
+    "attestation": {
+      "type": "string",
+      "enum": [
+        "server_graded",
+        "server_ai",
+        "client_attested"
+      ]
+    },
+    "items": {
+      "type": "number"
+    },
+    "correct": {
+      "type": "number"
+    },
+    "hints_used": {
+      "type": "number"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "Calibrates the session planner's minute estimates."
+    },
+    "moved_fsrs": {
+      "type": "boolean",
+      "description": "True only for coach-session evidence that moved this item's FSRS card."
+    },
+    "rating": {
+      "type": "string",
+      "enum": [
+        "again",
+        "hard",
+        "good",
+        "easy"
+      ]
+    },
+    "due_before": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "stability_before": {
+      "type": "number"
+    },
+    "stability_after": {
+      "type": "number"
+    },
+    "at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "user_email",
+    "item_type",
+    "item_key",
+    "round_id"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

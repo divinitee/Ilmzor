@@ -1,0 +1,156 @@
+{
+  "name": "LearnerItem",
+  "type": "object",
+  "description": "VT-40 Coach Engine. ONE learner's standing on ONE item (a word MEANING or a grammar topic), shared by every coach: the same evidence gives the same row under Vira, Velvet or VI. Facts are DERIVED from ItemEvidence by base44/shared/coachCore.js (rebuildable; coachApi verify proves stored == derived). FSRS fields are written ONLY by coach sessions (Stage 2); game and grammar-practice evidence never moves them. Written only by the server.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "item_type": {
+      "type": "string",
+      "enum": [
+        "word",
+        "grammar",
+        "skill"
+      ],
+      "description": "skill is reserved."
+    },
+    "item_key": {
+      "type": "string",
+      "description": "Sense-aware namespaced key: word:<word_id>:<sense_index> | word:<word_id>:* (meaning unknown, multi-sense) | word:lemma:<lemma>:* | grammar:<topic-slug> | grammar:hub.<bank>."
+    },
+    "word_id": {
+      "type": "string"
+    },
+    "sense_index": {
+      "type": "number"
+    },
+    "resolved": {
+      "type": "boolean",
+      "description": "False for :* keys. Unresolved items are never queued and never get FSRS."
+    },
+    "learning_state": {
+      "type": "string",
+      "enum": [
+        "unknown",
+        "weak",
+        "learning",
+        "solid"
+      ],
+      "description": "Shown to students as New / Needs work / Practising / Strong."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "description": "From evidence weight earned across DIFFERENT days."
+    },
+    "weighted_accuracy": {
+      "type": "number"
+    },
+    "evidence_weight": {
+      "type": "number"
+    },
+    "wrong_streak": {
+      "type": "number"
+    },
+    "solid_days": {
+      "type": "number"
+    },
+    "rounds": {
+      "type": "number"
+    },
+    "last_evidence_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "due": {
+      "type": "string",
+      "format": "date-time",
+      "description": "FSRS. Coach sessions only."
+    },
+    "stability": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "difficulty": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "elapsed_days": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "scheduled_days": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "reps": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "lapses": {
+      "type": "number",
+      "description": "FSRS."
+    },
+    "fsrs_state": {
+      "type": "string",
+      "enum": [
+        "new",
+        "learning",
+        "review",
+        "relearning"
+      ],
+      "description": "FSRS."
+    },
+    "last_review": {
+      "type": "string",
+      "format": "date-time",
+      "description": "FSRS."
+    },
+    "fsrs_last_day": {
+      "type": "string",
+      "description": "YYYY-MM-DD (Asia/Tashkent). At most one FSRS move per item per day."
+    },
+    "engine_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "item_type",
+    "item_key"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

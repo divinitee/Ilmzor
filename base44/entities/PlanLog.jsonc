@@ -1,0 +1,78 @@
+{
+  "name": "PlanLog",
+  "type": "object",
+  "description": "VT-40 Coach Engine. Plan SNAPSHOTS for replay and QA: the first plan of each day plus one whenever the plan changes (same plan_hash = no new row). queue holds the explanation objects. Admin-only.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "day": {
+      "type": "string",
+      "description": "YYYY-MM-DD, Asia/Tashkent."
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "daily_initial",
+        "evidence_changed",
+        "goal_changed",
+        "time_changed",
+        "policy_changed"
+      ]
+    },
+    "plan_hash": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entitlement": {
+      "type": "string"
+    },
+    "policy": {
+      "type": "string",
+      "description": "e.g. velvet@1"
+    },
+    "engine": {
+      "type": "string",
+      "description": "e.g. coach-core@1"
+    },
+    "minutes": {
+      "type": "number"
+    },
+    "queue": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "user_email",
+    "day",
+    "plan_hash"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

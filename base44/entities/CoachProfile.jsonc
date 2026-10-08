@@ -1,0 +1,103 @@
+{
+  "name": "CoachProfile",
+  "type": "object",
+  "description": "VT-40 Coach Engine. One row per student: their coach SETTINGS only (goal, daily minutes, nudge). Never holds limits, weights or capabilities: the policy and persona are resolved on the server from the subscription on every request (coachPolicies.resolveCoach). last_entitlement drives the one-time handoff screen; a policy version bump never does. Written only by coachApi.",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "goal_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Active goal ids from base44/shared/coachGraph.js GOALS. v0: exactly one for every coach."
+    },
+    "daily_minutes": {
+      "type": "number",
+      "description": "Must be one of the resolved policy's limits.minutesOptions (re-checked on every read)."
+    },
+    "last_entitlement": {
+      "type": "string",
+      "enum": [
+        "free",
+        "trial",
+        "learner",
+        "vip"
+      ],
+      "description": "Entitlement the student last saw. A change (upgrade, downgrade, trial start/end) shows the handoff screen once."
+    },
+    "last_coach": {
+      "type": "string",
+      "description": "Audit only: vira | velvet | vi."
+    },
+    "last_policy_version": {
+      "type": "string",
+      "description": "Audit only, e.g. velvet@1. Never triggers a handoff."
+    },
+    "onboarded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tg_velvet_chat_id": {
+      "type": "string",
+      "description": "Set by the Velvet bot's /start <code> link, never typed in."
+    },
+    "tg_vi_chat_id": {
+      "type": "string",
+      "description": "Set by the VI bot's /start <code> link, never typed in."
+    },
+    "tg_link_code": {
+      "type": "string",
+      "description": "One-time 6-digit link code, cleared once used."
+    },
+    "tg_link_bot": {
+      "type": "string",
+      "enum": [
+        "velvet",
+        "vi"
+      ]
+    },
+    "tg_link_expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "15-minute TTL."
+    },
+    "nudge_hour": {
+      "type": "number",
+      "description": "Local hour (Asia/Tashkent) for the daily nudge. Default 19."
+    }
+  },
+  "required": [
+    "user_email"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.user_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
