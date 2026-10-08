@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { RotateCw, Layers, Shuffle, BarChart3, Clock } from "lucide-react";
 import { useAppLang } from "@/hooks/useAppLang";
@@ -11,8 +11,10 @@ import { useAppLang } from "@/hooks/useAppLang";
 // only fully live action — it launches a real random Skill Hub game.
 export default function QuickActions({ onNavigate, accent }) {
   const { t } = useAppLang();
+  const navigate = useNavigate();
   const actions = [
-    { id: "review", label: t("dashboard.qaReview"), icon: RotateCw, comingSoon: true },
+    // VT-40: "Review Due Words" is now live as the Coach's Today's Practice (SRS inside).
+    { id: "review", label: t("dashboard.qaToday"), icon: RotateCw, comingSoon: false, onClick: () => navigate("/coach") },
     // Deep Mode still shows its Coming Soon badge, but now opens the Deep
     // Mode tab's explainer instead of being a dead, disabled tile.
     { id: "deep", label: t("dashboard.qaDeep"), icon: Layers, comingSoon: true, previewable: true, onClick: () => onNavigate("deep") },

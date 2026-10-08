@@ -8,6 +8,7 @@ import MissionsCard from "./MissionsCard";
 import ProgressSnapshot from "./ProgressSnapshot";
 import RecentAchievement from "./RecentAchievement";
 import QuickActions from "./QuickActions";
+import CoachTodayCard from "@/components/coach/CoachTodayCard";
 import { useSkillStateWithStatus } from "@/hooks/useSkillState";
 import { resolveUserName } from "@/lib/profileName";
 
@@ -148,6 +149,7 @@ export default function MissionControl({
         )}
       </div>
 
+      <CoachTodayCard />
       {homeworkSlot}
       <HeroCard accent={ACCENT} accentGlow={ACCENT_GLOW} onContinue={onContinue} skillStates={skillState?.skills ?? null} skillStateError={skillStateError} />
       <FreeLessonCard />

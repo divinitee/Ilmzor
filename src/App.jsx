@@ -51,6 +51,7 @@ import HelpReporter from '@/components/HelpReporter';
 import ActivityTracker from '@/components/ActivityTracker';
 import Developer from '@/pages/Developer';
 import Taskboard from '@/pages/Taskboard';
+import Coach from '@/pages/Coach';
 import LaunchExperience from '@/components/LaunchExperience';
 
 const AuthenticatedApp = () => {
@@ -119,6 +120,7 @@ const AuthenticatedApp = () => {
         <Route path="/payment-complete" element={<PaymentComplete />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/lesson/:lessonId" element={<LessonRunner />} />
+        <Route path="/coach" element={<Coach />} />
         <Route path="/my-words" element={<MyWords />} />
         <Route path="/vocab-review" element={<VocabReview />} />
         <Route path="/teach-stress-test" element={<TeachStressTest />} />
