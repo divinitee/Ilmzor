@@ -110,9 +110,12 @@ async function appendEvidence(svc: any, email: string, evidence: any[]) {
 }
 
 /** Server-side coach context for a submission: only items this learner's own PlanLog planned. */
-async function coachContext(svc: any, email: string, sessionKey: unknown) {
+async function coachContext(svc: any, email: string, sessionKey: unknown, day: string | null) {
   const key = String(sessionKey || '').slice(0, 80);
   if (!key) return null;
+  // A session only grants Coach credit on its own (Tashkent) day: a stale or
+  // replayed key from another day is ordinary evidence, never coach_session.
+  if (!day || !key.startsWith(`${day}:`)) return null;
   const snaps = (await pageAll(svc.PlanLog, { user_email: email, session_key: key })) || [];
   if (!snaps.length) return null;
   const plannedKeys = new Set<string>();
@@ -126,7 +129,8 @@ async function coachContext(svc: any, email: string, sessionKey: unknown) {
  * submitEvidence like every game, with body.coach = { session_key }.
  */
 export async function applyRound(svc: any, email: string, { rows, coach }: { rows: any[]; coach?: any }, deps: Deps) {
-  const ctx = coach ? await coachContext(svc, email, coach.session_key) : null;
+  const at = rows.map((r: any) => Date.parse(r?.round_at || r?.created_date || '')).find((t: number) => !Number.isNaN(t));
+  const ctx = coach ? await coachContext(svc, email, coach.session_key, at === undefined ? null : dayOf(at)) : null;
   const maps = await resolverMaps(svc, rows);
   const ev = evidenceFromLedgers(rows, maps, ctx);
   const fresh = await appendEvidence(svc, email, ev);
@@ -266,7 +270,11 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
   const newCandidates = await newCandidatesFor(svc, me.email, user?.cefr_level || 'A2', known);
   const doneToday = await doneTodayFor(svc, me.email, today);
 
-  const sessionNo = Math.max(0, Number(body?.session_no) || 0);
+  // No session_no -> the server picks the ACTIVE session: today's latest
+  // continuation if one was started, otherwise Today's Practice.
+  const sessionNo = body?.session_no === undefined || body?.session_no === null
+    ? await latestContinuationNo(svc, me.email, today)
+    : Math.max(0, Number(body.session_no) || 0);
   const kind = sessionNo > 0 ? 'continuation' : 'today';
   const session_key = `${today}:${kind}:${sessionNo}`;
   if (kind === 'continuation') {
@@ -294,6 +302,11 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
 // What the student-facing UI gets (internal features/priorities stay server-side; admin `explain` sees them).
 const studentView = (e: any) => ({ item_key: e.item_key, item_type: e.item_type, word_id: e.word_id, label: e.label, short_reason: e.short_reason, depth: e.depth, questions: e.questions, est_minutes: e.est_minutes });
 
+async function latestContinuationNo(svc: any, email: string, today: string) {
+  const rows = (await svc.PlanLog.filter({ user_email: email, day: today, kind: 'continuation' }, 'created_date', 50)) || [];
+  return rows.reduce((m: number, r: any) => Math.max(m, Number(r.session_no) || 0), 0);
+}
+
 async function continuationsToday(svc: any, email: string, today: string) {
   const rows = (await svc.PlanLog.filter({ user_email: email, day: today, kind: 'continuation' }, 'created_date', 50)) || [];
   return new Set(rows.map((r: any) => r.session_key)).size;
@@ -304,6 +317,14 @@ export async function startContinuation(svc: any, me: any, sub: any, deps: Deps,
   const resolved = resolveCoach(sub, now);
   const today = dayOf(now);
   const used = await continuationsToday(svc, me.email, today);
+  // Idempotent: a continuation that was started but not practised yet is
+  // RESUMED (refresh, double tap, retry), never counted again.
+  if (used > 0) {
+    const latest = await latestContinuationNo(svc, me.email, today);
+    const key = `${today}:continuation:${latest}`;
+    const practised = ((await svc.ItemEvidence.filter({ user_email: me.email, session_key: key }, 'created_date', 1)) || []).length > 0;
+    if (!practised) return getToday(svc, me, sub, { session_no: latest }, deps, now);
+  }
   if (used >= resolved.policy.limits.continuationSessionsPerDay) throw Object.assign(new Error('no_continuations_left'), { code: 'no_continuations_left', status: 409 });
   if (!(await doneTodayFor(svc, me.email, today)).size) throw Object.assign(new Error('finish_today_first'), { code: 'finish_today_first', status: 409 });
   const n = used + 1;

@@ -60,7 +60,8 @@ const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = 
     const r = resolveCoach(await currentSub(svc, me));
     return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null };
   },
-  async getToday(svc, me, body) { return getToday(svc, me, await currentSub(svc, me), { session_no: Number(body.session_no) || 0 }, deps); },
+  // session_no omitted -> the server resolves the active session (see getToday).
+  async getToday(svc, me, body) { return getToday(svc, me, await currentSub(svc, me), { session_no: body.session_no === undefined || body.session_no === null ? undefined : Number(body.session_no) || 0 }, deps); },
   async startContinuation(svc, me) { return startContinuation(svc, me, await currentSub(svc, me), deps); },
   async ackHandoff(svc, me) { return ackHandoff(svc, me, await currentSub(svc, me)); },
   async saveProfile(svc, me, body) { return saveProfile(svc, me, await currentSub(svc, me), body); },

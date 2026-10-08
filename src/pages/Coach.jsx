@@ -53,12 +53,14 @@ export default function Coach() {
   const [view, setView] = useState("plan"); // plan | run | done | map
   const [busy, setBusy] = useState(false);
 
-  const load = useCallback(async (session_no = 0) => {
+  // No session_no: the SERVER decides which session is active (today or the
+  // latest "Keep going"). The client never decides continuation allowance.
+  const load = useCallback(async () => {
     setErr(null);
-    try { const d = await coachApi("getToday", { session_no }); setData(d); return d; }
+    try { const d = await coachApi("getToday", {}); setData(d); return d; }
     catch (e) { setErr(e?.code || "error"); return null; }
   }, []);
-  useEffect(() => { load(0); }, [load]);
+  useEffect(() => { load(); }, [load]);
 
   const persona = data?.coach?.persona || "vira";
   const color = COACH_COLORS[persona];
@@ -72,7 +74,7 @@ export default function Coach() {
   if (err) return (
     <Shell onBack={() => navigate("/")}><div className="premium-card rounded-[28px] p-8 text-center">
       <p className="text-sm text-muted-foreground">{t("error")}</p>
-      <button onClick={() => load(0)} className="neo-pill mt-4 px-5 py-2 text-sm font-semibold">{t("retry")}</button>
+      <button onClick={() => load()} className="neo-pill mt-4 px-5 py-2 text-sm font-semibold">{t("retry")}</button>
     </div></Shell>);
   if (!data) return (
     <Shell onBack={() => navigate("/")}><div className="premium-card rounded-[28px] p-10 text-center">
@@ -89,21 +91,21 @@ export default function Coach() {
           <div className="flex justify-center mb-4"><Orb color={color} size={72} /></div>
           <h1 className="text-xl font-bold text-foreground">{t(down ? "handoff_down" : "handoff_up", { to: COACH_NAMES[data.coach.coach] || COACH_NAMES[persona] })}</h1>
           <p className="text-sm text-muted-foreground mt-2">{t("hello", { n: data.settings.minutes })}</p>
-          <button disabled={busy} onClick={async () => { setBusy(true); try { await coachApi("ackHandoff", {}); await load(0); } finally { setBusy(false); } }}
+          <button disabled={busy} onClick={async () => { setBusy(true); try { await coachApi("ackHandoff", {}); await load(); } finally { setBusy(false); } }}
             className="mt-6 w-full h-12 rounded-2xl font-semibold text-white" style={{ background: color }}>{t("handoff_ok")}</button>
         </div>
       </Shell>);
   }
 
   // 2. Onboarding: goal + minutes (only the options this coach offers).
-  if (!data.settings.onboarded) return <Onboarding data={data} t={t} color={color} onDone={() => load(0)} onBack={() => navigate("/")} />;
+  if (!data.settings.onboarded) return <Onboarding data={data} t={t} color={color} onDone={() => load()} onBack={() => navigate("/")} />;
 
   if (view === "map") return <Shell onBack={back}><LearnerMap t={t} color={color} /></Shell>;
 
   if (view === "run") return (
     <Shell onBack={back}>
       <Session data={data} t={t} gc={gc} color={color} lang={lang} email={user?.email}
-        onFinished={async () => { await load(0); setView("done"); }} />
+        onFinished={async () => { await load(); setView("done"); }} />
     </Shell>);
 
   const items = data.plan.items || [];
@@ -112,7 +114,7 @@ export default function Coach() {
   const keepGoing = async () => {
     setBusy(true);
     try { const d = await coachApi("startContinuation", {}); setData(d); setView("run"); }
-    catch { await load(0); }
+    catch { await load(); }
     finally { setBusy(false); }
   };
 
