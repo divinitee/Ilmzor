@@ -273,7 +273,10 @@ function makeStore() {
   const t2 = await getToday(svc, A, null, {}, deps, NOW + 300000);
   ok("practised item leaves today's plan; snapshot trigger evidence_changed", !t2.plan.items.some((i) => i.item_key === target.item_key) && tables.PlanLog.some((p) => p.trigger === "evidence_changed"));
   const tb = await getToday(svc, B, null, {}, deps, NOW);
-  ok("cross-user isolation: B's plan never uses A's items", tables.LearnerItem.filter((r) => r.user_email === "b@x").every((r) => !String(r.item_key).includes("v1")) && tb.plan.items.length > 0);
+  const bEvidenceKeys = new Set(tables.ItemEvidence.filter((e) => e.user_email === "b@x").map((e) => e.item_key));
+  const bItems = tables.LearnerItem.filter((r) => r.user_email === "b@x");
+  const aOnly = tables.ItemEvidence.filter((e) => e.user_email === "a@x" && !bEvidenceKeys.has(e.item_key) && isResolved(e.item_key)).map((e) => e.item_key);
+  ok("cross-user isolation: B's facts come only from B's evidence", bItems.length > 0 && bItems.every((r) => bEvidenceKeys.has(r.item_key)) && !bItems.some((r) => aOnly.includes(r.item_key)) && tb.plan.items.length > 0);
 
   // Continuations.
   let threw = null; try { await startContinuation(svc, A, null, deps, NOW + 310000); } catch (e) { threw = e.code; }
