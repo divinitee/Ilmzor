@@ -18,7 +18,9 @@ import { useAuth } from "@/lib/AuthContext";
 const ACCENT = "#3E9E92";
 const ROUND_SIZE = 10;
 
-export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c }) {
+// coachSessionKey (optional): set when the Coach launched this round, so the
+// server credits it to that Coach session (FSRS + coach evidence). Same pipeline.
+export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c, coachSessionKey }) {
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
   const [roundId] = useState(() => generateRoundId());
   const { user } = useAuth();
@@ -51,7 +53,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
     const items = round.items
       .map((it, k) => ({ item_id: it.id, given: it.format === "mcq" ? it.options?.[responses[k]] ?? null : responses[k] }))
       .filter((x) => /\.(choose|build|transform)\.\d+$/.test(x.item_id || ""));
-    if (user?.email && items.length) submitEvidence(user.email, { game: "grammar_practice", round_id: roundId, grammar_topic: topicKey, items });
+    if (user?.email && items.length) submitEvidence(user.email, { game: "grammar_practice", round_id: roundId, grammar_topic: topicKey, items, ...(coachSessionKey ? { coach: { session_key: coachSessionKey } } : {}) });
     setDone(true);
   };
 
