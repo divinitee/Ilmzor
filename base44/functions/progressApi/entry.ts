@@ -8,6 +8,8 @@ import { enrichmentFor } from '../../shared/skillActivityMap.js';
 import { childrenOf, TAXONOMY_VERSION } from '../../shared/skillTaxonomy.js';
 import { freshnessFor } from '../../shared/progressCore.js';
 import { rebuildLeafStates, verifyLeafStates } from '../../shared/leafStateEngine.ts';
+import { applyRound as coachApplyRound } from '../../shared/coachEngine.ts';
+import * as tsfsrs from 'npm:ts-fsrs@5.4.2';
 
 // progressApi (VT-6, corrected 2026-09-29). Progress and rewards are separate:
 //   submitEvidence  a round's per-item evidence -> item ledger -> SkillState.
@@ -119,6 +121,17 @@ async function submitEvidence(svc: any, me: any, body: any) {
   await svc.RoundReceipt.update(receipt.id, { status: 'done', game: r.game, skill, items_total: total, items_credit: credit, verification: g.verification });
   await recomputeSkill(svc, me.email, skill);
   try { await rebuildLeafStates(svc, me.email); } catch (e) { console.error('leaf rebuild failed (ignored)', e); }
+  // VT-40 Coach Engine: the ONE evidence pipeline. Item-level rows only (AI receipts have
+  // no item identity). body.coach = { session_key } is validated server-side against the
+  // learner's own PlanLog; a failure here never changes this response.
+  if (!g.ai && g.rows?.length) {
+    try {
+      await coachApplyRound(svc, me.email, {
+        rows: g.rows.map((row: any) => ({ ...row, ledger: g.ledger, user_email: me.email, game: r.game, level: r.level, round_id: r.round_id, round_at, verification: g.verification })),
+        coach: body?.coach && typeof body.coach === 'object' ? { session_key: str(body.coach.session_key, 80) } : undefined,
+      }, { fsrsLib: tsfsrs });
+    } catch (e) { console.error('coach applyRound failed (ignored)', e); }
+  }
   return { duplicate: false, observed_pct: Math.round((100 * credit) / total), verification: g.verification, ...(await readSkillStates(svc, me.email)) };
 }
 
