@@ -44,7 +44,9 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
 
   const submit = () => { if (ready && !marked) setMarked(gradeItem(item, responses[i])); };
 
-  const next = () => {
+  const [saving, setSaving] = useState(false);
+  const next = async () => {
+    if (saving) return;
     setMarked(null);
     if (i + 1 < round.items.length) { setI(i + 1); return; }
     saveHistory(topicKey, recordSeen(historyFor(topicKey), round.variantIds));
@@ -53,7 +55,20 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
     const items = round.items
       .map((it, k) => ({ item_id: it.id, given: it.format === "mcq" ? it.options?.[responses[k]] ?? null : responses[k] }))
       .filter((x) => /\.(choose|build|transform)\.\d+$/.test(x.item_id || ""));
-    if (user?.email && items.length) submitEvidence(user.email, { game: "grammar_practice", round_id: roundId, grammar_topic: topicKey, items, ...(coachSessionKey ? { coach: { session_key: coachSessionKey } } : {}) });
+    if (user?.email && items.length) {
+      const payload = { game: "grammar_practice", round_id: roundId, grammar_topic: topicKey, items, ...(coachSessionKey ? { coach: { session_key: coachSessionKey } } : {}) };
+      if (coachSessionKey) {
+        // Coach mode: the server must have this evidence BEFORE the session moves
+        // on, so the next plan / Done / Keep going are computed from it.
+        // submitEvidence never throws (returns null on failure) and is
+        // idempotent per round_id on the server.
+        setSaving(true);
+        await submitEvidence(user.email, payload);
+        setSaving(false);
+      } else {
+        submitEvidence(user.email, payload);
+      }
+    }
     setDone(true);
   };
 
