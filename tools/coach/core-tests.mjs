@@ -143,11 +143,16 @@ const ago = (days) => new Date(NOW - days * DAY).toISOString();
   ok("at least one non-review item when one fits", allRev.queue.some((c) => c.bucket !== "review") && allRev.minutes_planned <= 10);
   const none = planToday({ items: [], newCandidates: [], goal, policy: POLICIES.vira, minutes: 10, now: NOW });
   ok("no useful content -> 'goal complete for now' + suggestion", none.explanation.length === 0 && none.fallback === "goal_complete" && none.suggestion === "choose_another_goal");
-  const maint = planToday({ items: [IT("word:a:0", "solid", { stability: 9 }), IT("word:b:0", "solid", { stability: 2 })], newCandidates: [], goal, policy: POLICIES.vira, minutes: 10, now: NOW });
+  const later = new Date(NOW + 5 * DAY).toISOString();
+  const maint = planToday({ items: [IT("word:a:0", "solid", { stability: 9, due: later, reps: 2 }), IT("word:b:0", "solid", { stability: 2, due: later, reps: 2 })], newCandidates: [], goal, policy: POLICIES.vira, minutes: 10, now: NOW });
   ok("nothing due/weak/new -> maintenance review, lowest stability first", maint.fallback === "maintenance" && maint.explanation[0].item_key === "word:b:0" && maint.explanation[0].depth === "brushup");
   const p1 = planToday({ items: [IT("word:a:0", "weak")], newCandidates: [], goal, policy: POLICIES.velvet, minutes: 10, now: NOW });
   const p2 = planToday({ items: [IT("word:a:0", "weak")], newCandidates: [], goal, policy: POLICIES.velvet, minutes: 10, now: NOW });
   ok("plans are deterministic (same hash)", p1.plan_hash === p2.plan_hash);
+  const fc = rankCandidates({ items: [IT("word:g:0", "learning")], goal, policy: P, now: NOW })[0];
+  ok("game-learned item with no FSRS card is due for a first coach check", fc.bucket === "review" && fc.reasons.includes("first_check"));
+  const mixed = planSession(rankCandidates({ items: [...Array.from({ length: 6 }, (_, i) => IT(`word:r${i}:0`, "learning", { due: ago(1), reps: 1 })), IT("word:w:0", "weak")], newCandidates: [{ item_type: "word", item_key: "word:n:0" }], goal, policy: POLICIES.vira, now: NOW }), { policy: POLICIES.vira, minutes: 10 });
+  ok("reviews leave room for one remediation and one probe", mixed.queue.some((c) => c.bucket === "remediate") && mixed.queue.some((c) => c.bucket === "new") && mixed.minutes_planned <= 10, mixed.queue.map((c) => c.bucket).join());
   ok("explanation carries features, reasons, policy version", p1.explanation[0].features && p1.explanation[0].reasons.length && p1.explanation[0].policy === "velvet@2");
 }
 
