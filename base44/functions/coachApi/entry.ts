@@ -2,7 +2,6 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.52';
 import { backfillLearner, verifyLearner, deriveForLearner } from '../../shared/coachEngine.ts';
 import { resolveCoach } from '../../shared/coachPolicies.js';
 import { LABELS } from '../../shared/coachCore.js';
-import { pageAll } from '../../shared/progressEngine.ts';
 
 // coachApi (VT-40). The Coach Engine's only HTTP surface.
 // Stage 1 (2026-10-08): admin backfill / verify / preview, plus whoami for the
@@ -38,14 +37,19 @@ async function targets(svc: any, body: any) {
   return { emails: all.slice(offset, offset + limit), total: all.length, next_offset: offset + limit < all.length ? offset + limit : null };
 }
 
-async function currentSub(svc: any, email: string) {
-  const subs = (await pageAll(svc.StudentSubscription, { user_email: email }, '-updated_date')) || [];
-  return subs[0] || null;
+// Same row selection as studentApi.findSub (subscriptions are keyed by `phone` = email,
+// legacy naming; created_by_id as fallback). A paid/active row wins, then the newest.
+async function currentSub(svc: any, me: any) {
+  let rows = await svc.StudentSubscription.filter({ phone: me.email });
+  if (!rows?.length) rows = await svc.StudentSubscription.filter({ created_by_id: me.id });
+  if (!rows?.length) return null;
+  const rank = (s: any) => (s.status === 'active' ? 2 : 0) + (s.dodo_subscription_id ? 1 : 0);
+  return [...rows].sort((a: any, b: any) => rank(b) - rank(a) || String(b.updated_date || '').localeCompare(String(a.updated_date || '')))[0];
 }
 
 /** Any signed-in user: which coach the server resolves for them (no limits stored anywhere). */
 async function whoami(svc: any, me: any) {
-  const r = resolveCoach(await currentSub(svc, me.email));
+  const r = resolveCoach(await currentSub(svc, me));
   return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null };
 }
 
