@@ -246,6 +246,7 @@ function makeStore() {
   await getToday(svc, A, null, {}, deps, NOW + 60000);
   ok("identical getToday writes no new snapshot", tables.PlanLog.length === 1);
   ok("PlanLog version stamps come from the code constants (no stale literals)", tables.PlanLog[0].engine === ENGINE_STAMP && ENGINE_STAMP === [PLAN_VERSION, ENGINE_VERSION, GRAPH_VERSION].join("+") && tables.PlanLog[0].policy === POLICIES[tables.PlanLog[0].policy.split("@")[0]].version && t1.plan.items.every((i) => i.engine === undefined || i.engine === PLAN_VERSION), JSON.stringify({ e: tables.PlanLog[0].engine, p: tables.PlanLog[0].policy }));
+  ok("getToday gives the UI onboarded + goals + done_today (Stage 3 contract)", t1.settings.onboarded === false && Array.isArray(t1.settings.goals) && t1.settings.goals.length >= 1 && typeof t1.done_today === "number");
   ok("policies use continuationSessionsPerDay (no extraRounds leak)", Object.values(POLICIES).every((p) => Number.isInteger(p.limits.continuationSessionsPerDay) && !JSON.stringify(p).includes("extraRounds")));
   await Promise.all([getToday(svc, A, null, {}, deps, NOW + 61000), getToday(svc, A, null, {}, deps, NOW + 62000)]);
   ok("concurrent identical getToday calls write no duplicate snapshot", tables.PlanLog.length === 1);
