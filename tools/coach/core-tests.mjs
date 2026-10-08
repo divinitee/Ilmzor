@@ -8,7 +8,7 @@ import * as tsfsrs from "ts-fsrs";
 import {
   resolveWordItem, grammarItemFor, baseWeight, evidenceFromLedgers, effectiveWeights,
   deriveItemState, deriveItem, deriveLearnerItems, canonicalItem, dayOf, isResolved, LABELS,
-  replayFsrs, ratingFor,
+  replayFsrs, ratingFor, ENGINE_VERSION,
 } from "../../base44/shared/coachCore.js";
 import { rankCandidates, planSession, planToday, DEPTHS, PLAN_VERSION } from "../../base44/shared/coachPlan.js";
 import { POLICIES, PERSONAS, resolveCoach, entitlementOf, needsHandoff, weightSum, minutesFor } from "../../base44/shared/coachPolicies.js";
