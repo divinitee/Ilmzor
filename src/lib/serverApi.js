@@ -45,6 +45,7 @@ export const studentApi = (action, payload) => call("studentApi", action, payloa
 export const teacherApi = (action, payload) => call("teacherApi", action, payload);
 // VT-6 progress: base44/functions/progressApi/entry.ts
 export const progressApi = (action, payload) => call("progressApi", action, payload);
+export const coachApi = (action, payload) => call("coachApi", action, payload);
 // Humo/Uzcard QR payments (2026-10-02): base44/functions/qrPayApi/entry.ts
 export const qrPayApi = (action, payload) => call("qrPayApi", action, payload);
 
