@@ -4,7 +4,7 @@
 // translation; translation = pick the English headword.
 
 /** Questions per word by plan depth (a word is small; grammar uses the full count). */
-export const WORD_QUESTIONS = { probe: 1, "brush-up": 2, brush_up: 2, practice: 2, remediation: 3 };
+export const WORD_QUESTIONS = { probe: 1, brushup: 2, practice: 2, remediation: 3 };
 
 export const nativeKeyFor = (lang) => (lang === "ru" ? "russian" : "uzbek");
 
@@ -48,4 +48,4 @@ export function grammarPath(itemKey) {
 }
 
 /** Plan depth -> grammar practice stage. Weak/new start at "choose" (recognise first). */
-export const stageForDepth = (depth) => (depth === "practice" ? "build" : depth === "brush-up" || depth === "brush_up" ? "transform" : "choose");
+export const stageForDepth = (depth) => (depth === "practice" ? "build" : depth === "brushup" ? "transform" : "choose");
