@@ -1,17 +1,58 @@
 {
-  "name": "PlanLog",
-  "type": "object",
   "description": "VT-40 Coach Engine. Plan SNAPSHOTS for replay and QA: the first plan of each day plus one whenever the plan changes (same plan_hash = no new row). queue holds the explanation objects. Admin-only.",
+  "name": "PlanLog",
   "properties": {
-    "user_email": {
+    "day": {
+      "description": "YYYY-MM-DD, Asia/Tashkent.",
       "type": "string"
     },
-    "day": {
-      "type": "string",
-      "description": "YYYY-MM-DD, Asia/Tashkent."
+    "engine": {
+      "description": "e.g. coach-core@1",
+      "type": "string"
+    },
+    "entitlement": {
+      "type": "string"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "goal_id": {
+      "type": "string"
+    },
+    "kind": {
+      "description": "today = Today's Practice; continuation = a 'Keep going' session planned fresh from updated learner state.",
+      "enum": [
+        "today",
+        "continuation"
+      ],
+      "type": "string"
+    },
+    "minutes": {
+      "type": "number"
+    },
+    "plan_hash": {
+      "type": "string"
+    },
+    "policy": {
+      "description": "e.g. velvet@1",
+      "type": "string"
+    },
+    "queue": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "session_key": {
+      "description": "`<day>:<kind>:<session_no>`. Evidence submitted with this key moves FSRS only for items in this session's snapshots.",
+      "type": "string"
+    },
+    "session_no": {
+      "description": "0 for Today's Practice, 1..n for continuation sessions that day.",
+      "type": "number"
     },
     "trigger": {
-      "type": "string",
       "enum": [
         "daily_initial",
         "continuation_initial",
@@ -19,52 +60,10 @@
         "goal_changed",
         "time_changed",
         "policy_changed"
-      ]
-    },
-    "plan_hash": {
-      "type": "string"
-    },
-    "generated_at": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "entitlement": {
-      "type": "string"
-    },
-    "policy": {
-      "type": "string",
-      "description": "e.g. velvet@1"
-    },
-    "engine": {
-      "type": "string",
-      "description": "e.g. coach-core@1"
-    },
-    "minutes": {
-      "type": "number"
-    },
-    "queue": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "kind": {
-      "type": "string",
-      "enum": [
-        "today",
-        "continuation"
       ],
-      "description": "today = Today's Practice; continuation = a 'Keep going' session planned fresh from updated learner state."
+      "type": "string"
     },
-    "session_no": {
-      "type": "number",
-      "description": "0 for Today's Practice, 1..n for continuation sessions that day."
-    },
-    "session_key": {
-      "type": "string",
-      "description": "`<day>:<kind>:<session_no>`. Evidence submitted with this key moves FSRS only for items in this session's snapshots."
-    },
-    "goal_id": {
+    "user_email": {
       "type": "string"
     }
   },
@@ -74,8 +73,14 @@
     "plan_hash",
     "session_key"
   ],
+  "type": "object",
   "rls": {
     "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
       "user_condition": {
         "role": "admin"
       }
@@ -86,11 +91,6 @@
       }
     },
     "update": {
-      "user_condition": {
-        "role": "admin"
-      }
-    },
-    "delete": {
       "user_condition": {
         "role": "admin"
       }
