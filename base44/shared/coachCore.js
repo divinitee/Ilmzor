@@ -265,8 +265,15 @@ export function replayFsrs(evidence, fsrsLib) {
 }
 
 // ---------------------------------------------------------------------------
+/** Duplicated rows (same round + item) must never count twice. Keeps the first by time. */
+export function dedupeEvidence(evidence) {
+  const seen = new Set();
+  return [...(evidence || [])].sort(byTime).filter((e) => { const k = `${e.round_id}|${e.item_key}`; if (seen.has(k)) return false; seen.add(k); return true; });
+}
+
 /** Derive one item's full LearnerItem facts (state + FSRS) from its evidence. */
-export function deriveItem(evidence, fsrsLib) {
+export function deriveItem(rawEvidence, fsrsLib) {
+  const evidence = dedupeEvidence(rawEvidence);
   const first = evidence[0];
   const { card } = replayFsrs(evidence, fsrsLib);
   return {
