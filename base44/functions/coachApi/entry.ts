@@ -1,13 +1,21 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.52';
-import { backfillLearner, verifyLearner, deriveForLearner } from '../../shared/coachEngine.ts';
+import * as tsfsrs from 'npm:ts-fsrs@5.4.2';
+import {
+  backfillLearner, verifyLearner, deriveForLearner, shadowLearner,
+  getToday, startContinuation, ackHandoff, saveProfile, getMap,
+} from '../../shared/coachEngine.ts';
 import { resolveCoach } from '../../shared/coachPolicies.js';
 import { LABELS } from '../../shared/coachCore.js';
 
 // coachApi (VT-40). The Coach Engine's only HTTP surface.
-// Stage 1 (2026-10-08): admin backfill / verify / preview, plus whoami for the
-// policy resolver. Stage 2 adds getToday / getMap / profile; Stage 4 adds
-// linkTelegram. Policies are resolved HERE from the caller's subscription on
-// every request — the client never sends one.
+//   learner:  whoami, getToday, startContinuation, ackHandoff, saveProfile, getMap
+//   admin:    backfill (dryRun default), verify, explain, shadow (writes nothing)
+// The coach (entitlement, policy, persona) is resolved HERE from the caller's
+// subscription on every request; the client never sends one. Evidence does NOT come
+// in here: coach sessions submit through progressApi.submitEvidence like every game
+// (with body.coach = { session_key }), so there is exactly one evidence pipeline.
+
+const deps = { fsrsLib: tsfsrs };
 
 class ApiError extends Error {
   status: number; code: string;
@@ -37,7 +45,7 @@ async function targets(svc: any, body: any) {
   return { emails: all.slice(offset, offset + limit), total: all.length, next_offset: offset + limit < all.length ? offset + limit : null };
 }
 
-// Same row selection as studentApi.findSub (subscriptions are keyed by `phone` = email,
+// Same row selection as studentApi.findSub (subscriptions keyed by `phone` = email,
 // legacy naming; created_by_id as fallback). A paid/active row wins, then the newest.
 async function currentSub(svc: any, me: any) {
   let rows = await svc.StudentSubscription.filter({ phone: me.email });
@@ -47,41 +55,48 @@ async function currentSub(svc: any, me: any) {
   return [...rows].sort((a: any, b: any) => rank(b) - rank(a) || String(b.updated_date || '').localeCompare(String(a.updated_date || '')))[0];
 }
 
-/** Any signed-in user: which coach the server resolves for them (no limits stored anywhere). */
-async function whoami(svc: any, me: any) {
-  const r = resolveCoach(await currentSub(svc, me));
-  return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null };
-}
+const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = {
+  async whoami(svc, me) {
+    const r = resolveCoach(await currentSub(svc, me));
+    return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null };
+  },
+  async getToday(svc, me, body) { return getToday(svc, me, await currentSub(svc, me), { session_no: Number(body.session_no) || 0 }, deps); },
+  async startContinuation(svc, me) { return startContinuation(svc, me, await currentSub(svc, me), deps); },
+  async ackHandoff(svc, me) { return ackHandoff(svc, me, await currentSub(svc, me)); },
+  async saveProfile(svc, me, body) { return saveProfile(svc, me, await currentSub(svc, me), body); },
+  async getMap(svc, me) { return getMap(svc, me, await currentSub(svc, me)); },
 
-/** Admin: build ItemEvidence + LearnerItem from the existing game ledgers. dryRun writes nothing. */
-async function backfill(svc: any, me: any, body: any) {
-  admin(me);
-  const t = await targets(svc, body);
-  const dryRun = body.dryRun !== false;
-  const results = [];
-  for (const email of t.emails) results.push(await backfillLearner(svc, email, { dryRun }));
-  return { dryRun, done: t.emails.length, total: t.total, next_offset: t.next_offset, has_more: t.next_offset != null, results };
-}
-
-/** Admin: stored LearnerItem == fresh derivation from ItemEvidence, order-independent, no duplicates. */
-async function verify(svc: any, me: any, body: any) {
-  admin(me);
-  const t = await targets(svc, body);
-  const results = [];
-  for (const email of t.emails) results.push(await verifyLearner(svc, email));
-  return { checked: t.emails.length, total: t.total, next_offset: t.next_offset, failing: results.filter((r) => !r.deterministic || r.mismatches.length || r.duplicates).map((r) => r.email), results };
-}
-
-/** Admin: one learner's derived items with student-facing labels (debug view; writes nothing). */
-async function preview(svc: any, me: any, body: any) {
-  admin(me);
-  const email = str(body.email, 200).trim().toLowerCase();
-  if (!email) throw new ApiError(400, 'missing_email');
-  const { items, evidence, ledgerRows } = await deriveForLearner(svc, email);
-  return { email, ledgerRows, evidenceRows: evidence.length, items: items.map((i) => ({ ...i, label: (LABELS as Record<string, string>)[i.learning_state] })) };
-}
-
-const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = { whoami, backfill, verify, preview };
+  async backfill(svc, me, body) {
+    admin(me);
+    const t = await targets(svc, body);
+    const dryRun = body.dryRun !== false;
+    const results = [];
+    for (const email of t.emails) results.push(await backfillLearner(svc, email, { dryRun }, deps));
+    return { dryRun, done: t.emails.length, total: t.total, next_offset: t.next_offset, has_more: t.next_offset != null, results };
+  },
+  async verify(svc, me, body) {
+    admin(me);
+    const t = await targets(svc, body);
+    const results = [];
+    for (const email of t.emails) results.push(await verifyLearner(svc, email, deps));
+    return { checked: t.emails.length, total: t.total, next_offset: t.next_offset, failing: results.filter((r) => !r.deterministic || r.mismatches.length || r.duplicates || r.unresolvedItems).map((r) => r.email), results };
+  },
+  async explain(svc, me, body) {
+    admin(me);
+    const email = str(body.email, 200).trim().toLowerCase();
+    if (!email) throw new ApiError(400, 'missing_email');
+    const { items, evidence, ledgerRows } = await deriveForLearner(svc, email, deps);
+    const plans = (await svc.PlanLog.filter({ user_email: email }, '-generated_at', 10)) || [];
+    return { email, ledgerRows, evidenceRows: evidence.length, items: items.map((i: any) => ({ ...i, label: (LABELS as Record<string, string>)[i.learning_state] })), recentPlans: plans };
+  },
+  async shadow(svc, me, body) {
+    admin(me);
+    const t = await targets(svc, body);
+    const results = [];
+    for (const email of t.emails) results.push(await shadowLearner(svc, email, deps));
+    return { writes: 0, done: t.emails.length, total: t.total, next_offset: t.next_offset, results };
+  },
+};
 
 export default async function (req: Request): Promise<Response> {
   try {
@@ -94,9 +109,9 @@ export default async function (req: Request): Promise<Response> {
     if (!fn) return Response.json({ ok: false, error: 'unknown action', code: 'unknown_action' }, { status: 400 });
     const data = await fn(base44.asServiceRole.entities, me, body);
     return Response.json({ ok: true, ...data });
-  } catch (error) {
-    if (error instanceof ApiError) return Response.json({ ok: false, error: error.code, code: error.code }, { status: error.status });
+  } catch (error: any) {
+    if (error instanceof ApiError || error?.code) return Response.json({ ok: false, error: error.code, code: error.code }, { status: error.status || 400 });
     console.error('coachApi error:', error);
-    return Response.json({ ok: false, error: (error as any)?.message || 'server error', code: 'server_error' }, { status: 500 });
+    return Response.json({ ok: false, error: error?.message || 'server error', code: 'server_error' }, { status: 500 });
   }
 }
