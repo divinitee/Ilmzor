@@ -12,6 +12,7 @@ import { submitEvidence } from "@/lib/progress/progressClient";
 import { generateRoundId } from "@/lib/gameScoring";
 import { coachT, labelKey, reasonKey, COACH_NAMES, COACH_COLORS } from "@/lib/coach/coachCopy";
 import { buildWordQuestions, evidenceItem, grammarPath, stageForDepth } from "@/lib/coach/wordCheck";
+import { OUTCOME, summarise, afterRunView } from "@/lib/coach/sessionOutcome";
 import CoachWordCheck from "@/components/coach/CoachWordCheck";
 import PracticeRunner from "@/components/grammar/PracticeRunner";
 
@@ -50,8 +51,10 @@ export default function Coach() {
   const gc = useGrammarCopy();
   const [data, setData] = useState(null);
   const [err, setErr] = useState(null);
-  const [view, setView] = useState("plan"); // plan | run | done | map
+  const [view, setView] = useState("plan"); // plan | run | after | map
   const [busy, setBusy] = useState(false);
+  const [lastRun, setLastRun] = useState(null); // summarise(outcomes) of the run that just ended
+  const flushRef = useRef(null); // the running Session's flush (queued word answers)
 
   // No session_no: the SERVER decides which session is active (today or the
   // latest "Keep going"). The client never decides continuation allowance.
@@ -65,7 +68,17 @@ export default function Coach() {
   const persona = data?.coach?.persona || "vira";
   const color = COACH_COLORS[persona];
   const t = coachT(lang, persona);
-  const back = () => (view === "plan" ? navigate("/") : setView("plan"));
+  // Leaving a running session sends any queued word answers FIRST (they are
+  // real answers), then reloads so the plan reflects them. Nothing is invented.
+  const back = async () => {
+    if (view === "run") {
+      setBusy(true);
+      try { await flushRef.current?.(); await load(); } finally { setBusy(false); }
+      setView("plan");
+      return;
+    }
+    if (view === "plan") navigate("/"); else setView("plan");
+  };
   const mapBtn = data && view !== "map" ? (
     <button onClick={() => setView("map")} className="neo-pill px-3 py-1.5 text-xs font-semibold flex items-center gap-1.5 select-none">
       <MapIcon className="w-3.5 h-3.5" /> {t("map_title")}
@@ -104,8 +117,8 @@ export default function Coach() {
 
   if (view === "run") return (
     <Shell onBack={back}>
-      <Session data={data} t={t} gc={gc} color={color} lang={lang} email={user?.email}
-        onFinished={async () => { await load(); setView("done"); }} />
+      <Session data={data} t={t} gc={gc} color={color} lang={lang} email={user?.email} flushRef={flushRef}
+        onFinished={async (summary) => { await load(); setLastRun(summary); setView("after"); }} />
     </Shell>);
 
   const items = data.plan.items || [];
@@ -113,18 +126,38 @@ export default function Coach() {
   const upsell = (data.coach.entitlement === "free" || data.coach.entitlement === "trial") && persona === "vira";
   const keepGoing = async () => {
     setBusy(true);
-    try { const d = await coachApi("startContinuation", {}); setData(d); setView("run"); }
+    try { const d = await coachApi("startContinuation", {}); setData(d); setLastRun(null); setView("run"); }
     catch { await load(); }
     finally { setBusy(false); }
   };
 
-  // 3. Done (finished everything planned today, or just finished a session).
-  if (view === "done" || data.session?.complete) return (
+  // After a run, the screen comes from the SERVER's session state (reloaded
+  // after the awaited submissions) plus what this run could not load.
+  const afterView = view === "after" ? afterRunView({ session: data.session, items, summary: lastRun }) : null;
+  const retry = () => { setLastRun(null); setView("plan"); load(); };
+
+  // 3a. Nothing could be loaded: no "Done" wording, nothing was recorded.
+  if (afterView === "unavailable") return (
+    <Shell onBack={() => navigate("/")} right={mapBtn}>
+      <div className="premium-card rounded-[28px] p-8 text-center">
+        <div className="flex justify-center mb-4"><Orb color={color} size={64} /></div>
+        <h1 className="text-xl font-bold text-foreground">{t("unavailable_title")}</h1>
+        <p className="text-sm text-muted-foreground mt-2">{t("unavailable_sub")}</p>
+        <button onClick={retry} className="mt-6 w-full h-12 rounded-2xl font-semibold text-white" style={{ background: color }}>{t("retry")}</button>
+        <button onClick={() => navigate("/")} className="neo-pill mt-4 px-5 py-2 text-sm font-semibold">{t("free_practice")}</button>
+      </div>
+    </Shell>);
+
+  // 3. Done: the server says the session is complete, or everything that could
+  // load was completed (the unloadable rest stays in the plan, and is named).
+  const isDone = afterView === "done" || afterView === "done_partial" || (afterView === null && data.session?.complete);
+  if (isDone) return (
     <Shell onBack={() => navigate("/")} right={mapBtn}>
       <div className="premium-card rounded-[28px] p-8 text-center">
         <div className="flex justify-center mb-4"><Orb color={color} size={64} /></div>
         <h1 className="text-xl font-bold text-foreground">{t("done_title")}</h1>
         <p className="text-sm text-muted-foreground mt-2">{t("done_sub")}</p>
+        {afterView === "done_partial" && <p className="text-xs text-amber-300/90 mt-3">{t("partial_note", { n: lastRun?.unavailable || 0 })}</p>}
         {continuation.available ? (
           <button disabled={busy} onClick={keepGoing} className="mt-6 w-full h-12 rounded-2xl font-semibold text-white flex items-center justify-center gap-2" style={{ background: color }}>
             {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCw className="w-4 h-4" />} {t("keep_going")}
@@ -177,7 +210,7 @@ export default function Coach() {
             </li>
           ))}
         </ul>
-        <button onClick={() => setView("run")} className="mt-4 w-full h-12 rounded-2xl font-semibold text-white flex items-center justify-center gap-2" style={{ background: color }}>
+        <button onClick={() => { setLastRun(null); setView("run"); }} className="mt-4 w-full h-12 rounded-2xl font-semibold text-white flex items-center justify-center gap-2" style={{ background: color }}>
           <Play className="w-4 h-4" /> {t("start")}
         </button>
       </div>
@@ -242,13 +275,14 @@ function Onboarding({ data, t, color, onDone, onBack }) {
 
 // Runs the plan's items in order. Word answers are batched and sent as ONE
 // server-graded "quiz" round when the session moves to grammar or ends.
-function Session({ data, t, gc, color, lang, email, onFinished }) {
+function Session({ data, t, gc, color, lang, email, onFinished, flushRef }) {
   const items = data.plan.items || [];
   const sessionKey = data.session.session_key;
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(null); // { kind, word?, questions?, grammarItems?, stage?, topicKey? }
   const pending = useRef([]);
   const finishing = useRef(false);
+  const outcomes = useRef({}); // item_key -> OUTCOME (see sessionOutcome.js)
   const pool = useRef(null);
 
   const flush = useCallback(async () => {
@@ -257,6 +291,15 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
   }, [email, sessionKey]);
 
   const advance = useCallback(() => setIdx((i) => i + 1), []);
+  const finishItem = useCallback((key, outcome) => { outcomes.current[key] = outcome; advance(); }, [advance]);
+
+  // Let the page send queued answers before it leaves (Back), and as a last
+  // resort on unmount (navigating away). flush() empties the queue first, so
+  // the two can never send the same answers twice.
+  useEffect(() => {
+    if (flushRef) flushRef.current = flush;
+    return () => { if (flushRef) flushRef.current = null; flush(); };
+  }, [flush, flushRef]);
 
   useEffect(() => {
     let alive = true;
@@ -269,28 +312,33 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
         if (finishing.current) return;
         finishing.current = true;
         await flush(); // awaited: the server has every answer before Done is computed
-        onFinished();
+        onFinished(summarise(outcomes.current));
         return;
       }
       if (it.item_type === "word") {
-        if (!pool.current) {
-          const ids = items.filter((x) => x.item_type === "word").map((x) => x.word_id);
-          await fetchWords(ids);
-          const extra = (await base44.entities.VocabularyWord.filter({}, "english", 60).catch(() => [])) || [];
-          pool.current = [...ids.map((id) => wordCache.get(id)).filter(Boolean), ...extra];
-        }
-        const word = wordCache.get(it.word_id);
-        const questions = word ? buildWordQuestions(word, pool.current, { depth: it.depth, lang }) : [];
+        let questions = [], word = null;
+        try {
+          if (!pool.current) {
+            const ids = items.filter((x) => x.item_type === "word").map((x) => x.word_id);
+            await fetchWords(ids);
+            const extra = (await base44.entities.VocabularyWord.filter({}, "english", 60).catch(() => [])) || [];
+            pool.current = [...ids.map((id) => wordCache.get(id)).filter(Boolean), ...extra];
+          }
+          word = wordCache.get(it.word_id) || null;
+          questions = word ? buildWordQuestions(word, pool.current, { depth: it.depth, lang }) : [];
+        } catch { questions = []; }
         if (!alive) return;
-        if (!questions.length) { advance(); return; } // no usable translation: skip, never fake evidence
-        setReady({ kind: "word", word, questions });
+        // No usable word/translation/distractors: UNAVAILABLE. Nothing is sent.
+        if (!questions.length) { finishItem(it.item_key, OUTCOME.UNAVAILABLE); return; }
+        setReady({ kind: "word", key: it.item_key, word, questions });
       } else {
         await flush();
         const path = grammarPath(it.item_key);
-        const bank = path ? await loadTopic(...path) : [];
+        let bank = [];
+        try { bank = path ? await loadTopic(...path) : []; } catch { bank = []; }
         if (!alive) return;
-        if (!bank.length) { advance(); return; }
-        setReady({ kind: "grammar", grammarItems: bank, stage: stageForDepth(it.depth), topicKey: path.join("."), size: Math.max(3, Math.min(10, it.questions || 5)) });
+        if (!bank.length) { finishItem(it.item_key, OUTCOME.UNAVAILABLE); return; }
+        setReady({ kind: "grammar", key: it.item_key, grammarItems: bank, stage: stageForDepth(it.depth), topicKey: path.join("."), size: Math.max(3, Math.min(10, it.questions || 5)) });
       }
     })();
     return () => { alive = false; };
@@ -309,10 +357,12 @@ function Session({ data, t, gc, color, lang, email, onFinished }) {
         <div className="premium-card rounded-[28px] p-10 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" style={{ color }} /></div>
       ) : ready.kind === "word" ? (
         <CoachWordCheck key={`w${idx}`} word={ready.word} questions={ready.questions} color={color} t={t}
-          onAnswer={(w, q, given) => pending.current.push(evidenceItem(w, q, given))} onDone={advance} />
+          onAnswer={(w, q, given) => pending.current.push(evidenceItem(w, q, given))} onDone={() => finishItem(ready.key, OUTCOME.COMPLETED)} />
       ) : (
         <PracticeRunner key={`g${idx}`} items={ready.grammarItems} stage={ready.stage} topicKey={ready.topicKey} size={ready.size}
-          c={gc} coachSessionKey={sessionKey} onExit={advance} />
+          c={gc} coachSessionKey={sessionKey}
+          onFinish={() => finishItem(ready.key, OUTCOME.COMPLETED)}
+          onExit={() => finishItem(ready.key, OUTCOME.LEFT)} />
       )}
     </div>
   );
