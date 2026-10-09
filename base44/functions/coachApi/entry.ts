@@ -4,7 +4,7 @@ import {
   backfillLearner, verifyLearner, deriveForLearner, shadowLearner,
   getToday, startContinuation, ackHandoff, saveProfile, getMap,
 } from '../../shared/coachEngine.ts';
-import { resolveCoach } from '../../shared/coachPolicies.js';
+import { resolveCoach, minutesFor } from '../../shared/coachPolicies.js';
 import { LABELS } from '../../shared/coachCore.js';
 
 // coachApi (VT-40). The Coach Engine's only HTTP surface.
