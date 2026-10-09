@@ -70,7 +70,8 @@ ok('whoami is read-only (creates no CoachProfile)', (tables.CoachProfile || []).
 me = { email: 'vip@x', role: 'user' };
 const wv = await C({ action: 'whoami' });
 ok('whoami: VIP with no profile -> VI policy default (15)', wv.coach === 'vi' && wv.minutes === 15, JSON.stringify(wv));
-me = { email: 'other@x', role: 'user' };
+// Real auth users always carry an id; currentSub falls back to created_by_id = me.id.
+me = { email: 'other@x', id: 'u2', role: 'user' };
 const wf = await C({ action: 'whoami' });
 ok('whoami: free -> Vira (10)', wf.coach === 'vira' && wf.minutes === 10, JSON.stringify(wf));
 me = { email: 'tee.test@x', role: 'user' };
