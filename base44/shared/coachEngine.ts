@@ -272,8 +272,9 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
 
   // No session_no -> the server picks the ACTIVE session: today's latest
   // continuation if one was started, otherwise Today's Practice.
+  const latestNo = await latestContinuationNo(svc, me.email, today);
   const sessionNo = body?.session_no === undefined || body?.session_no === null
-    ? await latestContinuationNo(svc, me.email, today)
+    ? latestNo
     : Math.max(0, Number(body.session_no) || 0);
   const kind = sessionNo > 0 ? 'continuation' : 'today';
   const session_key = `${today}:${kind}:${sessionNo}`;
@@ -284,10 +285,13 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
   // The session's budget is a prescription that gets USED UP: minutes already
   // practised in THIS session come off it (planner invariant per session), so
   // re-opening Today's Practice never mints a fresh full plan.
-  const spent = await sessionSpentMinutes(svc, me.email, session_key);
-  const remaining = Math.max(0, minutes - spent);
-  const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes: remaining, now, hasContent: hasContentFn, doneToday, kind });
-  const complete = spent > 0 && plan.explanation.length === 0;
+  const planCtx = { items, newCandidates, goal, policy: resolved.policy, minutes, now, doneToday };
+  const { spent, remaining, plan, complete } = await sessionState(svc, me.email, session_key, kind, planCtx);
+  // "Keep going" needs the LATEST session of the day (Today's Practice, or the
+  // last continuation) to be complete (Tee, 2026-10-09), plus room under the
+  // policy's continuationSessionsPerDay. Evaluated here, never in the client.
+  const latestComplete = sessionNo === latestNo ? complete
+    : (await sessionState(svc, me.email, latestNo > 0 ? `${today}:continuation:${latestNo}` : `${today}:today:0`, latestNo > 0 ? 'continuation' : 'today', planCtx)).complete;
   const { snapshot: snap } = await snapshot(svc, me.email, {
     day: today, kind, session_no: sessionNo, session_key, goal_id: goal.id, plan_hash: plan.plan_hash,
     generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version,
@@ -302,11 +306,23 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
     session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null, spent_minutes: spent, remaining_minutes: remaining, complete },
     plan: { minutes, minutes_planned: plan.minutes_planned, fallback: plan.fallback, suggestion: plan.suggestion, items: plan.explanation.map(studentView) },
     done_today: doneToday.size,
-    continuation: { allowed: resolved.policy.limits.continuationSessionsPerDay, used: continuationsUsed, available: doneToday.size > 0 && continuationsUsed < resolved.policy.limits.continuationSessionsPerDay },
+    continuation: { allowed: resolved.policy.limits.continuationSessionsPerDay, used: continuationsUsed, available: latestComplete && continuationsUsed < resolved.policy.limits.continuationSessionsPerDay },
   };
 }
 // What the student-facing UI gets (internal features/priorities stay server-side; admin `explain` sees them).
 const studentView = (e: any) => ({ item_key: e.item_key, item_type: e.item_type, word_id: e.word_id, label: e.label, short_reason: e.short_reason, depth: e.depth, questions: e.questions, est_minutes: e.est_minutes });
+
+/**
+ * A session's state from the server's own records: minutes already practised
+ * in it, the remaining budget, the plan for that remainder, and whether it is
+ * complete (something was practised and nothing playable is left in budget).
+ */
+async function sessionState(svc: any, email: string, sessionKey: string, kind: string, ctx: any) {
+  const spent = await sessionSpentMinutes(svc, email, sessionKey);
+  const remaining = Math.max(0, ctx.minutes - spent);
+  const plan = planToday({ ...ctx, minutes: remaining, hasContent: hasContentFn, kind });
+  return { spent, remaining, plan, complete: spent > 0 && plan.explanation.length === 0 };
+}
 
 /** Minutes of this session's planned items that already have Coach evidence (est_minutes from the session's own snapshots). */
 async function sessionSpentMinutes(svc: any, email: string, sessionKey: string) {
@@ -345,7 +361,10 @@ export async function startContinuation(svc: any, me: any, sub: any, deps: Deps,
     if (!practised) return getToday(svc, me, sub, { session_no: latest }, deps, now);
   }
   if (used >= resolved.policy.limits.continuationSessionsPerDay) throw Object.assign(new Error('no_continuations_left'), { code: 'no_continuations_left', status: 409 });
-  if (!(await doneTodayFor(svc, me.email, today)).size) throw Object.assign(new Error('finish_today_first'), { code: 'finish_today_first', status: 409 });
+  // The latest session of the day must be COMPLETE first (Tee, 2026-10-09).
+  // getToday with no session_no evaluates exactly that session.
+  const active = await getToday(svc, me, sub, {}, deps, now);
+  if (!active.session.complete) throw Object.assign(new Error('finish_today_first'), { code: 'finish_today_first', status: 409 });
   const n = used + 1;
   // Create the session's first snapshot, then reuse getToday's read path for it.
   const first = await getTodayPlanOnly(svc, me, resolved, n, deps, now);

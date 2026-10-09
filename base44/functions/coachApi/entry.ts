@@ -58,7 +58,11 @@ async function currentSub(svc: any, me: any) {
 const ACTIONS: Record<string, (svc: any, me: any, body: any) => Promise<any>> = {
   async whoami(svc, me) {
     const r = resolveCoach(await currentSub(svc, me));
-    return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null };
+    // minutes: READ-ONLY lookup of the learner's chosen daily minutes, clamped to
+    // what this policy offers (minutesFor); policy default when no profile yet.
+    // Never creates a profile (profileFor would) and never builds a plan.
+    const prof = ((await svc.CoachProfile.filter({ user_email: me.email }, 'created_date', 1)) || [])[0];
+    return { entitlement: r.entitlement, coach: r.coach, policy: r.policy.version, persona: r.persona.id, conversionPersona: r.conversionPersona?.id || null, minutes: minutesFor(r.policy, prof?.daily_minutes) };
   },
   // session_no omitted -> the server resolves the active session (see getToday).
   async getToday(svc, me, body) { return getToday(svc, me, await currentSub(svc, me), { session_no: body.session_no === undefined || body.session_no === null ? undefined : Number(body.session_no) || 0 }, deps); },
