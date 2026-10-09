@@ -20,7 +20,10 @@ const ROUND_SIZE = 10;
 
 // coachSessionKey (optional): set when the Coach launched this round, so the
 // server credits it to that Coach session (FSRS + coach evidence). Same pipeline.
-export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, c, coachSessionKey, size = ROUND_SIZE }) {
+// onFinish (optional): called from the result screen instead of onExit, so a
+// caller can tell "finished the round" from "left part-way" (onExit). Callers
+// that don't pass it (the Grammar page) keep the old behaviour exactly.
+export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain, onFinish, c, coachSessionKey, size = ROUND_SIZE }) {
   const [seed] = useState(() => Math.floor(Math.random() * 1e9));
   const [roundId] = useState(() => generateRoundId());
   const { user } = useAuth();
@@ -82,7 +85,7 @@ export default function PracticeRunner({ items, stage, topicKey, onExit, onAgain
 
   if (done) {
     const { graded } = scoreRound(round.items, responses);
-    return <PracticeResult summary={summarise(graded)} c={c} onAgain={onAgain} onExit={onExit} />;
+    return <PracticeResult summary={summarise(graded)} c={c} onAgain={onAgain} onExit={onFinish || onExit} />;
   }
 
   return (

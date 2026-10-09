@@ -34,6 +34,6 @@ export function afterRunView({ session, items = [], summary }) {
   const unavailable = new Set(summary?.unavailableKeys || []);
   const playable = items.filter((i) => !unavailable.has(i.item_key));
   if (playable.length) return "plan";
-  if (!items.length) return (summary?.completed || 0) > 0 ? "done" : "plan";
+  if (!items.length) return "plan"; // nothing left and not complete: the plan screen shows "nothing urgent"
   return (summary?.completed || 0) > 0 ? "done_partial" : "unavailable";
 }
