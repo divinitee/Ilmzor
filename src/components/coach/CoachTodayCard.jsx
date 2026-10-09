@@ -7,7 +7,9 @@ import { useAppLang } from "@/hooks/useAppLang";
 import { coachT, COACH_NAMES, COACH_COLORS } from "@/lib/coach/coachCopy";
 
 // Home entry point for the Coach (VT-40 Stage 3). Cheap: only `whoami`
-// (who your coach is). The plan itself is built when the student opens /coach.
+// (who your coach is + the learner's daily minutes, read-only on the server).
+// The plan itself is built when the student opens /coach. No minutes are
+// hardcoded here: while loading, or if whoami fails, the card shows none.
 export default function CoachTodayCard() {
   const navigate = useNavigate();
   const { lang } = useAppLang();
@@ -16,7 +18,7 @@ export default function CoachTodayCard() {
   const persona = who?.persona || "vira";
   const color = COACH_COLORS[persona];
   const t = coachT(lang, persona);
-  const minutes = persona === "vi" ? 15 : 10;
+  const minutes = Number.isFinite(who?.minutes) ? who.minutes : null;
   return (
     <motion.button data-tour="coach" onClick={() => navigate("/coach")}
       initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} whileTap={{ scale: 0.99 }}
@@ -28,7 +30,7 @@ export default function CoachTodayCard() {
       <span className="flex-1 min-w-0">
         <span className="block text-[11px] font-semibold uppercase tracking-wider" style={{ color }}>{COACH_NAMES[persona]}</span>
         <span className="block text-base font-bold text-foreground">{t("today_title")}</span>
-        <span className="block text-xs text-muted-foreground">{t("today_sub", { n: minutes })}</span>
+        <span className="block text-xs text-muted-foreground" data-testid="coach-card-sub">{minutes === null ? t("today_sub_plain") : t("today_sub", { n: minutes })}</span>
       </span>
       <ArrowRight className="w-5 h-5 text-foreground/70" />
     </motion.button>
