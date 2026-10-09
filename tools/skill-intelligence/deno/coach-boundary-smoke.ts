@@ -61,6 +61,20 @@ const answerFor = (topic: string, n: number) => {
 };
 const coachEv = (key: string) => (tables.ItemEvidence || []).filter((e) => e.session_key === key && e.source === 'coach_session');
 
+console.log('\n=== whoami minutes (read-only, server-authoritative) ===');
+tables.StudentSubscription.push({ id: 's2', phone: 'vip@x', status: 'active', plan: 'VIP Plan', expires_at: '2027-01-31' });
+const profilesBefore = (tables.CoachProfile || []).length;
+const w0 = await C({ action: 'whoami' });
+ok('whoami: Learner with no profile -> Velvet policy default (10)', w0.ok && w0.coach === 'velvet' && w0.minutes === 10, JSON.stringify(w0));
+ok('whoami is read-only (creates no CoachProfile)', (tables.CoachProfile || []).length === profilesBefore);
+me = { email: 'vip@x', role: 'user' };
+const wv = await C({ action: 'whoami' });
+ok('whoami: VIP with no profile -> VI policy default (15)', wv.coach === 'vi' && wv.minutes === 15, JSON.stringify(wv));
+me = { email: 'other@x', role: 'user' };
+const wf = await C({ action: 'whoami' });
+ok('whoami: free -> Vira (10)', wf.coach === 'vira' && wf.minutes === 10);
+me = { email: 'tee.test@x', role: 'user' };
+
 console.log('\n=== Today\'s Practice through the real handlers ===');
 const t1 = await C({ action: 'getToday' });
 ok('getToday ok: Velvet, today session, not complete', t1.ok && t1.coach.coach === 'velvet' && t1.session.kind === 'today' && t1.session.complete === false, JSON.stringify(t1).slice(0, 300));
@@ -78,6 +92,9 @@ const rq = await P({ action: 'submitEvidence', game: 'quiz', round_id: 'coach-q1
 const qRows = tables.WordAttempt.filter((r) => r.round_id === 'coach-q1');
 ok('quiz round is server-graded (client "correct" ignored: wrong pick stored as wrong)', rq.ok && rq.verification === 'server_graded' && qRows.find((r) => r.word_id === wordItems[0].word_id)?.correct === false && qRows.filter((r) => r.word_id !== wordItems[0].word_id).every((r) => r.correct === true));
 ok('coach evidence exists the moment submitEvidence RETURNS (awaited, no race)', wordItems.every((i: any) => coachEv(sk).some((e) => e.item_key === i.item_key)));
+const midDay = await C({ action: 'getToday' });
+const early = await C({ action: 'startContinuation' });
+ok('partly practised: Keep going NOT offered and startContinuation refused (finish_today_first)', midDay.session.complete === false && midDay.continuation.available === false && early.code === 'finish_today_first', JSON.stringify({ s: midDay.session, k: midDay.continuation, e: early.code }));
 const firstWord = tables.LearnerItem.find((r) => r.user_email === 'tee.test@x' && r.item_key === wordItems[0].item_key);
 ok('a wrong word answer (server-judged) lowers that item', firstWord && (firstWord.weighted_accuracy ?? 1) < 0.6);
 
@@ -101,6 +118,10 @@ const k1b = await C({ action: 'startContinuation' });
 const k1c = await C({ action: 'getToday' });
 const contKeys = new Set((tables.PlanLog || []).filter((p) => p.kind === 'continuation').map((p) => p.session_key));
 ok('double tap + refresh resume the SAME continuation (counted once)', k1b.session.session_key === k1.session.session_key && k1c.session.session_key === k1.session.session_key && contKeys.size === 1);
+
+const saved = await C({ action: 'saveProfile', daily_minutes: 20 });
+const w20 = await C({ action: 'whoami' });
+ok('whoami reflects the learner\'s saved choice (20)', saved.ok && w20.minutes === 20, JSON.stringify(w20));
 
 console.log('\n=== Session-key boundary ===');
 if (k1.plan.items[0]) {
