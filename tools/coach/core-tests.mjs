@@ -333,6 +333,47 @@ function makeStore() {
   ok("game ledgers are never modified", JSON.stringify(tables.WordAttempt) + JSON.stringify(tables.GrammarAttempt) === ledgersBefore);
 
   // ---------------------------------------------------------------------------
+  // CONTINUATION RULE (Tee, 2026-10-09): VI (2 a day). A second "Keep going" needs
+  // the FIRST continuation to be complete too; availability is always about the
+  // LATEST session, even when the client asks for an older one.
+  {
+    const D = { email: "d@x", id: "ud" };
+    const VIP = { status: "active", plan: "VIP Plan", expires_at: "2026-12-31" };
+    tables.WordAttempt.push(
+      W({ user_email: "d@x", word_id: "v1", word: "word1", correct: true, round_id: "d-r1", round_at: at(5) }),
+      W({ user_email: "d@x", word_id: "v2", word: "word2", correct: false, round_id: "d-r1", round_at: at(5) }),
+    );
+    let t = NOW + 2000;
+    const finish = async (view) => {
+      let g = 0;
+      while (!view.session.complete && view.plan.items.length && g++ < 10) {
+        for (const it of view.plan.items) await applyRound(svc, "d@x", { rows: rowsFor(it.item_key, `d-${view.session.session_key}-${g}-${it.item_key}`, 4, 5, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "d@x" })), coach: { session_key: view.session.session_key } }, deps);
+        view = await getToday(svc, D, VIP, {}, deps, (t += 1000));
+      }
+      return view;
+    };
+    let v = await getToday(svc, D, VIP, {}, deps, (t += 1000));
+    ok("VI: Today's Practice not complete -> no Keep going", v.coach.coach === "vi" && v.continuation.available === false && v.continuation.allowed === 2);
+    v = await finish(v);
+    ok("VI: Today complete -> Keep going available (0/2 used)", v.session.complete && v.continuation.available === true && v.continuation.used === 0);
+    const k1 = await startContinuation(svc, D, VIP, deps, (t += 1000));
+    const it1 = k1.plan.items[0];
+    await applyRound(svc, "d@x", { rows: rowsFor(it1.item_key, "d-k1-part", 4, 5, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "d@x" })), coach: { session_key: k1.session.session_key } }, deps);
+    const mid = await getToday(svc, D, VIP, {}, deps, (t += 1000));
+    let refused = null; try { await startContinuation(svc, D, VIP, deps, (t += 1000)); } catch (e) { refused = e.code; }
+    ok("VI: continuation 1 partly practised -> no second Keep going (finish_today_first)", mid.session.session_no === 1 && mid.session.complete === false && mid.continuation.available === false && refused === "finish_today_first", JSON.stringify(mid.session));
+    const old0 = await getToday(svc, D, VIP, { session_no: 0 }, deps, (t += 1000));
+    ok("VI: asking for the (complete) Today session still reports availability for the LATEST session", old0.session.session_no === 0 && old0.session.complete === true && old0.continuation.available === false);
+    const k1done = await finish(mid);
+    ok("VI: continuation 1 complete -> second Keep going available (1/2 used)", k1done.session.complete && k1done.continuation.available === true && k1done.continuation.used === 1);
+    const k2 = await startContinuation(svc, D, VIP, deps, (t += 1000));
+    ok("VI: second continuation starts as session 2", k2.session.session_no === 2 && k2.session.kind === "continuation");
+    const k2done = await finish(k2);
+    let none = null; try { await startContinuation(svc, D, VIP, deps, (t += 1000)); } catch (e) { none = e.code; }
+    ok("VI: after 2 complete continuations -> limit reached", k2done.continuation.available === false && none === "no_continuations_left");
+  }
+
+  // ---------------------------------------------------------------------------
   // STAGE 3 EVIDENCE-BOUNDARY LOOP (GPT Stage 3 audit, item 3), fresh learner on Velvet:
   // Today's Practice -> Start -> word + grammar -> Done -> Keep going -> new queue.
   {
