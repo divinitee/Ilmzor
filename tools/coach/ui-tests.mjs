@@ -2,6 +2,7 @@
 import { buildWordQuestions, evidenceItem, grammarPath, stageForDepth, WORD_QUESTIONS } from "../../src/lib/coach/wordCheck.js";
 import { coachT, labelKey, reasonKey } from "../../src/lib/coach/coachCopy.js";
 import { DEPTHS } from "../../base44/shared/coachPlan.js";
+import { OUTCOME, summarise, afterRunView } from "../../src/lib/coach/sessionOutcome.js";
 import { LIVE_GRAMMAR_TOPICS } from "../../base44/shared/coachGraph.js";
 let pass = 0, fail = 0;
 const ok = (n, c) => { c ? pass++ : fail++; console.log(`  ${c ? "PASS" : "FAIL"}  ${n}`); };
@@ -31,4 +32,23 @@ for (const lang of ["en", "uz", "ru"]) for (const p of ["vira", "velvet", "vi"])
 }
 ok("server labels map to localized keys", ["New", "Needs work", "Practising", "Strong"].map(labelKey).join() === "label_new,label_weak,label_learning,label_solid");
 ok("server short reasons map", reasonKey("Due") === "review_due" && reasonKey("Needs work") === "reason_weak" && reasonKey("New") === "reason_new" && reasonKey("Practice") === "reason_practice");
+
+// --- Correction A (2026-10-09): completed vs unavailable vs left ---------------
+const I = (k) => ({ item_key: k });
+const U = OUTCOME.UNAVAILABLE, Cc = OUTCOME.COMPLETED, Lf = OUTCOME.LEFT;
+const allSkipped = summarise({ "word:a:0": U, "grammar:x": U });
+ok("summary counts all-skipped run (0 completed, 2 unavailable)", allSkipped.completed === 0 && allSkipped.unavailable === 2 && allSkipped.unavailableKeys.length === 2);
+ok("all items skipped -> 'unavailable' (never 'done')", afterRunView({ session: { complete: false }, items: [I("word:a:0"), I("grammar:x")], summary: allSkipped }) === "unavailable");
+const part = summarise({ "word:a:0": Cc, "grammar:x": U });
+ok("partly skipped, only the skipped item remains -> 'done_partial' (count 1)", afterRunView({ session: { complete: false }, items: [I("grammar:x")], summary: part }) === "done_partial" && part.unavailable === 1 && part.completed === 1);
+ok("partly skipped but other playable items remain -> 'plan'", afterRunView({ session: { complete: false }, items: [I("grammar:x"), I("word:b:0")], summary: part }) === "plan");
+ok("server says complete -> 'done' regardless of client outcomes", afterRunView({ session: { complete: true }, items: [], summary: allSkipped }) === "done");
+const left = summarise({ "grammar:x": Lf });
+ok("left part-way -> item still playable -> 'plan' (not done, not unavailable)", afterRunView({ session: { complete: false }, items: [I("grammar:x")], summary: left }) === "plan" && left.left === 1 && left.completed === 0);
+ok("everything completed but a save failed (server still lists it) -> 'plan', never a false 'done'", afterRunView({ session: { complete: false }, items: [I("word:a:0")], summary: summarise({ "word:a:0": Cc }) }) === "plan");
+ok("nothing left and not complete -> 'plan' (shows 'nothing urgent')", afterRunView({ session: { complete: false }, items: [], summary: summarise({}) }) === "plan");
+for (const lang of ["en", "uz", "ru"]) {
+  const t = coachT(lang, "velvet");
+  ok(`correction copy present: ${lang}`, ["today_sub_plain", "unavailable_title", "unavailable_sub"].every((k) => t(k) !== k) && t("partial_note", { n: 2 }).includes("2"));
+}
 console.log(`\n${pass} passed, ${fail} failed`);
