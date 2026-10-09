@@ -8,6 +8,10 @@ const SHARED = {
   en: {
     today_title: "Today's Practice",
     today_sub: "{n} min · picked for you",
+    today_sub_plain: "Picked for you",
+    unavailable_title: "We couldn't load your practice",
+    unavailable_sub: "Nothing was recorded. Your plan is still here, so try again in a moment.",
+    partial_note: "{n} item(s) couldn't load. They stay in your plan.",
     start: "Start",
     resume: "Continue",
     keep_going: "Keep going",
@@ -46,6 +50,10 @@ const SHARED = {
   uz: {
     today_title: "Bugungi mashg'ulot",
     today_sub: "{n} daqiqa · siz uchun tanlandi",
+    today_sub_plain: "Siz uchun tanlandi",
+    unavailable_title: "Mashg'ulotni yuklab bo'lmadi",
+    unavailable_sub: "Hech narsa yozilmadi. Rejangiz joyida, birozdan so'ng qayta urinib ko'ring.",
+    partial_note: "{n} ta mashq yuklanmadi. Ular rejangizda qoladi.",
     start: "Boshlash", resume: "Davom etish",
     keep_going: "Yana davom etamiz", keep_going_sub: "Hozir qilganingiz asosida yangi reja",
     done_title: "Bugungi mashg'ulot tugadi",
@@ -73,6 +81,10 @@ const SHARED = {
   ru: {
     today_title: "Практика на сегодня",
     today_sub: "{n} мин · подобрано для вас",
+    today_sub_plain: "Подобрано для вас",
+    unavailable_title: "Не удалось загрузить практику",
+    unavailable_sub: "Ничего не записано. План сохранён, попробуйте ещё раз чуть позже.",
+    partial_note: "Не загрузилось: {n}. Это останется в вашем плане.",
     start: "Начать", resume: "Продолжить",
     keep_going: "Продолжаем", keep_going_sub: "Новый план по тому, что вы только что сделали",
     done_title: "Практика на сегодня готова",
