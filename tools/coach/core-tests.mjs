@@ -295,6 +295,16 @@ function makeStore() {
   tables.CoachProfile.find((p) => p.user_email === "a@x").last_policy_version = "velvet@1";
   const tL2 = await getToday(svc, A, LEARNER, {}, deps, NOW + 340000);
   ok("policy version change alone -> no handoff", tL2.handoff === null);
+  // Rule (Tee, 2026-10-09): "Keep going" only once the latest session is COMPLETE.
+  const partly = await getToday(svc, A, LEARNER, {}, deps, NOW + 345000);
+  let early = null; try { await startContinuation(svc, A, LEARNER, deps, NOW + 346000); } catch (e) { early = e.code; }
+  ok("partly practised Today's Practice: Keep going NOT available, startContinuation refused", partly.session.complete === false && partly.continuation.available === false && early === "finish_today_first" && !tables.PlanLog.some((p) => p.user_email === "a@x" && p.kind === "continuation"), JSON.stringify({ c: partly.session, k: partly.continuation }));
+  let guard = 0, tA = partly;
+  while (!tA.session.complete && tA.plan.items.length && guard++ < 10) {
+    for (const it of tA.plan.items) await applyRound(svc, "a@x", { rows: rowsFor(it.item_key, `fin-${guard}-${it.item_key}`, 4, 5, new Date(NOW + 347000 + guard).toISOString()), coach: { session_key: tA.session.session_key } }, deps);
+    tA = await getToday(svc, A, LEARNER, {}, deps, NOW + 348000 + guard);
+  }
+  ok("after finishing every planned item: session complete and Keep going available", tA.session.complete === true && tA.continuation.available === true, JSON.stringify(tA.session));
   const c1 = await startContinuation(svc, A, LEARNER, deps, NOW + 350000);
   ok("Keep going: fresh session from updated state (practised items excluded)", c1.session.kind === "continuation" && c1.session.session_no === 1 && !c1.plan.items.some((i) => i.item_key === target.item_key) && tables.PlanLog.some((p) => p.trigger === "continuation_initial"));
   const cAgain = await startContinuation(svc, A, LEARNER, deps, NOW + 355000);
