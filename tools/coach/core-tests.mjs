@@ -409,7 +409,6 @@ function makeStore() {
     tables.VocabularyWord.splice(tables.VocabularyWord.indexOf(droppedRow), 1);
     for (const k of visible.slice(1).filter((k) => k !== dropped)) await ev(k, `f-s0-${k}`, 4, f1.session.session_key);
     const f3 = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
-    tables.VocabularyWord.push(droppedRow); // restore for later tests
     ok("all playable visible items done -> session COMPLETE with minutes left; unused minutes stay unused (no top-up)", f3.session.complete === true && f3.plan.items.length === 0 && f3.session.remaining_minutes > 0, JSON.stringify(f3.session));
     const startedAt = tables.ItemEvidence.filter((e) => e.user_email === "f@x" && e.session_key === f1.session.session_key).map((e) => e.at).sort()[0];
     const laterSnaps = tables.PlanLog.filter((p) => p.user_email === "f@x" && p.session_key === f1.session.session_key && String(p.generated_at) > String(startedAt));
@@ -418,6 +417,7 @@ function makeStore() {
     ok("complete frozen session -> Keep going available (server)", f3.continuation.available === true);
     const k1 = await startContinuation(svc, F, LEARNER, deps, (t += 1000));
     ok("Keep going = a FRESH plan from updated state (nothing from the finished session)", k1.session.kind === "continuation" && k1.plan.items.length > 0 && k1.plan.items.every((i) => !visible.includes(i.item_key)) && k1.session.frozen === false);
+    tables.VocabularyWord.push(droppedRow); // restore for later tests
 
     // Content gate: a word whose row disappears / has no translation is never planned.
     const G = { email: "g@x", id: "ug" };
