@@ -375,19 +375,6 @@ async function sessionRecord(svc: any, email: string, sessionKey: string) {
   return { done, firstAt, snaps };
 }
 
-/** Minutes of this session's planned items that already have Coach evidence (est_minutes from the session's own snapshots). */
-async function sessionSpentMinutes(svc: any, email: string, sessionKey: string) {
-  const ev = (await svc.ItemEvidence.filter({ user_email: email, session_key: sessionKey }, 'created_date', 300)) || [];
-  const done = new Set<string>(ev.filter((e: any) => e.source === 'coach_session').map((e: any) => e.item_key));
-  if (!done.size) return 0;
-  const snaps = (await pageAll(svc.PlanLog, { user_email: email, session_key: sessionKey })) || [];
-  const est = new Map<string, number>();
-  for (const sn of snaps) for (const q of sn.queue || []) if (q?.item_key && !est.has(q.item_key)) est.set(q.item_key, Number(q.est_minutes) || 0);
-  let total = 0;
-  for (const k of done) total += est.get(k) || 0;
-  return total;
-}
-
 async function latestContinuationNo(svc: any, email: string, today: string) {
   const rows = (await svc.PlanLog.filter({ user_email: email, day: today, kind: 'continuation' }, 'created_date', 50)) || [];
   return rows.reduce((m: number, r: any) => Math.max(m, Number(r.session_no) || 0), 0);

@@ -216,8 +216,9 @@ function makeStore() {
 }
 {
   const { svc, tables } = makeStore();
-  for (let i = 1; i <= 8; i++) tables.VocabularyWord.push({ id: `v${i}`, english: `word${i}`, cefr: "A2" });
-  tables.VocabularyWord.push({ id: "c1", english: "coach", cefr: "A2" }, { id: "c2", english: "coach", cefr: "A2" });
+  // Real corpus rows all carry an Uzbek translation (checked 2026-10-09); the planner's content gate requires it.
+  for (let i = 1; i <= 8; i++) tables.VocabularyWord.push({ id: `v${i}`, english: `word${i}`, uzbek: `soz${i}`, cefr: "A2" });
+  tables.VocabularyWord.push({ id: "c1", english: "coach", uzbek: "murabbiy", cefr: "A2" }, { id: "c2", english: "coach", uzbek: "murabbiy", cefr: "A2" });
   tables.User.push({ id: "ua", email: "a@x", cefr_level: "A2" }, { id: "ub", email: "b@x", cefr_level: "A2" });
   const W = (o) => ({ id: `wa${Math.random()}`, game: "usage", mode: "recognise", verification: "client_attested", support: "none", ...o });
   tables.WordAttempt.push(
