@@ -214,11 +214,15 @@ const hasContentFn = (key: string) => key.startsWith('word:') ? isResolved(key) 
 /**
  * Content gate for planning (Stage 3 final correction, 2026-10-10): a word is
  * plannable only if its VocabularyWord row still EXISTS and has an English
- * headword and an Uzbek translation (what the session runner needs to ask a
- * question). Grammar: live topics only (all have practice banks; tested).
+ * headword AND a translation in EVERY supported UI language (uzbek + russian).
+ * The learner's language lives only in the browser, so the server requires
+ * both: a planned word is then always playable whichever language the learner
+ * uses (or switches to) - no cross-language fallback. Grammar: live topics
+ * only (all have practice banks; tested).
  * Read-only. Never marks anything learned or completed: unplayable content is
  * simply not planned, so it can't trap a learner in a session.
  */
+export const PLAYABLE_FIELDS = ['english', 'uzbek', 'russian'];
 export async function contentGate(svc: any, candidates: any[]) {
   const ids = [...new Set((candidates || [])
     .filter((c: any) => String(c?.item_key || '').startsWith('word:') && isResolved(c.item_key))
@@ -227,7 +231,7 @@ export async function contentGate(svc: any, candidates: any[]) {
   const playable = new Set<string>();
   for (const part of chunk(ids, 100)) {
     const rows = (await svc.VocabularyWord.filter({ id: { $in: part } }, 'id', part.length)) || [];
-    for (const w of rows) if (String(w?.english || '').trim() && String(w?.uzbek || '').trim()) playable.add(String(w.id));
+    for (const w of rows) if (PLAYABLE_FIELDS.every((f) => String(w?.[f] || '').trim())) playable.add(String(w.id));
   }
   return (key: string) => key.startsWith('word:') ? hasContentFn(key) && playable.has(String(key).split(':')[1]) : hasContentFn(key);
 }

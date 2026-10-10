@@ -57,4 +57,15 @@ for (const lang of ["en", "uz", "ru"]) {
   const missing = LIVE_GRAMMAR_TOPICS.filter((k) => !fs.existsSync(new URL(`../../src/lib/grammarPractice/bank/${k}.js`, import.meta.url)));
   ok("every live grammar topic (server hasContent) has a practice bank file (no unplayable grammar)", missing.length === 0, missing.join(","));
 }
+
+// --- Russian gap (GPT conditional approval, 2026-10-10) --------------------------
+{
+  const score = W("s", "score", "hisob", "");                 // the real corpus row: no Russian
+  const mixedPool = [score, pool[1], W("u1", "milk2", "sut2", ""), pool[2], pool[3], pool[4]]; // one distractor without Russian
+  ok("ru learner + target without Russian -> NO questions (no Uzbek fallback)", buildWordQuestions(score, mixedPool, { depth: "remediation", lang: "ru", rnd }).length === 0);
+  ok("uz learner + same word -> playable in Uzbek", buildWordQuestions(score, mixedPool, { depth: "probe", lang: "uz", rnd })[0]?.correct === "hisob");
+  const ruQs = buildWordQuestions(target, mixedPool, { depth: "remediation", lang: "ru", rnd });
+  const cyr = /^[Ѐ-ӿ\s-]+$/;
+  ok("ru learner: every meaning option is Russian (distractors without Russian are skipped, no mixed languages)", ruQs.length === 3 && ruQs.filter((q) => q.type === "multiple_choice").every((q) => q.options.every((o) => cyr.test(o))), JSON.stringify(ruQs.map((q) => q.options)));
+}
 console.log(`\n${pass} passed, ${fail} failed`);

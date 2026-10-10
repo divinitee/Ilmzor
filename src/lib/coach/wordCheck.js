@@ -21,7 +21,11 @@ function shuffle(arr, rnd = Math.random) {
  */
 export function buildWordQuestions(word, pool, { depth, lang, rnd = Math.random } = {}) {
   const nk = nativeKeyFor(lang);
-  const native = (w) => (w?.[nk] || w?.uzbek || "").trim();
+  // Strictly the learner's language: no Uzbek fallback for Russian learners
+  // (a lone Uzbek option among Russian ones would give the answer away). The
+  // server only plans words that have BOTH translations (coachEngine.contentGate);
+  // distractors without the learner's language are simply not used.
+  const native = (w) => String(w?.[nk] || "").trim();
   if (!word?.english || !native(word)) return [];
   const n = WORD_QUESTIONS[depth] || 1;
   // Distinct distractors only: one per id, and never two options with the same text.

@@ -216,9 +216,9 @@ function makeStore() {
 }
 {
   const { svc, tables } = makeStore();
-  // Real corpus rows all carry an Uzbek translation (checked 2026-10-09); the planner's content gate requires it.
-  for (let i = 1; i <= 8; i++) tables.VocabularyWord.push({ id: `v${i}`, english: `word${i}`, uzbek: `soz${i}`, cefr: "A2" });
-  tables.VocabularyWord.push({ id: "c1", english: "coach", uzbek: "murabbiy", cefr: "A2" }, { id: "c2", english: "coach", uzbek: "murabbiy", cefr: "A2" });
+  // The planner's content gate requires english + uzbek + russian (all but one real row have them, checked 2026-10-09).
+  for (let i = 1; i <= 8; i++) tables.VocabularyWord.push({ id: `v${i}`, english: `word${i}`, uzbek: `soz${i}`, russian: `слово${i}`, cefr: "A2" });
+  tables.VocabularyWord.push({ id: "c1", english: "coach", uzbek: "murabbiy", russian: "тренер", cefr: "A2" }, { id: "c2", english: "coach", uzbek: "murabbiy", russian: "тренер", cefr: "A2" });
   tables.User.push({ id: "ua", email: "a@x", cefr_level: "A2" }, { id: "ub", email: "b@x", cefr_level: "A2" });
   const W = (o) => ({ id: `wa${Math.random()}`, game: "usage", mode: "recognise", verification: "client_attested", support: "none", ...o });
   tables.WordAttempt.push(
@@ -422,15 +422,20 @@ function makeStore() {
     // Content gate: a word whose row disappears / has no translation is never planned.
     const G = { email: "g@x", id: "ug" };
     tables.User.push({ id: "ug", email: "g@x", cefr_level: "A2" });
-    tables.VocabularyWord.push({ id: "gone1", english: "ghost", uzbek: "arvoh", cefr: "A2" }, { id: "nouz", english: "orphan", cefr: "A2" });
+    tables.VocabularyWord.push({ id: "gone1", english: "ghost", uzbek: "arvoh", russian: "призрак", cefr: "A2" }, { id: "nouz", english: "orphan", russian: "сирота", cefr: "A2" },
+      { id: "noru", english: "score", uzbek: "hisob", cefr: "A2" }); // like the real "score" row: no Russian
     tables.WordAttempt.push(
       W({ user_email: "g@x", word_id: "gone1", word: "ghost", correct: false, round_id: "g-r1", round_at: at(5) }),
       W({ user_email: "g@x", word_id: "nouz", word: "orphan", correct: false, round_id: "g-r1", round_at: at(5) }),
+      W({ user_email: "g@x", word_id: "noru", word: "score", correct: false, round_id: "g-r1", round_at: at(5) }),
       W({ user_email: "g@x", word_id: "v6", word: "word6", correct: false, round_id: "g-r1", round_at: at(5) }),
     );
     let g1 = await getToday(svc, G, LEARNER, {}, deps, (t += 1000));
     const gKeys = g1.plan.items.map((i) => i.item_key);
     ok("a word with no Uzbek translation is never planned", !gKeys.includes("word:nouz:0"));
+    ok("a word with no RUSSIAN translation (the real 'score' case) is never planned", !gKeys.includes("word:noru:0"));
+    const noruItem = tables.LearnerItem.find((r) => r.user_email === "g@x" && r.item_key === "word:noru:0");
+    ok("...and it is NOT marked learned/completed: its LearnerItem keeps its (weak) state, no coach evidence", !!noruItem && noruItem.learning_state === "weak" && !tables.ItemEvidence.some((e) => e.user_email === "g@x" && e.item_key === "word:noru:0" && e.source === "coach_session"), JSON.stringify(noruItem));
     ok("a playable weak word is planned (control)", gKeys.includes("word:gone1:0"), gKeys.join(","));
     // Start the session on another planned item, then the word row is deleted mid-session.
     const starter = gKeys.find((k) => k !== "word:gone1:0");
