@@ -211,6 +211,27 @@ export async function newCandidatesFor(svc: any, email: string, level: string, k
 
 const hasContentFn = (key: string) => key.startsWith('word:') ? isResolved(key) : key.startsWith('grammar:') ? LIVE_GRAMMAR_TOPICS.includes(key.slice(8)) : false;
 
+/**
+ * Content gate for planning (Stage 3 final correction, 2026-10-10): a word is
+ * plannable only if its VocabularyWord row still EXISTS and has an English
+ * headword and an Uzbek translation (what the session runner needs to ask a
+ * question). Grammar: live topics only (all have practice banks; tested).
+ * Read-only. Never marks anything learned or completed: unplayable content is
+ * simply not planned, so it can't trap a learner in a session.
+ */
+export async function contentGate(svc: any, candidates: any[]) {
+  const ids = [...new Set((candidates || [])
+    .filter((c: any) => String(c?.item_key || '').startsWith('word:') && isResolved(c.item_key))
+    .map((c: any) => String(c.word_id || String(c.item_key).split(':')[1] || ''))
+    .filter(Boolean))];
+  const playable = new Set<string>();
+  for (const part of chunk(ids, 100)) {
+    const rows = (await svc.VocabularyWord.filter({ id: { $in: part } }, 'id', part.length)) || [];
+    for (const w of rows) if (String(w?.english || '').trim() && String(w?.uzbek || '').trim()) playable.add(String(w.id));
+  }
+  return (key: string) => key.startsWith('word:') ? hasContentFn(key) && playable.has(String(key).split(':')[1]) : hasContentFn(key);
+}
+
 async function doneTodayFor(svc: any, email: string, today: string) {
   const rows = (await svc.ItemEvidence.filter({ user_email: email, source: 'coach_session' }, '-at', 300)) || [];
   return new Set<string>(rows.filter((e: any) => e.at && dayOf(Date.parse(e.at)) === today).map((e: any) => e.item_key));
@@ -285,8 +306,9 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
   // The session's budget is a prescription that gets USED UP: minutes already
   // practised in THIS session come off it (planner invariant per session), so
   // re-opening Today's Practice never mints a fresh full plan.
-  const planCtx = { items, newCandidates, goal, policy: resolved.policy, minutes, now, doneToday };
-  const { spent, remaining, plan, complete } = await sessionState(svc, me.email, session_key, kind, planCtx);
+  const hasContent = await contentGate(svc, [...items, ...newCandidates]);
+  const planCtx = { items, newCandidates, goal, policy: resolved.policy, minutes, now, doneToday, hasContent };
+  const { spent, remaining, plan, complete, frozen } = await sessionState(svc, me.email, session_key, kind, planCtx);
   // "Keep going" needs the LATEST session of the day (Today's Practice, or the
   // last continuation) to be complete (Tee, 2026-10-09), plus room under the
   // policy's continuationSessionsPerDay. Evaluated here, never in the client.
@@ -303,7 +325,7 @@ export async function getToday(svc: any, me: any, sub: any, body: any, deps: Dep
     handoff,
     settings: { goal_id: goal.id, minutes, minutesOptions: resolved.policy.limits.minutesOptions, goalSwitching: resolved.policy.limits.goalSwitching, onboarded: !!profile.onboarded_at,
       goals: Object.values(GOALS).map((g: any) => ({ id: g.id, objective: g.objective, placeholder: !!g.placeholder })) },
-    session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null, spent_minutes: spent, remaining_minutes: remaining, complete },
+    session: { session_key, kind, session_no: sessionNo, plan_id: snap?.id || null, spent_minutes: spent, remaining_minutes: remaining, complete, frozen },
     plan: { minutes, minutes_planned: plan.minutes_planned, fallback: plan.fallback, suggestion: plan.suggestion, items: plan.explanation.map(studentView) },
     done_today: doneToday.size,
     continuation: { allowed: resolved.policy.limits.continuationSessionsPerDay, used: continuationsUsed, available: latestComplete && continuationsUsed < resolved.policy.limits.continuationSessionsPerDay },
@@ -318,10 +340,39 @@ const studentView = (e: any) => ({ item_key: e.item_key, item_type: e.item_type,
  * complete (something was practised and nothing playable is left in budget).
  */
 async function sessionState(svc: any, email: string, sessionKey: string, kind: string, ctx: any) {
-  const spent = await sessionSpentMinutes(svc, email, sessionKey);
-  const remaining = Math.max(0, ctx.minutes - spent);
-  const plan = planToday({ ...ctx, minutes: remaining, hasContent: hasContentFn, kind });
-  return { spent, remaining, plan, complete: spent > 0 && plan.explanation.length === 0 };
+  const rec = await sessionRecord(svc, email, sessionKey);
+  // Nothing practised in this session yet: the plan is still LIVE (a goal or
+  // minutes change before starting re-plans it).
+  if (!rec.done.size) {
+    const plan = planToday({ ...ctx, kind });
+    return { spent: 0, remaining: ctx.minutes, plan, complete: false, frozen: false };
+  }
+  // Practice has started: the plan is FROZEN to the snapshot the learner saw
+  // when they started (Tee, 2026-10-10). Remaining = that queue minus what was
+  // practised (and minus content that is no longer playable). Nothing is ever
+  // appended; unused minutes stay unused. "Keep going" is the only way to a
+  // fresh plan.
+  const startSnap = [...rec.snaps].filter((sn: any) => String(sn.generated_at || '') <= rec.firstAt).pop() || rec.snaps[0];
+  const queue = ((startSnap?.queue) || []).filter((q: any) => q?.item_key && !rec.done.has(q.item_key) && ctx.hasContent(q.item_key));
+  const est = new Map<string, number>();
+  for (const sn of rec.snaps) for (const q of sn.queue || []) if (q?.item_key && !est.has(q.item_key)) est.set(q.item_key, Number(q.est_minutes) || 0);
+  let spent = 0;
+  for (const k of rec.done) spent += est.get(k) || 0;
+  const plan = {
+    explanation: queue, minutes_planned: queue.reduce((a: number, q: any) => a + (Number(q.est_minutes) || 0), 0),
+    fallback: null, suggestion: null,
+    plan_hash: fnv1a(JSON.stringify(['frozen', sessionKey, startSnap?.plan_hash || null, queue.map((q: any) => [q.item_key, q.depth])])),
+  };
+  return { spent, remaining: Math.max(0, ctx.minutes - spent), plan, complete: queue.length === 0, frozen: true };
+}
+
+/** This session's coach-credited items, when practice started, and its snapshots (oldest first). */
+async function sessionRecord(svc: any, email: string, sessionKey: string) {
+  const ev = ((await svc.ItemEvidence.filter({ user_email: email, session_key: sessionKey }, 'created_date', 300)) || []).filter((e: any) => e.source === 'coach_session');
+  const done = new Set<string>(ev.map((e: any) => e.item_key));
+  const firstAt = ev.map((e: any) => String(e.at || '')).filter(Boolean).sort()[0] || '';
+  const snaps = done.size ? [...((await pageAll(svc.PlanLog, { user_email: email, session_key: sessionKey })) || [])].sort((a: any, b: any) => String(a.generated_at || '').localeCompare(String(b.generated_at || ''))) : [];
+  return { done, firstAt, snaps };
 }
 
 /** Minutes of this session's planned items that already have Coach evidence (est_minutes from the session's own snapshots). */
@@ -381,7 +432,8 @@ async function getTodayPlanOnly(svc: any, me: any, resolved: any, sessionNo: num
   const user = (await svc.User.filter({ email: me.email }, 'created_date', 1))?.[0] || me;
   const newCandidates = await newCandidatesFor(svc, me.email, user?.cefr_level || 'A2', new Set(items.map((i: any) => i.item_key)));
   const doneToday = await doneTodayFor(svc, me.email, today);
-  const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes, now, hasContent: hasContentFn, doneToday, kind: 'continuation' });
+  const hasContent = await contentGate(svc, [...items, ...newCandidates]);
+  const plan = planToday({ items, newCandidates, goal, policy: resolved.policy, minutes, now, hasContent, doneToday, kind: 'continuation' });
   return {
     day: today, kind: 'continuation', session_no: sessionNo, session_key: `${today}:continuation:${sessionNo}`, goal_id: goal.id, plan_hash: plan.plan_hash,
     generated_at: new Date(now).toISOString(), entitlement: resolved.entitlement, policy: resolved.policy.version, engine: ENGINE_STAMP, minutes, queue: plan.explanation,
