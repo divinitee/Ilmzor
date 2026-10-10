@@ -82,9 +82,28 @@ for (const m of [10, 15, 20]) {
   const sub = L[iBack];
   const iEnd = L.findIndex((e, i) => i > iBack && e.kind === "submit:end");
   const iReload = L.findIndex((e, i) => i > iEnd && e.kind === "coachApi:getToday");
-  ok("Back: the queued word answer is sent (1 item, today's session_key)", !!sub && sub.detail.game === "quiz" && sub.detail.n === 1 && sub.detail.session_key === "2026-10-08:today:0", JSON.stringify(sub));
+  ok("Back: the partial word answer is sent (1 real answer) WITHOUT the Coach session_key", !!sub && sub.detail.game === "quiz" && sub.detail.n === 1 && sub.detail.session_key === undefined, JSON.stringify(sub));
   ok("Back: the plan reloads only AFTER that answer is saved", iEnd > iBack && iReload > iEnd);
+  ok("Back: the unfinished word is still in today's plan", await vis(p, "apple"));
   ok("Back: no Keep going offered (session not complete)", !(await p.getByRole("button", { name: /Keep going/ }).isVisible().catch(() => false)));
+  await p.close(); }
+
+
+// ---- Back AFTER finishing a word: that word's answers carry the session_key ----
+{ const p = await open("start=/coach&scenario=normal");
+  await onboard(p);
+  await p.getByRole("button", { name: /Start/ }).click();
+  for (let k = 0; k < 3; k++) {
+    await p.getByText(/What does it mean\?|Which English word\?/).first().waitFor();
+    await p.locator(".premium-card .grid button").first().click();
+    await p.getByRole("button", { name: /^Next$/ }).click();
+  }
+  await p.locator("button:has(span:text-is('A'))").first().waitFor({ timeout: 8000 });
+  await p.getByRole("button", { name: "Back" }).click();
+  await p.getByRole("button", { name: /Start/ }).waitFor({ timeout: 8000 });
+  const subs = (await log(p)).filter((e) => e.kind === "submit:start");
+  ok("finished word -> its 3 answers sent WITH the session_key (before grammar); Back sends nothing extra", subs.length === 1 && subs[0].detail.n === 3 && subs[0].detail.session_key === "2026-10-08:today:0", JSON.stringify(subs.map((e) => e.detail)));
+  ok("finished word no longer in the plan; unfinished items remain", !(await vis(p, "apple")) && await vis(p, "bread"));
   await p.close(); }
 
 // ---- D: grammar round outside Coach (unchanged) vs inside Coach -------------
