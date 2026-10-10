@@ -73,7 +73,7 @@ export default function Coach() {
   const back = async () => {
     if (view === "run") {
       setBusy(true);
-      try { await flushRef.current?.(); await load(); } finally { setBusy(false); }
+      try { await flushRef.current?.(true); await load(); } finally { setBusy(false); }
       setView("plan");
       return;
     }
@@ -283,15 +283,29 @@ function Session({ data, t, gc, color, lang, email, onFinished, flushRef }) {
   const pending = useRef([]);
   const finishing = useRef(false);
   const outcomes = useRef({}); // item_key -> OUTCOME (see sessionOutcome.js)
+  const completedWords = useRef(new Set()); // word item_keys whose questions were ALL answered
   const pool = useRef(null);
 
+  // Sends queued word answers. Answers for words the learner FINISHED go with
+  // the Coach session_key (Coach credit, session minutes). Answers for a word
+  // left part-way (Back / navigating away) are real, so they are still sent,
+  // but WITHOUT the session_key: ordinary practice evidence, no Coach credit,
+  // no FSRS move, no session minutes, and the word stays in today's plan.
   const flush = useCallback(async () => {
     const batch = pending.current.splice(0);
-    if (batch.length && email) await submitEvidence(email, { game: "quiz", round_id: generateRoundId(), items: batch.slice(0, 50), coach: { session_key: sessionKey } });
+    if (!batch.length || !email) return;
+    const finished = batch.filter((p) => completedWords.current.has(p.key)).map((p) => p.ev);
+    const partial = batch.filter((p) => !completedWords.current.has(p.key)).map((p) => p.ev);
+    if (finished.length) await submitEvidence(email, { game: "quiz", round_id: generateRoundId(), items: finished.slice(0, 50), coach: { session_key: sessionKey } });
+    if (partial.length) await submitEvidence(email, { game: "quiz", round_id: generateRoundId(), items: partial.slice(0, 50) });
   }, [email, sessionKey]);
 
   const advance = useCallback(() => setIdx((i) => i + 1), []);
-  const finishItem = useCallback((key, outcome) => { outcomes.current[key] = outcome; advance(); }, [advance]);
+  const finishItem = useCallback((key, outcome) => {
+    outcomes.current[key] = outcome;
+    if (outcome === OUTCOME.COMPLETED && String(key).startsWith("word:")) completedWords.current.add(key);
+    advance();
+  }, [advance]);
 
   // Let the page send queued answers before it leaves (Back), and as a last
   // resort on unmount (navigating away). flush() empties the queue first, so
@@ -357,7 +371,7 @@ function Session({ data, t, gc, color, lang, email, onFinished, flushRef }) {
         <div className="premium-card rounded-[28px] p-10 text-center"><Loader2 className="w-6 h-6 animate-spin mx-auto" style={{ color }} /></div>
       ) : ready.kind === "word" ? (
         <CoachWordCheck key={`w${idx}`} word={ready.word} questions={ready.questions} color={color} t={t}
-          onAnswer={(w, q, given) => pending.current.push(evidenceItem(w, q, given))} onDone={() => finishItem(ready.key, OUTCOME.COMPLETED)} />
+          onAnswer={(w, q, given) => pending.current.push({ key: ready.key, ev: evidenceItem(w, q, given) })} onDone={() => finishItem(ready.key, OUTCOME.COMPLETED)} />
       ) : (
         <PracticeRunner key={`g${idx}`} items={ready.grammarItems} stage={ready.stage} topicKey={ready.topicKey} size={ready.size}
           c={gc} coachSessionKey={sessionKey}
