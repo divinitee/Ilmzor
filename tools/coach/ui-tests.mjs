@@ -51,4 +51,10 @@ for (const lang of ["en", "uz", "ru"]) {
   const t = coachT(lang, "velvet");
   ok(`correction copy present: ${lang}`, ["today_sub_plain", "unavailable_title", "unavailable_sub"].every((k) => t(k) !== k) && t("partial_note", { n: 2 }).includes("2"));
 }
+
+{
+  const fs = await import("node:fs");
+  const missing = LIVE_GRAMMAR_TOPICS.filter((k) => !fs.existsSync(new URL(`../../src/lib/grammarPractice/bank/${k}.js`, import.meta.url)));
+  ok("every live grammar topic (server hasContent) has a practice bank file (no unplayable grammar)", missing.length === 0, missing.join(","));
+}
 console.log(`\n${pass} passed, ${fail} failed`);

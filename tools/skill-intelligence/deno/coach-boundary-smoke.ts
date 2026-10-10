@@ -93,7 +93,13 @@ const rq = await P({ action: 'submitEvidence', game: 'quiz', round_id: 'coach-q1
 const qRows = tables.WordAttempt.filter((r) => r.round_id === 'coach-q1');
 ok('quiz round is server-graded (client "correct" ignored: wrong pick stored as wrong)', rq.ok && rq.verification === 'server_graded' && qRows.find((r) => r.word_id === wordItems[0].word_id)?.correct === false && qRows.filter((r) => r.word_id !== wordItems[0].word_id).every((r) => r.correct === true));
 ok('coach evidence exists the moment submitEvidence RETURNS (awaited, no race)', wordItems.every((i: any) => coachEv(sk).some((e) => e.item_key === i.item_key)));
+// Partial answers for a word the learner left (what Coach.jsx sends on Back): NO session_key.
+const leftWord = wordItems[wordItems.length - 1];
+const lw = tables.VocabularyWord.find((v) => v.id === leftWord.word_id);
+const rp = await P({ action: 'submitEvidence', game: 'quiz', round_id: 'coach-partial-1', items: [{ word: lw.english, word_id: lw.id, type: 'multiple_choice', given: lw.uzbek, correct: true }] });
+ok('untagged partial answer: accepted and recorded, but no Coach credit', rp.ok && (tables.ItemEvidence || []).some((e) => e.round_id === 'coach-partial-1' && e.source !== 'coach_session') && !(tables.ItemEvidence || []).some((e) => e.round_id === 'coach-partial-1' && e.source === 'coach_session'));
 const midDay = await C({ action: 'getToday' });
+ok('session frozen after the first answers; the visible plan is unchanged minus practised items', midDay.session.frozen === true && midDay.plan.items.every((i: any) => items.some((v: any) => v.item_key === i.item_key)) && !midDay.plan.items.some((i: any) => wordItems.slice(0, -1).some((w: any) => w.item_key === i.item_key)));
 const early = await C({ action: 'startContinuation' });
 ok('partly practised: Keep going NOT offered and startContinuation refused (finish_today_first)', midDay.session.complete === false && midDay.continuation.available === false && early.code === 'finish_today_first', JSON.stringify({ s: midDay.session, k: midDay.continuation, e: early.code }));
 const firstWord = tables.LearnerItem.find((r) => r.user_email === 'tee.test@x' && r.item_key === wordItems[0].item_key);
