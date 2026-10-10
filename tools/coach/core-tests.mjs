@@ -375,6 +375,80 @@ function makeStore() {
   }
 
   // ---------------------------------------------------------------------------
+  // FROZEN SESSION PLAN + CONTENT GATE (Stage 3 final correction, 2026-10-10).
+  {
+    const F = { email: "f@x", id: "uf" };
+    tables.User.push({ id: "uf", email: "f@x", cefr_level: "A2" });
+    tables.WordAttempt.push(
+      W({ user_email: "f@x", word_id: "v4", word: "word4", correct: true, round_id: "f-r1", round_at: at(5) }),
+      W({ user_email: "f@x", word_id: "v5", word: "word5", correct: false, round_id: "f-r1", round_at: at(5) }),
+    );
+    let t = NOW + 5000;
+    const ev = (key, round, okN, sk) => applyRound(svc, "f@x", { rows: rowsFor(key, round, okN, 5, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "f@x" })), ...(sk ? { coach: { session_key: sk } } : {}) }, deps);
+    // Before practice the plan is live: a time change re-plans it.
+    const f0 = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
+    await saveProfile(svc, F, LEARNER, { daily_minutes: 20, onboarded: true }, t);
+    const f1 = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
+    ok("before practice the plan is LIVE: a time change re-plans (time_changed snapshot)", f0.session.frozen === false && f1.plan.minutes === 20 && tables.PlanLog.some((p) => p.user_email === "f@x" && p.trigger === "time_changed"));
+    const visible = f1.plan.items.map((i) => i.item_key);
+    ok("visible plan leaves minutes unused (so a top-up WOULD be possible)", f1.plan.minutes_planned < f1.plan.minutes, `${f1.plan.minutes_planned}/${f1.plan.minutes}`);
+    // Partly practised: remaining = visible minus practised; nothing appended.
+    await ev(visible[0], "f-s0-a", 4, f1.session.session_key);
+    const f2 = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
+    ok("partly practised: plan FROZEN to the visible items minus the practised one", f2.session.frozen === true && f2.session.complete === false && JSON.stringify(f2.plan.items.map((i) => i.item_key)) === JSON.stringify(visible.slice(1)));
+    // Profile change mid-session does not re-plan a frozen session.
+    await saveProfile(svc, F, LEARNER, { daily_minutes: 10 }, t);
+    const f2b = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
+    ok("mid-session minutes change does not rewrite the frozen plan", JSON.stringify(f2b.plan.items.map((i) => i.item_key)) === JSON.stringify(visible.slice(1)));
+    await saveProfile(svc, F, LEARNER, { daily_minutes: 20 }, t);
+    for (const k of visible.slice(1)) await ev(k, `f-s0-${k}`, 4, f1.session.session_key);
+    const f3 = await getToday(svc, F, LEARNER, {}, deps, (t += 1000));
+    const sessionSnaps = tables.PlanLog.filter((p) => p.user_email === "f@x" && p.session_key === f1.session.session_key);
+    const everPlanned = new Set(sessionSnaps.flatMap((p) => (p.queue || []).map((q) => q.item_key)));
+    ok("all visible items done -> session COMPLETE even with minutes left; unused minutes stay unused", f3.session.complete === true && f3.plan.items.length === 0 && f3.session.remaining_minutes > 0, JSON.stringify(f3.session));
+    const afterStart = sessionSnaps.filter((p) => String(p.generated_at) > String(f1.session ? sessionSnaps.find((x) => x.plan_hash)?.generated_at : ""));
+    ok("no item outside the visible plan was ever appended to this session after practice began", [...everPlanned].every((k) => visible.includes(k) || sessionSnaps.some((p) => p.generated_at <= new Date(NOW + 7000).toISOString() && (p.queue || []).some((q) => q.item_key === k))));
+    ok("complete frozen session -> Keep going available (server)", f3.continuation.available === true);
+    const k1 = await startContinuation(svc, F, LEARNER, deps, (t += 1000));
+    ok("Keep going = a FRESH plan from updated state (nothing from the finished session)", k1.session.kind === "continuation" && k1.plan.items.length > 0 && k1.plan.items.every((i) => !visible.includes(i.item_key)) && k1.session.frozen === false);
+
+    // Content gate: a word whose row disappears / has no translation is never planned.
+    const G = { email: "g@x", id: "ug" };
+    tables.User.push({ id: "ug", email: "g@x", cefr_level: "A2" });
+    tables.VocabularyWord.push({ id: "gone1", english: "ghost", uzbek: "arvoh", cefr: "A2" }, { id: "nouz", english: "orphan", cefr: "A2" });
+    tables.WordAttempt.push(
+      W({ user_email: "g@x", word_id: "gone1", word: "ghost", correct: false, round_id: "g-r1", round_at: at(5) }),
+      W({ user_email: "g@x", word_id: "nouz", word: "orphan", correct: false, round_id: "g-r1", round_at: at(5) }),
+      W({ user_email: "g@x", word_id: "v6", word: "word6", correct: false, round_id: "g-r1", round_at: at(5) }),
+    );
+    let g1 = await getToday(svc, G, LEARNER, {}, deps, (t += 1000));
+    const gKeys = g1.plan.items.map((i) => i.item_key);
+    ok("a word with no Uzbek translation is never planned", !gKeys.includes("word:nouz:0"));
+    ok("a playable weak word is planned (control)", gKeys.includes("word:gone1:0") && gKeys.includes("word:v6:0"), gKeys.join(","));
+    // Start the session, then the word row is deleted mid-session.
+    await applyRound(svc, "g@x", { rows: rowsFor("word:v6:0", "g-s0", 4, 5, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "g@x" })), coach: { session_key: g1.session.session_key } }, deps);
+    const liBefore = JSON.stringify(tables.LearnerItem.find((r) => r.user_email === "g@x" && r.item_key === "word:gone1:0"));
+    tables.VocabularyWord.splice(tables.VocabularyWord.findIndex((w) => w.id === "gone1"), 1);
+    const g2 = await getToday(svc, G, LEARNER, {}, deps, (t += 1000));
+    ok("a word deleted mid-session drops out of the frozen plan (no endless session)", g2.session.frozen === true && !g2.plan.items.some((i) => i.item_key === "word:gone1:0"));
+    for (const it of g2.plan.items) await applyRound(svc, "g@x", { rows: rowsFor(it.item_key, `g-${it.item_key}`, 4, 5, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "g@x" })), coach: { session_key: g1.session.session_key } }, deps);
+    const g3 = await getToday(svc, G, LEARNER, {}, deps, (t += 1000));
+    ok("...and the session can complete without it", g3.session.complete === true);
+    ok("the unplayable word is NOT marked learned/completed: its LearnerItem is untouched and has no coach evidence", JSON.stringify(tables.LearnerItem.find((r) => r.user_email === "g@x" && r.item_key === "word:gone1:0")) === liBefore && !tables.ItemEvidence.some((e) => e.user_email === "g@x" && e.item_key === "word:gone1:0" && e.source === "coach_session"));
+
+    // Partial word answers sent WITHOUT the session_key (what Coach.jsx does on Back): no Coach credit, no minutes, item stays.
+    const H = { email: "h@x", id: "uh" };
+    tables.User.push({ id: "uh", email: "h@x", cefr_level: "A2" });
+    tables.WordAttempt.push(W({ user_email: "h@x", word_id: "v7", word: "word7", correct: false, round_id: "h-r1", round_at: at(5) }));
+    const h1 = await getToday(svc, H, LEARNER, {}, deps, (t += 1000));
+    const hw = h1.plan.items.find((i) => i.item_type === "word");
+    const part = await applyRound(svc, "h@x", { rows: rowsFor(hw.item_key, "h-partial", 1, 1, new Date((t += 1000)).toISOString()).map((r) => ({ ...r, user_email: "h@x" })) }, deps);
+    const h2 = await getToday(svc, H, LEARNER, {}, deps, (t += 1000));
+    ok("partial answers (untagged): real evidence recorded, but no Coach credit", part.evidenceAdded === 1 && part.coachItems === 0);
+    ok("partial answers: no session minutes used, word still in today's plan, session not frozen", h2.session.spent_minutes === 0 && h2.session.frozen === false && h2.plan.items.some((i) => i.item_key === hw.item_key));
+  }
+
+  // ---------------------------------------------------------------------------
   // STAGE 3 EVIDENCE-BOUNDARY LOOP (GPT Stage 3 audit, item 3), fresh learner on Velvet:
   // Today's Practice -> Start -> word + grammar -> Done -> Keep going -> new queue.
   {

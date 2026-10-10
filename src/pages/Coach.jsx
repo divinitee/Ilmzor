@@ -73,7 +73,7 @@ export default function Coach() {
   const back = async () => {
     if (view === "run") {
       setBusy(true);
-      try { await flushRef.current?.(true); await load(); } finally { setBusy(false); }
+      try { await flushRef.current?.(); await load(); } finally { setBusy(false); }
       setView("plan");
       return;
     }
